@@ -1,0 +1,99 @@
+* Debugging:
+** another process that is very important is the constant searching of libraries to import such as DB, Requests. We must find auto-suggest capabilities in spacemacs
+** json_encode is commonly returned to the frontend, when assembling data by-hand. Very easy to forget because Eloquent always returns in JSON
+** https://xdebug.org/
+*** Includes how to setup xdebug
+*** xdebug settings can be set in php.ini, & ini_set()
+*** xdebug_debug_zval('somevarname') ---------- where variable is $somevarname ---------- you can show variable refcount ---------- superior to built-in debug_zval_dump
+*** installing xdebug improves var_dump(), with settings such as xdebug.var_display_max_depth
+** https://cloudkul.com/blog/configure-blackfire-profiler-for-your-php-application/
+*** a PHP profiler tool that helps gather performance related data of you PHP app
+*** you can use it in Laravel (& Drupal and Symfony)
+*** you need to install blackfir agent and the blackfire package itself (requires free signup, you can use Github account)
+*** needs Blackfire Companion on Chrome Browser
+*** you may need to disable XDebug (possible conflict)
+** https://www.sitepoint.com/an-in-depth-walkthrough-of-supercharging-apps-with-blackfire/
+*** There is a Faker package available for Laravel to create fake data (composer require fzanintto/faker)
+*** create a file that creates fake user data (1000 users) and outputs to users.json in project root
+*** create a main script to test: The script reads from the JSON file, 
+**** json_decode(file_get_contents('data/users.json'), true);
+**** and inserts into database
+*** execute script by accessing relative URL
+*** clicking Blackfire icon will profile this script (as reference)
+*** They provide a simple example of reducing 1000 into 1 PDO request (still the same INSERT INTO operation, turns out you can string the values together with a comma). 
+*** Running the profiler again, we can compare it against the reference profile. We see that memory usage is RED (decreased metric), but performance has increased. (metric shows it is a PDO:exec operation)
+*** We can also profile HTTP requests from the command line. Such as this command (curl sub-command):
+**** blackfire curl http://192.168.10.10/benchmark-before.php
+*** In summary, Blackfire.io is a powerful web profiler which instruments applications without adding a single line of code. 5 main components: the Probe, The Agent, The Companion, CLI tool and the web interface.
+** https://laraveldaily.com/10-tips-about-data-seeding-in-laravel/
+*** In a seeder, by default you only have 1 method, run()
+*** Official example shows several methods, such as:
+**** DB::table('users')->insert([... some array ...]);
+**** factory(App\User::class, 50)->create()->each(function ($user) {... some save operation ...}); // this is a factory method
+**** and many others.
+*** In this website, however:
+**** foreach ($items as $item) {
+        Role::create($item); // where $item is an of arrays
+    }
+*** One can replace this (to avoid failing seeder due to repeating IDs, or too many data, when no ID is given) with:
+**** foreach ($items as $item) {
+          Role::updateOrCreate(['id' => $item['id']], $item);
+      }
+*** 
+** https://supunkavinda.blog/php/ajax-long-polling
+*** Short-polling and SSE (Server-Sent Events) seem to be an old/bad idea. Long-polling and Web Sockets is better supported by modern browsers. But Long-polling is more CPU-intensive.
+*** So far, nothing special with long-polling, just another AJAX cycle, apart from server looping to find an update.
+*** Apparently, long-polling file is created after the, open GET then send
+*** site shows 3 methods for terminating infinite loop:
+**** break;
+**** for ($i = 0; $i < 10000; $i  ) {
+		  if ($foundAnUpdate) {
+			    break 2; // escapes from the for loop & the infinite loop
+		  }
+**** if ($foundAnUpdate) {
+		      exit(json_encode[
+			        'status' => 'success' // terminate script with a sent message
+		      ]);
+	    }
+*** other functions for fine-tuning this "infinite". Eg: session_write_close(); // to cancel usage of session in script, as this will ruin long-polling
+*** So once again in this example:
+**** create XMLHttpRequest object. And define function on XMLHttpRequest object (conditional). open GET then send. But, this time open and sending to long-polling file, long-polling.php
+**** confusing example: initial script is declaration of cookie $_COOKIE['lastUpdate']. Then infinite loop till fileModifyTime > $lastUpdate
+**** Another way to look at it: first request creates cookie, before the infinite loop
+*** Next example:
+**** There are 2 tables, db_user_data (user data)(which also has last_sent_id ..huh?? ) , db_updating_table (save messages) (which has user huh??). Might be a TYPO
+**** As usual, create XMLHttpRequest object. And define function on XMLHttpRequest object (conditional). open GET then send.
+**** As before, first request creates cookie (random user number)
+**** Next requests, infinite loop to endlessly query MySQL table if there are any new rows
+**** and any user who post messages (any user inside index.html), is requesting update-other-table.php, which saves messages into MySQL table.
+** https://medium.com/letsboot/basics-using-ajax-with-fetch-api-b2218b0b9691
+*** Standard of AJAX:
+**** var xhttp = new XMLHttpRequest(); 
+      xhttp.onreadystatechange = function() {
+	        if (this.readyState == 4 && this.status == 200) {
+	 		        // when everything goes fine...
+	        }
+      };
+      xhttp.open("GET", "long-polling.php", true);
+      xhttp.send();
+**** Basically create XMLHttpRequest object. And define function on XMLHttpRequest object (conditional). open GET then send. Another approach is open (GET) and onload, then send.  
+*** This method is a bit outdated. Another method is Fetch API:
+**** fetch(url)
+      .then(function(response) {
+          return response.json();
+      })
+
+      .catch(function(error) {
+          console.log(error)
+      });
+*** For now, thats all we need to know. Other features of Fetch API is clone(), redirect(), arrayBuffer(), formData(), blob(), text(), json().
+** https://laraveldaily.com/wp-content/uploads/2018/10/Laravel-Tips-1.pdf
+*** 40 Tips:
+**** Tip 1: Invokable Controllers
+**** Tip 2: Unsigned Integers: (this explains my previous error). For foreign key migrations use unsignedInteger() instead of integer(). (your migration script)
+**** Tip 3: OrderBy: (In the model definitions) you can use orderBy() in your Eloquent relationships. Example:
+***** public function productsByName()
+      {    
+          return $this->hasMany(Product::class)->orderBy('name');
+      }
+**** 

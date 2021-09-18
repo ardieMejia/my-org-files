@@ -1,0 +1,95 @@
+
+* Django login logout feature (from https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/)
+** install django with pipenv 
+** start pipenv shell
+** create new project (command is 'startproject')
+** sqlite with command 'manage.py migrate'
+** run server 'manage.py runserver'
+** ---------- login ----------
+** (settings.py) INSTALLED_APPS = [] has auth installed (by default), we need to add to urls.py to use it
+** there are default views/routes in auth. We only need to create template.
+** make login.html within templates/ directory
+** (settings.py) TEMPLATES =[] needs to be told to look for templates/
+** we need to define redirect LOGIN_REDIRECT_URL  
+** create superuser account 
+** Now, we have a /accounts/login page, that re-routes to home page (that we havent created yet)
+** create templates/home.html
+** ---------- Now for logout ----------
+** we need to define redirect LOGOUT_REDIRECT_URL  
+** ------------------------------
+** ------------------------------
+* Django login logout feature (from https://codinginfinite.com/login-page-django-authentication-tutorial-python/)
+** mkdir project_folder
+** (Anaconda) conda create -n LoginProject python=3.6
+** source activate LoginProject (so now were using 2 nested folders)
+** pip install django
+** create django project django-admin startproject myloginproject
+** enter myloginproject, and run command 'python manage.py runserver'
+** we create our own custom homepage, by creating new app. python manage.py startapp myhome.
+** Basically, 'app' ---> inside ---> 'project'
+** add inside settings.py INSTALLED_APP
+** we learnt that templates can be app-specific or project-specific (or -level). So we create project-level, myloginproject/templates/.
+** add in DIRS (settings.py)
+** add/edit home.html, and edit views.py for the app (app-level). This is like controller, me thinks
+** Finally (route), we create app-level urls.py (not default). And... add that to project-level urls.py.
+** ---------- login (with registration) ----------
+** again, using django's pre-defined routes, we create templates/registration/login.html
+** Edit templates/base.html, templates/home.html and registration/login.html
+** again, auth installed by default, but we have to add project-level urls.py (so far, urls.py used only one)
+** login will not work, as user table is default but needs activation (like Laravel), 'manage.py migrate'
+** we run 'manage.py createsuperuser' and the login will work but redirect to 404 (why createsuperuser?)
+** LOGIN_REDIRECT_URL, and LOGOUT_REDIRECT_URL
+* Django chat tutorial with React (from https://dev.to/nickparsons/tutorial-chat-with-python-django-and-react-1cpk)
+** edit src/App.js
+** install virtualenv 'pip install virtualenv' (Ive done this, no need), install virtualenvwrapper 'pip install virtualenvwrapper'
+** 'virtualenvwrapper' enables mkvirtualenv, which is different from my usual virtualenv?? Example: you can switch virtual env by 'workon'
+** 'pip install django' , create project, start server
+** migrate, createsuperuser, runserver
+** integrating react with Django
+** favourite for integrating React with Django, is djangoresframework. And for endpoints for login, logout is djoser. 'pip install djangoresframework djoser'
+** add 'djoser' to urls.py. Again, unlike Laravel, urls.py is for BOTH routes & additional apps/packages (like auth). But you can think them as app-routes.
+** (settings.py) add djoser and rest_framework in INSTALLED_APPS, and a new class in REST_FRAMEWORK
+** djoser offers the usual login endpoints (we can test in curl: https://djoser.readthedocs.io/en/latest/sample_usage.html)
+** create app, 'python manage.py startapp auth', install stream-chat 'pip install stream-chat'
+** create our own auth/serializers.py
+** add our serializer.py under our DJOSER
+** migrate, test with curl will return auth_token & stream_token (previously, only auth_token)
+** ---------- integratin with React ----------
+** install Djangos middleware: 'pip install django-cors-headers'
+** (settings.py) add corsheaders to INSTALLED_APPS & MIDDLEWARE. And add 'CORS_ORIGIN_ALLOW_ALL = True'
+** install yarn dependencies 'axios', 'react-dom', 'react-router-dom'
+** (src/) AuthedRoute.js, UnauthedRoute.js, withSession.js, Login.js, Chat.js, and edit App.js
+** ---------- sending message ----------
+** in project-level, create chat/management/commands/, then in that directory create broadcast.py
+** test chat: 'python manage.py broadcast --message hello' 
+* Django chat tutorial with Twilio programmable chat https://www.twilio.com/blog/2018/05/build-chat-python-django-applications-programmable-chat.html
+** create virtualenv as usual
+** 'pip install django twilio'
+** create project 'chatroom_app'
+** create app 'chat'
+** (settings.py) add chat app to INSTALLED_APPS. The string is 'chat.apps.ChatConfig' (which means chat/apps.py and ChatConfig class)
+** (settings.py) add a few TWILIO environment variables. and to load these vars, we install python-dotenv 'pip install python-dotenv'
+** (settings.py) for python-dotenv, we add some imports at the top 'from . import .' 
+** (settings.py) below BASE_DIR, we add some commands to enable auto-loading .env files (in Laravel, .env is loaded and written by default)
+** create Twilio account online
+** Dashboard: copy account SID to .env, create new Chat Service, save service SID to .env, do the same for 'create new API', and other SID's
+** Django models: for each chat room we have ->name ->description -> slug. This info inside chat/models.py (app-level)
+** Django make migrations: (article describes migration as between models and database), 'python manage.py makemigrations chat' (manage.py is project-level)
+** Django migrate 
+** create some Rooms (save to database) from shell. 'python manage.py shell' and enter tinker-like commands.
+** (views.py) app-level. Again like controller. We add our laravel-like index() and show() := all_rooms(request) := room_detail(request,slug)
+** single room: chat/room_detail.html, all rooms: chat/index.html
+** add both these to app-level urls.py
+** and link that to project-level urls.py
+** accessing / will produce error. need to create template, editing: (app-level) chat/templates/chat/(index.html) and ../../../(room_detail.html). Note: room_detail.html will have the chat area/box , with Twilio Javascript SDK (they call it.. inside <script>)
+** We need tokens for the chat, we define this in routes:  chat/urls.py
+** we define function token() in our controller that will return token and username in JSON. To test this we use Faker (fake users). 
+** we need Javascript file to send request for token. Create chat/static/chat/ (again mirror structure like /templates). Create /styles folder with room_detail.css & /scripts folder for rooms.js
+** rooms.js has helper function (printMessage: to print chat message to chat window). Steps => request token => print "your random username" => use data.token to create chat client object
+** test in any  rooms
+** new script: use chat client object to create or join channel. Create createOrJoinChannel. This function check channel exist using URL's tail. After creating or not, we call setupChannel. setupChannel also listens to new messages. Message fetching is done by processPage (defined outside). Then we listen for further messages (event listener)
+** Last in rooms.js, is adding form sending functionality to our existing form. 
+** ---------- tests (general) ----------
+** create chat/tests.py, import TestCase & our Room model (import statements), create test rooms (which saves in DB automatically), mimic get request to homepage
+** go to project-level chatroom_app, 'python manage.py test'
+* React stream chat. (https://getstream.io/chat/docs/#introduction)

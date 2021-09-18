@@ -1,0 +1,4 @@
+* https://www.frontiersin.org/articles/10.3389/fmed.2020.596587/full
+** Antivirals often do not change outcomes because most respiratory viral infections are self-limited, viral replication is often waning at the time that symptoms develop and antivirals are administered too late.
+* https://www.nature.com/articles/s41586-020-2577-1
+** The development of a vaccine is likely to take at least 12–18 months, and the typical timeline for approval of a new antiviral therapeutic agent can exceed 10 years. Thus, repurposing of known drugs could substantially accelerate the deployment of new therapies for COVID-19.

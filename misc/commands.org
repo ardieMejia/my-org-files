@@ -1,0 +1,13 @@
+* ffmpeg (capture command)
+** ffmpeg -video_size 1024x768 -framerate 23 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i default output.mkv
+*** Flood messages of "Past duration ... too large" maybe solved by decreasing or changing -framerate
+*** https://trac.ffmpeg.org/wiki/Capture/Desktop (appropriate link)
+*** pactl list short sources 
+**** This will display all pulseaudio devices
+** ffmpeg -video_size 1024x768 -framerate 23 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i 1 output.mkv (new command with 1 instead of "default")
+** BASICS:
+** TODO 
+*** ffmpeg -i DSCF9322.MOV -crf 25 -vf scale=1280:-1 new.mp4 
+*** https://trac.ffmpeg.org/wiki/Scaling
+*** https://trac.ffmpeg.org/wiki/Encode/VP9
+

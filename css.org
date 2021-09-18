@@ -1,0 +1,110 @@
+* https://www.sitepoint.com/css-optimization-boosting-pwa-performance/
+** what is "inlining" critical path css ???
+** we'll focus on CSS optimization for PWA's:
+*** Progressive Web Apps: The best of "native mobile apps" (like Apple store) & web apps (reachable site URL)
+** service workers and caching allow the app to work offline and when network is poor (Hey, this should be useful for Malaysia, WHY!!). Over time, the apps could become faster as more asstes are cached locally (huh? is this site behaviour, or development behaviour). 
+** Example of unoptimized Progressive Web App:
+*** https://github.com/techiediaries/unoptimized-pwa
+** Progressive Web Apps are simply web sites with additional features:
+*** Manifest file: A JSON file like the app config
+*** Service worker: A Javascript file used to cache the application shell (minimum required HTML, CSS and Javascript to display interface)
+*** HTTPS: PWA's require a secure origin
+** Google has Lighthouse: an open-source auditing tool:
+*** Lighthouse can be accessed from the Audit tab in Chrome DevTools, programmatically as a Node.js module and as a CLI tool. Enter a URL and tada!!
+*** Similar tools can remove redundant styles, extract above-the-fold critical CSS, load remaining CSS with Javascript, and minify resulting code.
+*** Running displays amazing reports including simple timeline (why is this so boring?!!)
+*** Critical Rendering Path:
+**** steps to be taken before it can render above-the-fold
+**** when you visit a site:
+***** start download HTML and parse
+***** identifies and downloads external assets (CSS, images, Javascript, etc..)
+***** parses and renders as usual
+**** Images: asset download and rendering can be done in parallel
+**** CSS and Javascript: Render-blocking! Because the browsers are single-threaded by necessity (because websites are dynamic, such as changing styles mid-way). Note the relation: Dynamic programs (websites) make single-thread a must.
+**** render-blocking assets reduced == GOOD
+*** In example, Lighthouse showed 3 guidelines for improvements:
+**** reduce render-blocking CSS
+***** use Chrome extension:  Critical CSS Extractor
+***** Chrome does the rest
+**** eliminate unused CSS rules. Technique shown here is:
+***** using PurifyCSS: $ npm install -g purify-css // install
+***** at project root. purifycss styles/bootstrap.css index.html -o styles/purified.css -i // auto-checks against index.html
+***** Other options: uncss (https://addyosmani.com/blog/removing-unused-css/)
+**** minify CSs
+***** CSS file is still required. Minify the rest. We can use: cssnano OR csso
+****** cssnano: npm install cssnano (install) => npm install postcss-cli --global => create config file postcss.config.js (kind of your usual .json file) => postcss styles/bootstrap.css > styles/bootstrap.min.css (minify)
+**** To prevent CSS file from render-blocking: Defer bootstrap loading with Javascript:
+***** <script>
+          const link = document.createElement('link');
+          link.href = 'styles/bootstrap.min.css';
+          link.type = 'text/css';
+          link.rel = 'stylesheet';
+          const  link0 = document.getElementsByTagName('link')[0];
+          link0.parentNode.insertBefore(link, link0);
+      </script>
+***** Of course, preferrably for NON above-the-fold
+*** Alternative tools:
+**** For inline critical-path CSS: https://github.com/addyosmani/critical
+**** For unused CSS: 
+***** https://github.com/uncss/uncss
+***** https://github.com/FullHuman/purgecss
+* https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus
+** Writing better CSS: separating definitions into smaller files, and importing into a main file (not enough)
+** object-oriented CSS: adding 2 or more class definition to an element. Having multiple classes increased re-usability but decreased maintainability.  
+** Some Preprocessors (like Stylus or SASS) allow programmers to ignore completely {} (curly braces). Is this a good idea? It makes some look completely like CSS (Less) and others not at all (SASS).
+** nesting should be used not excessively, as it can cause oversizing the selector
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/sass-sample.png @ 2019-11-08 11:59:37
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-sample_2019-11-08_11-59-37.png]]
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/css.png @ 2019-11-08 12:01:31
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css_2019-11-08_12-01-31.png]]
+*** As you can see not much difference!!
+** While mixins look exactly like functions, the final result looks exactly like another css class. With the variable we learnt above, we can now use that as a "parameter" for the function to play on. They call this "static rules" like "5px". Example:
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/sass-2.png @ 2019-11-08 16:48:56
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-2_2019-11-08_16-48-56.png]]
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/css-2.png @ 2019-11-08 16:49:10
+***  [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css-2_2019-11-08_16-49-10.png]]
+** Extends: allows for sharing a generic definition (or class). Huh? In the example, a common margin (margin: 10px 5px;) is defined as .block. And then shared by declaring @extend (Sass) in another class/element definition. Example:
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/extend-sass.png @ 2019-11-08 17:09:58
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-sass_2019-11-08_17-09-58.png]]
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/extend-css.png @ 2019-11-08 17:10:07
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-css_2019-11-08_17-10-07.png]]
+** All pre-processors have color operations (built-in functions). Example in Sass: saturate($color, $amount)
+** If/Else statements. Allow building definitions based on condition. Less uses "CSS guards" (appending "when (lightness(@color) =<; 30%)" after mixin/function)
+*** #+DOWNLOADED: file:///home/ardienew/Pictures/if-else.png @ 2019-11-10 14:03:20
+** [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/if-else_2019-11-10_14-03-20.png]]
+** Loop: as usual, iterating through an array. But example shows, the variable $i as part the definition/class name. Also in Less, loop is defined alongside/in a mixin (function), rather counter-intuitive
+*** #+DOWNLOADED: file:///home/ardienew/Pictures/sass-loop.png @ 2019-11-10 18:46:57
+ [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-loop_2019-11-10_18-46-57.png]]
+*** #+DOWNLOADED: file:///home/ardienew/Pictures/less-loop.png @ 2019-11-10 18:47:52
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/less-loop_2019-11-10_18-47-52.png]]
+** Math: all of them supports different units
+** Import: just like we did in UniEnrol project. Article recommends separating similar definitions into the same folder, & then import them into a main .css file. Eg: @import "mixins/mixin.scss";
+* https://webdesign.tutsplus.com/articles/quick-tip-name-your-sass-variables-modularly--webdesign-13364
+** $text-color or $color-text, choosing at random can lead to lack of structure as project size increases. We often forget how we name our variables, instead, we use time-consuming global search-and-replace methods.
+** naming strategy: generic-to-specific == left-to-right
+** Example: $border-blue $border-blue-light $border-blue-lightest
+** Another example (helps variable name suggestion too): $color-border
+* https://medium.com/@yourselfwar/css-variables-naming-b13fdd415302
+** Example: @input__border-color_focused: #F27431; //behavior
+** and so it goes like this: [element]__[css_property]_[modifier/base]
+** further example: @color_fern-frond-base: #657220;
+** so this is: color_[name_of_the_color]-base
+** Example: when the RGB value slightly differs.
+** @color_mystic-base: rgb(228, 232, 238); //the base color
+** @color_mystic-blue-inc-3: rgb(228, 232, 235);
+** Example: if there are more than 5 of similar color
+** @color_group-blue-1: #6195ED; @color_group-blue-2: #89A8DC;
+** As usual: variables stored in the /variables folder in the variables__main.less. All base colors in the variables__color.less which imported into variables__main.less
+** Shows useful link to name your specific color. http://chir.ag/projects/name-that-color/#26354F
+* https://marksheet.io/sass-scss-less.html
+* https://sass-guidelin.es/
+* https://css-tricks.com/sass-vs-less/
+* https://www.freecodecamp.org/news/the-complete-guide-to-scss-sass-30053c266b23/
+* https://www.hongkiat.com/blog/sass-tips-tools-for-developers/
+* 

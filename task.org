@@ -1,0 +1,9 @@
+* https://www.twilio.com/docs/chat/tutorials/chat-application-php-laravel
+** 
+* Create a web application for a simple live messaging using Laravel 5.* framework. The live messaging application can be opened in two different browsers and both windows can send and receive text messages, without refreshing the page.
+
+    Use your preferred method (Socket.io, Long-Polling, Ajax, etc.) for getting & sending live data
+    Messages should be sent, and appear on the page without a page refresh
+    All messages are saved into MYSQL database
+    Bonus: Upload the project to a server and send us a link to test (preferably on AWS, if free-tier eligible)
+    Upload the project onto a public GitHub and send us the repository link.

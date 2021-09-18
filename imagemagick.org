@@ -1,0 +1,44 @@
+* Useful unmanaged links:
+** https://www.imagemagick.org/discourse-server/viewtopic.php?t=32169
+* Notes from the official tutorial:
+** https://www.imagemagick.org/Usage/color_basics/
+*** some operators make the context:
+*** when creating the canvas, you have the option to replace white with '#........'
+*** the -separate is overloaded operator not requiring other operators (such as -channel, that of course affect this operator) that automatically separates image into 3 grayscale OR accepts 3 grayscale images.
+*** A common trick/operation is to -separate a single image into its channels, swap OR do something with it, and re-combine
+*** some operators (like -negate strangely enough) implies separation of channels, hence has no need for 
+*** When replacing colors, the -draw can be used for information gathering, which is rather unusual for 'convert' commands (We have only used 'identify' so far for info gathering)
+*** canvas creation: 
+****         convert 'xc:Salmon[100x100!]'  canvas_salmon.gif
+**** interestingly, the syntax of xc:... is exactly the same as the one without quoes ''. Which means the quotes is simply a way to bring together all the long syntax
+**** 
+*** Im having trouble understanding a more indirect mask, (like blend? or overlay? or multiply/screen), as well as the more literal masks. BELOW is a LITERAL mask:
+**** 
+      convert colorwheel.png \
+          \( +clone  -fuzz 30000 -transparent blue \
+             -channel RGB +level-colors white +channel \) \
+          -composite   opaque_blue_inv.png
+*** Ive never seen a 'convert' command that splits and recombines channels twice (2x), until now:
+*** Correction: actually this 
+**** 
+     convert test.png -channel R -evaluate multiply .2 \
+                   -channel G -evaluate multiply .5 \
+                   -channel B -evaluate multiply .3 \
+                   +channel -separate -compose add -flatten gray_253.png
+*** Random thought:
+**** color dodge, super simplifed:
+***** inverting the top layer changes white to 0.0, and black to 1.0.
+***** color dodge means the bottom layer is divided over these new values
+***** the result, is an exponential from unchanged color to white. Again, due to x/1.0 (unchanged) to x/~0.0 (white, of course much earlier due to x/x = 1.0)
+***** it is appropriately called color dodge as it dodges black color at the top (this is personal assumption)
+*** levelling colors:
+**** The -level operator basically works like the levelling color in Photoshop (as expected). It actually uses percentages (%), like this:
+***** 
+      convert  rose:  -level 0%,100%,2.0   rose_level_gamma_light.gif
+**** Now, moving on, we have -level-colors. This also stretches the color,turning our chosen extremes for the image (Eg: 25%-75%) to the 'black' and 'white' extremes. However, unlike our previous example which was more direct (%), we now use color names. In effect, the stretching (more extreme stretching) will favor the non-dominant channels, in turn removing the color range chosen. So a red-ish range, will produce a green-blue tint in the final image.  
+***** 
+        convert  test.png  +level-colors green,gold   levelc_grn-gold.png
+**** For the plus form, +level-colors, like our +level, we compress the color range into a new range. This behaves more intuitively, producing the tint as expected. 
+***** 
+
+

@@ -1,0 +1,129 @@
+* Requirements:
+** Ubuntu 18.04 (not important)
+** Python 3.6.7
+*** on my Thinkpad, thats 2.7.12
+*** sudo apt-get update
+*** sudo apt-get install python3-pip
+*** //--- not needed --- python3 -m pip install --user --upgrade pip
+*** python3 -m pip install --user virtualenv
+*** NEVER EVER UPGRADE pip
+*** virtual environment:
+**** create ---> python3 -m virtualenv projectFolder
+**** activate ---> source projectFolder/bin/activate
+**** checks.. ---> which python 
+**** leaving ---> deactivate
+**** 
+** matplotlib 2.1.2
+*** pip install matplotlib
+*** pip install matplotlib==2.1.2
+** Pandas 0.22.0
+*** pip install pandas --------------------
+** Numpy 1.14.6
+*** 
+** Tensorflow 1.12.0
+*** pip install tensorflow
+** Tensorflow-hub 0.2.0
+*** pip install tensorflow-hub
+** Keras 2.2.4
+*** pip install keras
+** poppler-utils 0.62.0
+*** NOT YET
+** google-cloud-vision 0.35.2
+*** pip install google-cloud-vision
+** pdf2image 1.3.1
+*** pip install pdf2image
+** joblib 0.13.0
+*** pip install joblib
+** additional unstated:
+*** pip install opencv-python
+*** default python-tk is not for python3, install sudo apt-get install python3-tk
+*** pip install scikit-learn (check version)
+** FINAL: pip install matplotlib==2.1.2; pip install pandas==0.22.0; pip install tensorflow==1.12.0; pip install tensorflow-hub==0.2.0; pip install keras==2.2.4; pip install google-cloud-vision==0.35.2; pip install pdf2image==1.3.1; pip install joblib==0.13.0; pip install opencv-python
+** not super useful:
+*** 3 links:
+**** https://stackoverflow.com/questions/41293077/how-to-compile-tensorflow-with-sse4-2-and-avx-instructions
+**** https://github.com/tensorflow/tensorflow/issues/8037
+**** https://bazel.build/
+** useful:
+*** https://www.tensorflow.org/install/source
+* Go deep:
+** Top 5 use cases of Tensorflow:
+*** voice/sound recognition
+*** text-based applications
+**** google translate
+**** text summarization
+*** image recognition
+*** time series
+*** video detection
+** MNIST dataset?:
+*** https://towardsdatascience.com/image-classification-in-10-minutes-with-mnist-dataset-54c35b77a38d
+*** used in image classification:
+**** the most powerful of Neural Networks is Convolutional Neural Networks
+***** Convolutional layers: the 1st layer, where we extract features
+***** Pooling layers: reduce spatial size of representation, to reduce calculation complexity
+***** These layers are used to reduce complexity, to allow "fully connected neural networks" to classify images
+*** It is the most common dataset used image classification
+*** Tensorflow and Keras allow us to download this dataset
+*** MNIST database contains:
+**** 60 000 training images
+**** 10 000 testing images
+*** Basically, most "training" that programmers use, uses the dataset, so that part is not really impressive
+**** Additional details:
+***** Keras API uses 4 dimensional array, and requires normalization, coz all Neural Nets uses dat (basically converting to numberspace of 0.0 -> 1.0)
+***** several high level Tensorflow API's, (Layers, Keras, Estimators) with varying implementation structure, which is why code can be different
+***** "epochs" are almost like "categories", in the case of dis example, there are 10 epochs aka (1 - 9)
+*** From a programmers perspective:
+**** from Keras, we import models (Sequential) and layers (Dense, Conv2D, Dropout, Flatten, etc)
+**** we create model, and add to model the layers, like this: model.add(Dense)
+**** We compile the model:
+***** model.compile(optimize='', loss='', metrics=['accuracy'])
+***** model.fit(x,y,epochs)
+**** Finally we can evaluate:
+***** model.evaluate(xtest,ytest)
+** sklearn tutorial:
+*** the estimator is NOT a model, it must LEARN from the model. 
+** More links to read and summarize:
+*** https://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/
+*** https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+*** https://machinelearningmastery.com/a-gentle-introduction-to-scikit-learn-a-python-machine-learning-library/
+* Issues on new system:
+** ImportError: cannot import name load_model
+*** Theano.tensor.signal doesnt support python 3.6 (has to be <3.6)
+* Linux commands:
+** Multiple versions of Python:
+*** Links:
+**** https://benzidwael.wordpress.com/2015/04/17/installing-different-python-versions-in-ubuntu/
+**** http://ubuntuhandbook.org/index.php/2017/07/install-python-3-6-1-in-ubuntu-16-04-lts/
+*** Commands:
+**** sudo add-apt-repository ppa:deadsnakes/ppa (and update of course)
+**** For more control (maybe not as important, and u use virtualenv)
+***** $ sudo apt-get install python2.6 python2.7
+***** $ sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.6 10
+***** $ sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
+***** $ sudo update-alternatives --config python
+**** More sane control:
+***** sudo apt-get install python3.6
+***** sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
+***** sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
+***** sudo update-alternatives --config python3
+**** For virtualenv, python3.5-dev is required to build include/ directory under project folder
+* Things to do:
+** Try exact install, without scikit-learn, using Python 3.5, see if errors, (wait for download to finish)
+** Optional:
+*** install Python and PyCharm on Windows, see cool features, I guess
+*** Search:
+**** keyboard shortcuts, tricks Emacs Python
+* sklearn is a world of its own:
+** Some terminologies from main website:
+*** Classification
+*** Regression
+*** Clustering
+*** Dimensionality reduction
+*** Model Selection
+*** Preprocessing
+**** Include standardization/normalization which is important "many machine learning estimators"
+* Educational:
+** Links:
+*** https://subscription.packtpub.com/book/virtualization_and_cloud/9781787281066?_ga=2.95158492.1161248330.1552377381-111622019.1549732680
+*** https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781783555130?_ga=2.262859852.1161248330.1552377381-111622019.1549732680
+

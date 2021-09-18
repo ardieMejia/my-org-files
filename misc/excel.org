@@ -1,0 +1,4 @@
+* Powershell Excel module:
+** https://adamtheautomator.com/powershell-excel-tutorial/ Installation
+** https://devblogs.microsoft.com/scripting/introducing-the-powershell-excel-module-2/
+** 

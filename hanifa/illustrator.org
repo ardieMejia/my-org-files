@@ -1,0 +1,35 @@
+* http://chrismalbon.co.uk/here-are-the-most-common-uses-of-adobe-illustrator/
+** Common uses of Adobe Illustrator:
+*** Drawing icons:
+**** Grid system, align tool and snapping feature makes it easy to draw precise icons
+*** Drawing maps:
+**** The pen is tricky at first, but once gotten used to, is easy. It an draw any shape
+*** Drawing graphs:
+**** Commonly used in Newspapers and Magazines, many usefull tools to draw graphs using data
+*** Drawing realistic objects:
+**** mesh and gradient tool very popular for smooth shading/texture
+*** Drawing cartoons:
+**** Swapping colors are easy (??)
+* https://www.smashingmagazine.com/2016/03/drawing-a-cartoon-in-illustrator/
+** Blablabla... (. what background will they move against)
+** The character:
+*** Insert the filr provided in example tutorial. “File” → “Place.”
+*** adjust artboard to match file dimension. “Object” → “Artboards” → “Fit to Artwork Bounds.”
+*** block the new layer, rename it "Sketch"
+*** create another layer above Sketch and call it "Lines"
+*** Trace the image with the Pen tool (create fill-colored outline):
+**** trace back outline becoz we are doing cartoons
+**** draw external and internal lines
+**** use Shape Builder  tool to swap fill and stroke color
+**** Again with Shape Builder tool, click the space between the internal and external lines, it will hae the fill color
+*** For simple small shapes like forehead wrinkles, just draw closed shape, then swap
+*** For eyes, use Ellipse tool, then set stroke width
+*** Notice we are always closing the path, so changing color is just a click
+*** We acheive good effects by positioning some parts over another (for later)
+*** The hand holding the old phone is slightly strange, requires 2 shapes, fingers and palm
+*** Hide the Sketch later, and we will see our vectors
+*** use Magic Wand tool and select Fill color, with tolerance 20
+**** This will select all objects with same fill color
+**** set fill and stroke color to #0000000, black
+*** 
+*** 

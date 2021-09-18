@@ -1,0 +1,76 @@
+* Meetings:
+** Meeting <2019-03-04 Mon>
+*** Cycle 2: Feb 2019 - May 2019 (Objective: Top agent in Malaysia)
+*** Doesnt matter, understanding CKO and KO is not important...
+*** A bunch of CKR's??:
+**** CKR 1: 400 new leads
+**** CKR 2: 10% conversion rate
+**** CKR 3: 50 placements to Taylors
+*** Marketing Team:
+**** CKR 1: 4000 new leads
+**** CKR 3-9 : 
+**** Maintian CPL below RM 30 (what is CPL???)
+**** Maintain CPA at RM 500 or lower (what is CPA??)
+**** Nursing 
+*** Counseling team:
+**** CKR2: KR 1: 80% new leads engaged in 24 hours??
+**** CKR3-9: Placements to focused unis: KR 1: 200 leads stating Taylor's as Preferred Uni after Counseling??
+**** Building up potential list to 150 (??), current 50
+**** SS and school event preparation: health - poor ??
+*** Content team:
+**** 4000 new leads 
+**** generate 20,000 total page views
+**** our matriculation article gets lots of hits
+**** how often do people choose to continue reading article, after finished reading one article
+**** reduce average bounce rate to 70%
+**** no. of leads from articles - 200 leads 
+**** Performance per article??
+**** graph of matrix, how each article performs, rather than how it performs over time (different measurement)
+**** what is head leads? what is organic leads?
+**** average time of page (4 weeks rolling + 1 week): 2:30 (hour or minutes?)
+**** Cost per lead from articles (Target below RM50), RM 81.48
+*** Engineering and Product Team
+**** Lead = Visitors volunteer to be contacted
+**** Part of engineering goal, convert visitors to leads
+**** Form to fill up mobile number
+**** PC = Pure Chat
+**** FS = Form Submission
+**** Course Upload
+**** still working compare page
+**** what is a "hotjar survey"??
+**** what is QC pathway and course data
+**** Discoverability on foundation courses
+*** Sales and Special Projects Team:
+**** Target RM 1 mil in sales to fuel marketing (??)
+**** Thundermatch cash voucher
+**** CSR = Corporate Social Responsibility
+**** Gained access to 19 schools at Kluang, 8 schools at Bintulu, 
+**** Role is specific, needs to pay attention to meetings more
+* To Do List:
+** To do <2019-03-05 Sel>
+*** Read about CMS? Read about service providers yet some more? Spent time on your Dell system? Spent time on you User Interface goal? 
+*** Important: on empty Ubuntu (you other one, just try it), install WordPress CMS
+**** https://www.tecmint.com/install-wordpress-on-ubuntu-16-04-with-lamp/
+** Engineer Meeting <2019-03-07 Kha>
+*** Dont remember points about less or sass
+*** I need to learn blade templates more advanced syntax
+*** Learn about lang folder
+**** Personal notes:
+***** In order to use middleware along with Route:: command, it needs to be declared inside kernel.php
+****** You can is alongside Route::group([]), inside an array
+****** or add it as an additional function aka: ->middleware('someshittystring')
+*** git immersion, please complete this tutorial
+**** difference between rebasing vs merging
+**** What we learnt:
+***** Apparently, you cna also checkout a file (git checkout filename1), weird. But maybe only in the context of reset
+***** revert HEAD, is a powerful feature, not another "git config"
+***** reset or ammend acheive similar effects in Git
+***** More confusion, and what we did:
+****** First we edited "master" tag in .git/config to point to ardieOrigin, aka "our master", which is always better
+****** Then, when we do a git checkout master, error message is "upstream is gone" (git checkout ardieOrigin/master also doesnt work)
+******* becoz our fetches are out-of-date ??
+****** git fetch ardieOrigin # ---------- this fixes it
+****** git rebase ardieorigin/master # ---------- should practice this some more
+****** (so fetch and rebase, instead of pull)
+***** So, the assumption of unienrol's system the bug branch 
+

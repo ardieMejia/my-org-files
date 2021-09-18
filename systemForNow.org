@@ -1,0 +1,110 @@
+* Dont know where to start, we'll just state what we see first:
+** Issues: 
+*** Finish intallation on Dell Inspiron
+*** clone exact copy of cms.unienrol and then, retest everything
+*** complete this in less than a day, if this doesnt work
+*** time to try Fedora Core on your thinkpad, and new hard drive with Bionic Beaver ()
+** Routes:
+*** The use Laravel's middleware, should I learn about this??
+*** Route::group
+*** {slug} appears to work very similar to {id}. 
+**** slug is apparently more than just a "string" related thing. You can set a column from your table to be a slug???
+**** In one example, they use a boot() function to define the assignment (creation of the variable slug??)
+**** Oh, wait, so basically a slug, is like an ID for the model/table (whatever), but not for searching, but for the URL to "look" for the /model's slug/ instead of the /model's id/
+**** Oh, so {slug?} has a question mark, why? it is passed inside a controller function just as you would with $id
+*** now looking through Controllers.php (doesnt matter...), we saw something like this: $this->service, do I have to learn somethin extra all over again??
+**** There has to be a better way to describe this so-called container? and retarded terms like Dependency Injection
+**** Sooooooo, service class is for the constructor of the controller??
+**** So, service container/provider (whatever...) is basically class inheritance for the constructor (help, I dont want to remember)
+**** All service providers extend the Illuminate/Support/ServiceProvider (why do i have to understand this?)
+**** Within the service provider, there are 2 methods:
+***** register()
+****** within the register() method, never put additiona fuctionality (*function*)
+***** boot()
+**** Fuck it, service provider is just a bloody INTERFACE
+**** In our system, its quite simple:
+***** Services are put in a file under app/Providers/, and then passed into the constructor of any Controller.php (Ive never used a controller constructor)
+*** Route (lets look at the route):
+**** /articles (and /article) --> goes to ArticleController.v2
+**** /career --> goes to CareerController.v2
+**** /newsletter --> goes to NewsletterController.v2 // check some stuff missing
+**** /c  --> goes to CourseController.v2
+**** /explore --> goes to FieldOfStudyController (generic term used is "explore"), perhaps indicator of huge importance?
+***** There is a different way to define routes:
+****** Route::controller, means you handle every possiblility, but difference with Route::resource?
+**** /pathwaycheck (and /pathwaycheck/api) --> goes to PathwayCheckController.v2
+***** /courses
+***** /fos
+***** /majors
+**** /profile --> UserProfileController
+***** /survey
+***** /apply/{id}
+**** /scholarships --> LandingPageController
+***** /search --> goes to ScholarshipController
+** Details:
+*** naming convention for blade templates:
+**** listing.blade.php
+**** details.blade.php
+**** landing.blade.php
+*** uploads go under /public/files, standard practice
+** Service lesson:
+*** The things we only needed changed:
+**** create app/Providers/SomeNonsensePprovider.php
+**** create app/Nonsense.php object/class
+**** create app/Nonsense.php object/class
+**** add to app.php "arrays of providers"
+*** Notes:
+**** Whats difference between this and just defining inside a Model.php, seems quite retarded
+**** the only difference is that there is an additional layer called ShittyServiceProvider
+***** There seems to be a so-called magical operation called "binding", which binds the strings basically, does this mean the string can be about anything
+** More lessons:
+*** Traits:
+**** New PHP feature to solve lack of multiple inheritance in PHP (OOP stuff, whatever)
+**** stored in app/Traits
+** Filesystem:
+*** More retarded Laravel terminology (not impressed)
+*** example --- Storage::disk('local')->put('file.txt','Contents')
+*** essentially separates files stored from your public/ folder (whatever you silly soyboys)
+*** has so-called "driver" as special terminology (retarded)
+** Cache:
+*** By default (including UniEnrol's system), we use the "file" driver for the cache, which uses the filesystem (again, not be confused with Linux's filesystem, this is Laravel's "filesystem", pfffff, whatever). 
+*** Other examples:
+**** Database:
+***** you create a table to handle the cache, using the Schema::create('cache') (example from website) 
+*** They call it Laravel's "cache contract" (retarded new term)
+**** So usually, they use it within the index() under SomeController
+**** Cache exposes a method called store (), which in turn has a get() method, again dont confuse with Route's get()
+**** Cache:: class basically allows the separation of caching and from "how you cache" (database? redis? file?)
+** Things to do:
+*** Remove and install 3.4 version of MongoDB on Dell
+*** Install MongoDB Compass
+*** learn from mongodb shell command, search if key/array exists or not
+*** does creating a new project folder will conflict git commands
+*** phpstorm shortcuts and equivalent in emacs
+*** Create pdf of all tables
+**** course_fees, wishlists, users, course_summary
+*** Check again differences of all configs between Thinkpad and Dell
+*** Create new workspaces on all Ubuntu
+*** Recreate shortcuts of Libre Draw
+*** Understanding data (in tables) is more important than understanding Routes
+*** mongoDB shell commands, more..
+** Git, what we learnt:
+*** "remote repo" in Git doesnt have to be online, it can be on the local machine.
+*** Basic steps to add tracking branch, that is shared:
+**** create the tracking branch:
+***** git clone --bare hello hello.git
+***** cd hello; git remote add shared ../hello.git
+***** git push shared master ---------- "push to" shared "from" master
+**** pulling shared changes
+***** git remote add shared ../hello.git ---------- basically, simply adding config details, aka, adding remote repo and labelling it as "shared"
+***** git branch --track shared master 
+***** git pull shared master
+
+
+
+      
+       
+       
+       
+       
+

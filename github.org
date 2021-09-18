@@ -1,0 +1,22 @@
+* Setting up new ssh key on a system
+** After git init-ing of a folder. You can compare pushing to https to pushing to ssh directly.
+** Make changes, commit, then push (with username and password, of course)
+** Now, change https url, to ssh url
+*** git remote set-url origin git@github.com:<myname>/<reponame>.git
+*** compare changes before and after (git remote -v)
+** Following examples can be gotten from https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+** Command --> ssh-keygen (plain and simple)
+*** But.. we should be using new algorithm --> -t ed25519
+*** So for github we need this --> ssh-keygen -t ed25519 -C "wan_ahmad_ardie@yahoo.com"
+*** Just enter a password, makes it more secure
+*** Copy the public key to your Github account (unlike passwords, each new system needs a new pair, better security)
+*** Before putting these in .bashrc, try running it first
+**** This should make re-entering passphrase no long necessary
+**** eval "$(ssh-agent -s)"
+**** ssh-add ~/.ssh/id_ed25519 (add the new ssh file, the private one)
+**** 
+* Hugo:
+** What we learnt most importantly, that both index.md and _index.md cannot co-exist (Better not)
+** If all is confusing, always start with no index.md at all at top level. And then copy 1 .md file to top _index.md
+** index.md is read blindly by Hugo, but _index.md is processed. So be careful with _index.md (But I managed to make it work)
+** hugo by default doesnt publish to /public by default. Needs a switch for that. 

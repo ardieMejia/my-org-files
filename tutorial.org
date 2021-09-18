@@ -1,0 +1,86 @@
+* Python tutorial chapter:
+** Programming is differnt from using a computer
+** Starting an editor
+** What is a String
+** Playing with strings
+** Different kinds of numbers
+** Basic Math
+** Variables, using names for data
+** Other built-in types (sequence):
+*** Tuples, Lists and Dictionaries
+** Other common sequence properties
+*** referencing last element
+*** slicing sequences
+*** appending sequence
+** Making decision (control):
+*** Compare values
+*** Repetition, while loop (and other loops)
+** Functions:
+*** Putting program in its own file
+** Classes and Objects:
+*** Looking ahead: how to use an object
+*** Defining a class
+** Organizing programs
+** Files and directories
+** Other features of the language
+** Building a module
+** Text processing
+** Writing a GUI in Pytohn
+** Numerical programming
+** Python in the Enterprise
+** Web applications
+** Integrating Java with Python
+* More:
+** Tutorial introduction
+** lexical conventions and syntax
+** types and objects
+** operators and expressions
+** control flow
+** functions
+** classes and object oriented programming
+** modules and packages
+** input and output
+** execution envinronment
+** the python library
+** extending and embedding python
+* Python important unknowns:
+** Virtual environment:
+*** https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
+*** https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+** GUI framework:
+*** https://blog.resellerclub.com/the-6-best-python-gui-frameworks-for-developers/
+* C++
+** Introduction
+*** Introduction - evolution of programming languages
+*** fundamentals - examples, operators, type conversion, 
+*** control structure
+*** functions
+*** arrays
+*** structures
+*** pointers
+** Object-oriented
+*** basic
+*** inheritance
+** Data structure
+*** basic
+*** linked lists
+*** streams and files
+** Databases?
+* Options:
+** Linux - from terminal
+*** https://blog.eduonix.com/system-programming/learn-to-write-c-programs-on-linux/ 
+*** https://www.ostechnix.com/compile-run-c-c-programs-linux/
+*** https://software.intel.com/en-us/articles/intel-c-compiler-190-for-linux-release-notes-for-intel-parallel-studio-xe-2019#sysreq
+*** Environment: (no need for simple linux execute)
+**** install build-essential:
+***** https://www.ostechnix.com/install-development-tools-linux/
+**** simple shortcut:
+***** https://www.ostechnix.com/simple-script-setup-development-environment-ubuntu/
+*** Flags are always :  -o
+**** Other flags are : gcc source.c -Wall -Og -o executable
+**** another for c++ and debugging, I guess : -g -o 
+*** Emacs tricks:
+**** M-x gdb, break 4, run, next, quit
+** Windows - Visual Studio
+*** https://docs.microsoft.com/en-us/cpp/build/walkthrough-compiling-a-native-cpp-program-on-the-command-line?view=vs-2019
+*** 

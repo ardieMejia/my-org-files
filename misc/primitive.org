@@ -1,0 +1,6 @@
+* https://www.explainthatstuff.com/how-clockwork-works.html
+* https://www.instructables.com/id/Bench-Lathe-3-in-1-Lathe-Sander-GrinderSharp/
+** Hunting and learning the internals of motors is not worth it. As the entire flexibility has to be hinged on the wooden build itself. 
+*** Eg: Rex Kruegers counter-shaft, and the motor tensioner (H-frame on a hinge)
+* https://www.familyhandyman.com/list/weird-tools-and-what-theyre-used-for/
+* https://www.youtube.com/watch?v=GugZRs08lwk

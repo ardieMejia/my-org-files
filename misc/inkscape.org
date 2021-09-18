@@ -1,0 +1,12 @@
+* Tips on understanding:
+** Its better of design field (which is very different from art, erghh, nasty), as having each of them having different entities (smallest units). I find this the fastest to learn and understand. Its also useful to think of it as programming field pretending to be art.
+** As I watch videos of all these Illustrator and Photoshop separate tools (such as blend mode, and bezier curves), I am beginning to think of all these separate tools as separate functions, as in literally programming functions. 
+** 
+* What I have learnt:
+** That learning shortcuts early on is better in Illustrator
+** Time to abandon Inkscape (keeps crashing)
+** Listening to designers describe their practice as "ugly" or "nasty", teaches me to view my art as different
+** I spent few days to read on what is essentially 1 day practice
+** 
+* pre-photoshop:
+** introducing detail again after smoothing (like selective Gaussian filter) is a common operation in Photoshop 

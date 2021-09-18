@@ -1,0 +1,6 @@
+* https://www.whizlabs.com/blog/how-does-a-java-virtual-machine-works/
+** Java is said to be platform-independent, however, specifically the JRE (which has JVM) is what makes this "platform-independent". And the JVM is platform-DEPENDENT, as it is reponsible of converting the byte-code to code for the specific OS/machine. It is OS-dependent!
+** Java Architecture is neutral. JVM only exist in memory. So we can fool the compiler by generating a byte code for some virtual (imaginary) machine which is quite ingenious. Basically, compiling code for a different machine!
+** A lot of advantages such as code portability, and security (malicious code only effects the virtual machine)
+** Disadvantages: speed and platform specific features. JVM should also be free from errors (otherwise, program failure)
+** 

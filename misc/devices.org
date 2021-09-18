@@ -1,0 +1,633 @@
+* https://www.element14.com/community/roadTests/2129/l/Digilent-OpenLogger-Kit?CMP=SMA-FACEBOOK-PRG-ROADTEST-DILIGENT-OPENLOGGER-COMM&fbclid=IwAR0l2z-cCn6LIjmnESDhYqCw5x34V_ZvFXeW6r6v6u1FdFCXUT8Lo4cjQvo
+** 
+* https://www.instructables.com/id/Build-a-Raspberry-Pi-SUPER-Weather-Station/
+** (Raspberry Pi weather station)
+** Equipment:
+*** Raspberry Pi (& internet)
+*** Raspberry PI SenseHat
+*** 6" 40-Pin IDE Male to Female Extension Cable (optional, huh?) (the 'Ribbon' heheh)
+*** 'Initial State' account (IoT platform for data visualization)
+** Clone the github project (Weather API (Dark Sky) + Pi Sense HAT)
+** We use Dark Sky to get weather data API. A really cool site with weather data API from anywhere in the world. As usual, we will call URL resources using parameters (but not get). Such as: <p>https://api.darksky.net/forecast/[key]/[latitude],[longitude]</p>
+** [key] in this case will be our Dark Sky API
+** We need a destination for our API/data. We'll be using Initial State
+** Register an Initial State account, install a Initial State python module (ISStreamer), the installation offers to get an example script, inside the example script is an access key that is used everytime to direct data stream to your account, run example script
+** Now we are going to use Dark Sky API to create weather dashboard
+*** edit daksky.py (from the cloned project) by adding a bunch of parameters at the top (such as Initial State access key, GPS coordinates of desired city)
+*** if you run darksky.py, you will be able to see the data at your Initial State account
+** Next were collecting weather data from our own sensors:
+*** apt-get update, then install Sense HAT Python library, reboot Raspberry PI
+*** edit sensehat.py, by adding parameters (such as Initial State access key), becoz we are redirecting to our Initial State account
+*** Run sensehat.py, and checkout your Initial State!!
+** Now even cooler, we can combine both to compare temperatures inside the room and outside:
+*** Again we add parameters to a script
+***  https://go.init.st/0hw08py (Example  of live display, cool!)
+** and many more .. (we need to write this later??)
+* https://www.techwalla.com/articles/how-to-find-cheap-dc-motors
+** DC motors can be found in the cheap
+** old CD players, old computer CD drives, CD drives are a great source coz some can have up to 4 DC motors
+** computer cooling fans are brushless DC motors with a quiet ball bearing fan (usually 5V or 12V)
+** larger (usually brushed DC) motors can be gotten from clothes dryer, treadmill, car starters
+** cheapo-cheapo remote control cars
+** VCR players
+* https://www.instructables.com/id/How-to-Use-a-Washing-Machine-Motor/
+[[file:https:/www.instructables.com/id/How-to-Use-a-Washing-Machine-Motor/2019-12-15_14-58-14_FTLRHDLJF8IU4UE.LARGE.jpg][washing machine motor front-rear view]]
+** Its a universal motor that can operate on either AC or DC
+** Its a commutated series-wound motor where the stators field coils are connected in series with the rotors windings (through a commutator)
+*** Basically, the rotor is connected to the stator. 
+*** The stator is *fixed*, the rotor *rotates*
+** DC in construction, but modified to allow for AC
+** It has an extra part (armature, which also /rotates/ huh??) that reverses polarity with the power supply:
+*** To make this simple, basically all DC motors make complete sense in science 101 and is historical. So the AC simply needs another element to neutralize it nad make it normal 
+** Look at the image:
+*** [[./resources/devices/2019-12-15_15-18-58_FU8HS3MJF8IU4UI.LARGE.jpg][rear view of Washing Machine motor]]
+*** The backend of the motor has a tacho coil, not important for now, but sometimes is used to detect the speed, and control the current accordingly
+** Universal motors have a high starting torque, can run at high speed, lightweight, and compact. However, they hae brushes that wear, which makes not as long lasting as other highend motors
+*** Theyre also noisy, acoustically and electronmagnetically
+*** We see a diagram like the following:
+[[./resources/devices/2019-12-15_15-24-45_FRIJZZCJF8IU4UO.LARGE.jpg][schematic on the the washing machine label]]
+**** Basically, without going into the dirty details. This is just modified motor from another shit modified from another shit. So not all pins in the washing machine. The Tacho coil is not needed, and the 6 pin is not connected. 5,4,3 is the stator (fixed). And 1, 2 is the carbon brushes
+*** Theyre highly inefficient; 30% to 70% losses
+** They work well with ESC (yup, the RC cars thing)
+** The shaky-shaky motion is acheived switching the field winding (huh?)
+** The usage of such motor in direct drive does not use controller (example uses: belt sander, electric bike, wood splitter)
+** The current goes in 1 direction, through brushed, eciting the stator (or is it the other way around)
+** As shown in the diagram, brush 1 (+) connects with plus terminal of battery or AC power source. Stator 3 connects with brush 2. And last stator, 5 (-), to the minus terminal or other end of AC power.
+** Battery basics (not impressive stuff nowadays):
+*** https://www.batterystuff.com/kb/articles/battery-articles/battery-bank-tutorial.html
+**** Tne way parallel batteries are combined, it can be thought of as the rest of the batteries assisting the battery as it "exits out". At least thats what it looks like.
+*** https://batteryuniversity.com/learn/article/serial_and_parallel_battery_configurations
+**** Slightly more information on parallel ve series
+**** Single cell:
+***** does not need matching or protection circuit
+***** Li-manganese and other lithium-based systems often use cell voltages of 3.7V and higher
+**** Series connection:
+***** Portable equipment needing higher voltage uses 2 or more cells in SERIES
+***** With odd-voltages example, you can combine 5 lead acid, 8 NimH or Nicad, or 3 li-ion in series
+***** For such, end voltage need not be the same, but more. So 12 V might work for 9.5V requirement
+***** Battery-operated devices can tolerate over-voltage, as long as < end-of-discharge voltage
+***** History:
+****** High voltage batts keep conductor size small
+****** Cordless power tools = 12 and 18V batt. High-end models = 24 and 36 V
+****** e-bikes = 36 and 48 V
+****** car industry = wanted to increase natt from 12 V to 36 V (known as 42 V),  by 18 lead acid in series. Logistics of changing electrical components and arcing problems stopped the move
+****** Mild hybrid cars = 48 V and DC-DC conversion to 12 V for the electrical system (mmmm. makes sense). Starting the engine uses a separate 12 V batt. 
+****** Early Hybrid cars = 148 V batt. Electric vehicles are typically 450 - 500 V. This needs more than 100 Li-ion cells connected in series
+***** High voltage batts require careful cel matching
+****** especially at cold temps
+****** with this connection in a string, 1 cell failure is a real problem. 
+****** To prevent this, solid state switch are sometimes used, to allow bypassing the failed cell, albeit at a lower voltage.
+****** Cell matching in aging packs, is more problams, becoz new cells have more capacity, plus the welded construction (complexity). Hence, batt packs are often replaced as units
+****** To reduce such replacement in high voltage vehicles, packs are divided into modules. If 1 cell failes, only the affected module is replaced. Only a slight imbalance when a new module is replaced
+***** Drones and RC (yay):
+****** these devices often require high load current
+****** When 1 cell in a string is weak, there is often unexpected voltage drop. coz, drawing maximum current stresses frail cells
+****** Reading voltage after charge does not identify this anomaly. usually, cell-balance examination (battery analyzer) is needed
+***** Tapping into series:
+****** A trick to gain lower voltage for auxillary stuff
+****** Heavy duty equipment using 24 V batt may require 12V for example
+****** Not recommended as it can create imbalance
+****** Why?
+******* Charging imbalance cells with regular can start sulfation in undercharged section (the cells used for exatra stuff)
+******* the overcharged section get corrosion and loss of water due to gassing
+******* The regular charger does this becoz it looks at the *average* voltage
+******* Tapping is common in Li-ion and nickel-based batts
+******* Electric and hybrid cars use separate cells to avoid this
+***** Parellel connection:
+****** If higher current is needed, but larger cells is not available OR does not feed design contraint, parallel is one solution
+****** Most batt chemistry allow parallel
+****** (One way to think: parallel = bigger battery)
+****** Cell problems are less critical here, but failing cell will reduce total loa and capacity (Like an engine working on 3 cylinders instead of 4)
+****** A shorted cell is more dangerous
+****** Large packs include a fuse to disconnect the faulty cell from the other cells. This also reduces the current by isolating that cell.
+***** Series/parallel connection:
+****** Total power = voltage * current
+****** Combination helps flexibility, Parallel helpes voltage management
+****** Io-ion lends itself for this, but need monitoring 
+****** Industry terminology = 2s2p (2 series 2 parallel)
+*** https://synthiam.com/Community/Tutorials/How-to-choose-correct-battery-s-16274
+**** A rather dull website
+**** Most microcontrollers have built-in voltage regulators, so you dont need eactly 5v
+**** Normal microcontroller would likely be 9 to 12 V
+**** Hobby servo motors (4.8 to 6 V) would burn from a 9 V to 12 V (huh? this contradicts our previous link from batteryuniversity)
+***** So option is separate power source for microcontroller and servo motor
+* https://www.deviceplus.com/how-tos/arduino-guide/entry011/
+** Increasing voltage makes the motor go faster:
+*** batt in series
+** Arduino provides 5 V, which is good for a 1.5V batt
+** Ampere determines how long the motor will run, the 400mA in projects batt is enough for 2 hours:
+*** Arduino provides 40 mA, so this is not enough for equivalent project
+*** Not only that, but the no-load draw of motor, ( think of motor as uncontrollable beasts, drawing energy) is 0.2 A, which 200 mA, which break the Arduino
+*** So unlike an LED, we cant just connect, and tada!!!?? magic. no..
+** How?:
+*** Transistor and diodes:
+**** What are diodes:
+***** Prevent normal current from reversing direction (for recitification ??)
+***** Direction-less = but when connected +ve to -ve , or -ve to +ve (normal? way) = it creates 'blocking layer'
+*****                = when used +ve to +ve, and vice-versa, the diode cancels itself, allowing flow
+***** its basically always 'arguing with itself' (LOL)
+***** the blocking example:
+***** [[./resources/devices/2019-12-19_18-18-47_normal.png][cathode and anode]]
+**** What are transistors:
+***** A diode with 'extras'
+***** That extra a essentially a weaker semi-conductor which is the 3rd (base) (diode has 2)
+***** 'base' is the 3rd debater (LOL)
+***** As usual, like in diode, with only 2 legs of the transistor, there is blocking'
+***** But connecting the 'base' with a smaller batt, it has a +ve charge, it essentially becomes the mediator of previous debates (heheh)
+*** Create a relay circuit using transistors:
+**** We place a transistor for Arduino to control the motor (which still draws power from the batt)
+**** We also place diode before motor, in case motor goes under load, to protect the Arduino
+* https://howtomechatronics.com/tutorials/arduino/arduino-brushless-motor-control-tutorial-esc-bldc/
+** Example uses a outrunner brushless DC motor (BLDC)
+** With rating KV 1000 = This is just the personality of the motor, more torque at the lower end, or higher speeds (at the cost lower end torque)
+** higher KV is that skinny footballer, lower KV is that muscly wrestler
+** We use 3S
+** We use 30A ESC:
+*** ESC has 3 phase wires for the motor, and 2 for the power source (GND and VCC)
+*** and a BEC (3 small ones) = Battery Eliminator Circuit:
+**** Kinda like in real-life electric cars, this allows a separate power source for our brain (microcontroller = Arduino, or our classic receiver)
+**** So we dont need separate battery for our brain (BEC provides the needed 5 V)
+*** ESC uses the same type of juice to control the servo and motor (50 Hz PWM)
+** Remember while the ESC is not the main brain, it is A brain of the motor becoz:
+*** the arduino or any microcontroller cant send the same signal for brushed and brushless
+*** Arduino or others cant add reversing of motor, dynamic braking, and many other cool features.
+*** The ESC of brushless sends the signal 'strength' or 'pulse', while the brain only sends the value it wants
+** The code shows that Arduino scales analog values/numbers to the angle values of servo (0-180), and is sent to the ESC
+** ESC calibration:
+*** Each ESC has its own high and low-points (Eg: 1.2 - 1.9)
+*** all brushless are exchangeable, no problem, hence need calibration 
+*** So a ritual is performed, involving setting potentiometer/transmitter to all the way up and waiting for a motor/ESC beep, and the same for '0' setting
+* https://www.instructables.com/id/Washing-Machine-Motor-Wiring-Basics/
+** Universal motors are easy to control, either electromechanically using tapped coils or electronically
+* https://www.motioncontroltips.com/how-can-universal-motor-operate-dc-ac-supply/
+** A lot of technical and confusing statements in this article
+** Its a series-wound motor
+** Before we go any further:
+*** Your average motor has 1 winding (usually rotor), and another fixed motor (usually stator)
+*** In universal motors, both have winding
+*** and the polarity is reversed thanks to series-winding (Yes, kinda like your cell parallel or series thing, where in series, your cell +ve and -ve always face each other)
+*** In fancy terminology, this is called compensating winding conductor (the stator, 'fixed', the 'hole') & the armature winding conductor (the roto, 'rotates', the 'rod')
+** Universal motor = theoretical unlimited speed, until it breaks apart. Up to 20,000 rpm in real-world. It is a straight between zero-speed to zero-torque (no-load speed). 
+* https://circuitdigest.com/microcontroller-projects/automatic-temperature-controlled-fan-project
+** Control DC fan according to room temperature
+** Equipment:
+*** 16x2 LCD display to show parameters
+*** Arduino
+*** DHT11 sensor module
+*** 2n2222 transistor
+*** 9 volt batt
+*** resistor
+** Project:
+*** Reads temp (can also read humidity) from sensor
+*** scales Celsius to produce PWM values
+** (random Eg)Connecting LCD:
+*** https://maker.pro/arduino/tutorial/how-to-connect-an-lcd-display-to-your-arduino
+*** Arduino talks to LCD with 4 data lines
+*** Other LCD pins: enable, RS, RW
+*** LCD backlight uses its pin 15 from Arduino 5V, and grounding its pin 16
+*** This LCDs dont come with default connectors, hence we solder 16 pin male headers
+*** Ritual to check LCD:
+**** Power LCD from Arduino (like a separate power source, not batt), this is to power the LED
+**** Logic: We ground (again) LCD pin 1, pin 2 to power source (same pins of Arduino)
+**** Potentiometer: 3 legs, one to power, one to ground, one to Arduino pin 3
+**** Turning potentiometer should adjust brightness of LCD
+** Also connecting LCD (better example):
+*** https://circuitdigest.com/microcontroller-projects/arduino-lcd-interfacing-tutorial
+*** point stressed:
+**** Unlike normal development boards, there is no need to worry about sending or receiving data
+*** As before, there are 2 versions, 14-pin and 16-pin, 14-pin is commonly used (more info later)
+*** 8 data pins, 2 power pins, 1 contrast control (VEE) & 3 control pins
+*** Unlike before, contrast control (along with Read/Write) are shorted to ground (common for beginner, max contrast & read mode only)
+*** Article says we only need E (Enable) & RS (Register Selection) for sending data and character control
+*** Arduino IDE allows usage of LCD in 4-bit mode, unlike others, no config needed as 4-bit is Arduino's default
+*** Site example shows circuit using 4 data pins and 2 control pins
+*** code includes a simple function like this:
+**** LiquidCrystal lcd(0, 1, 8, 9, 10, 11);
+**** where 0,1,8.. are the corresponding Arduino pins, that lead to the corresponding 6 LCD pins 
+*** Other LCD detailed info:
+**** https://circuitdigest.com/article/16x2-lcd-display-module-pinout-datasheet
+***** Exactly like before (but this one says the VEE contrast control is ALSO a control pin, simpler)
+***** What are the 2 black circles?
+****** an interface that helps MCU (any microcontroller) commuicate, as handling everything from MCU is hectic
+***** As before, supports 4-bit and 8-bit mode. 8-bit is faster (instead of splitting data into 4-bit everytime), but requires 8 data lines, so is not common
+***** the interface (2 circles) also allows writing and reading from the IC (interface). But as before, writing to IC most common.
+***** LCD has common instruction registers which MCU can send as hex code Eg. = 0F: LCD on (more than 20 in website)
+**** https://www.8051projects.net/lcd-interfacing/introduction.php
+***** Very useful website! must check out for other stuff
+***** 1 controller = 14 pins. 2 controller = 16 pins
+***** uses DDRAM (not be confused with EPROM) which is Display RAM. (Simple) Whatever thats leftover (not displyed on LCD) is stored in DDRAM, in fact everything is sent to DDRAM, but the leftovers are not seen
+***** CGROM translates characters/symbols from 8-bit codes
+***** you can also program your ROM (for your own code-to-character)
+***** The rest is just more details (!!) including assembly code (!!)
+** Once we read temperature, the value is 'inside' Arduino
+** Controlling the fan from then on, needs a transistor between it (pin 9) and the fan (which is connected to its own batt)
+** The code is then just a switch OR if/else statement that sends PWM to pin 9 (Eg: if temp > 28, then PWM is 20%)
+* https://www.instructables.com/id/How-to-Make-a-Simple-Temperature-Control-Fan-Speed/
+** Simple Temperature Control Fan Speed
+** Equipment:
+*** thermistor (we use the one with resistance != temperature)
+**** [[./resources/devices/2019-12-21_15-18-35_new.jpg][thermistor]]
+**** http://www.learningaboutelectronics.com/Articles/How-to-test-a-thermistor.php
+***** How to test a thermistor:
+****** 2 types of thermistor NTC and PTC:
+******* Common are NTC, which we used
+***** We need an ohmeter
+***** check rated value (100ohm, or 10Kohm)
+***** check no-heat value and heat value (should be sensible)
+*** MOSFET
+**** https://www.elprocus.com/mosfet-as-a-switch-circuit-diagram-free-circuits/
+***** What is a MOSFET?
+****** Its another transistor (a bit more feature)
+****** can be used for analog & digital (very common)
+****** Unlike transistor, has 2 modes depletion and enhancement (basically  opposites). The lower the voltage, the higher current flows, & vice-versa for the opposite
+******* Interesting it mentions voltage, implying difference from transistors?
+****** As in the transistor, the 'Gate' is the switch that controls outcome
+****** The 'gender' of the charge changes physical characteristic of the MOSFET (some semi-conductor change)
+****** More flexible than transistor, where a transistor requires current, the MOSFET requires voltage (I was correct!!)
+*** potentiometer
+*** capacitor
+** Its one big simple circuit, except that thermistor and capacitor are in parallel:
+*** Parallel is a way of combining 2 components into 1 (like combining 2 batts to make a bigger batt)
+*** The thermistor is a switch in this
+*** Hence, combining both makes a half-thermistor-half-battery, LOL
+*** Maybe ONLY becoz of cheap chinese-y power supply
+** Its strange there is an addition of MOSFET and potentiometer, becoz there is nothing special except more switch-like behaviour
+* https://reference.wolfram.com/language/MicrocontrollerKit/workflow/MotorSpeedControl
+** Instead of using a 'speed dial', some projects may require 'more predictable control'
+** becoz of the nature of motors, (voltage-sucking vampires), the speed changes depending on the load
+** https://www.quora.com/What-is-gear-reduction-ratio
+*** The term 'gear reduction' is always used, becoz motors are always fidgety bastards, (magnets constantly avoiding each other). Hence, in their nature, they are weak but fast, and gear-reduction is the engineerings only way to make them make them usable (usually)
+* https://www.instructables.com/id/Homemade-propeller-balancer-for-rc-aircraft/
+** Please read this again. Very important, if youre making your own wooden propeller
+* http://projects.privateeyepi.com/home/on-off-project
+** switch off/on your lights using your mobile phone
+** will work for both AC/DC
+** uses a web server installed in you RasPI, which runs a Javascript app to send On/Off message. Also uses MQTT and a Python program to control relay (still unclear). MORE!!....
+*** http://mqtt.org/
+** Equipment:
+*** Rasperry PI
+**** Preferably = headless. This means you can put your RasPI close (or inside!) your appliances. 
+**** If not headless = run 2 wires to your appliance
+*** NO need PrivateEyePI account (huh?) 
+*** 1-Channel 5V Relay Module 250V/10A (250V is your average UK power rating). MORE!!!!....
+**** https://www.jemrf.com/collections/accessories/products/relay-for-raspberry-pi-or-arduino-1-channel-5v-relay-module-250v-10a
+**** or build your own (yes you can use your own for this project)
+**** different types of relay:
+***** https://www.elprocus.com/different-types-of-relays-used-in-protection-system-and-their-workings/
+***** It is strange that relays are way to similar to transistor
+***** There are physical mechanics of relays, but this has nothing to do with usage, such as protective, reclosing, regulating, auxiliary and monitoring relays.
+****** Electromagnetic relays. can be powered by AC or DC
+******* AC and DC relays. Similar magnetic principle, but slight difference. AC relays have laminated cores to counter eddy current losses. Similar to our universal motor! As we said before, without this, any device just thinks of 'average' of AC, which is 0-ish 
+******* Attraction Type Electromagnetic Relays: even simpler design. Reminds me of thermostat. Can work with AC or DC. No time delay, so instanteneous reponse
+******* Induction Type Relays: 
+****** Solid State Relays:
+******* has no moving parts. An example is photo-based (light) one, where the the signal is the LED that triggers a photo-sensor semiconductor. Contrast that to a current moving a magnet
+****** Hybrid relay
+****** Thermal relay
+** 2 circuits:
+*** Circuit 1 = power and signal to the relay switch (in RasPI, it is GND PWR and IN). As usual, a teeny-tiny current to control a bigger one
+*** Circuit 2 = lamp and power supply
+*** Highly recommended to try with a LED lamp
+** If the relay is D.I.Y, make sure the power rating of the 'relay input' (signal) allows 3V, & the power of the coil is 3-5V (standard RasPI and Arduino). More importantly it should not exceed 1 Amp. Slightly confusing, but:
+*** https://snapguide.com/guides/calculate-the-electric-current-drawn-by-light-bulb/
+*** This site shows all light bulbs (40, 60, 80 & 100 Watts) have less than 1 Amp (the decimal range of 0.3 to 0.9) 
+** Write simple Python program that only switches on/off 
+*** It works!!
+** To make this control from a web app
+*** Install a bunch of programs (sudo apt-get)
+*** This includes Mosquito which will use the MQTT protocol
+*** For web control, we need to re-compile this program to use web sockets
+**** We basically re-install the app, this your usual make,config process
+**** After some editing of config files, the Mosquitto is running as a process (top command?)
+*** 'Installing' the web app, as usual is a bit like Git cloning into your project/web root folder, since the your webserver is always pointing to this folder
+** Now, a web page button will turn on/off the lights. TADA!!
+* (I may need to put this somewhere else)https://finolex.com/5-uses-of-mcbs-you-didnt-know-of/
+** Miniature Circuit Breaker = controlling agents in an unusual supply power
+** Circuit Breakers and Fuse are designed to cut-off power when it exceeds safe levels
+** It should trip when you toaster/etc shorts out. it trips when theres arcing.
+*** Arcing = flashes!! When electricity flows to unintended paths (not part of the system). Eg: When contact touches a transmitter, that is not part of the system
+** Unlike a fuse, MCB and CB's can handle large amounts of current (which explains everything)
+*** https://www.expertelectric.ca/residential-electrical-services/breakers-fuses.php
+* https://www.instructables.com/id/DIY-RELAY-MODULE/
+** Make your own relay!!
+** Single-channel but multiple channels possible (just repeat circuit on single PCB)
+** Equipment:
+*** CON35 6V relay (or 5V) = (a simple power relay, not a module) (Im confused!)
+*** BC548 transistor
+*** 100 ohms resistor
+*** IN4001 diode
+*** Screw terminals
+*** LED (red or green)
+*** copper clad board or PCB
+*** breadboard or jumpers
+*** Fritzing (software)
+*** soldering equipment
+*** hookup wire
+** We build circuit on breadboard, building on breadboard allows testing:
+*** download relay.ino file and open in Arduino 
+**** .ino file is the standard abd beginners format in Arduino IDE. No difference to .ccp except at advanced programming. So you program C/C++ in .ino too
+*** connect power to Arduinos power (GND to GND, Vcc to 5v)
+*** connect input pin to Arduino's pin 13 (input pin is transistors 'base')
+*** upload code (we upload code after assembly, I guess) 
+*** check relay response
+** Now, we build for real on PCB, then check with the same steps
+** Next, optional, we can do custom PCB's through PCB etching (custom PCB's are cleaner and safer):
+*** https://www.instructables.com/id/How-to-Etch-a-PCB/
+* Several water pump projects, probably not important
+** https://www.instructables.com/id/How-to-Make-a-Mini-Water-Pump/
+*** Most simple, helps with the bigger ideas
+*** Parts are simply:
+**** motor and power source (single speed, no other fluff)
+**** plastic and plastic sheet (to make the impeller, and the housing of the impeller)
+**** plastic straw, for the entrance and exit of water
+** (REMOVE PLEASE)http://theselfsufficientliving.com/diy-water-pump/
+** https://www.instructables.com/id/DIY-water-pump-1/
+*** Again just an impeller cut out from a 'plastic wheel'. (He used shrink wrap to fit in the motor shaft)
+*** canister to fit whole motor (a bit more complex than 1st example)
+*** To help this, motor is covered completely, power cable is welded to motor, and wrapped in the single cable (so only 1 power cable exiting canister)
+*** fit inside canister, use spacers to help centering (and other issues)
+*** epoxy is also used to fill remaining space (between motor and canister)
+*** plastic top is the finale, to finally close completely the motor housing (so all we have is shaft and power source)
+*** finally, exact same assemble as 1st, but with heated threaded nozzles for tight canister fit (make sure its not the spray nozzle type)
+** https://www.motherearthnews.com/diy/pvc-manual-well-pump-zmaz00jjzgoe
+*** Powerful PVC-built water pump
+*** Design is basically pipe (a rod pump) inside a pipe
+*** concept called = positive displacement
+*** draws water on downstroke and upstroke
+*** VERY confusing
+** https://www.treehugger.com/wind-technology/diy-wind-powered-water-pump-made-bike-parts.html
+*** uses a cam system attached to windmill (windmill is vertical) to move the pump, quite a bad design, but very cool idea. (Another reason, why you should try at least to make something like a cam woodworking project)
+** Both of these are big and powerful, but same principle as the 1st and 2nd one:
+*** https://www.youtube.com/watch?v=AEkTekVVRME
+*** https://interestingengineering.com/make-centrifugal-water-pump-using-hard-drive
+* https://www.instructables.com/id/Make-your-own-Lathe-from-other-peoples-rubbish/
+** Making a wooden lathe using washing machine motor (universal motor)
+** He tested it using an old computer PSU (power supply unit)
+*** https://www.instructables.com/id/Convert-an-ATX-Power-Supply-Into-a-Regular-DC-Powe/
+**** Convert an ATX power supply to a regular DC power supply
+**** About power supplies:
+***** https://www.newegg.com/insider/how-to-choose-a-pc-power-supply-buying-guide/
+***** How do you choose your power supply?
+***** You use power supply calculator (Eg: https://www.newegg.com/tools/power-supply-calculator/?cm_sp=NeweggInsider-_-BuyingGuides-_-ChoosePSU)
+***** You can choose over-the-wattage, as the power supply only passes power that is NEEDED (Eg: 600-watt power for 576-watt need)
+****** This also allows upgrades in the future
+***** Protection:
+****** 2 protection, the 1st is 'overvoltage', which for 'internal'. Protects components in case output voltage exceeds spcified voltage limit
+****** 2nd is overload & overcurrent protection, PSU will shutdown in case power load/ short circuit (from outside) is detected 
+***** Efficiency:
+****** there is efficency rating in % (wow, thats simple!!), which basically means how many wattage is absorbed from the mains, and wasted in heat
+****** '80 PLUS' cert is the certification related to efficiency (just a guarantee)
+***** Rails:
+****** power is provided to the components by rails
+****** there many rails but the main 1 is +12V that provide power to the most power-hungry (Eg: processor and video cards)
+****** You can think of rails as separate sockets for the components:
+******* Modern PSUs must provide (usually for multi rail):
+******** > 18 A for mainstream up-to-date system
+******** > 24 A for systems with single enthusiast-class graphics card
+******** > 34 A for a system with high-end SLI/CrossFire system
+****** It is the combined Amperage that were looking for, and this is not always simple addition (+)
+****** Multi- or Single-rail?:
+******* a single-rail is easy, can blindly fit all components, but less security against power loss (surge) (then, not suitable for mission-critical perhaps)
+******* multi-rail, more security, but requires setting attention
+***** Now, IMPORTANT lesson:
+****** AT and ATX are still around, but are dying and on the way out
+****** ATX12V are on the dominant rise
+**** This project will turn it into a CD poewr supply with 12, 5 and 3.3 volt output
+**** We do this because DC power supplies are a hit-and-miss as well, can somtimes be difficult to find the suitable config for our purpose
+**** ATX are avilable everywhere, small, overload-protected, stable voltage rails, clean DC & even a 500W model 
+**** be careful with capacitors, theyre not super-dangerous, but watch out
+**** The only colors we care about: Black, Red, Orange, Yellow and Green:
+***** Green is used to tell the PSU to wake up from standby mode, we solder this to..
+***** Black (ground), to always tell it to turn on, even without a computer
+***** Yellow is 12 V
+***** Red is 5 V
+***** Orange is 3.3 volts
+***** we cut all wires except these, not even the connectors (so we have a FOREST of wires)
+**** Simple: we are done, we can attach 1 alligator clips for each color set, to power stuff such as electric motor, ham radio
+**** In this old example, each rail has different voltage, so grouping each color, means we get all the current for each rail
+**** If you drill holes, make sure to wrap circuits to avoid metal shavings (IMPORTANT)
+**** This projects removes the 90 mm fan, becoz computers needed cooling
+**** Final: 400 watt PSU with 23 amps for 12 V Rail, & 40 amps for the 5 V Rail
+**** Unusual logic and lesson = PSU needs minimum load (otherwise damage). Eg: 10 Ohm 10 watt resistor for an LEd
+**** This project doesnt use the WHITE and BLUE wires = these are the -5 & -12 V:
+***** Weird concept but usable for diversifying voltages:
+***** MORE!!
+**** MORE!!
+*** https://www.wikihow.com/Convert-a-Computer-ATX-Power-Supply-to-a-Lab-Power-Supply
+**** Some additional important steps
+**** after disconnection, discharge power supply by leaving it a few days
+**** parts needed also include 'binding posts' like the previous, (where can I get these free?):
+***** Power resistor (rare?)
+***** A switch
+**** Differences:
+***** 1 of the red wire to power resistor (all other reds as normal)
+***** 1 of the black wire, 1 black wire to DC switch, 1 black wire to LED (cathode) (all other blacks as normal)
+***** white, yellow, blue as normal, gray to a resistor to the same LED (anode)
+***** orange as normal too (but apparently, some PSU's need this to be connected, otherwise PSU will NOT turn on)
+***** green to other end of same switch (like previous project but with a switch)
+**** Eg of PSU with gray wire as 'power good' indicator (useless but safe and good for indication):
+***** Antec 303X ATX  
+***** https://www.rcgroups.com/forums/showthread.php?49574-PC-ATX-power-supply-Gray-wire
+**** Other unusual types:
+***** this project can provide many outputs. Eg: 24V (which is calculated from +12V & -12V, yes, it is weird)
+***** If -5V is needed, avoid ATX with 24 pin connectors, instead use ATX 20-pin, 20+4 pin or AT power supply
+***** Some PSU needs green & gray to be connected together
+***** This project can also be used as a car battery charger, but a too discharge car batt may trigger the circuit protection, so a good step is;;
+***** put a 10Ohm resistor in series with the 12 V, charge initially, once 12 V full is almost there, resistor can be removed
+***** Again, PROTECT circuits from metal shavings !!
+***** Do not touch lines with capacitors
+***** Make sure you are NOT grounded
+***** ALWAYS test with multimeter, as a beginner, for safety
+*** https://www.instructables.com/id/Convert-A-Computer-Power-supply-to-a-Bench-Top-Lab/
+**** Even a 13 year old made this 
+**** He uses a 250W PSU
+**** Extras that this guy uses, depending on method:
+***** LM317 voltage regulator 
+****** A voltage regulator looks exactly like a MOSFET. Difference is MOSFET is a single transistor, while a voltage regulator is multiple transistors
+***** 100nF Capacitor
+***** 1uF Electrolytic Capacitor
+***** 1N4001 power diode
+***** resistor (same)
+***** variable resistor
+**** Buzzing when the PSU is turned on, could mean a serious problem
+**** Power-on circuit like previous build, but with the addition of green LED (on top of switch), & the same circuit branches to a Stand-by circuit (purple wire instead of gray)
+***** Actually there are 3 parallel circuits in this case = so the Green (power-on) is connected to -> Purple, Gray & Black
+***** [[./resources/devices/2019-12-31_22-40-58_FIZN10UFNZA841G.LARGE.jpg][ciruit photo]]
+**** Remember = Black is always ground
+**** He claims (unlike previous project), that some PSUs need a load to work properly, so 1 Red wire needs a resistor on 1 end and Black wire on the other,
+**** He recommends putting some components into separate closure to avoid too much warmth
+**** Apart from binding posts (previous projects) other method are:
+***** Variable resistor:
+****** 1.5 to 24 V:
+******* Due to replacing Black (Ground) with Blue (-12 V) results in 24 V
+****** All the circuits are the same, just add another circuit as in this diagram (so external closure makes sense):
+
+****** [[./resources/devices/2019-12-31_23-13-40_add__circuit.jpg][circuit diagram]]
+****** There is typo in diagram, where 22 V should read 24 V
+****** You could use a voltmeter, to wire it to determine what voltage youre at
+**** Make sure its ATX, AT is still quite old and different coloring
+**** This statement doesnt make sense, and seems out of nowhere:
+***** Some modern PSUs have a sense wire' that has to be connected to power, if this wire is grey -> has to be connected to orange, if its pink -> red
+*** https://www.electronics-tutorials.ws/blog/variable-voltage-power-supply.html
+**** This is where the circuit diagram originated from!!
+**** Has more information/data
+**** The reason PSU is so flexible in ALL these projects is becoz the PSU has done the = transformer, rectification, & smoothing
+**** LESSON:
+***** The reason voltage regulators look like MOSFET is becoz
+***** TO-220 is the name-of-the-shape = the name of the package, and its EVERYWHERE
+**** Our previous 13 year old boy project used the 'variable voltage' option. This site shows 2 options:
+***** fixed voltage regulator
+****** Still 'variable ' in a sense, but
+****** We determine the voltage output, by simply changing this component:
+******* Several including +5V (7805) or +24V (7824) fixed voltage regulator, & a negative type -5 to -24V (79xx)
+****** The project uses 78xx type
+***** variable voltage power supply
+**** fixed voltage regulator:
+[file:https:/www.instructables.com/id/Make-your-own-Lathe-from-other-peoples-rubbish/2020-01-02_13-10-34_zener-diode.jpg]]
+
+***** [[./resources/devices/2020-01-02_13-10-34_zener-diode.jpg][zener-diode]]
+
+***** depending on the type of Voltage Regulator, 7805, 7806, etc. We control the output voltage
+***** But if we want to a +5V (7805) Voltage Regulator to output 9V, we'd have to 
+***** Personal understanding (was correct) = The voltage regulator needs to be grounded itself, to determine what voltage its at, so -> 
+***** Using a Zener diode, to trick it (a trick voltage reference), and an additional feedback diode for protection, we get ->
+***** +9V from +5V, if the Zener diode provides 4V
+***** But this needs improvement, which leads us to ->
+**** variable voltage power supply:
+***** Instead of a zener diode, it uses a 2 resistors (the ratio between each) as reference points
+** Extracting the motor from an old washing machine, is simply case of turning it upside down
+** To test the motor without a bench supply, one can also use a 1000W electric heater wire between the brushes. Basically this is a nichrome wire, also used in toasters and electric stoves
+** The no-theoretical-limit is apparently true for most series wound motors, not just these. So an ESC is necessary.
+** Many reasons why a very fast motor like this is bad.
+** One way to control the speed is lowering the voltage using a variable transformer. But this is bad as it will lower the speed, voltage and TORQUE
+** The better method is to use a triac controller circuit, also referred to as a pulse width modulation or chopper circuit
+** 
+
+* https://www.instructables.com/id/Arduino-Motor-Shield-Tutorial/
+** Simple example of using a Arduino motor shield
+** Basically, its just an 'interface', no more wiring components to arduino, you cant connect motor and power source directly to sheild (Only programming is done with Arduino)
+** The shield is an expensive way to control motors in Arduino but very flexible and easy. You also dont need a speed controller, as everything is the whole Arduino & sheild becomes a single 'ESC'
+** Controlling 2 motors is exactly the same as controlling 1 motor. (Interesting, but not important, you start each motor sequentially, which MAYBE negligigle for most usage?)
+** Stepper motors are useless to me now
+** Going on a tangent!
+*** https://educ8s.tv/top-10-arduino-shields/
+**** List of Arduino shields (all can be used with UNO)
+**** ARDUINO SHIELD YwRobot Easy Module Shield V1 (called: Multifunction DHT11 LM35 Temperature Humidity Easy Module Shield)
+*****  https://www.banggood.com/Multifunction-Expansion-Board-DHT11-LM35-Temperature-Humidity-For-Arduino-UNO-p-996800.html?p=DQ30066511122014069J&utm_campaign=educ8stv&utm_content=3216&cur_warehouse=CN
+***** for humidity, temperature, and other stuff (not sure about motor, it has a potentiometer but no channels). Previously we said shelds is expensive, but for all those goodies 8 US dollars is bloody CHEAP
+**** Arduino Motor Shield
+***** a motor driver like L293D is very common and very cheap
+***** (MAYBE, this and L293D is exactly the same). Around 3 US dollars / RM 12
+***** power 4 DC motors, 2 Stepper motors, and 2 Servo motors easily
+**** Arduino GSM Shield
+***** Tinysine Arduino GSM/GPRS Shield G50EFC56E3197F
+***** Using a SIM card, you can send and recieve SMS, phone calls, and use internet (last bit, huh?)
+***** - send an SMS to control a project - an Arduino project send you SMS with sensor data
+***** - combined with GPRS, send data to remote server from anywhere in the world
+***** supercheap 25$ to 35$
+***** great library support
+**** Arduino Joystick Shield
+***** cool, but im currently out of imagination
+* Lesson on motor capacitors!
+** https://www.quora.com/Whats-the-purpose-of-soldering-a-small-ceramic-capacitor-between-the-leads-of-a-small-motor
+*** counter-electromotive force (or CEMF or EMF), is the electricity generated by the motor (very small amount), that goes in the opposite direction of the power supply. This is NOT supposed to happen. For some, as the motor turns off, slight momentum will generate this. But even while its turning, there is ALWAYS EMF. Capacitors probably help against this reverse EMF. 
+*** The previous was mostly for larger motors. For smaller motors, caps may help in starting it. This helps prevent the "sit-and-hum" phenomenon
+** https://pressbooks.bccampus.ca/basicmotorcontrol/chapter/overload-and-over-current-protection/
+*** This EMF phenomenon is also called "inrush current"
+** https://www.ti.com/lit/an/slva670a/slva670a.pdf?ts=1622694448215&ref_url=https%253A%252F%252Fwww.google.com%252F
+*** This is PDF! Careful!
+*** Apparently, caps in some system CAN cause inrush currents. And a voltage regulator is a well known solution. (These usually have soft-start functionality)
+* Back to basics (random Youtubers):
+** https://www.youtube.com/watch?v=K-2ojZNsz4U
+*** A Roomba is a golden treasure for electronics!!
+* Back to basics (motors):
+** https://www.electrical4u.com/series-wound-dc-motor-or-dc-series-motor/
+** https://www.youtube.com/watch?v=EAxWAtvrVto
+*** A rather unusual DC (and HUGE!!) motor, a design I have never seen before?! The stator is connected in series with the rotor. 
+**** Wait a minute? This is what was said of the universal motor (DC & AC)?
+*** Unlike a toy DC motor, flipping the power terminals doesnt effect the direction, as flipping the terminal reverse BOTH the polarity of the stator (field) and the rotor. To reverse, youd have to flip the connection between the field and the rotor (which unlike our toy ones, can disconnected, some kind of terminal thing on the outside body.. weird) 
+*** Oh, popular motor in golf carts, and forklifts.
+*** It has no bearings, coz the rotor floats on an external spline (and the spline has a bearing). So you cant run it by itself. 
+** https://www.youtube.com/watch?v=0PDRJKz-mqE
+*** FINALLY understood!!
+*** HAHAHA! The finger trick (I bloody hate school)
+*** back to REAL BASICS. 3 elements = magnet direction, current direction & force direction.
+*** When the current flips, 1 other element has to flip
+*** If the magnet flips (such in AC), then everythings okay (direction the SAME)
+*** If the magnet doesnt flip, then direction will flip
+*** In a normal DC motor, the magnet is glued on to the body, so the magnet never changes, so the current MUST be DC
+*** In an AC motor, the magnet is an ELECTROMAGNET. Generated from the incoming current (wrapping around the body). If the current flips, the magnet produced by the electromagnet flips. 
+*** This is why the direction always works.
+*** Stupid wikipedia!
+* Back to basics (transistors)
+** https://learn.sparkfun.com/tutorials/transistors/all 
+:PROPERTIES:
+:CUSTOM_ID: transistor1
+:END:
+*** Finally understood transistors, after whole article. This is only theory, so no clue what to do when actually encounters one in the wild.
+*** Burnt out on theory!! Finally article shows practical usage
+*** Theyre used for logic gates. Which makes me feel quite useless
+*** Basically, in our usual NPN (not-pointing-in) transistor. The base should be highest or lowest (saturation or cutoff), or the Collector highest (active), of the Emitter highest (reverse-active)
+*** A lot of info, but all we have to understand, is that as a "switch", base should be highest or lowest. And since highest & lowest is flipped for PNP. PNP is a reverse switch.
+**** For the normal NPN, the base needs to be high to turn on the circuit (Collector to Emitter). So low cuts it off.
+**** For the unusual PNP, the base need to be low for the load to turn on. However, this is HUGE problem (compared to NPN). Becoz based on the rule above, (base shld e highest or lowest). If the voltage too low, it might NEVER turn off the load (coz it must base > E or C) 
+:PROPERTIES:
+:CUSTOM_ID: transistor2
+:END:
+*** In all the examples shown, we always need a resistor to the Base. The resistor is always 1000 kΩ (kOhm). As standard 1mA to 10mA is usually good enough. (example also shows 0.6V, maybe not important)
+*** A bunch of Gates:
+**** NOT, AND, OR. But theres also a new "Gate" (I donno..). H-Bridge. And a combination of 4 transistors!! Unlike the previous components. It has 2 input and 2 outputs, and through some magic of same-voltage-cancellation, and 2 mirrored circuits on each motor pole, a motor can go forward and reverse and brake.
+**** Oscillator = basically a clock signal, better read from the source
+**** and many more
+** https://www.instructables.com/5-Cool-Projects-With-a-General-Transistor/
+*** Diagrams only (but practical). Not doable, coz no real photos.
+*** Transistor Tester. A circuit that LED-blinks when a working transistor is inserted
+*** Mains Finder. A high gain of 200 x 200 x 200 = 8,000,000, it will a detect a mains "hum" in your wall, or even your hand nearby (no contact!!)
+*** Lie Detector.
+*** Fake Ticking Bomb.
+*** Touch Switch (Must make!! so cool!!)
+** https://www.instructables.com/3-EASY-TRANSISTOR-PROJECTS-FOR-BEGINNERS/
+*** Very practical. Must do immediately.
+*** LED blinker circuit. Very easy.
+*** Automatic night light. Since darkness = High resistance on LDR. and brightness = Low resistance on LDR. An alternative/parallel circuit balances it all out. So LED turns on when its dark and vice versa
+** https://www.instructables.com/Use-Arduino-with-TIP120-transistor-to-control-moto/
+*** Very basic project for TIP120 transistor and Arduino UNO
+*** Another must do for beginners
+* Back to basics (MOSFET) (which is also a transistor) :
+** https://oscarliang.com/how-to-use-mosfet-beginner-tutorial/
+*** Cool website, but very unfocused, messy structure.  
+*** MOSFET is uses voltage as the switch at the "Gate". Instead of current at the "Base" (BJT transistor)
+*** Not as simple as that, actually there is in fact NO current flowing into "Gate". 
+*** In fact, it is the Gate-Source voltage difference that controls the Drain-Source resistance
+*** So, rather than just the "Base" as the switch. the Gate-Source is the switch
+**** This might solve our problem in BJT, where our "Base" in PNP mode could never turn off the load!! [[#transistor2][previous example]]
+*** "Because they are voltage controlled, MOSFET have a very high input impedance, so just about anything can drive them."
+**** Apparently, a lot of leeway. Becoz "current" is stritly not needed. Just difference of voltage!
+*** Example:
+**** A standard MOSFET is the IRFZ44N, which only turns on at 10-20V (10-15V is safer).
+**** For Arduino projects, a logic-leve MOSFET is better (such as ST STP55NF06L). A 220 Ohm resistor is also good at protecting the Arduino from the (naturally capacitative) MOSFET.
+*** General categories (but like BJT, only 4-types, usually):
+***** N-Channel (NMOS) or P-Channel (PMOS). Enhancement or Depletion mode. Logic-Level or Normal MOSFET
+****** N-Channel is the most common type (dont associate it with NPN type). Source is connected to ground. Gate voltage raised, turns it on. Gate = ground, turns it off.
+****** P-Channel. Source is connected to power rail (Vcc). Gate = ground, turns it on. Gate raised, turns it off.
+****** Most common = N-Channel enhancement
+****** Difference in voltage (always) turns it on. Seems more consistent than BJT!
+******* But this is exact opposite when in depletion mode.
+*** MOSFET's are extremely fast. They used as switches in integrated circuits. They are probably more than enough for motors and as "clocks".
+** 
+* Back to basics (resistors):
+** https://www.circuitspecialists.com/blog/how-to-determine-resistor-value-for-led-lighting/
+*** Just a quick reminder as our previous example [[#transistor1]]
+*** "A typical white LED that requires 10mA, powered by 12V, needs a resistance of (12-3.4)/.010=860 ohms."
+*** So its true, 1000 Ohm is pretty standard
+* Back to basics (capacitors):
+** Caps are super-simple, but Im grasping this coz im finally making a no-battery torchlight. 
+** https://learn.sparkfun.com/tutorials/capacitors/all
+*** [[./resources/devices/capacitorSimpleCircuitAnim1.png][simple capacitor anim1]] [[./resources/devices/capacitorSimpleCircuitAnim2.png][simple capacitor anim2]] [[./resources/devices/capacitorSimpleCircuitAnim3.png][simple capacitor anim3]] 
+*** The 1st image shows open circuit (nothing). The 2nd image is a cap charging. and the 3rd finally discharging.
+*** We can think of caps as basically "adaptive batteries"
+*** The batteries voltage (1st image) determines how much charge in the capacitor. Q = CV. 
+*** [[./misc/resources/capacitorCurrentFormula.png][how about the current?]]
+*** From the above formula, if derivative of voltage over time is 0. Current is 0. 
+*** If voltage is steady, current is 0. <<capacitor1>>
+*** 

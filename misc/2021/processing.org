@@ -1,0 +1,32 @@
+
+
+
+
+
+* How does one create dotted grayscale images the are darker at the center, and brighter at the edges
+** In Java:
+*** empty array (canvas)
+*** maxdistance is half of canvas (w/h)
+*** loop through array, and scale coordinates with 255. (distance/maxdistance*255)
+*** user parameters are spacers (gray dot resolution is NOT real resolution always)
+*** loop through array and -> stroke() point()
+** In ImageMagick:
+*** create canvas (image or virtual)
+*** loop through size with spacers ():
+**** distanceFromCenter modulus(x-w/2)
+**** scale $color (255*distanceFromCenter) 
+**** draw primitive (x,y,xmargin,ymargin) (-circle) (-fill "rgb(255,255,255)") ($color instead of 255)
+**** output to file or :miff for next loop 
+** In ImageMagick (-fx):
+*** Not worth it
+* How does one create a fan-out art (lines shine from the center, ending in dots, evenly spaced)
+** In Java:
+*** empty array (canvas)
+*** gridSize (spacing of end-dots)
+*** loop through canvas:
+**** fill()    (color)
+**** rect(x,y,3,3) (3-pixel square)
+**** stroke(255,100) (semi-transparent white) (read between the lines, and the details matter, selected transparency makes huge difference, this gives a vapor-trail effect)
+**** line(width/2,height/2,x,y) 
+** In ImageMagick:
+*** 
