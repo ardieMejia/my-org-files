@@ -1,0 +1,3 @@
+* https://scripter.co/hugo-leaf-and-branch-bundles/
+** leaf bundles treat non-index .md files as non-entities (no perma-links, no HTML and all), while allowing non-page elements (image, pdf, etc). In essence a folder thats a "leaf bundle" is a whole single entity
+** After reading branch bundles, both bundles are nothing special, but simply 'ways of thinking'

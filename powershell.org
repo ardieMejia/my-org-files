@@ -1,1 +1,70 @@
-* First 
+* Introduction:
+** Short but amazing introduction to PowerShell
+*** https://www.makeuseof.com/tag/use-powershell-instead-batch/
+*** Every Powershell command (cmdlet) is actually a .NET class
+** Advanced tasks Powershell can handle (most already known, except the Get-Service which I should try pick up)
+*** https://www.makeuseof.com/tag/15-advanced-tasks-powershell-can-handle-windows-10/
+** Some cool, basic, but "never tried" stuff
+*** https://virtuallysober.com/2018/10/18/my-top-10-powershell-tips-tricks/
+*** Leverage PowerShell modules where available
+*** If no module exists use Invoke-RestMethod to talk direct with REST APIs
+*** (Bonus tip) Create tables (an array) to store multiple variables
+* Official:
+** 
+* Misc but cool (arrange later):
+** https://powershell.one/tricks/input-devices/detect-key-press
+*** cool potential for Emacs-style fuzzy search
+$arrayInput =@()
+
+do
+{
+    # wait for a key to be available:
+    if ([Console]::KeyAvailable)
+    {
+        # read the key, and consume it so it won't
+        # be echoed to the console:
+        $keyInfo = [Console]::ReadKey($true)
+
+
+        $arrayInput += $keyInfo.KeyChar # to get full object, just type $keyInfo outside of loop
+
+        Write-Host $arrayInput -NoNewline
+        Write-Output ""
+        # foreach ($i in $arrayInput){
+        #     Write-Host $i
+        # }
+        if($keyInfo.Key -eq 'Enter'){
+            # exit loop
+            break
+        }
+
+
+
+    }
+
+    # write a dot and wait a second
+    # Write-Host '.' -NoNewline
+    Start-Sleep -Seconds 1
+
+} while ($true)
+
+# emit a new line
+Write-Host
+
+# show the received key info object:
+$keyInfo
+** 
+* Packages (Modules)
+** https://www.powershellgallery.com/packages
+*** A goldmine of packages including:
+**** https://www.powershellgallery.com/packages/Carbon/2.10.2
+     - for automating the configuration Windows 7, 8, 2008, and 2012 and automating the installation and configuration of Windows applications, websites, and services
+**** https://www.powershellgallery.com/packages/Carbon/2.10.2
+*  Databases;
+** https://virtuallysober.com/2018/06/14/using-powershell-to-report-on-thousands-of-microsoft-sql-instances-databases/
+** https://www.sqlshack.com/working-with-powershells-invoke-sqlcmd/ 
+*** Very basic, very useful
+*** Apparently, Powershell is mostly used for testing SQL queries and operations, NOT the main tool for SQL operations
+** https://www.red-gate.com/simple-talk/sysadmin/powershell/introduction-to-powershell-with-sql-server-using-invoke-sqlcmd/
+*** Havent read anything 
+* 

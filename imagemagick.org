@@ -1,13 +1,13 @@
 * Useful unmanaged links:
 ** https://www.imagemagick.org/discourse-server/viewtopic.php?t=32169
-* Notes from the official tutorial:
+* Official (color basics):
 ** https://www.imagemagick.org/Usage/color_basics/
 *** some operators make the context:
-*** when creating the canvas, you have the option to replace white with '#........'
-*** the -separate is overloaded operator not requiring other operators (such as -channel, that of course affect this operator) that automatically separates image into 3 grayscale OR accepts 3 grayscale images.
-*** A common trick/operation is to -separate a single image into its channels, swap OR do something with it, and re-combine
-*** some operators (like -negate strangely enough) implies separation of channels, hence has no need for 
-*** When replacing colors, the -draw can be used for information gathering, which is rather unusual for 'convert' commands (We have only used 'identify' so far for info gathering)
+**** when creating the canvas, you have the option to replace white with '#........'
+**** the -separate is overloaded operator not requiring other operators (such as -channel, that of course affect this operator) that automatically separates image into 3 grayscale OR accepts 3 grayscale images.
+**** A common trick/operation is to -separate a single image into its channels, swap OR do something with it, and re-combine
+**** some operators (like -negate strangely enough) implies separation of channels, hence has no need for 
+**** When replacing colors, the -draw can be used for information gathering, which is rather unusual for 'convert' commands (We have only used 'identify' so far for info gathering)
 *** canvas creation: 
 ****         convert 'xc:Salmon[100x100!]'  canvas_salmon.gif
 **** interestingly, the syntax of xc:... is exactly the same as the one without quoes ''. Which means the quotes is simply a way to bring together all the long syntax
@@ -18,9 +18,8 @@
           \( +clone  -fuzz 30000 -transparent blue \
              -channel RGB +level-colors white +channel \) \
           -composite   opaque_blue_inv.png
-*** Ive never seen a 'convert' command that splits and recombines channels twice (2x), until now:
-*** Correction: actually this 
-**** 
+*** Heres something Im not used to, a 'convert' command that splits and recombines channels twice:
+**** Like this:
      convert test.png -channel R -evaluate multiply .2 \
                    -channel G -evaluate multiply .5 \
                    -channel B -evaluate multiply .3 \
