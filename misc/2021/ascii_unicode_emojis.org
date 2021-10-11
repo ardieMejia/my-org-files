@@ -1,0 +1,10 @@
+* https://ascii.cl/
+** used this one for Mermaid.io library
+* https://theasciicode.com.ar/
+** Maybe worth a try
+* So this is how you REALLY write unicode emoji (whether in decimal or hex)
+** https://www.w3schools.com/charsets/ref_emoji.asp
+ <p style="font-size:100px">&#129409;</p>
+ <p>I will display &#129409;</p>
+ <p>I will display &#x1F981;</p> 
+** This applies to all code as in first 2 links too

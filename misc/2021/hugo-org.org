@@ -1,3 +1,19 @@
+* How does one go about installing Emacs/Spacemacs/Doom Emacs and what not?
+** https://github.com/syl20bnr/spacemacs
+** The only link you'll need to start using Spacemacs. 
+** Basically the process to install all variants of Emacs are the same (even when they look completely different!). 
+*** You install the base Emacs
+*** You install the init/layer/whatnot (basically configuration file). This is where the real magic of Spacemacs (and Doom Emacs I suspect) happens, where your base program will read this config file everytime it starts, thereby producing a completely different program. 
+*** This modification is highly robust (as you will discover that, if you accidentally deleted this config file, base Emacs will simply start as default classic and painful Emacs)
+** My version of emacs is 25.3.2. I recommend you install something later than 25.1 to "get with the times". Just a suggestion.  
+*** https://ubuntuhandbook.org/index.php/2017/04/install-emacs-25-ppa-ubuntu-16-04-14-04/
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt-get update
+sudo apt-get install emacs25 #--- Aahhhhhhh... much better, no errors so far
+*** In fact, you should install above version 25
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+*** This will clone that special config file
 * https://scripter.co/hugo-leaf-and-branch-bundles/
 ** leaf bundles treat non-index .md files as non-entities (no perma-links, no HTML and all), while allowing non-page elements (image, pdf, etc). In essence a folder thats a "leaf bundle" is a whole single entity
 ** After reading branch bundles, both bundles are nothing special, but simply 'ways of thinking'
+* https://niklasfasching.github.io/go-org/#footnote-3

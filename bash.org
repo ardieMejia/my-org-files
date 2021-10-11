@@ -1,15 +1,15 @@
 * Syntax (numbers and strings)
 ** https://stackoverflow.com/questions/1362298/convert-floating-point-variable-to-integer
-*** Floating point manipulation. At least in display, arithmetic will still work with $(())
+*** Displaying floating-point in a C-style (printf) manner. Very handy.
 ** https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
-*** Complete and more elegant way to cut strings into pieces, other turning it into arrays first
+*** Complete and more elegant way to cut strings into pieces, other than turning it into arrays first. 
 ** https://stackabuse.com/substrings-in-bash/
-*** Some weird but useful ones (which uses pipe & cut ->   | cut)
+*** Some weird but useful ones of string manipulation (using pipe (|) and cut -> | cut)
 * Syntax (arrays)
 ** https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
-*** basic syntax
+*** basic array syntax
 ** https://linuxhint.com/use-ifs-in-bash/
-*** this MAYBE the site where I learnt this trick:
+*** very handy to remember this or keep in this tip close at hand. Dealing with arrays in loops. The site where I learnt this trick:
 for i in *
 do 
     read -a myArray <<< "$i"
@@ -18,6 +18,7 @@ done
 *** http://www.masteringunixshell.net/qa35/bash-how-to-print-array.html
 * Syntax (functions)
 ** https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
+*** functions in Bash allows coder to treat the code like normal terminal usage. So, -- ls -- can have a (script scope) alias using function ls(){ #--some code }. And $1 has the same property.
 * Syntax (files and folder)
 ** https://www.cyberciti.biz/faq/howto-check-if-a-directory-exists-in-a-bash-shellscript/
 * Syntax (case, for loops)

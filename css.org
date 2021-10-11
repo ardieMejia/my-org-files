@@ -1,3 +1,90 @@
+* https://www.youtube.com/watch?v=3wXqwX4nu8I
+** sass mixins
+** Basically, @mixins help keep naming clean (for multiple elements using the same stylings)
+** @mixins are used in another element{} using @include 
+@mixins banner{
+  ...
+}
+@lead-banner{
+  @include banner
+  ...// a FEW styles (maybe 1 line to have element SLIGHTLY different)
+}
+* Hyperlinked heading: htmlmag.com
+** https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus
+** Writing better CSS: separating definitions into smaller files, and importing into a main file (not enough)
+** object-oriented CSS: adding 2 or more class definition to an element. Having multiple classes increased re-usability but decreased maintainability.  
+** Some Preprocessors (like Stylus or SASS) allow programmers to ignore completely {} (curly braces). Very Python like?
+** nesting should be used not excessively, as it can cause oversizing the selector
+** The site makes a long winded explanation, and example shows it looks like a function. But it is in fact NOT a function, but can also be used like a variable (Never trust these explanations, always refer to other sites). Our previous YT example shows a usage like a variable (no parameter in parenthesis ($width)). They also call this parameter = "static rule"
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/sass-2.png @ 2019-11-08 16:48:56
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-2_2019-11-08_16-48-56.png]]
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/css-2.png @ 2019-11-08 16:49:10
+***  [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css-2_2019-11-08_16-49-10.png]]
+** Extends: allows for sharing a generic definition (or class). Huh? Well, to put it simply, unlike @mixin (which are custom sass/less "variables"). @extend behaves like #include in other languages, and "imports" other NORMAL classes, importing CUSTOM definitions.
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/extend-sass.png @ 2019-11-08 17:09:58
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-sass_2019-11-08_17-09-58.png]]
+*** 
+#+DOWNLOADED: file:///home/ardienew/Pictures/extend-css.png @ 2019-11-08 17:10:07
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-css_2019-11-08_17-10-07.png]]
+** And many more (edit others later)
+** All pre-processors have color operations (built-in functions). Example in Sass: saturate($color, $amount). --> Not important
+** If/Else statements. Allow building definitions based on condition. Less uses "CSS guards" (appending "when (lightness(@color) =<; 30%)" after mixin/function)
+** Logically, they work like switches. HOWEVER, they are VERY similar to using ampersand (&) in nesting. Basically, it takes some skill (or just habit) to decide which to use
+*** If the desired statement is like "btn will have all these properties except btn-primary"). Then a nesting like this will work. 
+btn{ 
+  &-primary{...}
+}
+*** Or using if/else inside @mixin
+@mixin isPrimary (primary:false){
+  ...
+}
+
+btn-secondary{...}
+
+btn-primary{
+  @include isPrimary(primary:true)
+}
+
+** Loop: normal iteration. So you can multiple classes (notice the number embedded in the name of the class itself) like this (rendered css)
+.border-#1{...}
+.border-#2{...}
+.border-#3{...}
+.border-#4{...}
+
+** Also loop: Less uses recursive function. Although it doesnt look your average recursive function [[https://www.geeksforgeeks.org/recursive-functions/][like this]]. Coz the termination step/condition sits on the outside (of curly bracket)
+*** #+DOWNLOADED: file:///home/ardienew/Pictures/less-loop.png @ 2019-11-10 18:47:52
+[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/less-loop_2019-11-10_18-47-52.png]]
+** Math: all of them supports different units
+** Import: just like we did in UniEnrol project. Article recommends separating similar definitions into the same folder, & then import them into a main .css file. Eg: @import "mixins/mixin.scss";
+* https://webdesign.tutsplus.com/articles/quick-tip-name-your-sass-variables-modularly--webdesign-13364
+** $text-color or $color-text, choosing at random can lead to lack of structure as project size increases. We often forget how we name our variables, instead, we use time-consuming global search-and-replace methods.
+** naming strategy: generic-to-specific == left-to-right
+** Example: $border-blue $border-blue-light $border-blue-lightest
+*** This reminds me => We need to install an Emacs "code hinting" (or text completion suggestion). One user [[https://emacs.stackexchange.com/questions/23840/text-completion-suggestion-in-emacs][here]] suggested [[http://company-mode.github.io/][company mode]]. Not sure if this is what we want. 
+* https://medium.com/@yourselfwar/css-variables-naming-b13fdd415302
+** Example: @input__border-color_focused: #F27431; //behavior
+** and so it goes like this: [element]__[css_property]_[modifier/base]
+** further example: @color_fern-frond-base: #657220;
+** so this is: color_[name_of_the_color]-base
+** Example: when the RGB value slightly differs.
+** @color_mystic-base: rgb(228, 232, 238); //the base color
+** @color_mystic-blue-inc-3: rgb(228, 232, 235);
+** Example: if there are more than 5 of similar color
+** @color_group-blue-1: #6195ED; @color_group-blue-2: #89A8DC;
+** As usual: variables stored in the /variables folder in the variables__main.less. All base colors in the variables__color.less which imported into variables__main.less
+** Useful link to name your specific color. http://chir.ag/projects/name-that-color/#26354F
+* https://marksheet.io/sass-scss-less.html
+* https://sass-guidelin.es/
+** Oooops! This is just similar [[*Hyperlinked heading: htmlmag.com]]  (but we have always used SCSS in the past, not SASS. which uses python style indentation)
+* https://css-tricks.com/sass-vs-less/
+** Nothing special, exactly like [[*Hyperlinked heading: htmlmag.com]]. Once again Less guarded mixins, will look confusing, unless you first read other preprocessors if/else conditionals
+* https://www.freecodecamp.org/news/the-complete-guide-to-scss-sass-30053c266b23/
+* https://www.hongkiat.com/blog/sass-tips-tools-for-developers/
+** How come Ive never noticed this? The site mentions Sass/SCSS partials which are a useful way to modularize your CSS. Actually nothing special, if you come from templating backgrounds like Hugo static sites (or Laravel yuck). But heres something really special about partials:
+*** You name partials with underscore at the beginning (_variables.scss). SCSS automatically DOES NOT generate CSS files from partials! Very cool, helps keep CSS folder structure clean. 
 * https://www.sitepoint.com/css-optimization-boosting-pwa-performance/
 ** what is "inlining" critical path css ???
 ** we'll focus on CSS optimization for PWA's:
@@ -48,63 +135,3 @@
 **** For unused CSS: 
 ***** https://github.com/uncss/uncss
 ***** https://github.com/FullHuman/purgecss
-* https://htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus
-** Writing better CSS: separating definitions into smaller files, and importing into a main file (not enough)
-** object-oriented CSS: adding 2 or more class definition to an element. Having multiple classes increased re-usability but decreased maintainability.  
-** Some Preprocessors (like Stylus or SASS) allow programmers to ignore completely {} (curly braces). Is this a good idea? It makes some look completely like CSS (Less) and others not at all (SASS).
-** nesting should be used not excessively, as it can cause oversizing the selector
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/sass-sample.png @ 2019-11-08 11:59:37
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-sample_2019-11-08_11-59-37.png]]
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/css.png @ 2019-11-08 12:01:31
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css_2019-11-08_12-01-31.png]]
-*** As you can see not much difference!!
-** While mixins look exactly like functions, the final result looks exactly like another css class. With the variable we learnt above, we can now use that as a "parameter" for the function to play on. They call this "static rules" like "5px". Example:
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/sass-2.png @ 2019-11-08 16:48:56
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-2_2019-11-08_16-48-56.png]]
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/css-2.png @ 2019-11-08 16:49:10
-***  [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css-2_2019-11-08_16-49-10.png]]
-** Extends: allows for sharing a generic definition (or class). Huh? In the example, a common margin (margin: 10px 5px;) is defined as .block. And then shared by declaring @extend (Sass) in another class/element definition. Example:
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/extend-sass.png @ 2019-11-08 17:09:58
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-sass_2019-11-08_17-09-58.png]]
-*** 
-#+DOWNLOADED: file:///home/ardienew/Pictures/extend-css.png @ 2019-11-08 17:10:07
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-css_2019-11-08_17-10-07.png]]
-** All pre-processors have color operations (built-in functions). Example in Sass: saturate($color, $amount)
-** If/Else statements. Allow building definitions based on condition. Less uses "CSS guards" (appending "when (lightness(@color) =<; 30%)" after mixin/function)
-*** #+DOWNLOADED: file:///home/ardienew/Pictures/if-else.png @ 2019-11-10 14:03:20
-** [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/if-else_2019-11-10_14-03-20.png]]
-** Loop: as usual, iterating through an array. But example shows, the variable $i as part the definition/class name. Also in Less, loop is defined alongside/in a mixin (function), rather counter-intuitive
-*** #+DOWNLOADED: file:///home/ardienew/Pictures/sass-loop.png @ 2019-11-10 18:46:57
- [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-loop_2019-11-10_18-46-57.png]]
-*** #+DOWNLOADED: file:///home/ardienew/Pictures/less-loop.png @ 2019-11-10 18:47:52
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/less-loop_2019-11-10_18-47-52.png]]
-** Math: all of them supports different units
-** Import: just like we did in UniEnrol project. Article recommends separating similar definitions into the same folder, & then import them into a main .css file. Eg: @import "mixins/mixin.scss";
-* https://webdesign.tutsplus.com/articles/quick-tip-name-your-sass-variables-modularly--webdesign-13364
-** $text-color or $color-text, choosing at random can lead to lack of structure as project size increases. We often forget how we name our variables, instead, we use time-consuming global search-and-replace methods.
-** naming strategy: generic-to-specific == left-to-right
-** Example: $border-blue $border-blue-light $border-blue-lightest
-** Another example (helps variable name suggestion too): $color-border
-* https://medium.com/@yourselfwar/css-variables-naming-b13fdd415302
-** Example: @input__border-color_focused: #F27431; //behavior
-** and so it goes like this: [element]__[css_property]_[modifier/base]
-** further example: @color_fern-frond-base: #657220;
-** so this is: color_[name_of_the_color]-base
-** Example: when the RGB value slightly differs.
-** @color_mystic-base: rgb(228, 232, 238); //the base color
-** @color_mystic-blue-inc-3: rgb(228, 232, 235);
-** Example: if there are more than 5 of similar color
-** @color_group-blue-1: #6195ED; @color_group-blue-2: #89A8DC;
-** As usual: variables stored in the /variables folder in the variables__main.less. All base colors in the variables__color.less which imported into variables__main.less
-** Shows useful link to name your specific color. http://chir.ag/projects/name-that-color/#26354F
-* https://marksheet.io/sass-scss-less.html
-* https://sass-guidelin.es/
-* https://css-tricks.com/sass-vs-less/
-* https://www.freecodecamp.org/news/the-complete-guide-to-scss-sass-30053c266b23/
-* https://www.hongkiat.com/blog/sass-tips-tools-for-developers/
-* 
