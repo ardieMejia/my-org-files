@@ -13,7 +13,21 @@ sudo apt-get install emacs25 #--- Aahhhhhhh... much better, no errors so far
 *** In fact, you should install above version 25
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 *** This will clone that special config file
-* https://scripter.co/hugo-leaf-and-branch-bundles/
-** leaf bundles treat non-index .md files as non-entities (no perma-links, no HTML and all), while allowing non-page elements (image, pdf, etc). In essence a folder thats a "leaf bundle" is a whole single entity
-** After reading branch bundles, both bundles are nothing special, but simply 'ways of thinking'
+* Worth a short read (but understanding this might be tricky if youre alien to web templating shit)
+** https://scripter.co/hugo-leaf-and-branch-bundles/
+** leaf bundles are basically the entire of a single folder pretending to be a single entity aka a leaf. You turn this "on" by having an index.md file. (and all other files will be treated as resources, even .md files)
+** branch bundles are folders pretending to be a group of entities aka branch (Or perhaps not pretending at all, since folders are already a "branch"). You turn this "on" by having a _index.md file. (only non-page files can be resources, such as image, pdf, etc.)
+* What is ox-hugo mode?
+** Well, before we even get into what is hugo mode. We need to at least be familiar with org mode. Arguably the most useful note taking software Ive ever come across. It is built inside Emacs, and this means many things:
+*** A strong and decades old community
+*** Like most of Emacs modes (modes is what Emacs "plugins" are called), most commonly used actions have keyboards, and are self-documenting. 
+*** However, unlike most other modes, org-mode is such a useful mode for Emacs, that the benefit of learning org mode alone more than makes up for the effort learning the entire Emacs.
+** Now assuming you are familiar with basic features of org-mode, such as folding and folding of headings/lists. The next thing to probably interest is org-modes ability to publish to other file formats. Formats such as PDF, ODT, text files, HTMLS, etc (PDF however will require some Latex setup outside of Emacs). When you attempt to publish to HTML, you will quickly discover limitations, the most obvious being a complete lack of CSS. 
+** Here you have several options:
+*** Repositories like [[https://github.com/fniessen/org-html-themes][this]] which provides a clean and beautiful look to your org-published site. From which you may minor modifications to the default CSS. 
+*** Using ox-hugo, which opens up a completely new world of possible themes and structure to your website, from very simple to blog-quality level. 
 * https://niklasfasching.github.io/go-org/#footnote-3
+** Has some useful lesser known examples of ox-hugo syntax such as this (which shows exact syntax highlighting on the web):
+#+INCLUDE: "./headlines.org" src org
+* https://michaeljherold.com/articles/using-ox-hugo-without-duplication/
+** Very cool mumbo-jumbo about 
