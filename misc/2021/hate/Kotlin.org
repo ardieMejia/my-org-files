@@ -1,0 +1,30 @@
+* installations whatever (arrange later)
+** https://stackoverflow.com/questions/39036796/unable-to-locate-adb-using-android-studio
+** [[https://developer.android.com/studio/archive][older Android Studio versions]]
+** 
+* APK:
+** [[https://stackoverflow.com/questions/3593420/is-there-a-way-to-get-the-source-code-from-an-apk-file][hacker tricks of getting source code from APK]]
+*** Only useful if we are already with stupid Kotlin concepts
+** [[https://developer.android.com/studio/run/emulator-commandline][make your emulator fast, we never tried this]]
+*** Should try this, maybe
+* Syntax
+** string tricks (not impressed really)
+*** https://medium.com/@sourav.bh/best-practices-for-using-string-resources-in-android-c947fdd1606a
+** [[https://www.raywenderlich.com/155-android-listview-tutorial-with-kotlin ][lesser known resource, but kinda cool (also not impressed)]]
+*** Raywenderlich
+** https://kotlinlang.org/docs/inheritance.html#overriding-rules
+*** Once, OO reaches this point, I will probably hate it
+** [[https://developer.android.com/training/kotlinplayground][online Kotline compiler]]
+** [[https://developer.android.com/codelabs/kotlin-bootcamp-functions#5][Official "bootcamp" but a complete mess to navigate, probably over-rated]]
+** [[https://github.com/KotlinBy/awesome-kotlin][I dont know what this is, just says 'awesome']]
+** [[https://docs.gradle.org/current/userguide/userguide.html][One day I will read this, coz its official Gradle, and can be used with C++]]
+** [[https://www.techotopia.com/index.php/A_Kotlin_Android_Content_Provider_Tutorial][Also dont know this is]]
+** [[https://plugins.jetbrains.com/docs/intellij/getting-started.html][Very cool but also dont know what this is]]
+** [[https://riptutorial.com/android/example/16391/android-studio-useful-shortcuts][Android Studio shortcuts]]
+** [[https://guides.codepath.com/android/using-parcelable][Stupid Java parcels]]
+** [[https://www.vogella.com/tutorials/AndroidParcelable/article.html][More stupid Java parcels]]
+** Cool parcel links, some super useful
+*** https://tutorial.eyehunts.com/android/parcelable-android-pass-data-between-activities-kotlin-parcelize/
+*** https://betterprogramming.pub/why-are-kotlin-synthetics-deprecated-and-what-are-the-alternatives-5c2b087dda1c
+*** https://medium.com/the-lazy-coders-journal/easy-parcelable-in-kotlin-the-lazy-coders-way-9683122f4c00
+*** https://bladecoder.medium.com/reducing-parcelable-boilerplate-code-using-kotlin-741c3124a49a
