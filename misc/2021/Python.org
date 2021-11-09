@@ -1,0 +1,12 @@
+* Syntax (I hope I still hate Python): 
+** 
+* Packages & virtual environment:
+** [[https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/][Official python virtual environment management]]
+*** Despite all the confusing commands, the only thing you have to understand is this
+**** the only tool is required venv (or virtualenv in older Python)
+**** pip is just the Python installer (not important)
+* IDE, maybe non-Emacs (I really hate Python)
+** [[https://www.jetbrains.com/pycharm/][I may have no choice but to install PyCharm, it probably works too well]]
+*** Maybe #1 reason I hate Python
+** [[https://confluence.jetbrains.com/pages/viewpage.action?pageId=51945983][Change look and feel of PyCharm]]
+* Emacs IDE for Python (please God make this work)
