@@ -1,0 +1,17 @@
+* Powershell
+* ImageMagick
+* General Programming Concepts
+** perhaps a cool idea would be to mimic Emacs powerful concept of "modes" then each mode would have its own modifier, Ctl-x opens up
+* Primitives
+** Matlab concepts "truecolor" and "indexed" color. 
+*** https://blogs.mathworks.com/steve/2016/02/22/matlab-image-display-truecolor-and-indexed-images/
+*** Understanding inner workings, means understanding DirectClass (continuous tone, stored as RGB as example profile)
+*** And understanding innerworkings of PseudoClass (colormapped RGM indexes)
+*** So what is a colormap:
+**** Basically, from the mathworks site, the concept allows having a separate single array of 3 values (RGB), and in the data (location) section, each pixel has a unique index corresponding to that colormap
+*** A simpler way to think of it, is colormaps are more simple-dimensioned. One is 3D array (X*Y*RGB), the other is 2D array (X*Y)index
+** Produce grayscale ASCII art from image input
+*** https://github.com/tobiohlala/Asciify
+** Take string, and output as colored string
+*** https://stackoverflow.com/questions/2688547/multiple-foreground-colors-in-powershell-in-one-command
+* C#

@@ -1,0 +1,121 @@
+* Introduction:
+** Tools:
+*** [[https://earthly.dev/blog/autoconf/][Components of Autotools]]  (probably very Linux centric way of making makefiles)
+**** Flow?
+***** these 3 tools:
+****** --autoconf--
+****** --automake--
+****** --aclocal--
+***** Generate (huge files):
+****** "configure"
+****** "Makefile.in"
+***** Those 2 files are huge, so we only create these 2 files, which the tools use to create 2 HUGE files:
+****** "configure.ac"
+****** "Makefile.am"                      # ---------- the way to remember it is that both have .a* as extension
+**** Demo:
+***** Interestingly, their demo "Hello World" shows a different argument style unlike [[https://www.cyberciti.biz/faq/howto-compile-and-run-c-cplusplus-code-in-linux/][this site]]. Syntax:
+#include <stdio.h>
+
+int
+main(int argc, char* argv[])
+{
+  printf("Hello World\n");
+  return 0;
+}
+***** Here arguments can be left as (void)
+**** autoconf:
+***** Interesting to note, is that most options is abbreviate (autoconf to AC, automake to AM). Its also named with capital letters. Which is not my comfort zone.
+***** Put exactly like this, in configure.ac:
+AC_INIT([helloworld], [0.1], [maintainer@example.com])     # ---------- app name, version, who's maintainer 
+AM_INIT_AUTOMAKE                                           # ---------- automake is USUALLY used alongside automake, but not necessary, so mention this
+AC_PROG_CC                                                 # ---------- look for a CC compiler (note how this is not a variable, maybe its called a primary) 
+AC_CONFIG_FILES([Makefile])                                # ---------- this autoconf should look for Makefile.in
+AC_OUTPUT                                                  # ---------- output final "configure" script
+**** automake:
+***** Put like this, in Makefile.am
+ AUTOMAKE_OPTIONS = foreign                                 # ---------- 
+ bin_PROGRAMS = helloworld                                  # ---------- name of compiled binary (final program)
+ helloworld_SOURCES = main.c                                # ---------- required input to compile
+**** Finally!! compile:
+aclocal                                                    # ---------- run this first
+autoconf                                                   
+automake --add-missing                                     # ---------- -add-missing necessary files, becoz program actually more thans Makefile.am   
+*** [[https://opensource.com/article/19/7/introduction-gnu-autotools][Similar but different]]
+**** Similar but seems more confusing, defines primary "wrongly"?
+**** autoconf:
+***** same same
+**** automake:
+***** Example of not building a cPlusPlus project (interpreted languages such Bash, Perl, Python).
+bin_SCRIPTS = bin/penguin                                  # ---------- SCRIPT is another primary
+***** 
+*** [[https://devmanual.gentoo.org/general-concepts/autotools/index.html][This is site is Gentoo, YUCK. However, cool source of information, since I already understand Bash functions and such]]
+**** [[./resources/cPlusPlus/automakeDiagram.png][Basic overview of major autotool components]]
+**** autoconf:
+AC_PREREQ(2.5)                                              # ---------- apparently, site claims this needed coz autoconf is not compatible between versions
+AM_INIT_AUTOMAKE(1.8)                                       # ---------- site claims automake not compatible between versions, good habit to do both I guess
+AC_PROG_CC                                                  # ---------- this is the only thing similar
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_RANLIB
+.......... optional ..........
+AC_CHECK_PROGS(regex_cmd, sed) if(){...}fi                  # ---------- checks the existance of non-standard apps like 'sed' for example
+AC_C_CONST                                                  # ---------- check for compiler features -> can our compiler do const
+.......... library and header checks ..........
+AC_HEADER_STDC
+AC_HEADER_DIRENT
+AC_CHECK_HEADERS([stdlib.h stdio.h libintl.h locale.h])
+AC_CHECK_LIB(ssl, SSL_free)
+.......... and several others ..........
+
+*** [[https://makefiletutorial.com/][Simple Makefile example, with tasty examples]]
+**** We may need to move this, coz this one is not autotool-specific
+*** Common mistakes:
+**** always forgetting to update the name of primary/variable (I guess this is why its not accurate to call someAppName_SOURCES, etc, etc variables)
+ bin_PROGRAMS = someAppName
+ someAppName_SOURCES = src/someAppName.cpp
+*** Some custom directories and stuff. Finally understood
+**** https://stackoverflow.com/questions/20230827/how-to-set-include-paths-with-autotools
+***** The only 1 line required is this in Makefile.am
+AM_CPPFLAGS = -I$(top_srcdir)/other $(FAKELIB_CPPFLAGS)
+***** But some examples put this in configure.ac (or even more):
+FAKELIB_CPPFLAGS="-I${FAKELIB_DIR}/other"
+**** https://stackoverflow.com/questions/3538705/adding-a-custom-installation-directory-option-to-autoconf-generated-configure-sc
+***** Tried this with /doc directory. Works but of course, the only 'installing' is copying a README.md to a defined directory (/doc)
+***** --- probably triggers an 'argument replacement' in configure. By inserting in configure.ac:
+AC_SUBST([docdir], [$docdir])
+***** --- once triggered can put inside Makefile.am ---
+docdir = @docdir@
+doc_DATA = README.md
+*** A decently good official example. 
+**** https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents
+*** [[https://cmake.org/cmake/help/latest/guide/tutorial/A%20Basic%20Starting%20Point.html][My first tutorial on CMake]]
+**** Right from the get-go, a seemingly trivial but important difference between CMake and Autotool => is that Autotools is case-sensitive (mostly its special variables)
+**** But CMake is NOT case-sensitive
+** Tips
+*** [[https://softwareengineering.stackexchange.com/questions/379202/folder-structure-for-a-c-project][Project structure]]
+**** Write something
+** Tutorials:
+*** https://cplusplus.happycodings.com
+**** Very useful site for refreshing if youre like me, and have not touched C/C++ in a long long time:
+***** === writing something ===
+*** https://riptutorial.com/c/example/3250/calling-a-function-from-another-c-file
+**** Simple example of calling a function from another C file
+**** Basically a header file, but primitive example
+*** [[https://www.geeksforgeeks.org/map-associative-containers-the-c-standard-template-library-stl/][Professional looking site youre subscribed to]]
+**** Write one you seriously read about this
+*** Specific cases:
+**** https://stackoverflow.com/questions/5838711/stdcin-input-with-spaces
+***** How to force cin to take spaces (spaces are probably always a problem due to computing history)
+std::string s;
+std::getline(std::cin >> std::ws, s);
+** Common errors:
+*** error: ‘someFunction’ was not declared in this scope
+**** Check function names in 3 places (Grrrrrr). main.cpp, someFunction.cpp & someFunction.h
+**** this is usually scoping issue, which means the function name doesnt exist in space. 
+***** Reasons ==> wrong naming in the 3 places, (cout produces same error if no -> using namespace std;)
+** Alternative Libraries:
+*** 2D Game Engine
+**** 
+*** 3D Game Engine
+**** [[https://wiki.ogre3d.org/Ogre+Wiki+Tutorial+Framework][if we starting Ogre seriously, we rewrite this]]
+***** Wewrite maybe not, coz were not using Ogre

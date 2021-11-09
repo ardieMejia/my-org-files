@@ -1,0 +1,2 @@
+* sudo dpkg -l *ogre*
+** Need to rewrite this, check for existing libraries
