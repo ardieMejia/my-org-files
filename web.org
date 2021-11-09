@@ -116,6 +116,8 @@
 **** inside the callback: check valid reponse, check status is 200, ensure reponse type if 'basic' (no requests from 3rd-party), CLONE the response.
 **** we clone the response because the response is a Stream, where the body can only be comsumed once. (we need to send 1 to browser and 1 to cache)
 ** MOREEEEE Update a service workers:
-*** 
+* SEO basics
+** https://www.youtube.com/watch?v=JSm4aQl4w_U
+*** Very basic & better for developers (instead of for business guys, which focuses on keyword building and content optimization)
 
 

@@ -45,5 +45,8 @@ zzzd(){
  vi $(fzf)
 ***** instead of 
  vi `fzf`
+* Other tips (zsh, etc):
+** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes) 
+*** Must do --> [[https://superuser.com/questions/1520370/zsh-history-is-not-syncing-immediately][setopt incappendhistory]] <--
 ** 
 

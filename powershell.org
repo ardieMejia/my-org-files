@@ -53,7 +53,9 @@ Write-Host
 
 # show the received key info object:
 $keyInfo
-** 
+*** On second thought, it is not worth it, due to the amazing power of fzf
+*** Even with the novel idea of displaying matching images, displaying it inside webforms, it is not worth it due to the non-interactive nature of webforms
+*** (winforms probably doesnt react very well with keyboard shortcuts)
 * Packages (Modules)
 ** https://www.powershellgallery.com/packages
 *** A goldmine of packages including:
@@ -67,4 +69,29 @@ $keyInfo
 *** Apparently, Powershell is mostly used for testing SQL queries and operations, NOT the main tool for SQL operations
 ** https://www.red-gate.com/simple-talk/sysadmin/powershell/introduction-to-powershell-with-sql-server-using-invoke-sqlcmd/
 *** Havent read anything 
-* 
+* Basics:
+** Control Flow (boring name, wish there was a cooler name for it):
+*** Powershell allows arrays as --input/source text-- , each matching statement (in proper order) is executed
+switch (4, 2)
+{
+    1 {"It is one."; Break}
+    2 {"It is two." ; Break }
+........
+}
+----- OR -----
+[int]$w, [int]$h = switch ($PSCmdlet.ParameterSetName) { 
+    someString1 { Write-Output "hello"}
+    someString2 { Write-Output "hello"}
+}
+*** the 2nd one from my Convert-ImageToAscii, never knew this was possible
+*** this finally made me understand the concept of [[https://en.wikipedia.org/wiki/Switch_statement][fallthrough]] (mentioned by Brodie Robertson)
+**** In many languages, only the matching block is executed, and then execution continues at the end of the switch statement
+**** Languages derived from C language instead feature fallthrough, where control moves to the matching case, and then execution continues ("falls through") to the statements associated with the next case in the source text
+** Something new learnt, so a While loop is called a pretest loop. Coz if the condition fails, the loop will not run, not even once. 
+*** https://4sysops.com/archives/powershell-loops-for-foreach-while-do-until-continue-break/
+while(($inp = Read-Host -Prompt "Select a command") -ne "Q"){
+    switch($inp){ A {...} B {...} }
+}
+**** BTW, this is a cool trick. Putting the prompt statement inside a while()
+*** this is unlike, the posttest loop, do-while and do-until
+** 

@@ -38,6 +38,15 @@
 ***** 
         convert  test.png  +level-colors green,gold   levelc_grn-gold.png
 **** For the plus form, +level-colors, like our +level, we compress the color range into a new range. This behaves more intuitively, producing the tint as expected. 
-***** 
+* What I learnt from Imagemagick (MUST restructure all this later!!):
+** An edge detection produces an ugy negative output by default we always: -edge 1 -negate
+** +repage is basically repaint. And imagemagick has a lot of repaint related options (maybe)
+* Animations:
+** Combining 2 gif animations together
+*** https://stackoverflow.com/questions/49511083/how-to-place-a-gif-on-another-gif-with-imagemagick-where-both-gifs-are-of-diffe
+**** Better write carefully about this later
+** Optimize gif animations (re-write and research again)
+*** https://stackoverflow.com/questions/24819460/best-way-to-compress-animated-gifs-using-imagemagick-without-using-gifsicle
+** 
 
 
