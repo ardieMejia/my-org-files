@@ -18,17 +18,17 @@
 ** The site makes a long winded explanation, and example shows it looks like a function. But it is in fact NOT a function, but can also be used like a variable (Never trust these explanations, always refer to other sites). Our previous YT example shows a usage like a variable (no parameter in parenthesis ($width)). They also call this parameter = "static rule"
 *** 
 #+DOWNLOADED: file:///home/ardienew/Pictures/sass-2.png @ 2019-11-08 16:48:56
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/sass-2_2019-11-08_16-48-56.png]]
+[[file:./resources/css/sass-2_2019-11-08_16-48-56.png]
 *** 
 #+DOWNLOADED: file:///home/ardienew/Pictures/css-2.png @ 2019-11-08 16:49:10
-***  [[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/css-2_2019-11-08_16-49-10.png]]
+***  [[file:./resources/css/css-2_2019-11-08_16-49-10.png]]
 ** Extends: allows for sharing a generic definition (or class). Huh? Well, to put it simply, unlike @mixin (which are custom sass/less "variables"). @extend behaves like #include in other languages, and "imports" other NORMAL classes, importing CUSTOM definitions.
 *** 
 #+DOWNLOADED: file:///home/ardienew/Pictures/extend-sass.png @ 2019-11-08 17:09:58
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-sass_2019-11-08_17-09-58.png]]
+[[file:./resources/css/extend-sass_2019-11-08_17-09-58.png]]
 *** 
 #+DOWNLOADED: file:///home/ardienew/Pictures/extend-css.png @ 2019-11-08 17:10:07
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/extend-css_2019-11-08_17-10-07.png]]
+[[file:./resources/css/extend-css_2019-11-08_17-10-07.png]]
 ** And many more (edit others later)
 ** All pre-processors have color operations (built-in functions). Example in Sass: saturate($color, $amount). --> Not important
 ** If/Else statements. Allow building definitions based on condition. Less uses "CSS guards" (appending "when (lightness(@color) =<; 30%)" after mixin/function)
@@ -55,8 +55,7 @@ btn-primary{
 .border-#4{...}
 
 ** Also loop: Less uses recursive function. Although it doesnt look your average recursive function [[https://www.geeksforgeeks.org/recursive-functions/][like this]]. Coz the termination step/condition sits on the outside (of curly bracket)
-*** #+DOWNLOADED: file:///home/ardienew/Pictures/less-loop.png @ 2019-11-10 18:47:52
-[[file:https:/htmlmag.com/article/an-introduction-to-css-preprocessors-sass-less-stylus/less-loop_2019-11-10_18-47-52.png]]
+[[file:./resources/css/less-loop_2019-11-10_18-47-52.png]]
 ** Math: all of them supports different units
 ** Import: just like we did in UniEnrol project. Article recommends separating similar definitions into the same folder, & then import them into a main .css file. Eg: @import "mixins/mixin.scss";
 * https://webdesign.tutsplus.com/articles/quick-tip-name-your-sass-variables-modularly--webdesign-13364
