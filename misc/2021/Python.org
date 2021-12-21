@@ -1,5 +1,18 @@
 * Syntax (I hope I still hate Python): 
-** 
+** [[https://www.tutorialspoint.com/python/python_variable_types.htm][tutorialspoint]]
+*** so Python has concepts such as tuples and list, which are fundamentally different, as in tuples are unchangeable
+**** Sounds like a fundamentally bad idea, since building a skillset around functions that CRUD lists, and tuples will be confusing
+**** or maybe not
+*** So its always a good idea to focus only on list, when learning Python
+** [[https://www.programiz.com/python-programming/dictionary][programmingiz]]
+*** good basic source
+*** Some dictionary methods
+** [[https://docs.python.org/3/library/stdtypes.html][official]]
+*** LOTS of examples, though have to try each and everyone
+** [[https://www.analyticsvidhya.com/blog/2021/11/building-an-infinite-timer-using-python/][probably very cool but Indianish]]
+*** Also, mostly a library advert
+** [[https://www.freecodecamp.org/news/python-string-methods-tutorial-how-to-use-find-and-replace-on-python-strings/][freecodecamp]]
+*** freecodecamp -> a classic, but I never liked their "huge-ass font" & weird soydev presentation
 * Packages & virtual environment:
 ** [[https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/][Official python virtual environment management]]
 *** Despite all the confusing commands, the only thing you have to understand is this
@@ -10,3 +23,4 @@
 *** Maybe #1 reason I hate Python
 ** [[https://confluence.jetbrains.com/pages/viewpage.action?pageId=51945983][Change look and feel of PyCharm]]
 * Emacs IDE for Python (please God make this work)
+of

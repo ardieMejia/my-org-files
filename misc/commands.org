@@ -6,8 +6,13 @@
 **** This will display all pulseaudio devices
 ** ffmpeg -video_size 1024x768 -framerate 23 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i 1 output.mkv (new command with 1 instead of "default")
 ** BASICS:
-** TODO 
+* ffmpeg (basic video rescale)
 *** ffmpeg -i DSCF9322.MOV -crf 25 -vf scale=1280:-1 new.mp4 
 *** https://trac.ffmpeg.org/wiki/Scaling
 *** https://trac.ffmpeg.org/wiki/Encode/VP9
+* ffmpeg (speedup, maybe for kodland)
+** https://itnext.io/speedup-ffmpeg-without-compiling-from-source-code-c1f34d4ec544
+* ffmpeg (concatenate, very COOL)
+** https://stackoverflow.com/questions/7333232/how-to-concatenate-two-mp4-files-using-ffmpeg
+
 

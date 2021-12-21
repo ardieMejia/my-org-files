@@ -32,7 +32,6 @@
 ***** it is appropriately called color dodge as it dodges black color at the top (this is personal assumption)
 *** levelling colors:
 **** The -level operator basically works like the levelling color in Photoshop (as expected). It actually uses percentages (%), like this:
-***** 
       convert  rose:  -level 0%,100%,2.0   rose_level_gamma_light.gif
 **** Now, moving on, we have -level-colors. This also stretches the color,turning our chosen extremes for the image (Eg: 25%-75%) to the 'black' and 'white' extremes. However, unlike our previous example which was more direct (%), we now use color names. In effect, the stretching (more extreme stretching) will favor the non-dominant channels, in turn removing the color range chosen. So a red-ish range, will produce a green-blue tint in the final image.  
 ***** 
@@ -48,5 +47,10 @@
 ** Optimize gif animations (re-write and research again)
 *** https://stackoverflow.com/questions/24819460/best-way-to-compress-animated-gifs-using-imagemagick-without-using-gifsicle
 ** 
-
+* miff/mpr (theoretically very cool)
+** [[https://stackoverflow.com/questions/29736137/imagemagick-multiple-operations-in-single-invocation][best simple example]]
+*** My example that works
+convert -size 100x100 xc:white -gravity center -annotate +0+0 'testing' -size 30 miff:- | convert - \               ~/my-trash/moreMoreMore/practice
+   -write mpr:piped  +delete \(  mpr:piped \) \( mpr:piped -fill red -draw 'color 0,0 reset' \) -compose multiply -composite output2.png
+** [[https://stackoverflow.com/questions/52466697/can-miff-pipe-be-used-more-than-once-in-imagemagick][a bit confusing example, not sure what they were trying to do]]
 

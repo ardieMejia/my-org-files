@@ -89,8 +89,27 @@ doc_DATA = README.md
 *** A decently good official example. 
 **** https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents
 *** [[https://cmake.org/cmake/help/latest/guide/tutorial/A%20Basic%20Starting%20Point.html][My first tutorial on CMake]]
-**** Right from the get-go, a seemingly trivial but important difference between CMake and Autotool => is that Autotools is case-sensitive (mostly its special variables)
+**** A seemingly trivial but important difference between CMake and Autotool => is that Autotools is case-sensitive (mostly its special variables)
 **** But CMake is NOT case-sensitive
+***** Simple run (both works):
+cmake .            # ---------- this produces CMakes own intermediary files (Makefile2, Makefile.cmake progress.marks etc..etc...)
+cmake --build .    # ---------- this produces the Makefile and final .executable in 1 step
+***** or
+mkdir build; cd build
+cmake ../.         
+cmake --build .    # ---------- cmake is apparently "blind" which makes it good
+**** .h.in
+***** separate #define (constants) usually inside .h file
+****** why is #define inside .h.in ?
+****** Demo_VERSION_MAJOR deduced automatically from CMakeLists.txt
+****** not very useful for me (maybe for long-term bigger projects use)
+**** Step 2: Adding a library:
+***** Is it only in CMake(?):
+****** function name is irrelevant!
+****** CMake makes it easy, functions like these ----->:
+******* add_executable(Demo demo.cpp) & target_link_libraries(Demo PUBLIC library)
+******* and add_library(library mysqrt.cpp) in library-level CMakeLists.txt
+****** -----> glues the names together. So for one library, .h file & /directory name & .cpp can be all different or the same name (/library & library.h & otherName.cpp)
 ** Tips
 *** [[https://softwareengineering.stackexchange.com/questions/379202/folder-structure-for-a-c-project][Project structure]]
 **** Write something
