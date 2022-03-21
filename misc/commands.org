@@ -14,5 +14,13 @@
 ** https://itnext.io/speedup-ffmpeg-without-compiling-from-source-code-c1f34d4ec544
 * ffmpeg (concatenate, very COOL)
 ** https://stackoverflow.com/questions/7333232/how-to-concatenate-two-mp4-files-using-ffmpeg
+*** concat demuxer
+**** (most files used by general users do not support file-level concatenation).
+ $ cat mylist.txt
+ file '/path/to/file1'
+ file '/path/to/file2'
+ file '/path/to/file3'
+
+ $ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 
 
