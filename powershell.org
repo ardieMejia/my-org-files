@@ -96,3 +96,6 @@ while(($inp = Read-Host -Prompt "Select a command") -ne "Q"){
 *** this is unlike, the posttest loop, do-while and do-until
 ** Where {$_.SomeColumn} tricks # ---------- outside my comfort zone
 Get-ChildItem -Path *xml -Recurse . | Where {$_.FullName -notlike '*app\build*'} | Select-String "TextView"
+** Cool string tricks:
+*** check if string contains pattern:
+**** https://morgantechspace.com/2016/08/powershell-check-if-string-contains-word.html

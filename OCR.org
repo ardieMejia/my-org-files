@@ -10,16 +10,16 @@
 *** virtual environment:
 **** create ---> python3 -m virtualenv projectFolder
 **** activate ---> source projectFolder/bin/activate
-**** checks.. ---> which python 
+**** checks.. ---> which python
 **** leaving ---> deactivate
-**** 
+****
 ** matplotlib 2.1.2
 *** pip install matplotlib
 *** pip install matplotlib==2.1.2
 ** Pandas 0.22.0
 *** pip install pandas --------------------
 ** Numpy 1.14.6
-*** 
+***
 ** Tensorflow 1.12.0
 *** pip install tensorflow
 ** Tensorflow-hub 0.2.0
@@ -81,14 +81,11 @@
 **** Finally we can evaluate:
 ***** model.evaluate(xtest,ytest)
 ** sklearn tutorial:
-*** the estimator is NOT a model, it must LEARN from the model. 
+*** the estimator is NOT a model, it must LEARN from the model.
 ** More links to read and summarize:
 *** https://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/
 *** https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 *** https://machinelearningmastery.com/a-gentle-introduction-to-scikit-learn-a-python-machine-learning-library/
-* Issues on new system:
-** ImportError: cannot import name load_model
-*** Theano.tensor.signal doesnt support python 3.6 (has to be <3.6)
 * Linux commands:
 ** Multiple versions of Python:
 *** Links:
@@ -107,6 +104,9 @@
 ***** sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
 ***** sudo update-alternatives --config python3
 **** For virtualenv, python3.5-dev is required to build include/ directory under project folder
+* Issues on new system:
+** ImportError: cannot import name load_model
+*** Theano.tensor.signal doesnt support python 3.6 (has to be <3.6)
 * Things to do:
 ** Try exact install, without scikit-learn, using Python 3.5, see if errors, (wait for download to finish)
 ** Optional:
@@ -126,4 +126,3 @@
 ** Links:
 *** https://subscription.packtpub.com/book/virtualization_and_cloud/9781787281066?_ga=2.95158492.1161248330.1552377381-111622019.1549732680
 *** https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781783555130?_ga=2.262859852.1161248330.1552377381-111622019.1549732680
-

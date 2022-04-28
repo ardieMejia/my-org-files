@@ -20,3 +20,5 @@
 ** If all is confusing, always start with no index.md at all at top level. And then copy 1 .md file to top _index.md
 ** index.md is read blindly by Hugo, but _index.md is processed. So be careful with _index.md (But I managed to make it work)
 ** hugo by default doesnt publish to /public by default. Needs a switch for that. 
+* Git submodule:
+** 
