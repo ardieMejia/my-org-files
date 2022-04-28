@@ -2,7 +2,7 @@
 ** https://stackoverflow.com/questions/1362298/convert-floating-point-variable-to-integer
 *** Displaying floating-point in a C-style (printf) manner. Very handy.
 ** https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
-*** Complete and more elegant way to cut strings into pieces, other than turning it into arrays first. 
+*** Complete and more elegant way to cut strings into pieces, other than turning it into arrays first.
 ** https://stackabuse.com/substrings-in-bash/
 *** Some weird but useful ones of string manipulation (using pipe (|) and cut -> | cut)
 * Syntax (arrays)
@@ -11,7 +11,7 @@
 ** https://linuxhint.com/use-ifs-in-bash/
 *** very handy to remember this or keep in this tip close at hand. Dealing with arrays in loops. The site where I learnt this trick:
 for i in *
-do 
+do
     read -a myArray <<< "$i"
     echo ${myArray[1]}
 done
@@ -19,17 +19,18 @@ done
 * Syntax (functions)
 ** https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
 *** functions in Bash allows coder to treat the code like normal terminal usage. So, -- ls -- can have a (script scope) alias using function ls(){ #--some code }. And $1 has the same property.
+*** Another case is a wrapper!!
 * Syntax (files and folder)
 ** https://www.cyberciti.biz/faq/howto-check-if-a-directory-exists-in-a-bash-shellscript/
 * Syntax (case, for loops)
 ** https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_03.html
 *** case statements
 ** https://www.thegeekstuff.com/2011/07/bash-for-loop-examples/
-*** some VERY USEFUL bash for loops. Some VERY SIMPLE ones. 
+*** some VERY USEFUL bash for loops. Some VERY SIMPLE ones.
 * Syntax (user input)
 ** https://askubuntu.com/questions/446156/pause-execution-and-wait-for-user-input
 * Things that might catch off-guard:
-** The -> cd -> command. When writing this command in Bash script, might catch you off-guard. If, for example, you create a script that moves you to a different location, you'll discover running the script produces no result. What happens is that running the script produces a child process, and cd only applies to that process. Once the script has run, you are back at the same location. 
+** The -> cd -> command. When writing this command in Bash script, might catch you off-guard. If, for example, you create a script that moves you to a different location, you'll discover running the script produces no result. What happens is that running the script produces a child process, and cd only applies to that process. Once the script has run, you are back at the same location.
 ** Best practice is to create Bash functions instead. In the snippet below for example, I created a function that cd's to a different location, after using an fzf command (fzf -> an incredibly cool and powerful tool you should try by the way). I put this snippet inside my .bashrc. So when you run this "command" you actually running a function (with cd) not a script file.
 zzzd(){
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m)
@@ -40,13 +41,12 @@ zzzd(){
 *** For those of you who use Spacemacs (or other similar Emacs user-friendly variations), a cool thing Spacemacs can do is search recent files, using a fuzzy search algorithm. This allows you to search recently used files by rough matching (typing "cycle" instead of "Recycle Bin", or even rougher than this). Before you compare this to a normal Windows folder "file search", this is actually many times faster, it instantly changes the list closer to your match everytime you type or remove a character.
 *** For those who have never tried this Spacemacs feature, will not know what they're missing, and should give this a try. And for Spacemacs users who would like this available in your normal Terminal, this is a very useful tool to have
 *** By itself, fzf already hints at some great power, it shows a list of fuzzy matches under the current folder (recursively). But selecting a file does nothing. Hence, a little scripting skill is needed. The good news however, is that there are so many cool examples online, and your only limit to expanding fzf usage is your scripting skill
-*** There is little point in posting all my favourite links, as it is very popular among power shell users. However, some links like [[https://developpaper.com/full-guide-for-the-use-of-fuzzy-finder-fzfvim/][this one]] interested me in particular, as it displayed a syntax I did not know was possible under Bash/zsh. 
+*** There is little point in posting all my favourite links, as it is very popular among power shell users. However, some links like [[https://developpaper.com/full-guide-for-the-use-of-fuzzy-finder-fzfvim/][this one]] interested me in particular, as it displayed a syntax I did not know was possible under Bash/zsh.
 **** Unusual syntax I usually never use in bash (but looks similar to Powershell)
  vi $(fzf)
-***** instead of 
+***** instead of
  vi `fzf`
 * Other tips (zsh, etc):
-** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes) 
+** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes)
 *** Must do --> [[https://superuser.com/questions/1520370/zsh-history-is-not-syncing-immediately][setopt incappendhistory]] <--
-** 
-
+**
