@@ -1,0 +1,11 @@
+* Need to rearrange all this later!!:
+** https://stackoverflow.com/questions/14432209/substitute-a-regex-pattern-using-awk
+** https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script
+** https://www.theunixschool.com/2012/05/awk-match-pattern-in-file-in-linux.html?m=1
+** https://learnbyexample.github.io/learn_gnuawk/record-separators.html
+* Workaroud for ignoring case since AWK is weird
+** https://www.unix.com/shell-programming-and-scripting/176159-ignore-case-awk-while-pattern-searching.html
+* Cool nesting of awk:
+** https://stackoverflow.com/questions/23763046/nested-awk-command
+* Multiple delimiters:
+** https://stackoverflow.com/questions/12204192/using-multiple-delimiters-in-awk
