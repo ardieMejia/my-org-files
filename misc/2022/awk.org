@@ -9,3 +9,5 @@
 ** https://stackoverflow.com/questions/23763046/nested-awk-command
 * Multiple delimiters:
 ** https://stackoverflow.com/questions/12204192/using-multiple-delimiters-in-awk
+* Merge multiple into lines:
+** https://www.unix.com/shell-programming-and-scripting/142114-sed-awk-remove-newline.html

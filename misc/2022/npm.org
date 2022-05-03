@@ -1,0 +1,2 @@
+* The most IMPORTANT! thing after installing npm:
+** https://stackoverflow.com/questions/52979927/npm-warn-checkpermissions-missing-write-access-to-usr-local-lib-node-modules

@@ -1,0 +1,5 @@
+* beautiful intro
+** https://oremacs.com/2014/12/26/the-little-package-that-could/
+** https://elpa.gnu.org/packages/tiny.html
+* related more to printf formatting, very useful for others, like awk, & IM:
+** https://www.georgevreilly.com/blog/2005/06/02/PrintfTricks.html
