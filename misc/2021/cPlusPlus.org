@@ -26,20 +26,20 @@ main(int argc, char* argv[])
 **** autoconf:
 ***** Interesting to note, is that most options is abbreviate (autoconf to AC, automake to AM). Its also named with capital letters. Which is not my comfort zone.
 ***** Put exactly like this, in configure.ac:
-AC_INIT([helloworld], [0.1], [maintainer@example.com])     # ---------- app name, version, who's maintainer 
+AC_INIT([helloworld], [0.1], [maintainer@example.com])     # ---------- app name, version, who's maintainer
 AM_INIT_AUTOMAKE                                           # ---------- automake is USUALLY used alongside automake, but not necessary, so mention this
-AC_PROG_CC                                                 # ---------- look for a CC compiler (note how this is not a variable, maybe its called a primary) 
+AC_PROG_CC                                                 # ---------- look for a CC compiler (note how this is not a variable, maybe its called a primary)
 AC_CONFIG_FILES([Makefile])                                # ---------- this autoconf should look for Makefile.in
 AC_OUTPUT                                                  # ---------- output final "configure" script
 **** automake:
 ***** Put like this, in Makefile.am
- AUTOMAKE_OPTIONS = foreign                                 # ---------- 
+ AUTOMAKE_OPTIONS = foreign                                 # ----------
  bin_PROGRAMS = helloworld                                  # ---------- name of compiled binary (final program)
  helloworld_SOURCES = main.c                                # ---------- required input to compile
 **** Finally!! compile:
 aclocal                                                    # ---------- run this first
-autoconf                                                   
-automake --add-missing                                     # ---------- -add-missing necessary files, becoz program actually more thans Makefile.am   
+autoconf
+automake --add-missing                                     # ---------- -add-missing necessary files, becoz program actually more thans Makefile.am
 *** [[https://opensource.com/article/19/7/introduction-gnu-autotools][Similar but different]]
 **** Similar but seems more confusing, defines primary "wrongly"?
 **** autoconf:
@@ -47,7 +47,7 @@ automake --add-missing                                     # ---------- -add-mis
 **** automake:
 ***** Example of not building a cPlusPlus project (interpreted languages such Bash, Perl, Python).
 bin_SCRIPTS = bin/penguin                                  # ---------- SCRIPT is another primary
-***** 
+*****
 *** [[https://devmanual.gentoo.org/general-concepts/autotools/index.html][This is site is Gentoo, YUCK. However, cool source of information, since I already understand Bash functions and such]]
 **** [[./resources/cPlusPlus/automakeDiagram.png][Basic overview of major autotool components]]
 **** autoconf:
@@ -86,7 +86,7 @@ AC_SUBST([docdir], [$docdir])
 ***** --- once triggered can put inside Makefile.am ---
 docdir = @docdir@
 doc_DATA = README.md
-*** A decently good official example. 
+*** A decently good official example.
 **** https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents
 *** [[https://cmake.org/cmake/help/latest/guide/tutorial/A%20Basic%20Starting%20Point.html][My first tutorial on CMake]]
 **** A seemingly trivial but important difference between CMake and Autotool => is that Autotools is case-sensitive (mostly its special variables)
@@ -96,7 +96,7 @@ cmake .            # ---------- this produces CMakes own intermediary files (Mak
 cmake --build .    # ---------- this produces the Makefile and final .executable in 1 step
 ***** or
 mkdir build; cd build
-cmake ../.         
+cmake ../.
 cmake --build .    # ---------- cmake is apparently "blind" which makes it good
 **** .h.in
 ***** separate #define (constants) usually inside .h file
@@ -130,11 +130,18 @@ std::getline(std::cin >> std::ws, s);
 ** Common errors:
 *** error: ‘someFunction’ was not declared in this scope
 **** Check function names in 3 places (Grrrrrr). main.cpp, someFunction.cpp & someFunction.h
-**** this is usually scoping issue, which means the function name doesnt exist in space. 
+**** this is usually scoping issue, which means the function name doesnt exist in space.
 ***** Reasons ==> wrong naming in the 3 places, (cout produces same error if no -> using namespace std;)
 ** Alternative Libraries:
 *** 2D Game Engine
-**** 
+****
 *** 3D Game Engine
 **** [[https://wiki.ogre3d.org/Ogre+Wiki+Tutorial+Framework][if we starting Ogre seriously, we rewrite this]]
 ***** Wewrite maybe not, coz were not using Ogre
+* This is so cool:
+** https://www.linuxjournal.com/content/getting-started-ncurses
+*** this is about the ncurses library
+*** has a cool triangle pattern challenge, probably applicable to Python as well
+*** has a cool trick of generating random numbers from Eg: 1 to 10 (instead of random.randint(1,10)):
+**** yi = getrandom_int() % maxlines; # ---------- modulus as a range cutter
+*** 
