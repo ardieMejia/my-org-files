@@ -1,2 +1,0 @@
-* Raspberry/Arduino GSM projects
-** https://sixfab.com/product/gsmgprs-shield/
