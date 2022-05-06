@@ -16,6 +16,8 @@ do
     echo ${myArray[1]}
 done
 *** http://www.masteringunixshell.net/qa35/bash-how-to-print-array.html
+** finding length of array, VERY EASY to forget:
+*** https://www.cyberciti.biz/faq/bash-for-loop-array/
 * Syntax (functions)
 ** https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
 *** functions in Bash allows coder to treat the code like normal terminal usage. So, -- ls -- can have a (script scope) alias using function ls(){ #--some code }. And $1 has the same property.
