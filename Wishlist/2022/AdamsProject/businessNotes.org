@@ -1,0 +1,27 @@
+* nothing special
+** https://www.tentononline.com/how-to-use-social-media-to-promote-your-business-easy/
+* Something
+** https://www.adnabu.com/product-data-feed
+*** What is Product Data Feed:
+**** A file such as TXT, CSV, or XML. Holding list of attributes and other data about the products in your eCommerce store.
+**** title, price, image descr, size, etc... given to Google, Facebook, Amazon (product marketing channels)
+**** On the user end, when querying Google, users related pop ads allowing customers to compare
+*** The main tool/platform is -> Google Merchant Centre
+**** And the campaign is Google Shopping Ad
+*** Ways to feed this into Google (Merchant Centre)
+**** Manual -> Upload a spreadsheet (Eg: Google sheets) to to Merchant Centre. Everytime there are changes
+**** Content API product feeds -> You use apps that have direct connection to Google Merchant Centre (or other platforms)
+*** Product Feed Automation
+**** Google does web-crawl for you
+**** Dont understand!!
+**** https://support.google.com/merchants/answer/7538732?hl=en
+* check all later too:
+** https://wpdatatables.com/documentation/creating-wpdatatables/creating-mysql-based-wpdatatables-with-server-side-processing/
+** https://wpdatatables.com/documentation/creating-wpdatatables/creating-mysql-based-wpdatatables/
+** https://wpdatatables.com/documentation/creating-new-wpdatatables-with-table-constructor/building-mysql-queries-with-table-constructor/
+** https://www.joomunited.com/news/how-to-synchronize-a-wordpress-table-with-a-google-sheet
+** https://www.wpallimport.com/tour/import-woocommerce-products/
+** https://dothewoo.io/affiliate-data-feeds-graphql-and-visual-hooks-with-eric-busch/
+** https://www.isitwp.com/must-have-wordpress-plugins-for-business-websites/
+** https://www.gwsmedia.com/20-different-types-websites-1
+** https://www.tentononline.com/traffic/

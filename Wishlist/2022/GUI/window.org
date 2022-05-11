@@ -1,0 +1,5 @@
+* Maybe read about yad later
+** https://manpages.ubuntu.com/manpages/xenial/man1/yad.1.html
+** https://unix.stackexchange.com/questions/167613/yad-terminate-bash-script
+* zenity, very cool
+** https://www.baeldung.com/linux/script-gui-notification
