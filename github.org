@@ -14,11 +14,17 @@
 **** This should make re-entering passphrase no long necessary
 **** eval "$(ssh-agent -s)"
 **** ssh-add ~/.ssh/id_ed25519 (add the new ssh file, the private one)
-**** 
+****
 * Hugo:
 ** What we learnt most importantly, that both index.md and _index.md cannot co-exist (Better not)
 ** If all is confusing, always start with no index.md at all at top level. And then copy 1 .md file to top _index.md
 ** index.md is read blindly by Hugo, but _index.md is processed. So be careful with _index.md (But I managed to make it work)
-** hugo by default doesnt publish to /public by default. Needs a switch for that. 
+** hugo by default doesnt publish to /public by default. Needs a switch for that.
 * Git submodule:
-** 
+** Useful intro from scratch
+*** https://www.youtube.com/watch?v=RgIAXF53a8U
+*** https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-add-submodules-to-GitHub-repos
+* When doing stuff the way I do, with "unrelated history", do this:
+** https://github.community/t/how-to-deal-with-refusing-to-merge-unrelated-histories-error/1372/2
+* This is important to do later, for you Kaushal Modi mods:
+** https://medium.com/swlh/how-to-add-a-second-remote-to-a-local-repository-7d0e36f18d58
