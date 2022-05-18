@@ -1,2 +1,11 @@
 * https://www.regular-expressions.info/optional.html
 ** TODO: organize. READ LATER
+* The ONLY one that matters for markup <>
+** https://docstore.mik.ua/orelly/unix3/sedawk/ch03_02.htm
+* Easier to read, but MORE important
+** https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
+*** re-arrange, but an important note is that one of the answers:
+**** 4) The pattern will be pretty big, so make sure you have an algorithm that losslessly compresses random data.
+* Simple example of removing random data but with awk
+** var1="123 fs 5673"
+echo $var1 | awk 'BEGIN{RS=" "} {print $0}' | awk '!/[0-9]/{print $0}'

@@ -1,0 +1,4 @@
+* Instead of going through all the messy UTF-8 to UTF-16, just do this:
+** https://www.htmlsymbols.xyz/unicode/U+2705
+* Maybe not important now that we have a solution
+** https://www.codegrepper.com/code-examples/python/how+to+convert+utf-16+file+to+utf-8+in+python
