@@ -1,0 +1,30 @@
+
+* Configuration!!
+** First video, very cool vibe
+*** https://www.youtube.com/watch?v=0yuFq_DNpcY
+* Image guide for MX
+[[./images/Cherry-MX-Switch-Guide-s.jpeg]]
+* Recommendations:
+** Keychron has so many cool ones, but I want the low profile one!!
+*** https://www.keychron.com/
+** Quiet mechanical keyboards!!
+*** https://switchandclick.com/the-best-quiet-mechanical-keyboards/
+** Ducky One 2 Mini review. Guy says its worth the money:
+*** https://www.youtube.com/watch?v=xTfUIqkGTm4
+** TADA 68
+*** Highly customizable and highly programmable, according to this VERY COOL site. No price, for non-serious visitors. 65% size!
+**** https://drop.com/buy/tada68-mechanical-keyboard#overview
+*** Fixed price, not as cool site
+**** https://mechanicalkeyboards.com/shop/index.php?l=product_detail&p=3522
+* Switches, great information, but not worth, your time reading, rather than buying your own well reviewed keyboard:
+** Gateron switches!! Very under-rated
+*** https://switchandclick.com/gateron-switch-guide-budget-friendly-and-smooth/
+**** It mentions silent switches at the bottom
+*
+**
+* QMK configurations, QMK port projects for non-QMK keyboards:
+*** The official QMK configurator firmware website
+**** https://config.qmk.fm
+**** Most keyboards listed, just type brand
+** Some good reddit comments on non-QMK keyboard hacks
+* 
