@@ -1,0 +1,2 @@
+* super useful and BASIC, memorize these commands
+** https://www.oreilly.com/library/view/linux-security-cookbook/0596003919/ch03s02.html
