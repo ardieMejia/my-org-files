@@ -1,0 +1,14 @@
+* Scrapy and javascript
+** https://docs.scrapy.org/en/latest/topics/dynamic-content.html#topics-parsing-javascript
+* How I managed to finally install Scrapy (I still fucking hate Python). Please reverse this ORDER!!!:
+** pip install scrapy
+** pip install cryptography
+** pip install --upgrade pip
+** From the virtual environment
+* Beginners example:
+** The most mind numbingly simple example
+*** https://www.analyticsvidhya.com/blog/2017/07/web-scraping-in-python-using-scrapy/
+** Project structure, better example! But should start command "scrapy startroject example1", which is not shown
+*** https://www.accordbox.com/blog/scrapy-tutorial-5-how-create-simple-scrapy-spider/
+** scrapy project, but with output to text, (I WANT THIS)
+*** https://stackoverflow.com/questions/61889730/export-scrapy-to-text-file
