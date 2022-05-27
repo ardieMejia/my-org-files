@@ -44,3 +44,8 @@
 *** https://developer.gnome.org/documentation/tutorials/search-provider.html
 * snippets, folding, hide & other cool tricks
 ** Should start collecting it here!!
+* Looks, looks, looks:
+** https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+** https://www.gnu.org/software/emacs/manual/html_node/emacs/Face-Customization.html
+** https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
+** https://github.com/abo-abo/swiper/issues/568

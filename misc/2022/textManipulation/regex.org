@@ -1,6 +1,6 @@
 * https://www.regular-expressions.info/optional.html
 ** TODO: organize. READ LATER
-* The ONLY one that matters for markup <>
+* Super detailed examples
 ** https://docstore.mik.ua/orelly/unix3/sedawk/ch03_02.htm
 * Easier to read, but MORE important
 ** https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
@@ -9,3 +9,11 @@
 * Simple example of removing random data but with awk
 ** var1="123 fs 5673"
 echo $var1 | awk 'BEGIN{RS=" "} {print $0}' | awk '!/[0-9]/{print $0}'
+* Square brackets (detailed explanation)
+** https://www.regular-expressions.info/posixbrackets.html
+* My script test that stumped me that it worked, please explain
+** echo '< itemscope itemscope="itemscope">' | sed 's/itemscope[^"|^=]//g'
+* Very important to re-arrange later:
+** https://javascript.info/regexp-quantifiers
+* Word boundary:
+** https://unix.stackexchange.com/questions/230795/sed-how-to-use-b-word-boundary-correctly

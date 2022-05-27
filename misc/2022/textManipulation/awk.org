@@ -1,15 +1,32 @@
-* Need to rearrange all this later!!:
+* Cheatsheet, or BASICS for when you forget stuff about AWK:
+** https://www.shortcutfoo.com/app/dojos/awk/cheatsheet
+* gsub():
 ** https://stackoverflow.com/questions/14432209/substitute-a-regex-pattern-using-awk
-** https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script
+** A cool gsub() alternative to nesting of AWK commmands:
+*** https://stackoverflow.com/questions/23763046/nested-awk-command
+* More matches/searches:
 ** https://www.theunixschool.com/2012/05/awk-match-pattern-in-file-in-linux.html?m=1
+** Workaroud for ignoring case since AWK is weird
+*** https://www.unix.com/shell-programming-and-scripting/176159-ignore-case-awk-while-pattern-searching.html
+** Counting matches (like 3 matches):
+*** https://unix.stackexchange.com/questions/163271/count-records-matching-pattern-with-awk
+* RS, FS, IRS, NR, etc:
 ** https://learnbyexample.github.io/learn_gnuawk/record-separators.html
-* Workaroud for ignoring case since AWK is weird
-** https://www.unix.com/shell-programming-and-scripting/176159-ignore-case-awk-while-pattern-searching.html
-* Cool nesting of awk:
-** https://stackoverflow.com/questions/23763046/nested-awk-command
+** Print line number of match using NR (rarely needed, but web-scraping with Adam needs this)
+*** https://unix.stackexchange.com/questions/225444/how-to-print-the-line-numbers-with-corresponding-line-that-matches-a-pattern-usi
+
 * Multiple delimiters:
 ** https://stackoverflow.com/questions/12204192/using-multiple-delimiters-in-awk
-* Merge multiple into lines:
-** https://www.unix.com/shell-programming-and-scripting/142114-sed-awk-remove-newline.html
+* Merge multiple into lines, important to do before REGEX:
+** Lots of cool AWK examples:
+*** https://www.unix.com/shell-programming-and-scripting/142114-sed-awk-remove-newline.html
+* You can do a "string-builder" in awk, or you can do more stable way like this, with variables:
+** Lots of examples, never tried:
+*** https://www.cyberciti.biz/faq/linux-unix-appleosx-bsd-bash-passing-variables-to-awk/
+** More variables:
+*** https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script
 * regex examples:
 ** https://www.gnu.org/software/gawk/manual/html_node/Regexp-Field-Splitting.html
+** https://opensource.com/article/19/11/how-regular-expressions-awk
+* Weirdest shit Ive seen, maybe better for tags:
+** https://www.unix.com/shell-programming-and-scripting/66251-remove-html-tags-bash.html

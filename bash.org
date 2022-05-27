@@ -31,13 +31,15 @@ done
 *** some VERY USEFUL bash for loops. Some VERY SIMPLE ones.
 * Syntax (user input)
 ** https://askubuntu.com/questions/446156/pause-execution-and-wait-for-user-input
-* Things that might catch off-guard:
+* Things that might catch off-guard, such space delimiter behaviour, and escaping special characters:
 ** The -> cd -> command. When writing this command in Bash script, might catch you off-guard. If, for example, you create a script that moves you to a different location, you'll discover running the script produces no result. What happens is that running the script produces a child process, and cd only applies to that process. Once the script has run, you are back at the same location.
 ** Best practice is to create Bash functions instead. In the snippet below for example, I created a function that cd's to a different location, after using an fzf command (fzf -> an incredibly cool and powerful tool you should try by the way). I put this snippet inside my .bashrc. So when you run this "command" you actually running a function (with cd) not a script file.
 zzzd(){
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m)
     cd $dir
 }
+** Escaping exclamation mark
+*** https://superuser.com/questions/133780/in-bash-how-do-i-escape-an-exclamation-mark
 * Cool new stuff you should try:
 ** fzf:
 *** For those of you who use Spacemacs (or other similar Emacs user-friendly variations), a cool thing Spacemacs can do is search recent files, using a fuzzy search algorithm. This allows you to search recently used files by rough matching (typing "cycle" instead of "Recycle Bin", or even rougher than this). Before you compare this to a normal Windows folder "file search", this is actually many times faster, it instantly changes the list closer to your match everytime you type or remove a character.
