@@ -1,0 +1,39 @@
+* Most detailed explanation, requires thorough read, but some simple examples still missing
+** http://xmlstar.sourceforge.net/doc/UG/ch04s01.html
+** Only found this explanation of options so far, useful:
+
+Every -t option is mapped into XSLT template. Options after '-t' are mapped into XSLT elements:
+
+-v to <xsl:value-of>
+-c to <xsl:copy-of>
+-e to <xsl:element>
+-a to <xsl:attribute>
+-s to <xsl:sort>
+-m to <xsl:for-each>
+-i to <xsl:if>
+
+and so on
+* Basic and simple examples:
+** https://stackoverflow.com/questions/23998130/extracting-nodes-values-with-xmlstarlet
+** https://www.geekfarm.org/wu/muse/XmlStarlet.html
+** https://stackoverflow.com/questions/33279377/xmlstarlet-filter-out-element-with-attribute
+** https://opensource.com/article/21/7/parse-xml-linux
+* Unique case, maybe will never needed, but interesting challenge:
+** https://stackoverflow.com/questions/48595262/get-attribute-value-using-xmlstarlet-or-xmllint
+* Some simple examples (TODO: rewrite these):
+** echo "<body><span class=\"title\">hello</span></body>" | xmlstarlet sel -t --value-of '//span'
+*** As previous above, -v is <xsl:value-of>. Or to put it simply, -v is also --value-of
+** (TODO: rewrite this) Im surprised this even worked!:
+*** echo '<body><span class="title">hello</span><span>not this one</span></body>' | xmlstarlet sel -t -m "*" -c "*[@class = 'title']"
+* Common errors:
+** echo "<body><span class=\"title\">hello</span></body>" | xmlstarlet sel -t --value-of '//span'
+** echo '<body><span class="title">hello</span></body>' | xmlstarlet sel -t --value-of '//span'
+** Both are correct, but watch out for when to escape "
+** Better just stick to that second one
+** Personal confusion:
+*** This both produces the same result! (when searching for content of <span> element)
+**** xmlstarlet sel -t -m "//span" -v . -n
+**** xmlstarlet sel -t -v "//span" -n
+**** The 2nd one obviously much better
+* Might be useful, might be useless:
+** https://stackoverflow.com/questions/58666476/opening-and-ending-tag-mismatch-of-xmlstarlet-sel

@@ -1,0 +1,4 @@
+* rearrange later!!
+** https://unix.stackexchange.com/questions/33110/using-sed-to-get-rid-of-characters
+* better for tags. CORRECTION: Have tested this, very misleading coz give different results when input has newlines. Good practice, if using regex tricks. Is to ALWAYS merge everything into 1 single line
+** https://pario.no/2009/06/12/replace-specific-html-tags-using-sed-and-regular-expression/
