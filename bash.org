@@ -16,8 +16,12 @@ do
     echo ${myArray[1]}
 done
 *** http://www.masteringunixshell.net/qa35/bash-how-to-print-array.html
+** from string to ARRAYs
+*** https://linuxhandbook.com/bash-split-string/
 ** finding length of array, VERY EASY to forget:
 *** https://www.cyberciti.biz/faq/bash-for-loop-array/
+** Passing arrays as arguments, quite tricky
+*** https://stackoverflow.com/questions/17232526/how-to-pass-an-array-argument-to-the-bash-script
 * Syntax (functions)
 ** https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
 *** functions in Bash allows coder to treat the code like normal terminal usage. So, -- ls -- can have a (script scope) alias using function ls(){ #--some code }. And $1 has the same property.
@@ -31,26 +35,30 @@ done
 *** some VERY USEFUL bash for loops. Some VERY SIMPLE ones.
 * Syntax (user input)
 ** https://askubuntu.com/questions/446156/pause-execution-and-wait-for-user-input
-* Things that might catch off-guard, such space delimiter behaviour, and escaping special characters:
+* Syntax (printf). printf is its own thing, and worth learning it
+** https://stackoverflow.com/questions/20243467/write-bash-array-to-file-with-newlines
+* Strange and unusual behaviour (Eg: cd):
 ** The -> cd -> command. When writing this command in Bash script, might catch you off-guard. If, for example, you create a script that moves you to a different location, you'll discover running the script produces no result. What happens is that running the script produces a child process, and cd only applies to that process. Once the script has run, you are back at the same location.
-** Best practice is to create Bash functions instead. In the snippet below for example, I created a function that cd's to a different location, after using an fzf command (fzf -> an incredibly cool and powerful tool you should try by the way). I put this snippet inside my .bashrc. So when you run this "command" you actually running a function (with cd) not a script file.
+** Best practice is to create Bash functions instead. In the snippet below for example, I created a function that cd's to a different location, after using an fzf command (fzf -> I changed my mind, helm/ido 10 times better than fzf). I put this snippet inside my .bashrc. So when you run this "command" you actually running a function (with cd) not a script file.
 zzzd(){
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m)
     cd $dir
 }
-** Escaping exclamation mark
+** Escaping exclamation mark (basically, best stick single quotes in Bash)
 *** https://superuser.com/questions/133780/in-bash-how-do-i-escape-an-exclamation-mark
 * Cool new stuff you should try:
 ** fzf:
 *** For those of you who use Spacemacs (or other similar Emacs user-friendly variations), a cool thing Spacemacs can do is search recent files, using a fuzzy search algorithm. This allows you to search recently used files by rough matching (typing "cycle" instead of "Recycle Bin", or even rougher than this). Before you compare this to a normal Windows folder "file search", this is actually many times faster, it instantly changes the list closer to your match everytime you type or remove a character.
 *** For those who have never tried this Spacemacs feature, will not know what they're missing, and should give this a try. And for Spacemacs users who would like this available in your normal Terminal, this is a very useful tool to have
-*** By itself, fzf already hints at some great power, it shows a list of fuzzy matches under the current folder (recursively). But selecting a file does nothing. Hence, a little scripting skill is needed. The good news however, is that there are so many cool examples online, and your only limit to expanding fzf usage is your scripting skill
-*** There is little point in posting all my favourite links, as it is very popular among power shell users. However, some links like [[https://developpaper.com/full-guide-for-the-use-of-fuzzy-finder-fzfvim/][this one]] interested me in particular, as it displayed a syntax I did not know was possible under Bash/zsh.
-**** Unusual syntax I usually never use in bash (but looks similar to Powershell)
- vi $(fzf)
-***** instead of
- vi `fzf`
+*** By itself, fzf already hints at some great power, it shows a list of fuzzy matches under the current folder (recursively). But selecting a file does nothing. Hence, a little scripting skill is needed. The good news however, is that there are so many cool examples online.
+*** It is very popular among power shell users. However, some links like [[https://developpaper.com/full-guide-for-the-use-of-fuzzy-finder-fzfvim/][this one]] interested me in particular, here is a syntax I did not know was possible under Bash/zsh. (Actually it is only $(). nowadays im very comfortable with it)
 * Other tips (zsh, etc):
-** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes)
+** Some stupid tip:
+*** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes)
 *** Must do --> [[https://superuser.com/questions/1520370/zsh-history-is-not-syncing-immediately][setopt incappendhistory]] <--
-**
+** Now we dont need stupid tip, coz we can use logrotate, but not sure if it really works, coz bash_history still smaller than stated size
+* Superpower tricks!!:
+** https://levelup.gitconnected.com/5-bash-syntax-for-going-beyond-traditional-shell-scripting-6904d3e71af6
+*** Tricks such as:
+**** echo ${string^^} # ===== transform text bash to uppercase, BASH. Uppercase
+**** and many more.

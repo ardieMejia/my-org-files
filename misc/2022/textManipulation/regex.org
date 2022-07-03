@@ -1,19 +1,16 @@
-* https://www.regular-expressions.info/optional.html
-** TODO: organize. READ LATER
-* Super detailed examples
+* Beginner sribbles (random beginner stuff):
+** According to this link, regex and HTML DONT go well together:
+*** https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
+** If you like Regex so much, why dont you marry them (not my word)
+*** https://blog.codinghorror.com/if-you-like-regular-expressions-so-much-why-dont-you-marry-them/
+** Word boundary:
+*** https://unix.stackexchange.com/questions/230795/sed-how-to-use-b-word-boundary-correctly
+* Interesting Regex in the context of awk, sed and grep
 ** https://docstore.mik.ua/orelly/unix3/sedawk/ch03_02.htm
-* Easier to read, but MORE important
-** https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
-*** re-arrange, but an important note is that one of the answers:
-**** 4) The pattern will be pretty big, so make sure you have an algorithm that losslessly compresses random data.
-* Simple example of removing random data but with awk
-** var1="123 fs 5673"
-echo $var1 | awk 'BEGIN{RS=" "} {print $0}' | awk '!/[0-9]/{print $0}'
-* Square brackets (detailed explanation)
-** https://www.regular-expressions.info/posixbrackets.html
-* My script test that stumped me that it worked, please explain
-** echo '< itemscope itemscope="itemscope">' | sed 's/itemscope[^"|^=]//g'
-* Very important to re-arrange later:
+* The 2 only best sites to learn Regex, (according to 1 of the site)
+** https://www.rexegg.com/
+*** Better (of the best) for beginners and learning
+** https://www.regular-expressions.info/
+*** More detailed, but too short on explanations
+* Maybe a good website too (not sure):
 ** https://javascript.info/regexp-quantifiers
-* Word boundary:
-** https://unix.stackexchange.com/questions/230795/sed-how-to-use-b-word-boundary-correctly

@@ -18,15 +18,22 @@
 * Multiple delimiters:
 ** https://stackoverflow.com/questions/12204192/using-multiple-delimiters-in-awk
 * Merge multiple into lines, important to do before REGEX:
-** Lots of cool AWK examples:
+** Several tricks:
 *** https://www.unix.com/shell-programming-and-scripting/142114-sed-awk-remove-newline.html
 * You can do a "string-builder" in awk, or you can do more stable way like this, with variables:
 ** Lots of examples, never tried:
 *** https://www.cyberciti.biz/faq/linux-unix-appleosx-bsd-bash-passing-variables-to-awk/
 ** More variables:
 *** https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script
+* More important built-in functions:
+** https://learnbyexample.github.io/learn_gnuawk/built-in-functions.html
 * regex examples:
 ** https://www.gnu.org/software/gawk/manual/html_node/Regexp-Field-Splitting.html
 ** https://opensource.com/article/19/11/how-regular-expressions-awk
-* Weirdest shit Ive seen, maybe better for tags:
-** https://www.unix.com/shell-programming-and-scripting/66251-remove-html-tags-bash.html
+* Miscellaneous:
+** Tags
+*** https://www.unix.com/shell-programming-and-scripting/66251-remove-html-tags-bash.html
+** while loops:
+*** https://www.gnu.org/software/gawk/manual/html_node/While-Statement.html
+* Rearrange this please. Its about getting match position, very handy !!
+** https://www.unix.com/unix-for-dummies-questions-and-answers/233516-solved-find-position-character-awk.html

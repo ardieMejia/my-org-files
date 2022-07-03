@@ -42,10 +42,24 @@
 ** https://wikemacs.org/wiki/Emacs_server
 ** Might be useful within Ubuntu 18.04 experience
 *** https://developer.gnome.org/documentation/tutorials/search-provider.html
-* snippets, folding, hide & other cool tricks
+* folding, hide & other cool tricks
 ** Should start collecting it here!!
 * Looks, looks, looks:
 ** https://zzamboni.org/post/beautifying-org-mode-in-emacs/
 ** https://www.gnu.org/software/emacs/manual/html_node/emacs/Face-Customization.html
 ** https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
 ** https://github.com/abo-abo/swiper/issues/568
+* YASsnippets:
+** Great beginner example:
+*** https://joaotavora.github.io/yasnippet/snippet-development.html
+* Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
+** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
+*** Need as input: --> filename pattern & regex text
+* Very IMPORTANT, saved all my loading problems!!:
+** https://github.com/jwiegley/use-package/issues/494
+*** Personally, I just removed "package-refresh-contents" from setup-packages.el
+* An apparently, very cool init.el, according to one good emacs user. Must read it 1 day
+** https://github.com/eastwood/config/blob/master/emacs.d/init.el
+* Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
+** https://www.emacswiki.org/emacs/AutoSave
+*** 'focus-out-hook'

@@ -1,12 +1,12 @@
-
 * Configuration!!
 ** First video, very cool vibe
 *** https://www.youtube.com/watch?v=0yuFq_DNpcY
-* Image guide for MX
-[[./images/Cherry-MX-Switch-Guide-s.jpeg]]
-* Recommendations:
+* Wish-list (low-profile & quiet) (Gaeteron Low-Profile Red):
+** Very cool, very good-looking (one guy loves it 10/10)
+*** https://nuphy.com/products/air75
 ** Keychron has so many cool ones, but I want the low profile one!!
 *** https://www.keychron.com/
+* Recommendations:
 ** Quiet mechanical keyboards!!
 *** https://switchandclick.com/the-best-quiet-mechanical-keyboards/
 ** Ducky One 2 Mini review. Guy says its worth the money:
@@ -16,10 +16,7 @@
 **** https://drop.com/buy/tada68-mechanical-keyboard#overview
 *** Fixed price, not as cool site
 **** https://mechanicalkeyboards.com/shop/index.php?l=product_detail&p=3522
-* Switches, great information, but not worth, your time reading, rather than buying your own well reviewed keyboard:
-** Gateron switches!! Very under-rated
-*** https://switchandclick.com/gateron-switch-guide-budget-friendly-and-smooth/
-**** It mentions silent switches at the bottom
+
 *
 **
 * QMK configurations, QMK port projects for non-QMK keyboards:
@@ -27,4 +24,19 @@
 **** https://config.qmk.fm
 **** Most keyboards listed, just type brand
 ** Some good reddit comments on non-QMK keyboard hacks
-* 
+*
+* Switches, switches, switches:
+** Gateron, very special and under-rated:
+*** https://switchandclick.com/gateron-switch-guide-budget-friendly-and-smooth/
+**** Just like Cherry MX. Red, Brown and Blue from noisiest to quietest
+**** Unlike Cherry MX. Clear is super light and linear
+**** Silent options at the bottom
+**** More fancy ones like milk, giving ur RGB subdued lighting
+**** And slightly more expensive Ink, with a smoky tint. Fancy!!
+**** And finally, SILENT, also same ranking. From LOUDEST to shhhh... Blue, Brown & Blue
+***** Example, Keycrhon K1:
+****** https://www.amazon.com/Keychron-Bluetooth-Mechanical-Keyboards-Gamer-Version/dp/B087Q4CXQK
+*
+** Image example:
+*** Image guide for MX
+[[./images/Cherry-MX-Switch-Guide-s.jpeg]]
