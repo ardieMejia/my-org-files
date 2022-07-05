@@ -33,3 +33,6 @@ of
 *** https://stackoverflow.com/questions/5214578/print-string-to-text-file
 * Better file handling, text file handing, path handling!! using pathlib, great for Fiverr clients:
 ** https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
+* Kinda important:
+** Installing Pillow module, the "usual pip way" will produce lots of errors. Instead use this link:
+*** https://pillow.readthedocs.io/en/latest/installation.html
