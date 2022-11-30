@@ -22,12 +22,13 @@
 *** Despite all the confusing commands, the only thing you have to understand is this
 **** the only tool is required venv (or virtualenv in older Python)
 **** pip is just the Python installer (not important)
-* IDE, maybe non-Emacs (I really hate Python)
+* IDE, PyCharm (I really hate Python)
 ** [[https://www.jetbrains.com/pycharm/][I may have no choice but to install PyCharm, it probably works too well]]
 *** Maybe #1 reason I hate Python
 ** [[https://confluence.jetbrains.com/pages/viewpage.action?pageId=51945983][Change look and feel of PyCharm]]
+** disabling PyCharm auto-suggestion (great for those learning Python)
+*** Settings -> Editor -> General -> Code Completion -> Tick -- Show suggestions as you type
 * Emacs IDE for Python (please God make this work)
-of
 * Some basics, still dont like Python BTW:
 ** Writing text to file, but also has a context manager example
 *** https://stackoverflow.com/questions/5214578/print-string-to-text-file
@@ -36,3 +37,10 @@ of
 * Kinda important:
 ** Installing Pillow module, the "usual pip way" will produce lots of errors. Instead use this link:
 *** https://pillow.readthedocs.io/en/latest/installation.html
+* SELF (make sure to write about this IMPORTANT topic later)
+** https://www.knowledgehut.com/blog/programming/self-variabe-python-examples
+** https://www.edureka.co/blog/self-in-python/amp/ (THIS IS A BAD EXPLANATION, dont delete, just point its bad-ness)
+** https://medium.com/quick-code/understanding-self-in-python-a3704319e5f0
+* Vector (PyGame related)
+** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc..
+** 

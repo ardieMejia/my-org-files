@@ -1,47 +1,60 @@
-* [[https://guix.gnu.org/manual/en/html_node/Application-Setup.html][GUIX magically works along with my spacemacs, how?]]
-** Something about locales GUIX_LOCPATH, will never allow foreign-distro programs to load GUIX stuff,
-*** -> while ensuring GUIX only loads everything foreign  and local.
-*** this "foreign-distro" programs cant see GUIX_LOCPATH
-** If thats the case, we can install Tramp by:
-*** unset the GUIX_LOCPATH variable
-*** reload original spacemacs safely
-*** and try to install Tramp and load Google drive from there
-** If that doesnt work then, its safe to
-*** reset everything back to GUIX spacemacs, and
-*** install TRAMP from there
 * vertical vs horizontal split of windows in Emacs
-** Using a variable
-*** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
-** Much simpler keyboard shortcut, duhhh...
-*** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
-* How to "hook" a minor mode to a major mode
-** This is one simple way
-*** https://stackoverflow.com/questions/12763566/how-to-permanently-enable-the-hs-minor-mode-in-emacs
-** More documentation, though never tried
+** Context:
+*** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
+**** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
+** No context:
+*** C-x 3
+**** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
+* Loading subtlety, hooks, eval, yadayada
+** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
+*** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
+**** https://stackoverflow.com/questions/12763566/how-to-permanently-enable-the-hs-minor-mode-in-emacs
+** Alternative, using lambda, nothing special
 *** https://stackoverflow.com/questions/8892813/emacs-shell-script-mode-hook
-* Not hook, but binding a keyboard to only a major mode
-** Our init.el example
-*** https://www.reddit.com/r/emacs/comments/6sgwfc/how_do_i_set_a_key_binding_only_for_a_particular/
+** https://stackoverflow.com/questions/2736087/eval-after-load-vs-mode-hook
+*** eval-after-load is NOT buffer-aware, runs only once.
+*** mode-hook is buffer-aware, runs for every buffer
+*** mode--hook run after eval-after-load
+* Keybinding
+** Our init.el org-mode-map seems best
+*** with-eval-after-load & -mode-map
+**** https://www.reddit.com/r/emacs/comments/6sgwfc/how_do_i_set_a_key_binding_only_for_a_particular/
 (with-eval-after-load "org"
   (define-key org-mode-map (kbd "S-<left>") 'backward-char)
   (define-key org-mode-map (kbd "S-<right>") 'forward-char)
   (define-key org-mode-map (kbd "S-<up>") 'previous-line)
   (define-key org-mode-map (kbd "S-<down>") 'next-line)
   (define-key org-mode-map (kbd "C-S-c C-, o k") 'ardie-open-kodland)
-
+*** with-eval-after-load & local-set-key
+**** https://emacs.stackexchange.com/questions/12293/mode-hooks-and-eval-after-load
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "S-<left>") 'backward-char)
+             (local-set-key (kbd "S-<right>") 'forward-char)
+             (local-set-key (kbd "S-<up>") 'previous-line)
+             (local-set-key (kbd "S-<down>") 'next-line)
+             (local-set-key (kbd "C-S-c C-, o k") 'ardie-open-kodland)))
+** In the long term, once we understand, we should avoid -eval- & hooks (??)
+*** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
+**
+** Lots of information
+*** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+**** Interestingly, C-c ? (where ? is any single character), is reserved for user & USERS alone. But most 3rd packages dont give a shit
+**** Also, 2 keys that are reserved (remnants from ancient 80's keys), are Hyper & Super. Today, Super is "Windows key" & Hyper is "Application-Context"
+***** These keys are also reserved, might be very useful
+**** Also, in "key lookup order", confusingly, Minor Mode comes before Local which also comes befor Global. (I tot Local overrides Global?)
 * https://lucidmanager.org/productivity/using-emacs-image-dired/
 ** TODO!!!!!
 ** Very cool, imagine opening GIMP automaticallly from inside Emacs
-*
-* https://www.xda-developers.com/lenovo-thinkpad-x1-carbon-gen-10-linux/
-** READ LATER!!, how to close minibuffer
 * READ and arrange !!
-** https://stackoverflow.com/questions/2736087/eval-after-load-vs-mode-hook
-** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+**
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
 ** Might be useful within Ubuntu 18.04 experience
 *** https://developer.gnome.org/documentation/tutorials/search-provider.html
+** My "buffer by-the-side update to reflect changes, like pdf for example" project
+*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
+**** Has lots of em, and very simple explanation
 * folding, hide & other cool tricks
 ** Should start collecting it here!!
 * Looks, looks, looks:
@@ -63,3 +76,24 @@
 * Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
 ** https://www.emacswiki.org/emacs/AutoSave
 *** 'focus-out-hook'
+* [[https://guix.gnu.org/manual/en/html_node/Application-Setup.html][GUIX magically works along with my spacemacs, how?]]
+** Something about locales GUIX_LOCPATH, will never allow foreign-distro programs to load GUIX stuff,
+*** -> while ensuring GUIX only loads everything foreign  and local.
+*** this "foreign-distro" programs cant see GUIX_LOCPATH
+** If thats the case, we can install Tramp by:
+*** unset the GUIX_LOCPATH variable
+*** reload original spacemacs safely
+*** and try to install Tramp and load Google drive from there
+** If that doesnt work then, its safe to
+*** reset everything back to GUIX spacemacs, and
+*** install TRAMP from there
+* Basics, education:
+** Interesting, lead from other examples:
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
+**** advising Lisp functions
+***** advice-add , advice-remove , but no defadvice , like we saw from another Tut
+** Lisp
+*** One of the best basic intro into eLisp:
+**** https://cs.gmu.edu/~sean/lisp/LispTutorial.html
+* More cool stuff to re-arrange!!
+** https://masteringemacs.com/article/diacritics-in-emacs
