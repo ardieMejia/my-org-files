@@ -1,36 +1,7 @@
 * What we learnt as a beginner:
-** .aspx files are still written in c-sharp
-** we need special tags <%@ Page Language="C#" AutoEventWireup="True" %> at the beginning (unlike php blade templates)
-** when running the server, the .aspx is the entry point. But perhaps, .aspx is similar to .cs, but only to differentiate web pages/templates from c-sharp code-only files
-** declarative syntax describes the full features of a <tag>
-** this <tag> is very similar to what vue.js does, in that it "creates" a new element that you can play around with
-** WebForms was the first to try the SPA style of web pages, by maintaining state using ViewState, and ends with a Render() call
-** WebForms uses events to provide state of website (ahead of its time)
-** Interestingly, WebForms and React.js is similar: they use Render() sending HTML to browser, React use State object & WebForms uses ViewState, and through this paradigm it goes through a series of lifecycle events to proper rendering
-** Advantages of WebForms over SPA's: they get the power of a server, while SPA's get a browser powering it
-** a typed C# over untyped Javascript
-** mature long-life frameworks over evershifting ones like React.
-** ViewState:
-*** Some Web designers will struggle with _VIEWSTATE
-* From Monodevelop IDE:
-** WebForms are like a blend between modern web apps, and stateful desktop applications
-** Monodevelop also has 2 frameworks, MVC, & HTTP web services
-** assemblies are a fancy name for a type of .cs file
-** running xsp4 from the root project of MVC created here, does not use .aspx as entry point. 
-* from (www.guru99.com):
-** when creating a control (component in Vue.js), you need to register in a separate .ascx, or web.config file
-** when you do this, you have 2 names in between your tags <>, TagName & TagPrefix
-* from (https://www.guru99.com/insert-update-delete-asp-net.html)
-** this is not done from a model like in Laravel (perhaps there is a similar way)
-** always good practice to close database connection (in Laravel this is automatic, again there should be similar way)
-** create a connection variable (SqlConnection type), create command variable using SQL statement (SqlCommand type), create data reader object (SqlDataReader type), start while loop (mydataReader.Read()), and get value from each iteration (mydataReader.GetValue(0))
-** This manner reminds me of Python iterating through text files by iterating through the object
-** insert data: create a connection variable, create command variable, create data "adapter" (SqlDataAdapter type)(doesnt use the command object, huh?), adapter.InsertCommand.ExecuteNonQuery (ExecuteNonQuery for table statements: insert,delete, update)
-** update data: create a connection variable, create command variable, create data "adapter" (SqlDataAdapter type)(doesnt use the command object, huh?), adapter.UpdateCommand.ExecuteNonQuery (ExecuteNonQuery for table statements: insert,delete, update)
-** not much different for SQL deletes
-** All this inside the Page_Load -> inside -> Demo class
-** All the commands and objects are consistent and based around SQL statements only
-** when creating web form controls , we can actually right click the controls to connect with the database. We create a new datasource (with connection variables as usual), and simply bind using GUI.
+* Understanding errors:
+** "A namespace cannot directly contain members such as fields, methods or statements"
+*** This happens when you put fields, methods or statements underneath namespace ... (instead of inside class ...)
 * https://www.c-sharpcorner.com/article/asp-net-core-razor-pages-simple-login-using-entity-framework-database-first-app/
 ** .NET Core framework is more suited for distributed environment rather than single machines
 ** Because of this, there are 2 major concepts utilized heavily:
@@ -44,11 +15,21 @@
 ** to use database context object using entity framework, use IDE NuGet feature to install library packages, such as Microsoft.EntityFrameworkCore.SqlServer
 ** using Package Manage Console, run the stated command to create a bunch of files under Models/DB directory
 ** Differences in asp.net mvc framework and .net core when using a database first approach:
-*** cool graphical UI to: select table, store procedures and database objects and database context file are imported (entity framework). 
+*** cool graphical UI to: select table, store procedures and database objects and database context file are imported (entity framework).
 *** use command to import database context, and write business logic (SQL queries etc..) inside database context file (.cs)
 *** Login.cs is our our object class (kind like our Laravel model)
 ** create a Models/DB .cs file (LoginByUsernamePassword.cs) that is an object class for store procedure returning data
 ** create a Models/ .cs file (LoginViewModel.cs) which is a view model class (instead of ViewController?) attached to the target view
 ** create a Model/DB .cs file (db_coreloginContext.cs) that will override OnConfiguring to communicate with database engine, override OnModelCreating (instead of direct table query) with custom store procedure
-** 
-
+* MonoGame
+** Installation links:
+*** https://www.mono-project.com/download/stable/#download-lin
+*** https://www.mono-project.com/docs/getting-started/mono-basics/
+**** to test installed tools
+** .NET SDK is available for Ubuntu 18.04, installing lets us finally do the lechgu project below, (coz already tried without, and it doesnt work)
+*** https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-1804
+** Im trying this first, if it works, ill write more
+*** https://lechgu.github.io/posts/csharp-game-sat/
+** What have I learned so far:
+*** C sharp still sucks
+* 

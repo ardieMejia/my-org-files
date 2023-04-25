@@ -5,6 +5,8 @@
 *** Complete and more elegant way to cut strings into pieces, other than turning it into arrays first.
 ** https://stackabuse.com/substrings-in-bash/
 *** Some weird but useful ones of string manipulation (using pipe (|) and cut -> | cut)
+** https://stackoverflow.com/questions/13210880/replace-one-substring-for-another-string-in-shell-script
+*** String substitution/replacement. How come I only needed this recently? Maybe becoz I always use awk
 * Syntax (arrays)
 ** https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
 *** basic array syntax

@@ -22,6 +22,8 @@
 *** Despite all the confusing commands, the only thing you have to understand is this
 **** the only tool is required venv (or virtualenv in older Python)
 **** pip is just the Python installer (not important)
+** IMPORTANT: How to solve the opencv-python error of-- No module named 'skbuild'
+*** https://bobbyhadz.com/blog/python-no-module-named-skbuild
 * IDE, PyCharm (I really hate Python)
 ** [[https://www.jetbrains.com/pycharm/][I may have no choice but to install PyCharm, it probably works too well]]
 *** Maybe #1 reason I hate Python
@@ -43,4 +45,8 @@
 ** https://medium.com/quick-code/understanding-self-in-python-a3704319e5f0
 * Vector (PyGame related)
 ** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc..
-** 
+* Python variables:
+*** integer
+** float variables
+*** Python can store float numbers
+*** something about floats
