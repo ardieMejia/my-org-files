@@ -1,0 +1,32 @@
+* My first  YT im watching, a life-changer, hopefully
+** https://www.youtube.com/watch?v=GLSG_Wh_YWc
+* Installation links: (some missing here, and some given up in favour of real phone USB connection)
+** Installation
+*** https://docs.flutter.dev/get-started/install/linux
+** Virtual Device
+*** https://developer.android.com/studio/run/emulator-acceleration?utm_source=android-studio#vm-linux
+*** https://www.geeksforgeeks.org/how-to-run-a-flutter-app-on-android-emulator/
+**** Giving up
+*** https://stackoverflow.com/questions/49045393/message-flutter-run-no-connected-devices
+**** Solving the issues, but gave up anyway, too DAMN slow
+** Mostly repeats?
+*** https://www.freecodecamp.org/news/how-to-install-and-setup-flutter-on-ubuntu/
+* Some useful flutter or android studio related commands
+** https://stackoverflow.com/questions/52573901/flutter-command-line-emulator-device-not-found
+** https://stackoverflow.com/questions/6116724/how-to-run-or-debug-on-android-phone-instead-of-emulator
+*** Maybe just android studio, not super important
+** https://appmaking.com/run-flutter-apps-on-android-device/
+*** Flutter on a real device AND WIFI!!
+* Emacs!!:
+** just a Git repo:
+*** https://github.com/emacs-lsp/lsp-dart
+** Simple MELPA suggestion, but not really used?? (maybe). 2nd ones got suggestion
+*** https://emacs-lsp.github.io/lsp-mode/page/installation/
+*** https://melpa.org/#/lsp-dart
+** Good read maybe, got use-package and required-package config notes too
+*** https://morioh.com/p/534804dc8370
+*** https://morioh.com/p/fca11120389a
+**
+* Notes (learning):
+** That "Flutter tutorial for Beginners - Build iOS" YT video
+*** Stopped around hour 2:20

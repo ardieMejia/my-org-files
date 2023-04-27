@@ -1,0 +1,9 @@
+* Things that will not work (yet?):
+** Chordal pattern, like Chopins E minor thing
+** Major section that is sped up meant as an interruption
+** 1-to-1 chromatic displacement
+** AVOID introduction of theme, instead attempt an introduction of familiarity in later passages
+* Potential ideas:
+** Chopins idea of temporal balance. instead of changing tempo of accented notes, fill in (or remove) others as a balancer
+** May work but only for intro, instead of repeating those accented notes, change into a different point in the appreggio
+** Let us try our "snare" mimic experiment

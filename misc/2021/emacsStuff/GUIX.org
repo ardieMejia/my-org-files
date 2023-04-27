@@ -1,0 +1,2 @@
+* I need to read this someday:
+** https://guix.gnu.org/en/blog/2018/multi-dimensional-transactions-and-rollbacks-oh-my/

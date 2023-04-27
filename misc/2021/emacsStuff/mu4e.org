@@ -1,0 +1,74 @@
+* My config so far, far below
+* some useful links:
+** https://www.youtube.com/watch?v=yZRyEhi4y44
+** https://github.com/danielfleischer/mu4easy
+** multiple accounts! should try this one day:
+*** https://www.emacswiki.org/emacs/mu4e
+** http://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and-/
+* I eventually took the one from the mu4easy Github example, NOT from systemcrafters Github shownotes. It took me several hours to fix the mu4e and mbsync. As it keep creating new folders. Turns out, I was missing a slash(/) at the end of the Path option
+
+
+IMAPAccount gmail
+Host imap.gmail.com
+User wan.ardie.mejia@gmail.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.passwords/gmail_wan.ardie.mejia.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore gmail-local
+SubFolders Verbatim
+Path ~/Mail/Gmail_wanardiemejia/
+Inbox ~/Mail/Gmail_wanardiemejia/Inbox
+
+IMAPStore gmail-remote
+Account gmail
+
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:"INBOX"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Channel gmail-trash
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:"Trash"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Channel gmail-spam
+Far :gmail-remote:"[Gmail]/Spam"
+Near :gmail-local:"Spam"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Channel gmail-all
+Far :gmail-remote:"[Gmail]/All Mail"
+Near :gmail-local:"Archive"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Channel gmail-drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:"Drafts"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Channel gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:"Sent"
+CopyArrivalDate yes
+Create Both
+SyncState *
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-trash
+Channel gmail-all
+Channel gmail-spam
+Channel gmail-drafts
+Channel gmail-sent

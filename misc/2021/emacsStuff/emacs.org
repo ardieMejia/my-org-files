@@ -1,10 +1,29 @@
-* vertical vs horizontal split of windows in Emacs
-** Context:
-*** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
-**** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
-** No context:
-*** C-x 3
-**** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
+* Emacs UI
+** vertical vs horizontal split of windows in Emacs
+*** Context:
+**** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
+***** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
+*** No context:
+**** C-x 3
+***** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
+** Configuring the modeline
+*** Important variables, actually some are confusing. And it was easier for me to just edit Emacs modeline with simple functions, like combining (cond ..) & (major-mode)
+**** https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
+*** I used emojis from here
+**** https://unicode.org/emoji/charts/full-emoji-list.html
+*** I dont know what this is for
+**** https://www.emacswiki.org/emacs/modeline-region.el
+*** If you were testing modeline in a buffer, the command force-mode-line-update might be useful
+**** https://www.reddit.com/r/emacs/comments/euox3d/is_there_a_way_to_refreshupdate_the_modeline/
+*** Config examples:
+**** https://github.com/rougier/emacs-octicons
+**** https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
+***** I based my entire config on this one
+*** https://emacsdocs.org/docs/elisp/Emulating-Mode-Line
+**** Should probably check this site
+* Buffers, windows, etc
+** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
+*** C-x 4 c to open temporarily a buffer, maybe to indent or something
 * Loading subtlety, hooks, eval, yadayada
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
 *** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
@@ -32,6 +51,14 @@
 *** Lots of useful comments on use-package vs require. Most importantly, you learn that require is standard GNU Emacs since 1985. WOW! Library authors dont assume everyone has use-package, hence, many dont include it in installation instructions
 
 
+* Emacs Daemon
+** https://stuff-things.net/2014/12/16/working-with-emacsclient/
+** https://wikemacs.org/wiki/Emacs_server
+** Might be useful within Ubuntu 18.04 experience
+*** https://developer.gnome.org/documentation/tutorials/search-provider.html
+** My "buffer by-the-side update to reflect changes, like pdf for example" project
+*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
+**** Has lots of em, and very simple explanation
 * Keybinding
 ** Our init.el org-mode-map seems best
 *** with-eval-after-load & -mode-map
@@ -53,10 +80,10 @@
              (local-set-key (kbd "C-S-c C-, o k") 'ardie-open-kodland)))
 ** In the long term, once we understand, we should avoid -eval- & hooks (??)
 *** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
-**
 ** Lots of information
 *** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 **** Interestingly, C-c ? (where ? is any single character), is reserved for user & USERS alone. But most 3rd packages dont give a shit
+***** I actually personally use C-S-c coz Kaushal Modi is a weirdo. Nooo, just kidding, I sure hes an amazing person.
 **** Also, 2 keys that are reserved (remnants from ancient 80's keys), are Hyper & Super. Today, Super is "Windows key" & Hyper is "Application-Context"
 ***** These keys are also reserved, might be very useful
 **** Also, in "key lookup order", confusingly, Minor Mode comes before Local which also comes befor Global. (I tot Local overrides Global?)
@@ -72,15 +99,6 @@
 ** https://lucidmanager.org/productivity/using-emacs-image-dired/
 *** TODO!!!!!
 *** Very cool, imagine opening GIMP automaticallly from inside Emacs
-* READ and arrange !!
-**
-** https://stuff-things.net/2014/12/16/working-with-emacsclient/
-** https://wikemacs.org/wiki/Emacs_server
-** Might be useful within Ubuntu 18.04 experience
-*** https://developer.gnome.org/documentation/tutorials/search-provider.html
-** My "buffer by-the-side update to reflect changes, like pdf for example" project
-*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
-**** Has lots of em, and very simple explanation
 * folding, hide & other cool tricks
 ** Should start collecting it here!!
 * Looks, looks, looks:
@@ -89,8 +107,12 @@
 ** https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
 ** https://github.com/abo-abo/swiper/issues/568
 * YASsnippets:
-** Great beginner example:
+** Great beginner example, Im finally learning from this example:
 *** https://joaotavora.github.io/yasnippet/snippet-development.html
+** Great example too:
+*** https://joaotavora.github.io/yasnippet/snippet-reference.html
+** I finally know how setup config (dirs etc) properly
+*** https://joaotavora.github.io/yasnippet/snippet-organization.html
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 ** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 *** Need as input: --> filename pattern & regex text
@@ -125,6 +147,7 @@
 **** PRACTICE: using filter-return
 
 
+#+begin_src lisp
 ;; cool discovery, a way to hide non-used argument, now we pass willy-nilly
 (defun x-double (x &rest _what)
   (print
@@ -143,12 +166,14 @@
 
 (x-double 5)
 (say-hello 5)
+#+end_src
+
 
 
 **** PRACTICE: using filter-args
 
-
- ;; for some odd reason, adding more>1 argument produces errors, becoz filter-args focuses on arguments between A & B, we should forget what we feed to B (B is called first)
+#+begin_src emacs-lisp
+;; for some odd reason, adding more>1 argument produces errors, becoz filter-args focuses on arguments between A & B, we should forget what we feed to B (B is called first)
 
 (defun x-list (first)
   (mapcar '1+ '(2 4 6))
@@ -162,6 +187,13 @@
 
 ;; Also, dont understand exactly. Why does the number of arguments have no effect here?
 (say-hello 5 6 7)
+#+end_src
+
+
+
+
+
+
 
 
 
@@ -179,11 +211,16 @@
 ** Errors:
 *** https://discourse.doomemacs.org/t/common-errors-how-to-deal-with-them/58
 **** A bit useful, should read one day.
+** Datatypes, converting strings, etc..
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Comparison.html
+*** maybe a good website
+**** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
+*** So many cool things to try, like nyanmode, cute cat that browses with you.
+**** https://www.emacswiki.org/emacs/ModeLineConfiguration
 * Personal issues:
 ** Multi cursors trouble
 *** Sometimes multiple-cursors dont work in certain modes. I switch to a different mode (Eg: Python) and it works
-** https://github.com/pinard/poporg
-*** poporg - possibly a cool feature of editing small code blocks/comments in its own small popup buffer. But seems limited use in my case. I disabled loading in init.el. But you can try it someday
 * More cool stuff to re-arrange!!
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email
@@ -194,4 +231,4 @@
 *** https://github.com/abo-abo/hydra
 *** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
-*** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, we most save when we switch out, so attaching it to 'focus-out-hook)
+*** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
