@@ -6,14 +6,14 @@
 **** when creating the canvas, you have the option to replace white with '#........'
 **** the -separate is overloaded operator not requiring other operators (such as -channel, that of course affect this operator) that automatically separates image into 3 grayscale OR accepts 3 grayscale images.
 **** A common trick/operation is to -separate a single image into its channels, swap OR do something with it, and re-combine
-**** some operators (like -negate strangely enough) implies separation of channels, hence has no need for 
+**** some operators (like -negate strangely enough) implies separation of channels, hence has no need for
 **** When replacing colors, the -draw can be used for information gathering, which is rather unusual for 'convert' commands (We have only used 'identify' so far for info gathering)
-*** canvas creation: 
+*** canvas creation:
 ****         convert 'xc:Salmon[100x100!]'  canvas_salmon.gif
 **** interestingly, the syntax of xc:... is exactly the same as the one without quoes ''. Which means the quotes is simply a way to bring together all the long syntax
-**** 
+****
 *** Im having trouble understanding a more indirect mask, (like blend? or overlay? or multiply/screen), as well as the more literal masks. BELOW is a LITERAL mask:
-**** 
+****
       convert colorwheel.png \
           \( +clone  -fuzz 30000 -transparent blue \
              -channel RGB +level-colors white +channel \) \
@@ -33,12 +33,11 @@
 *** levelling colors:
 **** The -level operator basically works like the levelling color in Photoshop (as expected). It actually uses percentages (%), like this:
       convert  rose:  -level 0%,100%,2.0   rose_level_gamma_light.gif
-**** Now, moving on, we have -level-colors. This also stretches the color,turning our chosen extremes for the image (Eg: 25%-75%) to the 'black' and 'white' extremes. However, unlike our previous example which was more direct (%), we now use color names. In effect, the stretching (more extreme stretching) will favor the non-dominant channels, in turn removing the color range chosen. So a red-ish range, will produce a green-blue tint in the final image.  
-***** 
+**** Now, moving on, we have -level-colors. This also stretches the color,turning our chosen extremes for the image (Eg: 25%-75%) to the 'black' and 'white' extremes. However, unlike our previous example which was more direct (%), we now use color names. In effect, the stretching (more extreme stretching) will favor the non-dominant channels, in turn removing the color range chosen. So a red-ish range, will produce a green-blue tint in the final image.
+*****
         convert  test.png  +level-colors green,gold   levelc_grn-gold.png
-**** For the plus form, +level-colors, like our +level, we compress the color range into a new range. This behaves more intuitively, producing the tint as expected. 
+**** For the plus form, +level-colors, like our +level, we compress the color range into a new range. This behaves more intuitively, producing the tint as expected.
 * What I learnt from Imagemagick (MUST restructure all this later!!):
-** An edge detection produces an ugy negative output by default we always: -edge 1 -negate
 ** +repage is basically repaint. And imagemagick has a lot of repaint related options (maybe)
 * Animations:
 ** Combining 2 gif animations together
@@ -46,11 +45,31 @@
 **** Better write carefully about this later
 ** Optimize gif animations (re-write and research again)
 *** https://stackoverflow.com/questions/24819460/best-way-to-compress-animated-gifs-using-imagemagick-without-using-gifsicle
-** 
+**
 * miff/mpr (theoretically very cool)
 ** [[https://stackoverflow.com/questions/29736137/imagemagick-multiple-operations-in-single-invocation][best simple example]]
 *** My example that works
 convert -size 100x100 xc:white -gravity center -annotate +0+0 'testing' -size 30 miff:- | convert - \               ~/my-trash/moreMoreMore/practice
    -write mpr:piped  +delete \(  mpr:piped \) \( mpr:piped -fill red -draw 'color 0,0 reset' \) -compose multiply -composite output2.png
 ** [[https://stackoverflow.com/questions/52466697/can-miff-pipe-be-used-more-than-once-in-imagemagick][a bit confusing example, not sure what they were trying to do]]
-
+* Better rotate strategy (instead of our annoying fiverr text rotate experiment)
+** https://www.imagemagick.org/discourse-server/viewtopic.php?t=29752
+* Edge Detection links:
+** An edge detection produces an ugy negative output by default we always: -edge 1 -negate
+** https://blog.jiayu.co/2019/05/edge-detection-with-imagemagick/
+*** Edge detection with no preprocessing, no contrast enhancing etc
+*** works very well for lined cartoons, but not very well with realistic images.
+*** removing alpha beforehand (also mentioned in other sites), will also help with improving output
+** http://www.imagemagick.org/discourse-server/viewtopic.php?t=35230
+*** Not edge detection but will help prepare for mask, that will help remove background image for example. But this needs a contrast preparation
+** https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=25983
+*** Robust edge detection, we can even get coordinates of eventual line border of image
+** https://github.com/ImageMagick/ImageMagick/discussions/6280
+*** Not exactly edge detection, but a discussion you posted on Github
+*** combining blur and auto-level. cool way to remove detail. And combined morphology and masking, maybe endless possibilities
+*** Still not easy to do the, "auto-crop to photo" project.
+* Removing scattered spots:
+** https://imagemagick.org/discourse-server/viewtopic.php?t=18487
+* Misc:
+** DPI settings
+*** https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=18241

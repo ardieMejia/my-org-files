@@ -19,3 +19,8 @@ Since, approx, last year:
 ** Medication:
 *** Rifaximin NO
 *** Duloxetine
+** Randomize either:
+*** diet
+*** Rifaximin NO
+* Psychiatry
+** Alprazolam

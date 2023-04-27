@@ -7,3 +7,24 @@
 ** https://www.youtube.com/watch?v=1CK3WI46ns4
 *** "If you ever pause a movie frame, and you get an under-exposed picture, theres barely anything there. Which means most of the time, in a movie, your brain is interpreting everything (your brain is completing the picture)" (3:32:00)
 **** So much of art, is the audience interpreting everything. This makes art as a conversation, as a living thing, extremely difficult.
+** https://www.youtube.com/watch?v=9yCdQleLsO0
+*** "Art is hard, art is difficult. Its a struggle of so many things other than skill, other than the HOW you make the art. And I feel so few people quit becoz of (their lack of) skill. Art kills people. When people hang up their hats, that they just cant bear it anymore, its not becoz of problems with their skill. Its problems with everything else, their mental health, what they expect of themselves, what people expect of them, what people need of them. Art in the small sense, is losing its value in the modern world. In todays world, you can barely get anyone to pay for it, everyone just expects it for free, or at least cheap. Thats hard fact on the people who have to do it, on the people who are going to do it no matter what. Unfortunately, its a feedback loop, one breeds the other -> You HAVE to do it, so you do it for less pay, a group of people (artists) eventually do that, social status goes down, and it produces a feeling that its not valuable. And yet, art itself as not changed. Art itself is unblemished and untouched. It is only the conditions around it that has changed." (23:30)
+** https://www.youtube.com/watch?v=LqOhJXOApGI
+*** "Whats your opinion on the idea that AI-generated works is not art. And if you believe that, whats your stance. I actually dont think its super important whether its art or not. Coz the label of art is handed out subjectively. I think this conversation needs to be argued on something more substantive. I personally have no emotional walls on whether people label it as art, coz everybody's definition of art is different. Its not about what art is and what isnt art. The real argument is about unethical and probably illegal data acquisition"(28:40)
+* Why Its Rude to Suck at WarCraft:
+** https://www.youtube.com/watch?v=BKP1I7IocYU
+*** Instrumental play vs free play
+*** "Success is relative and socially defined" (9:11)
+*** paratext? - (19:18)
+**** Gerard Genette - a book contains text (primary text). And paratext, stuff that is not primary text but completes the book (Eg: Title, Cover Artwork, Foreword, TOC)
+* Also another art:
+** https://www.youtube.com/watch?v=BOp5DYZZRtc
+*** Sometimes, a piece of art is so good, so beautiful, that its most appreciated in silence. Everyone who has been to a museum, knows what Im talking about. But that doesnt mean millions of people dont wanna see it. It just means that this type of content/art/art-content generally generates a different type of response. (6:28)
+* Top marginal tax rate (write about it):
+** https://www.youtube.com/watch?v=UwJH5kyOOQU
+* Fake vs real magic.
+** https://www.youtube.com/watch?v=omipHCbh_v8
+*** "Over dinner, we were talking about the difference between real and fake art. Theres this paradox, that art seems to be incredibly valuable. And yet, that value is not located in the object itself. A forgery is literally an exact copy of that masterpiece. And the real masterpiece, even if it suffers some damage, is still incredibly valuable. What worries me about the way you value your enterprise, or at least the way you seem to be linking our rationale/scientific project with religion is right here. Magic is actually a better analogy. Paradoxically, fake magic is real magic, and fake magic is real magic. The only real magic in the world produced by magicians is the fake magic. Someone like Derren Brown will tell you, no I cant read minds, its all fake. But the surprise is that even when knowing its fake (aka the method revealed), your mind is still boggled by how the illusion is acheived ("how can the human mind be tricked by something so simple?!"). Sometimes the sheer effectiveness & simplicity of the method is the only real magic. Whereas the fake magicians are the ones pretending to be real, or not acknowledging the real mechanics behind what makes it effective. What worries me is the way in which you describe the power of myths and stories, is I think the leverage or utility of these stories can be had, while acknowledging the stories behind it." (0:14)
+* I think literate programming is a bad idea.
+** https://www.youtube.com/watch?v=SzA2YODtgK4
+*** My intuition proved correct once again. This time about literate programming in org-mode. "I think literate programming is a bad idea"(25:40)

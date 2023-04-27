@@ -1,2 +1,7 @@
 * sudo dpkg -l *ogre*
 ** Need to rewrite this, check for existing libraries
+* for pulseaudio settings
+** after installing pulseaudio-equalizer
+
+qpaeq # ========== to change eq settings
+pulseaudio --kill && pulseaudio --start # ========== to restart and read settings
