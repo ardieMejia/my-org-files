@@ -1,0 +1,48 @@
+* Pathway
+** Making a map (explort as file)
+*** https://www.qgistutorials.com/en/docs/3/making_a_map.html
+** Open lay as a table, and perform expression on that single table
+*** https://www.qgistutorials.com/en/docs/3/working_with_attributes.html
+** Importing a TSV (first time) or CSV file as a new layer
+*** https://www.qgistutorials.com/en/docs/3/importing_spreadsheets_csv.html
+** 
+* Install vs distributable, this is annoying. (If you dont know which version, just install VirtualBox, and it will complain for you)
+** https://www.debugpoint.com/virtualbox-needs-microsoft-visual-c/
+* Install Virtualbox  on Windows 11
+** https://www.guidingtech.com/how-to-install-virtualbox-on-windows/
+* Download Lubuntu
+** https://lubuntu.me/downloads/
+** Jammy Jellyfish
+* Install Lubuntu
+* Things to do after fresh install
+** https://averagelinuxuser.com/ubuntu-22-04-after_install
+*** Menu -> Additional drivers -> wait while it is searching for additional drivers -> Install recommended proprietary drivers
+*** Install the binary version of firefox
+*** install codecs and Microsoft fonts
+**** sudo apt install ubuntu-restricted-extras
+* Run a Python script from inside Lubuntu. And open  that same file in Windows
+* Install Emacs
+*
+* ==================================================
+* CANCELED Try the Windows version. Install a better version of Emacs. (26)
+** http://sw-gis.wikidot.com/emacs
+** rename old folder to another. Test if you can still run your codes
+** Install another Emacs rename it to the latest version too
+** Change the config setting to to point to your new Emacs and test your new Emacs
+** Try running first.
+** Check out these links
+*** http://sw-gis.wikidot.com/emacs
+*** https://github.com/roger-realworld/smallworld
+*** http://sw-gis.wikidot.com/tech-emacs
+** ?? ========== how to we continue using the new Emacs for our GIS files ========== ???
+**
+* ==================================================
+* emacs 28 under Smallworld
+** Add a new conditional to test for Emacs version
+*** https://emacs.stackexchange.com/questions/35335/how-to-test-for-specific-emacs-version-or-newer
+** move all code so you can continue playing with Vertico, Consult & Marganilia
+* Lubuntu Emacs
+** install Vertico, Marganilia, Consult
+** open a file in Emacs, write, & save
+** open in Python edit and save
+* Copy your .org repo a shared location in Windows. (this will take quite some time)

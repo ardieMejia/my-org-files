@@ -1,0 +1,34 @@
+* Personal stuff I installed
+** smallworld software so boring coz its closed source
+** Emacs 23, so boring coz its so old
+** VirtualBox, Lubuntu.etc...
+** PowerToys for keyboard shortcuts
+** Git
+* (Official) Stuff I did so far.
+** we downloaded 3 files
+** Emacs, emacs.rar (??), EO installer
+** Moved it to E drive
+** moved Emacs and extract at same level as SmallWorld
+** We also added some config to gis_aliases under core/config
+
+emacs:
+EMACSROOT    = E:\SmallWorld\emacs-28.2
+title    = GNU Emacs 28.2
+program    = %EMACSROOT%\bin\runemacs.exe
+icon_file    = %SW_WHICH_GIS_ALIAS_PARENT_DIR%\bin\runemacs.exe
+log_file    = nul:
+product    = emacs
+EMACSLOADPATH    = %EMACSROOT%\share\emacs\28.2\lisp; %EMACSROOT%\share\emacs\site-lisp
+PATH    = %PATH%;%EMACSROOT%\bin
+HOME    = %HOMEDRIVE%%HOMEPATH%
+
+
+** copy license -> message.ds under smallworld_registry
+** Change file properties of EO_Demo (target, arguments like -a)
+
+E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_aliases" -e "E:\SmallWorld\core\config\environment.bat" emacs
+
+
+** Run config program under core
+** Had to add Everyone as new group at parent directory, before anything happened. Finally clicking "Show Licenses" finally worked
+*
