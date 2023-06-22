@@ -46,3 +46,5 @@
 ** open a file in Emacs, write, & save
 ** open in Python edit and save
 * Copy your .org repo a shared location in Windows. (this will take quite some time)
+** Its ok Im trying a pull (fetch and merge) strategy. Maybe I will rename my "main" branch later to "Home Ubuntu" or something
+** 

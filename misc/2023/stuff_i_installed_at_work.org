@@ -31,4 +31,41 @@ E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_
 
 ** Run config program under core
 ** Had to add Everyone as new group at parent directory, before anything happened. Finally clicking "Show Licenses" finally worked
-*
+* Learning progress (user)
+** [%HOME%] runalias eo_open -login root
+** We learned how to create a map, resize that map area & add a legend
+** We learned how to update the state of the map (so it shows in green instead of red)
+** There projections we can change, but we always us WGS projection, standard
+** we learnt using the app manager (I dont remember what we did with the administration suite)
+** "How to get help" will open the official help website
+** ==================================================
+** we learnt about object types, chains (line), points (raster?), area (polygon). Please fix this one.
+** we can refresh the whole database, or the whole map
+** Geometry
+*** joint,valve,roundabout = point
+*** cable,pipeline,road = line
+*** substation,duct,park = area
+*** name,length = annotation
+*** background map, scanned image, surface model = raster
+** File -> new project and design 
+*** after creating details, always remember to say "no" to checking for overlap
+** File -> Browser design -> "Design Browser"
+*** we clear filter & and "run query"n to list all designs
+** File -> New Checkpoint
+*** When we go to app manager, and open suite admin, we can see our named version
+*** I dont understand this part at all
+** File -> State Model Viewer -> "shows the possible state paths"
+** ==================================================
+** We about design
+*** DM_top is the upmost layer/object
+*** When we first open we are presented with DM_top
+*** We then create a new design
+** We learnt the object editor
+*** We learnt insert, update and delete a trail geometry
+*** By adding a new trail, we can lock, highlight, and move-to. To navigate back to that point after some journey
+*** There are mandatory fields
+*** We forgot we can actually clear trail by right-clicking
+* Wishlist:
+** https://stackoverflow.com/questions/42566799/how-to-bring-focus-to-window-by-process-name
+*** Basically write a Powershell script that switches focus to another app. Better idea is down below, to use Window name, instead of process name
+*** 
