@@ -65,6 +65,20 @@ E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_
 *** By adding a new trail, we can lock, highlight, and move-to. To navigate back to that point after some journey
 *** There are mandatory fields
 *** We forgot we can actually clear trail by right-clicking
+** Object editor, we filed mandatory fields after creating trail (area), must fill extent, tick mark. Remark to update
+** version management
+*** We create a new checkpoint from the window
+*** It has numbering naming system in the database, not our chosen name
+***** Good names like, "before delete", "before update"
+***** New alternative creates child checkpoints
+***** Rollback and commit. rollback = undo to last changes. commit = save
+*****
+** ==================================================
+** Collection -> Field
+** UG OH MV HV lV
+** visibility, selectibility, hitability
+** copying properties for insertion?
+*** select existing cable, create trail, select "geometry from trail", click "insert"
 * Wishlist:
 ** https://stackoverflow.com/questions/42566799/how-to-bring-focus-to-window-by-process-name
 *** Basically write a Powershell script that switches focus to another app. Better idea is down below, to use Window name, instead of process name

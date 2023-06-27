@@ -232,3 +232,16 @@
 *** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
 *** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
+* From Redplanet (rearrange later):
+** https://lists.gnu.org/archive/html/help-gnu-emacs/2003-04/msg00767.html
+*** This code adds directories and its sub-directories to load-path. The reason why we dont do this is probably becoz load-path can get excessively long, and Emacs users might want to selectively disable some features.
+
+(let* ((dir (expand-file-name "~/emacs"))
+       (default-directory dir))
+  (when (file-directory-p dir)
+    (add-to-list 'load-path dir)
+    (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+        (normal-top-level-add-subdirs-to-load-path))))
+
+
+
