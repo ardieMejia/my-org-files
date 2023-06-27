@@ -221,6 +221,40 @@
 * Personal issues:
 ** Multi cursors trouble
 *** Sometimes multiple-cursors dont work in certain modes. I switch to a different mode (Eg: Python) and it works
+* Wishlist
+** https://github.com/oantolin/embark
+*** Embark makes it easy to run commands depending on where your point (cursor?) is
+*** Embark is like a keyboard based version of right-click contextual menu (pop-up)
+*** Examples:
+**** For files you can delete, copy, rename
+**** For buffers, you can kill or switch
+* Exporting to PDFs:
+** https://www.geneatcg.com/emacs-org-mode-export-to-pdf/
+*** No installation instructions
+*** Has a starter code, to put inside init.el. (LOTS of add-to-list to org-latex-classes & org-latex-pdf-process)
+*** From this site, you DONT NEED to learn latex syntax, the starter code does that
+*** Simple use code, and export
+** https://medium.com/@sachinsamurai/setting-up-latex-on-doom-emacs-for-beginners-824358463a42
+*** This one assumes you want to learn Latex, oops
+*** Though it points to another site where you install proper Latex
+** https://www.tug.org/texlive/
+*** exporting pDf through latex, can produce LOTS of errors. If all fails, always better to install the FULL latex, and from the original TUG source. (7GB!!)
+** Unsure
+***
+Im guessing, form what limited read,
+I have to install latex, which is required, to export to pdf.
+But which of these 2?
+latexmk
+of
+pdflatex
+
+From this site, its pdflatex:
+https://linuxconfig.org/how-to-install-latex-on-ubuntu-20-04-focal-fossa-linux
+From this site, its latexmk:
+https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
+** https://lists.gnu.org/archive/html/help-guix/2021-03/msg00101.html
+*** Someone using GUIX to install both Emacs (done) & latex. And then using it to export to PDF
+
 * More cool stuff to re-arrange!!
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email
@@ -242,6 +276,16 @@
     (add-to-list 'load-path dir)
     (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
         (normal-top-level-add-subdirs-to-load-path))))
+* Rearrange:
+** Learning common lisp and eLisp, eLisp doesnt have the stream function, they have insert-file-contents
 
+#+begin_src emacs-lisp
 
+(defun ardie-temp ()
+  (interactive)
+  (insert-file-contents "~/my-trash/delete/input.txt" "what")
+  )
 
+(global-set-key (kbd "C-S-z") 'ardie-temp)
+
+#+end_src
