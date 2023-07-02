@@ -290,7 +290,8 @@ https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
 (global-set-key (kbd "C-S-z") 'ardie-temp)
 
 #+end_src
-
+** The reason why Emacs uses an alist
+*** https://emacs.stackexchange.com/questions/3397/how-to-replace-an-element-of-an-alist
 ** This one is DEFINITELY relevant to our GIS system
 *** https://groups.io/g/sw-gis/topic/install_emacs_for_smallworld/75042662?p=
 * We may need to read and rearrange in a separate file called EmacsWindows.org:
