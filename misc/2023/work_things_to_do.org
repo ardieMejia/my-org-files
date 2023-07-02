@@ -37,7 +37,7 @@
 ** ?? ========== how to we continue using the new Emacs for our GIS files ========== ???
 **
 * ==================================================
-* emacs 28 under Smallworld
+* emacs 23/28 under Smallworld
 ** Add a new conditional to test for Emacs version
 *** https://emacs.stackexchange.com/questions/35335/how-to-test-for-specific-emacs-version-or-newer
 ** move all code so you can continue playing with Vertico, Consult & Marganilia
@@ -45,6 +45,15 @@
 ** install Vertico, Marganilia, Consult
 ** open a file in Emacs, write, & save
 ** open in Python edit and save
-* Copy your .org repo a shared location in Windows. (this will take quite some time)
-** Its ok Im trying a pull (fetch and merge) strategy. Maybe I will rename my "main" branch later to "Home Ubuntu" or something
-** 
+* rgrep progress, interesting:
+** We tried using grep from Git bash, doesnt work
+** We installed Cygwin (base package only), added to Emacs's exec-path. Didnt work
+** We explored code in grep.el, our progress in eLisp worth it. We discovered this. Pretty cool that it works. 
+
+
+
+
+
+
+
+

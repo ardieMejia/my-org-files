@@ -1,3 +1,4 @@
+
 * Emacs UI
 ** vertical vs horizontal split of windows in Emacs
 *** Context:
@@ -289,3 +290,11 @@ https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
 (global-set-key (kbd "C-S-z") 'ardie-temp)
 
 #+end_src
+
+** This one is DEFINITELY relevant to our GIS system
+*** https://groups.io/g/sw-gis/topic/install_emacs_for_smallworld/75042662?p=
+* We may need to read and rearrange in a separate file called EmacsWindows.org:
+** https://www.emacswiki.org/emacs/CategoryWThirtyTwo
+** There are many ports of GNU tools available
+*** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
+** But we're interested only in one. Cygwin. Apparently, its also the most popular

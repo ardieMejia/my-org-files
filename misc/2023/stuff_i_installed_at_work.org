@@ -69,17 +69,21 @@ E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_
 ** version management
 *** We create a new checkpoint from the window
 *** It has numbering naming system in the database, not our chosen name
-***** Good names like, "before delete", "before update"
+***** Good names like, "before_delete", "before_update"
 ***** New alternative creates child checkpoints
 ***** Rollback and commit. rollback = undo to last changes. commit = save
-*****
 ** ==================================================
-** Collection -> Field
+** dataset schema -> Collection (table) (Eg cable) -> Field (Records)
 ** UG OH MV HV lV
 ** visibility, selectibility, hitability
 ** copying properties for insertion?
 *** select existing cable, create trail, select "geometry from trail", click "insert"
+** Everytime, create new design, theres PLAN_*** in versiona management
 * Wishlist:
 ** https://stackoverflow.com/questions/42566799/how-to-bring-focus-to-window-by-process-name
 *** Basically write a Powershell script that switches focus to another app. Better idea is down below, to use Window name, instead of process name
-*** 
+* Rearrange:
+** We need to rewrite inside GIMP.org or photoshop.org or ImageMagick.org or something
+*** https://www.gimpusers.com/forums/gimp-user/3403-writing-values-to-a-file-from-within-gimp
+** We need to recheck the code and write this somewhere in Emacs.org or something. But not sure if its eLisp or commonLisp
+*** https://stackoverflow.com/questions/9495376/how-to-create-and-write-into-text-file-in-lisp
