@@ -1,0 +1,30 @@
+
+
+
+* What did we do today:
+** I tried GIMP script-fu for the first time
+** The step involved:
+*** Add a new folder path to script manage through Preferences -> Scripts
+*** Create a .scm file
+*** Create an empty function, and click "refresh scripts" under Filters -> Script-Fu
+*** Create a new function using define
+*** register function by using script-fu-register
+*** So far, only the (defining) function statement and only the assigning variables are different. Otherwise, logically consistent with eLisp
+*** We created a single function called script-fu-my-text-box
+*** The overall function content is wrapped inside let*
+*** The variables are mostly -> image sizes, gimp-image-new, gimp-layer-new, gimp-image-insert-layer, setting FG and BG color, fill a drawable (channel/layers/etc) with a fill type.
+*** Our main goal is creating a text box automatically. Due to this being functional, some elements is rather couter-intuitive. For example, gimp-text-fontname gets and creates a text box from user selections. But we also do a (myText (car (gimp-text-fontname))), which also extracts the text form a field box. So embedding a function also executes it. This is rather strange coming from your old background. But it makes sense, coz it means we can just extract values by forever embedding functions in several statements
+* Lets try some stuff
+** Extract existing image properties into our script, and using that same property to create a textbos of that size
+** Extract a list from an evaluated function, before assigning to each different variables
+*** Done: we have an append within a set!
+** 
+* Common beginners mistake
+** Noticeable is that due to logn code, there are no errors, yet nothing happens, we simply forgot to gimp-display-new
+** (append) by itself will not work, we need (set!)
+** We apparently dont need to attach layer to image
+* Rearrage:
+** My first external link where I learnt gimp-file-load
+** It also has a save image gimp-file-save
+** http://www.adp-gmbh.ch/misc/tools/script_fu/ex_09.html
+

@@ -1,0 +1,21 @@
+* Im not used to grep, coz never had the need to search a SINGLE text project-wise. And searching recursively by conventional "turning on" optione produces lots of confusion. None of the online tips/tricks help for Cygwin version of grep, so when recurse use this link:
+** https://superuser.com/questions/666577/grep-does-not-recurse-for-files-with-a-specific-extension
+*** Basically, when searching name ardie, our intuition tells us this makes sense:
+
+grep -r ardie  *.c
+
+*** But it actually means: from the current directory, search all directories that match *.c then recursively search pattern ardie
+*** So we should do this, instead.
+
+grep --include \*.c -r ardie .
+
+*** Which means: from this directory, search all subdirectories, then search all files matching *.c for the pattern ardie
+
+*** BUt then again, that also doesnt work, this works under grep
+
+*** The last guy nailed the issue, saying cygwin grep, the -r doesnt behave properly
+
+
+
+"e:/cygwin/bin/grep.exe oo -r  . --include \*org"  
+
