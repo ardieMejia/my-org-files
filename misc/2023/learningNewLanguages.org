@@ -1,0 +1,46 @@
+* Part 1:
+** Setting up your environment
+* Part 2:
+** Variables and datatypes
+* Part 3:
+** Lists
+* Part 4:
+** Working with lists
+* Part 5:
+** Dictionary
+* Part 6:
+** Working with dictionary
+* Part 7:
+** If-Else
+* Part 8:
+** User Input and While Loops
+
+* Part 9
+
+** Functions
+
+*** Basic arguments
+
+
+* Part 10
+
+** Classes
+
+
+*** __init__()
+
+
+What is __init__()
+
+Its a "magical" function that is called automatically everytime you create an object
+
+
+
+*** self.
+
+
+What is self.
+
+Put it in front of a variable, it becomes an attribute. The magic here is that it is attached to every object created. Example: John, Ahmad, Zhee all have a self.name. (self. refers to themselves).
+
+We dont think about it too much, basically its like a normal variable, except its special, coz its different depending on the object you creata (each new person, each new car, etc....)

@@ -1,0 +1,31 @@
+* Since last week we discovered GeoPandas, there is just FAR too much information already to consider.
+* The nature of learning scientific Python is different from your average programming fun
+* You have to understand more about the package itself, but more so about the data structure itself (boring)
+* These are about Panda Dataframes (glorified arrays)
+** https://realpython.com/pandas-dataframe/
+
+#+begin_src python
+
+data = {
+    'name': ['Xavier', 'Ann', 'Jana', 'Yi', 'Robin', 'Amal', 'Nori'],
+    'city': ['Mexico City', 'Toronto', 'Prague', 'Shanghai',
+             'Manchester', 'Cairo', 'Osaka'],
+    'age': [41, 28, 33, 34, 38, 31, 37],
+    'py-score': [88.0, 79.0, 81.0, 80.0, 68.0, 61.0, 84.0]
+}
+
+
+#+end_src
+
+** The key of this associated array becomes the column header/labels. Keep this intuition handy
+*
+** ==================================================
+** pandas.Series are just the columns (or even row) you extracted from data above, such as /data.city/. Misleading a bit the panda.series
+** You can also get the name of a specific item, using the number.
+
+#+begin_quote
+cities[2]
+>>> Toronto
+#+end_quote
+
+**** The number gets created by Panda as a column

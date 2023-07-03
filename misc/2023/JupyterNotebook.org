@@ -1,0 +1,80 @@
+* We may decide to change either the name or move this inside Python.org entirely
+* Setting up environment (Miniconda, Jupyter, )
+** bash Miniconda3-latest-Linux-x86_64.sh
+*** https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
+*** Download it from this link
+** To update conda:
+*** conda update conda
+** (Options): Update base for Anaconda (maybe not Miniconda, but you can try):
+*** conda config --add channels conda-forge
+**** conda-forge -> the community repo for conda. Since scientific packages are often prone to problems
+*** https://faisalmalikwp.medium.com/install-and-configure-jupyter-lab-using-miniconda-on-ubuntu-18-04-b7abd3f411a8
+** Create environment:
+*** https://edcarp.github.io/introduction-to-conda-for-data-scientists/02-working-with-environments/index.html
+*** Avoid installing into base (They call default - base)
+*** $ conda create --name python3-env python
+**** Best practice to name your project with -env at the back
+**** Unlike venv, you need to include your python of choice (lates by default). Another Eg:
+*** https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands
+**** Official doc, very thorough
+** Install Jupyter
+*** conda install jupyter
+**** https://cs205uiuc.github.io/guidebook/resources/python-miniconda.html
+** Install JupyterLab (Improved Jupyter with full IDE)
+*** conda install jupyterlab -y
+**** https://faisalmalikwp.medium.com/install-and-configure-jupyter-lab-using-miniconda-on-ubuntu-18-04-b7abd3f411a8
+*** config for security and ease
+***** jupyter notebook --generate-config
+***** Generate password with code for the config
+
+#+begin_src python
+
+from notebook.auth import passwd
+passwd('[your-password]')
+quit()
+
+#+end_src
+
+***** Inside ~/.jupyter/jupyter_notebook_config.py, add:
+
+#+begin_src python
+
+c.NotebookApp.ip = '*'
+c.NotebookApp.password = u'[sha1:hashed-password]'
+c.NotebookApp.port = 8888
+c.NotebookApp.open_browser = False
+
+# ----- insert password into hashed-password
+# ----- u' stands for "read this as unicode"
+# ----- setting open_browser to True, is better on Desktop
+#+end_src
+
+***** Worth a try if you want, to create a valid SSL certificate. But its self signed, so your browser might consider it. However for free, one can use https://letsencrypt.org/getting-started/
+
+mkdir certs
+cd certs
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout [key-file].key -out [cert-file].pem
+cd ~
+[text-editor-command-call] ~/.jupyter/jupyter_notebook_config.py
+
+****** add these lines to your config. You can change the location of cert if you want
+
+c.NotebookApp.certfile = '/home/[username]/certs/[cert-name].pem'
+c.NotebookApp.keyfile = '/home/[username]/certs/[key-name].key'
+*** Run "jupyter lab" (& check localhost:8888, and can change the port if ud like)
+** Hello World in Jupyter Notebook
+*** https://www.dataquest.io/blog/jupyter-notebook-tutorial/
+** Machine Learning with Iris (flowers) dataset
+*** https://builtin.com/data-science/unsupervised-learning-python
+* Emacs Ipython Notebook (EIN)
+** https://github.com/millejoh/emacs-ipython-notebook
+** Apparently, still being managed 2 months ago at least. So might be worth a try.
+* Tutorials:
+** Normalizing Python datasets
+*** https://deepchecks.com/question/how-to-normalize-data-in-python/
+* Misc:
+** https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/miniconda.html
+** https://towardsdatascience.com/5-typical-beginner-mistakes-in-machine-learning-3544bd4109b
+** https://pythonprogramming.net/labeling-data-machine-learning/
+** https://www.activestate.com/resources/quick-reads/how-to-label-data-for-machine-learning-in-python/
+** https://towardsdatascience.com/3-python-packages-for-automatic-dataset-labeling-process-3fb1d898db5b
