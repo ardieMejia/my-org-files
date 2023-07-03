@@ -1,3 +1,4 @@
 * I need to write coz its been 2 months, and im already forgetting so many commands. And my body pain returning is not helping
 * A reminder of my init.el, how I push mu own changes, copied from Kaushal Modi's config
 ** git push my-emacs-config-km main
+* When your problems revolve around merges from multiple users/devices/etc.., that means the problem revolves around the file level. Aka, mostly solving file edit conflicts
