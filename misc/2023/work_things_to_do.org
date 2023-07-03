@@ -5,7 +5,7 @@
 *** https://www.qgistutorials.com/en/docs/3/working_with_attributes.html
 ** Importing a TSV (first time) or CSV file as a new layer
 *** https://www.qgistutorials.com/en/docs/3/importing_spreadsheets_csv.html
-** 
+**
 * Install vs distributable, this is annoying. (If you dont know which version, just install VirtualBox, and it will complain for you)
 ** https://www.debugpoint.com/virtualbox-needs-microsoft-visual-c/
 * Install Virtualbox  on Windows 11
@@ -35,7 +35,6 @@
 *** https://github.com/roger-realworld/smallworld
 *** http://sw-gis.wikidot.com/tech-emacs
 ** ?? ========== how to we continue using the new Emacs for our GIS files ========== ???
-**
 * ==================================================
 * emacs 23/28 under Smallworld
 ** Add a new conditional to test for Emacs version
@@ -48,12 +47,6 @@
 * rgrep progress, interesting:
 ** We tried using grep from Git bash, doesnt work
 ** We installed Cygwin (base package only), added to Emacs's exec-path. Didnt work
-** We explored code in grep.el, our progress in eLisp worth it. We discovered this. Pretty cool that it works. 
-
-
-
-
-
-
-
-
+** We explored code in grep.el, our progress in eLisp worth it. We discovered this. Pretty cool that it works.
+* Ag, if we have a bigger project, we will use ag coz it uses .gitignore, which means its faster
+* https://github.com/k-takata/the_silver_searcher-win32
