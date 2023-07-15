@@ -1,3 +1,5 @@
+#+OPTIONS: toc:nil
+
 * Personal stuff I installed
 ** smallworld software so boring coz its closed source
 ** Emacs 23, so boring coz its so old
@@ -11,6 +13,8 @@
 ** moved Emacs and extract at same level as SmallWorld
 ** We also added some config to gis_aliases under core/config
 
+#+begin_quote
+
 emacs:
 EMACSROOT    = E:\SmallWorld\emacs-28.2
 title    = GNU Emacs 28.2
@@ -22,6 +26,7 @@ EMACSLOADPATH    = %EMACSROOT%\share\emacs\28.2\lisp; %EMACSROOT%\share\emacs\si
 PATH    = %PATH%;%EMACSROOT%\bin
 HOME    = %HOMEDRIVE%%HOMEPATH%
 
+#+end_quote
 
 ** copy license -> message.ds under smallworld_registry
 ** Change file properties of EO_Demo (target, arguments like -a)
@@ -87,3 +92,708 @@ E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_
 *** https://www.gimpusers.com/forums/gimp-user/3403-writing-values-to-a-file-from-within-gimp
 ** We need to recheck the code and write this somewhere in Emacs.org or something. But not sure if its eLisp or commonLisp
 *** https://stackoverflow.com/questions/9495376/how-to-create-and-write-into-text-file-in-lisp
+* Day1:
+** gis_aliases under electric_office/config/gis_aliases, we can set 
+** running core/config will start server
+*** it is a 2 way communication
+*** swmfs (data store server ) sits between DB and app (it is a 2 way communication)
+*** supports real life update from mobile
+*** from web, they will publish wms link
+**** They cal it WMS 
+**** https://enterprise.arcgis.com/en/server/latest/publish-services/linux/wms-services.htm
+*** 
+** managing SOC
+*** run manage_soc()
+*** under electric_dm, we open GIS, -> right click properties -> we click GIS -> ds -> files -> 1
+*** 
+** Based on the business process, when we create plans, it either creates for all 3 datasets (GIS, electric, etc..)
+** 
+*** Digitization
+*** QAC
+**** We have several routines
+*** approval
+**** 
+*** ready for posting
+*** posted - once posted to DM_TOP, we have a scheduler that syncs with WORKING_TOP
+** Smallworld Framework Arch
+*** We have classes for example for each actions, plugins, GUI framework & PLugin Framework
+*** We need to add the changes to XML, before we see the changes?
+** When creating GUI elements, like an option under a menu bar, 2 places need it defined:
+*** E:\SmallWorld\electric_office\modules\application_modules\sweo_base_user_application\resources\base\data
+*** Under this folder, config.xml registers the plugin, GUI.xml registers the menu bar
+** Example commands:
+*** print(smallworld_product.applications)
+this will display
+sweo_dm_admin_application(sweo_dm_admin_application) 
+sweo_base_user_application(sweo_dm_user) 
+*** command basically shows all applications under product
+*** class browser get be opened using F3-F3
+*** IN searches specific class (make sure its <loc>)
+**** methods
+**** classes
+**** pragma flags
+**** inheritance options
+**** override options
+*** Tab switch between searching for classes or methods
+*** "/" clears the string
+*** F3-<down> expands methods
+*** F3-<up> contracts methods
+* Day 2:
+** you create a class using def_slotted_exemplar
+print_heirarchy
+print_ancestry
+
+debug_print()
+
+** Read and understand!!
+*** class name
+*** inheritance
+*** local methods
+*** inheritance methods
+*** slots
+*** what do object slot points to??
+*** how to objects related to each other??
+** More commands to check
+write()
+print()
+show()
+** key  (in key-value pair) and symbol are the same thing
+** you can have 2 of the same symbols in a collectionq
+** You can also enquire class_name on any variable, coz variable are objects!!
+var1 << 234
+var1.class_name
+propert_list.new_with(:hello, "123", :hello, "567")
+** apropos needs a bracket and ""
+var1.apropos("")
+** _block and _endblock is basically lambda (anonymous function) in lisp
+** Like this
+_block
+		_local a << "123"
+		_local b << "456"
+	_endblock
+** an actual function
+
+test << _proc()
+       	       _global haha
+	       haha << 345
+		_local a << "rty"
+		_local b << "tyu"
+	_endproc
+** Dynamic variables
+test2 << _proc()
+       	     	_dynamic !var1! << "spiderman"
+		write(!var1!)
+_endproc
+
+==========
+
+test3 << _proc()
+       	     	_dynamic !var1! << "nothing"
+		test2()
+		write(!var1!)
+
+========== for unset variables
+
+_if var2 _is _unset
+       _then
+		var2 << 345
+	_endif
+** loops
+*** for loops
+sv << {1,2,3,4,5,6}
+_for i _over sv.fast_elements()
+       _loop
+		write(i)
+	_endloop
+*** for loops with range()
+*** loop can have a name!!
+*** In one example, a function (procedure) can have a different naming, but checking with class_name produces "global variable". So it may refer to return value
+*** only hash tables behave like this, occupying the same memory address
+
+ht << hash_table.new()
+ht2 << ht
+*** magik doesnt need format directive like lisp (%s)
+** _pragma is to define class accessibility (restricted, basic, etc...)
+** def_slotted_exemplar is to define a class
+** remex is to remove class definitions before we recreate and recompile
+** Ehan
+*** representation in .shp files
+**** polygon/area
+**** line/chain
+**** point
+**** text/label/annotation
+*** vhs
+**** Related to display scale (some objects hidden or showed). Visibility, HIttability, Selectability
+**** From admin -> ACE configuration -> object configuration
+** Common beginner mistakes
+*** Forgetting () after fast_elements
+*** when create method for class (_pragma n then _method), putting  brackets dont matter, but 
+*** putting () brackets after certain properties like size 
+*** misunderstanding that cable_segment is actually a table (collection)
+*** when getting collections from databases, putting [] brackets and () in the wrong places (need to know which is a method and which is not)
+**** Like this
+#+begin_src magik
+  gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].field(:source_data)
+#+end_src
+**** Notice the collections[] is the table, whereas field is a function
+*** When searching through plugins. the real name inside (). like this
+a dm_construction_pack_plugin(construction_pack)
+**** construction_pack is the real name
+*** When apopos-ing we can come up with "slot" methods, we still use them like methods aka
+plugin2.current_trail.geometry[1][1].x
+**** geometry is named "slot" under apropos() but we use (.) like a method
+* Day 3:
+** using ! marks
+#+begin_src magik
+
+  gis_program_manager.databases[:electric]
+  var1 << ! # ---------- gets the output value one line before which is value outputgis_program_manager.databases[:electric]
+  var2 << !! # ========== gets the output value 2 lines before outputgis_program_manager.databases[:electric]
+
+#+end_src
+
+** getting database information
+#+begin_src magik
+
+  gis_program_manager.databases[:electric].table_for_external_name("Cable Segment")
+  # you can also put size at the end
+  gis_program_manager.databases[:electric].table_for_external_name("Cable Segment").size
+  # you can also print the first record
+  print(gis_program_manager.databases[:electric].table_for_external_name("Cable Segment").an_element())
+
+
+
+  
+#+end_src
+
+** getting collection information
+#+begin_src magik
+  
+  # you can even put the internal name of the collection
+  print(gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].an_element())
+
+  # getting available methods under colection
+  # You forgot the name. You can "apropos" the methods available
+  gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].apropos("nth")
+  # then you get a certain nth record
+  print(gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].nth_record(100))
+
+  # Can use internal and external name
+  print(gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].field_for_external_name("Source Data"))
+  print(gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].field(:source_data))
+
+#+end_src
+
+
+
+
+
+** We need to learn plugins
+*** Rearrange all this
+app << smallworld_product.application(:sweo_dm_user)
+app.apropos("plugins")
+_for i _over app.plugins() # ===== why cant we apropos here?
+       _loop
+       write(i)
+       _endloop
+
+       somePlugin << app.plugin(:maps)
+
+       somePlugin.current_map
+
+==========
+       
+       print(somePLugin.current_map.current_selection)
+
+       ==========
+
+       print(somePLugin.current_map.current_selection.an_element())
+
+       ==========
+
+       print(somePLugin.current_map.current_selection.an_element().rwo)
+
+       # ========== rwo -> real-world-object
+       
+** Reading errors
+#+begin_quote
+
+Error: Object unset does not understand message close()
+# ===== variable doesnt exist
+
+#+end_quote
+
+* How do we delete an item from a collection/list/array/vector?
+* Can we do markers? Like read a file and pass the same pointer/marker to another function to continue reading somewhere else 
+
+* Day 4:
+** Note the command below
+gis_program_manager.databases[:electric].table_for_external_name("Service Point").nth_record(99).usage
+** Common beginner mistakes:
+*** the field in the GUI is basically the field like a database or a field. So we dont need [:usage] or ("usage"). We just dot (.) like a method. 
+*** Basically, like our CSV files on fiverr?
+
+#+begin_src magik
+  gis_program_manager.databases[:electric].table_for_external_name("Service Point").nth_record(99).connection_type
+  # Again very unusual, connection_type has underscore automatically. But doesnt show in GUI
+
+  gis_program_manager.databases[:electric].table_for_external_name("Service Point").apropos("field")
+  # you will get .field()
+
+  # try to search through this iter as a learning experience
+  print(gis_program_manager.databases[:electric].table_for_external_name("Service Point").field(:connection_type).type.enumerator.sorted_values)
+#+end_src
+
+** A for loop that quits half way. Im sure there are many ways
+       _block
+       my_i << 1
+       _for item _over my_iter4.fast_elements()
+       _loop
+		write(item)
+		_if my_i _is 3
+		_then
+			_leave
+		_endif
+		my_i +<< 1
+       _endloop
+       _endblock
+** A simpler one
+_block
+       _for i _over range(1,3)
+       _loop
+		write(my_iter4[i])
+       _endloop
+       _endblock
+** 
+* Day 5:
+** Common beginner mistakes
+*** adding _pragma at console. _pragma is only needed in files.
+*** Forgetting to remex classes -> remex(:SoMeClAsS)
+** Creating classes of cars and makes and models
+*** car.magik, ford.magik, honda.magik, accord.magik, prelude.magik, ranger.magik, focus.magik
+#+begin_quote
+
+========================= car.magik =========================
+_package sw
+
+
+_pragma(classify_level=basic,topic={test},uage={test})
+def_slotted_exemplar(:car,
+	{{:price,_unset}},:plugin
+)
+$
+
+_pragma(classify_level=restricted,topic={help})
+_iter _method car.makes()
+	##
+	## car make method
+	##
+
+	_for a_val _over {honda.new(), ford.new()}.fast_elements()
+	_loop
+		_loopbody(a_val)
+	_endloop
+_endmethod
+$
+==================================================
+
+
+========================= ford.magik =========================
+_package sw
+
+
+_pragma(classify_level=basic,topic={test},uage={test})
+def_slotted_exemplar(:ford,
+	{{:price,_unset}},:plugin
+)
+$
+
+_pragma(classify_level=restricted,topic={help})
+_method ford.name
+	_return "ford"
+_endmethod
+$
+
+
+_pragma(classify_level=restricted,topic={help})
+_iter _method ford.models()
+	##
+	## ford models method, not the s, whatever
+	##
+	_for a_val _over {focus.new(), ranger.new()}.fast_elements()
+	_loop
+		_loopbody(a_val)
+	_endloop
+_endmethod
+$
+==================================================
+
+
+========================= ranger.magik =========================
+_package sw
+
+_pragma(classify_level=basic,topic={test},uage={test})
+def_slotted_exemplar(:ranger,
+	{{:price,_unset}},:plugin
+)
+$
+
+
+_pragma(classify_level=restricted,topic={help})
+_method ranger.name
+	_return "ranger"
+_endmethod
+$
+==================================================
+
+#+end_quote
+
+
+
+
+
+** Read this method
+_method map_view.zoom_by(a_factor)
+	## Zooms the map view by A_FACTOR.
+	   _if .current_view_parameters _isnt _unset
+	   _then
+	   new_view_def << .current_view_parameters.copy()
+	   new_view_def.scale *<< a_factor
+	   _self.set_view( new_view_def )
+	   _endif
+_endmethod
+
+
+========================= console =========================
+myclassreader << _proc @myclassreader(a_folder_path)
+       v_classes << {"accord.magik","prelude.magik","focus.magik","ranger.magik","honda.magik","ford.magik","car.magik"}
+       _for a_file_name _over v_classes.fast_elements()
+       _loop
+       	    load_file(a_folder_path + "\" + a_file_name)	
+	_endloop
+	write("==================================================")
+	
+	_for each_make _over car.makes()
+	_loop
+		make << each_make.name
+		write("make: ", make)
+		_for each_model _over make.models()
+		_loop
+			model << each_model.name
+			write("model: ", model)
+		_endloop
+	_endloop
+_endproc
+	
+	
+	
+myclassreader("c:/Users/ahmadardie.r/Documents/my-trash/day5_practice")
+==================================================
+
+
+** Homework:
+*** trail geom -> convert to pseudo_area -> .overlap? (service point location)
+*** aNSWER
+myServicepoint << myMap.current_map.current_selection.an_element().rwo.LOCATION
+WILL GET ACTUAL GEOMETRY
+note: myMap is from plugin, get the plugin
+trail_s_geom << myMap.current_map.trail.as_pseudo_geometry
+WILL GET ACTUAL TRAIL AS PSEUDO GEOMETRY
+* Day 6
+** Errors from the command
+*** We can learn to trace the errors (Refer to slide note)
+#+begin_src magik
+  **** Error: Object unset does not understand message manager
+       does_not_understand(object=unset, selector=:manager, arguments=simple_vector:[1-0], iterator?=False, private?=False)
+
+  ---- traceback: Alchemy-REPL (light_thread 1420152204) ----
+  time=12/07/2023 10:01:00
+  sw!version=5.2.7.0 (swaf)
+  os_text_encoding=cp1252
+  !snapshot_traceback?!=unset
+
+  condition.raise()            (sys_src/guts/condition.magik:616)
+  object.does_not_understand()            (sys_src/guts/object.magik:810)
+  object.sys!does_not_understand()            (sys_src/guts/object.magik:684)
+  map_view.map_manager            (modules/sw_swaf/map_plugin/source/map_view.magik:2227)
+  map_view.calculate_view_for_goto_bounds()            (modules/sw_swaf/map_plugin/source/map_view.magik:2466)
+  map_view.goto_bounds()            (modules/sw_swaf/map_plugin/source/map_view.magik:1006)
+  map_view.goto()            (modules/sw_swaf/map_plugin/source/map_view.magik:1438)
+  <unknown exemplar>.<unknown method>            (Evaluated-inline:1)
+  magik_rep.process_command()            (sys_src/misc/magik_rep.magik:136)
+  magik_rep.cli()            (sys_src/misc/magik_rep.magik:90)
+  system.session_start()            (sys_src/guts/system.magik:3185)
+  
+#+end_src
+**** Basically our map_view.goto() produces the error. But we can trace the error being produced at map_view.map_manager
+** Just 2 simple method to compare 2 outputs of different methods from different classes
+#+begin_src magik
+
+    # ==================== n1.magik =========================
+  remex(:n1)
+  $
+
+  _package sw
+  $
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  def_slotted_exemplar(:n1,
+	  ## 
+	  ## 
+	  ## 
+	  {},:plugin)
+  $
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  _method n1.out_cost
+	  _return "cbvg asdqwd qwd qwd qaq"
+  _endmethod
+  $
+
+  # ==================================================
+
+  # ==================== n2.magik =========================
+  remex(:n2)
+  $
+
+  _package sw
+  $
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  def_slotted_exemplar(:n2,
+	  ## 
+	  ## 
+	  ## 
+	  {},:plugin)
+  $
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  _method n2.out_cost
+	  _return "zsdasd qweqwe "
+  _endmethod
+  $
+
+  # ==================================================
+  # ========================= console =========================
+  trace_out_proc << _proc(n1, n2)
+			   ## 
+			   ## Procedure for sorting the .new_nodes
+			   ## priority_queue. 
+			   ##
+			   # Orders simply on .out_cost.
+			   >> n1.out_cost _cf n2.out_cost
+  _endproc
+
+  trace_out_proc(n1,n2)
+  # ==================================================
+
+#+end_src
+
+** :plugin is needed for cloning an object
+
+
+#+begin_src magik
+
+
+  # ========== at console
+  def_slotted_exemplar(:person,
+		      {{:address, "mentari"},
+		       {:number, 01023234}
+		      })
+
+  var1 << person.new() # ========== this will produce error
+
+  # we need :plugin to be able to clone this class (what other languages by default simply call it creating an object)
+
+
+  def_slotted_exemplar(:person,
+	  {{:address, "mentari"},
+	   {:number, 01023234}
+	  },:plugin)
+
+
+#+end_src
+
+** 
+
+* Day 7
+** shared constants and shared variables
+#+begin_src magik
+
+  n1.define_shared_constant(
+	  :month_names,
+	  {"January", "February", "March"},:private
+	
+    )
+  $
+
+  n1.define_shared_variable(:ref_count,0,:public)
+  $  
+
+#+end_src
+
+** we access both of these as a method/property (the overpowering . notation). (This is still not naturally for me)
+#+begin_src magik
+  created_obj.month_names
+  created_obj.ref_count
+#+end_src
+
+** When we create our own .new method
+#+begin_src magik
+
+  _method n1.new()
+	  _self.ref_count +<< 1
+	  _return _clone
+  _endmethod
+  $
+  # ===== that avoids the problem of having to deal with this error
+  # ===== **** Error: Object a n1(unset) sent message init() with too few arguments (requires 2, given 0)
+  # so that we can create an object just like this
+  new_object << n1.new()
+
+
+  # If we want arguments
+  _method n1.new(_gather args)
+	  _self.ref_count +<< 1
+	  >> _clone.init(_scatter args)
+  _endmethod
+  $
+
+#+end_src
+
+** Inheritance: The shape class
+*** this is also easier than in other languages, its defined as the last element in the parent bracket, so its out of the way
+** Personal Note:
+*** I must be suspicious of _self. always. Coz it always confuses me. I must think of the variable name first. The put _self. where needed. 
+** An example of creating a shape class, a rectangular class, and then define a mixin. But we have to remex before inheriting that inside our rectangular class. 
+#+begin_src magik
+
+  def_slotted_exemplar(:shape,{{:x,_unset,:writable},{:y,_unset,:writable},{:color,_unset,:writable}})
+  def_slotted_exemplar(:rectangular,{{:x,_unset,:writable},{:y,_unset,:writable},{:color,_unset,:writable}},:shape)
+
+  # ===== we can redefine freely the slots, since its writable,
+  shape.x << 123
+
+  _method my_special_mixin.whatami
+	  write("hello there", _self.x)
+	  write("Im a ", _self.class_name)
+  _endmethod
+
+  remex(:rectangular) ===== need to remex() first
+  def_slotted_exemplar(:rectangular,{{:x,_unset,:writable},{:y,_unset,:writable},{:color,_unset,:writable}},{:shape,:my_special_mixin})
+
+	  ========================= we can actually redefine our method inside our class, but we cant redefine our class without remex()
+
+  _method my_special_mixin.whatami
+	  write("hello there", shape.x)
+	  write("Welcome everyone its me the ", _self.class_name)
+  _endmethod
+
+#+end_src
+
+
+** Reminder:	
+*** What if we got something like this
+
+simple_vector(1,4):
+1 	1 
+2 	simple_vector:[1-4] 
+3 	3 
+4 	4
+
+===== We can use this
+
+_for key,value _over var1.fast_keys_and_elements()
+       _loop
+		
+		_if value.class_name _is :simple_vector
+		_then
+			_for item _over value.fast_elements()
+			_loop
+				write("level 2 : ", item)
+			_endloop
+			_continue
+		_endif
+		write(value)
+	_endloop
+
+========================= output =========================
+1
+level 2 : spiderman
+level 2 : is
+level 2 : a
+level 2 : pussy
+3
+4
+
+** Hey we did it!! a procedure adding an element from 2 ropes into a multi-rope. No errors so far. Inspired my Common lisps datatype list. Where they can pop elements.
+#+begin_src magik
+
+  feedMe << _proc @feedMe(rope1, rope2)
+		    # compare the sizes first
+		    # whichevers bigger make it the size of final rope
+		    _if rope1.size < rope2.size
+		    _then
+			    m_size << rope2.size
+		    _else
+			    m_size << rope2.size
+		    _endif
+
+		    # a rope of ropes
+		    full_rope << rope.new_for(2)
+		    full_rope[1] << rope.new_with()
+		    full_rope[2] << rope.new_with()
+
+		    _for mycount _over range(1,m_size)
+		    _loop @outer
+			    _if rope1.empty? _orif rope2.empty?
+			    _then
+				    _leave @outer
+			    _else
+				    full_rope[1].add(rope1[1])
+				    full_rope[2].add(rope1[1])
+				    rope1.remove_nth(1)
+				    rope2.remove_nth(1)
+				    write("were removing rope1 at ", mycount)
+			    _endif
+		    _endloop		 		  
+	 _endproc
+
+  # ==================================================
+  var1 << rope.new_with(1,2,3); var2 << rope.new_with(4,5,6,7)
+  # ==================================================
+  feedme(var1,var2) ===== IT WORKS!!
+
+#+end_src
+
+* Day 8
+** datatypes with keys and values
+*** rope, hash table, equality property list, property list
+*** hash table uses symbols as keys, equality property list uses strings, property list uses symbols
+*** equality set, also a dataytype, will not include duplicates
+*** equality bag, VERY interesting, does not have duplicates, but stores occurences of duplicates upon creation
+*** sorted collection has sorting. but rope HAS a sorted method
+*** sorting with our own method
+#+begin_src magik
+  
+  rope1 << =========================
+
+  dec << _proc(a,b)
+		 >> b _cf a
+	 _endproc
+
+  print(rope1.as_sorted_collection(dec))
+
+#+end_src
+
+
+** Personal
+*** Lets create a "get" method that returns when list matches a pattern
+*** This is probably a useless exercise since even fields are objects. And strings are important datatype in magik. So we need a different workout
+*** 
+** Random note:
+*** When implemented, whats the difference between a field and a slot ??     (:someSlot)
+*** If you try init() <--------> new() exercise. You'll quicky realize . notation even more ambiguous (whats the different between shared variables and a slot??)
+*** Here's some interesting discovery. Also the init() <--------> new() exercise. passing arguments from .new() to .init() is just a convention. You can also pass .new2 to .init(). The result is the same. 
+*** [[file:~/Documents/my-trash/magik_practice/2023-07-14_at_15hours/pop_numbers_at_2.magik][example of .new2 instead of .new we may decide to just delete and copy code here]]
+*** ==========
