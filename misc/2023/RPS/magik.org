@@ -1,0 +1,16 @@
+* Magik:
+** 
+* Java Pathway (either we move or delete this later)
+** Class and Objects
+** Attributes are variables
+** class methods (not public static void main)
+** static method (accessible without object creation) vs public method (the opposite)
+** class constructor --> public SoMeClAsSnAmE() --> basically __init__ but NOT public-static-void-main
+** astract is still confusing to me. Why do you need to do 2 methods? One definition and one with the body? Anyway, it uses the keyword "extend"
+* Reminder:
+** Remember why OOP is shit. There so much implication in that single dot (.). If objects are complex, like in real life, then there is too much implication in SoMeObJeCt.SoMeMeThOd()
+
+
+
+
+
