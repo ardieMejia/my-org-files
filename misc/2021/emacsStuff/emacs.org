@@ -103,10 +103,33 @@
 * folding, hide & other cool tricks
 ** Should start collecting it here!!
 * Looks, looks, looks:
-** https://zzamboni.org/post/beautifying-org-mode-in-emacs/
-** https://www.gnu.org/software/emacs/manual/html_node/emacs/Face-Customization.html
-** https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
-** https://github.com/abo-abo/swiper/issues/568
+** If you want some really great looking suggestion on fonts, from usable examples. Look at this
+*** https://www.reddit.com/r/emacs/comments/14q399t/hi_out_of_curiosity_what_are_your_favourite_fonts/
+*** Especially the code snippet below
+
+(dolist (buffer (list " *Minibuf-0*" " *Echo Area 0*"
+                        " *Minibuf-1*" " *Echo Area 1*"))
+    (when (get-buffer buffer)
+      (with-current-buffer buffer
+        (face-remap-add-relative 'bold :weight 'normal)
+        (face-remap-add-relative 'default :weight 'light))))
+
+(add-hook 'minibuffer-setup-hook
+          '(lambda()
+             (face-remap-add-relative 'bold :weight 'normal)
+             (face-remap-add-relative 'default :weight 'light)))
+** System Crafters ha a very cool Lisp code using the macro/function (?) called dolist
+*** https://systemcrafters.net/emacs-tips/presentations-with-org-present/
+** How do you find out font (what Emacs calls faces) information?
+*** https://www.emacswiki.org/emacs/FaceList
+**** by M-x list-faces-display
+*** https://www.emacswiki.org/emacs/Face
+**** You can use  C-u C-x =  to find out which faces are applied to the text at point (under the cursor).
+** You might have to read this one day
+*** https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+*** https://www.gnu.org/software/emacs/manual/html_node/emacs/Face-Customization.html
+*** https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
+*** https://github.com/abo-abo/swiper/issues/568
 * YASsnippets:
 ** Great beginner example, Im finally learning from this example:
 *** https://joaotavora.github.io/yasnippet/snippet-development.html
@@ -114,6 +137,9 @@
 *** https://joaotavora.github.io/yasnippet/snippet-reference.html
 ** I finally know how setup config (dirs etc) properly
 *** https://joaotavora.github.io/yasnippet/snippet-organization.html
+* org templates:
+** Finally once you start inserting your first code block (template, whatever). We can read this
+*** https://www.nicholasvanhorn.com/posts/org-structure-completion.html
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 ** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 *** Need as input: --> filename pattern & regex text
@@ -270,13 +296,17 @@ https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
 * From Redplanet (rearrange later):
 ** https://lists.gnu.org/archive/html/help-gnu-emacs/2003-04/msg00767.html
 *** This code adds directories and its sub-directories to load-path. The reason why we dont do this is probably becoz load-path can get excessively long, and Emacs users might want to selectively disable some features.
+#+begin_src lisp
 
-(let* ((dir (expand-file-name "~/emacs"))
-       (default-directory dir))
-  (when (file-directory-p dir)
-    (add-to-list 'load-path dir)
-    (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-        (normal-top-level-add-subdirs-to-load-path))))
+  (let* ((dir (expand-file-name "~/emacs"))
+	 (default-directory dir))
+    (when (file-directory-p dir)
+      (add-to-list 'load-path dir)
+      (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+	  (normal-top-level-add-subdirs-to-load-path))))
+  
+#+end_src
+
 * Rearrange:
 ** Learning common lisp and eLisp, eLisp doesnt have the stream function, they have insert-file-contents
 
