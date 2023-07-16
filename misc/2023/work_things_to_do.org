@@ -40,6 +40,10 @@
 ** Add a new conditional to test for Emacs version
 *** https://emacs.stackexchange.com/questions/35335/how-to-test-for-specific-emacs-version-or-newer
 ** move all code so you can continue playing with Vertico, Consult & Marganilia
+** We will try to make an Emacs daemon later using this link (I think its just creating a shortcut with the --daemon option, and then make other apps use Emacs by using their own unqique variables
+*** https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
+*** no progress, only followed 2 links, runemacs.exe or emacs.exe (with --daemon) makes no difference
+** 
 * Lubuntu Emacs
 ** install Vertico, Marganilia, Consult
 ** open a file in Emacs, write, & save
