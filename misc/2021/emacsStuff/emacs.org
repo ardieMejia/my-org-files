@@ -1,5 +1,7 @@
 
-* Emacs UI
+* Navigation, behaviours
+** [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]]
+*** Some of these I myself dont even use. I always use C-x C-f for everything. Thats already enough for me. 
 ** vertical vs horizontal split of windows in Emacs
 *** Context:
 **** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
@@ -7,24 +9,10 @@
 *** No context:
 **** C-x 3
 ***** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
-** Configuring the modeline
-*** Important variables, actually some are confusing. And it was easier for me to just edit Emacs modeline with simple functions, like combining (cond ..) & (major-mode)
-**** https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
-*** I used emojis from here
-**** https://unicode.org/emoji/charts/full-emoji-list.html
-*** I dont know what this is for
-**** https://www.emacswiki.org/emacs/modeline-region.el
-*** If you were testing modeline in a buffer, the command force-mode-line-update might be useful
-**** https://www.reddit.com/r/emacs/comments/euox3d/is_there_a_way_to_refreshupdate_the_modeline/
-*** Config examples:
-**** https://github.com/rougier/emacs-octicons
-**** https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
-***** I based my entire config on this one
-*** https://emacsdocs.org/docs/elisp/Emulating-Mode-Line
-**** Should probably check this site
-* Buffers, windows, etc
-** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
+** *disabled* Quickly open a buffer of the same file, to narrow (narrow using C-x n n widen using C-x n w), while not affecting original window 
+*** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
 *** C-x 4 c to open temporarily a buffer, maybe to indent or something
+*** this behaviour probably not encouraged, probably becoz there are other better alternatives, and confusing for beginners
 * Loading subtlety, hooks, eval, yadayada
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
 *** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
@@ -36,30 +24,22 @@
 *** mode-hook is buffer-aware, runs for every buffer
 *** mode--hook run after eval-after-load
 ** require, autoload, and all sorts of stuff
-*** Practicing autoload
+*** Code practice: autoload
+#+begin_src emacs-lisp
+  ;; Where  second.el has the function say-hello
+  ;; and file will only be loaded when function is called
+  ;; this makes things faster, must learn more about this
+  (autoload 'say-hello "~/my-trash/elispPractice_autoload/second.el")
 
 
-;; Where  second.el has the function say-hello
-;; and file will only be loaded when function is called
-;; this makes things faster, must learn more about this
-(autoload 'say-hello "~/my-trash/elispPractice_autoload/second.el")
-
-
-(say-hello 6)
-
+  (say-hello 6)
+#+end_src
 
 ** https://www.reddit.com/r/emacs/comments/643dkt/use_package_vs_require_and_maybe_some_sorrowful/
 *** Lots of useful comments on use-package vs require. Most importantly, you learn that require is standard GNU Emacs since 1985. WOW! Library authors dont assume everyone has use-package, hence, many dont include it in installation instructions
-
-
-* Emacs Daemon
+* Emacs Daemon. Might not be important for beginners, but VERY useful, and you'll love it once you get it to work. But I cant make it work under Windows for some reason
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
-** Might be useful within Ubuntu 18.04 experience
-*** https://developer.gnome.org/documentation/tutorials/search-provider.html
-** My "buffer by-the-side update to reflect changes, like pdf for example" project
-*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
-**** Has lots of em, and very simple explanation
 * Keybinding
 ** Our init.el org-mode-map seems best
 *** with-eval-after-load & -mode-map
@@ -84,7 +64,7 @@
 ** Lots of information
 *** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 **** Interestingly, C-c ? (where ? is any single character), is reserved for user & USERS alone. But most 3rd packages dont give a shit
-***** I actually personally use C-S-c coz Kaushal Modi is a weirdo. Nooo, just kidding, I sure hes an amazing person.
+***** I actually personally use C-S-c coz I learnt my Emacs by deep diving dangerously, by blindly copying a config from some Indian Emacs developer named Kaushal Modi. Theres a Github link of the most famous configs collected under one repo. [[https://github.com/caisah/emacs.dz][right here]]
 **** Also, 2 keys that are reserved (remnants from ancient 80's keys), are Hyper & Super. Today, Super is "Windows key" & Hyper is "Application-Context"
 ***** These keys are also reserved, might be very useful
 **** Also, in "key lookup order", confusingly, Minor Mode comes before Local which also comes befor Global. (I tot Local overrides Global?)
@@ -255,33 +235,52 @@
 *** Examples:
 **** For files you can delete, copy, rename
 **** For buffers, you can kill or switch
-* Exporting to PDFs:
-** https://www.geneatcg.com/emacs-org-mode-export-to-pdf/
-*** No installation instructions
-*** Has a starter code, to put inside init.el. (LOTS of add-to-list to org-latex-classes & org-latex-pdf-process)
-*** From this site, you DONT NEED to learn latex syntax, the starter code does that
-*** Simple use code, and export
-** https://medium.com/@sachinsamurai/setting-up-latex-on-doom-emacs-for-beginners-824358463a42
-*** This one assumes you want to learn Latex, oops
-*** Though it points to another site where you install proper Latex
-** https://www.tug.org/texlive/
-*** exporting pDf through latex, can produce LOTS of errors. If all fails, always better to install the FULL latex, and from the original TUG source. (7GB!!)
-** Unsure
-***
-Im guessing, form what limited read,
-I have to install latex, which is required, to export to pdf.
-But which of these 2?
-latexmk
-of
-pdflatex
+* How do we export to PDFs:
+#+begin_src sh
 
-From this site, its pdflatex:
-https://linuxconfig.org/how-to-install-latex-on-ubuntu-20-04-focal-fossa-linux
-From this site, its latexmk:
-https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
-** https://lists.gnu.org/archive/html/help-guix/2021-03/msg00101.html
-*** Someone using GUIX to install both Emacs (done) & latex. And then using it to export to PDF
+  sudo apt update
+  sudo apt install texlive-latex-extra
+  # ===== (all following errors indicated by the buffer *Org PDF Latex Output*)
+  # ===== apparently org export uses xelatex, which is a replacement for pdflatex
+  sudo apt install texlive-xetex
+  # ===== another error, this minted needs to use python-pygments
+  sudo apt install python-pygments
 
+  # ==================== HOLY SHIT!! It works
+#+end_src
+** The links we below tried reading below, but in the end the previous instructions simply worked
+*** https://www.geneatcg.com/emacs-org-mode-export-to-pdf/
+**** No installation instructions
+**** Has a starter code, to put inside init.el. (LOTS of add-to-list to org-latex-classes & org-latex-pdf-process)
+**** From this site, you DONT NEED to learn latex syntax, the starter code does that
+**** Simple use code, and export
+*** https://medium.com/@sachinsamurai/setting-up-latex-on-doom-emacs-for-beginners-824358463a42
+**** This one assumes you want to learn Latex, oops
+**** Though it points to another site where you install proper Latex
+*** https://www.tug.org/texlive/
+**** exporting pDf through latex, can produce LOTS of errors. If all fails, always better to install the FULL latex, and from the original TUG source. (7GB!!)
+
+
+* Possible projects
+** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
+** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
+*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
+* modifications that are fancy/fun, but not important
+** Configuring the modeline
+*** Important variables, actually some are confusing. And it was easier for me to just edit Emacs modeline with simple functions, like combining (cond ..) & (major-mode)
+**** https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
+*** I used emojis from here
+**** https://unicode.org/emoji/charts/full-emoji-list.html
+*** I dont know what this is for
+**** https://www.emacswiki.org/emacs/modeline-region.el
+*** If you were testing modeline in a buffer, the command force-mode-line-update might be useful
+**** https://www.reddit.com/r/emacs/comments/euox3d/is_there_a_way_to_refreshupdate_the_modeline/
+*** Config examples:
+**** https://github.com/rougier/emacs-octicons
+**** https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
+***** I based my entire config on this one
+*** https://emacsdocs.org/docs/elisp/Emulating-Mode-Line
+**** Should probably check this site
 * More cool stuff to re-arrange!!
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email

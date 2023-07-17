@@ -52,8 +52,12 @@
 convert -size 100x100 xc:white -gravity center -annotate +0+0 'testing' -size 30 miff:- | convert - \               ~/my-trash/moreMoreMore/practice
    -write mpr:piped  +delete \(  mpr:piped \) \( mpr:piped -fill red -draw 'color 0,0 reset' \) -compose multiply -composite output2.png
 ** [[https://stackoverflow.com/questions/52466697/can-miff-pipe-be-used-more-than-once-in-imagemagick][a bit confusing example, not sure what they were trying to do]]
-* Better rotate strategy (instead of our annoying fiverr text rotate experiment)
-** https://www.imagemagick.org/discourse-server/viewtopic.php?t=29752
+* Strategies
+** Sizing
+*** Better alternative to having maximum size for text (good personal use too)
+**** https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=22501
+** Better rotate strategy (instead of our annoying fiverr text rotate experiment)
+*** https://www.imagemagick.org/discourse-server/viewtopic.php?t=29752
 * Edge Detection links:
 ** An edge detection produces an ugy negative output by default we always: -edge 1 -negate
 ** https://blog.jiayu.co/2019/05/edge-detection-with-imagemagick/
