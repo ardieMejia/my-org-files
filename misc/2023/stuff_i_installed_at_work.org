@@ -797,3 +797,98 @@ level 2 : pussy
 *** Here's some interesting discovery. Also the init() <--------> new() exercise. passing arguments from .new() to .init() is just a convention. You can also pass .new2 to .init(). The result is the same. 
 *** [[file:~/Documents/my-trash/magik_practice/2023-07-14_at_15hours/pop_numbers_at_2.magik][example of .new2 instead of .new we may decide to just delete and copy code here]]
 *** ==========
+* Day 9 
+** hash_table automatically remove duplicates when created (new_with)
+** property_list on the other hand allows duplicates
+#+begin_src magik
+  my_hash << hash_table.new_with({:abc, "abc", :def, "def", :abc, "another one"})
+  # the 2nd abc will not be shown
+#+end_src
+** integers and symbols are same objects (Eg: 1 and 1, :abc and :abc). Strings and float are different objects (Eg: 1.3 _is 1.3 and "asd" _is "asd" will return false)
+** set is like "object strict". So same objects will not be shown
+set1 << set.new_with(1,2,3,123,1,2,3,:asd,:asd)
+print(set1)
+==========
+1
+2
+3
+123
+:asd
+** set treats everything like real objects. So, it has methods like .union(), .intersection(), .difference()
+**
+set1 << set.new_with(1,2,3,4,5,6)
+sw:set(6) 
+Magik> set2 << set.new_with(5,6,7,8)
+sw:set(4) 
+Magik> print(set1.difference(set2))
+set:
+1 
+2 
+3 
+4 
+Magik>
+========== operates ON the first set
+==================================================
+
+_block
+		_local r_set << rwo_set.new()
+		_local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
+		_for a_rwo _over sp1.fast_elements()
+		_loop
+			r_set.add(a_rwo)
+		_endloop
+		write("the size", r_set.size)
+		print(r_set)
+		r_set.add("asd") # only this line will produce error
+	_endblock
+
+
+==================================================
+
+===== can do the same with geometry_set
+
+_block
+		_local g_set << geometry_set.new()
+		_local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
+		_for a_rwo _over sp1.fast_elements()
+		_loop
+			g_set.add(a_rwo.location)
+		_endloop
+		write("the size", g_set.size)
+		print(g_set)
+		
+	_endblock
+==================================================
+We must try the conditions. theres also different types like not just :error, but also :warning & :information. TRY IT
+==================================================
+
+file_logger << _proc @file_logger(input_file_name, output_file_name)
+
+                    in_stream << external_text_input_stream.new(input_file_name)
+		    log_stream << external_text_output_stream.new(output_file_name)
+
+		    
+
+                    _protect
+                        _loop@outer
+                            a_line << in_stream.get_line()
+
+                            _if a_line _is _unset _then  _leave _endif
+
+                            log_stream.write(a_line)
+			    log_stream.write(%newline)
+			    
+
+                        _endloop
+                    _protection
+                        in_stream.close()
+			log_stream.close()
+                    _endprotect
+
+                _endproc
+
+file_logger("some_path_to_input_file","some_path_to_output_file")
+
+
+
+		
