@@ -805,59 +805,78 @@ level 2 : pussy
   # the 2nd abc will not be shown
 #+end_src
 ** integers and symbols are same objects (Eg: 1 and 1, :abc and :abc). Strings and float are different objects (Eg: 1.3 _is 1.3 and "asd" _is "asd" will return false)
-** set is like "object strict". So same objects will not be shown
-set1 << set.new_with(1,2,3,123,1,2,3,:asd,:asd)
-print(set1)
-==========
-1
-2
-3
-123
-:asd
-** set treats everything like real objects. So, it has methods like .union(), .intersection(), .difference()
-**
-set1 << set.new_with(1,2,3,4,5,6)
-sw:set(6) 
-Magik> set2 << set.new_with(5,6,7,8)
-sw:set(4) 
-Magik> print(set1.difference(set2))
-set:
-1 
-2 
-3 
-4 
-Magik>
-========== operates ON the first set
-==================================================
+** set views integers and symbols as "object strict". So objects are not duplicated. Example:
+#+begin_src magik
 
-_block
-		_local r_set << rwo_set.new()
-		_local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
-		_for a_rwo _over sp1.fast_elements()
-		_loop
-			r_set.add(a_rwo)
-		_endloop
-		write("the size", r_set.size)
-		print(r_set)
-		r_set.add("asd") # only this line will produce error
-	_endblock
+  set1 << set.new_with(1,2,3,123,1,2,3,:asd,:asd)
+  print(set1)
+  # ========== output ==========
+  # 1
+  # 2
+  # 3
+  # 123
+  # :asd
+
+#+end_src
+
+** set treats everything like real objects. So, it makes it will have methods like .union(), .intersection(), .difference()
+#+begin_src magik
+
+  set1 << set.new_with(1,2,3,4,5,6)
+  sw:set(6) 
+  Magik> set2 << set.new_with(5,6,7,8)
+  sw:set(4) 
+  Magik> print(set1.difference(set2))
+  # ========== output ==========
+  # set:
+  # 1 
+  # 2 
+  # 3 
+  # 4 
+  # ----- The way to think of the .difference() method, is that it operates ON the first set
 
 
-==================================================
+#+end_src
 
-===== can do the same with geometry_set
+** An rwo set example
+#+begin_src magik
 
-_block
-		_local g_set << geometry_set.new()
-		_local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
-		_for a_rwo _over sp1.fast_elements()
-		_loop
-			g_set.add(a_rwo.location)
-		_endloop
-		write("the size", g_set.size)
-		print(g_set)
-		
-	_endblock
+  _block
+	  _local r_set << rwo_set.new()
+	  _local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
+	  _for a_rwo _over sp1.fast_elements()
+	  _loop
+		  r_set.add(a_rwo)
+	  _endloop
+	  write("the size", r_set.size)
+	  print(r_set)
+	  r_set.add("asd") # only this line will produce error
+  _endblock
+
+#+end_src
+
+** Geometry set
+
+#+begin_src magik
+
+  _block
+	  _local g_set << geometry_set.new()
+	  _local sp1 << gis_program_manager.databases[:electric].collections[:eo_service_point]
+	  _for a_rwo _over sp1.fast_elements()
+	  _loop
+		  g_set.add(a_rwo.location)
+	  _endloop
+	  write("the size", g_set.size)
+	  print(g_set)
+
+  _endblock
+
+#+end_src
+
+
+
+
+
 ==================================================
 We must try the conditions. theres also different types like not just :error, but also :warning & :information. TRY IT
 ==================================================
@@ -892,3 +911,149 @@ file_logger("some_path_to_input_file","some_path_to_output_file")
 
 
 		
+* Day 10
+** binary formats
+** No interesting examples shown. But we rarely use anyway.
+
+#+begin_src magik
+
+  # ========== we can try this with a raw PDF, it will work
+  _proc@test (input_file_name, output_file_name)
+	  in_stream = external_binary_input_stream(input_file_name)
+	  log_stream = external_binary_input_stream(output_file_name)
+	  _protect
+		  file1 << file_status.new(input_file_name)
+		  bv << byte_vector.new(file1.size)
+		  in_stream.get_vector(bv)
+		  log_stream.put_vector(bv)
+
+	  _protection
+		  write("closing files")
+		  in_stream.close()
+		  log_stream.close()
+	  _endprotect
+  _endproc
+
+#+end_src
+** witness _protect, _protection & _endprotect in action
+
+my_catch << _proc@ my_catch(fname)
+       _catch :file_error
+       	      _handling error _with
+	      _proc(cond)
+			_throw :file_error
+		_endproc
+		a_file << external_text_output_stream.new(fname)
+	_endcatch
+	write("your bloody file is ", a_file)	
+	_if a_file _is _unset
+	_then
+		condition.raise(:user_error, :string, "unable to wreite to this file" + fname)
+
+					     _endif
+_endproc
+** It works even in simple situations
+_block
+		_protect
+			"some text".stupid_nonexistent_function()
+		_protection
+			write("==================================================")
+			write("the function stupid_nonexistent_function doesnt exist")
+		_endprotect
+_endblock
+** But commonly used like the following (note the additional use of a flag, which means we combine it with another conditional to make its safe to commit some changes aka file/database/etc changes)
+#+begin_src magik
+
+  # Setup a flag
+  ok? << _false
+  _protect
+	  <write some data to the database>
+		  # We made it through the ify code. Set flag to true.
+		  ok? << _true
+  _protection
+	  _if ok?
+	  _then
+		  <commit the database>
+	  _else
+		  <rollback the database>
+	  _endif
+  _endprotect
+
+#+end_src
+*** Also note that we can use question marks in variables in Magik. Like --> whateverVariable? 
+** 
+** PLease rearrage this better
+condition.define_condition(:my_test, :error, {:normal}, "hello im an ERRPRRRR messaage")
+
+condition.raise(:my_test, :error, {:normal}, "hello im an ERRPRRRR messaage")
+
+* Day 11
+** product.def
+** Compiling messages
+
+#+begin_src magik
+  
+  sw_module_manager.apropos("compile_mess")
+
+  # would have to delete msgc to see this in action
+
+  sw_module_manager.compile_messages(:eo_phase_conventions)
+
+#+end_src
+** try and catch error
+
+#+begin_src magik
+
+  _try _with cond
+  write("Hello")
+  write("HELLOOOOOO")
+  "asd".enter
+  write("nothinnnnnnnngg")
+  _when error
+	  write(cond.report_contents_string)
+  _endtry
+
+
+  # Like other programming languages, theres an implied variable, that will automatically catch the error. IN the example, its "cond"
+  # The variable "cond" is also local
+
+#+end_src
+** another catch and try
+
+greet1 << _proc()
+       	      _catch @my_tag
+       	      write("Hello")
+	      greet2()
+	      write("Hello again")
+	      _endcatch
+	      _endproc
+
+
+	      greet2 << _proc()
+       	      write("How are you")
+	      "somenonexistent".enter
+	      _throw @my_tag
+	      _endproc
+** Some advanced example (with _proc inside another _proc, and _throw, and _catch, and ). The real question is, why would we want to use this one?
+#+begin_src magik
+
+  proc_handle << _proc @proc_handle()
+			 _catch :carry_on
+				_handling file_does_not_exist _with 
+				_proc(cnd)
+					write("Catched and processing the error..")
+					#cnd.report_on(!output!)
+					#!traceback!(!output!)
+					_throw :carry_on
+				_endproc
+
+				_protect
+					condition.raise(:file_does_not_exist,:filename, "abc")
+				_protection
+					write("<<Error handled..>>") 
+				_endprotect
+			 _endcatch 
+	      _endproc
+
+
+#+end_src
