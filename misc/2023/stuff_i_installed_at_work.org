@@ -983,9 +983,23 @@ _endblock
 *** Also note that we can use question marks in variables in Magik. Like --> whateverVariable? 
 ** 
 ** PLease rearrage this better
-condition.define_condition(:my_test, :error, {:normal}, "hello im an ERRPRRRR messaage")
 
-condition.raise(:my_test, :error, {:normal}, "hello im an ERRPRRRR messaage")
+#+begin_src magik
+
+  condition.define_condition(:my_error_condition, :error, {:age,:address}, "hello I am #1 years old, and I live in #2")
+
+  # note the usage: using numbers like #1 makes it different from your average function. Error catching functions are special after all. Makes a one-liner easier too
+
+  # to test whether a condition you can use this
+  # condition.condition_exists?(:warning)
+
+  condition.raise(:my_error_condition,:age,32,:address,"mentari")
+
+  ========== from method definition: ==========
+  method define_condition(name,parent_name,data_name_list, optional reporter,message_accessor) 
+
+#+end_src
+
 
 * Day 11
 ** product.def
@@ -1000,6 +1014,7 @@ condition.raise(:my_test, :error, {:normal}, "hello im an ERRPRRRR messaage")
   sw_module_manager.compile_messages(:eo_phase_conventions)
 
 #+end_src
+** try and catch errors are meant to redirect error flows from its usual flow
 ** try and catch error
 
 #+begin_src magik
@@ -1057,3 +1072,127 @@ greet1 << _proc()
 
 
 #+end_src
+
+
+* Day 12
+** =====
+
+#+begin_src magik
+
+  _try
+	  _with cond
+	  # ===== you can also put _with on a new line
+	  condition.raise(:warning,:var1,"some text")
+
+  _when error
+	  write("im handling other errors")
+	  write(cond.report_contents_string)
+  _when warning
+	  write("default variables used")
+	  write(cond.report_contents_string)
+  _endtry
+
+
+
+#+end_src
+** Food for thought -> 
+** Perhaps, perhaps another advantage separating init() from new(), is that we have more flexibility, so we can have a "data filller" function that ends with "data loaded but we skipped the 2nd variable". Example:
+
+
+#+begin_src magik
+  
+  def_slotted_exemplar(:my_class,
+		      ## 
+		      ## 
+		      ## 
+		      {{:one, 1},{:two, 2}})
+
+
+  _method my_class.new(var1,var2,var3)
+	  >> _clone.init(var1,var2,var3)
+  _endmethod
+
+
+  _private _method my_class.init(var1,var2,var3)
+	  .one << var1
+	  .two << var3
+	  write("data loaded, but we are skipping var2")
+	  _return _self
+	  # _return _self -----> is only for classes that load :plugins
+  _endmethod
+
+
+#+end_src
+
+** Write about chevron methods. That overload << thingy
+
+*** Say we have a class called i_am_cool
+
+_pragma(classify_level=basic, topic={i_am_cool}, usage={test})
+_method i_am_cool.new_value << chev_value
+	## 
+	## 
+	.one << chev_value
+	.two << chev_value
+	.three << chev_value
+_endmethod
+$
+
+test << index_and_chevron.new("Marry", "Louis","Rockey")
+Global test does not exist: create it? (Y) 
+
+test[:one]
+"Marry" 
+
+test.new_value << "Aravindh"
+"Aravindh" 
+
+test[:one]
+
+
+** iter methods remind me of  mapcar in Common Lisp. Its one way to think of it. Basically, "map each of these values to our function here" or "do this n times on our function here"
+
+
+def_slotted_exemplar(:test_iter, {})
+
+
+ _iter _method 
+test_iter.iter_method(total)
+_for i _over range(1,total)
+_loop
+_loopbody(i)
+_endloop
+_endmethod
+
+ _for i _over 
+test_iter.iter_method(5)
+_loop
+show(i)
+_endloop
+
+1
+2
+3
+4
+5
+
+ animals <<_iter _proc()
+_loopbody(:cow)
+_loopbody(:cat)
+_loopbody(:rat)
+_loopbody(:tiger)
+_endproc
+
+
+ _for i _over animals()
+_loop
+show(i)
+_endloop
+
+
+:cow
+:cat 
+:rat 
+:tiger
+
+
