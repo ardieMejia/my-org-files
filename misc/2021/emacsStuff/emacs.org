@@ -1,7 +1,9 @@
 
 * Navigation, behaviours
-** [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]]
-*** Some of these I myself dont even use. I always use C-x C-f for everything. Thats already enough for me. 
+** I always use C-x C-f for everything. Thats already enough for me. 
+*** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
+** Same thing with saving files
+*** I only use one of these commands on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Commands.html][saving files]]
 ** vertical vs horizontal split of windows in Emacs
 *** Context:
 **** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
