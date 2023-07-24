@@ -1,4 +1,6 @@
 
+* This repo is currently under construction. Read at your own risk. But they're good links.
+* Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over
 * Navigation, behaviours
 ** I always use C-x C-f for everything. Thats already enough for me. 
 *** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
@@ -42,7 +44,7 @@
 * Emacs Daemon. Might not be important for beginners, but VERY useful, and you'll love it once you get it to work. But I cant make it work under Windows for some reason
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
-* Keybinding
+* Keybinding (under construction)
 ** Our init.el org-mode-map seems best
 *** with-eval-after-load & -mode-map
 **** https://www.reddit.com/r/emacs/comments/6sgwfc/how_do_i_set_a_key_binding_only_for_a_particular/
