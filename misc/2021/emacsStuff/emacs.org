@@ -1,26 +1,29 @@
 
 * This repo is currently under construction. Read at your own risk. But they're good links.
-* Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over.
-* Self-documentation
-** Emacs is fully self-documented. Some basics
-* If you ever tried learning Emacs by yourself, you'll quicky discover that Emacs is hard. Flexible but hard. But hard is often a matter of journey, not skill. A beginners framework can help you on that journey. 
-** https://www.spacemacs.org/
-** https://prelude.emacsredux.com/en/latest/
-** https://docs.doomemacs.org/latest/
-* For those using magik-mode for programming in SmallWorld. Ive never tried using any of the frameworks above with magik-mode.
-* Navigation, behaviours
-** I always use C-x C-f for everything. Thats already enough for me. 
-*** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
-** Same thing with saving files
-*** I only use one of these commands on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Commands.html][saving files]]
-** vertical vs horizontal split of windows in Emacs
-*** Context:
-**** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
-***** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
-*** No context:
-**** C-x 3
-***** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
-** *disabled* Quickly open a buffer of the same file, to narrow (narrow using C-x n n widen using C-x n w), while not affecting original window 
+** Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over.
+* Part 1
+** If you ever tried learning Emacs by yourself, you'll quicky discover that Emacs is hard. Flexible but hard. But hard is often a matter of journey, not skill. A beginners framework can help you on that journey. 
+*** https://www.spacemacs.org/
+*** https://prelude.emacsredux.com/en/latest/
+*** https://docs.doomemacs.org/latest/
+** A list of common but technical & conceptual but opinionated websites. For beginners and advanced uses alike. 
+*** https://www.emacswiki.org
+*** http://xahlee.info/
+*** https://www.gnu.org/software/emacs/manual/
+*** https://zzamboni.org/
+** Navigation, behaviours
+*** I always use C-x C-f for everything. Thats already enough for me. 
+**** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
+*** Same thing with saving files
+**** I only use one of these commands on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Commands.html][saving files]]
+*** vertical vs horizontal split of windows in Emacs
+**** Context:
+***** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
+****** [[https://emacs.stackexchange.com/questions/2513/how-to-get-org-agenda-to-prefer-split-window-right][The variable split-width-threshold to control vertical or horizontal split]]
+**** No context:
+***** C-x 3
+****** https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
+*** *disabled* Quickly open a buffer of the same file, to narrow (narrow using C-x n n widen using C-x n w), while not affecting original window 
 *** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
 *** C-x 4 c to open temporarily a buffer, maybe to indent or something
 *** this behaviour probably not encouraged, probably becoz there are other better alternatives, and confusing for beginners
@@ -109,7 +112,7 @@
           '(lambda()
              (face-remap-add-relative 'bold :weight 'normal)
              (face-remap-add-relative 'default :weight 'light)))
-** System Crafters ha a very cool Lisp code using the macro/function (?) called dolist
+** System Crafters has a very cool Lisp code using the macro/function (?) called dolist
 *** https://systemcrafters.net/emacs-tips/presentations-with-org-present/
 ** How do you find out font (what Emacs calls faces) information?
 *** https://www.emacswiki.org/emacs/FaceList
