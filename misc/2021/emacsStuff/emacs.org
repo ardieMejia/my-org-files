@@ -1,6 +1,13 @@
 
 * This repo is currently under construction. Read at your own risk. But they're good links.
-* Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over
+* Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over.
+* Self-documentation
+** Emacs is fully self-documented. Some basics
+* If you ever tried learning Emacs by yourself, you'll quicky discover that Emacs is hard. Flexible but hard. But hard is often a matter of journey, not skill. A beginners framework can help you on that journey. 
+** https://www.spacemacs.org/
+** https://prelude.emacsredux.com/en/latest/
+** https://docs.doomemacs.org/latest/
+* For those using magik-mode for programming in SmallWorld. Ive never tried using any of the frameworks above with magik-mode.
 * Navigation, behaviours
 ** I always use C-x C-f for everything. Thats already enough for me. 
 *** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
@@ -229,9 +236,6 @@
 **** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
 *** So many cool things to try, like nyanmode, cute cat that browses with you.
 **** https://www.emacswiki.org/emacs/ModeLineConfiguration
-* Personal issues:
-** Multi cursors trouble
-*** Sometimes multiple-cursors dont work in certain modes. I switch to a different mode (Eg: Python) and it works
 * Wishlist
 ** https://github.com/oantolin/embark
 *** Embark makes it easy to run commands depending on where your point (cursor?) is
