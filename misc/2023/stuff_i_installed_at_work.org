@@ -406,7 +406,7 @@ _pragma(classify_level=basic,topic={test},uage={test})
 def_slotted_exemplar(:ford,
 	{{:price,_unset}},:plugin
 )
-$
+$(delete-region (point) (point-max))
 
 _pragma(classify_level=restricted,topic={help})
 _method ford.name
@@ -961,7 +961,7 @@ _block
 			write("the function stupid_nonexistent_function doesnt exist")
 		_endprotect
 _endblock
-** But commonly used like the following (note the additional use of a flag, which means we combine it with another conditional to make its safe to commit some changes aka file/database/etc changes)
+** But commonly used like the following (note the additional use of a flag, which means we combine it with another conditional to make it safe to commit some changes aka file/database/etc changes)
 #+begin_src magik
 
   # Setup a flag
@@ -1194,5 +1194,360 @@ _endloop
 :cat 
 :rat 
 :tiger
+
+
+* Day 13
+** Advanced collection classes
+** equality_set is "less strict in how it respects its object" or "less strict in what it considers an object" (it doesnt need to have the same addess to be considered the same "object")
+#+begin_src magik
+
+  my_s << set.new_with("abc","abc")
+  # ===== sw:set(2)
+
+  my_eqs << equality_set.new_with("abc","abc")
+  # ===== sw:set(1)
+
+#+end_src
+
+
+** An interesting and useful function to test for this is .includes?()
+
+#+begin_src magik
+  
+  my_s.includes?("abc")
+  # ===== False
+
+  my_eqs.includes?("abc")
+  # ===== True
+
+#+end_src
+
+
+
+** Identity is basically the default consideration in magik
+
+#+begin_src magik
+
+  b << bag.new_with(1,2,1,2,5,2.5,2.5,"rpc","rpc")
+  print(b)
+  ## bag:
+  # 2 1 
+  # 2 2 
+  # 1 5
+  # 1 2.5
+  # 1 2.5 
+  # 1 "rpc" 
+  # 1 "rpc" 
+
+#+end_src
+
+** Stack
+*** you know this one. very cool as usual
+** sorted_c
+*** when we create a new sorted_collection. Always need a procedure. Or if build in pocedure, needs first number  (although not expected)
+#+begin_src magik
+
+  sort2 << sorted_collection.new(9, :strings_with_numbers)
+
+  # ==========
+
+  dec << _proc(a,b)
+		 >> a _cf b
+	 _endproc
+
+
+  proper_sort << sorted_collection.new(8,dec)
+
+  # ===== we always need a first number
+
+#+end_src
+
+
+** weak set
+#+begin_src magik
+
+  myrope << rope.new_with(9,7,9,6)
+
+  myref << weak_reference.on(myrope)
+
+  myrope.remove_nth(1)
+
+  print(myref.referent)
+
+  # rope(1,3):
+  # 1 	7 
+  # 2 	9 
+  # 3 	6
+
+
+#+end_src
+
+
+** A cool but difficult trick in Magik that reminds me of Common Lisp mapcar
+*** We should explore this
+#+begin_src magik
+
+  "25,55,55".split_by(%,). map(_proc(a) >> (a.as_number()/255.0) * 100 _endproc)
+
+#+end_src
+
+* Day 15
+** try catch and throw (with maybe handling) is very confusing. I STILL dont get it. 
+** But I did manage to get this
+
+#+begin_src magik
+
+  sometest << _proc @sometest()
+		      _try
+			      _with cond
+			      condition.raise(:my_error,:location,"sometest")
+		      _when my_error
+			      write("my_error occured")
+			      cond.report_on(!error_output!)
+		      _endtry
+	   _endproc
+
+
+#+end_src
+
+* Day 16
+
+** Should write about this one. And really test this. Uses databus and highlight plugin
+
+_block
+    app << smallworld_product.applications.an_element()
+
+ 
+
+    vw << gis_program_manager.databases[:electric]
+
+ 
+
+    scanner << vw.geometry_scanner(:general)
+
+ 
+
+    # get the bounding box defined by the trail
+    bd << app.databus.request_data(:map_trail)[2].bounds
+
+    # start the scanner with the bounds
+    scanner.start_scan(bd)
+
+ 
+
+    # now define a loop to retrieve all the geometry
+    _loop 
+          geom << scanner.get()
+
+          # test for end of geometry 
+           _if geom _is _unset _then _leave _endif
+
+ 
+
+           # Write the scanned objects on the magik prompt
+           write("+++ Scanned Objects +++",geom.rwo)
+
+ 
+
+           # code here to process the geometry - for example 
+           _if geom.rwo.rwo_type _is :eo_service_point
+           _then
+            app.databus.make_data_available(:geometry_to_highlight, geom)
+           _endif
+    _endloop
+_endblock
+
+
+* Day 17
+** I dont understand threading. Actually, I understand a bit, but the engine concept and dependent seems unrelated. Its just an example. Dont get confused.
+
+#+begin_src magik
+  def_slotted_exemplar(:my_engine,
+
+		      {{:slot1, _unset
+		       }},:engine_model)
+
+  # ==========
+
+  _method my_engine.new()
+	  ## 
+	  ## 
+	  >> _clone.init()
+  _endmethod
+
+
+  # ==========
+
+  _method my_engine.init()
+	  ## 
+	  ## 
+	  _super.init()
+	  >> _self
+  _endmethod
+
+  # ==========
+
+  _method my_engine.call()
+	  _self.run_engine(_thisthread.background_priority, 
+			   :sillycall|()|) 
+  _endmethod
+
+  # ==========
+
+  _method my_engine.sillycall()
+	  ## 
+	  ## 
+	  _self.changed(:engine_started)
+	  _for i_cnt _over 1.upto(5)
+	  _loop
+		  _self.changed(:engine_running)
+		  _thisthread.sleep(1000)
+	  _endloop
+	  _self.changed(:engine_stopped)
+  _endmethod
+
+
+  # ==========
+  def_slotted_exemplar(:my_plugin,
+	  {{:engine, _unset}},:plugin)
+
+  # ==========
+
+  _method my_plugin.new()
+	  ## 
+	  ## 
+	  >> _clone.init()
+  _endmethod
+
+  # ==========
+
+  _method my_plugin.init()
+	  .engine << my_engine.new()
+
+	  .engine.add_dependent(_self)
+	  >> _self
+  _endmethod
+
+  # ==========
+
+  _method my_plugin.call_engine()
+	  .engine.call()
+  _endmethod
+
+  # ==========
+
+  _method my_plugin.note_change( who, 
+				 what, data )
+	  ## 
+	  ## 
+	  _if what _is :engine_started
+	  _then
+		  write("!! Engine started !!, notification received from engine")
+	  _elif what _is :engine_running
+	  _then 
+		  write("!! Engine running !!, notification received from engine")
+	  _elif what _is :engine_stopped
+	  _then
+		  write("!! Engine stopped !!, notification received from engine")
+	  _endif 
+  _endmethod
+
+
+  # ==========
+#+end_src
+
+
+
+
+
+** Holy fuck Im a genius. I discovered a cool trick. Well, kind of. Not sure how common, useful or easy-for-others (which is also the point, if its too weird, then its useless). Write this one down properly. I dont know. Maybe its just funny.
+
+#+begin_src magik
+
+  # ==========
+  roper << _proc @roper(rope1,element1)
+		   rope1.add(element1)
+	_endproc
+  # ==========
+
+  _global addtorope << _proc @addtorope(inrope)
+			       >> _proc @message(inelement)
+					  _import inrope
+					  write("feeding element", inelement, "into rope")
+					  print(inrope)
+					  >> roper(inrope,inelement)
+				  _endproc	      
+		       _endproc
+
+  # ==========
+  rope_test << rope.new_with()
+  # ==========
+  addperson << addtorope(rope_test)
+  # ==========
+  addperson(2)
+  # ==========
+  addperson(3)
+
+  # ========== output ==========
+  # Magik> print(rope_test)
+  # rope(1,2):
+  # 1 	2 
+  # 2 	3
+
+#+end_src
+
+** Examples of my own question
+
+
+#+begin_src
+
+Question 1:
+if its a helper function then we can clearly create multiple constants. That would save a TON of time. lets say it accepts 2 ropes as inputs. and the textual function itself adds whatever element we have into those 2 functions.
+
+
+This is kinda useless, but who cares.
+
+
+Question 2:
+another function that accepts 2 ropes at first, to establish that functino. Then we create a textual function that display when we pass an argument to it, in which rope ists, in which it doesnt of the 2 ropes.
+
+scratch that. We now use equality_set instead of rope.
+  
+#+end_src
+
+
+
+#+begin_src magik
+
+  _global mydualsearch << _proc @mydualsearch(eset1,eset2)
+				  write("creating a meta function")
+				  >> _proc @mysearch(element)
+					     _import eset1
+					     _import eset2
+					     write("searching eset1 and eset2")
+					     _if eset1.includes?(element)	    
+					     _then
+						     write("the first set has it!")
+					     _else
+						     write("set 1 doesnt have it, adding....")
+						     eset1.add(element)
+					     _endif
+					     _if eset2.includes?(element)
+					     _then
+						     write("the second set has it")
+					     _else
+						     write("set 2 doesnt have it, adding it...")
+						     eset2.add(element)
+					     _endif
+				     _endproc
+		       _endproc
+
+#+end_src
+
+
+
+* Day 18
+
+
 
 
