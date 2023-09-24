@@ -70,6 +70,8 @@ $keyInfo
 ** https://www.red-gate.com/simple-talk/sysadmin/powershell/introduction-to-powershell-with-sql-server-using-invoke-sqlcmd/
 *** Havent read anything 
 * Basics:
+** Where and $_
+*** https://linuxhint.com/dollar-underscore-mean-in-powershell/
 ** Control Flow (boring name, wish there was a cooler name for it):
 *** Powershell allows arrays as --input/source text-- , each matching statement (in proper order) is executed
 switch (4, 2)

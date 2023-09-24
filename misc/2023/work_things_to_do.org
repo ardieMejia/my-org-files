@@ -6,51 +6,574 @@
 ** Importing a TSV (first time) or CSV file as a new layer
 *** https://www.qgistutorials.com/en/docs/3/importing_spreadsheets_csv.html
 **
-* Install vs distributable, this is annoying. (If you dont know which version, just install VirtualBox, and it will complain for you)
-** https://www.debugpoint.com/virtualbox-needs-microsoft-visual-c/
-* Install Virtualbox  on Windows 11
-** https://www.guidingtech.com/how-to-install-virtualbox-on-windows/
-* Download Lubuntu
-** https://lubuntu.me/downloads/
-** Jammy Jellyfish
-* Install Lubuntu
-* Things to do after fresh install
-** https://averagelinuxuser.com/ubuntu-22-04-after_install
-*** Menu -> Additional drivers -> wait while it is searching for additional drivers -> Install recommended proprietary drivers
-*** Install the binary version of firefox
-*** install codecs and Microsoft fonts
-**** sudo apt install ubuntu-restricted-extras
-* Run a Python script from inside Lubuntu. And open  that same file in Windows
-* Install Emacs
-*
-* ==================================================
-* CANCELED Try the Windows version. Install a better version of Emacs. (26)
-** http://sw-gis.wikidot.com/emacs
-** rename old folder to another. Test if you can still run your codes
-** Install another Emacs rename it to the latest version too
-** Change the config setting to to point to your new Emacs and test your new Emacs
-** Try running first.
-** Check out these links
+* Virtualbox going nowhere
+** Install vs distributable, this is annoying. (If you dont know which version, just install VirtualBox, and it will complain for you)
+*** https://www.debugpoint.com/virtualbox-needs-microsoft-visual-c/
+** Install Virtualbox  on Windows 11
+*** https://www.guidingtech.com/how-to-install-virtualbox-on-windows/
+** Download Lubuntu
+*** https://lubuntu.me/downloads/
+*** Jammy Jellyfish
+** Install Lubuntu
+** Things to do after fresh install
+*** https://averagelinuxuser.com/ubuntu-22-04-after_install
+**** Menu -> Additional drivers -> wait while it is searching for additional drivers -> Install recommended proprietary drivers
+**** Install the binary version of firefox
+**** install codecs and Microsoft fonts
+***** sudo apt install ubuntu-restricted-extras
+** Run a Python script from inside Lubuntu. And open  that same file in Windows
+** Install Emacs
+* Emacs 28 version works!! No need for emacsclient for now
+** CANCELED Try the Windows version. Install a better version of Emacs. (26)
 *** http://sw-gis.wikidot.com/emacs
-*** https://github.com/roger-realworld/smallworld
-*** http://sw-gis.wikidot.com/tech-emacs
-** ?? ========== how to we continue using the new Emacs for our GIS files ========== ???
-* ==================================================
-* emacs 23/28 under Smallworld
-** Add a new conditional to test for Emacs version
-*** https://emacs.stackexchange.com/questions/35335/how-to-test-for-specific-emacs-version-or-newer
-** move all code so you can continue playing with Vertico, Consult & Marganilia
-** We will try to make an Emacs daemon later using this link (I think its just creating a shortcut with the --daemon option, and then make other apps use Emacs by using their own unqique variables
-*** https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
-*** no progress, only followed 2 links, runemacs.exe or emacs.exe (with --daemon) makes no difference
-** 
-* Lubuntu Emacs
-** install Vertico, Marganilia, Consult
-** open a file in Emacs, write, & save
-** open in Python edit and save
-* rgrep progress, interesting:
-** We tried using grep from Git bash, doesnt work
-** We installed Cygwin (base package only), added to Emacs's exec-path. Didnt work
-** We explored code in grep.el, our progress in eLisp worth it. We discovered this. Pretty cool that it works.
-* Ag, if we have a bigger project, we will use ag coz it uses .gitignore, which means its faster
-* https://github.com/k-takata/the_silver_searcher-win32
+*** rename old folder to another. Test if you can still run your codes
+*** Install another Emacs rename it to the latest version too
+*** Change the config setting to to point to your new Emacs and test your new Emacs
+*** Try running first.
+*** Check out these links
+**** http://sw-gis.wikidot.com/emacs
+**** https://github.com/roger-realworld/smallworld
+**** http://sw-gis.wikidot.com/tech-emacs
+*** ?? ========== how to we continue using the new Emacs for our GIS files ========== ???
+** emacs 23/28 under Smallworld
+*** Add a new conditional to test for Emacs version
+**** https://emacs.stackexchange.com/questions/35335/how-to-test-for-specific-emacs-version-or-newer
+*** move all code so you can continue playing with Vertico, Consult & Marganilia
+*** We will try to make an Emacs daemon later using this link (I think its just creating a shortcut with the --daemon option, and then make other apps use Emacs by using their own unqique variables
+**** https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
+**** no progress, only followed 2 links, runemacs.exe or emacs.exe (with --daemon) makes no difference
+*** 
+** Lubuntu Emacs
+*** install Vertico, Marganilia, Consult
+*** open a file in Emacs, write, & save
+*** open in Python edit and save
+* Im not sure why we did the rgrep experiment anyway, but it worked. HAHA
+** rgrep progress, interesting:
+*** We tried using grep from Git bash, doesnt work
+*** We installed Cygwin (base package only), added to Emacs's exec-path. Didnt work
+*** We explored code in grep.el, our progress in eLisp worth it. We discovered this. Pretty cool that it works.
+** Ag, if we have a bigger project, we will use ag coz it uses .gitignore, which means its faster
+** https://github.com/k-takata/the_silver_searcher-win32
+* Making our Windows 11 an ultimate shortcut powerhouse
+** Cross process window activation (Examples: using keybinding to trigger opening a new window. Or after a process runs trigger a window)
+*** Its not enabled by default in Windows 11!! --> https://stackoverflow.com/questions/73675340/how-to-bring-gui-window-to-front-after-an-event/73675531#73675531
+*** On second thought, it does work
+** Actually we made our script. but will not work with a minimized window, so instead we try installing a module mentioned here
+*** https://stackoverflow.com/questions/4993926/maximize-window-and-bring-it-in-front-with-powershell
+* Meetings
+** Meeting 1
+*** MCMC Malaysia Oooooo
+*** TM (GIS, but not full-fledged)
+*** Atlas (GeoSpatial product), not a full fledged GIS. POC in place
+*** TNB GIS
+**** asset performance management system
+**** what is CR? --> ooooo, fibre optic
+*** IQGeo
+*** Fibre planning
+*** automatic digitization
+*** some rural areas still dont have 5G fibre optic. so we need solution
+*** Atlas front end uses Javascrript
+*** IQGeo also uses Javascript as frontend. Oh nooooo!! Communication with server uses Python. 
+*** swmfs on Linux uses an encrypted file containing passworde??
+*** Yayy, Kubernetes. Oh nooooo
+*** Azure and AWS. OH nooooo. I dont understand
+*** what is SAP?? users have trouble using SAP. 
+*** optimization using map tile caching (web service improvement)
+*** utility model framework. GNS uses different format to store coordinates. not that WGS thing.
+*** in electric office, not much, but changes to data models
+*** VMDS cloud. in the future it will use postgres. 
+*** Smallworld DNA. and VMDS uniqueness. Preserve long running trasaction as much as possible.
+*** Devops implemented, CI-CD
+*** 
+* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

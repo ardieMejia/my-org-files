@@ -345,4 +345,6 @@
 ** There are many ports of GNU tools available
 *** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
+* Presentations in org mode
+** https://github.com/yjwen/Org-Reveal
 

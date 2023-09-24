@@ -1,16 +1,19 @@
+
 #+OPTIONS: toc:nil
 
 * Personal stuff I installed
-** smallworld software so boring coz its closed source
+** smallworld software strange that   its closed source
 ** Emacs 23, so boring coz its so old
 ** VirtualBox, Lubuntu.etc...
 ** PowerToys for keyboard shortcuts
 ** Git
 * (Official) Stuff I did so far.
+** Install Java
 ** we downloaded 3 files
 ** Emacs, emacs.rar (??), EO installer
 ** Moved it to E drive
 ** moved Emacs and extract at same level as SmallWorld
+** run configure.exe as admin
 ** We also added some config to gis_aliases under core/config
 
 #+begin_quote
@@ -35,7 +38,10 @@ E:\SmallWorld\core\bin\x86\gis.exe -a "E:\SmallWorld\electric_office\config\gis_
 
 
 ** Run config program under core
-** Had to add Everyone as new group at parent directory, before anything happened. Finally clicking "Show Licenses" finally worked
+** Had to add Everyone as new group at parent directory (SmallWorld), before anything happened. (Make sure permissions all set/allowed) Finally clicking "Show Licenses" finally worked 
+** Start server if itsnt started
+** also, under datastore server admin -> security -> add "rights all" at top -> commit
+** also licenses -> show licenses -> (should show details)
 * Learning progress (user)
 ** [%HOME%] runalias eo_open -login root
 ** We learned how to create a map, resize that map area & add a legend
@@ -1547,7 +1553,1127 @@ scratch that. We now use equality_set instead of rope.
 
 
 * Day 18
+** Post mortem
+*** New version behaves different. you need to generate a .jar file from module, before you can garbage collect (I think so.....)
+** A way to test private function, without going through the whole process of creating an object
+
+#+begin_src magik
+
+    remex(:test_sys)
+  $
+
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  def_slotted_exemplar(:test_sys,
+	  ## 
+	  ## whatever
+	  ## 
+	  {{:first,unset}},:plugin)
+  $
+
+
+  # Why is it so easy to forget that _clone part?? There is
+  # another way to do it, but I keep forgetting this method
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  _method test_sys.new()
+	  ## 
+	  ## 
+
+	  >> _clone.init()
+  _endmethod
+  $
+
+  _pragma(classify_level=basic, topic={test}, usage={test})
+  _method test_sys.init()
+	  ## 
+	  ##
+
+	  .first << "haha"
+	  >> _self 
+
+  _endmethod
+  $
 
 
 
+
+  _private _method test_sys.useless() 
+	  # Yields a NUMBER of random integers from 0 to RANGE - 1 
+
+	  write("hello there")
+
+  _endmethod
+  $
+
+
+  # ====================
+
+  wow << test_sys.new()
+
+  # ====================
+
+  wow.sys!perform(:useless|()|)
+
+  # ====================
+
+#+end_src
+
+* My examples (special variable _import and functional language)
+
+** First we can actually feed a method into another method. Crazy!!
+
+#+begin_src magik
+
+  in_method << _proc @in_method(somestring)
+		       write(somestring)
+	    _endproc
+
+  out_method << _proc @out_method(somefunc,astring)
+			somefunc(astring)
+		_endproc
+
+  # Magik> out_method(in_method,"hello there")
+
+
+#+end_src
+
+** The first is using our variable of interest. So we simplify function. Example: simplifying add_to_rope(rope1, "asd") to add_to_rope1("asd")
+#+begin_src magik
+
+    # ==========
+  roper << _proc @roper(rope1,element1)
+		   rope1.add(element1)
+	_endproc
+  # ==========
+
+  _global addtorope << _proc @addtorope(inrope)
+			       >> _proc @message(inelement)
+					  _import inrope
+					  write("feeding element", inelement, "into rope")
+					  print(inrope)
+					  >> roper(inrope,inelement)
+				  _endproc	      
+		       _endproc
+
+  # ==========
+  rope_test << rope.new_with()
+  # ==========
+  addperson << addtorope(rope_test)
+  # ==========
+  addperson(2)
+  # ==========
+  addperson(3)
+
+  # ========== output ==========
+  # Magik> print(rope_test)
+  # rope(1,2):
+  # 1 	2 
+  # 2 	3
+  
+#+end_src
+** The second is feeding a function as a argument.
+
+
+#+begin_src magik
+
+  internal_writer << _proc @internal_writer(item)
+				  write(item)
+			  _endproc
+
+
+  _global external_method << _proc @external_method (somefunc)
+					  >> _proc @internal (mystring)
+						   _import somefunc
+						     somefunc(mystring)
+					     _endproc
+				  _endproc
+
+
+
+  # Magik> test_writer << external_method(internal_writer)
+
+  # Magik> test_writer("hello there")
+
+
+#+end_src
+
+* Day 19
+** Application architecture
+*** ========== Mostly a reminder of what we did in the past. But I still cant fully grasp strangely
+
+smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection
+
+*** The actual location of the .db itsewlf (.jou generates when we use an app accessing it)
+**** E:\SmallWorld\electric_office\example_db\ds\ds_electric
+*** We need to read about SOC (Spatial Object Controller), how it manages many data sources (from files to databasesa)
+** Getting the databus datatypes
+write(""); write(""); smallworld_product.application(:sweo_dm_user).databus_consumer_data_types[2]
+** Try selecting several types of object in the map. and get the selection like this
+smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection
+** Exercises
+*** Through the editor manager plugin we can get the current selected object
+*** Select multiple objects in map manager. show the result in the explorer window
+** Lists coz we have no clue what we're doing
+
+#+begin_src magik
+
+
+  smallworld_product.application(:sweo_dm_user).databus_consumer_data_types[2]
+  smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection
+  smallworld_product.application(:sweo_dm_user).plugin(:editor_manager)
+
+  # from Syed
+  _block
+	  swapp << smallworld_product.application(:sweo_dm_user)
+	  #print(swapp)
+	  #print_ancestry(smallworld_product)
+	  #swapp.report_plugins()
+	  print(swapp.plugin(:maps).current_map.current_selection.rwo_set())
+  _endblock
+  
+#+end_src
+
+** 
+
+* Day 20
+** Only the first layer is raster image. Above that we can have state info, district info, operation layer. ACE can configure what users can see and cannot see
+** Version management (TNB)
+*** CPP
+**** design work
+**** electric
+*** SNC
+**** GIS
+**** electric
+*** Asset registration
+**** land
+**** design work
+** Exercise (This is a lot to take in). This one is to merely tp teach predicates. But note the many details here
+#+begin_src magik
+
+  _block
+	       _local gis_db << gis_program_manager.databases[:electric]
+	       _local sw_eoapp << smallworld_product.application(:sweo_dm_user)
+	       _local sw_eoapp_plmaptrail << sw_eoapp.plugin(:map_trail)
+	       _local pseudo_geom << sw_eoapp_plmaptrail.current_trail.as_pseudo_geometry
+
+	       _local pred1 << predicate.interacts(:location,pseudo_geom)
+	       _local pred_coll << gis_db.collections[:eo_service_point].select(pred1)
+
+	       _for item _over pred_coll.fast_elements()
+	       _loop
+		       write(item)
+	       _endloop
+       _endblock
+  
+#+end_src
+** The same thing, but this time for cable_segment. We cant the geometry type (this time its :route) from the editor pane in the app.
+
+#+begin_src magik
+
+  _block
+	       _local gis_db << gis_program_manager.databases[:electric]
+	       _local sw_eoapp << smallworld_product.application(:sweo_dm_user)
+	       _local sw_eoapp_plmaptrail << sw_eoapp.plugin(:map_trail)
+	       _local pseudo_geom << sw_eoapp_plmaptrail.current_trail.as_pseudo_geometry
+
+	       _local pred1 << predicate.interacts(:location,pseudo_geom)
+	       _local pred_coll << gis_db.collections[:eo_cable_segment].select(pred1)
+
+	       _for item _over pred_coll.fast_elements()
+	       _loop
+		       write(item)
+	       _endloop
+       _endblock
+  
+#+end_src
+** We can list all state/city areas using
+#+begin_src magik
+
+  _for item  _over gis_db.table_for_external_name("Layout Area").fast_elements()
+       _loop
+	       write(item.name)
+       _endloop
+       
+#+end_src
+** You can also get the above from zoomin out in the app. And look for Layout Area in the object collection drop-down.
+#+begin_src magik
+
+  _block
+	  _local gis_db << gis_program_manager.databases[:electric]
+	  _local sw_eoapp << smallworld_product.application(:sweo_dm_user)
+	  _local layout_area_coll << gis_db.collections[:layout_area]
+	  _local pseudo_geom << layout_area_coll.at(1220618).area
+	  # _local sw_eoapp_plmaptrail << sw_eoapp.plugin(:map_trail)
+	  # _local pseudo_geom << sw_eoapp_plmaptrail.current_trail.as_pseudo_geometry
+
+	  _local pred1 << predicate.interacts(:location,pseudo_geom)
+	  _local pred_coll << gis_db.collections[:eo_service_point].select(pred1)
+
+	  _for item _over pred_coll.fast_elements()
+	  _loop
+		  write(item)
+	  _endloop
+
+  _endblock
+
+#+end_src
+
+** Some notes
+*** the layout_area_coll.at(1220618) looks like this in apropos. method at( gather keys_list) in dd_collection_mixin
+*** 
+** Rearrange later
+
+#+begin_src magik
+
+  _block
+           _local ds << gis_program_manager.databases[:electric]
+           #_local app << smallworld_product.application(:sweo_dm_user)
+           _local layout_area_coll << ds.collections[:layout_area]
+           _local ps_area << layout_area_coll.at(1220625).area
+
+           a_scanner << ds.scanner_for({:sw_gis!area, :sw_gis!chain, :sw_gis!point}, ds.world)
+
+ 
+
+           _for a_geom _over a_scanner.elements_within_coord_box(ps_area.bounds) 
+        _loop
+            write(a_geom.rwo)
+        _endloop
+
+_endblock
+
+#+end_src
+
+
+* Day 21
+** A service point is a heterogenuous collection of data points. (??)
+**
+
+#+begin_src magik
+
+  sw_app << smallworld_product.applications.an_element()
+
+  an_rwo << sw_app.database.rwo_set()
+
+  a_coll << an_rwo.select(:collection,{:eo_service_point})
+
+  a_coll.size
+
+  a_coll.an_element().transformer
+
+  print(a_coll.an_element())
+
+  
+#+end_src
+** Note that the transfomer is a single join (note the icon). And the sevice connection is a multi join (note the icon & also the select_collection(eo_service_connection), others like circuit_section show a db_set, basically a collection of records).
+** Note the icons in the GUI. And here are the fields
+*** physical field
+*** enumerated field
+*** join field
+*** logical field
+*** intergration field
+*** catalogue field
+** Basically below gets a record. Note the id inside ()
+#+begin_src magik
+
+    _for a_rec _over a_coll.an_element().circuit_and_section.fast_elements() _loop write(a_rec) _endloop
+
+  # so we can the record intself
+
+    gis_program_manager.databases[:electric].collections[:eo_circuit].at(314122)
+
+#+end_src
+** Reverse searching as practice
+#+begin_src magik
+
+    gis_program_manager.databases[:electric].collections[:eo_service_point].an_element().location
+
+  # this will get the geometry information
+
+  # if were to reverse search the record (object) itself from geometry infromation we do this
+
+  gis_program_manager.databases[:electric].collections[:sw_gis!point].at({353475442,1057561421,888922}).rwo
+
+  # note the symbol which allows us to :sw_gis!point to get all points data, so collections[:] has some interesting search capability?
+
+#+end_src
+
+
+** We do the same for cable segments. Keywords: cable segment, route, chain
+**
+
+#+begin_src magik
+
+  _for i _over gis_program_manager.databases[:electric].collections.fast_keys()
+  _loop
+	  write(i)
+  _endloop
+  # this, we get eo_cable_segment_inst
+
+  gis_program_manager.databases[:electric].collections[:eo_cable_segment_inst].an_element().route
+  # we get chain:(gis_id(352321536,0,4687))
+
+
+  gis_program_manager.databases[:electric].collections[:sw_gis!chain].at({352321536,0,4687}).rwo`
+
+
+
+
+#+end_src
+
+** (Later need to test this theory). Instead of collections[:], we can use select() with an rwo & combine with predicate to make it more flexible
+
+#+begin_src magik
+
+
+  an_rwo << sw_app.database.rwo_set()
+  
+  an_rwo.select(predicate.like(:status, "Existing"))  # can check .size
+
+  # can use some weird almost Regex like thing. Coz like() is flexible
+
+
+  an_rwo.select(predicate.like(:status, "%xistin%"))
+  an_rwo.select(predicate.like(:status, "%xistin%")).size
+ # the same size as results before
+
+
+#+end_src
+
+** By field types!! So it will display several records
+
+#+begin_src magik
+
+  print(an_rwo.select(:field,{:route}))
+
+  print(an_rwo.select(:field,{:area}))
+
+#+end_src
+
+** For geomertry sets, a new app
+
+#+begin_src magik
+
+
+  geom_set << sw_app.geometry_set_factory()
+
+  geom_set.get_geometry_set_for(:|EO|,gis_program_manager.databases[:electric].world)
+
+
+
+#+end_src
+
+** There are many others of interest
+*** get_application_world(universe_name_id, world_name_id)
+*** you can get information on world from
+
+print(gis_program_manager.databases[:electric].world)
+*** and
+
+
+
+
+print(gis_program_manager.databases[:electric].world.universe)
+
+
+app_world << geom_set.get_application_world_for_world(gis_program_manager.databases[:electric].world)
+
+
+app_world.worlds
+# this will show 8 internal worlds, for the 4 dataset that have an external and internal world
+
+
+
+print(geom_set.get_display_styles_for(:|EO|))
+# View -> View Properties -> Display Style (dropdown)
+** There are many ways to extract the same set of information in Magik. Note that these 2 evaluate to True when we use _is
+*** gis_program_manager.databases[:electric].rwo_set().select(:collection,{:eo_cable_segment_inst})
+*** sw_app.database.rwo_set().select(:collection,{:eo_cable_segment_inst})
+
+* Day 22
+** We are creating a new project. The process always goes
+*** zoom in onto a desired object. To restrict our project. IN our case we used service point (get and goto)
+*** We create a new design
+*** we change state to "as built changes"
+*** 
+** Inserting a record. and the changes reflected automatically in our GUI app. Example:
+#+begin_src magik
+
+  _block
+	       _local ds << gis_program_manager.databases[:electric]
+	       _local a_coll << ds.collections[:eo_service_point]
+	       _local our_app << smallworld_product.application(:sweo_dm_user)
+	       !current_application! << our_app
+	       _local a_map_trail << our_app.plugin(:map_trail).current_trail
+	       _local l_point << a_map_trail.as_pseudo_geometry  
+	       _local l_prop << property_list.new_with(:status,"Existing",
+							:network_type,"LV",
+							:phasing,"A",
+							:owner_type, "Company Owned",
+							:owner_name,"GE West",
+							:remarks,"a new insert from Ardie",
+							:location, l_point)
+		mytransaction << record_transaction.new_insert(a_coll, l_prop, "some comment")
+		mytransaction.run()
+
+       _endblock
+
+#+end_src
+** We are cloning a record. But make sure we give a location, coz searching that is possible. but our GUI cant locate it to show it
+** Now, we are updating a record
+
+#+begin_src magik
+
+  _block
+	       _local ds << gis_program_manager.databases[:electric]
+	       _local a_coll << ds.collections[:eo_service_point]
+	       _local our_app << smallworld_product.application(:sweo_dm_user)
+	       !current_application! << our_app
+	       _local a_map_trail << our_app.plugin(:map_trail).current_trail
+	       _local l_point << a_map_trail.as_pseudo_geometry  
+	       _local l_prop << property_list.new_with(:remarks,"ardies update successful",
+							:network_type, "MV",
+							:phasing,"ABC")
+
+		mytransaction << record_transaction.new_update(a_coll.an_element(), l_prop, "some comment")
+		mytransaction.run()
+		
+       _endblock
+
+#+end_src
+** How do we delete our selection??
+#+begin_src magik
+
+  _block
+	       _local ds << gis_program_manager.databases[:electric]
+	       _local a_coll << ds.collections[:eo_service_point]
+	       _local our_app << smallworld_product.application(:sweo_dm_user)
+	       !current_application! << our_app
+	       _local a_map_trail << our_app.plugin(:map_trail).current_trail
+	       _local l_point << a_map_trail.as_pseudo_geometry  
+	       _local l_prop << property_list.new_with(:remarks,"ardies update successful",
+							:network_type, "MV",
+							:phasing,"ABC")
+
+
+
+		mytransaction << record_transaction.new_delete( smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection.an_element().rwo, "some comment")
+		mytransaction.run()
+
+       _endblock
+  
+#+end_src
+** Dataset transaction.
+** First we select 3 and get thir ID.
+
+#+begin_src magik
+
+      smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection.an_element().rwo
+
+      # note how an_element() needs to be used like previous Eg. Apparently, an_element(). is more than just "getting the first record".
+
+       _for i _over smallworld_product.application(:sweo_dm_user).plugin(:maps).current_map.current_selection.fast_elements()
+    _loop
+	    write(i.rwo)
+    _endloop
+
+  #   eo_service_point28219:(648435)
+  # eo_service_point28219:(648437)
+  # eo_service_point28219:(648436)
+
+
+    _block
+	       _local ds << gis_program_manager.databases[:electric]
+	       _local a_coll << ds.collections[:eo_service_point]
+	       _local our_app << smallworld_product.application(:sweo_dm_user)
+	       !current_application! << our_app
+	       _local a_map_trail << our_app.plugin(:map_trail).current_trail
+	       _local l_point << a_map_trail.as_pseudo_geometry  
+	       _local l_prop << property_list.new_with(:remarks,"ardies update successful",
+							:network_type, "MV",
+							:phasing,"ABC")
+
+		trans_rope << rope.new_with()					
+		_for i  _over {648436,648437,648435}.fast_elements()
+		_loop
+			rt << record_transaction.new_delete(a_coll.at(i),"delete")
+			trans_rope.add(rt)
+		_endloop
+
+		dt << dataset_transaction.new(trans_rope,"delete")
+
+		dt.run()
+
+       _endblock
+
+
+
+#+end_src
+
+** 
+
+* Day 23
+** Im lagging now
+** If you want to really understand, regarding the physical_fields, and Geom_fields, and other types of fields
+
+#+begin_src magik
+
+
+  rwos << prof_app.database.rwo_set()
+
+  rwos.source_descriptors()
+
+  rwos.source_field_descriptors()
+
+  
+
+#+end_src
+** WHat exactly is describe_trigger?
+
+#+begin_src magik
+
+  rwos.select(:collection,{:eo_service_point}).an_element().describe_triggers()
+
+  
+#+end_src
+** PLEASE!! Try and complete this one out later
+#+begin_src magik
+
+  _block
+sw_app
+pl_map
+a_map_view << pl-map.current.new_view()
+a_map_view.set_view(pl_map.current_map_view.current_view_parameters())
+f << frame.new("RPS training test canvas")
+c << canvas.new(f,400,400)
+f.activate()
+a_map_view.set_rendering_surface(c)
+a_map_view.render()
+_endblock
+  
+#+end_src
+** Pretty cool. This will definitely work
+
+#+begin_src magik
+
+  _block
+app << smallworld_product.applications.an_element()
+mapman << app.plugin(:maps)
+a_map_view << mapman.current_map.new_view()
+a_map_view.set_view(mapman.current_map_view.current_view_parameters() )
+docman << app.plugin(:document_manager)
+mgf << map_gui_framework.new( :test, app, :map_manager, mapman, 
+:document_manager, docman, :resource_module_name, :map_plugin,
+:floating_gui_definition_file_name, "floating_map_gui.xml",
+:embedded_gui_definition_file_name, "embedded_map_gui.xml" )
+mgf.activate(_unset, "RPC TEST MAP FRAMEWORK")
+mgf.document << a_map_view
+a_map_view.render()
+_endblock
+
+#+end_src
+** Next class, we can create simple GUI window/frame by inheriting :model (more simple). We can configure actions too. 
+** NOTE-TO-SELF:
+
+#+begin_src magik
+
+    !print_float_precision! << 10
+
+    # ========== to increase precision point, so that, we can have our coordinates properly, to feed into ---> 
+    # our_app.plugin(:map_trail).current_trail.add_geom(se)
+
+#+end_src
+
+* Day 24
+** GUI Frameworek --> customize framework --> activation plugin --> GUI plugin --> model/engine model
+** How a plugin (producer) pushes data into a databus. NOTE: the following example will NOT work. even if you replace _self correctly. 
+
+#+begin_src magik
+
+  _self.databus.make_data_available(:set_map_selection,
+				   {cur_map, geom_set})
+
+  # :set_map_selection is a data_type_name
+
+  _method selection_reporter_plugin.sw_databus_data_available( data_type_name,
+							       data )
+	  _if data_type_name _is :map_trail
+	  _then
+		  (a_map, a_trail) << ( _scatter data )
+		  .map_trail << a_trail
+	  _endif
+  _endmethod
+
+  
+
+#+end_src
+
+** Applied example
+
+#+begin_src magik
+
+  _block
+	  _local app << smallworld_product.applications.an_element()
+	  _local po_set << rope.new_with()
+	  _for a_set _over app.sys!perform_iter(:databus_request_all_data|()|, :map_selection)
+	  _loop
+		  po_set.add(a_set)
+	  _endloop
+	  print(po_set[1])
+  _endblock
+
+#+end_src
+** Creating action objects
+
+#+begin_src magik
+
+  sw_action.new( :clear,
+	       :image, { :clear, :ui_resources },
+	       :engine, _self,
+	       :action_message, { :current_object|<<|, _unset } )
+
+  # you either mention the :clear in message files along with
+  # filenames. OR you can mention file by filename.
+
+
+
+#+end_src
+
+** Process on how to see electric trace, and see cable segments connecting it
+*** As usual, in your editor, get the first instance of a service point object. Make sure to select it
+*** click Electric Trace. Switch direction to Upstream, since this is a Service Point. 
+*** Click Go To in that floating Window itselc
+*** Click to Explorer. CLick Network Analysis, to see all cable segments connecting it.
+* Day 25
+** Today we are loading using a module manager
+#+begin_src magik
+
+
+
+  sw_module_manager.load_standalone_module("c:/Users/ahmadardie.r/Documents/my-trash/magik_practice/2023-08-15_at_10hours/rpc_example")
+
+  a << rpc_example_activation_plugin.new()
+
+  a.activate_dialog()
+
+  # ========== if you wanna see all loaded modules, including your own
+
+  sw_module_dialog.open()
+
+
+#+end_src
+** Once again, not to self, when searching for field names. Do this (example):
+
+#+begin_src magik
+  
+  _for item _over pl_map.current_map.database.collection(:electric,:eo_service_point).all_field_names() _loop
+														write(item)
+										     _endloop
+
+#+end_src
+
+* Day 26
+** writing to an XML, for selected objects
+#+begin_src magik
+
+  _global write_map_selection_to_xml <<_proc@ write_map_selection_to_xml(a_xml_file)
+					       # Get the first app ( not a good idea, but will be ok for demo)
+					       _local an_app << smallworld_product.applications.an_element()
+					       _local map_mgr << an_app.plugin(:maps)
+					       _local curr_sel << map_mgr.current_map.current_selection
+					       sub_ele_rope << rope.new()
+					       _for each_geom _over curr_sel.fast_elements()
+					       _loop
+						       a_rec << each_geom.rwo
+						       _if a_rec.rwo_type _is :eo_service_point
+						       _then
+							       a_name << a_rec.usage.write_string
+							       sub_ele_rope.add_last( simple_xml_thing.new(a_rec.rwo_type,_unset,{:usage,a_name}))
+						       _endif
+					       _endloop
+					       # Create a top level xml element
+					       top_level_xml_ele << simple_xml_thing.new(:selected_records,
+											 sub_ele_rope)
+					       simple_xml.write_element_file(a_xml_file, top_level_xml_ele )
+				     _endproc
+
+  # ========== and then run it
+
+  write_map_selection_to_xml("c:/Users/ahmadardie.r/Desktop/whatever.xml")
+
+#+end_src
+** The example above, test the simple_xml_thing(). it essentially creates a tag like structure, with attributes (like <h1 color="red"></h1>)
+** Make sure to edit the one below
+#+begin_src magik
+
+  _global show_xml_content <<
+  _proc@show_xml_content( a_xml_file)
+	  a_xml_doc << simple_xml.read_document_file(a_xml_file)
+	  _for each_ele _over a_xml_doc.elements.fast_elements()
+	  _loop
+		  _for each_sub_ele _over each_ele.elements.fast_elements()
+		  _loop
+			  an_name << each_sub_ele.xml_attributes["name"]
+			  write("RWO ",each_sub_ele.type," with Name ",an_name)
+		  _endloop
+	  _endloop
+			   _endproc
+
+#+end_src
+** serial_xml_thing practice
+#+begin_src magik
+
+  _global write_map_selection_to_xml <<_proc@ write_map_selection_to_xml(a_xml_file)
+					       # Get the first app ( not a good idea, but will be ok for demo)
+					       _local an_app << smallworld_product.applications.an_element()
+					       _local map_mgr << an_app.plugin(:maps)
+					       _local curr_sel << map_mgr.current_map.current_selection
+					       rope1 << rope.new()
+					       _for each_geom _over curr_sel.fast_elements()
+					       _loop
+						       a_rec << each_geom.rwo
+						       rope1.add(a_rec)
+					       _endloop
+					       # Create a top level xml element
+
+					       a_xml << serial_xml_thing.write_thing_to(rope1, a_xml_file)
+				     _endproc
+
+  # ========== and then run it
+
+  write_map_selection_to_xml("c:/Users/ahmadardie.r/Desktop/whateverSerial.xml")
+
+
+#+end_src
+
+
+** Now read it as-is, no changes
+
+#+begin_src magik
+
+xml_read << serial_xml_thing.read_thing_from("c:/Users/ahmadardie.r/Desktop/whateverSerial.xml")
+
+#+end_src
+
+** From previous notes, our struggle to find the record is due to to this (please write this properly)
+#+begin_src magik
+
+print(sw_app.plugin(:maps).current_map.current_selection.an_element().rwo.source_collection.all_fields)
+
+#+end_src
+
+* Day 27
+** No need selection. Answers to question 4
+#+begin_src magik
+
+  sw_app.plugin(:editor_manager).sys!slot(:embedded_viewer).sys!slot(:editors)[:|electric.eo_service_point|].current_object
+
+    # when we print sw_app.plugin(:editor_manager) we get a listing including slots
+    # can change it to cable segment or anything
+
+#+end_src
+** Note the usage of sys!slot is becoz the slots are private (we do the same thing with methods with sys!perform I thinik).
+** Later must check make_geometry method. Apparently, a strategy is to add location later (after rt.run(), where rt is a record_transation). Its becoz location fields are not mandatory. And mandatory are usually common for all records. So one strategy is to create single property list for mandatory fields, and upload the rest (locations, etc..) from a .csv file
+** For answer 5. if you were to use the bounds by itself, you'll only get 1 hypernode. But by increasing buffer, you get 5, as can be seen by the map
+
+#+begin_src magik
+
+  _block
+	       _local a_ds << gis_program_manager.databases[:electric]
+	       _local a_coll << a_ds.collections[:sub_substation]
+	       _local all_hype << a_ds.collections[:eo_network_hypernode]
+	       _local a_rec << a_coll.an_element()
+	       _local sw_app << smallworld_product.application(:sweo_dm_user)
+	       _local curr_map << sw_app.plugin(:maps)
+	       curr_map.get_active_map_view().goto(a_rec)
+	       _local a_extent << a_rec.extent
+	       _local p1 << predicate.interacts(:pin1,a_extent)
+	       _local p2 << predicate.interacts(:pin2,a_extent)
+	       _local results << all_hype.select(p1 _or p2)
+       _endblock
+
+#+end_src
+
+** Proper answer
+
+#+begin_src magik
+
+  _block
+	  _local a_ds << gis_program_manager.databases[:electric]
+	  _local a_coll << a_ds.collections[:sub_substation]
+	  _local all_hype << a_ds.collections[:eo_network_hypernode]
+	  _local a_rec << a_coll.an_element()
+	  _local sw_app << smallworld_product.application(:sweo_dm_user)
+	  _local curr_map << sw_app.plugin(:maps)
+	  curr_map.get_active_map_view().goto(a_rec)
+	  _local a_extent << a_rec.extent
+
+	  _local a_pseudo_area << pseudo_area.new_for_world(a_extent,a_ds.world)
+	  _local a_buffer << a_pseudo_area.buffer(5000)
+	  a_buffer.world << a_ds.world
+	  _local p1 << predicate.interacts(:pin1,a_buffer)
+	  _local p2 << predicate.interacts(:pin2,a_buffer)
+	  _local results << all_hype.select(p1 _or p2)
+	  print(results)
+  _endblock
+
+#+end_src
+
+** unit conversion
+
+#+begin_src magik
+
+  unit_value.new().value_in()
+
+  unit_value.new(20,:feet).value_in(:mm)
+
+#+end_src
+
+* Day 28
+** If we open Suite Admin -> Ace Config -> (select EO) Object Properties -> We get to see visibile feld (Electric DM -> ELectric -> Equipment -> Service Equipment)
+** Was busy this day with Fiverr (huhuhu)
+** 
+* Day 29
+** Coordinates systems
+#+begin_src magik
+
+  gis_program_manager.databases[:electric].user_visible_coordinate_systems
+  # heres another one
+  gis_program_manager.databases[:electric].collections[:eo_service_point].an_element().location.coord.x
+
+#+end_src
+
+** Converting a coordinate
+
+#+begin_src magik
+
+  from_cs << gis_program_manager.databases[:electric].user_visible_coordinate_systems[:|British National Grid (mm)|]
+  to_cs << gis_program_manager.databases[:electric].user_visible_coordinate_systems[:|Long-Lat WGS84 (degree)|]
+  trans << transform.new_converting_cs_to_cs(from_cs, to_cs)
+
+  sw_app << smallworld_product.application(:sweo_dm_user)
+  a_coll << gis_program_manager.databases[:electric].collection(:eo_service_point)
+  a_coord << a_coll.an_element().coordinate
+
+  converted_coord << trans.convert(a_coord)
+
+  sw_app << smallworld_product.application(:sweo_dm_user)
+
+#+end_src
+
+** Changing coordinate system
+
+#+begin_src magik
+
+# we havent tried this
+  sw_app.projection <<
+  application_coordinate_system.new_from(v.world.coordinate_system)
+
+#+end_src
+
+** Exercise 5 (?)
+*** get objects from current window
+*** for line or area, just list ID and status, no need for geom_x and geom_y
+* GUI Practice
+** Key words to searh for in core document
+*** GUI control classes
+*** Rearrange the following later based on control panel component (in core doc)
+*** message group
+*** GUI containers
+*** Meal Menu example
+** How to 
+#+begin_src magik
+
+  ==============================
+e
+an_action << sw_action.new(:sample1, :caption, "just a sample")
+control_panel_component.add_control_panel_action(an_action,
+						 :comment, "some comments"
+			)
+control_panel_component.add_event_handler(:action_selected, _self, a_method)
+
+# we create the GUI. add a control for the action
+
+_pragma(classify_level=basic, topic={test}, usage={test})
+_method my_component.activate_in(frame)
+	## 
+	## 
+	top_container << rowcol.new(frame, _unset,1
+				:row_aligment, "whatever"
+				:col_alignment, "whatever-lah")
+	button_1 << button_item.new(top_container,"press me")
+
+	.self.action(:views).place_control_on(button_1)
+	.self.build_gui(pw,:width, 155, :height, 350)
+	
+_endmethod
+$
+
+#+end_src
+* Day 30
+** We're learning authorixation, not much code this time
+**
+#+begin_src magik
+
+  print(gis_program_manager.authorisation_view.current_groups)
+  print(gis_program_manager.authorisation_view.current_user)
+
+#+end_src
+** enumerator (extensible enumerator)
+#+begin_src magik
+  print(gis_program_manager.databases[:electric].collections[:eo_service_point].field(:status))
+# and check :type dd_field_type(eo_status) . it will be the same as show in extensible enumerator under the admin suite
+
+#+end_src
+* Recent tricks
+** Instead of losing code through mountains of lines and errors. I recently did this
+
+#+begin_src magik
+
+  _for i _over a_coll_sp.an_element().physical_fields()
+  _loop
+	  write(i)
+  _endloop
+  a_coll_sp.an_element().raw_values_as_vector()[1]
+  print(a_coll_sp.an_element().cs_as_property_list())
+
+#+end_src
+* Day 31:
+** We learned something about alternative and checkpoint management.
+** A lot of interesting stuff but useless for now
+
+#+begin_src magik
+File usage for the current alternative:
+
+------------------------------------------
+
+_block
+        _local ds << gis_program_manager.cached_Dataset(:electric)
+    _local fle_usg << ds.file_usage(:this_alt_only?,_true)
+    ds.dump_file_usage(fle_usg)
+_endblock
+
+ 
+
+File usage for all:
+
+-------------------
+
+_block
+        _local ds << gis_program_manager.cached_Dataset(:electric)
+    _local fle_usg << ds.file_usage()
+    ds.dump_file_usage(fle_usg)
+_endblock
+
+#+end_src
+
+** cached_dataset to get checkpoint information
+
+#+begin_src magik
+
+    ds << program.cached_dataset(:electric)
+  print(ds.checkpoints[1])
+  write(ds.checkpoints[1].user_name)
+  write(ds.checkpoints[1].time_created)
+
+  # ===== can also create current alternative info
+  write(ds.current_alternative_details)
+
+#+end_src
+
+** 
+
+* Day 32:
+** We learned how to add a new field for the record "Service Point". 
+** We opened the Case Tool and we zoomed into the service point. We added a new field. We did a "check" and "apply". we clicked update both in the ACE and outside. We make sure the checkpoint is writable (clicked through the Version Management inside ACE), before we commit with a new checkpoint name. We restarted the app to see the changes. 
+** 
+* GUI practice and Databus
+** What have we done so far
+*** we discovered simple_list
+*** we discovered identifier, which for some reason doesnt work
+*** discovered accessing values from simple_list and moving them to a label_item
+*** we discovered tree_item
+** When in doubt, always go back to our Meal Menu example
+** Some random coding
+#+begin_src magik
+
+
+  # dont know how I did this
+  # this is probably for initializing before you do anything
+  # useful with databuses
+  pl_map.define_shared_constant( :databus_producer_data_types,
+			       {whatnow, :record_selection}, :public)
+
+
+
+  # this is pretty straightforward stuff
+  pl_e.databus.request_data(:current_document)[1]
+
+
+
+#+end_src
+
+** Setting trail through databus, but inside a method
+
+#+begin_src magik
+
+  # To set the current map’s trail, your plugin must be registered with the application databus as a producer of the :set_map_trail data type:
+  my_plugin.define_shared_constant( :databus_producer_data_types,
+				  { :set_map_trail },
+				  :public )
+  # In the plugin, when you want to set the trail, use a method like this:
+  _method my_plugin.set_trail( a_geometry )
+	  _self.databus_make_data_available(:set_map_trail,
+					    {_self, a_geometry})
+  _endmethod
+  # The geometry supplied on the databus is converted into simple linear geometry and then into a trail.
+
+
+#+end_src
+
+** Loading the standalone module, not always used in practice. But useful under some circumstances
+** Loading a standalone module
+#+begin_src magik
+
+sw_module_manager.load_standalone_module("c:/Users/ahmadardie.r/Documents/my-trash/magik_practice/2023-09-04_at_16hours/rpc_example/")
+
+#+end_src
+** geometry_set_for_trace_drawing( nf_link )
+** _self.application.databus.request_data( :trace_results )
+** Terms:
+*** Customizing the network analysis engine
+*** The idea below may not be important
+
+- create scanner (our_program.geometry_scanner(:point))
+
+- create bounding box (.buonds)
+start scanner  (.start_scan())
+- get (.get())
+-
+node_at
+
+pseudo_node.new_for_world(geom,:electric)
+
+network_follower.trace_out(node1)
+
+network_follower.shortest_path( node1, node2, _gather params )
+* Topics:
+** Magik components and conponent frameworks
+** GUI Containers and Controls
+** Alphabetical Document List
+** Developing Interactive Applications
+** Using the Application Framework Architecture
+** Working with Geometry
+* Databus more of it
+#+begin_src magik
+
+  an_element << gis_program_manager.databases[:electric].collections[:eo_service_point].an_element()
+
+  a_geom << an_element.geometry_set(gis_program_manager.databases[:electric].world)
+
+  pl_map.databus.make_data_available(:set_map_selection, {pl_map, a_geom, :add})
+
+  pl_map.goto(a_geom)
+
+#+end_src
 
