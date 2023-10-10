@@ -2571,7 +2571,7 @@ _endblock
 
 #+begin_src magik
 
-    ds << program.cached_dataset(:electric)
+  ds << program.cached_dataset(:electric)
   print(ds.checkpoints[1])
   write(ds.checkpoints[1].user_name)
   write(ds.checkpoints[1].time_created)
@@ -2676,4 +2676,122 @@ network_follower.shortest_path( node1, node2, _gather params )
   pl_map.goto(a_geom)
 
 #+end_src
+* Read on VMDS from here:
+** https://wiki.gis.com/wiki/index.php/VMDS
+* How to clone the SmallWorld repo
+** Make sure your endpoint security VPN is enabled and connected (your tray below), using staff password
+** Download and install the Github Desktop app
+*** [[https://redplanetsolutions.sharepoint.com/:u:/s/rpstnb/EeKnOrTrblNEminzerOFTjcB-RLhOIP5s1bUqSKz5BSlVw?e=bbusAw][Github Desktop]]
+** Login below
+*** http://192.168.3.66/users/sign_in
+*** username and password 
+*** Change to your desired password
+** Login into Github Desktop with the new password
+** Choose your desired directory/folder (can choose default, make sure its not the same as our previous SmallWorld)
+* RWO (SmallWorld)
+** they have 2 unique fields, rwo_type and rwo_code (a name and integer code). 
+** RWO definitions - they are defined like tables (you can create it from Magik code)
+** What are "Views on RWO"?
+** RWO sets
+*** It seems to be its own thing
+*** heterogenuous (not from single source) set of records across collection and dataset.
+*** ds_collection is also an RWO set
+*** We can use predicate when searching in rwo_set
+*** There is an RWO set API, all classes inheriting from dataset_collection_mixin implement RWO set API
+*** Using predicate in RWO allows searching of fields regardless of dataset source.
+#+begin_src magik
 
+my_areas << my_rwos.select(:field, {:name})
+
+#+end_src
+* Alteia and self-learnt topics 
+** Synonyms
+*** Site = Project
+*** 
+** User roles 
+*** Manager
+**** Company manager has permission to create datasets
+**** Domain manager can activate custom analytics
+*** User
+*** Contributor
+*** Operator
+** What is a survey
+** CSV
+*** We apparently are using the CSV file to localize the information 
+*** Often in the form of
+X, Y, Z
+524510.928, 324634.025, 2.446
+524524.29, 423585.665, 2.448
+** Machine Learning in electric utilities (https://www.datarevenue.com/en-blog/machine-learning-for-energy-transmission)
+*** Common risks used in energy transmission
+*** prevent power grid failure
+*** prevent brownouts with AI prediction
+*** balance the grid
+**** transmission operators spend millions each year fixing fixing planning mistakes (too much or too little power). Last correction either by buying more power, or compensating power plants for excess
+**** Machine learning is the most accurate method available to forecast renewable energy output. Advanced method like Long Short-Term Neural Networks (LSTMs), AI can weigh many factors - wind, temperature, sunlight, humidity forecases, and make predictions
+*** detect energy theft
+*** differentiate power system disturbances from cyber attacks
+** CRS
+*** The CRS choice (geospatial reference system), should be flexible, and can be varies from user to user, and depends on specific use-cases
+** SDK
+*** uses Python 
+*** entry point alteia.sdk.SDK
+#+begin_quote
+
+pip install alteia
+
+#+end_quote
+*** use config-connection.json to store username and password and other configs, like public endpoint of Alteia, dictionary providing connection config
+*** this is documented in 
+*** configuration options documented in alteia.core.config.ConnectionConfig
+*** the use case shown is rather specific. using a VERY simple Python script to calculate "fuel consumption" as a function of load, lenfth, and delta_z (elevation delta).
+*** On adding custom analytics to end-to-end workflow. 
+**** Example is Rust Detector
+**** We need to use Docker for this
+*** On Docker:
+**** The process of creating is simple. Usually a config file just like alteia SDK
+**** However reasons NOT to use Docker include: 
+***** Building a small project. Becoz you dont need to host it. Docker involves several configs like Docker files and such. Which can make it complicated
+***** Docker images are not entirely portable. A Docker build on Linux, still needs Linux to run. So we usually run it inside Linux virtual environment installed on Windows
+***** Dockers are best for console-based apps, and even web apps. Not meant for Desktop apps with rich GUI
+** Discovery
+*** Upon exploring 1 site (FPL Satellite Demo), we discovered the compare tool
+*** When comparing we discovered vegetation encorachment data
+*** Vegetation management is expensive maintenance work for disctribution & transmission infrastructure. Interesting --> Data prediction usage is species identification and growth rates based on weather conditinos and precipitation rates
+*** Traditionally we have always relied on combination of manual surveys and spatial assistance from remote sensing data
+*** We now have deep leaning assisted workflows, using satelllite imagery, drone images, 3D data
+*** LiDAR
+**** It is frequently mentioned as a data source
+**** https://www.jouav.com/case-study/lidar-mapping-malaysian-border-roads.html
+**** Its basically like a bat sonar, but uses light pulses instead of sound waves
+**** Malvus Sense Sdn Bhd -->  Locally unique challenges: Lots of rain, dense forests, places emphasis on waterproofness of drones and penetration of radar. Legal compliance of the flight (so deathly boring), apply for air space from Malaysian Sports Aviation Federation (MSAF), flight bandwidth to 1 km
+**** Here ='s  good article on vegetation encroachment in a Malaysian context.
+**** https://www.mdpi.com/1996-1073/14/12/3393
+*** But LiDAR's are expensive, Satellite data can cover a wide area at a relatively low cost?
+** Basic:
+*** Energy basic is a complex network of power plants, transmission lines, substations, distribution lines
+*** generation = creating electrical power from other forms of energy
+*** transmission = moving this electricity from power plant to population centers using HV
+*** distribution = delivery of power to individual houses/etc via LV
+*** Energy grid operators are using AI in key areas:
+**** asset management = AI enabled sensors identify issues befoe problems. Also, historical data, helps maintenance schedules
+**** grid operations = real time monitoring of power flow
+**** load forecasting = predicting future demans and customer behaviour
+**** decision making = where to build new power plants
+*** [[https://x2n.com/blog/how-utility-companies-are-using-satellite-technology/][Satellite datxsa]]
+* Meeting (soon we might need to move meeting into its own place)
+** https://www.scribd.com/document/388790080/Sparc-t8-m8-Servers-Faq-3864324
+*** What is SPARC?
+** I dont understand, haha??!!
+** Sabah Energy!??
+** TNB GIS CR
+*** PNI -> Physical Network Inventory (Fibre??)
+*** Active Centralized LV Database ??
+*** 
+** IQGeo accepts input from Smallworld - Posgres
+*** provides telecom, fiber, and utility network operators with the industry's most innovative geospatial network management software solutions.
+** Cliffhanger - Atlas (elastic search) accepts dataa from SmallWorld
+*** elastic search
+** Geomagic GeoNAM - 
+*** Cathodic protection - Oracle
+** 

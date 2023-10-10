@@ -33,6 +33,75 @@
 *** C-x 4 c to open temporarily a buffer, maybe to indent or something
 *** this behaviour probably not encouraged, probably becoz there are other better alternatives, and confusing for beginners
 * Part 3 (sensible defaults)
+** The following are taken from this link: [[https://www.sandeepnambiar.com/my-minimal-emacs-setup/][Sandeep minimal defaults]]
+#+begin_src lisp
+
+
+  ;; cut short, becoz I dont use use-package, coz I dont understand use-package, hahaha, thats all
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+  (package-initialize)
+
+#+end_src
+
+#+begin_src lisp
+
+  (menu-bar-mode -1)
+  (toggle-scroll-bar -1)
+  (tool-bar-mode -1)
+  (blink-cursor-mode -1)
+
+#+end_src
+
+#+begin_src lisp
+
+  ;; this is one is a MUST, coz I cant see my cursor with Emacs vanilla
+  (global-hl-line-mode +1)
+
+#+end_src
+
+#+begin_src lisp
+
+  ;; ========== so, you only see scratch at startup
+  (setq inhibit-startup-screen t)
+
+#+end_src
+
+#+begin_src lisp
+
+  ; ; ========== make scrolling a bit more consistent
+  (setq scroll-margin 0
+	scroll-conservatively 100000
+	scroll-preserve-screen-position 1)
+
+#+end_src
+
+** saving sessions between Emacs restart
+*** [[https://superuser.com/questions/650588/how-do-i-save-and-reload-a-session-in-emacs][saving session]]
+
+#+begin_src lisp
+
+  ;; ========== on some platform, it asks for the location you want for the "desktop file"
+  ;; ========== you can just set it to ~/ (home)
+  ; ; ========== 
+  (desktop-save-mode 1)
+  
+#+end_src
+** Auto-save when out-of-focus, a better alternative to "saving every minute" that most IDE's use
+*** https://www.emacswiki.org/emacs/AutoSave
+#+begin_src lisp
+
+  (defun my-save-all ()
+    (interactive)
+    (save-some-buffers t))
+
+  (add-hook 'focus-out-hook 'my-save-all)
+
+#+end_src
+
+
 * Loading subtlety, hooks, eval, yadayada
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
 *** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
@@ -61,24 +130,6 @@
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
 * Keybinding (under construction)
-** Our init.el org-mode-map seems best
-*** with-eval-after-load & -mode-map
-**** https://www.reddit.com/r/emacs/comments/6sgwfc/how_do_i_set_a_key_binding_only_for_a_particular/
-(with-eval-after-load "org"
-  (define-key org-mode-map (kbd "S-<left>") 'backward-char)
-  (define-key org-mode-map (kbd "S-<right>") 'forward-char)
-  (define-key org-mode-map (kbd "S-<up>") 'previous-line)
-  (define-key org-mode-map (kbd "S-<down>") 'next-line)
-  (define-key org-mode-map (kbd "C-S-c C-, o k") 'ardie-open-kodland)
-*** with-eval-after-load & local-set-key
-**** https://emacs.stackexchange.com/questions/12293/mode-hooks-and-eval-after-load
-(add-hook 'org-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "S-<left>") 'backward-char)
-             (local-set-key (kbd "S-<right>") 'forward-char)
-             (local-set-key (kbd "S-<up>") 'previous-line)
-             (local-set-key (kbd "S-<down>") 'next-line)
-             (local-set-key (kbd "C-S-c C-, o k") 'ardie-open-kodland)))
 ** In the long term, once we understand, we should avoid -eval- & hooks (??)
 *** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
 ** Lots of information
@@ -143,7 +194,7 @@
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 ** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 *** Need as input: --> filename pattern & regex text
-* Very IMPORTANT, saved all my loading problems!!:
+* Only applicable to my old Kaushal Modi copy (cut loading short):
 ** https://github.com/jwiegley/use-package/issues/494
 *** Personally, I just removed "package-refresh-contents" from setup-packages.el
 ** Additional read too
@@ -151,7 +202,7 @@
 * An apparently, very cool init.el, according to one good emacs user. Must read it 1 day
 ** https://github.com/eastwood/config/blob/master/emacs.d/init.el
 * Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
-** https://www.emacswiki.org/emacs/AutoSave
+** 
 *** 'focus-out-hook'
 * Cool for development, you might want to include this in an init file. Maybe as a separate development-init.el
 ** https://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer/171#171
@@ -253,7 +304,9 @@
 **** For files you can delete, copy, rename
 **** For buffers, you can kill or switch
 * How do we export to PDFs:
-#+begin_src sh
+** This one MAGICALLY worked in our home Linux
+
+#+begin_src shell
 
   sudo apt update
   sudo apt install texlive-latex-extra
@@ -264,19 +317,18 @@
   sudo apt install python-pygments
 
   # ==================== HOLY SHIT!! It works
-#+end_src
-** The links we below tried reading below, but in the end the previous instructions simply worked
-*** https://www.geneatcg.com/emacs-org-mode-export-to-pdf/
-**** No installation instructions
-**** Has a starter code, to put inside init.el. (LOTS of add-to-list to org-latex-classes & org-latex-pdf-process)
-**** From this site, you DONT NEED to learn latex syntax, the starter code does that
-**** Simple use code, and export
-*** https://medium.com/@sachinsamurai/setting-up-latex-on-doom-emacs-for-beginners-824358463a42
-**** This one assumes you want to learn Latex, oops
-**** Though it points to another site where you install proper Latex
-*** https://www.tug.org/texlive/
-**** exporting pDf through latex, can produce LOTS of errors. If all fails, always better to install the FULL latex, and from the original TUG source. (7GB!!)
 
+#+end_src
+
+** According to this [[https://orgmode.org/manual/LaTeX_002fPDF-export-commands.html][org mode official website]]
+*** we have a variable called org-latex-compiler which finds the compiler version to use
+*** we have 3 engines, pdflatex, lualatex, xelatex that uses different compilers, packages & output options
+** [[https://www.latexbuch.de/install-latex-windows/][installing latex on Windows]]
+*** they got PDF version in site
+*** this setup => Emacs + RefTeX + AUCTeX + Aspell
+**** RefTeX offers completion when inserting citations
+**** AUCTeX show in-editor preview of changes
+**** 
 
 * Possible projects
 ** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
