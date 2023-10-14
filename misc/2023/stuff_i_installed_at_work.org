@@ -2587,6 +2587,8 @@ _endblock
 ** We learned how to add a new field for the record "Service Point". 
 ** We opened the Case Tool and we zoomed into the service point. We added a new field. We did a "check" and "apply". we clicked update both in the ACE and outside. We make sure the checkpoint is writable (clicked through the Version Management inside ACE), before we commit with a new checkpoint name. We restarted the app to see the changes. 
 ** 
+* Extra class/lessons
+** select an object, right click & display internals (current map). This gets the internal world. And you can check the hypoernode (And clicking goto corresponding to pin1 and pin2 gets these)
 * GUI practice and Databus
 ** What have we done so far
 *** we discovered simple_list
@@ -2731,11 +2733,6 @@ X, Y, Z
 **** Machine learning is the most accurate method available to forecast renewable energy output. Advanced method like Long Short-Term Neural Networks (LSTMs), AI can weigh many factors - wind, temperature, sunlight, humidity forecases, and make predictions
 *** detect energy theft
 *** differentiate power system disturbances from cyber attacks
-** CRS
-*** The CRS choice (geospatial reference system), should be flexible, and can be varies from user to user, and depends on specific use-cases
-** SDK
-*** uses Python 
-*** entry point alteia.sdk.SDK
 #+begin_quote
 
 pip install alteia
@@ -2779,6 +2776,12 @@ pip install alteia
 **** load forecasting = predicting future demans and customer behaviour
 **** decision making = where to build new power plants
 *** [[https://x2n.com/blog/how-utility-companies-are-using-satellite-technology/][Satellite datxsa]]
+*** [[https://www.bloomberg.com/press-releases/2020-10-13/alteia-accelerates-the-deployment-of-its-enterprise-ai-solutions-and-announces-global-alliances-with-ge-digital-and-microsoft][Alteia joins forces]]
+**** Alteia joins forces with Microsoft (bringing VI to Azure)
+**** Alteia joins forces with GE Digital 
+**** Alteia = technology specialist & GE Digital = vertical leader
+**** predictive maintenance can capture knowledge?? Becoz staffs retire??
+**** 
 * Meeting (soon we might need to move meeting into its own place)
 ** https://www.scribd.com/document/388790080/Sparc-t8-m8-Servers-Faq-3864324
 *** What is SPARC?
@@ -2794,4 +2797,53 @@ pip install alteia
 *** elastic search
 ** Geomagic GeoNAM - 
 *** Cathodic protection - Oracle
+* Licensing:
+** How do we know everything WITHOUT reading everything
+** [[https://www.gegridsolutions.com/products/applications/geospatial/ger4240_oraclesolutions_r6.pdf][Smallworld Oracle]]
+*** Smallworld On Oracle allows for the storage of all Smallworld spatial and non-spatial data within an Oracle environment
+*** Oracle Spatial simple geometry type
+**** point
+**** polyline
+**** polygon
+*** Oracle Spatial is also used to manage address information
+**** Notice the separate elements of address and the geographical location of the addresss
+**** Address is considered non-spatial information, and is already present in exisiting enterprise system (Customer Relationship Management
+**** This provides interesting solutions such as: linking a customers location to network for outage management
+**** Seamless integration between Smallworld and Oracle through => publishing one way to Oracle (spatial data too) => 2-way sync between both
+** GE Asset Management Products
+*** Smallworld Core
+**** 3 levels of using the app -> Core, View and Developer
+**** full database access
+**** Database technology -> direct, cached & replica
+*** Developer license includes access to Case Tools
+*** Core is usually for system admin, and Developer is FAR too advanced
+*** Google Map Viewer
+**** Its sold as annual subscription, per end user device (meaning no limit number of GE apps)
+**** Smartphone
+**** Laptop
+**** PC
+**** Server
+* Links:
+** [[https://www.pix4d.com/blog/ten-basic-terms-photogrammetry-knowledge/][pix4d]]
+*** Initial and computed parameters => parameters like geometry, position & orientation => pix4d will actually produce computed ones which are more accurate. 3D models with accuracy within a few centimetres, it can reaach industry standards like Bureau Veritas, meaning more applications
+*** RTK and PPK are GPS correction techniques
+**** RTK happens during drones or survey, with a GNSS RTK receiver 
+**** PPK complements lack-of-RTK or no tie points, with a GNSS base station. (both have pros and cons)
+**** Tie point, point common in several images. No idea
+**** Ground Samping Distance => fancy name for resolution, acheived by distance of flying to the ground
+**** 
+** [[https://learn.arcgis.com/en/projects/get-started-with-arcgis-drone2map/][ArcGIS Drone2Map]]
+*** Drones take 2 types: Nadir (straight down) Oblique (angled)
+*** Nadir images can be used to create 2D Orthoimages, several can be combined to create orthomosaics, to create basemaps
+*** Oblique images => 3D point cloud => 3D Mesh => navigable 3D diagram
+*** 
+* Coordinate (also move to a different note)
+** [[http://qgismalaysia.blogspot.com/2012/07/did-you-use-right-wgs84.html][did you use the right WGS84?]]
+*** Has some interesting REAL LIFE details, including formulaes on converting coordinate systems
+** [[https://epsg.io/?q=Malaysia&page=4][Check this out, combination of WGS and UTM]]
+*** Whatever, just check it out
+* Alteia upload
+** When we upload a survey, we have yet tried the + METADATA option
+** We need to read this one, then rewrite:
+*** [[https://help.alteia.com/data-capture-and-ingestion/upload-csv-as-a-vector-file][upload CSV as a vector file]]
 ** 

@@ -319,16 +319,26 @@
   # ==================== HOLY SHIT!! It works
 
 #+end_src
+** Some useful sensible defaults
+#+begin_comment
 
-** According to this [[https://orgmode.org/manual/LaTeX_002fPDF-export-commands.html][org mode official website]]
-*** we have a variable called org-latex-compiler which finds the compiler version to use
-*** we have 3 engines, pdflatex, lualatex, xelatex that uses different compilers, packages & output options
-** [[https://www.latexbuch.de/install-latex-windows/][installing latex on Windows]]
-*** they got PDF version in site
-*** this setup => Emacs + RefTeX + AUCTeX + Aspell
-**** RefTeX offers completion when inserting citations
-**** AUCTeX show in-editor preview of changes
-**** 
+#+title: The glories of Org
+#+author: A. Org Writer
+#+OPTIONS: num:0 H:0
+
+#+end_comment
+** LOTS OF LINKS WE CAN POST HERE:
+*** 
+** Despite the numbers of examples above, we just need to 
+*** Install MiKTiX on Windows 11
+*** Exporting will still produce errors. So we need to install Perl (either Cygwin or MSYS, but always stick to one). And make sure that Path (variable) of Windows has the Cygwin binaries. 
+*** It works! When we want to try a new header like #+LaTeX_HEADER: \usepackage{fancyhdr} , MiKTeX auto-installs for us
+** Templates:
+*** https://ivanhanigan.github.io/2013/11/a-sharp-looking-orgmode-latex-export-header/
+**** No difference
+*** https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
+**** Better than the rest, but I have no idea whatd going on
+*** 
 
 * Possible projects
 ** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
