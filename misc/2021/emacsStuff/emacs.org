@@ -191,6 +191,7 @@
 * org templates:
 ** Finally once you start inserting your first code block (template, whatever). We can read this
 *** https://www.nicholasvanhorn.com/posts/org-structure-completion.html
+** 
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 ** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 *** Need as input: --> filename pattern & regex text
@@ -327,23 +328,57 @@
 #+OPTIONS: num:0 H:0
 
 #+end_comment
-** LOTS OF LINKS WE CAN POST HERE:
-*** 
-** Despite the numbers of examples above, we just need to 
+** Installation
 *** Install MiKTiX on Windows 11
 *** Exporting will still produce errors. So we need to install Perl (either Cygwin or MSYS, but always stick to one). And make sure that Path (variable) of Windows has the Cygwin binaries. 
 *** It works! When we want to try a new header like #+LaTeX_HEADER: \usepackage{fancyhdr} , MiKTeX auto-installs for us
-** Templates:
+*** Useless, coz its mostly for preview:
+**** https://cseweb.ucsd.edu/~s1pan/install_auctex.html
+***** Installs MiKTeX, Ghostscript, GSView, and Auctex. But we only MikTeX turns out. Others are for previews
+** Installation errors:
+*** https://tex.stackexchange.com/questions/137428/tlmgr-cannot-setup-tlpdb
+** Templates and options:
 *** https://ivanhanigan.github.io/2013/11/a-sharp-looking-orgmode-latex-export-header/
 **** No difference
 *** https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
 **** Better than the rest, but I have no idea whatd going on
-*** 
-*** 
 ** Extra template:
 *** Arrange this somewhere else
 #+begin_quote
+=======
+*** [[https://orgmode.org/manual/LaTeX-header-and-sectioning.html][latex header, latex class, and other options]]
+*** [[https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers][layman terms, but still lots of useless example]]
+*** [[https://texdoc.org/serve/geometry.pdf/0][geometry package pdf, with links]] 
+*** In order to add to the variable org-latex-classes, I also experimented with adding from org-format-latex-header variable
+#+begin_src emacs-lisp
 
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+	       '("stupid"
+		 "\\documentclass[20pt]{article}
+		 \\setlength{\\textwidth}{\\paperwidth}
+                 \\setlength{\\topmargin}{1.5cm}
+                 \\addtolength{\\textwidth}{-3cm}
+                 \\setlength{\\oddsidemargin}{1.5cm}
+                 \\addtolength{\\oddsidemargin}{-2.54cm}"
+
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+#+end_src
+*** And I put the previous code inside a :comments none block, which is a cooler way to block from exports, [[https://emacs.stackexchange.com/questions/17744/is-there-a-way-to-make-org-mode-ignore-src-blocks-when-exporting-to-html][here]]
+*** [[https://emacs.stackexchange.com/questions/10549/org-mode-how-to-export-underscore-as-underscore-instead-of-highlight-in-html][escape some symbols in org mode export]]
+#+begin_quote
+
+#+OPTIONS: ^:nil
+
+#+end_quote
+
+*** Using the new geometry package, exporting will ignore the 2nd top margin setting, even though its different variable. Confusing for beginners, document typesetting/layering/whatever has its own logic
+#+begin_quote
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 
@@ -351,7 +386,6 @@
 #+LaTeX_HEADER: \usepackage[top=1in]{geometry}
 
 #+end_quote
-*** Using the new geometry package, exporting will ignore the 2nd top margin setting, even though its different variable. Confusing for beginners, document typesetting/layering/whatever has its own logic
 * Possible projects
 ** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
 ** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
