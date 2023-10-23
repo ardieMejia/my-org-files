@@ -339,7 +339,19 @@
 *** https://www.linuxjournal.com/content/org-mode-latex-exporter-latex-non-texers
 **** Better than the rest, but I have no idea whatd going on
 *** 
+*** 
+** Extra template:
+*** Arrange this somewhere else
+#+begin_quote
 
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+
+#+LaTeX_HEADER: \usepackage[text={5in,5in},centering]{geometry}
+#+LaTeX_HEADER: \usepackage[top=1in]{geometry}
+
+#+end_quote
+*** Using the new geometry package, exporting will ignore the 2nd top margin setting, even though its different variable. Confusing for beginners, document typesetting/layering/whatever has its own logic
 * Possible projects
 ** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
 ** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
@@ -409,4 +421,6 @@
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
 * Presentations in org mode
 ** https://github.com/yjwen/Org-Reveal
+* We NEED to rearrange this
+** https://www.math.utah.edu/docs/info/emacs-lisp-intro_17.htmlhttps://www.math.utah.edu/docs/info/emacs-lisp-intro_17.html
 

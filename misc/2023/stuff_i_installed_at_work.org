@@ -2372,7 +2372,7 @@ print(sw_app.plugin(:maps).current_map.current_selection.an_element().rwo.source
     # can change it to cable segment or anything
 
 #+end_src
-** Note the usage of sys!slot is becoz the slots are private (we do the same thing with methods with sys!perform I thinik).
+** Note the usage of sys!slot is becoz the slots are private (we do the same thing with methods with sys!perform).
 ** Later must check make_geometry method. Apparently, a strategy is to add location later (after rt.run(), where rt is a record_transation). Its becoz location fields are not mandatory. And mandatory are usually common for all records. So one strategy is to create single property list for mandatory fields, and upload the rest (locations, etc..) from a .csv file
 ** For answer 5. if you were to use the bounds by itself, you'll only get 1 hypernode. But by increasing buffer, you get 5, as can be seen by the map
 
@@ -2589,7 +2589,18 @@ _endblock
 ** 
 * Extra class/lessons
 ** select an object, right click & display internals (current map). This gets the internal world. And you can check the hypoernode (And clicking goto corresponding to pin1 and pin2 gets these)
-* GUI practice and Databus
+* Magik errors, GUI practice and Databus
+
+#+begin_src magik
+
+Loading C:/Users/ahmadardie.r/Documents/my-trash/magik_practice/2023-10-18_at_13hours/ardies_reader\source\ardies_reader_activation_plugin.magik
+     Error (parser_error): on line 13 in file "ardies_reader_activation_plugin.magik"
+_method ardies_reader_activation_plugin.activate_dialog()
+^
+No such exemplar: ardies_reader_activation_plugin
+
+#+end_src
+
 ** What have we done so far
 *** we discovered simple_list
 *** we discovered identifier, which for some reason doesnt work
@@ -2846,4 +2857,30 @@ pip install alteia
 ** When we upload a survey, we have yet tried the + METADATA option
 ** We need to read this one, then rewrite:
 *** [[https://help.alteia.com/data-capture-and-ingestion/upload-csv-as-a-vector-file][upload CSV as a vector file]]
+** Analytics will produce raster and vector files that can be downloaded
+** Adding single or several pictures from the ground (DSLR) to an existing aerial project (in its annotations) is possible
+** There are 3 layers
+*** Site
+*** Survey
+*** Base, mostly from orthomosaic from the photogrammatery processing
+** Data contextualization
+*** Vector styling and custom
+*** The fiter tool allows view on single attribute with a histogram
+*** One can change the geometry of the vector shapes: rotate, relocate, add lines or polygons
+*** Split view and compare view
+**** Compare: slider, split, overlay
+*** Grid digitization can be downloaded as .geojson
+** Fuse
+*** Measurement tool, one can measure elevation by drawing a line between 2 points
+*** Vegetation fraction data (ratio), from orthomosaic, reflectance and spectral, can be downloaded as .geojson
+*** thermal map
+* Site:
+** During site creation, can define global CRS, then local CRS, which can be:
+*** single local-global CSV
+*** separate CSVS
+*** JXL
+* SmallWorld GIS mehh:
+** https://www.reddit.com/r/gis/comments/ta8645/arcgis_could_always_be_worse_it_could_be/
 ** 
+* Data preparation (please arrange later)
+** https://pubs.rsna.org/doi/full/10.1148/ryai.2019190126
