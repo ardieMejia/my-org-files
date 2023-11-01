@@ -4,7 +4,7 @@
 * Personal stuff I installed
 ** smallworld software strange that   its closed source
 ** Emacs 23, so boring coz its so old
-** VirtualBox, Lubuntu.etc...
+** VirtualBox, Lubuntu
 ** PowerToys for keyboard shortcuts
 ** Git
 * (Official) Stuff I did so far.
@@ -2586,7 +2586,14 @@ _endblock
 * Day 32:
 ** We learned how to add a new field for the record "Service Point". 
 ** We opened the Case Tool and we zoomed into the service point. We added a new field. We did a "check" and "apply". we clicked update both in the ACE and outside. We make sure the checkpoint is writable (clicked through the Version Management inside ACE), before we commit with a new checkpoint name. We restarted the app to see the changes. 
-** 
+** To show properties of GUi elements:
+#+begin_src magik
+
+
+  # example
+  debug_print(label_item)
+
+#+end_src
 * Extra class/lessons
 ** select an object, right click & display internals (current map). This gets the internal world. And you can check the hypoernode (And clicking goto corresponding to pin1 and pin2 gets these)
 * Magik errors, GUI practice and Databus
@@ -2884,3 +2891,27 @@ pip install alteia
 ** 
 * Data preparation (please arrange later)
 ** https://pubs.rsna.org/doi/full/10.1148/ryai.2019190126
+* An interesting link to ArcGIS geometry methods
+** https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/geometry.htm
+* [[https://smallworld.gedigitalenergy.com/documentation/sw52/en/swDocs5.htm#../Subsystems/AppDev/Content/Geometry/GeometryAnalysis.htm][geometry analysis]]
+* [[https://docs.qgis.org/3.28/en/docs/pyqgis_developer_cookbook/geometry.html][Read about PyQGIS?]]
+* Playing around:
+#+begin_src magik
+
+
+  geom1 << sw_app.databus.request_data(:map_selection)[2]
+  geom1.distance_to(geom2)
+  # also can
+  geom1.intersection(geom2)
+
+#+end_src
+* Tree example:
+** e:/SmallWorld/core/sw_core/modules/sw_common/tree_examples/source/
+** 
+* Ground Control Point
+** [[https://www.propelleraero.com/blog/how-to-optimize-your-ground-control-point-placement-for-drone-surveying/][how to optimize]]
+*** GCP's reduce the margin of error from metres to centimetres
+** [[https://docs.qgis.org/3.4/en/docs/user_manual/plugins/core_plugins/plugins_georeferencer.html][QGIS Georeferencer plugin]]
+*** According to this, its a simple as marking a point on a jpeg/raster, and state its accurate coordinates
+*** That alone increases the accuracy of the JPEG
+*** Steps --> select multiple points, specify coordinates, choose transformation type(?) 
