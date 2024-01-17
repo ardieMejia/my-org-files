@@ -2915,3 +2915,255 @@ pip install alteia
 *** According to this, its a simple as marking a point on a jpeg/raster, and state its accurate coordinates
 *** That alone increases the accuracy of the JPEG
 *** Steps --> select multiple points, specify coordinates, choose transformation type(?) 
+* Design
+** Phase design is a way to split design into parts, so you can post the changes to the DM_TOP . TNB configures it for HV or LV.
+#+begin_src magik
+
+  swg_dsn_admin_engine.active_design
+  swg_dsn_admin_engine.active_build_phase
+
+#+end_src
+** According to slides: design are also versions of a data
+** The TOP design is the as-built record
+* Our task regarding getting JUPEM and ACAD data from a demand point, in the form of json data
+** The SOC definitions for a database are stored in the top alternative of the ACE partition (by default, this is held in the file ace.ds). Thus, by interrogating all the SOC definitions in an ACE partition, all the user and Case datasets in a database can be identified.
+* Meeting October (Should REALLY move it to it own place)
+** GridOS - I have no idea what that is
+** They no longer call their solutions as GIS, they call it Geospatial Network Management
+** ESRI Utility Network - its also a web-based system, so they can use REST API's
+** In the end nobody cares, hahaha
+** Smallworld journey to GridOS 2024-2025
+* Meeting October 2 (Akisha) GE GSA Product
+** partnered with spatial eye
+** What is ILMAS, TNB Datalake?
+* From the slides:
+** A confusion I had, a commit and a checkpoint is not the same thing. In Git workflow, a commit can always be reverted back to (come back to, undoing recent changes). In SmallWorld, a commit is saved just for the app when restarting. You need to create a checkpoint for a commit to go back to. So, a new commit overwrites a previous commit, so you lose previous commit. 
+* Design stuff: 
+** How to get current design
+#+begin_src magik
+
+
+swg_dsn_admin_engine.active_design
+
+#+end_src
+** We keep forgetting we can get the name of the rwo from the  current selection
+#+begin_src magik
+
+pl_map.current_map.current_selection.an_rwo()
+
+#+end_src
+** getting collections
+#+begin_src magik
+
+gis_program_manager.databases[:jupem_land].collections
+  
+#+end_src
+** this matches the external name in editor plugin, so it matches
+#+begin_src magik
+
+gis_program_manager.databases[:jupem_land].collection(:cgis_jupem_land_parcel).external_name
+
+#+end_src
+** things we tried, including converting into rwo, and then converting into geometry_set
+#+begin_src magik
+
+  a_land << gis_program_manager.databases[:jupem_land].collection(:cgis_jupem_land_parcel).rwo_set()
+
+  a_sp_rwo << a_sp.source_rwo_records()
+
+  a_sp_rwo.select(:within, a_land)
+
+  a_sp_rwo_g << a_sp_rwo.geometry_set(a_world)
+
+  a_land_g << a_land.geometry_set(a_world)
+
+#+end_src
+** Why is this 0
+#+begin_src magik
+
+a_sp_coll.select(predicate.within(:location, a_land.an_element().cgis_area)).size
+
+#+end_src
+* Nothing
+** We got this randomly from a documentation
+#+begin_src magik
+
+
+  an_island.area
+
+#+end_src
+** This returns the error "spatial relations are not defined on point"
+#+begin_src magik
+
+  _block
+	  _local pl_map << smallworld_product.applications.an_element().plugin(:maps)
+	  _local a_sp_coll << gis_program_manager.databases[:electric].collection(:eo_service_point)
+	  _local a_land << pl_map.current_map.current_selection
+	  _local a_world << gis_program_manager.databases[:electric].world
+	  _local a_sp_coll_g << a_sp_coll.geometry_set(a_world)
+	  _local results << a_sp_coll_g.select(:within, a_land)
+	  print(results)
+  _endblock
+
+#+end_src
+
+#+begin_src magik
+
+_block
+	  _local pl_map << smallworld_product.applications.an_element().plugin(:maps)
+	  _local a_sp_coll << gis_program_manager.databases[:electric].collection(:eo_service_point)
+	  _local a_land << pl_map.current_map.current_selection
+	  _local a_world << gis_program_manager.databases[:electric].world
+	  _local a_sp_coll_g << a_sp_coll.geometry_set(a_world)
+	  _local results << a_sp_coll_g.select(:within, a_land)
+	  print(results)
+  _endblock
+
+
+a_land_coll << gis_program_manager.databases[:jupem_land].collection(:cgis_jupem_land_parcel)
+
+a_sp << pl_map.current_map.current_selection
+
+a_world << gis_program_manager.databases[:electric].world
+
+a_land_coll_g << a_land_coll.geometry_set(a_world)
+
+#+end_src
+** Documentation
+#+begin_src magik
+
+  
+  a_sp << pl_map.current_map.current_selection # this is a service point
+  a_land << gis_program_manager.databases[:jupem_land].collection(:cgis_jupem_land_parcel)
+  a_land.select(predicate.interacts(:cgis_area,a_sp.an_rwo().location))
+
+
+#+end_src
+** Spatial predicates:
+* Meeting (TELECOM to PNI)
+** only passive equipments
+** PNI includes many more telecommunications including satellit, radio ,etc. But we are only cover Fibre
+** Fibre networks like electric utility has "splittings" using street cabinet splitters, LOL
+** splitters are passive networks. amplifiers are active networks. Our SmallWorld can only model or map the passive networks in our PNI
+** FTTC, FTTB, FTTH (Fibre to the Cabinet, to the Building, to the Home)
+** Restriction by design
+** What is a manifold
+* equality_property_list & property_list. In general, "equals" and equalitiness are less strict. Although there is that "identity" issue (_true _false)
+#+begin_src magik
+
+  _block
+	  _local pl1 << property_list.new_with("one", "the number one", "two", "the number two")
+	  write(pl1["one"])
+	  _local epl1 << equality_property_list.new_with("one", "the number one", "two", "the number two")
+	  write(epl1["one"])
+  _endblock
+
+#+end_src
+* From the documentation (on RWO)
+** RWO sets - Dataset collection classes, such as ds_collection, are functionally RWO sets and have the same behaviour as classes such as rwo_set. Dataset collection classes, however, are always homogeneous and their records come from a single dataset.
+* Meeting (PNI), (Lukman)
+** The UI at first glance is VERY similar to Electric Office
+** I have no idea what Im looking at 
+* To increase speed of reads in the future, use the .result method [[https://smallworld.gedigitalenergy.com/documentation/sw53/en/swDocs5.htm#../Subsystems/AppDev/Content/Geometry/GeometryAnalysis.htm][(link)]]
+** ...Dataset geometry sets are lazy-evaluated—they do not directly contain any geometry, instead they hold a number of parameters (world, geometry fields, bounding box and so on) that specify what geometries the dataset refers to...
+** ...However, laziness implies that the protocols elements() and size are slow, because the set is evaluated each time they are used. When a set is used several times, it is advisable to evaluate it once with the method result then use the plain equality geometry set that this returns...
+* Meeting (14/12/2023) Adam
+** Cluster analysis is unsupervised learning
+** Whatever, Machine Learning is boring, hahaha
+* From asset_search_plugin.magik, converting string to coordinate object
+#+begin_src magik
+
+  # make sure to analyze the following code later
+
+  _pragma(classify_level=restricted)
+  _private _method asset_search_plugin.get_coord_from_string( a_string )
+	  ## 
+	  ## 
+
+	  app << _self.application
+	  app_coord_system << app.coordinate_system
+	  trans << transform.new_converting_cs_to_cs( .search_coord_system, app_coord_system )
+
+	  pos << a_string.split_by( %, )
+	  a_coord << coordinate.new( pos[2].as_number(), pos[1].as_number() ).transformed( trans )
+	  _return a_coord
+	
+  _endmethod
+  $
+
+#+end_src
+* Renaming method from this [[http://sw-gis.wikidot.com/magik-adv-lang][link]] (turns out to  be useless solution, haha)
+#+begin_src magik
+
+  oldmethod << map_manager.method(:print_string)
+  newmethod << :print_ardie
+  map_manager.define_method(newmethod, oldmethod.value, _false )
+  # We can also try something else, once we create exemplar test2 with the method somemethod()
+  somemethod << test2.method(:somemethod|()|)
+  map_manager.define_method(newmethod, somemethod.value, _false )
+  # ===== we managed to stop the object view from loading!!
+  oldmethod << :goto_object|()|
+  asset_search_plugin.define_method(oldmethod, somemethod.value, _false )
+  # ===== we managed to get the private slots!!
+  oldmethod << :goto_object|()|
+  asset_search_plugin.define_method(oldmethod, _proc () write("goodbyeeee"); print(_self.sys!slot(:results)[1])  _endproc , _false   )
+  # ===== we dont need to block goto_object, we can actually block asset_search_plugin.goto_coord( a_coord )
+  # ===== DO SOMETHING
+
+#+end_src
+* [[http://tnbelectricaleng.blogspot.com/2009/12/substation-categories-type-design.html][PMU, PPU, SSU, PE -> What does it all mean in our TNB Substation terminology]]
+** PMU -> Pencawang Masuk Utama (Transmission Main Intake)
+*** interconnection point between 132kV or 275kV to the distribution network
+*** think of distribution as something like "extension"
+*** transformations are as follows
+*** 132/33 kV, 2 x 90 MVA
+*** 132/22 kV, 2 x 60 MVA
+*** 132/11 kV, 2 x 30 MVA
+** PPU -> Pancawang Pembahagian Utama (Main Distribution Sub-station)
+*** can think of extension or connection between 33kV to   11kV
+*** has standardized transformation of 33/11 kV
+** SSU -> Main Switching Station (Stesyen Suit Utama)
+*** dedicated supply to bulk consumer
+*** as transfer (extension) from a PMU/PPU to a load centre for  further localized distribution
+** P/E -> Pencawang Elektrik (Distribution Substation)
+*** injection points from 11 kV, 22kV, and sometimes 33 kV to low voltage (415 V, 240 V)
+* Meeting (26/12/23)
+** ADMS
+** cim model (format)
+** sub level DNOM (format)
+** 3  types of information: cim, cim profile, cim mapping
+** ADMS Tools
+*** Earthing Tool
+*** 
+** Hey, I already tried the Circuit Build Tool
+** We must build the primary level circuits (substation) first before feeder level 
+** Under SW menu, there  is CIM  exporter  under GIS adapter.
+** 
+* Reading about Oracle databases (we may remove this later)
+** one can open SOC definitions (which has many htings such as connection parameters), with the method manage_soc()
+*** We use this everytime, coz when we start a session, we always open a DB connection. If no connection, we can pass parameter like this: manage_soc("h:\cambridge_db\ds\ds_admin")
+*** This is usually a directory containing ace.ds
+* hotfixes  in our TNB distribution
+** load_application_fixes.magik is overly long, but it actually very simple. Depending on the user type session, it loads custom directory hot fixes (we still cant locate folders exactly)
+** You can find this file under d:/Smallworld/TNB_GIS/DIST/modules/cgis_custom_patches/hot_fixes/
+** The load_application_fixes.magik is actually loaded  (along with many other files in the same directory), through this -> load_fixes.magik which adds a startup procedure
+#+begin_src magik
+
+
+  smallworld_product.add_startup_procedure( _proc @load_tnb_fixes()
+						  #load_file_list(system.getenv("LOCAL_HOT_FIX_PATH")+"\modules\cgis_custom_patches\hot_fixes")
+						    _if system.os_name _is :windows
+							_then
+								load_file_list(system.getenv("LOCAL_HOT_FIX_PATH")+"\modules\cgis_custom_patches\hot_fixes")
+							_else
+								load_file_list(system.getenv("LOCAL_HOT_FIX_PATH")+"/modules/cgis_custom_patches/hot_fixes")
+							_endif
+					  _endproc, 1 )
+
+#+end_src
+** Notice that it uses load_file_list, thats something new. We can actually load all files in a directory using this command
+** This file in turn is loaded from -> d:/Smallworld/TNB_GIS/DIST/modules/dist_gss_custom/config/magik_sessions/source/register.magik
+** We may need to read about register.magik (probably simple and quite meaningless)
+* Can delete this later
+
+
