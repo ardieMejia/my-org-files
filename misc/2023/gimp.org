@@ -1,6 +1,3 @@
-
-
-
 * What did we do today:
 ** I tried GIMP script-fu for the first time
 ** The step involved:
@@ -18,7 +15,6 @@
 ** Extract existing image properties into our script, and using that same property to create a textbos of that size
 ** Extract a list from an evaluated function, before assigning to each different variables
 *** Done: we have an append within a set!
-** 
 * Common beginners mistake
 ** Noticeable is that due to logn code, there are no errors, yet nothing happens, we simply forgot to gimp-display-new
 ** (append) by itself will not work, we need (set!)
@@ -27,4 +23,14 @@
 ** My first external link where I learnt gimp-file-load
 ** It also has a save image gimp-file-save
 ** http://www.adp-gmbh.ch/misc/tools/script_fu/ex_09.html
+* We have abandoned our script-fu completely. Instead, we are going Python-Fu. Some links that need re-reading and re-arranging.
+** https://stuff.mit.edu/afs/sipb/project/gimp-2.2/src/gimp-2.2.11/plug-ins/pygimp/doc/pygimp.html
+** [[https://www.gimp.org/docs/python/gimp-objects.html][not sure about this one. Its just object description]]
+** [[https://coderazzi.net/python/gimp/pythonfu.html][random sample, but havent tried]]
+** [[http://gimpchat.com/viewtopic.php?f=9&t=15496][also non-read sample]]
+** [[https://medium.com/@chriziegler/introduction-to-python-scripting-in-gimp-141b860ad7e][beginners un-read]]
+** [[https://www.gimp-forum.net/Thread-Choosing-to-learn-Python-Fu-or-Script-Fu-for-a-simple-script][forum 1]]
+** [[https://www.reddit.com/r/GIMP/comments/c3so8x/learning_pythonfuscriptfu/][forum should we]]
+** [[https://www.gimp-forum.net/Thread-Debugging-python-fu-scripts-in-Windows][debugging in Windows. very important!!]]
+** [[https://github.com/jfmdev/PythonFuSamples][Important and basic samples]]
 
