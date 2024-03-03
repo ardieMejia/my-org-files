@@ -3164,6 +3164,112 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 ** Notice that it uses load_file_list, thats something new. We can actually load all files in a directory using this command
 ** This file in turn is loaded from -> d:/Smallworld/TNB_GIS/DIST/modules/dist_gss_custom/config/magik_sessions/source/register.magik
 ** We may need to read about register.magik (probably simple and quite meaningless)
-* Can delete this later
+* What we learnt from Task 6
+** We were dealing with duplicates. Running duplicates required a single special variable to work against. For storing unique IDs each time. In our case, there were 3,000,000 records. 
+** We used our own logic, not entirely sure if it was an improvement over the bag and elements_and_occurrences() trick
+** We were over-thinking on how to deal with _unset. In the case of not wanting to deal with ANY unset field, we can just use a one-liner like the following
+#+begin_src magik
+  _if a_rec.cgis_reg_structure_group _is _unset _then _continue _endif
+  _if a_rec.cgis_installation_id _is _unset _then _continue _endif 
 
+#+end_src
+** In our cross-checking of our output data, we had a property_list of bags. It behaved funny in our code (despite behaving normally when using a simpler data outside of our code). All our occurrences were 1!! Its safe to stick to string as the data and switch to equality_bag, that will solve most of our occurences issues.
+
+#+begin_src magik
+
+  .pl_dup[region] << equality_bag.new()
+			
+#+end_src
+* What about Task 7
+** We obsessed about a method called from a button, which led to confusion, becoz we forgot  how to create
+** We abandoned completely (quite painful), using :model for our solution. We now copy and paste the entire activation_plugin.magik which has a number of "meaningless" method such as init_actions(), which merely establishes standard menus and such
+** gui.xml is also "meaningless", when creating a popup for example, onee can use the same exact gui.xml, to link the popup to the same plugin name (plugin name is usually in module.def)
+** .editor_required( tree, row_index, column_id, an_agent ) is a required method that should be defined locally, if we are going to  
+*** We then need to define     :editor_required_notifier, :|editor_required()|,     for the tree_item 
+** Defining aspect isnt worth it (which will bind together the tree_item and the data that will be eventually be updated everytime we select the dropdown value in the UI, for example)
+** Another issue we did not foresee, is if we have for example, fields_1, fields_2, fields_3 (dropdown),  fields_4. And fields_3 and fields_4 are interconnected (for example, extracted from the same catague table). How do auto update the value in fields_4 if for fields_3, we chose a different value. The better decision would be to ignore fields_4 entirely.  Making the logic of the UI simpler
+** Using Plugins
+*** For the popup, onnly 2 files are needed, the _framework magik file, & the _gui_plugin.magik.
+*** And then, we .get_dialog() inside our _gui_plugin.magik, and if it is unset, we create a new dialog calling _framework.new() caching the dialog -> _framework.cache_dialog()
+*** with a handle on the dialog activate, if it is the top frame, we activate_relative_to, someday we will need to really understand the second part. 
+* Task 8, some learning opportunity, 
+*** external Oracle database example. An example that will probably crash the system
+#+begin_src magik
+
+  ext_db << gis_program_manager.cached_dataset(:dude_eo)
+  ext_db_user << ext_db.user
+  ## RPS Change - SNC Web Service Revamp - changed id to sw_id
+  sql_query_area << write_string("select area from cgis_sw_jobs where sw_id = ?")
+  extdb_stream << ext_db_user.sql_select(sql_query_area, _self.id)
+
+#+end_src
+*** The example  below actually works
+#+begin_src magik
+
+  ext_db << gis_program_manager.cached_dataset(:dude_eo)
+  ext_db_user << ext_db.user
+  a_query << "select * from CGIS_SW_JOBS WHERE ROWNUM <= 10"	
+  a_stream << a_db.user.sql_select(a_query, _unset )
+  a_stream.get_all()[1].p
+
+#+end_src
+*** References: https://sql1.wordpress.com/2021/05/22/how-to-select-top-100-in-oracle-2-methods/
+** After our  usual set_metadata, for an external Oracle dataset (oracle_objects_dataset.set_metadata()). We need to do some setup for visibility, hittability, selectability
+** Suite Administration -> ACE Configuration -> select EO from the list -> Versions
+*** IMPORTANT: our user account is also the name of our alternative
+** Suite Administration -> ACE Configuration -> select EO from the list -> Object Configuration -> Electric DM (SOC) & Dataset (dude_eo) -> 
+*** 
+* Something new I lerant today:
+#+begin_src magik
+
+  	stop_preds << a_follower.get_stop_predicates()
+
+#+end_src
+* This is just some random reading on GUI init_actions(). A method which I still dont understand
+** Activating any GUI framework, including subclasses such as applications and map GUI frameworks, is a three-stage process:
+*** A new instance of the relevant framework class is created and initialised. This includes reading the main configuration file for the framework, if available, and creating an instance of each plugin class known to the framework.
+*** The message init_actions() is sent to each plugin. Any plugin can subclass the init_actions() method to create the actions required to provide access to the plugin functionality.
+*** The framework is activated — this includes building its user interface in a suitable container, such as a top-level operating system window or an embedded pane of an outer framework. If a GUI configuration file for the framework is available, it is read:
+**** menus and toolbars are built up by creating and placing controls for the relevant plugin actions, which must already be created
+**** where a plugin is identified as providing the contents of a work area pane, the message build_gui() is sent to the plugin
+**** If no GUI configuration file is available then a simple user interface is built with a work area pane whose contents is provided by the framework itself.
+*** A plugin can provide custom behaviour for any stage of this process by subclassing a method such as post_init_actions(), post_build_gui() or post_activation().
+* Random  note about storing old values.
+** A combined get and set method is also available; this is convenient for preserving the current value while setting a new one:
+#+begin_src magik
+
+  my_old_state << my_action.enabled? ^<< _false
+
+#+end_src
+* Oracle SQL  (some tips not present in my tasks)
+** [[https://stackoverflow.com/questions/35199084/forgot-oracle-username-and-password-how-to-retrieve][Get forgotten username]]
+** [[https://www.positioniseverything.net/ora-65096-invalid-common-user-or-role-name/][Creating new user]]
+** [[https://www.positioniseverything.net/ora-65096-invalid-common-user-or-role-name/][grant sysdba privilege]]
+** [[https://blogs.oracle.com/sql/post/how-to-create-users-grant-them-privileges-and-remove-them-in-oracle-database][Better granting privilege]]
+** [[https://stackoverflow.com/questions/44858475/how-to-grant-user-space-resource-on-the-tablespace-in-oracle-12c][tablespace quota]]
+** "Column not allowed here" error can also be caused by single quotes. Basically, just avoi double quotes in SQL. [[https://stackoverflow.com/questions/10501521/column-not-allowed-here-error-in-insert-statement][Single quotes]]
+#+begin_src
+
+SQL> insert into test1(identity, student_name) values (1, 'whatever');
+
+1 row created.
+  
+#+end_src
+** [[https://docs.oracle.com/en/database/oracle/oracle-database/19/ntqrf/starting-and-shutting-down-a-database-with-sql-plus.html#GUID-2E99A42E-B675-4EA4-B005-6DBFF1F45B27][startup and shutdown a database instance]]
+* Task 9
+** Note the brackets/parenthesis around these 2. Important and easy mistake. Avoids assigning True/False to variable
+
+#+begin_src magik
+
+  _if (.a_dataset << gis_program_manager.databases[:dtm_dataset]) _is _unset 
+  _then
+	  write("cant connect to database")
+  _endif
+
+  _if (.a_coll << .a_dataset.collections[:dtm]) _is _unset 
+  _then
+	  write("unable to get collection")
+  _endif
+
+#+end_src
 
