@@ -101,3 +101,5 @@ Get-ChildItem -Path *xml -Recurse . | Where {$_.FullName -notlike '*app\build*'}
 ** Cool string tricks:
 *** check if string contains pattern:
 **** https://morgantechspace.com/2016/08/powershell-check-if-string-contains-word.html
+* Some cool    tips and tricks on invoking a web request. Very useful if you want to download an image or get a JSON response (what for though??)
+** https://stackoverflow.com/questions/22447326/powershell-download-image-from-an-image-url

@@ -3040,6 +3040,15 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 
 #+end_src
 ** Spatial predicates:
+*** another example I discovered
+#+begin_src magik
+
+  _block
+	  p1 << predicate.gt(:timestamp,  ds_time.value_from_string("1/2/2022"))
+	  what << a_coll.select(p1).result
+  _endblock 
+
+#+end_src
 * Meeting (TELECOM to PNI)
 ** only passive equipments
 ** PNI includes many more telecommunications including satellit, radio ,etc. But we are only cover Fibre
@@ -3218,13 +3227,27 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 ** Suite Administration -> ACE Configuration -> select EO from the list -> Versions
 *** IMPORTANT: our user account is also the name of our alternative
 ** Suite Administration -> ACE Configuration -> select EO from the list -> Object Configuration -> Electric DM (SOC) & Dataset (dude_eo) -> 
-*** 
+** to automatically load a module we created ourselves. We need to register it. The following output of grep are some clues on how this works
+#+begin_src magik
+
+
+  ./config/magik_sessions/source/register.magik:				sw_module_manager.load_module(:cgis_oracle_metadata)
+
+#+end_src
+
 * Something new I lerant today:
 #+begin_src magik
 
   	stop_preds << a_follower.get_stop_predicates()
 
 #+end_src
+* search "Activating an application window" in the local or remote doc, for more cool tips on application startup in SW
+* search "Add activation controls to the application" for actual plugin information
+* Changes I tried to load the meal_menu.magik:
+** e:/SmallWorld/electric_office/modules/application_modules/sweo_dm_user_application/resources/base/data/config.xml
+** e:/SmallWorld/electric_office/modules/application_modules/sweo_dm_user_application/module.def
+** e:/SmallWorld/electric_office/modules/application_modules/sweo_dm_user_application/resources/base/data/gui.xml 
+** And the usual LAYERED PRODUCT mods I did, I wrote it once, but forgit it completely
 * This is just some random reading on GUI init_actions(). A method which I still dont understand
 ** Activating any GUI framework, including subclasses such as applications and map GUI frameworks, is a three-stage process:
 *** A new instance of the relevant framework class is created and initialised. This includes reading the main configuration file for the framework, if available, and creating an instance of each plugin class known to the framework.
@@ -3234,11 +3257,73 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 **** where a plugin is identified as providing the contents of a work area pane, the message build_gui() is sent to the plugin
 **** If no GUI configuration file is available then a simple user interface is built with a work area pane whose contents is provided by the framework itself.
 *** A plugin can provide custom behaviour for any stage of this process by subclassing a method such as post_init_actions(), post_build_gui() or post_activation().
+* More on GUI:
+** A common mistake I guess, is not using .new() when activating your dialog from Magik session. Example you have dialog activation from inside start_gui() (custom method). Common mistake is to use module1.start_gui() instead of module1.new().start_gui(). Makes sense, becoz most methods are "protected"
+* Ideas about meal_menu_plugin.magik
+** Activation_plugin isconfusing for beginners. One can move the start_gui() or activate_meal_menu() to a single plugin. 
 * Random  note about storing old values.
 ** A combined get and set method is also available; this is convenient for preserving the current value while setting a new one:
 #+begin_src magik
 
   my_old_state << my_action.enabled? ^<< _false
+
+#+end_src
+* tips from "Identify Source point plugin" 
+** Location: D:\Smallworld\TNB_GIS\DIST\modules\functional_modules\cgis_custom_tool_modules\cgis_identify_source_point\source
+** Inside the plugin.build_gui(a_container)
+*** We can organize gui elements as methods, and the parent container. (Strange, since I though for that to work, it supposed to be a global apparntly doesnt matter). Apparently it works
+
+#+begin_src magik
+
+  _self.create_toggle_items( rc1)
+  _self.create_choice_items( rc2)
+  _self.create_radio_items( rc2)
+
+#+end_src
+** Inside plugin.create_toggle_items(a_rowcol)
+*** we place a radio group inside a row_col, inside a groupbox, inside the rowcol passed
+*** and in that radio group, we "attach" a radio  child
+#+begin_src magik
+
+  toggle_group_box << group_box.new(a_rowcol #, ...)
+
+  toggle_rc << rowcol.new(toggle_group_box #, ...)
+  rad_grp << radio_group.new(toggle_rc)
+  .gui_items[:substation]    << radio_item.new(toggle_rc,_self.message(:substation), :model, _self)#,   :change_selector, :manage_actions|()|)
+  rad_grp.manage_child( .gui_items[:substation], :one )
+  .gui_items[:lvdb]          << radio_item.new(toggle_rc#, ...)
+  rad_grp.manage_child( .gui_items[:lvdb], :two )
+  .gui_items[:pole]          << radio_item.new(toggle_rc#, ...)
+  rad_grp.manage_child( .gui_items[:pole], :three )
+
+#+end_src
+** Another important point to note is that, the gui_items, store the properties and the value in a GUI element. In this script we put the matching data in that element. And  in post_activation(),  we can connect everything to a singular method.
+#+begin_src magik
+
+  _method cgis_identify_source_point_gui_plugin.post_activation()
+	  ## 
+	  ##
+	  .gui_items[:substation].change_selector<<:manage_actions|()|
+	  .gui_items[:lvdb].change_selector<<:manage_actions|()|
+	  # ...
+  _endmethod
+  $
+
+
+#+end_src
+*** This allows us to create a conditional, that trigger GUI elements depending on the radio
+** Heres something cool too. We connect a method to the change_selector. then we can maatch exactly the data[] and gui_items[]. Eg:
+#+begin_src magik
+
+_method cgis_identify_source_point_gui_plugin.selected_substation_type()
+	## 
+	## Returns the selected substation type
+	##
+
+	.data[:substation_type] << .gui_items[:substation_type].value
+
+_endmethod
+$
 
 #+end_src
 * Oracle SQL  (some tips not present in my tasks)
@@ -3272,4 +3357,461 @@ SQL> insert into test1(identity, student_name) values (1, 'whatever');
   _endif
 
 #+end_src
+* Task 10
+** How to list avilable conditions:
+*** [[https://smallworld.gedigitalenergy.com/documentation/sw51/en/swDocs5.htm#../Subsystems/AppDev/Content/Conditions/ConditionsUsing.htm?Highlight=try%20condition][GE docs]]
+#+begin_src magik
 
+  condition.print_hierarchy()
+
+#+end_src
+** ==========
+* Task 11
+** Apparently, a phase can be incomplete and still the design can reach be posted
+** a phase is an not dependent on design, a separate entity,  hence can even  still be  transitioned to phase complete, AFTER design is posted
+*** Even the changes are saved
+** Cant really tell anything
+*** [[https://sspinnovations.com/blog/smallworld-data-migration/][smallworld internal]]
+*** 
+* Remembering Task 7
+** What is this for?
+
+#+begin_src magik
+
+
+    _if .items[:selected_conductor].value _is _unset
+    _then
+	    _self.show_message(_self.message(:select_c_map))
+	    _return _false
+    _elif .items[:distance] _is _unset 
+    _then
+	    _self.show_message(_self.message(:give_distance))
+	    _return _false
+    _elif .items[:distance].value.as_number() _is _unset
+    # ... snip ...
+
+#+end_src
+** Also task 7
+*** we found a different error "unset does understand an_rwo"
+*** we can both ignore and use activation_plugin, our meal_menu example doesnt have activation_plugin, so we create the dialog (or accessing the cached one) inside our gui_plugin
+*** equality_geometry_set produces an error when pased to the goto() method. Not if sure is jsut local in the script, or ALWAYS
+*** pre_activation is always used in the cgis and tnb custom scripts. they apparently run automataicaally before  init(), we gotta test this 
+* More reading (Substation):
+** https://www.osha.gov/etools/electric-power/illustrated-glossary/sub-station
+** https://www.power-technology.com/data-insights/top-five-transmission-substation-projects-in-malaysia/?cf-view
+** [[https://www.watelectrical.com/types-of-electrical-substations-and-functions/#google_vignette][good explanation]]
+*** Step-up Substation
+**** It steps up!! Directly linked to a generating stations as its lower voltage
+**** Sounds weird, not sure how its  used in Malaysia
+*** Step-down Substation
+**** Linked to load centers, coz  requiement of different voltage for various loads
+*** Primary Substation
+**** Donno
+*** Secondary Substation
+**** lined  alongside secondary transmission lines adjacent to  loads
+*** Distribution Substation
+**** Have several types depending on  structure
+**** For   consumers for  the actual loads
+** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=duquesnelight&spc=foe&id=4480][Why three phase]]
+*** Electricity always leaves distribution SS at 3 phases. Usually (makes sense), there is a mains line leaving the SS, and whenever there is a new need for electricity in a area (construction etc..), we TAP into that mains. 
+** [[https://studyelectrical.com/2019/11/switching-station-working-layout.html][Switching Stations]]
+*** Not all Substations contain transformers (although one link keeps insisting transformers are the most  common eq in SS)
+*** always at the transmission level (you have transmission and distribution level)
+*** 
+** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=wppi&spc=foe&id=4454][Transmission voltages]]
+*** 
+* Task 13
+** We basically created a business rule. Some  pretty  cool code stuff we found ut dont know what to write. 
+* Task 14
+** Inserting a SQL  statement, uses this:
+#+begin_src magik
+
+  ext_db << gis_program_manager.cached_dataset(:dude_eo)
+  ext_db_user << ext_db.user
+  a_query << "insert into dist_transformer_meter values (" + value_string + ")"
+
+
+
+
+  _try _with cond
+	  a_stream << ext_db_user.sql_modify(a_query)
+	  .what << a_stream
+	  # ...
+
+#+end_src
+* Task 15 (please complete this)
+** rwo_actions
+** We added special_actions()
+** we tried using the usual _framework.magik, _gui_plugin.magik, for adding an action under the eo_power_xfrmr_inst, but clearly not doable, becoz it  becomes complicated under another plugin 
+** We used model. 
+** Previously, we put all the elements inside _gui_plugin.magik, passed that object  into framework.new() inside some _activate_plugin.magik. (To describe, we are putting the gui_plugin inside a new framework, framework being like a window with properties like gui.xml and config.xml)
+** Now, we used activate_in(). this can be put inside the subclassed model class itself. running the dialog requires some_model.new().activate_dialog()
+** Something we might consider:
+*** Becoz adding some code we have to "special actions" require {1} the special_action() method {2} the init_actions and {3} assigning the editor  to the class
+#+begin_src magik
+
+  # ===== some code
+
+#+end_src
+*** That means we can {1} and {2} inside a seperate class, and {3} inside another class. All inside a separate module. (folder with module.def)
+** 
+* Documentation:
+** I  keep forgetting that the reason for .init(), is to not initialize our slots, but to finally create the datatypes for that slot (or maybe something more). Example (from  cycle way, which we should probably downlaod and try, if we are really interested in it)
+#+begin_src magik
+
+  def_slotted_exemplar( :create_cycleway_plugin,
+		      { { :trail, _unset },
+			{ :geoms, _unset } },
+		      :plugin )
+  $
+  _private _method create_cycleway_plugin.init(
+			   name, owner, _gather args )
+	  ## Initialise slots.
+	  _super.init( name, owner, _scatter args )
+	  .geoms << equality_geometry_set.new()
+	  >> _self
+  _endmethod
+  $
+
+
+#+end_src
+** (can refer to Developing Interactive Applications: Examples of developing plugins in local docs) actions (user thinks of it as a button) are children of plugins. Which means we can have multiple actions (meaning several dropdown selection in the menu bar) for a single plugin. For this:
+*** We add another action using init_actions()
+#+begin_src magik
+
+  _method meal_menu_plugin.init_actions()
+	  _self.add_action(# ...
+		)
+	  _self.add_action(# ...
+		)
+  _endmethod
+
+
+#+end_src
+*** the action calls a method
+#+begin_src magik
+
+  _method meal_menu_plugin.activate_second_gui()
+	  write("create a dialog or whatever")
+  _endmethod
+  
+#+end_src
+*** the message
+#+begin_src magik
+
+:activate_second_gui  Activate Second GUI
+
+#+end_src
+*** the gui.xml, since we already defined the logical name in config.xml during the first action
+#+begin_src xml
+
+  <submenu name="extras" mnemonic_id="extras_m">
+    <action name="meal_menu.activate_meal_menu"/>
+    <!-- <action name="meal_menu.activate_second_gui"/> -->
+  </submenu>
+
+#+end_src
+** Magik Language: Behaviour of all classes (10.4 Sending a message to an object)
+** Developing Interactive Applications: API to action, plugin and framework classes (2.4 Methods for managing dialog boxes)
+** Something to think about, but actually very simple. Whats the difference between a session? a product? an application? a module? a plugin?
+*** product is the folder registered under config/magik_sessions/source/register.magik, and eo_open (a child of eo_closed). basically registered under a session. 
+*** a module is the name found in module.def (and you load the module under the session as a key :load_modules)
+*** an application is the same as a module. Using only XML (no magik code needed), you can either limit or expand applications available to a group of users (admin? users?)
+*** a plugin is the class  name itself. But under config.xml, we link a "logical name" to the class name, so in gui.xml we can use the logical name to call the actions.
+*** Additional point: init_actions(). allows us to separate th action name to the method name itself. So we can have an action :activate_meal_menu that links to the :activate method. Or :activate_meal_menu links to the :lets_go
+* We successfully created a special_actions. 
+** We used a separate exemplar, and our own named plugin :editor_adds
+** we appended a special variable to that plugin
+** init_actions()
+** the method connected to the init_actions
+** connect the new plugin to the collection itself (using a shared variable like :eo_power_xfrmr_inst) and the overwrite the method .editor_plugin()
+** We through we could modify the plugin further using XML files, apparently we dont know how
+* popups available in our remote system
+#+begin_src magik
+
+  smallworld_product.eo_application().show_alert("hello there")
+  # also show_question() and show_message()
+
+#+end_src
+* The next thing we should do is see if we can change our plugin to a properly named one. Or maybe see if our eo_power_xfrmr_inst_plugin is actually elsewhere in remote
+* Note-to-self:
+** The remote apparently puts our tnb_pole_insert thing inside its own module.def called \\10.215.92.21\Smallworld\TNB_GIS\DIST\modules\functional_modules\cgis_dist_application_installer\module.def
+* KPI
+** technical skill 1
+*** new state model
+*** setup job server for QAQC in EO demo DB
+*** 
+** tech skiill 2
+*** Gis adapter CIM
+*** Config setup
+** tech skill 3 
+*** GAS, PNI, water
+*** Exploration and document preparation
+* For our loca SmallWorld setup:
+** we wanna make things cool like our remote
+#+begin_src magik
+
+
+
+_method object.p
+	print(_self)	
+_endmethod
+
+
+#+end_src
+* We found something, we need to write about this one.
+#+begin_src magik
+
+
+    smallworld_product.get_resource_file("test.txt", "data", :meal_menu_test)
+  # found under \\10.215.92.21\Smallworld\TNB_GIS\DIST\modules\functional_modules\cgis_snc_cpp_modules\cgis_snc_asset_report_generator\source\cgis_snc_asset_report_generator.magik
+
+#+end_src
+* Each framework has its own GUI.xml and CONFIG.xml, so each module can have several frameworks (GUI framework). We can then activate a second dialog, by passing its own .XMLs into another gui_framwork2.magik (and its made aware of a gui_plugin2.magik through the logical link inside CONFIG.xml)
+* Related to engine and add_dependent()
+** First of all, in our experiment of using model VS using plugins to open a dialog from another dialog. When linking the engine from the gui_plugin/model. We realized that model doesnt not have the post_activation() method (and probably others).
+** So in model, we add these into init(), instead of post_activation()
+#+begin_src magik
+
+
+  ## ===== inside init() if using model, otherwise post_activation()
+  ardies_reader_engine.add_dependent(_self)
+  ardies_reader_engine.run(.data)
+  ## ===== inside init() if using model, otherwise post_activation()
+
+
+#+end_src
+* Task 19:
+** Add functionality to the icpp_integration_status module, including a basic tree_item display (with branching data)
+** 
+** Code that uses sw_tree (simplified, and please test, some stuff might be missing,also havent tested in real life)
+#+begin_src magik
+
+
+  _pragma(classify_level=basic, topic={tnb_validate_checks})
+  _method cgis_tnb_validation_checks_gui_plugin.build_gui( a_container)
+	  .items[:reports] << sw_tree.new(rc_3,
+					  :col_alignment,      :fill,
+					  :row_alignment,      :fill,
+					  :model,              _self,
+					  :selection_notifier,:value_changes_col_cntr|()|,
+					  :selection_mode, :many,
+					  :data_selector,:result_table|()|,
+					  :aspect, :result_table)
+  _endmethod 
+  
+
+    _method cgis_tnb_validation_checks_gui_plugin.result_table(parent, _optional depth)
+	    ## 
+	    ## prepare the tree based on the input parameters.
+
+	    tree_table_rope << rope.new()
+	    l_key << :|Conductor|
+	    l_rope << .items[:xml_group_type].nth_element(1)		
+
+	    _if l_rope _is _unset _then _return _endif
+
+	    l_name << "first item"
+	    element << sw_tree_element.new( parent )
+
+	    element.add_content( {:left_spacing, 1,
+				  :right_spacing, 1},
+				 {label, l_name,
+				  :model, _self})
+
+
+	    _for l_res_val _over l_rope.elements()
+	    _loop
+		    l_name << "children"
+		    l_method_name << l_res_val[2] 
+		    chd_element << sw_tree_element.new( element )
+		    chd_element.add_content( {:left_spacing, 1,
+					      :right_spacing, 1},
+					     {:label, l_name,
+					      :model, _self})		  		
+	    _endloop
+    _endmethod
+    $
+
+
+#+end_src
+*** Notice that it doesnt behave like a normal function, (returning something). It in fact modifies the parent object passed in. But we have yet tested this theory in real life. We in fact used a normal display_tree for branching data (Eg: from styled_tree.magik in tree_examples)
+*** 
+** One way to slowly move towards  a single recursive function for tree_list
+#+begin_src magik
+
+  _pragma(classify_level=basic, topic={icpp_integration_status})
+  _method icpp_status_gui_plugin2.details_tree
+	  ## calls the internal int!details_tree
+	  >> _self.int!details_tree(.items[:data])
+  _endmethod
+  $
+
+
+  _pragma(classify_level=basic, topic={icpp_integration_status})
+  _method icpp_status_gui_plugin2.int!details_tree(l_current_pl, _optional p_parent)
+	  ## 
+	  ##
+
+	  _local l_internal, l_field, l_ss, l_all
+	  l_all  << property_list.new()
+	  l_all[:substation1] << property_list.new()
+	  l_field << property_list.new_with(:voltage,  "11kV",  :id, 999)
+	  l_all[:substation1][:ring_main_unit] << l_field
+	  l_field << property_list.new_with(:op_area,  "Putrajaya",  :id, 4545)
+	  l_all[:substation1][:transformer1] << l_field
+	
+
+	
+	  l_field << property_list.new_with(:voltage,  "33kV",  :id, 555)
+	  l_all[:substation2] << property_list.new()
+	  l_all[:substation2][:ring_main_unit] << l_field
+	  l_field << property_list.new_with(:op_area,  "Kajang",  :id, 1209)
+	  l_all[:substation2][:transformer1] << l_field
+
+
+	  .items[:data] << l_all
+
+	  _local l_rope << rope.new()
+
+	
+	  _for a_key, a_value _over l_current_pl.keys_and_elements()
+	  _loop
+		  _local l_display_tree << display_tree.new(a_key, a_key.write_string, p_parent)
+		
+		  # l_display_tree.set_children_method(_self, :int!tree_list2|()|)
+		  l_display_tree.set_children_method(_self, :int!details_tree2|()|, a_value)
+		
+		
+		
+		  l_rope.add(l_display_tree)
+	  _endloop
+
+	  >> l_rope
+	
+  _endmethod
+  $
+
+
+  _pragma(classify_level=basic, topic={icpp_integration_status})
+  _method icpp_status_gui_plugin2.int!details_tree2(l_current_pl, _optional p_parent)
+	  ## 
+	  ## our first attempt at this
+	  ## 
+
+	  _local l_list << rope.new()
+
+
+	
+	  _for a_key, a_value _over l_current_pl.keys_and_elements()
+	  _loop
+		  _local l_display_tree << display_tree.new(a_key, a_key.write_string, p_parent)
+
+		  _if  a_value.class_name _is :property_list
+		  _then
+			  l_display_tree.set_children_method(_self, :int!details_tree3|()|, a_value)
+		  _endif
+		
+	
+		  l_list.add(l_display_tree)
+	  _endloop
+
+	  >> l_list
+  _endmethod
+  $
+
+  _pragma(classify_level=basic, topic={icpp_integration_status})
+  _method icpp_status_gui_plugin2.int!details_tree3(l_current_pl, _optional p_parent)
+	  ## 
+	  ## our first attempt at this
+	  ## 
+
+	  _local l_list << rope.new()
+	
+	  _for a_key, a_value _over l_current_pl.keys_and_elements()
+	  _loop
+		
+		  _local l_display_tree << display_tree.new(a_key, a_key.write_string, p_parent)
+	
+		  # l_display_tree.set_children_method(_self, :int!tree_list2|()|)
+	
+		  l_list.add(l_display_tree)
+	  _endloop
+
+	  >> l_list
+  _endmethod
+  $
+
+#+end_src
+** Several ways to structure the display_tree & styled_string 
+*** Straightforwards  using simple vector
+#+begin_src magik
+
+  l_pl << { _false, "Petaling-Jaya", "123678456", "whatever what" }
+		  
+       
+
+  # both p_parent passed in as argument from the method (Eg: int!details_tree(l_current_pl, _optional p_parent)). l_key from looping through the property_list l_current_pl
+  l_display_tree << display_tree.new(l_key, l_pl, p_parent)
+
+
+  # :properties_1 is a custom style
+  l_display_tree.styled_string << {
+					  :toggle, 1
+					  :bold, :value, 2,
+					  :properties_1, :value, 3,
+					  :properties_2, :value, 4
+				  }
+
+  l_rope.add(l_display_tree)
+
+#+end_src
+** Using property_list
+#+begin_src magik
+
+  l_pl << property_list.new_with(:first, l_value[:desc1],
+				:second, l_value[:desc2],
+				:third, l_value[:desc3]
+		       )
+  l_display_tree << display_tree.new(l_key, l_pl, p_parent)
+
+  l_display_tree.styled_string << {:image, :default, # just a style
+				   :bold, :value, :first,
+				   :properties_1, :value, :second,
+				   :properties_2, :value, :third
+				  }
+  
+#+end_src
+* Common errors again:
+** No defiitino for binary operator: symbol(<some_name>) cf integer(1) caused by something like 
+#+begin_src magik
+
+  "asd"[:some_name]
+
+#+end_src
+** which produces
+[[./stuff_i_installed_at_work/common_error_10.png]]
+* Weird shit, please write   this, while u still remember
+#+begin_src magik
+
+
+  ## the following code will fail, despite the else, not sure why
+  ## instead define variables, and return that final
+  ## variable outside conditional
+  _method icpp_status_gui_plugin2.external_name2(l_coll_name)
+	  _local l_string << ""
+	  _if l_coll_name = "sub_substation"
+	  _then
+		  l_string << "Substation"
+		  ## return at this point is weird, without the last >>, go try it and see
+	  _else
+		  l_string << "nothing"
+	  _endif
+
+	  >> l_string
+  _endmethod
+  $
+
+#+end_src
+* Please write in task 19 about defining all the styles in l_style_holder. A single variables holding many custom defined text style and image scheme, to attacah to a single tree_item. So in theory, good management is having many styles inside a tree_item
+** 

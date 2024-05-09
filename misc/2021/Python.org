@@ -1,9 +1,7 @@
-* Syntax (I hope I still hate Python):
+* Syntax, variable basics, and using del :
 ** [[https://www.tutorialspoint.com/python/python_variable_types.htm][tutorialspoint]]
-*** so Python has concepts such as tuples and list, which are fundamentally different, as in tuples are unchangeable
-**** Sounds like a fundamentally bad idea, since building a skillset around functions that CRUD lists, and tuples will be confusing
-**** or maybe not
 *** So its always a good idea to focus only on list, when learning Python
+*** tuples are confusing, and not even useful in "advanced OOP" uses
 ** [[https://www.programiz.com/python-programming/dictionary][programmingiz]]
 *** good basic source
 *** Some dictionary methods
@@ -31,9 +29,21 @@
 ** disabling PyCharm auto-suggestion (great for those learning Python)
 *** Settings -> Editor -> General -> Code Completion -> Tick -- Show suggestions as you type
 * Emacs IDE for Python (please God make this work)
-* Some basics, still dont like Python BTW:
+* Python writing to  file:
 ** Writing text to file, but also has a context manager example
 *** https://stackoverflow.com/questions/5214578/print-string-to-text-file
+* OOP, PyGame:
+** [[https://stackoverflow.com/questions/59330578/how-to-avoid-using-global-variables][childish way to avoid Global keyword]]
+*** Childish non-OOP way to avoid Global  keyword, sinnce its quite obviously bad and confusing
+** [[https://www.geeksforgeeks.org/inheritance-and-composition-in-python/][finally understand composition thanks to my RPS company]]
+*** used it in my PyGame
+** [[https://stackoverflow.com/questions/9390126/pythonic-way-to-check-if-something-exists][Python, check if something exists]]
+*** used it in my PyGame project for the main (and only) Sprite. Will not work in Sprite Group. My Alien doesnt need an extra, after all,   so its fine
+** [[https://stackoverflow.com/questions/3078927/python-how-to-access-variable-declared-in-parent-module][Cool way to import globa variables, has also potetial to reduce importing your my_globals, my_aliens, my_bullets into one line]]
+** [[https://stackoverflow.com/questions/2349991/how-do-i-import-other-python-files][other interesting alt  to  importing a file]]
+** [[https://stackoverflow.com/questions/43474849/pygame-sprite-collision-with-sprite-group][collision basic]]
+** [[https://stackoverflow.com/questions/21973044/how-to-blit-sprites-to-screen-on-timed-increments-in-pygame][Sprite Group basics]]
+** [[https://stackoverflow.com/questions/37800894/what-is-the-surface-blit-function-in-pygame-what-does-it-do-how-does-it-work][surface blit basics]]
 * Better file handling, text file handing, path handling!! using pathlib, great for Fiverr clients:
 ** https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
 * Kinda important:
@@ -44,9 +54,10 @@
 ** https://www.edureka.co/blog/self-in-python/amp/ (THIS IS A BAD EXPLANATION, dont delete, just point its bad-ness)
 ** https://medium.com/quick-code/understanding-self-in-python-a3704319e5f0
 * Vector (PyGame related)
-** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc..
+** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc
 * Python variables:
 *** integer
 ** float variables
 *** Python can store float numbers
 *** something about floats
+* 
