@@ -620,7 +620,6 @@ WILL GET ACTUAL TRAIL AS PSEUDO GEOMETRY
 
 #+end_src
 
-** 
 
 * Day 7
 ** shared constants and shared variables
@@ -3583,7 +3582,10 @@ _endmethod
 #+end_src
 * Task 19:
 ** Add functionality to the icpp_integration_status module, including a basic tree_item display (with branching data)
-** 
+** A common error when performing too much intensive read (SW collections)
+
+[[./stuff_i_installed_at_work/resource_error.png]]
+
 ** Code that uses sw_tree (simplified, and please test, some stuff might be missing,also havent tested in real life)
 #+begin_src magik
 
@@ -3813,5 +3815,96 @@ _endmethod
   $
 
 #+end_src
-* Please write in task 19 about defining all the styles in l_style_holder. A single variables holding many custom defined text style and image scheme, to attacah to a single tree_item. So in theory, good management is having many styles inside a tree_item
-** 
+* Task 19: 
+** A single variables l_style_holder holding many custom defined text style and image scheme, to attacah to a single tree_item. So in theory, good management is having many styles inside a tree_item
+** We encounter an error involving datastore not initialized, usually this means we did not open dataset connections without closing them (we also need to add protect blocks). But if we need to, we can solve it:
+#+begin_src magik
+
+  _block
+	  gis_program_manager.cached_dataset(:swtnbgis).user.close()
+  _endblock
+
+#+end_src
+* Task 22:
+** we can get the full KV label, by combining cgis_label and voltage_map, (both from the cable installation object)
+*** Eg: \\10.215.92.21\Smallworld\TNB_GIS\DIST\modules\functional_modules\cgis_custom_tool_modules\cgis_tnb_validation_checks\source\Conductor\data_validation_cond_with_invalid_child_phase_and_spec.magik
+** We should read on how specification is  used to produce assets and phase. 
+* Random education 
+** https://redplanetsolutions.sharepoint.com/:v:/s/rpstrainingstuff/EdDwXymNTTRLlYNU3c4iX9wBO3asQZ9o2X2wsHBDiQT9-g?e=cPsjLa&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
+*** Link only  viewable internally
+*** ADMS data source is GIS only
+*** ADMS needs data in the form of network model
+*** ADMS & GIS help each other, separate systems
+*** ADMS provides permanent network changes to GIS (example, a SS is faulty, and ADMS provides permanent changes to GIS, aka. a new SS is rerouted)
+*** 
+* Task 25:
+** Slightly  related, but cool none the less:
+#+begin_src magik
+
+  _block
+	  ds << gis_program_manager.cached_dataset(:electric)
+	  ds.go_to_alternative("|Working_Top|DM Top|parent_test|child_test")
+	  ds.switch(:write)
+	  ds.merge()
+	  ds.commit()
+  _endblock
+  
+#+end_src
+** This actually worked, for easily editing our FME:
+#+begin_src magik
+
+  _block
+
+	  system.putenv("SW2SHP_PROJ_DIR", "\\10.215.92.21\Smallworld\TNB_GIS\DIST\scripts\FME_data_migration")
+	  system.putenv("Differential_export", "False")
+	  system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+	  system.putenv("MAP_DIR", "\\10.215.92.21\Smallworld\TNB_GIS\DIST\scripts\FME_data_migration\Mapping_files_full")
+	  system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+	  system.putenv("cs_SWORLDSWAF", "UTM84-47N")
+	  system.putenv("server_SWORLDSWAF", "localhost")
+	  system.putenv("port_SWORLDSWAF", "30002")
+	  system.putenv("MAX_FEATURES", "10")
+	  system.putenv("cs_shape", "LL-WGS84")
+	  system.putenv("export_shapefile_path", "\\10.215.92.21\Smallworld\TNB_GIS\DIST\scripts\FME_data_migration\output\ardie")
+	  system.putenv("FME_LOG", "\\10.215.92.21\Smallworld\TNB_GIS\DIST\scripts\FME_data_migration\fme_log_files\ardie")
+	  system.putenv("pred_xml_path", "\\10.215.92.21\Smallworld\TNB_GIS\DIST\scripts\FME_data_migration\smallworld\XML_File\export_config_full.xml")
+
+	  #system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+	  #system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+	  #system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+	  #system.putenv("FME_EXE_FILE", "C:\apps\FME\fme.exe")
+
+	  _local proj_dir << system.getenv("SW2SHP_PROJ_DIR")
+	  #sw_module_manager.load_module(:tnb_mail_sender)
+
+	  write(" Process Started.......")
+
+	  _if system.getenv("Differential_export") = "True"
+	  _then
+
+		  load_file("".concatenation(proj_dir,"\smallworld\magik\diff_fix\fme_output_set.magik"))
+	  _endif
+
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\diff_fix\fme_processor.magik"))
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\load_fme.magik"))
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\ARDIE_delta_filter_engine.magik"))
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\fme_differential_export_engine_new.magik"))	
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\cgis_pseudo.magik"))
+	  load_file("".concatenation(proj_dir,"\smallworld\magik\ARDIE_process_fmw.magik"))
+
+	
+	  #load_file("".concatenation(proj_dir,"\smallworld\magik\checkpoint_clean.magik"))
+	  #load_file("".concatenation(proj_dir,"\smallworld\magik\output_config.magik"))		
+	  write(" Translation Completed.......")
+
+  _endblock  
+
+
+#+end_src
+* How to access server 21 from 25 (probably the same LAN or something). Using the dollar sign ($) one can also access any volumn of disk
+#+begin_quote
+
+\\10.215.92.21\c$\Users
+
+#+end_quote
+* 

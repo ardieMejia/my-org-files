@@ -25,3 +25,12 @@
 * ffmpeg (rotate using transpose)
 ** https://www.baeldung.com/linux/ffmpeg-rotate-video
 *** ffmpeg -i input.mp4 -vf "transpose=0" output_0.mp4
+* ffmpeg (downloading from sharepoint)
+** https://www.lisenet.com/2022/how-to-download-view-only-teams-meeting-recording-video-from-sharepoint/
+#+begin_quote
+
+$ ffmpeg -i "https://copied_videomanifest_url" -codec copy video.mp4
+
+#+end_quote
+
+
