@@ -3395,30 +3395,6 @@ SQL> insert into test1(identity, student_name) values (1, 'whatever');
 *** we can both ignore and use activation_plugin, our meal_menu example doesnt have activation_plugin, so we create the dialog (or accessing the cached one) inside our gui_plugin
 *** equality_geometry_set produces an error when pased to the goto() method. Not if sure is jsut local in the script, or ALWAYS
 *** pre_activation is always used in the cgis and tnb custom scripts. they apparently run automataicaally before  init(), we gotta test this 
-* More reading (Substation):
-** https://www.osha.gov/etools/electric-power/illustrated-glossary/sub-station
-** https://www.power-technology.com/data-insights/top-five-transmission-substation-projects-in-malaysia/?cf-view
-** [[https://www.watelectrical.com/types-of-electrical-substations-and-functions/#google_vignette][good explanation]]
-*** Step-up Substation
-**** It steps up!! Directly linked to a generating stations as its lower voltage
-**** Sounds weird, not sure how its  used in Malaysia
-*** Step-down Substation
-**** Linked to load centers, coz  requiement of different voltage for various loads
-*** Primary Substation
-**** Donno
-*** Secondary Substation
-**** lined  alongside secondary transmission lines adjacent to  loads
-*** Distribution Substation
-**** Have several types depending on  structure
-**** For   consumers for  the actual loads
-** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=duquesnelight&spc=foe&id=4480][Why three phase]]
-*** Electricity always leaves distribution SS at 3 phases. Usually (makes sense), there is a mains line leaving the SS, and whenever there is a new need for electricity in a area (construction etc..), we TAP into that mains. 
-** [[https://studyelectrical.com/2019/11/switching-station-working-layout.html][Switching Stations]]
-*** Not all Substations contain transformers (although one link keeps insisting transformers are the most  common eq in SS)
-*** always at the transmission level (you have transmission and distribution level)
-*** 
-** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=wppi&spc=foe&id=4454][Transmission voltages]]
-*** 
 * Task 13
 ** We basically created a business rule. Some  pretty  cool code stuff we found ut dont know what to write. 
 * Task 14
