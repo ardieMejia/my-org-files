@@ -2,3 +2,47 @@
 ** https://adamtheautomator.com/powershell-excel-tutorial/ Installation
 ** https://devblogs.microsoft.com/scripting/introducing-the-powershell-excel-module-2/
 ** 
+* Basic and useful and it WORKS!!
+** Once we create the Developers tab in the ribbon (Excel), we can click Visual Basic under that tab, and when we click run, we autotimcally register a macro, so we can insert the  following to disable "prompt save on exit"
+#+begin_quote
+
+Sub test1()
+ActiveWorkbook.Close SaveChanges:=False
+End Sub
+
+
+#+end_quote
+*** We can then attach this to a shortcut so  easy to exit without saving!!
+** More rearranging tricks (always good idea to stick use keyboard shortcuts and not fully automate columns, becoz we get to see and check the changes ourselves)
+**
+#+begin_quote
+
+
+Sub arrange_1()
+
+    Range("A1", Range("P200").End(xlDown)).Sort Key1:=Range("D1"), Order1:=xlAscending, Header:=xlYes
+
+End Sub
+
+
+#+end_quote
+** Delete text that DOESNT contain a pattern, sometimes better to avoid selection completely (according to one website), but I disagree completely
+#+begin_quote
+
+Sub delete_1()
+
+    
+    Dim lastRow As Long
+
+     lastRow = Range("A" & Rows.Count).End(xlUp).Row
+     For i = lastRow To 1 Step -1
+       If InStr(1, Cells(i, "D").Value, "SLGT", vbTextCompare) = 0 Then
+         Rows(i).EntireRow.Delete
+       End If
+     Next
+
+
+End Sub
+
+
+#+end_quote
