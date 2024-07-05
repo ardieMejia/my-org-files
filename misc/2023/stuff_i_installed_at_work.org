@@ -3883,4 +3883,31 @@ _endmethod
 \\10.215.92.21\c$\Users
 
 #+end_quote
-* 
+* How to insert date format (SQL)
+** Relevant to our oracle? we havent tried yet
+*** https://stackoverflow.com/questions/7536628/how-to-insert-date-and-time-in-oracle
+* Task 30
+** use .empty? instead of  .size, saves LOTS of  time
+#+begin_src magik
+
+  _if l_found.an_element().project.job_type = "CPP Projects" _andif _self.is_icpp?(l_active_name)
+  _then
+	  _self.project_name << l_active_name
+	  l_find_status << {:found, l_found.an_element()}
+  _endif
+
+#+end_src
+* Task 31
+** SmallWorld Office Suite Administration --> Design Administration --> State Model --> New State Model
+*** Insert name of new state model
+*** Insert simple basic states. Example:
+**** New Job --> In Design --> Design Approved -->  Pre Construction ---> In Construction --> As Built Changes --> Post Pending --> Posted
+** SmallWorld Office Suite Administration --> Design Administration --> Project Types 
+*** Its  only when we create a New Entry here do we get to see the  output of the following command  work
+#+begin_src magik
+
+  # Project  Type and State  Model   has the same name --> test1
+  swg_dsn_admin_engine.state_model_for_job_type("test1")
+
+#+end_src
+** ---

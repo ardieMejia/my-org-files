@@ -1,0 +1,37 @@
+* More reading (Substation):
+** https://www.osha.gov/etools/electric-power/illustrated-glossary/sub-station
+** https://www.power-technology.com/data-insights/top-five-transmission-substation-projects-in-malaysia/?cf-view
+** [[https://www.watelectrical.com/types-of-electrical-substations-and-functions/#google_vignette][good explanation]]
+*** Step-up Substation
+**** It steps up!! Directly linked to a generating stations as its lower voltage
+**** Sounds weird, not sure how its  used in Malaysia
+*** Step-down Substation
+**** Linked to load centers, coz  requiement of different voltage for various loads
+*** Primary Substation
+**** Unlike secondary, usually not for direct distribution
+*** Secondary Substation
+**** lined  alongside secondary transmission lines adjacent to  loads
+*** Distribution Substation
+**** Have several types depending on  structure
+**** For   consumers for  the actual loads
+** 3 phase
+*** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=duquesnelight&spc=foe&id=4480][Why three phase]]
+**** Electricity always leaves distribution SS at 3 phases. Usually (makes sense), there is a mains line leaving the SS, and whenever there is a new need for electricity in a area (construction etc..), we TAP into that mains. 
+**** The 3 phases are 120 degress out of sync with each other
+*** [[https://www.tutco.com/insights/making-sense-of-delta-wye-2/][For  heaters]]
+**** This article subtle indicates, that the application is what really determines decision between Delta and Wye 3 phase design. Delta appears more robust to failure. In the context of heaters, if 2 wires fail  the 3rd will still produce heat
+*** [[https://www.belden.com/blogs/data-centers/3-phase-power-wye-it-matters][More details]]
+**** Wye has 1 additional  neautral wire
+**** Delta has 3 hot wires and 1 ground
+**** Wye has 3 hot, 1 ground and 1 neutral
+**** Wye is more useful. Both measure 208 VAC between any 2 hot, but Wye also mesures 120 VAC between any hot and neutral. This means, Wye can "serve" 2 different voltages
+**** But Delta is still useful, coz motors and heaters (above example), dont need neutral
+**** Distribution transformers often have both. Coz Wye allows that additional to serve single phase loads
+*** [[https://www.astrodynetdi.com/blog/3-phase-delta-vs-wye][has cool video, with cute chubby chick]]
+**** video
+** [[https://studyelectrical.com/2019/11/switching-station-working-layout.html][Switching Stations]]
+*** Not all Substations contain transformers (although one link keeps insisting transformers are the most  common eq in SS)
+*** always at the transmission level (you have transmission and distribution level)
+*** 
+** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=wppi&spc=foe&id=4454][Transmission voltages]]
+*** 
