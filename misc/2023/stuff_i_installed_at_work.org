@@ -3886,6 +3886,7 @@ _endmethod
 * How to insert date format (SQL)
 ** Relevant to our oracle? we havent tried yet
 *** https://stackoverflow.com/questions/7536628/how-to-insert-date-and-time-in-oracle
+** Turns out  we  dont need it, coz in our we can just leave it as unset, and it will enter current date auto (refer to examples below, task 30)
 * Task 30
 ** use .empty? instead of  .size, saves LOTS of  time
 #+begin_src magik
@@ -3896,6 +3897,78 @@ _endmethod
 	  l_find_status << {:found, l_found.an_element()}
   _endif
 
+#+end_src
+** The first parameter for activate_relative_to() is what determines whether it closes properly based on parent. We need to feed it the parents top_frame. (Apparently, the framework.new()  plays very little role)
+#+begin_src magik
+
+
+
+
+  _local l_fw,name,l_top_frame
+
+
+  name << :detail_dialog
+
+  _if (l_fw << _self.get_dialog(:detail_dialog)) _is _unset
+  _then
+	  l_fw << cgis_icpp_status_get_details_framework.new( :name, _self,
+							      :resource_module_name, _self.module_name,
+							      :config_definition_file_name, "details_config.xml",
+							      :gui_definition_file_name, "details_gui.xml",
+							      :title,"ERMS Integration Values")
+	  _self.cache_dialog(:detail_dialog,l_fw)
+  _endif
+
+  l_fw.maximizable? << _false 
+  l_fw.resizable?   << _false    
+
+
+
+  l_fw.activate_relative_to( _self.framework.top_frame, _unset, _self.framework.top_frame, 500, 300)
+
+
+
+  >> l_fw
+
+#+end_src
+** How to update SQL commands
+#+begin_src magik
+
+  _block
+	l_ds << gis_program_manager.cached_dataset(:dude_eo)
+	a_query << "update WBS_ICPP_PROJECTS
+		set description = 'another test'
+	       where id = 999
+	       "
+	a_stream << l_ds.user.sql_modify(a_query)
+_endblock
+
+#+end_src
+** How to delete in SQL commands. (Dont over-rely in testing, can always use update, to trick our GUI)
+#+begin_src magik
+
+  _block
+	  l_ds << gis_program_manager.cached_dataset(:dude_eo)
+	  a_query << "delete from WBS_ICPP_PROJECTS where id = 1"
+
+	  a_stream << l_ds.user.sql_select(a_query)
+
+  _endblock
+
+#+end_src
+** How to select all. Note the .close() which is required to avoid running out of datastore cache. Unlike the 2 above.
+#+begin_src magik
+
+
+  _block
+	  l_ds << gis_program_manager.cached_dataset(:dude_eo)
+	  a_query << "select * from WBS_ICPP_PROJECTS"
+
+	  a_stream << l_ds.user.sql_select(a_query)
+	  a_stream.close()
+  _endblock
+
+  
 #+end_src
 * Task 31
 ** SmallWorld Office Suite Administration --> Design Administration --> State Model --> New State Model
@@ -3910,4 +3983,4 @@ _endmethod
   swg_dsn_admin_engine.state_model_for_job_type("test1")
 
 #+end_src
-** ---
+

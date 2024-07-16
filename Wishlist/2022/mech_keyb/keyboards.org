@@ -5,7 +5,8 @@
 ** Very cool, very good-looking (one guy loves it 10/10)
 *** https://nuphy.com/products/air75
 ** Keychron has so many cool ones, but I want the low profile one!!
-*** https://www.keychron.com/
+*** https://www.keychron.com/e
+*** We changed our mind slightly, Keychron is cool, but it has "almost" there factor. Apparently, people have something to  complain  about  this. But its stiill better than the competitor
 * Recommendations:
 ** Quiet mechanical keyboards!!
 *** https://switchandclick.com/the-best-quiet-mechanical-keyboards/
@@ -16,9 +17,14 @@
 **** https://drop.com/buy/tada68-mechanical-keyboard#overview
 *** Fixed price, not as cool site
 **** https://mechanicalkeyboards.com/shop/index.php?l=product_detail&p=3522
-
-*
-**
+* DIY
+** [[https://switchandclick.com/how-to-make-your-mechanical-keyboard-quieter/][Make it quiet]] (from easiest to hardest)
+*** Use desk mat
+*** Add foam inside keyboard
+*** Install  rubber o-rings
+*** Mod stabilizer (lube, etc..)
+*** Lube switches
+*** Replace switches
 * QMK configurations, QMK port projects for non-QMK keyboards:
 *** The official QMK configurator firmware website
 **** https://config.qmk.fm
