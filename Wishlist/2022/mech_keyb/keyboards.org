@@ -25,6 +25,11 @@
 *** Mod stabilizer (lube, etc..)
 *** Lube switches
 *** Replace switches
+** [[https://en.akkogear.com/faq/how-do-i-enter-bootloader-mode-and-flash-the-firmware-on-my-top-40/][Apparently, there are (usually cheap) mech keybs with no QMK firmware]]
+*** Requiment: One must enter boolloader mode (aka DFU mode)
+*** Download and open QMK Toolbox
+*** locate the firmware (and the appropriate .bin)
+*** enter into Bootloader mode, and click "Flash" to start firmware flashing
 * QMK configurations, QMK port projects for non-QMK keyboards:
 *** The official QMK configurator firmware website
 **** https://config.qmk.fm

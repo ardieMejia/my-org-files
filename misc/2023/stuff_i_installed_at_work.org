@@ -3147,6 +3147,7 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 ** We must build the primary level circuits (substation) first before feeder level 
 ** Under SW menu, there  is CIM  exporter  under GIS adapter.
 ** 
+* GIS Adapter
 * Reading about Oracle databases (we may remove this later)
 ** one can open SOC definitions (which has many htings such as connection parameters), with the method manage_soc()
 *** We use this everytime, coz when we start a session, we always open a DB connection. If no connection, we can pass parameter like this: manage_soc("h:\cambridge_db\ds\ds_admin")
@@ -3806,13 +3807,27 @@ _endmethod
 *** Eg: \\10.215.92.21\Smallworld\TNB_GIS\DIST\modules\functional_modules\cgis_custom_tool_modules\cgis_tnb_validation_checks\source\Conductor\data_validation_cond_with_invalid_child_phase_and_spec.magik
 ** We should read on how specification is  used to produce assets and phase. 
 * Random education 
-** https://redplanetsolutions.sharepoint.com/:v:/s/rpstrainingstuff/EdDwXymNTTRLlYNU3c4iX9wBO3asQZ9o2X2wsHBDiQT9-g?e=cPsjLa&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
+** [[https://redplanetsolutions.sharepoint.com/:v:/s/rpstrainingstuff/EdDwXymNTTRLlYNU3c4iX9wBO3asQZ9o2X2wsHBDiQT9-g?e=cPsjLa&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D][sharepoint RPS]]
 *** Link only  viewable internally
 *** ADMS data source is GIS only
 *** ADMS needs data in the form of network model
 *** ADMS & GIS help each other, separate systems
 *** ADMS provides permanent network changes to GIS (example, a SS is faulty, and ADMS provides permanent changes to GIS, aka. a new SS is rerouted)
-*** 
+** GIS Adapter is a system of truth
+** initial load EO --> ADMS
+** The CIM is a model
+** the GIS adapter profile is under <GIS Adapter>\eo_cim\modules\cim_profiles\eo_ge_dcim\resources\base\data, and has the extension .owl.
+** the location of  this XML is read from cim_adapter_properties.xml
+** 2 types of exchange job types
+*** full circuit export
+***  incremental export. (kinda like design changes export)
+** Job types that can be created
+*** CIM Circuit Initial Load - the initial load to target system
+*** CIM circuit re-export
+*** CIM Circuit Resync - after already loaded, similar to above. 2 steps required becoz CIM server is designed to be simple
+*** CIM design as built - via a design state transition. An XML created after analyzing differences
+*** CIM Design Republish - if above has failed
+** 
 * Task 25:
 ** Slightly  related, but cool none the less:
 #+begin_src magik
@@ -3883,6 +3898,18 @@ _endmethod
 \\10.215.92.21\c$\Users
 
 #+end_quote
+* GUI notes from talk
+** cool GUI notes from talk
+*** "a" is the most interesting part we learned. An _unset row means the GUI will add rows indefinitely. Same with _unset column
+[[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_1.png]]
+*** "b" left :col_alignment is the only thing that matters for the label, pushing it neat against the left. :col_alignment for its parent container can left :fill
+[[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_2.png]]
+*** "c" the :col_alignment and the :col_spacing is the only thing we need for the buttons to arrange properly, spaced evenly, between each other and outer
+[[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_3.png]]
+*** "d" the 3 --> bottom_spacing, top_spacing, min_width --> is the only thing we need for the look of the button. min_width is recommened, in case text is super short, but we need consistent button size
+[[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_4.png]]
+*** Sample
+[[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_Sample.png]]
 * How to insert date format (SQL)
 ** Relevant to our oracle? we havent tried yet
 *** https://stackoverflow.com/questions/7536628/how-to-insert-date-and-time-in-oracle
@@ -3970,6 +3997,7 @@ _endblock
 
   
 #+end_src
+** 
 * Task 31
 ** SmallWorld Office Suite Administration --> Design Administration --> State Model --> New State Model
 *** Insert name of new state model
@@ -3983,4 +4011,121 @@ _endblock
   swg_dsn_admin_engine.state_model_for_job_type("test1")
 
 #+end_src
+* The code below works
+#+begin_src magik
 
+
+
+
+
+  _pragma(classify_level=basic, topic={jb_test})
+  _method swg_dsn_scheme.my_transition_check()
+	  ## 
+	  ##
+
+	  project_name << swg_dsn_admin_engine.active_scheme.project.name
+	  args << swo_qm_state_model_transition_engine.args_for_qm_job(swg_dsn_admin_engine.active_scheme, "New Job", "In Design")
+	  desc << " some description by random ardie"
+	  swg_dsn_admin_engine.js_submit_job_request(
+		  property_list.new_with(
+			  :type,  :my_custom_job,
+			  :name, project_name,
+			  :description, desc
+				),
+		  args)
+
+  _endmethod
+  $
+
+
+
+  _block
+
+
+	  # for some strange reason, we cant replace proc  with a method
+	  # and class of our own, we should try this again some time
+
+	  sw_job_engine.define_job_type( :my_custom_job, 
+					 _proc()
+						 write("Hello World!")
+						 a_stream << external_text_output_stream.new_appending("C:\Users\ahmadardie.r\Desktop\my_custom_log.csv")
+						 a_stream.write("some data")
+
+						 a_stream.close()	
+					 _endproc, :|invoke()| )
+
+	  my_server << sw_job_engine.new(_unset, _unset, _unset, :my_custom_server)
+	  my_server.trace_level << 0
+	  my_server.picker_type << :priority
+	  my_server.start()
+
+  _endblock
+
+#+end_src
+** just like above except using build in job type
+#+begin_src magik
+
+    _pragma(classify_level=basic, topic={jb_test})
+  _method swg_dsn_scheme.my_custom_merge_and_post()
+	  ## 
+	  ##
+	
+	  project_name << swg_dsn_admin_engine.active_scheme.project.name
+	  args << swo_qm_state_model_transition_engine.args_for_qm_job(swg_dsn_admin_engine.active_scheme, "As Built Changes", "Post Pending")
+	  desc << " some meaningless desription"
+	  swg_dsn_admin_engine.js_submit_job_request(
+		  property_list.new_with(
+			  :type,  :merge_and_post_scheme,
+			  :name, project_name,
+			  :description, desc
+				),
+		  args)
+	
+  _endmethod
+  $
+
+
+#+end_src
+** 
+* Task? (32-ish not really related)
+** this lists all products, starting with layered prod, and then config products
+** you can upgrade the database, go to GUI --> Configuration - Smallworld Core --> Datamodel Tools
+** Create a new config file and save it (you have to select implementers)
+** Run the upgrade note, save the new file somewhere (.ds) and point to it in gis_aliases using the following  variable
+#+begin_src magik
+
+SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
+
+#+end_src
+** Modules and  products
+*** session --> product --> application --> modules
+*** a product registers a product, based on documentation
+*** so the product  below refers to folders, and putting a module inside automatically runs the module (an app acts like a top level module)
+*** Note as well, "runalias" is a separate session from "Office Design"
+
+#+begin_src magik
+
+
+
+
+  magik_session.register_new(
+	  "eo_closed",
+	  :parent_session, "sw_common_office:common_office",
+	  :add_products, { :sw_dm, :soms },
+	  :optional_products, { :custom_products, :sw_core_lp, :sw_dm_lp, :soms_lp, :sw_common_office_lp, :sw_electric_office_lp},
+	  :load_modules, { :sw_eo_image },
+	  :startup_options, startup_options )
+
+
+  magik_session.register_new(
+	  "eo_open",
+	  :parent_session, "eo_closed",
+	  :startup_proc, :startup,
+	  :soc_names, { :electric_dm, :design_config },
+	  :load_modules, { :dtm_insert_transaction, :meal_menu_test, :editor_adds },
+	  :startup_options, startup_options,
+	  :open_database_proc, open_database_proc )
+
+#+end_src
+*** and of course, the "application module" is a folder AND a top leve module that provides other modules
+*** the  product.def is a layered product

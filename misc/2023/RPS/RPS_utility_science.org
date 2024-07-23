@@ -1,4 +1,4 @@
-* More reading (Substation):
+* Hardware (Substation):
 ** https://www.osha.gov/etools/electric-power/illustrated-glossary/sub-station
 ** https://www.power-technology.com/data-insights/top-five-transmission-substation-projects-in-malaysia/?cf-view
 ** [[https://www.watelectrical.com/types-of-electrical-substations-and-functions/#google_vignette][good explanation]]
@@ -35,3 +35,5 @@
 *** 
 ** [[https://c03.apogee.net/mvc/home/hes/land/el?utilityname=wppi&spc=foe&id=4454][Transmission voltages]]
 *** 
+
+
