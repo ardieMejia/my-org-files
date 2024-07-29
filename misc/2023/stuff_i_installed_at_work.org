@@ -4014,7 +4014,7 @@ _endblock
 * The code below works
 #+begin_src magik
 
-
+  
 
 
 
@@ -4088,6 +4088,40 @@ _endblock
 #+end_src
 ** 
 * Task? (32-ish not really related)
+** How to create phase
+#+begin_src magik
+
+  swg_dsn_admin_engine.create_build_phase(Design_Record , Name of the Phase )
+
+  _block
+	  l_attrs << property_list.new()
+	  l_area << swg_dsn_admin_engine.active_scheme.project.project_areas
+	  l_attrs[:boundary] << l_area.an_element().area
+	  l_scheme << swg_dsn_admin_engine.active_scheme
+	
+	  pp << swg_dsn_admin_engine.create_build_phase(l_scheme, l_scheme.name + "_01", l_attrs)
+  _endblock  
+#+end_src
+** EDIT BELOW, write about eq_includes?() (Instead of some trick using using _orif  )
+#+begin_src magik
+
+  _if {"QAQC Validation","As Built Updates"}.eq_includes?(p_target_state_name)
+	_then
+		to_mail_ids << {"amillia.amran@tnb.com.my"}
+	
+		#Commented by Arun GK[26-01-2024] , [Ready for Posting, Posting
+		# Approved & Posting Declined] states removed from CPP Projects
+		#Ticket TC1-T934
+		#{"Posting Approved","Posting Declined","Data Posted"}
+	_elif {"Data Posted"}.eq_includes?(p_target_state_name)
+	_then
+		to_mail_ids << {"amillia.amran@tnb.com.my"}
+	_endif
+	#Ended by Arun GK
+
+	tnb_mail_sender.send_mail_notification(to_mail_ids,to_subject,to_remarks)
+
+#+end_src
 ** this lists all products, starting with layered prod, and then config products
 ** you can upgrade the database, go to GUI --> Configuration - Smallworld Core --> Datamodel Tools
 ** Create a new config file and save it (you have to select implementers)
@@ -4129,3 +4163,4 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 #+end_src
 *** and of course, the "application module" is a folder AND a top leve module that provides other modules
 *** the  product.def is a layered product
+* 

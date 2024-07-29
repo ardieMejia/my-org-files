@@ -1,0 +1,22 @@
+* Whatever
+** [[https://www.youtube.com/watch?v=c8Kx6KAT2Ys][Dont understand]]
+*** FME has a PDF templater
+*** 
+** [[https://www.youtube.com/watch?v=Gci3bam_Acg][Whatever]]
+*** Scenario 1
+**** FME has some featueres/tools that help converting Microstation (basically CAD software) drawings of Forest Cover to GI ready datasets
+***** AreaBuilder
+***** PointOnArea Overrlayer
+**** Enabling Featurecaching allows dynamic  live view,  while we work on the transformation workflow
+****  FME essentially helps "expose" certain fields
+*** Scenario 2 (Migrating CAD drawings to GIS)
+**** Transforming CAD to  GeoJSON
+**** TextPropertyExtractor 
+**** PointOnAreaOverlay too, combine multiple entities into oen
+**** use Tester
+*** Scenario 3 (Pretty powerful stuff)
+**** Moving labels to Attr with Proximity
+**** For some reason, containment cannot be used
+**** Proxomity matching with NeighbourFinder
+**** Task: moving label information to nearby lines
+**** 

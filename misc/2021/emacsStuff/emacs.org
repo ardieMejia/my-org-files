@@ -297,6 +297,7 @@
 **** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
 *** So many cool things to try, like nyanmode, cute cat that browses with you.
 **** https://www.emacswiki.org/emacs/ModeLineConfiguration
+** [[https://www.math.utah.edu/docs/info/elisp_2.html][UTAH Emacs Lisp Intro]]
 * Wishlist
 ** https://github.com/oantolin/embark
 *** Embark makes it easy to run commands depending on where your point (cursor?) is
@@ -390,22 +391,6 @@
 ** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
 ** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
 *** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
-* modifications that are fancy/fun, but not important
-** Configuring the modeline
-*** Important variables, actually some are confusing. And it was easier for me to just edit Emacs modeline with simple functions, like combining (cond ..) & (major-mode)
-**** https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Variables.html
-*** I used emojis from here
-**** https://unicode.org/emoji/charts/full-emoji-list.html
-*** I dont know what this is for
-**** https://www.emacswiki.org/emacs/modeline-region.el
-*** If you were testing modeline in a buffer, the command force-mode-line-update might be useful
-**** https://www.reddit.com/r/emacs/comments/euox3d/is_there_a_way_to_refreshupdate_the_modeline/
-*** Config examples:
-**** https://github.com/rougier/emacs-octicons
-**** https://www.gnu.org/software/emacs/manual/html_node/eintr/Mode-Line.html
-***** I based my entire config on this one
-*** https://emacsdocs.org/docs/elisp/Emulating-Mode-Line
-**** Should probably check this site
 * More cool stuff to re-arrange!!
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email
@@ -455,6 +440,10 @@
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
 * Presentations in org mode
 ** https://github.com/yjwen/Org-Reveal
-* We NEED to rearrange this
-** https://www.math.utah.edu/docs/info/emacs-lisp-intro_17.htmlhttps://www.math.utah.edu/docs/info/emacs-lisp-intro_17.html
+* Recent Emacs startup tips
+** Instead of relying on init.el  branching, if using SmallWorld as the pivot, we can just load Emacs through the shortcut (or batch file like our Git Demo). But by copying the shortcut, and pointing to a our own gis_aliases in own folders.  And the gis_aliases will have
+#+begin_quote
 
+ARGS = -q --load C:\path\to\our_custom_init.el
+
+#+end_quote
