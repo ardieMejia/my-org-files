@@ -4163,4 +4163,7 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 #+end_src
 *** and of course, the "application module" is a folder AND a top leve module that provides other modules
 *** the  product.def is a layered product
-* 
+* Our System
+** \\10.215.129.79\Smallworld\TNB_GIS\COMN\modules\tnbgis_common_code\source\basic_addtions
+*** The file setvars_cst400 has the print(self) trick
+** Gotta check how they do this

@@ -1,0 +1,9 @@
+* There are several configs, some for the application, some for  the export itself.
+** eo_cim_application (folder name) is basically the GUI app itself. Has the usual config.xml and gui.xml
+** eo_cim_configuration has configs for the export process itself
+*** cim_adapter_properties.xml
+**** exclude_lv_from_export,
+**** exclude_structure_from_export
+**** exclude_service_point_lv_from_export
+**** output_path (-> set to SW_GISA_OUTPUT_PATH)
+**** 
