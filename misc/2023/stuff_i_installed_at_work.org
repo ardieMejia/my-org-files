@@ -4088,6 +4088,12 @@ _endblock
 #+end_src
 ** 
 * Task? (32-ish not really related)
+** Flow so far
+*** New Job --> In Digitization
+**** Oracle is  updated automatically Hence cgis_sw_jobs will have its status changed automatically
+**** ---
+*** Much later
+**** if our design LV migration is completed (record presented in LV_MIG_COMPLETED_STATION) moving our design to CPP Preparation will produce an error, where we dont have premission to access "\\10.215.129.92\WorkflowFiles\Drawings\CPP Projects\KUALA LUMPUR SELAT\design-name\Consultant_drawings\".  Folder of design doesnt exist  (consultant_drawings_1.png)
 ** How to create phase
 #+begin_src magik
 

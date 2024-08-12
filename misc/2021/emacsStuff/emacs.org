@@ -1,7 +1,4 @@
-
-* This repo is currently under construction. Read at your own risk. But they're good links.
-** Never be afraid to try something with Emacs init.el. When something goes wrong, just delete all .emacs.d & .emacs.d/ and start over.
-* Part 1 (just Google it)
+* What if I have no clue
 ** If you ever tried learning Emacs by yourself, you'll quicky discover that Emacs is hard. Flexible but hard. But hard is often a matter of journey, not skill. A beginners framework can help you on that journey. 
 *** https://www.spacemacs.org/
 *** https://prelude.emacsredux.com/en/latest/
@@ -32,7 +29,7 @@
 *** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
 *** C-x 4 c to open temporarily a buffer, maybe to indent or something
 *** this behaviour probably not encouraged, probably becoz there are other better alternatives, and confusing for beginners
-* Part 3 (sensible defaults)
+* Inits
 ** The following are taken from this link: [[https://www.sandeepnambiar.com/my-minimal-emacs-setup/][Sandeep minimal defaults]]
 #+begin_src lisp
 
@@ -100,8 +97,14 @@
   (add-hook 'focus-out-hook 'my-save-all)
 
 #+end_src
+** Instead of relying on init.el  branching, if using SmallWorld as the pivot, we can just load Emacs through the shortcut (or batch file like our Git Demo). But by copying the shortcut, and pointing to a our own gis_aliases in own folders.  And the gis_aliases will have
+#+begin_quote
 
+ARGS = -q --load C:\path\to\our_custom_init.el
 
+#+end_quote
+** [[https://www.youtube.com/watch?v=XZjyJG-sFZI][Teach your Emacs to keep folders clean]]
+*** Already used variables --> user-emacs-directory, package-user-dir, default-directory
 * Loading subtlety, hooks, eval, yadayada
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
 *** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
@@ -126,9 +129,12 @@
 
 ** https://www.reddit.com/r/emacs/comments/643dkt/use_package_vs_require_and_maybe_some_sorrowful/
 *** Lots of useful comments on use-package vs require. Most importantly, you learn that require is standard GNU Emacs since 1985. WOW! Library authors dont assume everyone has use-package, hence, many dont include it in installation instructions
-* Emacs Daemon. Might not be important for beginners, but VERY useful, and you'll love it once you get it to work. But I cant make it work under Windows for some reason
+* Emacs Daemon. But I cant make it work under Windows for some reason
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
+* Navigation improved
+** [[https://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs][move region/line up/down]]
+*** Can try drag-stuff  coz its super cool but should start with Ji Han examples, coz its super simple
 * Keybinding (under construction)
 ** In the long term, once we understand, we should avoid -eval- & hooks (??)
 *** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
@@ -219,7 +225,38 @@
 *** reset everything back to GUIX spacemacs, and
 *** install TRAMP from there
 * Basics, education:
-** Interesting, lead from other examples:
+** Lisp
+*** One of the best basic intro into eLisp:
+**** https://cs.gmu.edu/~sean/lisp/LispTutorial.html
+** elisp - my enlightenment
+*** https://emacs.stackexchange.com/questions/80/how-can-i-quickly-toggle-between-a-file-and-a-scratch-buffer-having-the-same-m
+** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
+*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
+** Errors:
+*** https://discourse.doomemacs.org/t/common-errors-how-to-deal-with-them/58
+**** A bit useful, should read one day.
+** Datatypes, converting strings, etc..
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Comparison.html
+*** maybe a good website
+**** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
+*** So many cool things to try, like nyanmode, cute cat that browses with you.
+**** https://www.emacswiki.org/emacs/ModeLineConfiguration
+** [[https://www.math.utah.edu/docs/info/elisp_2.html][UTAH Emacs Lisp Intro]]
+** File to buffer:
+*** Learning common lisp and eLisp, eLisp doesnt have the stream function, they have insert-file-contents
+
+#+begin_src emacs-lisp
+
+(defun ardie-temp ()
+  (interactive)
+  (insert-file-contents "~/my-trash/delete/input.txt" "what")
+  )
+
+(global-set-key (kbd "C-S-z") 'ardie-temp)
+
+#+end_src
+** Weird ones:
 *** https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
 **** advising Lisp functions
 ***** advice-add , advice-remove , but no defadvice , like we saw from another Tut
@@ -270,34 +307,12 @@
 
 
 
-
-
-
-
-
-
 **** Dont forget to unset between practices to remove pairings function.
 
 
 (advice-remove 'say-hello  'x-list)
 
 
-** Lisp
-*** One of the best basic intro into eLisp:
-**** https://cs.gmu.edu/~sean/lisp/LispTutorial.html
-** elisp - my enlightenment
-*** https://emacs.stackexchange.com/questions/80/how-can-i-quickly-toggle-between-a-file-and-a-scratch-buffer-having-the-same-m
-** Errors:
-*** https://discourse.doomemacs.org/t/common-errors-how-to-deal-with-them/58
-**** A bit useful, should read one day.
-** Datatypes, converting strings, etc..
-*** https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html
-*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Comparison.html
-*** maybe a good website
-**** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
-*** So many cool things to try, like nyanmode, cute cat that browses with you.
-**** https://www.emacswiki.org/emacs/ModeLineConfiguration
-** [[https://www.math.utah.edu/docs/info/elisp_2.html][UTAH Emacs Lisp Intro]]
 * Wishlist
 ** https://github.com/oantolin/embark
 *** Embark makes it easy to run commands depending on where your point (cursor?) is
@@ -387,21 +402,6 @@
 #+LaTeX_HEADER: \usepackage[top=1in]{geometry}
 
 #+end_quote
-* Possible projects
-** I want to have a buffer on the right side that automatically updates, whenever I change some source file (.org file maybe) on the left side
-** Might be useful to familiarize with these functions, has lots of em, and very simple explanation
-*** http://xahlee.info/emacs/emacs/elisp_buffer_file_functions.html
-* More cool stuff to re-arrange!!
-** https://masteringemacs.com/article/diacritics-in-emacs
-** Email
-*** https://shom.dev/posts/20220108_setting-up-protonmail-in-emacs/
-**** Unlike systemcrafters (ubuntu I guess), guix version of mu includes mu4e
-** Hydra, MUST read this and write properly later
-*** https://elpa.gnu.org/packages/hydra.html
-*** https://github.com/abo-abo/hydra
-*** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
-** http://xahlee.info/emacs/emacs/emacs_auto_save.html
-*** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
 * From Redplanet (rearrange later):
 ** https://lists.gnu.org/archive/html/help-gnu-emacs/2003-04/msg00767.html
 *** This code adds directories and its sub-directories to load-path. The reason why we dont do this is probably becoz load-path can get excessively long, and Emacs users might want to selectively disable some features.
@@ -416,34 +416,28 @@
   
 #+end_src
 
-* Rearrange:
-** Learning common lisp and eLisp, eLisp doesnt have the stream function, they have insert-file-contents
-
-#+begin_src emacs-lisp
-
-(defun ardie-temp ()
-  (interactive)
-  (insert-file-contents "~/my-trash/delete/input.txt" "what")
-  )
-
-(global-set-key (kbd "C-S-z") 'ardie-temp)
-
-#+end_src
 ** The reason why Emacs uses an alist
 *** https://emacs.stackexchange.com/questions/3397/how-to-replace-an-element-of-an-alist
 ** This one is DEFINITELY relevant to our GIS system
 *** https://groups.io/g/sw-gis/topic/install_emacs_for_smallworld/75042662?p=
-* We may need to read and rearrange in a separate file called EmacsWindows.org:
+* Some  cool Emacs modifications for Windows (or issues):
 ** https://www.emacswiki.org/emacs/CategoryWThirtyTwo
+*** Its got an R user Emacs too
+*** Dired+ 
+*** and many more
 ** There are many ports of GNU tools available
 *** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
-* Presentations in org mode
-** https://github.com/yjwen/Org-Reveal
-* Recent Emacs startup tips
-** Instead of relying on init.el  branching, if using SmallWorld as the pivot, we can just load Emacs through the shortcut (or batch file like our Git Demo). But by copying the shortcut, and pointing to a our own gis_aliases in own folders.  And the gis_aliases will have
-#+begin_quote
-
-ARGS = -q --load C:\path\to\our_custom_init.el
-
-#+end_quote
+* Extras!!
+** Presentations in org mode
+*** https://github.com/yjwen/Org-Reveal
+** https://masteringemacs.com/article/diacritics-in-emacs
+** Email
+*** https://shom.dev/posts/20220108_setting-up-protonmail-in-emacs/
+**** Unlike systemcrafters (ubuntu I guess), guix version of mu includes mu4e
+** Hydra, MUST read this and write properly later
+*** https://elpa.gnu.org/packages/hydra.html
+*** https://github.com/abo-abo/hydra
+*** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
+** http://xahlee.info/emacs/emacs/emacs_auto_save.html
+*** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
