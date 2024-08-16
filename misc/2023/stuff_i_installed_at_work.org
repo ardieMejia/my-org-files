@@ -4172,4 +4172,25 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 * Our System
 ** \\10.215.129.79\Smallworld\TNB_GIS\COMN\modules\tnbgis_common_code\source\basic_addtions
 *** The file setvars_cst400 has the print(self) trick
-** Gotta check how they do this
+* Task33
+** For 2 days, havent dont anything. No progress so far.
+** Readings on merge and post operations
+*** Design manager in Electric Office
+**** fully  supported
+**** phases can only be created in designs that dont have subdesigns. Also, if it has phases, cant create subdesigns
+**** Design Manager CAD tools
+**** DLTs are compataible, but requires for creatins installations and assets
+**** displayed designs --> showing changes in the map
+*** Conflicts
+**** conflict can happen at any level of hierarchy, of any dataset. Eg:  We have a subdesign, with data from 3 diff datasets, therefore, there  are  6  separate opportunties for conflist to  happen
+*** Merge and post, as interactive or batch transaction job
+**** To run the merge and post as a batch transaction job, set the swg_dsn_admin_engine shared constant interactive_conflicts? to false.
+**** to run the merge interactively, but post as batch transaction job, only set  interactive_conflicts? is true
+**** TO run both ia-ly, both set to true
+*** Best practice is to set an interim  design state for the design integration
+**** Eg: As Built --> Post Pending --> Posted
+** In order to understand more on this topic, we should explore Data Modelling in the 4.9 core docs
+* Task_KPI_2
+** We need to rewrite this again later
+** a_world << an_object.all_worlds.an_element()
+** smallworld_product.applications.an_element().plugin(:maps).set_current_map_selection(an_object.geometry_set(a_world)) 
