@@ -7,7 +7,7 @@
 *** Some dictionary methods
 ** [[https://docs.python.org/3/library/stdtypes.html][official]]
 *** LOTS of examples, though have to try each and everyone
-** [[https://www.analyticsvidhya.com/blog/2021/11/building-an-infinite-timer-using-python/][probably very cool but Indianish]]
+** [[https://www.analyticsvidhya.com/blog/2021/11/building-an-infinite-timer-using-python/][not sure if its cool]]
 *** Also, mostly a library advert
 ** [[https://www.freecodecamp.org/news/python-string-methods-tutorial-how-to-use-find-and-replace-on-python-strings/][freecodecamp]]
 *** freecodecamp -> a classic, but I never liked their "huge-ass font" & weird soydev presentation
@@ -55,9 +55,69 @@
 ** https://medium.com/quick-code/understanding-self-in-python-a3704319e5f0
 * Vector (PyGame related)
 ** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc
-* Python variables:
-*** integer
-** float variables
-*** Python can store float numbers
-*** something about floats
-* 
+* Event handling
+** I finally made this code sample work. Detailed below are the mistake I made, which should  be a common mistake
+#+begin_quote
+
+class EventWrapper (object):
+    def __init__(self):
+        self.eventwraps = []
+    def __iadd__(self, an_event):
+        self.eventwraps.append(an_event)
+        return self
+    # lets try without the __call__ first
+    def __call__(self, *a, **b):
+        for an_eventhandler in self.eventwraps:
+            an_eventhandler(*a, **b)
+
+
+class MessageToDisplay(object):
+    def __init__(self):
+        self.name = "whateever"
+    def PrintMe(self):
+        print("this is an event from inside PrintMe <-- MessageToDisplay")
+
+class a_user(object):
+    def __init__(self):
+        self.name = "a user"
+        self.on_event_1 = EventWrapper()
+
+    def the_main_event(self):
+        self.on_event_1()
+
+    def add_an_event(self, an_event):
+        print("adding")
+        self.on_event_1 += an_event # this is from iadd
+
+def Start():
+    sample_user = a_user()
+    a_printer = MessageToDisplay()
+    sample_user.add_an_event(a_printer.PrintMe)
+    # sample_user.add_an_event(a_printer.PrintMe())
+    # -----  The 2nd is previous line, which produces the error : -----
+    #  ----- TypeError: 'NoneType' object is not callable -----
+    # ----- Notice the extra bracket which means we redefining the function, turning it null
+    sample_user.on_event_1()
+
+if __name__ == "__main__":
+    Start()
+
+
+#+end_quote
+** [[https://pypi.org/project/Events/][This]] uses C# style events. But Im guessing its a very common Python  pip download.
+#+begin_quote
+
+
+from events import Events
+
+def something_changed(reason):
+    print("soemthing changed because %s" % reason)
+
+events = Events()
+
+events.on_change += something_changed # remember this is kinda cool, becoz event can be ANY function, no need for class
+
+events.on_change("i have diarrhea")
+
+#+end_quote
+

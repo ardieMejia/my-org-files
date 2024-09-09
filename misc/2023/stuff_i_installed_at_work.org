@@ -4190,7 +4190,41 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 *** Best practice is to set an interim  design state for the design integration
 **** Eg: As Built --> Post Pending --> Posted
 ** In order to understand more on this topic, we should explore Data Modelling in the 4.9 core docs
+** good code statements
+#+begin_src magik
+
+  swg_dsn_admin_engine.active_build_phase.has_been_posted_to_design_top?()
+
+  # the transition is am object too
+  swg_dsn_admin_engine.active_scheme.state_model.transition("New Job", "In Digitization")
+
+  # get source or destination
+  swg_dsn_admin_engine.active_scheme.state_model.transition("New Job", "In Digitization").source_state
+  swg_dsn_admin_engine.active_scheme.state_model.transition("New Job", "In Digitization").dest_state
+
+  # get attributes of a  state
+  swg_dsn_admin_engine.active_scheme.state_model.transition("New Job", "In Digitization").target_state.state_attributes_string
+
+#+end_src
 * Task_KPI_2
 ** We need to rewrite this again later
 ** a_world << an_object.all_worlds.an_element()
 ** smallworld_product.applications.an_element().plugin(:maps).set_current_map_selection(an_object.geometry_set(a_world)) 
+** What I did on 16-08-24
+*** edited cim_adapter_properties.xml under eo_cim_configuration to attempt changing the mapping xml file it reads
+* Task 34
+** writing documentation on multiphase transitioning test case - scenarios
+** 
+* more reading:
+** STM exists becoz, the default is long transaction.  And the usual is 1 alternative per user. But STM allows the management of several users for 1 alternative.
+** database priority, there's also drawing order and rendering geometry, which is different
+* Task 35
+** CIM
+* Task 36
+** How to get project_folder, coz I keep forgetting
+#+begin_src magik
+
+  swg_dsn_admin_engine.active_scheme.project.project_folder
+
+#+end_src
+** How is it set at the code level? is it custom? is it core?
