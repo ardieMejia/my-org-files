@@ -4,7 +4,8 @@
 * These are about Panda Dataframes (glorified arrays)
 ** https://realpython.com/pandas-dataframe/
 
-#+begin_src python
+
+#+begin_quote
 
 data = {
     'name': ['Xavier', 'Ann', 'Jana', 'Yi', 'Robin', 'Amal', 'Nori'],
@@ -14,8 +15,11 @@ data = {
     'py-score': [88.0, 79.0, 81.0, 80.0, 68.0, 61.0, 84.0]
 }
 
+#+end_quote
 
-#+end_src
+
+
+
 
 ** The key of this associated array becomes the column header/labels. Keep this intuition handy
 *
