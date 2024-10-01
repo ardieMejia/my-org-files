@@ -1,0 +1,232 @@
+* Task 1
+** Installation
+*** Installed [[https://gradle.org/releases/][Gradle]]
+**** version v8.10
+*** Installed [[https://maven.apache.org/download.cgi][maven 3.9.9]]
+**** but actually we only need one of these
+**** anyway, doesnt matter, coz maven just uses PATH, can just unpoint
+*** Install vscode
+**** extensions
+**** Ctrl + , for settings
+**** command palette, Ctrl + Shift + P
+**** Ctrl + k, Ctrl + o
+** This is NOT a mistake, sometimes you will see  this, at the "import" statements above
+#+begin_quote
+declared package "Devices" does not match the expected package ""
+#+end_quote
+*** Simply close and reopen  folder
+** First attempt at compilation:
+*** Using Gradle failed
+*** Multiple fails with Maven
+#+begin_quote
+
+....Fatal error compiling: error: release version 21 not supported
+
+#+end_quote
+**** We downloaded the correct settings for Maven at https://start.spring.io/
+**** We downloaded the correct Java version 21 under C:\Program Files\Java (alongside other versions)
+**** The only problem is $JAVA_HOME
+*** We failed anyway
+* Lessons and links:
+** Links
+*** https://aliyesha.com/sub/articles/programming/display/prog_gentle_intro_maven_java_21
+** Lessons
+#+begin_quote
+
+@RestController is more advanced & a combination of @Controller and @ResponseBody. It return domain object instead of a view
+
+#+end_quote
+* Common beginner mistakes
+** we're at the wrong folder, (or  no pom.xml)
+#+begin_quote
+
+No plugin found for prefix 'spring-boot' in the current project and in the plugin groups
+
+#+end_quote
+** we have our classes name all wrong
+#+begin_quote
+
+Unable to find a single main class from the following candidates [com.example.myrestservice.RestServiceApplication, com.example.myrestservice.MyrestserviceApplication
+
+#+end_quote
+*** 
+* Task 2
+** Finally success at task 1, on empty project, but failed at a @RestController, lets try this:
+*** https://spring.io/guides/gs/handling-form-submission
+** Success, we made it work, although its super simple
+** Lessons:
+*** Lesson html was always meant to be static, hence lookk  the code below, we could add any meaningless attribute, no error produced, and the magic comes from prog language
+#+begin_src html
+
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post" something="no meaning">
+    	<p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+#+end_src
+**** Note the something="no meaning"
+*** Assumption that view is always fixed to .html
+#+begin_src java
+
+
+  @GetMapping("/greeting")
+  public String greetingForm(Model model) {
+      model.addAttribute("greeting", new Greeting());
+      return "greeting";
+  }
+
+  @PostMapping("/greeting")
+  public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
+      model.addAttribute("greeting", greeting);
+      return "result";
+  }
+
+#+end_src
+**** This is a controller. Like all other controllers, I guess. Notice the return "result". Programming is flexible, but the framework makes an assumption (and  the hard work), that "result" is  tied to "result.html" all the time. These leaves the flexibility in the method itself.
+*** Changing staate inside a Get method 
+** Beginners mistake:
+*** A model needs to be gotten from code. When submit Post method, its a framework, but it doesnt make assumptions in the method. So you need to  input a @ModelAttribute. And then attach it to any view with .addAttribute()
+#+begin_src java
+
+  @PostMapping("/greeting")
+  public String greetingSubmit(@ModelAttribute Greeting greeting, @ModelAttribute LongGreeting longgreeting, Model model) {
+
+
+      System.out.println(number1);
+      if (number1 > 2) {
+	  model.addAttribute("greeting", greeting);
+	  return "result";
+      }else{
+	  model.addAttribute("long_greeting", longgreeting);
+	  return "alternative_result";
+      }
+
+  }
+
+#+end_src
+*** To output the view with the object, we need to pass in object
+*** Although there is separation between View and Controller. Thats not the most important separation. Remember this site:
+**** https://www.visual-paradigm.com/guide/uml-unified-modeling-language/how-to-model-mvc-with-uml-sequence-diagram/
+**** "The most important separation is between presentation and application logic. The View/Controller split is less so."
+**** This means dont focus on 
+***** return "result"
+***** result.html
+**** Instead, what we can do in  either the Get or Post method
+* Vscode settings
+** https://stackoverflow.com/questions/32911977/prevent-autocomplete-in-visual-studio-code
+** I disables the autocomplete
+* Task 3
+** Using our "specific loading init file trick", we are trying to turn our Emacs into a Java machine, separate, from our usual Magik Emacs
+** [[https://xpressrazor.wordpress.com/2020/11/04/java-programming-in-emacs/][old page]]
+** [[https://www.youtube.com/watch?v=Yah69AfYP34][Things we should try]]:
+*** melpa and use-package
+**** We already have this, no need to change
+*** font and themes
+#+begin_src lisp
+
+
+  (set-face-attribute 'default nil :family "Source Code Pro" :height 150 :weight 'medium :width 'normal)
+
+#+end_src
+**** emacs-theme-gruvbox
+*** Projectile
+**** This is important, becoz we managing Java involves LOTS of files, we need to look beyond java.com.example
+**** commands we know example: s-p u --> mvn spring-boot:run
+*** Flycheck
+**** We shouldnt try it, coz its causing errors in our  Emacs lisp
+****  A better version of Flymake
+*** yasnippet
+**** We should install this, coz there's a lot of useful basics. Quicky  read through this link
+**** https://github.com/nekop/yasnippet-java-mode/tree/master/snippets/java-mode
+*** lsp
+**** we avoid this, lsp for Java under Emacs is not always predictable, and we are a beginner in Java
+*** Emacs which-key
+**** we bind this to a hook
+**** discovery, discovery, discovery
+*** hydra
+**** we already have that
+*** company (include links anyway, coz theyre useful in the future, although feels very primitive)
+**** completion at point, dont take it too seriously. Coz its difficult to modfy for our own. 
+**** yasnippets might better chioce
+**** links that work:
+***** https://oremacs.com/2017/10/04/completion-at-point/
+***** http://xahlee.info/emacs/emacs/elisp_keyword_completion.html
+*** cape
+**** woohooo. we manage to make it work almost magically no  need to explore extra
+**** https://kristofferbalintona.me/posts/202203130102/
+*** projectile
+**** one thing we shoould learn to  do is create a .projectile file and explore tricks such as 
+***** quickly switching between what.org and what.html
+***** close all project buffers
+***** replace all single  words in a project
+****** not worth exploring,   coz we  have our better highlight feature
+**** We need to get familiar with a Java project
+**** Putting target in .gitignore tricks excludes class completion
+*** We should only read about LSP coz this is an alien territory
+*** Read about JUnit test coz we dont know anything about it
+*** neotree
+* Task 4
+** We should do a subclass with our existing  example. Start simple with the example:
+*** https://www.tutorialspoint.com/what-are-java-parent-and-child-classes-in-java
+** Maybe combine with our existing Task2 GreetingController
+* Task 5
+** Do a simple CSS for our sake
+** 
+* Task 6
+* Task 7
+* Task 8
+* Task 9
+** A dropdown that appears or disappears depending on a True  of False value of its Form.
+** https://www.w3schools.com/java/java_arraylist.asp
+* Task 10
+** We take a long stare at  our Task 2. And where to put awesome state changes. In our controller? Do several buttons that change various state variables.
+** Do 2 views. 1st dialogue asks are you a teacher or a student. Redirects to different forms, one for student, one for teacher.
+** Add a save button for the teacher. Which saves all teacher into the STATE of the program. 
+** When we go back to the main page. And click on student. A new dropdown appears. Showing teachers available.
+** For this we use a HashMap
+** https://www.w3schools.com/java/java_hashmap.asp
+** Is this important?
+*** https://www.researchgate.net/figure/DFD-Level-1-interaction-of-the-Teachers-and-Students-with-processes-in-ACiSs-system-The_fig3_334341570
+* Task 11
+** Install an in-memory database
+** https://www.baeldung.com/java-in-memory-databases
+* Task 12
+** Read about VSCode
+** https://code.visualstudio.com/docs/?dv=win64user
+* Task 13
+** Just spend a few minutes watching this video
+** https://www.youtube.com/watch?v=6jpHNlpqAKY
+* Task 14
+** Just read this site:
+*** https://mrcoles.com/emacs-key-bindings-vscode/
+* Task  15
+** One day we are gonna learn to code in Java on Linux
+*** https://sdkman.io/
+* Task 16
+** Following our Task2, lets add a bootstrap style based on the following, onto one of our .html (view) files using WebJars
+*** https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application
+*** https://www.baeldung.com/maven-webjars
+** We are adding Bootstrap Alert
+** WebJar has another side effect, we can put Javascript inside our JSP files (Java's own PHP templating engine)
+* TODO But we should write somewhere else
+** When we create a buffer that starts with dash -, it kills itself upon 2 qs in a  row
+** remember our cool faces list we used for org-mode, we should think of other cool ways to use list. A list of buffer names? I dont know. A list of filenames? I dont know
+** where di i store this link?
+*** https://malshani-wijekoon.medium.com/spring-boot-folder-structure-best-practices-18ef78a81819
+* Also TODO, but we already included this eamcs.org
+#+begin_src lisp
+
+  (progn
+  (let ((org-export-with-special-strings nil)
+        (org-export-with-sub-superscripts nil)
+        )
+    (untabify (point-min)
+              (point-max))
+    (org-md-export-to-markdown)))
+
+
+#+end_src
+* Where do I post this? Very cool UI, look, so organized, clean, small/fine yet readable
+** [[https://guides.qatar.georgetown.edu/c.php?g=207624&p=1393130][super-readable GIS site]]
+* 

@@ -308,11 +308,14 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 
 
 **** Dont forget to unset between practices to remove pairings function.
-
+#+begin_src lisp
 
 (advice-remove 'say-hello  'x-list)
-
-
+  
+#+end_src
+** official eLisp reference index
+** We should really leaarn setq-local. Here is an example. And since we learnt cape-capf we should rey this sometime
+*** https://emacs.stackexchange.com/questions/81232/can-cape-be-disabled-on-a-mode-basis
 * Wishlist
 ** https://github.com/oantolin/embark
 *** Embark makes it easy to run commands depending on where your point (cursor?) is
@@ -441,3 +444,82 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
 *** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
+* TODO!!
+** we should include for its so good for org mode in Obsidian project
+#+begin_src lisp
+
+  (progn
+  (let ((org-export-with-special-strings nil)
+        (org-export-with-sub-superscripts nil)
+        )
+    (untabify (point-min)
+              (point-max))
+    (org-md-export-to-markdown)))
+
+
+#+end_src
+** We need to write this somewhere down
+#+begin_src lisp
+
+(setq rd-a-project(car (org-publish-expand-projects org-publish-project-alist)))
+(dolist (rd-long-filename (directory-files-recursively "~/Desktop/what/" "\\.org$"))
+  (print
+   (file-name-base rd-long-filename)
+   )
+  (org-publish-file rd-long-filename rd-a-project t)
+  
+  )
+
+#+end_src
+** finished, but should pastte somewhere, or delete once installed
+#+begin_src lisp
+
+(defun refactor--process-files (dir-name policy)
+  (setq dir-files (directory-files dir-name))
+  (dolist (element dir-files)
+    (unless (or (string= "." element)
+		(string= ".." element)
+		(file-directory-p element))
+      (find-file element)
+      (print element)
+      (funcall policy (point-min) (point-max))
+      (save-buffer))))
+
+(defun untabify-dir ()
+  "Untabify the contents of a folder"
+  (interactive)
+  (let ((dir-name
+	 "C:/Users/ahmadardie.r/Desktop/what"
+		  ))
+    (refactor--process-files dir-name 'untabify))
+    )
+ 
+
+
+
+
+
+
+
+(setq org-publish-project-alist
+       '(("org"
+	  :base-directory "~/Desktop/what/"
+          :publishing-function org-md-publish-to-md
+          :publishing-directory "~/Documents/my-obsidian/what2"
+	  :base_extension "org"
+	  :with-sub-superscript nil
+          :section-numbers nil
+	  :base-extension "org"
+          :with-toc nil)))
+(setq rd-a-project(car (org-publish-expand-projects org-publish-project-alist)))
+(dolist (rd-long-filename (directory-files-recursively "~/Desktop/what/" "\\.org$"))
+  (print
+   (file-name-base rd-long-filename)
+   )
+  (org-publish-file rd-long-filename rd-a-project t)
+  
+  )
+
+
+#+end_src
+** More [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][moremoremore]]

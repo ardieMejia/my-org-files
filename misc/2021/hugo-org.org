@@ -28,7 +28,12 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 *** Using ox-hugo, which opens up a completely new world of possible themes and structure to your website, from very simple to blog-quality level. 
 * https://niklasfasching.github.io/go-org/#footnote-3
 ** Has some useful lesser known examples of ox-hugo syntax such as this (which shows exact syntax highlighting on the web):
+#+begin_src 
+
 #+INCLUDE: "./headlines.org" src org
+
+#+end_src
+
 * https://michaeljherold.com/articles/using-ox-hugo-without-duplication/
 ** Very cool mumbo-jumbo about minimal edit markdown file
 * Buffers are cool

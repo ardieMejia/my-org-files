@@ -1,0 +1,6 @@
+* This folder contains conceptual diagrams, relevant to avoid dirtying precious brain with Java detail
+** The idea is that once you possess some skill, you can just stare at these diagrams. Maybe.
+* Images and links:
+** [[https://stackoverflow.com/questions/30769782/data-flow-of-mvc-application-architecture][dataflow_mvc_so_1]]
+** [[https://creately.com/diagram/example/i122kst21/mvc-architecture-diagram][mvc_creately_1]]
+** 
