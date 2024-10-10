@@ -1,4 +1,3 @@
-
 #+OPTIONS: toc:nil
 
 * Personal stuff I installed
@@ -4228,3 +4227,129 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 
 #+end_src
 ** How is it set at the code level? is it custom? is it core?
+* Common errors:
+#+begin_src magik
+
+  _try _with cond				
+  (ok?, sch) << create_project_and_scheme(project_attributes, schema_attributes,area_sr)
+  # ========== some stuff
+  _if ok?
+  _then
+	  write("+++ Created Design in SW  - ",sch.name,%tab,"ID - ",sch.id)
+	  ext_db_user.sql_modify("update cgis_sw_jobs set sw_id = ? where id = ?", sch.id, an_ext_db_rec.id)
+	  ext_db_user.commit()					
+  _endif				
+  _when error
+	  write("error while creating or updating design - ", an_ext_db_rec.job_name, " - ", cond.report_contents_string)
+	  failed_designs.add(an_ext_db_rec.job_name)
+  _endtry	
+
+#+end_src
+** example error traceback:
+#+begin_src magik
+
+  error while creating or updating design - D-MER-S21-0007 - Stale record handleerror while creating or updating design - D-MER-S21-0007 - Stale record handle
+
+#+end_src
+* Task 40
+** How to call a mysql procedure inside SW. But what is a SQL procedure?
+#+begin_src magik
+
+  l_br_no << l_db.sql_procedure("UPDATE_SWITCH_BREAKER_NUMBER",{l_cgis_label,_unset})  
+
+#+end_src
+*** The procedure
+#+begin_src sql
+
+create or replace PROCEDURE UPDATE_SWITCH_BREAKER_NUMBER(
+    p_area_code IN VARCHAR2,
+    p_result OUT VARCHAR2
+) IS
+BEGIN
+    -- Calling the function get_switch_breaker_number and assign the result to the OUT parameter
+    p_result := GET_SWITCH_BREAKER_NUMBER(p_area_code);
+
+    -- Commit the changes to ensure that updates are saved
+    COMMIT;
+END;
+
+
+#+end_src
+** Passing own method into run_engine(). Method is in its own class. Notice the add_dependent. (Still not sure why its necessary)
+#+begin_src magik
+
+  _self.add_dependent( _self )
+  _self.run_engine( _thisthread.background_priority, :cgis_breaker_details|()| )
+
+#+end_src
+** Also write about this one  please. Useful way of organizing stuff. In theory, can do --> a_class.update_name_in_oracle(). And progressively combine several statements into a_class.update_somefields_in_oracle()
+#+begin_src magik
+
+  _pragma(classify_level=advanced,topic={job_area, oracle})
+_method swg_dsn_scheme.update_job_area_in_oracle()
+	## 
+	## Update the job area in oracle once the design area is
+	## updated in smallworld
+	##
+
+	_try _with cond
+		ext_db << gis_program_manager.cached_dataset(:dude_eo)
+		ext_db_user << ext_db.user				
+		area << _self.oracle_area_geom()
+		area << area.slice(3,area.size-1)
+		sql_update_stmt << write_string("update dudeeo.cgis_sw_jobs set area=", area, " where job_name=?")
+		ext_db_user.sql_modify(sql_update_stmt, _scatter {_self.name})
+		ext_db.commit()
+	_when error
+		print(cond)
+	_endtry	
+_endmethod
+$
+
+#+end_src
+* Construction View and far merging (aka. What is far merge)
+** [[https://smallworld.gedigitalenergy.com/documentation/sw53/en/swDocs5.htm#../Subsystems/DesignManager/Content/Implementation/6ConstructView.htm?Highlight=far%20merge][We need to write about this one later, coz we are busy]]
+* Never compromise self-learning
+** Never compromise
+#+begin_src magik
+
+  # coordinate:(102.2681826,2.331683058) ??
+
+  _block # ardieardie
+	  _local all_cs << gis_program_manager.databases[:electric].user_visible_coordinate_systems
+	  _local a_sel << smallworld_product.application(:tnb_sweo_dm_eo_dist_user).plugin(:maps).current_map.current_selection
+	  _local cs1 << app.coordinate_system 
+	  _local cs2 << gis_program_manager.databases[:electric].user_visible_coordinate_systems[:|Long-Lat WGS84 (degree)|]
+	  _local tt << transform.new_converting_cs_to_cs(cs1, cs2)
+	  my_sel << a_sel.transformed(tt)
+  _endblock  
+  
+#+end_src
+** Here we go
+#+begin_src magik
+
+
+  # listing all possible coordinates available (from dataset)
+  gis_program_manager.databases[:electric].user_visible_coordinate_systems
+  # creating a new one
+  a_cs << gis_program_manager.databases[:electric].user_visible_coordinate_systems[:|Long-Lat WGS84 (degree)|]
+  # setting the current coordinaate to a different one
+  !current_coordinate_system!   << a_cs
+
+
+  _block
+	a_coord << coordinate.new(101.6550015,3.229047352)
+	# a_field << gis_program_manager.databases[:electric].collections[:sub_substation].field(:location)
+	# _for a_geom _over gis_program_manager.databases[:electric].geometry_within_radius(a_coord, 30, :point, a_field)
+	# _loop
+	# 	write(a_geom.rwo)
+	# _endloop
+	
+	_for a_geom _over gis_program_manager.databases[:electric].geometry_within_radius(a_coord, 30)
+	_loop
+		write(a_geom.rwo)
+	_endloop
+_endblock 
+
+
+#+end_src

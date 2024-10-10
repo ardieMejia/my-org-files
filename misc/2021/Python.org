@@ -20,6 +20,12 @@
 *** Despite all the confusing commands, the only thing you have to understand is this
 **** the only tool is required venv (or virtualenv in older Python)
 **** pip is just the Python installer (not important)
+** More
+*** Virtual environment:
+**** https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
+**** https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+*** GUI framework:
+**** https://blog.resellerclub.com/the-6-best-python-gui-frameworks-for-developers/
 ** IMPORTANT: How to solve the opencv-python error of-- No module named 'skbuild'
 *** https://bobbyhadz.com/blog/python-no-module-named-skbuild
 * IDE, PyCharm (I really hate Python)
@@ -120,4 +126,11 @@ events.on_change += something_changed # remember this is kinda cool, becoz event
 events.on_change("i have diarrhea")
 
 #+end_quote
-
+* Arrange:
+** https://skymind.ai/wiki/lstm
+*** A beginners guide to LSTM's and Recurrent Neural Network. One is (RNN) time dependent, one is not. 
+*** The RNN preserves sequential information in the hidden state. 
+*** The output of the hidden layer is used as input to the next time step. 
+*** The sum of the hidden state and weight is squashed by a funtion (eg. logistic sigmoid function). Because of this feedback loop, each hidden state contains not only of (directly) previous hidden state, but also those before h_t-1 as long as memory cna persist
+*** Recurrent nets are old (like most neural network), and major OLD problem is the "vanishing gradient problem"
+*** LSTMs are a variation of recurrent net. They help preserve the error that can be propagated through time and layers. By maintaining a more constant error, they allow recurrent nets to continue to learn over many time steps (over 1000)

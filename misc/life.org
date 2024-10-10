@@ -1,0 +1,149 @@
+* What I wish I knew before I started attempting to work in a tech startup company (Malaysia)
+** That while University education generally is the fault. Malay controled Universities are the worst culprit. Becoz they are primarily at fault in creating the bubbles of students not communicating with the outside world, and that the "culture" of these Universities have transformed into Datuk-worshipping institutions, with each Datuk creating their own mini-cults, and the students are there to feed the egos of Uni lecturers. There are some (exceptionally) uncorrupted lecturers, but usually few and far in between. 
+** That I wished I learnt early the power of Git tools as a version control tool. While they are not taught in many programming schools, in the workplace they are considered indispensable. In fact, they are considered the only way to move forward in managing codes submitted by mutliple programmers. 
+*** With regards to this point, I am now so comfortable with Git, that I use them even when writing non-programming related stuff like articles. Of course, this does not include branching strategies under Git, which is a subject in and of itself. I would recommend thos to anyone, even budding developers who think they do not need such tools, perhaps thinking it would be a waste of time and mental energy. Not only will you love Git, it will make transitioning to Git GUI clients easier (such as SourceTree), which i strugged with horribly during my first experience in a tech startup. In fact, for Linux users like myself, I recommend staying away from Git clients until you try simple Git with your personal bash scripts. 
+** When applying to work for a tech startup company. 99% of the time, they will always expect their new staff to develop the same set of skills, which is knowledge or basic knowledge of a LAMP stack and Javascript. The platforms are specific and dont differ much, unless you really hunt for a niche company. 
+** Most developers are arrogant intelligent men. If youre thinking youre arrogant, and then be prepared for some roughening, and youll be horribly shocked. But also be prepared to be humiliated, coz these men have undergone their arrogant developer phase, and went through a lot. I wish I knew this. 
+** I wished I knew many Linux Youtubers such as Brodie Robertson and DistroTube. They have countless (and I mean COUNTLESS) videos on software reviews, including those related to Git and IDE's, and those outside of typical development. You would never be able to finish watching their videos. Plus they are all free!
+** I wished I discovered Emacs early on. As it is now my favourite IDE. In fact, it is more than just an IDE, as the typical Emacs user literally lives inside the Emacs. You could use it for example, to write notes in the fantastic .org format (some kind of native Emacs format). The typical Emacs user also switches modes every time he switches, for example, from programming in Javascript, to programming in Powershell, to writing notes in .org mode. Emacs uses a kind of "package manager" to list all modes that can be installed (there are hundreds of these). And enabling these is a matter of memorizing the appropriate keyboard shortcuts. 
+* Brown humanity stuff
+** [[https://www.tandfonline.com/doi/abs/10.1080/01639625.1997.9968043?journalCode=udbh20][Latah]]
+*** Personal notes:
+**** Reading about Latah, and anthropology has made me realize a few things.
+**** That many "half-savage" cultures, having Shamans in common (what Malays refer to as Bomoh), also grant powers not just to positions but also to certain words. Where certain curse words or rude words or words with spiritual meaning will have such incredible power as to be able to trigger a certain trance state upon the receiver/listener of such word. Apparently, some latah-like startles across many cultures also can be triggered by such words. Makes me realize another important role of "more progressive" forms of art in society. To remove the magical power imparted upon certain curse words. In this sense, art is truly rational.     
+** [[https://archive.org/details/studiesinbrownhu00clifrich/mode/1up][brown studies, very cool]]
+*** Tigers love Durian! (Golden, a chance to be offensive)
+*** Betel nut still exists and are still a danger to certain isolated regions of Asia.
+*** A malay man Pandak Aris cursing the Sakai's who "betrayed" him to the fifth and sixth generation
+*** A warm blowing upon his face which almost deprived him of reason
+*** The Spirit of The Tree:
+**** tree-felling...It is a healthy form of exercise, and it kept Trimlett's muscles in good trim for the occasional rough-and-tumbles in which he was called upon to engage with Chinese coolies. The Malays put it down to drunkenness, that useful explanation, which, to the native mind, accounts for 90% of the incomprehensible eccentricities of the White Men
+**** Note: even in todays interconnected gloabalized world, I have seen malays who still think this way. God, the Malays are doomed!
+* We need to make sense of all the hardwork we did with woodworking, since there is something missing with our stupid company
+** [[https://www.metalsupermarkets.com/difference-annealing-tempering/][annealing and tempering steel, I dont know where to put this one]]
+** https://www.explainthatstuff.com/how-clockwork-works.html
+** https://www.instructables.com/id/Bench-Lathe-3-in-1-Lathe-Sander-GrinderSharp/
+*** Hunting and learning the internals of motors is not worth it. As the entire flexibility has to be hinged on the wooden build itself. 
+**** Eg: Rex Kruegers counter-shaft, and the motor tensioner (H-frame on a hinge)
+** https://www.familyhandyman.com/list/weird-tools-and-what-theyre-used-for/
+** https://www.youtube.com/watch?v=GugZRs08lwk
+* Progressive rock, my personal history
+** The progressive rock band that forever changed my view on what rock music should be like. The now defunct Of The I (Balance Instars). Rock music should be progressive, conceptual, standalone yet a piece of the whole. The rhythm should impeccable and contextual (put it simply, progressive). 
+** After Of The I, which changed my musical views forever, came Tool. This is Tool Sober: A old rotting idea when it comes to the world of prog. "They're giants but over-rated." Of course, none should ever say such blasphemy in front of Tool fans. But this song despite all its simple riff and rhythm, hit something deep inside me. Of course, nowadays I want to run far away from Tool:
+** Tool was an interesting episode, as I had no clue that prog music was old, with tribalism's of their own. I stopped listening to heavy stuff in search for something lo-fi, but felt progressive. Of course, I was not quite sure what was progressive and what wasn't. So I tuned to live selections from Audiotree. Cant for the life of me find my listening history of Audiotree. I liked Hidden Hospitals, HRVRD and so much more. But an interesting listen is O'Brother. They are heavy, yet slow and brooding. Sometimes VERY slow and VERY simple melodic line. An interesting case of prioritizing atmosphere above everything else. Not many bands can do this, and such strategy can backfire easily. Band members look mixed race, with 2 Asian guys on guitar and a white guy on drums. 
+** During my audiotree episode in Uni, I came across countless recommendations of CHON, the instrumental-only Prog Rock band. Never liked them on first listen, Im guessing I had trouble distinguishing the melodic line (lead) sound. I think their albums also lack a conceptual idea, but this is inevitable with no vocals to glue all the songs together. I still am not completely into them today, but I am a big fan of a few number of their songs such as this one (Puddle). Huge fan of the melodic phrase and progression in this one. They have performed in Singapore and Malaysia. CHON - Puddle - Audiotree Live
+** After I stopped listening to Tool (which I wasted money on buying their CD's) and "Of The I", I spent some time on repeated listens to 2 prog giants Porcupine Tree and Karnivool. Karnivool is from Australia. Australia has developed their own prog tribalism and uniquely Australian prog scene. Porcupine Tree's lead is an English musician and songwriter Steven Wilson who is so big in the prog world that he has been employed in working with other prog giants such as Opeth, Jethro Tull and King Crimson (this is news to me). Porcupine Tree is no more, and Steven Wilson has gone solo. My favourite and most memorable Porcupine Tree song (which sounds absolutely amazing in their live version) is Anesthetize. From their album "Fear of a Blank Planet".
+** I did not listen to Leprous long after Soen, so this is the wrong order. But Leprous is certainly a sound that catches attention, especially their older more exotic sound. They have a unique sound among both their prog contemporaries and their Scandinavian typically metal landscape, partly due to the vocals.  This is "The Price" which is a softer introduction to Leprous but a good sample of their signature sound. 
+** Karnivool is an Australian prog rock band hailing from Perth. Most of their songs sound decent and good. A good balance of sounds kinda like Linkin Park's first album. Probably an insult to Karnivool fans to compare them to Linkin Park since one is prog and the other is nowhere near it. Im having trouble picking a favourite, as I have been listening to them for the longest time, and always my daily listen. I think C.O.T.E (Center of the Earth) seems to do enough justice, since the typical reaction to many first time listeners to Karnivool is an absolutely blown mind. Okay, now that Im listening to Karnivool C.O.T.E, comparing them to Linkin Park is certainly an insult. This is also one of those sounds that will never work if they were to change their vocalist, me thinks.... I want to slap myself really hard for not writing something better about them.
+** Soen. A constant listen after me being tiresome of Karnivool. Another Scandinavian prog super-group. One of the most frustrating things about Soen is its constant comparison to Tool, as in, "you guys really sound like Tool". Also a curse placed upon Rishloo (an American prog band). Its when this happens constantly, I feel that there is something wrong with Tool and Tool fans in general. Recently, I have started to hate Tool, ever since the slightly racist (the "Indians are Pajeets" and "Asian women are memes" comment guy) Linux youtuber Luke Smith said he likes Tool. Even Soen's vocalist hates the comparison, even more reason to be anti-Tool, I guess. Despite their often loud metal sections, their sound is often filled with high quality and tasteful instrumentation. Instead of a wall of sound you get with most prog, their sound is rather sparse for such a heavy metal sound. As a pianist, Im thinking their base sound is just one guitar riff, but that might be my pianist imagination.
+** Rishloo. Prog rock band from the US. Many a prog rock bands lyrics and concept seem to resonate with me on an instinctive level, as in I understand the vocalists spiritual pain and suffering. And sometimes the spiritual message I completely wholeheartedly agree. Most of Rishloo songs are not that deep lyrically but beautiful none the less. But 1 song that when I heard first instantly conjures up images of circus freaks (aka retards) from the controversial film Freaks (1932). Something about our "true face" and "true nature" revealed. Which is why I felt a music video about literal circus freaks was a missed opportunity for their song "Freaks and Animals". Although in todays world, such a music video would not be politlcally correct. The last "verse" (?) before outro seems to confirm that the song is essentially about our ugly true nature. 
+*** "...So have you ever wondered, Where were the demons they told us of, Be patient their coming shortly revealed to you and I do think you'll find..."
+*** And the outro's epic melody and lyrics seems to "reveal" all the circus freaks. However, 1 problem with Rishloo is their piss poor production quality.
+**** I could listen to the drums on this Karnivool piece on many repeat listens. The drums seem to do a mind trick on my musical anticipation on my first listen. Especially when the deceptive intro drum beat re-emerges in the outro.
+** Jethro Tull. Also an old giant in the prog world. Steven Wilson of Porcupine Tree has worked with him on occasions. But the only piece from Jethro Tull I ever pain attention to was Bouree. Essentially a flute jazz piece improvised from a similarly named Bach piece. The great composer Johann Sebastian Bach himself. And the intro starts out exactly the same as the original piece, then progresses into something else.  Although that ending, while kinda epic, does sound a bit hilarious. Now that Im listening to it again.
+** Rishloo. Like Soen, they suffer a constant comparison to Tool, although their stated influences are much more varied and rarely is Tool mentioned. Now listening to Rishloo again, I realize they have an entire original sound of their own. Their growth in popularity can mostly be credited to a relatively small but dedicated fanbase. And their sound is like everything from prog to jazz and blues. 
+** Opeth. Depending on when the listener first listens to them, will either hate them or love them. Mostly because they did not go full progressive rock till "Heritage", their 2011 album.  Their style, even in this mostly acoustic piece, has a heavy (but progressive) sound. This can easily turn off first time listeners and requires patience listening to their lengthy but beautiful songs. For a more full progressive experience, "Heritage" is highly recommended. Most of their older songs are far too "deathly".
+** Dead Letter Circus. They caught my attention whilst mid-Karnivool. Most of their songs have a very VERY pop sound. The vocalist admits that typical pop songs are his guilty pleasure, and it shows in their style. They are progressive yet not so obvious such as in this "I Am", they sound more alternative. But their other albums show more of their prog side. They remind me of Karnivool, but thats all just personal opinion. 
+** I also listened to a collaboration album called Earthside sometime after mid-Karnivool. Only realized now that the vocalist of 1 piece of that album is also the vocalist (Daniel Tompkins) of the mind-blowing Tesseract, the English progressive metal (djent) band. Listening to this now, Im considering this is a very uplifting sound, but also a downgrade from the usual sublime quality of Tesseract.  Of course, I have not listened to Tesseract about this time, though kept getting endless Youtube recommendations. 
+** As Soen progresses with each new album, up to 2021. They are slowly and subtlety refining their style. Sounding less like Tool according to 1 reviewer (if they ever were to begin with), and also hinting genres outside of Prog. This is probably the reason, while they are an absolutely beautiful sound, that I personally only listen to their older albums (Cognitive, 2012) on repeats. But as usual, their choices of instruments, riffs, dr
+ums and various sounds are absolutely impeccable. Soen sounds like nothing else but Soen.
+** Sylvan. A German neo-prog band, but a songwriting quality that is reminiscent of older prog. Emotionally urgent melody combined with a sound that is powered primarily by a combination of guitar and keyboard sounds and arrangements makes for a very unique sound. Their sound is modern, but with classical arrangements, with tracks that are short (rarely exceeding 10 minutes, which is rare in the prog world). Their albums are also always highly conceptual, never straying far from its overarching theme, and each album tells a beautiful story. Such consistency is natural, since with such classical composition, there would be leitmotifs on occasion (a common concept in film music, such as Darth Vaders theme). Their most memorable and iconic album for me is Deliverance, which ends quite literally with a song that tells the tale of a man defeating a Dark Lord to win the marriage of a princess. "Deliverance" is the sound that somes to mind, when I think of Sylvan. Second to that album is their 2006 Posthumous Silence, and the sound of this album is more inline with what I think, when the term "neo-prog" is mentioned. As a mostly conceptual prog band, their albums are meant to be listened in the whole, rather than picking a random hit song.  
+** Right about the time I listened to Sylvan, I also listened to Arcane. Is it possible for progressive metal to make you shed manly tears? With Arcane, this is almost possible. The description in progarchive.com gives them the label of OzProg (short for Ozzie Prog). Judging by the evolution of Karnivool, Dead Letter Circus and many others, its obvious Australia is developing a unique prog sound landscape, tribe and philosophy. Like Rishloo, their growth can mostly be attributed to a small fanatical fanbase. They have a hige level of composition and finesse that of the level of Porcupine Tree but on a slightly heavier side. However they intermix their heavy songs with very soft sections, even more so than other prog metal bands. For prog nerds who like their listening experience to be technical and beautiful, this band should be an excellent listen. And as a plus, all of their songs are super-long, perhaps too long for some (such as their latest album known/learned, a double album with their 2nd album being far too long and far too ballad-ey for me). 
+** I have trouble listening to Arcturus, a band highly regarded among many prog circles, due their unpolished mix. They are more inline with symphonic metal, or perhaps evolved from death metal to prog. Since, I dont have much favourite symphonic metal bands, this might be a genre I dont like that much. Yes, I love metal, but I apparently have an intolerance for symphonic metal despite it being orchestral. Or perhaps metal might be a phase of my past, probably due to a recent personal bias. That is: me wanting to remove all possible influences of youth pressure that might have affected my musical taste, including Metallica or System of a Down. So Arcturus seems to have some (really brilliant) shining moments in every piece they produce, but then they decide to include random death metal growls, which to me takes away from these shining moments (this might be a personal bias). But then again, it could be due to their dirty mix. Like most prog bands evolving from death metal, they are Scandinavian in origin. 
+* Zizek
+** We are not spontaneously really free
+** Incidently, Im far from believing in ordinary peoples wisdom. We are often need to push us from inertia
+** Political power and competence/expertise should be kept apart
+* More music
+** Bands list:
+*** Karnivool
+*** Pendragon
+*** Of The I
+*** Rishloo
+*** Dream Theater
+*** Like Thieves
+*** Soen
+*** Sylvan
+*** Porcupine Tree
+*** The Butterfly Effect
+*** Steven Wilson
+*** Tool
+*** Polyphia
+*** CHON
+*** Ling Tosite Sigure
+*** Periphery
+*** Dead Letter Circus
+*** Tesseract
+*** Twelve Foot Ninja
+*** Protest The Hero
+*** Pain of Salvation
+*** Veil of Maya
+*** Leprous
+*** Devin Townsend
+*** Oceans Ate Alaska
+*** Northlane
+*** Jinjer
+*** Opeth
+*** Circa Survive
+*** Arcane
+*** Breaking Orbit
+*** Haken
+*** Entry-level, or immediately accessible beauty. Prog-music I put here, are either entry-level in that it can immediately hook virgin ears to the beauty of Prog Rock, or can be immediately beautiful in its lush landscape and layers of sounds. This could also be due to more modern sound technology, which enables even wackier sounds to be achieved by modern prog. Not necessarily more mainstream than the next category, as some bands thrive on complex layers alone (rather than complex progression.)
+**** Karnivool
+**** Dream Theater
+**** Like Thieves
+**** Soen
+**** Ling Tosite Sigure
+**** Dead Letter Circus
+**** Leprous
+**** Devin Townsend (Devin Townsend are a hit and miss for me, they know how to write amazing stuff, but can never understand why some of their guitar riffs sound very non-progressive)
+**** Northlane (metalcore but utilizes atmospheric sound for the soft parts, and even their heavy riffs are tastfully paced to complement a lush sonic landscape)
+**** Breaking Orbit (promising sound, a bit of a lightweight among most prog in this list, but I like variety)
+*** Double-take. Prog-music I put here, may require more experienced listeners, and are not apparently as beautiful as the prior category. Sometimes the landscape of its sound is not as complex or layered, and in some cases, the sonic landscape is almost mainstream as its true beauty lies in its more progressive harmony, melodies and counter-melodies (such as Circa Survive), and rhythmic progression. Older prog that belong here can also easily mistakenly be grouped together with its more mainstream peers of the time due to older hardware that sound similar to younger listeners. Highly conceptual albums also may belong here, where the whole works better than the pieces (Sylvan, for example)
+**** Pendragon
+**** Of The I
+**** Rishloo
+**** Like Thieves
+**** Tesseract
+**** Soen
+**** Sylvan
+**** Porcupine Tree
+**** The Butterfly Effect
+**** Steven Wilson
+**** Tool
+**** Periphery (In your face prog-metal, that sounds very mainstream metal at first listen, but grows on you)
+**** Pain of Salvation
+**** Veil of Maya (a bit too hardcore for my poor ears, but still an amazing sound)
+**** Oceans Ate Alaska
+**** Opeth (popular among older prog fans, personally I prefer their more slower pieces, as well as the whole Heritage album)
+**** Circa Survive (I like their melody a lot, and some of their songs also have counter-melody)
+**** Arcane (a big name among Aussie prog fans, perhaps the most inaccessible of prog in this list, the newer concept album "Known/Learned" is highly recommended. These guys are not in your face in the slightest, with a sound that really grows on you)
+*** Others, bands here I dont know where to put. Some here are not prog, but still deserves to be considered special.
+**** Polyphia (instrumental)
+**** CHON (instrumental)
+**** Twelve Foot Ninja (hilarious band)
+**** Protest The Hero (massive punk attitude, but more than just another punk band)
+**** Jinjer (A female vocal screaming like a male is highly unexpected, but more than that, this is just a powerful nu-metal)
+** From o'brother (Lay Down), drum beats
+*** 1-2-3-4-5-6-7-8 |-|-|-|-|-|-|-|
+**** bb|s|-|-|s|-|-|
+**** As a general 8/4 is considered good as a landscape-y beat for rock
+**** Everything is either detail or beat in the general structure of music (not to be confused with "fillers")
+**** the 'bb' in this case os the detail despite, bass as a fundamental beat
+** Circa Survive (Schema), drum beats
+*** 1-2-3-4-5-6
+**** metric modulation!!
+**** 1-2-3 4-5-6
+**** .3--| .3--|
+**** the dot decoration is like acciacatura (crushed note)
+** Half-baked idea:
+*** general staccato beat is (Mozart-like?, and happy), beat-up-beat-up-up, making a well-blended fusion, requires more hinting, so double up (up-up) is not necessary, so it becomes beat-up only (make sure of context first)
+** Chopin:
+*** Nocturne:
+**** Not a play on rhythm memory, but note memory. A very unusual technique indeed.
+** 2022 January
+*** O Brother (Cleanse Me)
+**** The drum beats with the side stick. A note I only noticed, drums by its nature is 1 dimensional. But when hitting the side stick alternately with the kick drum
+**** ... it becomes a full instrument. and the side stick with bass is balanced, creating the illusion of full arpeggio
+*** O Brother (I Am, Become Death)
+**** The drums crash and hats, are the resolution to the the snare and kicks, a very unusual concept. O' Brother uses this concept a lot, but its even more pronounced

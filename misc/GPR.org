@@ -1,0 +1,3 @@
+* Sinkhole detection
+** [[https://www.channelnewsasia.com/asia/sinkhole-kuala-lumpur-kl-jalan-masjid-india-cna-explains-4574096?cid=reddit_cna-always-on-article-tier-1-sinkholes_paid_17092024_cnamkt&rdt_cid=4288189877436412875][Sinkhole in Kuala Lumpur leading to death of 1 women]]
+** [[https://www.youtube.com/watch?v=zEJEbkW77jU][see through walls with 24Ghz radar and a Raspberry Pi]]
