@@ -194,10 +194,53 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://joaotavora.github.io/yasnippet/snippet-reference.html
 ** I finally know how setup config (dirs etc) properly
 *** https://joaotavora.github.io/yasnippet/snippet-organization.html
-* org templates:
-** Finally once you start inserting your first code block (template, whatever). We can read this
-*** https://www.nicholasvanhorn.com/posts/org-structure-completion.html
-** 
+* Org Mode
+** org templates:
+*** Finally once you start inserting your first code block (template, whatever). We can read this
+**** https://www.nicholasvanhorn.com/posts/org-structure-completion.html
+** We did this to untabify for org publishing of our Obsidian notes
+#+begin_src lisp
+
+  (progn
+  (let ((org-export-with-special-strings nil)
+        (org-export-with-sub-superscripts nil)
+        )
+    (untabify (point-min)
+              (point-max))
+    (org-md-export-to-markdown)))
+
+#+end_src
+** We finally came up with this, we solved all the issues, by deleting everything beforehand, everytime we update our Obsidian. Overkill, but its fine, since this is a personal project, and unlikely it will ever read 100 MB or more
+#+begin_src lisp
+
+  (setq org-publish-project-alist
+	'(("my-org"
+	   :base-directory "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021"
+	   :recursive t
+	   :exclude ".*obsidian"
+	   :publishing-function org-md-publish-to-md
+	   :publishing-directory "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021_md"
+	   :base_extension "org"
+	   :with-sub-superscript nil
+	   :section-numbers nil
+	   :base-extension "org"
+	   :with-toc nil)))
+
+  (setq rd-a-project (assoc "my-org" org-publish-project-alist))
+  (setq ardie/list-of-post-publish 'nil)
+  (setq ardie/list-of-previous-publish 'nil)
+
+  ;; initilialize first, otherwise, org-publish-cache produces error
+  (org-publish-initialize-cache "my-org")
+
+  (dolist (rd-long-filename (directory-files-recursively "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021_md" "\\.md$"))
+    (delete-file rd-long-filename))
+
+  (org-publish-project "my-org" t)
+
+#+end_src
+** Presentations in org mode
+*** https://github.com/yjwen/Org-Reveal
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 ** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 *** Need as input: --> filename pattern & regex text
@@ -316,6 +359,23 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** official eLisp reference index
 ** We should really leaarn setq-local. Here is an example. And since we learnt cape-capf we should rey this sometime
 *** https://emacs.stackexchange.com/questions/81232/can-cape-be-disabled-on-a-mode-basis
+** alist is very important 
+*** assoc
+** We made our own select-whole-defun-ish using our code and magik-regexp (also save-excursion)
+#+begin_src lisp
+
+
+  (let (p1 p2)
+    (save-excursion
+      (re-search-backward (cdr (assoc "method" magik-regexp)))
+      (setq p1 (point))
+      (re-search-forward (cdr (assoc "endmethod" magik-regexp)))
+      (setq p2 (point))
+      (print (kill-new  (buffer-substring-no-properties p1 p2)))))
+    
+  
+
+#+end_src
 * Wishlist
 ** https://github.com/oantolin/embark
 *** Embark makes it easy to run commands depending on where your point (cursor?) is
@@ -432,8 +492,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
 * Extras!!
-** Presentations in org mode
-*** https://github.com/yjwen/Org-Reveal
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email
 *** https://shom.dev/posts/20220108_setting-up-protonmail-in-emacs/
@@ -444,82 +502,30 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
 *** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
-* TODO!!
-** we should include for its so good for org mode in Obsidian project
+* Arrange, cool code, I could lambda on instinct, and I have evolved
+** the only way to string-replace from a string, as often in Emacs, buffer operations implied. So we need index of position here
 #+begin_src lisp
 
-  (progn
-  (let ((org-export-with-special-strings nil)
-        (org-export-with-sub-superscripts nil)
-        )
-    (untabify (point-min)
-              (point-max))
-    (org-md-export-to-markdown)))
 
-
-#+end_src
-** We need to write this somewhere down
-#+begin_src lisp
-
-(setq rd-a-project(car (org-publish-expand-projects org-publish-project-alist)))
-(dolist (rd-long-filename (directory-files-recursively "~/Desktop/what/" "\\.org$"))
-  (print
-   (file-name-base rd-long-filename)
-   )
-  (org-publish-file rd-long-filename rd-a-project t)
+  (concat 
+   (substring "python.org" 0 (string-match ".org" "python.org"))
+   ".md")
   
-  )
-
 #+end_src
-** finished, but should pastte somewhere, or delete once installed
+** simple example of mapcar, and it works
 #+begin_src lisp
 
-(defun refactor--process-files (dir-name policy)
-  (setq dir-files (directory-files dir-name))
-  (dolist (element dir-files)
-    (unless (or (string= "." element)
-		(string= ".." element)
-		(file-directory-p element))
-      (find-file element)
-      (print element)
-      (funcall policy (point-min) (point-max))
-      (save-buffer))))
-
-(defun untabify-dir ()
-  "Untabify the contents of a folder"
-  (interactive)
-  (let ((dir-name
-	 "C:/Users/ahmadardie.r/Desktop/what"
-		  ))
-    (refactor--process-files dir-name 'untabify))
-    )
- 
-
-
-
-
-
-
-
-(setq org-publish-project-alist
-       '(("org"
-	  :base-directory "~/Desktop/what/"
-          :publishing-function org-md-publish-to-md
-          :publishing-directory "~/Documents/my-obsidian/what2"
-	  :base_extension "org"
-	  :with-sub-superscript nil
-          :section-numbers nil
-	  :base-extension "org"
-          :with-toc nil)))
-(setq rd-a-project(car (org-publish-expand-projects org-publish-project-alist)))
-(dolist (rd-long-filename (directory-files-recursively "~/Desktop/what/" "\\.org$"))
-  (print
-   (file-name-base rd-long-filename)
-   )
-  (org-publish-file rd-long-filename rd-a-project t)
-  
-  )
-
+  (mapcar (lambda (item) (replace-string "as" "asd")) '("asd" "asd" "asd"))
 
 #+end_src
-** More [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][moremoremore]]
+* [[https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/][Error handling]] in Emacs, we now can handle a lack of Iosevka font (set-face-attribute)
+#+begin_src lisp
+
+
+  (condition-case xe
+      (set-face-attribute 'default nil :font "Iosevkaasd" :weight 'regular)
+    ('error (progn (set-face-attribute 'default nil :font "Georgia" :weight 'regular)  "Iosevka failed, loading Georgia")))
+#+end_src
+** Typical of functional eLisp, ('error) forces functional behaviour, we expect only changes of state  from (message), and some side effects. The side effects here are the correct (set-face-attribute). So, we put any  normal function inside 'error
+* Hacks:
+**  [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][a bash script hack]]

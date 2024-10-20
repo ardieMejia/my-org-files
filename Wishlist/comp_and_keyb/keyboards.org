@@ -48,6 +48,3 @@
 ***** Example, Keycrhon K1:
 ****** https://www.amazon.com/Keychron-Bluetooth-Mechanical-Keyboards-Gamer-Version/dp/B087Q4CXQK
 *
-** Image example:
-*** Image guide for MX
-[[./images/Cherry-MX-Switch-Guide-s.jpeg]]

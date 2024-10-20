@@ -1,2 +1,0 @@
-* https://github.com/ahungry/org-jira
-* https://github.com/minad/corfu

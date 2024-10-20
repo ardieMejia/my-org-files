@@ -113,6 +113,12 @@ Unable to find a single main class from the following candidates [com.example.my
 ***** return "result"
 ***** result.html
 **** Instead, what we can do in  either the Get or Post method
+** experiment with handling-form-submission:
+*** We moved our Greetings.java into our Model/Greetings.java
+*** The spelling of Model vs model doesnt really matter
+*** We spent so much time going in circles, turns out common beginners mistake, (symbol not found), coz we imported model instead model.Greeting
+** experiment destroy_2
+*** moving what.java into ./somewhat means 2 things: --> declaring itself (package .etc...) --> importing the object (import ...somewhat.what)
 * Vscode settings
 ** https://stackoverflow.com/questions/32911977/prevent-autocomplete-in-visual-studio-code
 ** I disables the autocomplete
@@ -214,7 +220,7 @@ Unable to find a single main class from the following candidates [com.example.my
 ** remember our cool faces list we used for org-mode, we should think of other cool ways to use list. A list of buffer names? I dont know. A list of filenames? I dont know
 ** where di i store this link?
 *** https://malshani-wijekoon.medium.com/spring-boot-folder-structure-best-practices-18ef78a81819
-* Also TODO, but we already included this eamcs.org
+* Also TODO, but we already included this emacs.org
 #+begin_src lisp
 
   (progn
