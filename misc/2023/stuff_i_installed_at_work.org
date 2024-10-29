@@ -4353,3 +4353,30 @@ _endblock
 
 
 #+end_src
+* Task 41
+** 
+* Task44
+** getting design changes is  dependent on activating design. We still havet found anything. Tests with : D-SAP-S21-1111 (id : 12964336 ) (phase id: 12968143)
+#+begin_src magik
+
+  dm!dpc_manager.phase_change_vectors(l_dsn_rec)).empty?
+
+  # this will also not work
+  swg_dsn_admin_engine.active_design.build_phase_objects
+  # change_vectors all rely currently active scheme
+  change_vectors()
+
+  # cant really figure outnhow too do  his one
+  swg_dsn_admin_engine.active_design.scheme.swg_dsn_scheme_relationships.an_element().swg_dsn_sr_build_phases.p
+
+  # accessing this one remains empty colelctions
+  gis_program_manager.databases[:design_work].collections[:swg_dsn_scheme_relationship].p
+#+end_src
+** come one finish this
+#+begin_src magik
+
+  # better write this down
+  _elif l_rec.responds_to?(:source_network_type)
+
+#+end_src
+** we ned to write down the designs we tested. Now: D-PDG-S21-0487

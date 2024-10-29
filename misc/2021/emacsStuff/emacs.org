@@ -242,8 +242,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** Presentations in org mode
 *** https://github.com/yjwen/Org-Reveal
 * Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
-** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
-*** Need as input: --> filename pattern & regex text
 * Only applicable to my old Kaushal Modi copy (cut loading short):
 ** https://github.com/jwiegley/use-package/issues/494
 *** Personally, I just removed "package-refresh-contents" from setup-packages.el
@@ -278,11 +276,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** Errors:
 *** https://discourse.doomemacs.org/t/common-errors-how-to-deal-with-them/58
 **** A bit useful, should read one day.
-** Datatypes, converting strings, etc..
-*** https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html
-*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Comparison.html
-*** maybe a good website
-**** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
+** car? cdr? Yes it is confusing
+*** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
 *** So many cool things to try, like nyanmode, cute cat that browses with you.
 **** https://www.emacswiki.org/emacs/ModeLineConfiguration
 ** [[https://www.math.utah.edu/docs/info/elisp_2.html][UTAH Emacs Lisp Intro]]
@@ -304,8 +299,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 **** advising Lisp functions
 ***** advice-add , advice-remove , but no defadvice , like we saw from another Tut
 **** PRACTICE: using filter-return
-
-
 #+begin_src lisp
 ;; cool discovery, a way to hide non-used argument, now we pass willy-nilly
 (defun x-double (x &rest _what)
@@ -326,11 +319,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 (x-double 5)
 (say-hello 5)
 #+end_src
-
-
-
 **** PRACTICE: using filter-args
-
 #+begin_src emacs-lisp
 ;; for some odd reason, adding more>1 argument produces errors, becoz filter-args focuses on arguments between A & B, we should forget what we feed to B (B is called first)
 
@@ -347,24 +336,34 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ;; Also, dont understand exactly. Why does the number of arguments have no effect here?
 (say-hello 5 6 7)
 #+end_src
-
-
-
 **** Dont forget to unset between practices to remove pairings function.
 #+begin_src lisp
-
 (advice-remove 'say-hello  'x-list)
-  
 #+end_src
 ** official eLisp reference index
 ** We should really leaarn setq-local. Here is an example. And since we learnt cape-capf we should rey this sometime
 *** https://emacs.stackexchange.com/questions/81232/can-cape-be-disabled-on-a-mode-basis
 ** alist is very important 
 *** assoc
-** We made our own select-whole-defun-ish using our code and magik-regexp (also save-excursion)
+* Macro? Function? Lambda? Mapcar? Error-handling? So many cool abstract stuff
+** Arrange, cool code, I could lambda on instinct, and I have evolved
+*** simple example of mapcar, and it works
 #+begin_src lisp
 
+  (mapcar (lambda (item) (replace-string "as" "asd")) '("asd" "asd" "asd"))
 
+#+end_src
+** [[https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/][Error handling]] in Emacs, we now can handle a lack of Iosevka font (set-face-attribute)
+*** Typical of functional eLisp, ('error) forces functional behaviour, we expect only changes of state  from (message), and some side effects. The side effects here are the correct (set-face-attribute). So, we put any  normal function inside 'error
+#+begin_src lisp
+
+  (condition-case xe
+      (set-face-attribute 'default nil :font "Iosevkaasd" :weight 'regular)
+    ('error (progn (set-face-attribute 'default nil :font "Georgia" :weight 'regular)  "Iosevka failed, loading Georgia")))
+#+end_src
+* string, regexp, patterns, and others related
+** We made our own select-whole-defun-ish using our code and magik-regexp (also save-excursion)
+#+begin_src lisp
   (let (p1 p2)
     (save-excursion
       (re-search-backward (cdr (assoc "method" magik-regexp)))
@@ -372,8 +371,42 @@ ARGS = -q --load C:\path\to\our_custom_init.el
       (re-search-forward (cdr (assoc "endmethod" magik-regexp)))
       (setq p2 (point))
       (print (kill-new  (buffer-substring-no-properties p1 p2)))))
-    
+#+end_src
+** The only way we found, replacing a substring with another string. Like most Emacs string-based functions, positions in buffer is needed (string-match)
+#+begin_src lisp
+
+  (concat 
+   (substring "python.org" 0 (string-match ".org" "python.org"))
+   ".md")
   
+#+end_src
+** String comparisons
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html
+*** https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Comparison.html
+** Never tried, Ive used terminal for such operations. But this is dired-based
+*** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
+**** Need as input: --> filename pattern & regex text
+* grep, find-file, and others like it
+** My new grep now has highlight!!
+#+begin_src lisp
+
+  (defun mmy-grep-collective ()
+   "this function took forever to solve, wow, a source of personal pride"
+   (interactive)
+   (let (
+	 (pattern (read-from-minibuffer "enter the pattern, no regexp, simple"))
+	 (fileExtension (read-from-minibuffer "enter file extension, no * or ."))
+	 )
+     (compilation-start  (concat  "findstr /C:\"" pattern "\" *"  fileExtension ) 'grep-mode)))
+
+  ;; ====================
+
+  (defun my-add-nonascii-highlighting ()
+  (font-lock-add-keywords nil
+			  '(("^import.*" (0 'diff-added)))))
+
+
+  (add-hook 'java-mode-hook #'my-add-nonascii-highlighting)
 
 #+end_src
 * Wishlist
@@ -502,30 +535,28 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
 *** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
-* Arrange, cool code, I could lambda on instinct, and I have evolved
-** the only way to string-replace from a string, as often in Emacs, buffer operations implied. So we need index of position here
-#+begin_src lisp
 
-
-  (concat 
-   (substring "python.org" 0 (string-match ".org" "python.org"))
-   ".md")
-  
-#+end_src
-** simple example of mapcar, and it works
-#+begin_src lisp
-
-  (mapcar (lambda (item) (replace-string "as" "asd")) '("asd" "asd" "asd"))
-
-#+end_src
-* [[https://curiousprogrammer.wordpress.com/2009/06/08/error-handling-in-emacs-lisp/][Error handling]] in Emacs, we now can handle a lack of Iosevka font (set-face-attribute)
-#+begin_src lisp
-
-
-  (condition-case xe
-      (set-face-attribute 'default nil :font "Iosevkaasd" :weight 'regular)
-    ('error (progn (set-face-attribute 'default nil :font "Georgia" :weight 'regular)  "Iosevka failed, loading Georgia")))
-#+end_src
-** Typical of functional eLisp, ('error) forces functional behaviour, we expect only changes of state  from (message), and some side effects. The side effects here are the correct (set-face-attribute). So, we put any  normal function inside 'error
 * Hacks:
 **  [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][a bash script hack]]
+* TODO Things to do:
+** Hydra stuff
+*** [[https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/][add new face, custom mode-line-format variable, and use propertize]]
+*** Actual working example!! We made it ourselves
+#+begin_src lisp
+
+  (force-mode-line-update)
+
+  (setq mode-line-format
+	'(
+	  (:eval (propertize "%b " 'face 'shr-h1))
+	  (:eval (propertize "%10b " 'face
+		  (if (buffer-modified-p)
+		      'org-mode-line-clock-overrun
+		      'diff-refine-added)))))
+
+
+#+end_src
+*** [[https://www.masteringemacs.org/article/hiding-replacing-modeline-strings][super smooth and cool "feeding an alist into a function to safely modify existing modeline"]]
+*** [[http://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html][emacs-fu, great documentation]]
+*** [[https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/][YouTuber Protesilaos has a blog!]]
+*** [[https://www.reddit.com/r/emacs/comments/dfer00/how_to_set_different_modeline_elements_for/][Reddit what??]]
