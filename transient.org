@@ -2,40 +2,24 @@
 #+OPTIONS:  toc:nil num:nil ^:nil
 
 
-* DONE Actually getting Emacs to work for you with only your files (aka. dont touch the system files, Ardie!)
-** There's some misunderstanding of how I got Emacs to work the way I want to. Some of the seniors think that I'm touching system files (not at all). Some apparently think learning Emacs is important too (not really). Some think Im  spending way to much learning only Emacs (only slightly true). But Ive come to the conclusion that there's no point in learning more Emacs (unless you decide to take time off, for a while). 
-** All open source comes with its own risk.  The risk is, you're on your own if things go down. Im just going to clarify the generally without detail,  in case someone by chance, is better at Emacs than I am, and comes across this article (or in case it scares someone). And best of all, by only touching your own files.
-load_your_own_emacs.drawio
-** The batch or shortcut copied just points to 3 things: gis.exe, emacs, and gis_aliases. I just make sure my files are pointing to the same gis.exe, and my other files. This way you can implement some Emacs "magik" of your own. All this with only your own files.
-** Lots of disclaimers:
-*** The tone of this post is quite personal, but I didnt want to make claims of what works for everyone and what is better. My next plan was to write also about some minimal Emacs configs that might improve the beginner learning experience, and I have changed my opinions several times regarding this. For example, I wanted to write previously about a learning pathway that might work for an epic Emacs config (Eg: start with a framework like Spacemacs and work towards your own epic config), but the learning curve for an Emacs will take away from everyones time. Even suggesting a minimal config, makes many assumptions such as everyone will want to explore each and every Emacs feature.
-*** Making your Emacs behave like modern IDE is also not always a good idea. Auto-suggest in Python IDE's such as PyCharm, for example, really gets in the way of learning Python programming, becoz as you learning new programming language, you spend many hours just reading the code. And this is more obvious with Magik. Features like auto-suggest get in the way of focusing on the line you want  (this is why I changed to a function that highlights any keyword, for the whol buffer, may help  a little)
-*** Another problem with Emacs features, while being very powerful, has discoverability issues when we are learning SmallWorld everyday.
-*** What is discoverability? Discoverability is a bit like, finding the dictionary for a new word you just learnt. As an example, every Magik method is loaded into SmallWorld with a class browser. This means while you are learning SW the first time, you already discovering the class browser. And working up your skill, means opening the class browser every single day. Already, every single Magik method is discoverable, custom or not.
-*** Which leads to Emacs. Every Emacs built-in function is self-documented inside Emacs. But as you are learning Magik, no one here is using Ctrl-h f repeatedly (which prompts you to enter an Emacs function) as youo  load a Magik session (we probably watch a video or have a snack while we wait for that). What about cool tricks like creating  a shortcut to open a specific file? No one needs that, your favourite file might change every week. And the packages you might you want to use in Emacs is even more undiscoverable. And certain tricks will only be discovered through a different learning pathway such as, attempting to creating your own Java workflow in Emacs, or, setting a personal blogging system in your Emacs? 
-*** So next is just a link to my blog. Which, if it ever happens, will use a combination of  Emacs, ox-hugo (an Emacs package) and Netlify (static hosting service)
 * create a shortcut, for duplicating immediate line im on. no need for 3 actions of selecting, copy and paste, this is important in hydra
-* DONE shortcut ;;l, replace alteia with copy entire line, make alteia ;;a instead
-* DONE our copy-password thing should not include parenthesis
 * create 2 more "themes"
-* DONE create a new binding map for emacs, ;; might be preceded by delete, open, copy, duplicate, operations,
-** DONE becoz these  are general, and not binded, we can put all of this in navigation blindly
-* we need a quick functino for copying from point to end of line, kinda like vim
 * title window indicating runlias environment. thats pretty cool.
 * we need to write or practice, whatever, quickly switching between proc and method
+* The nature of documentation
 ** and also quickly switching between slots and shared variable
-* What to do
-** Abstraction
-*** influence
-*** musicacllity  10
-*** 
-* Emacs (very heavy stuff)
-** modeline 
-** feed the same ist into the mode line variable
-** but insert extra string into the new line
-** 
-* What do we do today:
-** Remember that we are slaves, in constant need of freedom
-** The nature of documentation
-*** 
-** Think of a way to extract current aliases as variable
+* What do we do right now
+** finish a SystemCrafters video
+** only glance ur previous notes
+** research singapore for 10 minutes
+* PNI
+* What to do later
+** Remember what Chomsky said
+*** societies bans certain discussions on purpose to  keep the illusion  of freedom of discussion going. 
+*** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
+*** remember, you made the FUCKING d minor prelude??
+* What to do today:
+** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
+** Put out the chicken
+** Buy the battery frm Low Yatt
+** wake up early, and go out early

@@ -369,7 +369,6 @@ _block
 		write(my_iter4[i])
        _endloop
        _endblock
-** 
 * Day 5:
 ** Common beginner mistakes
 *** adding _pragma at console. _pragma is only needed in files.
@@ -4353,30 +4352,98 @@ _endblock
 
 
 #+end_src
-* Task 41
-** 
-* Task44
-** getting design changes is  dependent on activating design. We still havet found anything. Tests with : D-SAP-S21-1111 (id : 12964336 ) (phase id: 12968143)
+* Stupid remote detail
+** Theres no icpp integration tool for  tnb_gis_dist_user_non_sso_open_dev ??
+* Management
 #+begin_src magik
 
-  dm!dpc_manager.phase_change_vectors(l_dsn_rec)).empty?
+  # the url for  user space server is (Eg:)
+  # \\10.215.92.21\c$
 
-  # this will also not work
-  swg_dsn_admin_engine.active_design.build_phase_objects
-  # change_vectors all rely currently active scheme
-  change_vectors()
+  # the url for SW app server is (Eg:)
+  # \\10.215.129.79\
 
-  # cant really figure outnhow too do  his one
-  swg_dsn_admin_engine.active_design.scheme.swg_dsn_scheme_relationships.an_element().swg_dsn_sr_build_phases.p
+  # some env for gis_aliases have these features
+  # SW_JOB_STM_SRV		= DISABLED #||10.215.92.15:3010
+  # SW_DM_STM_SRV		= DISABLED #||10.215.92.15:3020
+  # SW_SHORT_STM_SRV	= DISABLED # ||10.215.92.15:3030
+  # SW_CIM_STM_SRV		= DISABLED # ||10.215.92.15:3040
 
-  # accessing this one remains empty colelctions
-  gis_program_manager.databases[:design_work].collections[:swg_dsn_scheme_relationship].p
 #+end_src
-** come one finish this
+* Notice the "change of state" in the code below
+** from  //10.215.129.79/Smallworld/TNB_GIS/DIST/modules/functional_modules/cgis_custom_tool_modules/cgis_snc_customer_display_menu/source/
 #+begin_src magik
 
-  # better write this down
-  _elif l_rec.responds_to?(:source_network_type)
+  _method snc_customer_display_menu_gui_plugin.selected_records
+
+	  _local l_colour_style << :red
+
+	  _local l_str << styled_string.new(:value, :dsn_number,
+					    :tab, :value, :pri_inst_id,
+					    :tab, :value, :ca_number,
+					    :tab, :value, :premise_id,
+					    :tab, :value, :reg_struct_group,
+					    :tab, :value, :installation_id,
+					    :tab, :value, :prj_scm_name,
+					    :tab, :value, :snc_notify_no,
+					    :tab, :value, :coordinates,
+					    :tab, :value, :con_obj_id)
+	  _local l_styled_string << l_str
+
+	  _local 	l_str_color << styled_string.new(l_colour_style,:value, :dsn_number,
+						   :tab,l_colour_style,:value,:pri_inst_id,
+						   :tab,l_colour_style,:value,:ca_number,
+						   :tab,l_colour_style, :value, :premise_id,
+						   :tab,l_colour_style, :value, :reg_struct_group,
+						   :tab,l_colour_style, :value, :installation_id,
+						   :tab,l_colour_style, :value, :prj_scm_name,
+						   :tab,l_colour_style, :value, :snc_notify_no,
+						   :tab,l_colour_style, :value, :coordinates,
+						   :tab,l_colour_style, :value, :con_obj_id)
+
+
+	  # ===== some code...
+	  # ===== ...
+
+	  l_styled_string << l_str
+
+
+	  # ===== some code...
+	  # ===== ...
+
+
+
+	  _if dsn.status = "Completed" _orif dsn.status = "Posted"
+	  _then
+		  l_styled_string << l_str_color					
+	  _endif
+
+
+	  # ===== some code...
+	  # ===== ...
+	  _local pty << property_list.new_with(
+				:dsn_number, an_el.perform(:device_serial_number),
+				:pri_inst_id, an_el.perform(:primary_installation_id),
+
+				:ca_number, an_el.perform(:contract_account_number),
+				:premise_id, an_el.perform(:premise_id),
+				:reg_struct_group, an_el.perform(:bcrm_reg_structure_group),
+				:installation_id, an_el.perform(:meter_id),
+				:prj_scm_name, psname,
+				:snc_notify_no, an_el.perform(:snc_notification_number),
+				:coordinates, an_el.perform(:customer_priority_code),
+				:con_obj_id, an_el.perform(:cgis_tariff_code))
+
+
+	  _local l_display_tree << display_tree.new(an_el, pty)
+	  l_display_tree.styled_string << l_styled_string
+	  l_list.add(l_display_tree)
+
+	  >>  l_list
+
+  _endmethod
+  $
 
 #+end_src
-** we ned to write down the designs we tested. Now: D-PDG-S21-0487
+* iCPP/CPP workflow reminder
+** When running the sync scheduler from As Built Updates, its EASY to forget many times. you need to set_status of actual SW scheme 1 step behind, otherwise you will NEVER get any phase creation. Meaning SW -> "CPP Preparation", Oracle for both main design and phase -> "As Built Updates"

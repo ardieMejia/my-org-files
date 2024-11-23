@@ -1,5 +1,5 @@
-* What if I have no clue
-** If you ever tried learning Emacs by yourself, you'll quicky discover that Emacs is hard. Flexible but hard. But hard is often a matter of journey, not skill. A beginners framework can help you on that journey. 
+* Emacs frameworks fo beginners or exploring packages (without exploring packages)
+** Emacs is hard, but frameworks might help
 *** https://www.spacemacs.org/
 *** https://prelude.emacsredux.com/en/latest/
 *** https://docs.doomemacs.org/latest/
@@ -8,16 +8,12 @@
 *** http://xahlee.info/
 *** https://www.gnu.org/software/emacs/manual/
 *** https://zzamboni.org/
-** I once used Spacemacs:
-*** and was stuck between a rock and a hard place. Do I risk getting lost in the middle of the desert? (vanilla Emacs, and a config with no clear direction). Or use Emacs only on occasion while still relying on other software like Microsoft Word (stick with Spacemacs). I did the noobest but bravest thing. Copied someones elses config (some famous contributor to MELPA Im assuming), and play around with their config (but still got errors anyway, but workable Emacs at least). What did I learn? That configs are like social constructs too, so I eventually created my own after many several months.
-**** Do you feel adventurous too? Some Emacs config from popular contributors to MELPA. Since its individualized, they all have to be very different. I used "Kaushal Modi's"
+**** An awesome collection of Emacs config (includes Kaushal Modi)
 ***** https://github.com/caisah/emacs.dz
-* Part 2 (navigation, behaviours, buffers)
+* basic navigation, behaviours, buffers
 ** Navigation, behaviours
 *** I always use C-x C-f for everything. Thats already enough for me. 
 **** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
-*** Same thing with saving files
-**** I only use one of these commands on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Commands.html][saving files]]
 *** vertical vs horizontal split of windows in Emacs
 **** Context:
 ***** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value
@@ -106,6 +102,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** [[https://www.youtube.com/watch?v=XZjyJG-sFZI][Teach your Emacs to keep folders clean]]
 *** Already used variables --> user-emacs-directory, package-user-dir, default-directory
 * Loading subtlety, hooks, eval, yadayada
+** In the long term, once we understand, we should avoid -eval- & hooks (??)
+*** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
 *** (add-hook 'sh-mode-hook 'electric-pair-local-mode)
 **** https://stackoverflow.com/questions/12763566/how-to-permanently-enable-the-hs-minor-mode-in-emacs
@@ -129,15 +127,13 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 
 ** https://www.reddit.com/r/emacs/comments/643dkt/use_package_vs_require_and_maybe_some_sorrowful/
 *** Lots of useful comments on use-package vs require. Most importantly, you learn that require is standard GNU Emacs since 1985. WOW! Library authors dont assume everyone has use-package, hence, many dont include it in installation instructions
-* Emacs Daemon. But I cant make it work under Windows for some reason
+* Emacs Daemon. No success for when under Windows
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
 * Navigation improved
 ** [[https://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs][move region/line up/down]]
 *** Can try drag-stuff  coz its super cool but should start with Ji Han examples, coz its super simple
-* Keybinding (under construction)
-** In the long term, once we understand, we should avoid -eval- & hooks (??)
-*** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
+* Keybinding
 ** Lots of information
 *** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 **** Interestingly, C-c ? (where ? is any single character), is reserved for user & USERS alone. But most 3rd packages dont give a shit
@@ -157,8 +153,9 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** https://lucidmanager.org/productivity/using-emacs-image-dired/
 *** TODO!!!!!
 *** Very cool, imagine opening GIMP automaticallly from inside Emacs
-* folding, hide & other cool tricks
-** Should start collecting it here!!
+* tricks
+** Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
+*** 'focus-out-hook'
 * Looks, looks, looks:
 ** If you want some really great looking suggestion on fonts, from usable examples. Look at this
 *** https://www.reddit.com/r/emacs/comments/14q399t/hi_out_of_curiosity_what_are_your_favourite_fonts/
@@ -241,7 +238,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 #+end_src
 ** Presentations in org mode
 *** https://github.com/yjwen/Org-Reveal
-* Something I have never used in Emacs, but usually in terminal, replace text/patterns in multiple files:
 * Only applicable to my old Kaushal Modi copy (cut loading short):
 ** https://github.com/jwiegley/use-package/issues/494
 *** Personally, I just removed "package-refresh-contents" from setup-packages.el
@@ -249,9 +245,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://ianyepan.github.io/posts/setting-up-use-package/
 * An apparently, very cool init.el, according to one good emacs user. Must read it 1 day
 ** https://github.com/eastwood/config/blob/master/emacs.d/init.el
-* Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
-** 
-*** 'focus-out-hook'
 * Cool for development, you might want to include this in an init file. Maybe as a separate development-init.el
 ** https://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer/171#171
 * [[https://guix.gnu.org/manual/en/html_node/Application-Setup.html][GUIX magically works along with my spacemacs, how?]]
@@ -560,3 +553,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** [[http://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html][emacs-fu, great documentation]]
 *** [[https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/][YouTuber Protesilaos has a blog!]]
 *** [[https://www.reddit.com/r/emacs/comments/dfer00/how_to_set_different_modeline_elements_for/][Reddit what??]]
+** Write this down somehow.
+*** changing Emacs behaviour, doesnt have to be an all out ddisruptive process.
+**** Eg: one thing we can do with mode-line, is to create a function that defines mode-line-format and (force-mode-line-update), binds that function to a mode-hook (magik-mode-hook)
