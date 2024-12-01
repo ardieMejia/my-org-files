@@ -4212,7 +4212,7 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 *** edited cim_adapter_properties.xml under eo_cim_configuration to attempt changing the mapping xml file it reads
 * Task 34
 ** writing documentation on multiphase transitioning test case - scenarios
-** 
+*** 
 * more reading:
 ** STM exists becoz, the default is long transaction.  And the usual is 1 alternative per user. But STM allows the management of several users for 1 alternative.
 ** database priority, there's also drawing order and rendering geometry, which is different
@@ -4447,3 +4447,25 @@ _endblock
 #+end_src
 * iCPP/CPP workflow reminder
 ** When running the sync scheduler from As Built Updates, its EASY to forget many times. you need to set_status of actual SW scheme 1 step behind, otherwise you will NEVER get any phase creation. Meaning SW -> "CPP Preparation", Oracle for both main design and phase -> "As Built Updates"
+* Read The Cambridge Database Layered Product
+* Readings, experiments
+** What is a Data Dictionary?
+** Implementation of RWO fields (Case Datastore Objects), important as it  determines final size records and tables
+*** physical fields become stored fields
+*** logical fields --> derived fields
+*** geometric fields --> methods
+*** join fields --> methods
+** Network Type maps geometry into a network
+** EO data model object groupings
+*** conducting equipment
+*** TODO structure (look if theres such attriute in remote TNBSW)
+*** circuit --> what conducting eq eventually becomes --> can be brokern into sectiosn --> for  better managemente
+** Key concepts
+*** lifecycle status
+*** network type
+*** phasing
+*** assets
+*** specifications --> assets are joined to a specification record
+* Task51 (still same KPI)
+** In order to connect to an example oof Sheath (diaelectri 20). One example shows:
+*** 1 Hub  --> 2 Bays --> 1  Rack --> Slot no. 4 --> 1  Card --> 20  PORTS!!
