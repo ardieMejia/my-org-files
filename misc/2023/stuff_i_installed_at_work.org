@@ -4469,3 +4469,8 @@ _endblock
 * Task51 (still same KPI)
 ** In order to connect to an example oof Sheath (diaelectri 20). One example shows:
 *** 1 Hub  --> 2 Bays --> 1  Rack --> Slot no. 4 --> 1  Card --> 20  PORTS!!
+** Gas Disributio
+*** ArcGIS Pipeline Referencing 
+* Thigs to read or  delete:
+** https://desktop.arcgis.com/en/arcmap/latest/extensions/network-analyst/understanding-connectivity.htm
+** 
