@@ -33,3 +33,5 @@ cities[2]
 #+end_quote
 
 **** The number gets created by Panda as a column
+* Read the link below from geopandas. Also check out the  shortest path. Makes  it easy to understand
+** https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoSeries.overlaps.html
