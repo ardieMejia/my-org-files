@@ -103,3 +103,8 @@ Get-ChildItem -Path *xml -Recurse . | Where {$_.FullName -notlike '*app\build*'}
 **** https://morgantechspace.com/2016/08/powershell-check-if-string-contains-word.html
 * Some cool    tips and tricks on invoking a web request. Very useful if you want to download an image or get a JSON response (what for though??)
 ** https://stackoverflow.com/questions/22447326/powershell-download-image-from-an-image-url
+* TODO Arrange later
+** [[https://superuser.com/questions/1199574/powershell-regex-split-on-single-and-double-white-space][split by multi-or-single string]]
+** [[https://stackoverflow.com/questions/1741490/how-to-tell-powershell-to-wait-for-each-command-to-end-before-starting-the-next][wait for external command to finish]]
+** [[https://www.reddit.com/r/PowerShell/comments/b066x8/powershell_remove_all_characters_except/][remove all  chars except]]
+** [[https://stackoverflow.com/questions/28787364/check-file-extension][basic and useful filtering of file extension]]

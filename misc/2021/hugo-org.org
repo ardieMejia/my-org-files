@@ -41,7 +41,12 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 *** One of the best introductions to buffers, frames and windows. Unusual, tricky for beginners, but very intuitive once understood. Concepts that once understood can result lots of efficient workflow for writers and programmers alike
 *** Perhaps another true advantage of Emacs, is the fact that for different formatting (such as switching between text, PHP, and C++), it uses a different mode. "mode" is what Emacs uses to hide and expose functionality, unlike other editors, this makes it possible for Emacs to have (literally) hundreds (I didnt count it, but it felt like 100s) without conflicting each other. Think of it as having both Illustrator and Powerpoint together in 1 program, where the keyboard shortcut Shift + Tab has a different meaning. Not that Emacs can do anything like Illustrator, but as an example, in Emacs you would turn "Illustrator-mode" to turn on different features (and hide all other features), and then you would turn on Powerpoint to turn on other features. This makes it possible and safe in Emacs to have (for example) 300 different features mapped to only 30 keyboard features. 
 * yasnippet -> a templating system for Emacs
-* 
+* Lifecycle, please read everything:
+** https://hugo-in-action.foofun.cn/docs/part1/chapter3/summary/
+** https://manningbooks.medium.com/using-markup-languages-with-hugo-41b1c222257b
+** https://gohugo.io/content-management/formats/
+** https://whungeewheengee.com/tech_stuff/markdown-syntax/
+** 
 
 
 

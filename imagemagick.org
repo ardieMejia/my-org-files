@@ -77,3 +77,8 @@ convert -size 100x100 xc:white -gravity center -annotate +0+0 'testing' -size 30
 * Misc:
 ** DPI settings
 *** https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=18241
+* Arrange later:
+** [[http://imagemagick.net/discourse-server/viewtopic.php?t=36051][Removing All Shades of Grey from an Image]]
+** [[https://usage.imagemagick.org/quantize/][quantize, has many useful options, comparing, reducing-color, etc]]
+** [[https://usage.imagemagick.org/files/][file handling, useful, but yet to read]]
+** 

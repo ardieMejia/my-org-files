@@ -4473,4 +4473,130 @@ _endblock
 *** ArcGIS Pipeline Referencing 
 * Thigs to read or  delete:
 ** https://desktop.arcgis.com/en/arcmap/latest/extensions/network-analyst/understanding-connectivity.htm
+** Interesting point
+*** Manifold in SW = Connectivity Group in ArrcGIS (maybe)
+* Task55 trick
+** To auto  align the columns in Excel, click the upper-left triangle in the corner of the cell area. And double click any border between headers
+* My experiments Task55_z, downloaded Manifold viewer only
+** https://manifold.net
+* Task56
+** Tested some business rules, becoz updating FL and EQ of Switch Bank and Fuse (eo_isolating_eqpt_inst) cannot be done manually, and updating the FL and EQ of the owning RMU will not affect it. 
+** Expected behaviour, to ensure no duplicates of EQ and FL all over the place.
+** Some cool code
+* Task 57
+** Looks like we reading about service_providers now
+*** update_ermspm_asset_attrib_service_provider
+**** update_ermspm_asset_attrib_service_provider.create_logger_file
+**** update_ermspm_asset_attrib_service_provider.remove_logger_file
+**** update_ermspm_asset_attrib_service_provider.|UpdateERMSPMAssetAttrib|()
+**** update_ermspm_asset_attrib_service_provider.find_and_update_records_in_intg_coll()
+**** update_ermspm_asset_attrib_service_provider.find_rmu_record_in_oracle()
+**** 
+*** Bifrost is the default and main configuration for GSS
+** GSS base config can be inherented. Base configs are: (some of  these can be done locally for the app, no need for  service)
+*** language name mappings
+*** file sweep
+*** 
+** GSS paths are simply a way to organize service, and apply a config section to it  all. Example, all services under GSS path /admin have all those configs applied to it
+** Example:
+*** [[./stuff_i_installed_at_work/GSS/gss_config_full.png]]
+*** appending to server_config_<component>.json. Example:  server_config_eo_web.json, server_config_solr.json & server_config_base.json.
+*** Configuration for a SOAP service
+**** the GSS path part (parent key of config), is how to externally request the service
+** Keywords
+*** GeoSpatial Server
+*** Web services platform
+*** database-independent GSS basic framework plugins
+*** http_service_request_handler_plugin
+*** database pool plugin
+*** rabbitmq plugin
+*** logger
+*** map cache manager
+** 
+** TODO Search the files or words:
+*** gss_basic_vertx_config.xml
+*** <SCRIPTS_DIR>
+*** <GSS_LOCAL_DIR>
+*** file sweep
+*** http_service_request_handler_plugin
+*** map_cache_manager
+*** rabbitmq
+*** database_pool
+*** rabbit_connection
+*** map_options_provider
+*** server_config_emaps.json
+*** gis_aliases
+**** gss:gss_closed
+**** gss:gss_camdb_vertx_open 
+*** opening a cambridge database treats it like a product. Search for cambridge_db in gis_aliases & register.magik
+*** soap
+*** <plugin name="outbound_http" class_name="http_outbound_plugin">
+** small writings:
+*** XML namespace and alias. (when you read, namespace is  just the URi)
+*** In the example, the prefix becomes the alias, so its easy define attributes in elements later on
+#+begin_src xml
+
+  <!-- <prefix:myElement -->
+  <!--     xmlns:prefix ="URI"> -->
+
+  <!-- Example: -->
+  <!-- <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"> -->
+  <!-- This declaration defines SOAP_ENV as an alias for the namespace: http://schemas.xmlsoap.org/soap/envelope/ -->
+
+  <!-- Example: -->
+
+  <SOAP-ENV:Envelope
+      xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+	  SOAP-ENV:encodingStyle=
+	  "http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Header>
+      <HeaderA
+	  xmlns="HeaderURI"
+	  SOAP-ENV:mustUnderstand="0">
+
+	The text of the header
+	  </HeaderA>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+
+
+    </SOAP-ENV:Body>
+  </SOAP-ENV:Envelope
+
+
+#+end_src
+** Findings:
+*** //10.215.92.15/Smallworld/TNB_GIS/DIST/modules/dist_gss_custom/modules/dist_gss_custom_application/resources/base/data/gss_basic_dist_config.xml
+*** We  still DONT KNOW, how to call  service
+*** //10.215.92.15/Smallworld/TNB_GIS/DIST/modules/application_modules/tnb_sweo_dm_eo_dist_user_application/resources/base/data/config.xml
+** Write the following please,  just check SW doc under "Outbound HTTP plugin configuration", and check under config.xml under tnb_sweo_dm_eo_dist_user_application:
+#+begin_src xml
+
+  <plugin name="outbound_http" class_name="http_outbound_plugin">
+
+  <properties>
+
+  <external_endpoints>
+
+    <endpoints>
+
+  </external_endpoints>
+
+</plugin>
+
+
+
+#+end_src
+** The outbound http plugin must be configured for an app to consume REST or SOAP services
+*** 
+* Which is which
+** 21 is CR
+** 15 is MnS
+** 11 is staging
+* Task 60. Important points to remember:
+** When checking tracebacks, check the whole traceback for "error"
+** quit design properly, quit app and session one-by-one. If done correctly you will be asked to "log out"
+* Task 61.  (Operational Area script)
+** even though, I quickly solved the script very quickly, I misunderstood instructions again
+** Users wanted to know if any of the Operational Areas had invalid values. Despite the instruction emphasizing no. of invalid values in record. Users will eventually manually edit records. Which mans ID of records are VERY IMPORTANT
 ** 

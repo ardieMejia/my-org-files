@@ -2,39 +2,61 @@
 #+OPTIONS:  toc:nil num:nil ^:nil
 
 
-* create a shortcut, for duplicating immediate line im on. no need for 3 actions of selecting, copy and paste, this is important in hydra
-* create 2 more "themes"
-* title window indicating runlias environment. thats pretty cool.
-* we need to write or practice, whatever, quickly switching between proc and method
-* The nature of documentation
-** and also quickly switching between slots and shared variable
-* What do we do right now
-** Finish reading  the doc you downloaded
-* PNI
-* What to do later
+* Reminder
 ** Remember what Chomsky said
-*** societies bans certain discussions on purpose to  keep the illusion  of freedom of discussion going. 
+*** societies ban certain discussions on purpose to  keep the illusion  of freedom of discussion going. 
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** Jot down your hugo lifecycle sites in org. 
+** Think of a way to write on your Music Sheets and save them to mobile
+** copy from  remote to local, latest magick_session functions, and rename non_sso_.._dev to dev-like shortcuts
+** write about what not to do in production later
+** Read about your Hugo
+** You managed to obtani 25 us dollars. You have to think of a cool way to play with that.
+** Write about Deftones analysis. How your pieces with Scriabin also seem very fleeting/momentary
+** Watch a woodworking vid, just one goodone
+** TODO
+*** Glue shoe
 ** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
-** Go to CIMB for checking of fiver attempt
-** buy battery 
+** remember ur extreme writing skills. Your skills are a million times better than the other staff
+** PyCon
+*** (Please notify if anyone taking issue with this rather ad-hoc post.)
+*** 24th-25th Auguest this year, I went to the PyCon event. Some of the presentations were an eye opener, and I feel somehow it would be useful for the other staff as well. Ehan saw its potential and usefulness to some staff here at RPS. I will anounce some of the details of the events, (or Ehan will announce it), on March next year (5 months prior to event). Some details of the last event:
+*** The event was held in Sunway University, easily accessible from LRT (and BRT). And Im hoping the next event will be either at the same place, or a similar easily accessible place
+*** While the event was mostly about Python, presenters came from a vast variety of background and experience and fields. There were a few Geospatial related topics. Some very relevant, new and interesting (such as relating to how Grab uses geospatial data). (Example of presenters: 1 Fillipino women talked about her experience as a Python developer. 1 guy from Petronas also presented his use of Python. )
+*** I will inform more details around March
+*** The PyCon is HRDF claimable, simply meaning, Malaysian IT staff is eligible to be sponsored for the event for free. (Fee I paid was RM 100 as I didnt know). I have a Whatsapp contact and simply needs to inform 2 weeks before event. Will inform details March next year.
+*** In spirit of the open source nature  The slides from  the previous event were given free to download, and can be obtained [[https://drive.google.com/drive/u/1/folders/17BapHzJOg4OqEO5-rwk3YogHV-9NkxT-][here]]. (Please inform if any trouble downloading)
+** Yammer 1:
+*** In the spirit, of the most obvious logic of all times. "Technology is supposed to make our life easier". Forget about improving society so we have to work just to eat. Here is an actual improvement on existing keyboard shortcuts in Emacs.
+*** Instead of pinning a file in Windows, and then waiting for the app to load. I am always in Emacs. So I type ;;s to open my favourite "diary" note file, which I always key in stuff I learn everyday.
+*** Wait, it doesnt stop there. I can type ;;y and it opens up Yammer. But I dont use Yammer everyday.
+*** Ok, not enough? How about this. I type ;;x, it makes any file I open read-only. All this fancy pancy stuff is called hydra-mode (Figure 1)
+yammer_hydra_1
+*** Why ;? The logic is that ; only has special meaning in C/C++ programming, so its fine everywhere else.
+*** But theres more to it then that. I started Emacs with Spacemacs. And Spacemacs use Spacebar instead of ;. Its not that simple, and Ill leave Hydra and such discussions to the next post. 
+
+*** Default modeline is not easy to read (Figure 2). Modeline is that bar thing at the bottom of Emacs (Figure 2). I made it better by highlighing red, when a file has unsaved changes. I added a bunch of other stuff, for read-only/writable. Becoz Emacs default save/undo has very weird mechanic (and surprising there are users who find Emacs undo superior to all other undo's, it needs time getting used to, and Ive been using Emacs for a while, still not easy)
+yammer_modeline
+*** References:
+**** https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/
+**** http://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html
+**** https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
+**** https://www.reddit.com/r/emacs/comments/dfer00/how_to_set_different_modeline_elements_for/
+** Yammer 2:
+*** Spacemacs has leader key. Its usually 2 spacebars. Its quite clever, and since we type single spacebar most of the time, when we write. Its very workable.
 * Piano (no social media progress)
-** Bought a simple mask, not worth it,  painting it for now. I would most likely over-think it
 ** You need to buy a stand
 ** Post on FB after its done (things that happened):
-*** I did the mask experiment. Interesting reaction, Meleys especially, being the emotional creatures they are, wwere more likely to judge my music. I think Meleys will forever te emotional creatures till the end of time. Millions of years into the future
-*** I went to some anime shop. Asked for an Attack on Titan merch or anything. Im just a casual fan, was curious anyway. Guy took my request over-serious, went into a long explanation of several of their lines. I usually dont cringe at enthusiasm (passion makes anyone attractive to my eyes), but I felt this one, 2nd-hand embarassment. 
-*** Learnt a new phrase, 2nd hand embarassment. Meleys dont usually feel it (being the psychos that they are, but I felt it)
-*** Indians love micro-managing people  at work, huge problem for freedom to develop your skill and grow
-*** Misogyny and excessive love of your own mother are closely linked. This is a slight exaggaration, but there is some truth in it
-*** Being mathematician doesnt necessarily make you a great thinker. Being someone who was decently talented in  maths in my youth. I  had trouble believing this. (add more from te following videos)
-**** https://www.youtube.com/watch?v=vUQoOEvv9y4
-**** https://www.youtube.com/watch?v=N2EPGU21mHA&t=2137s (James A Lindsay)
 *** Write about piano, how theres a strong argument to be made of how the only people who like Schoenberg of deluded elitists. True snobs, who fail to look inside themselves. And there are plenty of serious musicians who dont get or even dislike Schoenberg. Turns out I also hate Schoenberg. Also write something about comparing Scriabin and Schoenberg.
 **** https://www.talkclassical.com/threads/arnold-schoenberg-1874-%E2%80%93-1951.4505/
-**** 
+*** Wanting to hunt for something & working 'hard' for something, 2 very different things. Like hunting for a specific new sound when your a musician is different from working hard for that sound. They're not mutually exclusive, but they're  not the same thing. Working hard can sometimes give you a blindspot in your hunt for that something. This is a very generic but good argument for the importance of freedom. Hardwork without freedom, means slavery. In the corporate environment, it goes hand in hand. The chains, and constant threat of losing means of living, means submission to hardwork is the only option. But this type of cruel hardwork is also effective in blinding the corporate slave, you lost sight of the ball. Increasing the intensity of your work is never the answer, unless you're super-lazy. But most people arent that lazy. If the working-class are lazy, it is usually due to disillusionment. Stop glorifying the 9-to-5 job. Stop glorifying CEO-worshipping. The average CEO doesnt care about your self-improvement.
+*** Guy who knows about ergonomical split keyboards, presents a study (Masters? PhD?  something else?). And absolutely impressedthe judges. I  even  feel  amazing his success on Reddit. People dont know that ergo-keyboards literally reduce injuries and  pain (pre-existing or  otherwise). [[https://www.reddit.com/r/ErgoMechKeyboards/comments/1h7r6de/just_finished_my_thesis][Link]]
+*** Its difficult to argue with the average  Malaysian student who develops a love for exams. This over-reliance on exams and a strict ass-kissing curriculum in some ways derive from the chaotic nature of Malaysian culture in real life. So academics is the only placce, where everything makes sense. So, while (some) more developed countries are moving towards education with less exams, we're going the complete opposite. Now I realize there's a better argument against exams. That those who can escape an exam-oriented mindset, are more likely to have self-driven goals. This is extremely based. While others wait for bosses/bullies/seniors, these chads create their own challenges and goals. Its not always safe of course, or even rational, so you have to be careful when creating your own goals. Like the open source environnment of Linux, self-taught is risky. But outside of programming (which is kind of like art anyway), self-taught in most things is a risky business. 
+*** Amos Yee, I dont know anything about him, and only remember him from a YouTube video where he mocked Lee Kuan Yee and Islam. Never was particularly offended, obviously. But then I saw ShoeOnHeads response to  his video defending pedophiles. I searched his name on Google. Interesting results, most English-language results highlighted his child sex case, while most Bahasa Melayu results highlight his criticism of religion. (In fact, one Bahasa article only mentioned his child sex case at the VERY end). Even after decades of sacrifice, Malaysians still like their pedophiles. Holy shit, just thinking about that, makes me want to assassinate an random Ulamak.
+*** The number of total anime that ive watched can literally be counted with my fingers. I tried to watch more but I just cant. I admit, that I rarely save my daily life for certain media, but I still download movies. I gave up on One Piece and Naruto  very quickly. Anyway, the point of my post.  All successful art is projection, of a culture, of the artists mind, of reflection of the dynamic between the artists and his frustration with real life. It is close to  impossible to actually be high-level  at a certain art, by solely motivated by money. The money as a background may help, but as a goal doesnt do anything at all. Pianists who in it for  the money, ending sounding like Lang Lang mostly. So clearly, money isnt the issue with anime (it needs money from fans, but that is not enouh), and its mostly projection and reflection. Since its that, it seems anime is  like reflection of the troubled mind of the Japanese male. Why is it for example, that some anime girls are thinly disguised pedophilia fantasy? The women literally looke and sound like 12 year old  girls. Most of them look nothing like women in real life. Yes, I know, its only cartoon. But art clearly matters, when for  example,  people start drawing everyones favourite Muslim prophet. All of a sudden, mere scribblings trascend the medium (paper, video, , audio)  to take a life of its own in the peoples mind. Clearly, anime is projection of childish dreams and anti-social desires. Maybe Japanese artists are too weird for me? Sorry, ill stick to my Western chauvinistic hardcore sci-fi (Peter F Hamilton, Iain Banks, Stephen Baxter). I cant handle anime, I feel stupid watching it (except for the few Ive watch which includes Attack on Titan). 
+*** The kind of musicians who admire originality of music over everything, are the kind of musicians who are snobbish elitists without realizing it. 2setviolin nerds are the most popular example of this type pervasive mindset in the classically-trained musician circle. Kinda like Long Long, getting offended by elitism in classical music. As you can see, this type of obsession spans across classes, and has nothing to do with elitism. When you understand the dynamic between making actual music, and trying to write something new. And how its actually truly impossible to be original, you understand. Actually, this explanation is not enough. One simply has to point out that all the composers of  the past: Beethoven, Chopin, etc.. have copied someone in their work. Its not called copy, its called inspired. This is not to say, Im not offended by cover-only musicians, but its easy to get trapped in "originality" obsession.  There is a place and time for originality, but not all the time. Not even remotely 50% of the time.
 * More org notes
 ** For your recipes
 *** Balti
@@ -43,8 +65,12 @@
 * Read
 ** endometriosis
 ** https://www.medicalnewstoday.com/articles/315066#treatment-and-self-care
+** abdominal bracing
 * SL
 ** Peanut butter
-** throat lozenge 3
+** throat lozenge 4
 ** chocolate 2
 ** soap 1
+** 2 christmas alcohol cakes
+** 2 biscuits
+** 8 sushi
