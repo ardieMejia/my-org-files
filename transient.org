@@ -8,18 +8,22 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Jot down your hugo lifecycle sites in org. 
-** Think of a way to write on your Music Sheets and save them to mobile
 ** copy from  remote to local, latest magick_session functions, and rename non_sso_.._dev to dev-like shortcuts
-** write about what not to do in production later
+** replace your hike shoe with shoelaces
 ** Read about your Hugo
+** contact the fabric guys for your Myanmar project
+** buy the jean bag from Pudu Plaza
 ** You managed to obtani 25 us dollars. You have to think of a cool way to play with that.
 ** Write about Deftones analysis. How your pieces with Scriabin also seem very fleeting/momentary
 ** Watch a woodworking vid, just one goodone
 ** TODO
-*** Glue shoe
+*** Reward system
+*** rice cooking - should be fast
+*** Stitch velcro to 
+*** Clean up a little
 ** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
 ** remember ur extreme writing skills. Your skills are a million times better than the other staff
+** Empty your gas cartridge
 ** PyCon
 *** (Please notify if anyone taking issue with this rather ad-hoc post.)
 *** 24th-25th Auguest this year, I went to the PyCon event. Some of the presentations were an eye opener, and I feel somehow it would be useful for the other staff as well. Ehan saw its potential and usefulness to some staff here at RPS. I will anounce some of the details of the events, (or Ehan will announce it), on March next year (5 months prior to event). Some details of the last event:
@@ -29,17 +33,16 @@
 *** The PyCon is HRDF claimable, simply meaning, Malaysian IT staff is eligible to be sponsored for the event for free. (Fee I paid was RM 100 as I didnt know). I have a Whatsapp contact and simply needs to inform 2 weeks before event. Will inform details March next year.
 *** In spirit of the open source nature  The slides from  the previous event were given free to download, and can be obtained [[https://drive.google.com/drive/u/1/folders/17BapHzJOg4OqEO5-rwk3YogHV-9NkxT-][here]]. (Please inform if any trouble downloading)
 ** Yammer 1:
-*** In the spirit, of the most obvious logic of all times. "Technology is supposed to make our life easier". Forget about improving society so we have to work just to eat. Here is an actual improvement on existing keyboard shortcuts in Emacs.
-*** Instead of pinning a file in Windows, and then waiting for the app to load. I am always in Emacs. So I type ;;s to open my favourite "diary" note file, which I always key in stuff I learn everyday.
-*** Wait, it doesnt stop there. I can type ;;y and it opens up Yammer. But I dont use Yammer everyday.
-*** Ok, not enough? How about this. I type ;;x, it makes any file I open read-only. All this fancy pancy stuff is called hydra-mode (Figure 1)
+*** Im writing this under 20 minutes. (Or at least, I like to pretend, as I have to coem rely on org-timer-set-timer, set to 20minutes, as a work interval  prior to resting interval). Why do I keep writing this? Becoz it certainly has helped my life. Like lliterally I have a not on "recipes" t o  try to cook this weekened, in one my Emacs notes. This also alongside many TODO lists of my various other passions, which have not yet been cleared. When will I  have the time?... Perhaps this is one reason why I  have so many cool Emacs tricks. In the hopes of Emacs saving me time for my other passions. Anyway, here are actual improvement on existing keyboard shortcuts in Emacs.
+*** Instead of pinning a file in Windows, and then waiting for the app to load. I am always in Emacs. So I type ;;s to open my favourite "diary" note file, which I always key in stuff I learn everyday, and not just SmallWorld related stuff
+*** Wait, it doesnt stop there. I can type ;;y and it opens up Yammer. But I dont use Yammer everyday?  Ok, fair enough/
+*** How about this. I type ;;x, it makes any file I open read-only. All this fancy pancy stuff is called hydra-mode (Figure 1)
 yammer_hydra_1
 *** Why ;? The logic is that ; only has special meaning in C/C++ programming, so its fine everywhere else.
-*** But theres more to it then that. I started Emacs with Spacemacs. And Spacemacs use Spacebar instead of ;. Its not that simple, and Ill leave Hydra and such discussions to the next post. 
-
-*** Default modeline is not easy to read (Figure 2). Modeline is that bar thing at the bottom of Emacs (Figure 2). I made it better by highlighing red, when a file has unsaved changes. I added a bunch of other stuff, for read-only/writable. Becoz Emacs default save/undo has very weird mechanic (and surprising there are users who find Emacs undo superior to all other undo's, it needs time getting used to, and Ive been using Emacs for a while, still not easy)
+*** But theres more to it then that. I started Emacs with Spacemacs. And Spacemacs use Spacebar instead of ;. They call this a "leader key". In Spacemacs, its a clever way to introduce to the beginner, the mind blogging number of key maps (key maps are like different universes of key bindings, and each mode has a different key map). Spacemacs has many "packages" installed by default, and doing it this way allows the beginner to explore at his pace. Hydra-mode? Its simple but making it work is not simple, and Ill leave Hydra and such discussions to the next post. 
+*** More changes I did? The default modeline is not easy to read (Figure 2). Modeline is that bar thing at the bottom of Emacs (Figure 2). I made it better by highlighing red, when a file has unsaved changes. I added a bunch of other stuff, for read-only/writable. Becoz Emacs default save/undo has very weird mechanic (and surprising there are users who find Emacs undo superior to all other undo's, it needs time getting used to, and Ive been using Emacs for a while, still not easy)
 yammer_modeline
-*** References:
+*** References (incomplete):
 **** https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/
 **** http://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html
 **** https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
@@ -62,8 +65,13 @@ yammer_modeline
 *** Balti
 *** some YSAC u did before
 *** your chocolate donut (combination of Jamie Olivers friend & Gordon Ramsay)
+** For suit, call these numbers for material. (Mention that Sparkle, Lot L-D 1&2, Pudu Plaza, KL recommended these guys)
+*** 011 70018033
+*** 013 343 2049
+*** 018 398 5048
 * Read
 ** endometriosis
+*** The only way to defniitely diagnose endometriosis is laparoscopy. A small camera looking into your pelvis
 ** https://www.medicalnewstoday.com/articles/315066#treatment-and-self-care
 ** abdominal bracing
 * SL
