@@ -3768,7 +3768,7 @@ _endmethod
 #+end_src
 ** which produces
 [[./stuff_i_installed_at_work/common_error_10.png]]
-* Weird shit, please write   this, while u still remember
+* Weird shit, please write this, while u still remember
 #+begin_src magik
 
 
@@ -3825,7 +3825,6 @@ _endmethod
 *** CIM Circuit Resync - after already loaded, similar to above. 2 steps required becoz CIM server is designed to be simple
 *** CIM design as built - via a design state transition. An XML created after analyzing differences
 *** CIM Design Republish - if above has failed
-** 
 * Task 25:
 ** Slightly  related, but cool none the less:
 #+begin_src magik
@@ -3908,10 +3907,6 @@ _endmethod
 [[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_4.png]]
 *** Sample
 [[./stuff_i_installed_at_work/gui_note_t/GUI_note_from_talk_Sample.png]]
-* How to insert date format (SQL)
-** Relevant to our oracle? we havent tried yet
-*** https://stackoverflow.com/questions/7536628/how-to-insert-date-and-time-in-oracle
-** Turns out  we  dont need it, coz in our we can just leave it as unset, and it will enter current date auto (refer to examples below, task 30)
 * Task 30
 ** use .empty? instead of  .size, saves LOTS of  time
 #+begin_src magik
@@ -4212,7 +4207,6 @@ SW_ACE_DB_DIR      = %SMALLWORLD_GIS%/../cambridge_db/ds/ds_admin
 *** edited cim_adapter_properties.xml under eo_cim_configuration to attempt changing the mapping xml file it reads
 * Task 34
 ** writing documentation on multiphase transitioning test case - scenarios
-*** 
 * more reading:
 ** STM exists becoz, the default is long transaction.  And the usual is 1 alternative per user. But STM allows the management of several users for 1 alternative.
 ** database priority, there's also drawing order and rendering geometry, which is different
@@ -4599,4 +4593,31 @@ _endblock
 * Task 61.  (Operational Area script)
 ** even though, I quickly solved the script very quickly, I misunderstood instructions again
 ** Users wanted to know if any of the Operational Areas had invalid values. Despite the instruction emphasizing no. of invalid values in record. Users will eventually manually edit records. Which mans ID of records are VERY IMPORTANT
+* Task 62
+** When checking source (electric trace), we can use small tool called "Pan to end point of chain"
+** Changing the electric source is common practice. And often involves closing  and opening "Circuit Breakers"
+** We spent way too much time rebuilding the circuit, with failures (halfway). Turns out we forgot to close a Switch Bank
+* Reading?
+** [[https://medium.com/predicting-annual-tax-from-gross-income/plotting-interactive-map-in-python-using-folium-beginner-friendly-89e7b42e6118][folium 1]]
+* Reading on WMS/WFS
+** https://www.sigterritoires.fr/index.php/en/understanding-the-wms-and-wfs-geoservices-part-1/
+** https://gis.stackexchange.com/questions/8348/comparison-of-wms-and-wfs-services
+** https://support.goldensoftware.com/hc/en-us/articles/115003042608-Explanation-of-OSM-WMS-WFS-and-WCS-servers
+** https://markallengis.medium.com/ogc-web-services-d3186fdc988f
 ** 
+* task64
+** common beginner errors when using streamlit to display raw json file. (Im just writing for the sake of writing)
+#+begin_quote
+
+AttributeError: module 'fiona' has no attribute 'path'
+
+#+end_quote
+* Task 65
+** Create a simple Java to Magik SmallWorld query
+** Links:
+*** https://stackoverflow.com/questions/18093928/what-does-could-not-find-or-load-main-class-mean
+*** https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI.html
+*** https://introcs.cs.princeton.edu/java/11hello/
+*** https://belief-driven-design.com/java-annotations-explained-4f54e6e6c3f/
+*** And one link from sharepoint, but by searching "Magik Java interop", on Yammer
+*** And the link from SmallWorld documentation 5.2 (whatever)

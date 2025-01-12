@@ -13,6 +13,8 @@ sudo apt-get install emacs25 #--- Aahhhhhhh... much better, no errors so far
 *** In fact, you should install above version 25
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 *** This will clone that special config file
+* Why Hugo? Benefits of Hugo. Cool trick in Hugo
+** Hugo makes content versioning eaasier. You can see the diffs in content better. In [[https://hugo-in-action.foofun.cn/docs/part1/chapter3/7/][Jamstack]] example, content was moved from Database to   Markdown, making diffs easier to compare.
 * Worth a short read (but understanding this might be tricky if youre alien to web templating shit)
 ** https://scripter.co/hugo-leaf-and-branch-bundles/
 ** leaf bundles are basically the entire of a single folder pretending to be a single entity aka a leaf. You turn this "on" by having an index.md file. (and all other files will be treated as resources, even .md files)

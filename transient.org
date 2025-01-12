@@ -8,58 +8,51 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** copy from  remote to local, latest magick_session functions, and rename non_sso_.._dev to dev-like shortcuts
-** replace your hike shoe with shoelaces
+** TODO 
+*** read about database versioning
+*** scrub shoe sole at night
+** Not sure what we  have to do with our Java links
+** wrote a little n Scriabin nocturne
+** TODO 
+*** move the new hydra to 1 of the remote, but also clean it again
+*** Doom Emacs, try with Emacs 29, and change the init-directory
 ** Read about your Hugo
+*** Understand layouts and everything inside (partials, shortcodes, _default)
+*** When you replaced your /layouts folder, it fails, simple rename back /_layouts
 ** contact the fabric guys for your Myanmar project
 ** buy the jean bag from Pudu Plaza
-** You managed to obtani 25 us dollars. You have to think of a cool way to play with that.
-** Write about Deftones analysis. How your pieces with Scriabin also seem very fleeting/momentary
-** Watch a woodworking vid, just one goodone
-** TODO
-*** Reward system
-*** rice cooking - should be fast
-*** Stitch velcro to 
-*** Clean up a little
+** You managed to obtain 25 us dollars. You have to think of a cool way to play with that.
+** do your new hiking shoe
 ** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
 ** remember ur extreme writing skills. Your skills are a million times better than the other staff
-** Empty your gas cartridge
-** PyCon
-*** (Please notify if anyone taking issue with this rather ad-hoc post.)
-*** 24th-25th Auguest this year, I went to the PyCon event. Some of the presentations were an eye opener, and I feel somehow it would be useful for the other staff as well. Ehan saw its potential and usefulness to some staff here at RPS. I will anounce some of the details of the events, (or Ehan will announce it), on March next year (5 months prior to event). Some details of the last event:
-*** The event was held in Sunway University, easily accessible from LRT (and BRT). And Im hoping the next event will be either at the same place, or a similar easily accessible place
-*** While the event was mostly about Python, presenters came from a vast variety of background and experience and fields. There were a few Geospatial related topics. Some very relevant, new and interesting (such as relating to how Grab uses geospatial data). (Example of presenters: 1 Fillipino women talked about her experience as a Python developer. 1 guy from Petronas also presented his use of Python. )
-*** I will inform more details around March
-*** The PyCon is HRDF claimable, simply meaning, Malaysian IT staff is eligible to be sponsored for the event for free. (Fee I paid was RM 100 as I didnt know). I have a Whatsapp contact and simply needs to inform 2 weeks before event. Will inform details March next year.
-*** In spirit of the open source nature  The slides from  the previous event were given free to download, and can be obtained [[https://drive.google.com/drive/u/1/folders/17BapHzJOg4OqEO5-rwk3YogHV-9NkxT-][here]]. (Please inform if any trouble downloading)
-** Yammer 1:
-*** Im writing this under 20 minutes. (Or at least, I like to pretend, as I have to coem rely on org-timer-set-timer, set to 20minutes, as a work interval  prior to resting interval). Why do I keep writing this? Becoz it certainly has helped my life. Like lliterally I have a not on "recipes" t o  try to cook this weekened, in one my Emacs notes. This also alongside many TODO lists of my various other passions, which have not yet been cleared. When will I  have the time?... Perhaps this is one reason why I  have so many cool Emacs tricks. In the hopes of Emacs saving me time for my other passions. Anyway, here are actual improvement on existing keyboard shortcuts in Emacs.
-*** Instead of pinning a file in Windows, and then waiting for the app to load. I am always in Emacs. So I type ;;s to open my favourite "diary" note file, which I always key in stuff I learn everyday, and not just SmallWorld related stuff
-*** Wait, it doesnt stop there. I can type ;;y and it opens up Yammer. But I dont use Yammer everyday?  Ok, fair enough/
-*** How about this. I type ;;x, it makes any file I open read-only. All this fancy pancy stuff is called hydra-mode (Figure 1)
-yammer_hydra_1
-*** Why ;? The logic is that ; only has special meaning in C/C++ programming, so its fine everywhere else.
-*** But theres more to it then that. I started Emacs with Spacemacs. And Spacemacs use Spacebar instead of ;. They call this a "leader key". In Spacemacs, its a clever way to introduce to the beginner, the mind blogging number of key maps (key maps are like different universes of key bindings, and each mode has a different key map). Spacemacs has many "packages" installed by default, and doing it this way allows the beginner to explore at his pace. Hydra-mode? Its simple but making it work is not simple, and Ill leave Hydra and such discussions to the next post. 
-*** More changes I did? The default modeline is not easy to read (Figure 2). Modeline is that bar thing at the bottom of Emacs (Figure 2). I made it better by highlighing red, when a file has unsaved changes. I added a bunch of other stuff, for read-only/writable. Becoz Emacs default save/undo has very weird mechanic (and surprising there are users who find Emacs undo superior to all other undo's, it needs time getting used to, and Ive been using Emacs for a while, still not easy)
-yammer_modeline
-*** References (incomplete):
-**** https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/
-**** http://emacs-fu.blogspot.com/2011/08/customizing-mode-line.html
-**** https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
-**** https://www.reddit.com/r/emacs/comments/dfer00/how_to_set_different_modeline_elements_for/
-** Yammer 2:
-*** Spacemacs has leader key. Its usually 2 spacebars. Its quite clever, and since we type single spacebar most of the time, when we write. Its very workable.
+** Mask handmade practice, start with small paper mache bowl
+** Yammer 6:
+*** Sometime at  the end of last year. i got a task relating to counting the lines of a file, and piping the output (number of lines) back to Magik. I proposed a solution using only Powershell. And also solved the permission problem using the lines,
+#+begin_quote
+
+PowerShell.exe -ExecutionPolicy Bypass -File runme.ps1
+
+#+end_quote
+*** Which means you no longer need to change ExecutionPolicy per every environment. And this does not result in any changes in configurations, or any writing to disk. You just bypass policy per script. Powershell is increasingly being used by many programmers who deals with Windows who just needs a quick ad-hoc calculation. The task insisted on Java (at first) and then Python. Python apparently was not an option, becoz installing Python environment required escalating that issue to the top, becoz its not in our environment. (Python also has virtual environment which makes it very safe to experiment with modules). But Java interoperability is certainly overkill, for something as simple as counting lines. One has to  compile the code and include that class in an path  environment. One also has to put annotations for each function you want being called in Magik (although that I think about  it, why cant we just count lines directly in Magik? Maybe the script was meant to grow bigger?). 
+*** 
+*** So we now turn our attention to Powershell. Powershell is more advanced than batch. And you can also call batch files in a Powershell script (but not the other way around). Powershell is avilable   by default in all modern Windows. And since it is relatively new and continuously being updated, it might be more secure than batch. 
+*** SmallWorld also has limited integration with the underlying OS (operating system) and has to rely on external programs to be more flexible. But Powershell has a lots of cmdlets capable of doing this. The key to using Powershell in Magik is
+#+begin_quote
+
+system.input_from_command()
+
+#+end_quote
+*** There is a blog by an old time SmallWorld user who consistently uses Powershell in SmallWorld to solve quick ad-hoc problems. 
+*** (There are also 13 other methods to bypass Powershell execution policy according to [[https://www.netspi.com/blog/technical-blog/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/][this]]). 
+** Yammer 7:
+*** https://geospatialworld.net/article/gis-maintains-a-single-source-of-truth-for-utilities/
 * Piano (no social media progress)
 ** You need to buy a stand
 ** Post on FB after its done (things that happened):
 *** Write about piano, how theres a strong argument to be made of how the only people who like Schoenberg of deluded elitists. True snobs, who fail to look inside themselves. And there are plenty of serious musicians who dont get or even dislike Schoenberg. Turns out I also hate Schoenberg. Also write something about comparing Scriabin and Schoenberg.
 **** https://www.talkclassical.com/threads/arnold-schoenberg-1874-%E2%80%93-1951.4505/
-*** Wanting to hunt for something & working 'hard' for something, 2 very different things. Like hunting for a specific new sound when your a musician is different from working hard for that sound. They're not mutually exclusive, but they're  not the same thing. Working hard can sometimes give you a blindspot in your hunt for that something. This is a very generic but good argument for the importance of freedom. Hardwork without freedom, means slavery. In the corporate environment, it goes hand in hand. The chains, and constant threat of losing means of living, means submission to hardwork is the only option. But this type of cruel hardwork is also effective in blinding the corporate slave, you lost sight of the ball. Increasing the intensity of your work is never the answer, unless you're super-lazy. But most people arent that lazy. If the working-class are lazy, it is usually due to disillusionment. Stop glorifying the 9-to-5 job. Stop glorifying CEO-worshipping. The average CEO doesnt care about your self-improvement.
-*** Guy who knows about ergonomical split keyboards, presents a study (Masters? PhD?  something else?). And absolutely impressedthe judges. I  even  feel  amazing his success on Reddit. People dont know that ergo-keyboards literally reduce injuries and  pain (pre-existing or  otherwise). [[https://www.reddit.com/r/ErgoMechKeyboards/comments/1h7r6de/just_finished_my_thesis][Link]]
-*** Its difficult to argue with the average  Malaysian student who develops a love for exams. This over-reliance on exams and a strict ass-kissing curriculum in some ways derive from the chaotic nature of Malaysian culture in real life. So academics is the only placce, where everything makes sense. So, while (some) more developed countries are moving towards education with less exams, we're going the complete opposite. Now I realize there's a better argument against exams. That those who can escape an exam-oriented mindset, are more likely to have self-driven goals. This is extremely based. While others wait for bosses/bullies/seniors, these chads create their own challenges and goals. Its not always safe of course, or even rational, so you have to be careful when creating your own goals. Like the open source environnment of Linux, self-taught is risky. But outside of programming (which is kind of like art anyway), self-taught in most things is a risky business. 
+*** Guy who knows about ergonomical split keyboards, presents a study (Masters? PhD?  something else?). And absolutely impressed the judges. I  even  feel  amazing his success on Reddit. People dont know that ergo-keyboards literally reduce injuries and  pain (pre-existing or  otherwise). [[https://www.reddit.com/r/ErgoMechKeyboards/comments/1h7r6de/just_finished_my_thesis][Link]]
 *** Amos Yee, I dont know anything about him, and only remember him from a YouTube video where he mocked Lee Kuan Yee and Islam. Never was particularly offended, obviously. But then I saw ShoeOnHeads response to  his video defending pedophiles. I searched his name on Google. Interesting results, most English-language results highlighted his child sex case, while most Bahasa Melayu results highlight his criticism of religion. (In fact, one Bahasa article only mentioned his child sex case at the VERY end). Even after decades of sacrifice, Malaysians still like their pedophiles. Holy shit, just thinking about that, makes me want to assassinate an random Ulamak.
-*** The number of total anime that ive watched can literally be counted with my fingers. I tried to watch more but I just cant. I admit, that I rarely save my daily life for certain media, but I still download movies. I gave up on One Piece and Naruto  very quickly. Anyway, the point of my post.  All successful art is projection, of a culture, of the artists mind, of reflection of the dynamic between the artists and his frustration with real life. It is close to  impossible to actually be high-level  at a certain art, by solely motivated by money. The money as a background may help, but as a goal doesnt do anything at all. Pianists who in it for  the money, ending sounding like Lang Lang mostly. So clearly, money isnt the issue with anime (it needs money from fans, but that is not enouh), and its mostly projection and reflection. Since its that, it seems anime is  like reflection of the troubled mind of the Japanese male. Why is it for example, that some anime girls are thinly disguised pedophilia fantasy? The women literally looke and sound like 12 year old  girls. Most of them look nothing like women in real life. Yes, I know, its only cartoon. But art clearly matters, when for  example,  people start drawing everyones favourite Muslim prophet. All of a sudden, mere scribblings trascend the medium (paper, video, , audio)  to take a life of its own in the peoples mind. Clearly, anime is projection of childish dreams and anti-social desires. Maybe Japanese artists are too weird for me? Sorry, ill stick to my Western chauvinistic hardcore sci-fi (Peter F Hamilton, Iain Banks, Stephen Baxter). I cant handle anime, I feel stupid watching it (except for the few Ive watch which includes Attack on Titan). 
-*** The kind of musicians who admire originality of music over everything, are the kind of musicians who are snobbish elitists without realizing it. 2setviolin nerds are the most popular example of this type pervasive mindset in the classically-trained musician circle. Kinda like Long Long, getting offended by elitism in classical music. As you can see, this type of obsession spans across classes, and has nothing to do with elitism. When you understand the dynamic between making actual music, and trying to write something new. And how its actually truly impossible to be original, you understand. Actually, this explanation is not enough. One simply has to point out that all the composers of  the past: Beethoven, Chopin, etc.. have copied someone in their work. Its not called copy, its called inspired. This is not to say, Im not offended by cover-only musicians, but its easy to get trapped in "originality" obsession.  There is a place and time for originality, but not all the time. Not even remotely 50% of the time.
 * More org notes
 ** For your recipes
 *** Balti
@@ -74,11 +67,3 @@ yammer_modeline
 *** The only way to defniitely diagnose endometriosis is laparoscopy. A small camera looking into your pelvis
 ** https://www.medicalnewstoday.com/articles/315066#treatment-and-self-care
 ** abdominal bracing
-* SL
-** Peanut butter
-** throat lozenge 4
-** chocolate 2
-** soap 1
-** 2 christmas alcohol cakes
-** 2 biscuits
-** 8 sushi

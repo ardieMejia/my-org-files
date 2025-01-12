@@ -6,6 +6,8 @@
 ** Most developers are arrogant intelligent men. If youre thinking youre arrogant, and then be prepared for some roughening, and youll be horribly shocked. But also be prepared to be humiliated, coz these men have undergone their arrogant developer phase, and went through a lot. I wish I knew this. 
 ** I wished I knew many Linux Youtubers such as Brodie Robertson and DistroTube. They have countless (and I mean COUNTLESS) videos on software reviews, including those related to Git and IDE's, and those outside of typical development. You would never be able to finish watching their videos. Plus they are all free!
 ** I wished I discovered Emacs early on. As it is now my favourite IDE. In fact, it is more than just an IDE, as the typical Emacs user literally lives inside the Emacs. You could use it for example, to write notes in the fantastic .org format (some kind of native Emacs format). The typical Emacs user also switches modes every time he switches, for example, from programming in Javascript, to programming in Powershell, to writing notes in .org mode. Emacs uses a kind of "package manager" to list all modes that can be installed (there are hundreds of these). And enabling these is a matter of memorizing the appropriate keyboard shortcuts. 
+* Crochet, stitching.
+** [[./life/crochet_tips_1.jpg]]
 * Brown humanity stuff
 ** [[https://www.tandfonline.com/doi/abs/10.1080/01639625.1997.9968043?journalCode=udbh20][Latah]]
 *** Personal notes:

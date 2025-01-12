@@ -1,8 +1,9 @@
 * Since last week we discovered GeoPandas, there is just FAR too much information already to consider.
 * The nature of learning scientific Python is different from your average programming fun
 * You have to understand more about the package itself, but more so about the data structure itself (boring)
-* These are about Panda Dataframes (glorified arrays)
-** https://realpython.com/pandas-dataframe/
+* Geopandas
+** These are about Panda Dataframes (glorified arrays)
+*** https://realpython.com/pandas-dataframe/
 
 
 #+begin_quote
@@ -21,17 +22,47 @@ data = {
 
 
 
-** The key of this associated array becomes the column header/labels. Keep this intuition handy
-*
-** ==================================================
-** pandas.Series are just the columns (or even row) you extracted from data above, such as /data.city/. Misleading a bit the panda.series
-** You can also get the name of a specific item, using the number.
+*** The key of this associated array becomes the column header/labels. Keep this intuition handy
+*** ==================================================
+*** pandas.Series are just the columns (or even row) you extracted from data above, such as /data.city/. Misleading a bit the panda.series
+*** You can also get the name of a specific item, using the number.
 
 #+begin_quote
 cities[2]
 >>> Toronto
 #+end_quote
 
-**** The number gets created by Panda as a column
+***** The number gets created by Panda as a column
+
+** https://geopandas.org/en/stable/docs/user_guide/mapping.html
 * Read the link below from geopandas. Also check out the  shortest path. Makes  it easy to understand
 ** https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoSeries.overlaps.html
+* Node.js
+** After installationg, its  easy to get confussed. How do we check? Which of these 2?
+#+begin_quote
+
+npm --version
+
+node --version
+
+#+end_quote
+* Important
+** [[https://discuss.streamlit.io/t/using-leaflet-instead-of-folium-in-streamlit-to-return-coordinates-on-map-click/4946][leaflet instead of folium]]
+** [[https://ploomber.io/blog/streamlit-from-python/][run streamlit like normal]]
+* Folium
+** [[https://python-visualization.github.io/folium/latest/user_guide/map.html][basic stuff]]
+** [[https://www.analyticsvidhya.com/blog/2020/06/guide-geospatial-analysis-folium-python/][geospatial analysis]]
+** https://stackoverflow.com/questions/63413571/returning-latitude-longitude-values-from-folium-map-on-mouse-click-to-python-sc
+** https://stackoverflow.com/questions/72209694/plot-polygons-with-buffer-of-some-radius-using-folium-not-working-properly
+** https://stackoverflow.com/questions/63722124/get-distance-between-two-points-in-geopandas
+** https://gis.stackexchange.com/questions/367496/plot-a-circle-with-a-given-radius-around-points-on-map-using-python
+** https://stackoverflow.com/questions/72532019/finding-points-in-radius-of-each-point-in-same-geodataframe
+** https://gis.stackexchange.com/questions/349637/given-list-of-points-lat-long-how-to-find-all-points-within-radius-of-a-give
+** https://stackoverflow.com/questions/72784463/is-there-way-to-find-points-on-a-folium-map-that-are-within-a-specified-range
+** https://stackoverflow.com/questions/50954840/displaying-radius-in-meters-with-folium
+** https://folium.streamlit.app/
+** https://dev.to/yoshan0921/creating-maps-in-streamlit-apps-using-folium-lmm
+** https://discuss.streamlit.io/t/add-marker-after-clicking-on-map/69472/3
+** [[https://dev.to/yoshan0921/creating-maps-in-streamlit-apps-using-folium-lmm][creating maps in streamlit apps using folium]]
+** https://stackoverflow.com/questions/76918099/how-to-connect-two-cities-by-a-line-on-python-folium-using-shortest-path
+** https://gis.stackexchange.com/questions/187402/how-to-find-the-intersection-areas-of-overlapping-buffer-zones-in-single-shapefi

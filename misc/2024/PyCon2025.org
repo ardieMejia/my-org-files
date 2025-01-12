@@ -15,39 +15,30 @@
 *** Why is this important some programmers to care? (If they are in a position to care). Its a complete myth, that people with a different background who join a company brings no value. Eg: people with physical science background coming into IT. As long as there are channels and opportunities for expression and communication, it ALWAYS brings value
 *** Platform independence. Separating application model from platform requirement, thereby acheiving separation of concerns
 *** 
-* Some Emacs eLisp examples
-** I have experimented with, added and deleted eLisp code to my Emacs config throughout the years. Throughout several posts, I want to dump several of my configs that have stuck around and have served me well. They can be considered (relatively) minimal edits. As with my previous, Im stating the assumptions and goal of this post. Assumptions: (1) the person interested knows how to safely use his own Emacs config within his/her workflow (and fully within the c:/Users folder and files space). Goals: (1) giving an idea of what Emacs is capable of. (2) Suggesting minimal improvements that still makes Emacs behave like Emacs (3) Detailing, instead of conceptually describing the code as it will only serve to confuse both beginners and experts of Emacs alike. 
-** The following are just dumps of eLisp code that have helped me so far. They help highlighting any word throughout the buffer/file (without introducing something like PyCharms auto-suggest)
-#+begin_src lisp
+* Redo (from [[https://how-to.dev/how-to-read-the-documentationhttps://how-to.dev/how-to-read-the-documentation][this]])
+** Programming can be scary to outsiders (beginners, or someone from a differet type of programming background), becoz of jargon
+** Searching inide existing project, using tools  such as Agent Ransack (or grep or ripgrep), aka in-code documentation, is also reading documentation
+** Dont worry if you dont understand documentation. Doc quality varies a lot. Some documentation makes assumptions about users having basics, such as system knowledge, but this assumption is not stated in the text
+** Closed source and commercial  have highly problematic documentation. If the team managing managing the codebase and documentation is small. It can be months, between new eyes reads the documentation. 
+** Open source documentation are usually slightly better
+** 
+** (From Google AI) Database versioning in GIS is a process that allows multiple users to edit, review, and publish changes to spatial data in a database without overwriting each other's work. It's a key feature of enterprise GIS systems, and it's based on an optimistic concurrency data-locking model. This model means that locks aren't applied to affected features and rows during long transactions. 
+*** Here are some benefits of database versioning in GIS:
+**** Concurrent editing: Multiple users can edit the same data at the same time. 
+**** No data duplication: Users don't need to create copies of the data. 
+**** Isolated views: Each user has their own unique view of the data.
+**** Long transactions: Editors can work across multiple edit sessions without impacting others.
+**** Merge edits: Once an editor is finished, they can merge their changes back to the parent version. 
+**** Some versioning strategies include traditional versioning and branch versioning. Each strategy is designed for different operational environments and workflow needs.
+* Read  about [[https://www.youtube.com/watch?v=ujfiVr1NaSM][this]]:
 
-  ;; Some of the references used:
-  ;;     https://emacs.stackexchange.com/questions/45895/changing-faces-one-at-a-time-outside-customize
-  ;;     https://emacs.stackexchange.com/questions/74181/how-do-i-get-foreground-and-background-colors-of-a-face
-  ;;     https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
-  ;;     https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Contents.html#index-filter_002dbuffer_002dsubstring-2827
-  ;;     https://dev.to/rajasegar/5-ways-to-get-text-from-an-emacs-buffer-4c3l
-
-  NOTE: There are many ways to do this. But here's one hacked together. The my-symbol-numvar is a list of colors to cycle through. 
-  (setq my-symbol-numvar '("fringe" "hi-green" "mouse-drag-and-drop-region" "hi-aquamarine" "show-paren-match" "diff-indicator-removed" "hi-salmon" ))
-  (defun my-symbol ()
-    (interactive)
-    (setq my-symbol-numvar (append (cdr my-symbol-numvar)  (list (pop my-symbol-numvar))))
-    (setq var1 (buffer-substring-no-properties  (region-beginning) (region-end)))
-    (setq var2 (string-replace ":" "" var1))
-    (highlight-phrase var2 (car my-symbol-numvar)))
-
-  (global-set-key (kbd "C-c y") 'my-symbol)
+    
 
 
-  ;; NOTE: to remove the previous highlight. 
-  (defun my-unsymbol ()
-    (interactive)
-    (setq var1 (buffer-substring-no-properties  (region-beginning) (region-end)))
-    (setq var2 (string-replace ":" "" var1))
-    (unhighlight-regexp var2)
-    )
 
-  (global-set-key (kbd "C-c u") 'my-unsymbol)
 
-#+end_src
-** Having written this now, I realize I could improve my code. 
+
+
+ 
+
+

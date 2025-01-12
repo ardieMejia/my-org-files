@@ -532,7 +532,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 * Hacks:
 **  [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][a bash script hack]]
 * TODO Things to do:
-** Hydra stuff
+** Modeline stuff
 *** [[https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/][add new face, custom mode-line-format variable, and use propertize]]
 *** Actual working example!! We made it ourselves
 #+begin_src lisp
