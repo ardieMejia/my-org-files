@@ -3140,7 +3140,6 @@ a_land_coll_g << a_land_coll.geometry_set(a_world)
 ** 3  types of information: cim, cim profile, cim mapping
 ** ADMS Tools
 *** Earthing Tool
-*** 
 ** Hey, I already tried the Circuit Build Tool
 ** We must build the primary level circuits (substation) first before feeder level 
 ** Under SW menu, there  is CIM  exporter  under GIS adapter.
@@ -4485,12 +4484,10 @@ _endblock
 **** update_ermspm_asset_attrib_service_provider.|UpdateERMSPMAssetAttrib|()
 **** update_ermspm_asset_attrib_service_provider.find_and_update_records_in_intg_coll()
 **** update_ermspm_asset_attrib_service_provider.find_rmu_record_in_oracle()
-**** 
 *** Bifrost is the default and main configuration for GSS
 ** GSS base config can be inherented. Base configs are: (some of  these can be done locally for the app, no need for  service)
 *** language name mappings
 *** file sweep
-*** 
 ** GSS paths are simply a way to organize service, and apply a config section to it  all. Example, all services under GSS path /admin have all those configs applied to it
 ** Example:
 *** [[./stuff_i_installed_at_work/GSS/gss_config_full.png]]
@@ -4506,7 +4503,6 @@ _endblock
 *** rabbitmq plugin
 *** logger
 *** map cache manager
-** 
 ** TODO Search the files or words:
 *** gss_basic_vertx_config.xml
 *** <SCRIPTS_DIR>
@@ -4583,10 +4579,6 @@ _endblock
 #+end_src
 ** The outbound http plugin must be configured for an app to consume REST or SOAP services
 *** 
-* Which is which
-** 21 is CR
-** 15 is MnS
-** 11 is staging
 * Task 60. Important points to remember:
 ** When checking tracebacks, check the whole traceback for "error"
 ** quit design properly, quit app and session one-by-one. If done correctly you will be asked to "log out"
@@ -4614,10 +4606,215 @@ AttributeError: module 'fiona' has no attribute 'path'
 #+end_quote
 * Task 65
 ** Create a simple Java to Magik SmallWorld query
+** Common commands, important:
+#+begin_quote
+
+jar xf .\magik.helloworld.jar
+
+jar cvf magik.helloworld.jar HelloWorld_acp
+
+jar cfm hellowrold.jar ./META_INF/MAINFEST.MF HelloWorld_acp.class
+
+#+end_quote
 ** Links:
+*** https://www.geeksforgeeks.org/working-with-jar-and-manifest-files-in-java/
+*** https://groups.io/g/sw-gis/topic/experience_with_gis5_and/99188849
 *** https://stackoverflow.com/questions/18093928/what-does-could-not-find-or-load-main-class-mean
 *** https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI.html
 *** https://introcs.cs.princeton.edu/java/11hello/
 *** https://belief-driven-design.com/java-annotations-explained-4f54e6e6c3f/
+*** https://www3.ntu.edu.sg/home/ehchua/programming/java/J9c_PackageClasspath.html
+*** https://www.instructables.com/How-to-Create-a-JAR-Software-Library-in-Java/
 *** And one link from sharepoint, but by searching "Magik Java interop", on Yammer
 *** And the link from SmallWorld documentation 5.2 (whatever)
+** Documentation:
+*** For more examples of relevant Java code. Can use any Java Decompiler online to extract the Java code from the .class files. (Eg: https://java-decompiler.github.io/)
+*** 
+** Advantages of annotation:
+*** Annotations (Eg: @MagicProc) are metadata (basically description data). This means by itself  it has no meaning. This means one safely test code only in Java first, before adding to Magik (by adding annotations later). Eg:
+#+begin_src java
+
+
+  public static void main(String[] args) {
+      // Prints "Hello, World" in the terminal window.
+      System.out.println("Hello, World");
+
+      SwMagikProc(null);
+  }
+
+
+
+  @MagikProc(@Name(value = "superman", pkg = "user"))
+  public static void SwMagikProc(@Optional Object a_record) {
+      /* Java code */
+      System.out.println("running a jframe");
+
+      if (a_record == null){
+	  System.out.println("NOTHING");
+	  return;
+      }
+      // ..... snip .....
+  }
+
+
+#+end_src
+** Common beginner mistakes
+*** This error indicates your return type is wrong (ur method definition is wrong)
+#+begin_quote
+
+
+.\HelloWorld_acp.java:55: error: incompatible types: ArrayList<String> cannot be converted to ArrayList<String>[]
+        return(week);
+
+#+end_quote
+*** Common error messages related to   this relating to manifest file:
+#+begin_quote
+
+tice\helloworld2_wGUI\libs\dev> jar cmf magik.helloworld.jar '.\META-INF\MANIFEST.MF' .\HelloWorld_acp.java
+java.io.IOException: invalid header field (line 1)
+        at java.base/java.util.jar.Attributes.read(Attributes.java:413)
+        at java.base/java.util.jar.Manifest.read(Manifest.java:290)
+        at java.base/java.util.jar.Manifest.<init>(Manifest.java:100)
+        at java.base/java.util.jar.Manifest.<init>(Manifest.java:76)
+        at jdk.jartool/sun.tools.jar.Main.run(Main.java:268)
+        at jdk.jartool/sun.tools.jar.Main.main(Main.java:1649)
+
+	
+
+#+end_quote
+*** When dealing with Magik-Java interop, the process is extremely cumbersome, since we always have to restart Magik sessions everytime. Below are error message relating to "no class def found error"
+#+begin_quote
+
+
+
+Magik> sw_module_manager.load_module(:hello_world_3)
+577570 [Alchemy-REPL] ERROR (SystemError.java:63) com.gesmallworld.magik.commons.SystemError  A serious problem was encountered in Alchemy: Failed to copy procs from HelloWorld_acp
+com.gesmallworld.magik.commons.SystemError: A serious problem was encountered in Alchemy: Failed to copy procs from HelloWorld_acp
+	at com.gesmallworld.magik.commons.SystemError.fail(SystemError.java:62) ~[?:?]
+	at com.gesmallworld.magik.commons.SystemError.throwInternalError(SystemError.java:46) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.CompiledMagikLoader.processMagikAnnotations(CompiledMagikLoader.java:100) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.CompiledMagikLoader.loadExternalClass(CompiledMagikLoader.java:53) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.MagikLoader.loadExternalClass(MagikLoader.java:45) ~[?:?]
+	at com.gesmallworld.magik.interop.JavaToMagikActivator.initialise(JavaToMagikActivator.java:79) ~[?:?]
+	at com.gesmallworld.magik.osgi.DependencyResolver.loadInteropBundle(DependencyResolver.java:251) ~[?:?]
+	at com.gesmallworld.magik.runtime.objects.MagikSystem.bootstrapInteropBundle(MagikSystem.java:372) ~[?:?]
+	at magik.sw_kernel.sys_src.system_6605.system__sys!load_interop_bundle(sys_src/guts/system.magik:3112) ~[?:?]
+	at magik.sw_kernel.module_management.sw_module_manager_9184.__loopbody_5(module_management/source/sw_module_manager.magik:470) ~[?:?]
+	at magik.sw_kernel.sys_src.rope_mixin_1350.rope_mixin__elements(sys_src/mixins/collections/rope_mixin.magik:175) ~[?:?]
+	at magik.sw_kernel.module_management.sw_module_manager_9184.sw_module_manager__wrapped_load_module(module_management/source/sw_module_manager.magik:468) ~[?:?]
+	at magik.sw_kernel.module_management.sw_module_manager_9184.__loopbody_3(module_management/source/sw_module_manager.magik:416) ~[?:?]
+	at magik.sw_kernel.sys_src.rope_mixin_1350.rope_mixin__elements(sys_src/mixins/collections/rope_mixin.magik:175) ~[?:?]
+	at magik.sw_kernel.module_management.sw_module_manager_9184.sw_module_manager__load_module(module_management/source/sw_module_manager.magik:411) ~[?:?]
+	at magik.unknown_source_1012208.execute(Evaluated-inline:1) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.ClassManager.invokeWithoutRecordingClasses(ClassManager.java:127) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.runLastLoadedClass(ExpressionEvaluator.java:673) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.CompiledMagikLoader.loadRealMagikClass(CompiledMagikLoader.java:61) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.BLETransient.load(BLETransient.java:46) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.runEntries(ExpressionEvaluator.java:629) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.runTreeRecordingResults(ExpressionEvaluator.java:612) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.compileAndRunParseTree(ExpressionEvaluator.java:511) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.compileAndRunParseTree(ExpressionEvaluator.java:402) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.compileAndRunForValueWithReporter(ExpressionEvaluator.java:297) ~[?:?]
+	at com.gesmallworld.magik.runtime.ExpressionEvaluator.compileAndRunForValue(ExpressionEvaluator.java:353) ~[?:?]
+	at com.gesmallworld.magik.tools.REPL.processInputLines(REPL.java:123) ~[?:?]
+	at com.gesmallworld.magik.tools.REPL.processInputLinesFromConsole(REPL.java:143) ~[?:?]
+	at magik.sw_kernel.sys_src.magik_rep_4277.magik_rep__process_command(sys_src/misc/magik_rep.magik:136) ~[?:?]
+	at magik.sw_kernel.sys_src.magik_rep_4277.magik_rep__cli(sys_src/misc/magik_rep.magik:90) ~[?:?]
+	at java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:729) ~[?:?]
+	at com.gesmallworld.magik.language.invokers.OneShotInvokeHelper.invokeInternal(OneShotInvokeHelper.java:39) ~[?:?]
+	at com.gesmallworld.magik.language.invokers.OneShotInvokeHelper.invoke(OneShotInvokeHelper.java:21) ~[?:?]
+	at com.gesmallworld.magik.runtime.MagikRoot.invoke(MagikRoot.java:131) ~[?:?]
+	at com.gesmallworld.magik.tools.REPL.bombproofLoop(REPL.java:176) ~[?:?]
+	at magik.sw_kernel.sys_src.system_6605.system__session_start(sys_src/guts/system.magik:3225) ~[?:?]
+	at java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:729) ~[?:?]
+	at com.gesmallworld.magik.language.invokers.OneShotInvokeHelper.invokeInternal(OneShotInvokeHelper.java:39) ~[?:?]
+	at com.gesmallworld.magik.language.invokers.OneShotInvokeHelper.invoke(OneShotInvokeHelper.java:21) ~[?:?]
+	at com.gesmallworld.magik.runtime.MagikRoot.invoke(MagikRoot.java:131) ~[?:?]
+	at com.gesmallworld.magik.tools.REPL.handleConsole(REPL.java:100) ~[?:?]
+	at com.gesmallworld.magik.tools.ConsoleActivator$ConsoleStarter.run(ConsoleActivator.java:71) ~[?:?]
+	at java.lang.Thread.run(Thread.java:832) ~[?:?]
+Caused by: java.lang.NoClassDefFoundError: javax/swing/JLabel
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[?:?]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:3325) ~[?:?]
+	at java.lang.Class.getDeclaredMethods(Class.java:2466) ~[?:?]
+	at com.gesmallworld.magik.compiler.serialization.CompiledMagikLoader.processMagikAnnotations(CompiledMagikLoader.java:95) ~[?:?]
+	... 40 more
+Caused by: java.lang.ClassNotFoundException: javax.swing.JLabel cannot be found by helloworld_0.0.0
+
+#+end_quote
+*** In my cas I forgot to put
+#+begin_quote
+
+Import-Package: com.gesmallworld.magik.interop,com.gesmallworld.magik.commons.interop.annotations,java.awt,javax.swing,java.util
+
+#+end_quote
+*** 
+** Practice manifest:
+*** https://www.ibm.com/docs/kk/was/8.5.5?topic=files-example-osgi-bundle-manifest-file
+*** [[https://docs.oracle.com/javase/tutorial/deployment/jar/modman.html][midofying a manifest]]
+*** https://groups.io/g/sw-gis/topic/experience_with_gis5_and/99188849
+*** Our example that works:
+#+begin_quote
+
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 17.0.5+8-LTS (Amazon.com Inc.)
+Bundle-ManifestVersion: 2
+Bundle-Name: Smallworld Interop Demo
+Bundle-SymbolicName: helloworld
+Import-Package: com.gesmallworld.magik.interop,com.gesmallworld.magik.commons.interop.annotations,java.awt,javax.swing,java.util
+Export-Package: HelloWorld_acp
+Bundle-Activator: com.gesmallworld.magik.interop.JavaToMagikActivator
+
+#+end_quote
+* System of truth, the science and beauty of database versioning
+** [[https://geolearning.mygeoportal.gov.my/moodle/pluginfile.php/948/mod_resource/content/1/Kertas%204%20-%20TNB.pdf][THIS DOESNT BELONG, BUT READ ANYWAY]]
+** https://geospatialworld.net/article/gis-maintains-a-single-source-of-truth-for-utilities/
+** [[https://cfis.savagexi.com/technical-paper-9/][very interesting explanation, unfinished]]
+*** pessimistic vs optimistic
+**** https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking
+**** https://medium.com/@abhirup.acharya009/managing-concurrent-access-optimistic-locking-vs-pessimistic-locking-0f6a64294db7
+**** https://embeddedcomputing.com/technology/storage/pessimistic-optimistic-generic-ref-to-images
+**** https://dba.stackexchange.com/questions/35812/why-is-optimistic-locking-faster-than-pessimistic-locking
+**** https://minervadb.xyz/understanding-pessimistic-locking-and-optimistic-locking-happening-to-postgresql/
+**** https://help.hcl-software.com/commerce/7.0.0/com.ibm.commerce.admin.doc/concepts/cpmoptlock.html
+**** https://docs.oracle.com/javaee/7/tutorial/persistence-locking001.htm
+** https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/overview-of-versioning-in-arcgis-pro.htm
+** https://desktop.arcgis.com/en/arcmap/latest/manage-data/gdb-architecture/geodatabase-transaction-management.htm
+** https://learn.arcgis.com/en/projects/distribute-data-with-a-checkout-replica/
+** https://www.kohezion.com/blog/system-of-record-vs-source-of-truth
+** https://blog.csgsolutions.com/truth-data-truth-ssot-vs-mvot
+** [[https://cartrack.id/en/how-vehicle-tracking-works-and-why-you%E2%80%99ll-benefit-it-0][what]]
+* task 65 (attempt at Maven)
+** when you use this with an existing POM.xml already availble, it will assume that pom.xml to be a parent
+#+begin_quote
+
+mvn archetype:generate "-DgroupId=org.sonatype.mavenbook" `
+>> "-DartifactId=simple" `
+>> "-Dpackage=org.sonatype.mavenbook" `
+>> "-Dversion=1.0-SNAPSHOT"
+
+#+end_quote
+** Now the child pom.xml  shows a parent.
+#+begin_quote
+
+  <!-- .....snip..... -->
+  <parent>
+    <artifactId>project</artifactId>
+    <groupId>com.companyname.project-group</groupId>
+    <version>1.0</version>
+  </parent>
+
+  <groupId>org.sonatype.mavenbook</groupId>
+  <artifactId>simple</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <!-- .....snip..... -->
+
+#+end_quote
+** Also, notice the quotes, and `. Powershell might be a headache when it comes to this sort of stuff. We have to figure out a way to use Maven with vscode. Still dont know how
+* Task 65b, things I have went through:
+** Very basic Maven
+** Creating a jar file using a folder of files and manifest.mf
+** converting an existing jar file to a osgi bundle (FAIL: as it produced a nested .jar file)
+** using javac to creating classes, a.class in the same directory as .jar, as running java
+** 

@@ -1,9 +1,8 @@
-* Emacs frameworks fo beginners or exploring packages (without exploring packages)
-** Emacs is hard, but frameworks might help
-*** https://www.spacemacs.org/
-*** https://prelude.emacsredux.com/en/latest/
-*** https://docs.doomemacs.org/latest/
-** A list of common but technical & conceptual but opinionated websites. For beginners and advanced uses alike. 
+* Emacs frameworks, for when you want ready packages, without over-thinking the config.
+** https://www.spacemacs.org/
+** https://prelude.emacsredux.com/en/latest/
+** https://docs.doomemacs.org/latest/
+** A list of other help
 *** https://www.emacswiki.org
 *** http://xahlee.info/
 *** https://www.gnu.org/software/emacs/manual/
@@ -12,8 +11,7 @@
 ***** https://github.com/caisah/emacs.dz
 * basic navigation, behaviours, buffers
 ** Navigation, behaviours
-*** I always use C-x C-f for everything. Thats already enough for me. 
-**** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
+*** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
 *** vertical vs horizontal split of windows in Emacs
 **** Context:
 ***** org-agenda, using a variable =====> (setq split-width-threshold 100) or any value

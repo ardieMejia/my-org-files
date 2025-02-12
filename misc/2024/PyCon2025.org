@@ -30,6 +30,8 @@
 **** Long transactions: Editors can work across multiple edit sessions without impacting others.
 **** Merge edits: Once an editor is finished, they can merge their changes back to the parent version. 
 **** Some versioning strategies include traditional versioning and branch versioning. Each strategy is designed for different operational environments and workflow needs.
+* Acceptance:
+** 1 of 3 is met either: talk is future proof, keeps up with current development. lowers barier of entry to python. contributes discource in Py community
 * Read  about [[https://www.youtube.com/watch?v=ujfiVr1NaSM][this]]:
 
     

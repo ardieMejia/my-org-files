@@ -30,26 +30,43 @@ declared package "Devices" does not match the expected package ""
 * Lessons and links:
 ** Links
 *** https://aliyesha.com/sub/articles/programming/display/prog_gentle_intro_maven_java_21
-** Lessons
+*** Learning basics (Eg: jar files, CLI workflow, Java Swing elements lke JList, handing JModel)
+**** https://www.javatpoint.com
+**** https://www.geeksforgeeks.org
+**** [[https://stackoverflow.com/questions/3269516/java-arraylists-into-jlist][arraylists to jlists]]
+**** https://www.javatpoint.com
+**** [[https://forums.codeguru.com/showthread.php?472548-Display-an-ARRAY-in-a-JLIST][display array in jlists]]
+**** [[https://coderanch.com/t/556464/java/update-JList-based-Array][coderanch]]
+**** https://www3.ntu.edu.sg
+**** https://codegym.cc
+**** https://docs.oracle.com
+**** https://www.baeldung.com
+**** https://www.codejava.net
+**** [[https://jenkov.com/tutorials/java-json/jackson-installation.html#adding-the-jar-files-directly-to-the-classpath][cool blog to follow]]
+**** [[https://search.maven.org/][maven central repo]]
+*** Getter and setter:
+**** https://www.w3schools.com/java/java_encapsulation.asp
+**** [[https://stackoverflow.com/questions/8166508/are-static-setter-getters-allowed][common errors when the keyword static is concerned]]
+*** Jackson:
+**** https://www.baeldung.com/jackson-object-mapper-tutorial
+*** Classes, libraries, compiling problems:
+**** [[https://stackoverflow.com/questions/44172563/bad-class-file-using-javac][custom classes nested stuff]]
+**** https://coderanch.com/t/503068/java/Compiling-custom-imports
+*** Anon function  & comparator)
+**** https://www.baeldung.com/java-8-sort-lambda
+**** https://www.freecodecamp.org/news/how-to-sort-a-list-in-java/
+**** https://mkyong.com/java8/java-8-lambda-comparator-example
+**** https://stackoverflow.com/questions/53241785/use-of-anonymous-class-in-sort-method
+* Success:
+** How to do a simple inheritance. The following creates a .class in the correct structure (as implied by "package" statement). And the second statement, runs showing its successful (once the whole pacakge is moved under sourcefile directory)
 #+begin_quote
 
-@RestController is more advanced & a combination of @Controller and @ResponseBody. It return domain object instead of a view
+javac -sourcepath . -d ../. .\Student.java  # -----  creates in ../.
+
+java .\my_main_class.java
 
 #+end_quote
-* Common beginner mistakes
-** we're at the wrong folder, (or  no pom.xml)
-#+begin_quote
-
-No plugin found for prefix 'spring-boot' in the current project and in the plugin groups
-
-#+end_quote
-** we have our classes name all wrong
-#+begin_quote
-
-Unable to find a single main class from the following candidates [com.example.myrestservice.RestServiceApplication, com.example.myrestservice.MyrestserviceApplication
-
-#+end_quote
-*** 
+* --------------------  Temporary stopped --------------------
 * Task 2
 ** Finally success at task 1, on empty project, but failed at a @RestController, lets try this:
 *** https://spring.io/guides/gs/handling-form-submission
@@ -173,13 +190,22 @@ Unable to find a single main class from the following candidates [com.example.my
 *** Read about JUnit test coz we dont know anything about it
 *** neotree
 * Task 4
+** DONE succesfully imported my own custom class
+*** create class like [[https://www.geeksforgeeks.org/how-to-create-array-of-objects-in-java/][this]]
+*** gets "bad class file" error. Instead should include "package" statement in ur custom class file (.java),   run commands like [[https://stackoverflow.com/questions/44172563/bad-class-file-using-javac][this]]
+#+begin_quote
+
+javac -d . MyProject/*.java
+javac MyProgramTest.java
+
+#+end_quote
+*** 
+* Task 5
 ** We should do a subclass with our existing  example. Start simple with the example:
 *** https://www.tutorialspoint.com/what-are-java-parent-and-child-classes-in-java
 ** Maybe combine with our existing Task2 GreetingController
-* Task 5
-** Do a simple CSS for our sake
-** 
 * Task 6
+** Do a simple CSS for our sake
 * Task 7
 * Task 8
 * Task 9

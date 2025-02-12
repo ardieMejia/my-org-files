@@ -8,44 +8,151 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** 
 ** TODO 
-*** read about database versioning
-*** scrub shoe sole at night
+*** You have several new sites, jot them down before u foret them 
+** TODO 
+*** a Java mode only shortcut. check Emacs org file. 
+** TODO 
+*** should you write about Jenkov being the best sources? maybe suggest forums, blogs and communities as better alternatives.
+** TODO 
+*** use an AbstractTableModel to make it simple to add data & column as a new table
+*** https://coderanch.com/t/335326/java/Dynamic-JTable
+** TODO  ask on reddit
+*** a more consisten "framework" for managing what goes in autocplete, auocompelte in  general and possibly control file name completion (Eg: typing filenames in a buffer, where does ti get possible lists from? and how can it be managed)
+** TODO 
+*** Where to find small keychain ring
+*** contact https://www.mypianomalaysia.com/contact-us/ and mention the piano not being yours, and the possibility. Ask for minimum price, or average price. mention a pin replacement
+** TODO 
+*** we must change our question to "how o  embed jars inside a bundle"
+*** https://everythingcomputerscience.com/books/osgibook_preview_20091217.pdf
+** TODO a proper way to sstore tasks we can leaarn from
+*** https://projects.zoho.com/portal/redplanet0#todomilestones/1234245000004681025/customview/1234245000007125003
+** TODO 
+*** how to create a jar file:
+#+begin_quote
+
+jar cvfm .\sw_core.vertx.ardie.1.jar manifest.txt .\sw_core.vertx.1.jar.src\
+
+#+end_quote
+*** this also seems to convert existing jar files, but the result is nested, doesnt seem to work.
+**** why is my .jar nested
+** TODO 
+*** insteaad of using bnd.jar as inside GE doc, can use [[https://experienceleague.adobe.com/en/docs/experience-cloud-kcs/kbarticles/ka-17475][jar cvfm]]
+** TODO 
+*** important terminologies, Java beginners:
+**** make sure you know the usual, inheretence, but also interface
+**** what is jars, libraries, modules, packages. Whats the difference between aall this
+**** what is an osgi bundle
+**** what is annotation
+**** getting familiar with manifest.mf is very useful. 
+** TODO 
+*** write how javac is recursive
+*** playing with javac classpath is REALLY annoying!!
+** TODO 
+*** im pretty sure it  will be really cool when we master async vs sync understanding. anyway heres a [[https://pwrteams.com/content-hub/blog/async-programming-and-completablefuture-in-java#par2][link]]
+** TODO 
+*** we need to write about this modules. How come  we never knew about modules? https://jenkov.com/tutorials/java/modules.html#the-module-java-platform
+*** to include as well as pathway of learning Java https://www.baeldung.com/java-modularity
+** TODO 
+*** write the difference between curl and Powershell requests, and IMPORTANT: a fun way to test APIs with [[https://icanhazdadjoke.com/api][dad jokes]]
+** TODO
+*** Write you simply fixed version of Java in the pom.xml
+*** write how pom.xml is usually considered, the most importat text file to look into when solving errors
+*** write how network cn also cause confusion. (Maven has to download from plugins based on ur pom.xml)
+*** write how from Java is difficult, mostly becoz of path issues and libraries, these are not considered coding skill issue. Proficient programmers who have no experience with Java will struggle A LOT with just paths and library location issues A LOT. This is nothing to be ashamed of.
+** Write this sommewhere, especially that multiple member of an object  (last part). Javais not always obvious.
+*** https://www.geeksforgeeks.org/returning-multiple-values-in-java/
+** TODO Task 
+** Write somewhere about your dependencies order, it matters whether mvn fails or not
+*** https://www.baeldung.com/maven-dependencies-order
+*** Write somewhere about Redis Sorted Set
+** List out some of the tests from the book. Tests you havent done yet. 
+*** List out about the sleep stages and post it somewhere on the awll
+** moe the new hydra mode to remote (25)
+** Write somehwere IMPORTANT about FugueProcs.class
+** EMACS:
+** [[https://emacs.stackexchange.com/questions/59621/how-to-us-a-shortcut-to-add-semicolon-to-end-of-current-line][java major mode EMACS]]
+*** https://dev.to/downtherabbithole/creating-an-emacs-major-mode-because-why-not-11de
+** TODO 
+*** Lets test ur ability to read meaning from single lines:
+#+begin_src java
+
+  String carAsString = objectMapper.writeValueAsString(car);
+  //
+  String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
+  Car car = objectMapper.readValue(json, Car.class);
+  //
+  Car car = objectMapper.readValue(new File("src/test/resources/json_car.json"), Car.class);
+  //
+  JsonNode productNode = new ObjectMapper().readTree(SOURCE_JSON);
+  JsonNode productNode = jp.getCodec().readTree(jp);
+  product.setOwnerName(productNode.get("brand").get("owner").get("name").textValue());
+
+
+#+end_src
+*** Read about MongoDB spacialqueries
+*** Read about Redis in GIS, how its done, and the challenges
+*** Read about 
+*** What is [[https://github.com/StevenLooman/magik-tools][this]]
+** TODO 
+*** Java common errors:
+**** Dealing package naming problems, and such related errors, will become VERY common for the beginner Java developer. As you are leaarning, you will encounter many of these types of errors.
+**** **** Error: Missing interoperability module javajsonitem
+***** there are invalid spaces in the manifest.mf
+**** unresolved requirement
+#+begin_quote
+
+org.osgi.framework.BundleException: Could not resolve module: javajsonitem [967]
+  Unresolved requirement: Import-Package: com.fasterxml
+
+#+end_quote
+***** wrong naming of package in Import-Package (manifest.mf)
+**** When reading an error, you get an exception:
+***** .\java_json_item.java:126: error: unreported exception MalformedURLException; must be caught or declared to be thrown
+***** Solution: import java.io.*;
+***** add throws IOException to method declaration
+#+begin_quote
+
+ public static void main(String[] args) throws IOException
+    
+
+#+end_quote
+**** Java package related problems (package does not exist) are VERY common problems, and can disrupt your ability to learn Java. Its always best to  keep   your work structure simple, or take the time to learn Maven, or CLI tools (whicher tool works for u)
+** [[https://dev.to/downtherabbithole/creating-an-emacs-major-mode-because-why-not-11de][finish reading on major mode, we need this for our own Java mode]]
+*** https://emacs.stackexchange.com/questions/59621/how-to-us-a-shortcut-to-add-semicolon-to-end-of-current-line
+** [[https://ringgitplus.com/en/blog/income-tax/how-to-file-your-taxes-for-the-first-time.html][read on how to do e-filing for d first time]]
+** e-filing
+** Write on how to add tablemodel. organize ur table links
+** https://stackoverflow.com/questions/10283265/trying-to-import-my-own-packages
+** What to do:
+*** Reinstall JRE 21 to see what happens   to the path
+** SO COOL:
+*** https://github.com/WingTillDie/adjust-volume/
 ** Not sure what we  have to do with our Java links
 ** wrote a little n Scriabin nocturne
 ** TODO 
-*** move the new hydra to 1 of the remote, but also clean it again
 *** Doom Emacs, try with Emacs 29, and change the init-directory
+*** alt-Enter in Java Mode, will write ; at end of   line, sould be easy
 ** Read about your Hugo
 *** Understand layouts and everything inside (partials, shortcodes, _default)
 *** When you replaced your /layouts folder, it fails, simple rename back /_layouts
 ** contact the fabric guys for your Myanmar project
 ** buy the jean bag from Pudu Plaza
-** You managed to obtain 25 us dollars. You have to think of a cool way to play with that.
-** do your new hiking shoe
 ** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
-** remember ur extreme writing skills. Your skills are a million times better than the other staff
 ** Mask handmade practice, start with small paper mache bowl
-** Yammer 6:
-*** Sometime at  the end of last year. i got a task relating to counting the lines of a file, and piping the output (number of lines) back to Magik. I proposed a solution using only Powershell. And also solved the permission problem using the lines,
-#+begin_quote
-
-PowerShell.exe -ExecutionPolicy Bypass -File runme.ps1
-
-#+end_quote
-*** Which means you no longer need to change ExecutionPolicy per every environment. And this does not result in any changes in configurations, or any writing to disk. You just bypass policy per script. Powershell is increasingly being used by many programmers who deals with Windows who just needs a quick ad-hoc calculation. The task insisted on Java (at first) and then Python. Python apparently was not an option, becoz installing Python environment required escalating that issue to the top, becoz its not in our environment. (Python also has virtual environment which makes it very safe to experiment with modules). But Java interoperability is certainly overkill, for something as simple as counting lines. One has to  compile the code and include that class in an path  environment. One also has to put annotations for each function you want being called in Magik (although that I think about  it, why cant we just count lines directly in Magik? Maybe the script was meant to grow bigger?). 
-*** 
-*** So we now turn our attention to Powershell. Powershell is more advanced than batch. And you can also call batch files in a Powershell script (but not the other way around). Powershell is avilable   by default in all modern Windows. And since it is relatively new and continuously being updated, it might be more secure than batch. 
-*** SmallWorld also has limited integration with the underlying OS (operating system) and has to rely on external programs to be more flexible. But Powershell has a lots of cmdlets capable of doing this. The key to using Powershell in Magik is
-#+begin_quote
-
-system.input_from_command()
-
-#+end_quote
-*** There is a blog by an old time SmallWorld user who consistently uses Powershell in SmallWorld to solve quick ad-hoc problems. 
-*** (There are also 13 other methods to bypass Powershell execution policy according to [[https://www.netspi.com/blog/technical-blog/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/][this]]). 
 ** Yammer 7:
+** Dirty solution to the Magik-Java interop query tool
+** Yammer 8:
+*** GIS maintains a single of truth for utilities
 *** https://geospatialworld.net/article/gis-maintains-a-single-source-of-truth-for-utilities/
+*** GIS had entered the utility enterprise simply as a system for automating map production, but has now evolved into a core-enabling technology. Why is CAD-GIS integration important in a utilities project?
+*** Bentley Map leverages the powerful 3D capabilities of microstation
+*** Water utilities use variables/parameters like pipe break data, year installed, material, neighbourhood, - to prioritize pipe renewal
+**** Does electrical utilities do the same thing. 
+** Yammer 9:
+*** Write about code documentation
+*** And code is documentation
 * Piano (no social media progress)
 ** You need to buy a stand
 ** Post on FB after its done (things that happened):
