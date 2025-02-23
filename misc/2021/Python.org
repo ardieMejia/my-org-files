@@ -11,30 +11,48 @@
 *** Also, mostly a library advert
 ** [[https://www.freecodecamp.org/news/python-string-methods-tutorial-how-to-use-find-and-replace-on-python-strings/][freecodecamp]]
 *** freecodecamp -> a classic, but I never liked their "huge-ass font" & weird soydev presentation
-* Packages & virtual environment:
-** Installation:
-*** 2 URLS actually:
+* Packages, virtual environment, frameworks:
+** Virtual environment:
+*** links:
 **** https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
 **** https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
+**** https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
 ** [[https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/][Official python virtual environment management]]
 *** Despite all the confusing commands, the only thing you have to understand is this
 **** the only tool is required venv (or virtualenv in older Python)
-**** pip is just the Python installer (not important)
-** More
-*** Virtual environment:
-**** https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
-**** https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
-*** GUI framework:
-**** https://blog.resellerclub.com/the-6-best-python-gui-frameworks-for-developers/
+**** pip is the Python installer, need some packages in "core" Python before all this magic can happen
+*** How to tell if youre in a virtual environment (Eg: Emacs Elpy doesnt show the name of your virtualenv in the prompt/repl)
+**** [[https://www.reddit.com/r/emacs/comments/flc7xq/elpy_virtual_environment_help/][check your sys.path variable]]
+** GUI framework:
+*** https://blog.resellerclub.com/the-6-best-python-gui-frameworks-for-developers/
 ** IMPORTANT: How to solve the opencv-python error of-- No module named 'skbuild'
 *** https://bobbyhadz.com/blog/python-no-module-named-skbuild
-* IDE, PyCharm (I really hate Python)
+* IDE, PyCharm (Python is okay, at least its not Java)
 ** [[https://www.jetbrains.com/pycharm/][I may have no choice but to install PyCharm, it probably works too well]]
 *** Maybe #1 reason I hate Python
 ** [[https://confluence.jetbrains.com/pages/viewpage.action?pageId=51945983][Change look and feel of PyCharm]]
 ** disabling PyCharm auto-suggestion (great for those learning Python)
 *** Settings -> Editor -> General -> Code Completion -> Tick -- Show suggestions as you type
-* Emacs IDE for Python (please God make this work)
+* Emacs IDE for Python
+** Day 1
+*** successfully installed elpy (projectfile first as requirement)
+*** we can try anaconda next time
+*** the key to using our virtualenv
+#+begin_src lisp
+
+  (setq elpy-rpc-virtualenv-path <our-virtual-env-path>)
+  ;; ========== M-x pythonic-activate
+
+#+end_src
+** Also, saisfying way to see if it works, install the following so Python Turtle can finally work
+#+begin_quote
+
+sudo apt install python3-tk
+
+#+end_quote
+** Day 2
+* TODO 
+** separate virtualenv in Emacs. so its easy to switch between Python project inside Emacs
 * Python writing to  file:
 ** Writing text to file, but also has a context manager example
 *** https://stackoverflow.com/questions/5214578/print-string-to-text-file

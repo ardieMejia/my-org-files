@@ -336,9 +336,37 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://emacs.stackexchange.com/questions/81232/can-cape-be-disabled-on-a-mode-basis
 ** alist is very important 
 *** assoc
-* Macro? Function? Lambda? Mapcar? Error-handling? So many cool abstract stuff
+* Macro, Function, Lambda, Mapcar, Error-handling, etc:
+** Macro
+*** Our first example: (NOTE: defmacro tries to be smart, (list) normally passes unaffected, but it expands anyway)
+*** (NOTE: difficult for us, without list, all kinds of errors. (list) is necessary here for us to see difference)
+#+begin_src lisp
+
+(defun mine (var1)
+  (list '1+ var1))
+
+(mine 2)
+
+
+
+(defmacro mine-2 (var1)
+  (list '1+ var1))
+
+(mine-2 2)
+
+#+end_src
+*** The human mind can only learn 2/3 things at once. If we want to be more complex, a-list-inside-a-list is good enough:
+#+begin_src lisp
+
+  (defun inc (var)
+    (list 'setq var (list '1+ var)))
+
+  (defmacro inc (var)
+    (list 'setq var (list '1+ var)))
+
+#+end_src
 ** Arrange, cool code, I could lambda on instinct, and I have evolved
-*** simple example of mapcar, and it works
+*** simple example of mapcar, and it works: (NOTE: the effect is that lambda behaves, or is treated like a loop type)
 #+begin_src lisp
 
   (mapcar (lambda (item) (replace-string "as" "asd")) '("asd" "asd" "asd"))
@@ -531,6 +559,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 **  [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][a bash script hack]]
 * TODO Things to do:
 ** Modeline stuff
+*** [[https://emacs.stackexchange.com/questions/35906/how-can-i-automatically-close-buffers-when-the-underlying-file-is-deleted][auto close buffer, when file is deleted]]
 *** [[https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/][add new face, custom mode-line-format variable, and use propertize]]
 *** Actual working example!! We made it ourselves
 #+begin_src lisp

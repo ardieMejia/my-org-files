@@ -8,18 +8,136 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** 
 ** TODO 
-*** You have several new sites, jot them down before u foret them 
+*** [[https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Models][we REALLY need to read about MODELS before proceeding with Django]]
 ** TODO 
-*** a Java mode only shortcut. check Emacs org file. 
+*** post about why you write in Emacs. a constant in the software world, is bad documentation.
+** TODO 
+*** post about you rewatching The imitation Game
+** TODO write inside python.org
+*** Notice the repetition of words like details. But notice as well, the mention of index. The nature of traditional html being static/real files, means this is necessary to avoid a hard link between a --> b. This means one can link file a -> b and have the content vary endlessly between a and b
+#+begin_src python
+
+  # file urls.py under app /polls
+    urlpatterns = [
+      path("", views.index, name="index"),
+      path("details", views.details, name="details")
+  ]
+
+
+#+end_src
+** TODO "view management"
+*** I thought I was going to do some impressive class/method-overloading view management, but examples online showed conditional
+#+begin_src python
+
+  # in the views.py
+  def details(request, id=None):
+      if id is None:
+	  return HttpResponse("You're looking at the main page")
+      else:
+	  return HttpResponse("You're looking at question %s" % id)
+
+
+      
+  # inside urlpatterns array []
+  path("details/<int:id>/", views.details, name="details")
+
+
+
+#+end_src
+** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
+*** https://adf.org.au/drug-facts/ketamine/
+*** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol
+*** https://my.clevelandclinic.org/health/articles/22857-gamma-aminobutyric-acid-gaba
+**** Researchers are still studying the effects of increased level of GABA, for High blood pressure, Insomnia, Diabetes.
+*** GABA presence in food:
+****  kimchi, miso and tempeh
+**** green, black and oolong tea
+**** brown rice, soy and adzuki beans, chestnuts, mushrooms, tomatoes, spinach, broccoli, cabbage, cauliflower, Brussels sprouts, sprouted grains and sweet potatoes
+** TODO 
+*** think of a way to manipulate clipbaords in openbox
+*** make openbox display 
+** TODO 
+*** Study example uses of defmacro in Emacs
+** TODO 
+*** add details to linked for [[https://outlier.ai/][Outlier]]
+** TODO 
+*** Write somewhere about creating swapfile in ubuntu 22 for hibernation, coz with no swap file big enough, cant hibernate.
+*** [[https://dev.to/dansteren/ubuntu-2204-hibernate-using-swap-file-1ca1][first]]
+*** [[https://www.stefanproell.at/posts/2022-11-01-fde-hibernate/][coz the first forgot to include how to edit the grubfile]]
+** TODO 
+*** We should store this link somewhere on [[https://www.cosmicpython.com/book/introduction.html][Architecture Patterns with Python]]
 ** TODO 
 *** should you write about Jenkov being the best sources? maybe suggest forums, blogs and communities as better alternatives.
+** Write this one somewhere!!
+#+begin_src
+
+   RIP Dashboards: 5 Psychology Hacks to Stop Your Work from Dying
+
+You spent weeks building it.
+Stakeholders said, “Looks great!”
+
+And then… silence.
+
+❌ No one opens it.
+❌ No decisions.
+❌ No impact.
+
+Your work deserves to be used.
+
+Here’s how to make sure your insights don't die 👇
+
+1. The Think-Aloud Protocol
+🔹 Stop asking, “Is this useful?”—people don’t know. Instead:
+🔹 Hand them the dashboard. Let them talk out loud as they explore. 
+🔹 Watch where they click, pause, and get stuck — this reveals problems.
+
+💡 Usability expert Jakob Nielsen: 
+“Users will never tell you what’s wrong. But they’ll show you.”
+
+2. The IKEA Effect
+🔹 Ask early: “What do you think?”
+🔹 Show them drafts, not just the final version.
+🔹 Let them tweak a few things—it makes them feel ownership.
+
+💡 The more they’re involved, the more they’ll use it.
+
+3. Design Thinking: Build for How They Work (Not What They Ask For)
+🔹 Watch how they work today—where’s the friction?
+🔹 Prototype early. Refine fast. 
+🔹 Don’t spend weeks working on the wrong thing.
+
+💡 If they struggle to use it, it’s not them—it’s the design.
+
+4. Hick’s Law: Simplify or Die
+🔹 Cut 20% of elements right now.
+🔹 Highlight one key insight they should act on.
+🔹 Pre-set defaults instead of making them tweak everything.
+
+💡 Less friction = faster decisions.
+
+5. The “Last Mile” Problem: Put Insights Where They’ll Be Seen
+🔹 Push critical insights where people already work (Slack, email, CRM).
+🔹 Example: Sales gets an alert when revenue drops below target.
+🔹 Meet them where they already work, so data doesn’t get ignored.
+
+💡 Make insights part of their workflow, not an extra step.
+
+In short:
+- Make it simple.
+- Make them part of the process.
+- Make sure it drives action.
+
+Ever built something that no one used? 
+
+Make your insights unforgettable with Data Storytelling. 
+Join 4,100+ Data professionals:
+
+  
+#+end_src
 ** TODO 
 *** use an AbstractTableModel to make it simple to add data & column as a new table
 *** https://coderanch.com/t/335326/java/Dynamic-JTable
-** TODO  ask on reddit
-*** a more consisten "framework" for managing what goes in autocplete, auocompelte in  general and possibly control file name completion (Eg: typing filenames in a buffer, where does ti get possible lists from? and how can it be managed)
 ** TODO 
 *** Where to find small keychain ring
 *** contact https://www.mypianomalaysia.com/contact-us/ and mention the piano not being yours, and the possibility. Ask for minimum price, or average price. mention a pin replacement
@@ -54,13 +172,6 @@ jar cvfm .\sw_core.vertx.ardie.1.jar manifest.txt .\sw_core.vertx.1.jar.src\
 ** TODO 
 *** we need to write about this modules. How come  we never knew about modules? https://jenkov.com/tutorials/java/modules.html#the-module-java-platform
 *** to include as well as pathway of learning Java https://www.baeldung.com/java-modularity
-** TODO 
-*** write the difference between curl and Powershell requests, and IMPORTANT: a fun way to test APIs with [[https://icanhazdadjoke.com/api][dad jokes]]
-** TODO
-*** Write you simply fixed version of Java in the pom.xml
-*** write how pom.xml is usually considered, the most importat text file to look into when solving errors
-*** write how network cn also cause confusion. (Maven has to download from plugins based on ur pom.xml)
-*** write how from Java is difficult, mostly becoz of path issues and libraries, these are not considered coding skill issue. Proficient programmers who have no experience with Java will struggle A LOT with just paths and library location issues A LOT. This is nothing to be ashamed of.
 ** Write this sommewhere, especially that multiple member of an object  (last part). Javais not always obvious.
 *** https://www.geeksforgeeks.org/returning-multiple-values-in-java/
 ** TODO Task 

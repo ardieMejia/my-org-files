@@ -10,7 +10,7 @@
 **** Ctrl + , for settings
 **** command palette, Ctrl + Shift + P
 **** Ctrl + k, Ctrl + o
-** This is NOT a mistake, sometimes you will see  this, at the "import" statements above
+** This is NOT a mistake, sometimes you will see this, at the "import" statements above
 #+begin_quote
 declared package "Devices" does not match the expected package ""
 #+end_quote
