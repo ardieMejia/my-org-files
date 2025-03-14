@@ -8,6 +8,79 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** Copy Hanifas key
+** we create html pages like these
+*** /events
+*** /events/create
+*** /events/edit
+*** /events/delete
+** the details we should memorize by now
+*** tournament name
+*** start date
+*** end date
+*** discipline (actual category)
+*** type (kinda like scope)
+*** eligibility (who can enter)
+*** limitation (which rank can enter)
+*** rounds
+*** time control
+*** event category
+*** age group
+** FB:
+*** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
+** create a section in Python for dataframes
+** Write about the concept of traceback and dump() and dump(obj)
+** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
+#+begin_quote
+
+You dont actually need to treat web frameworks with fear. I just only learnt this. Modern frameworks are quite progressive in their nature. This means as long as you have some idea of good code organization and abstraction. Your random, stupid, selfish, creative idea can progressively become better with time and patience. 
+
+Thats what progressive means, when you read a few random articles that mentions the specific progressive of these frameworks.  
+
+I experimented with the stupid and suspicious idea of using Excel as a database, and adding frameworks bit by bit, and borrowing code from this repo: 
+
+https://github.com/AnthonyDjogan/Excel-Based-Employee-Management-System_Python-CRUD-Application/blob/main/Employee_Management_CRUD.py
+
+And then progressively organizing and splitting code and CRUD in my own way. It works. Hahaha...
+
+#+end_quote
+** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
+** Read about Python docstring
+** you managed tomake flas run wathc work. document IMPORTANT
+** contact African guy again
+** github repo for new emcas.init
+*** README
+** Code is about simplifying complexity. Emacs is about making my mind simple. Coz I need to love the programming language (LOL), at least eLisp makes me love programming agian
+** Facebook:
+*** Dont be ashamed to be admit that it takes a long time to learn a certain computer technology/language/framework. Even several years. Computer programming concepts for example are built on top of layers of abstraction. And the more the abstraction, the more mental effort it requires. A beginner Python programmer for example, cant tell the difference between modules and folders. And its useful for him/her to think in terms of physical folders for a long amount of time. We evolved from primates, and our brains havent evolved that much from the understanding of "object permanence".
+** Social
+*** Use ur existing fiverr clients to improve your stats in other platforms
+*** Respond to the Daniel in Developer Kaki
+*** Ask the chess guy for possible early fund, coz I kinda need it.
+*** ISO for free theaded rod more than 2 feet at least and a few matching nuts
+** Python project notes, jot down the folowing:
+*** [[https://jinja.palletsprojects.com/en/stable/templates/][we should read more Jinja, just read documentation, spend 1 hour]]
+*** [[https://stackoverflow.com/questions/5458048/how-can-i-make-a-python-script-standalone-executable-to-run-without-any-dependen][pythinstaller -f will create a proper .exe]]
+*** [[https://stackoverflow.com/questions/16981805/how-does-templating-engine-work][templating engine pedagogy]]
+*** [[https://stackoverflow.com/questions/7460938/how-to-run-a-python-script-in-a-web-page][ways to embed python script in website. But maybe we dont need this.]]
+*** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
+*** [[https://flask.palletsprojects.com/en/stable/][Im not sure why i was reading about Flask]]
+*** [[https://starkie.dev/blog/how-a-browser-renders-a-web-page][WRITE: how a website renders page, very informative]]
+** Read about web-mode features, haha
+*** and alternatives
+** Writing about:
+*** Write about how you read tech documentation different from stories. 
+** Send CVs to at least 2 companies
+*** keywords and terminology in the skill section using bullet point.
+** First we need to create another class for event, then we need to create a cleanup script
+** TODO 
+*** we should read about pandas reading null from excel, and validating null from excel
+** TODO 
+*** your terminal should open with default last directory
+** TODO 
+*** Look for your reddit history agian, about ELPY + LSP
+** TODO 
+*** we need to store this as another [[https://www.youtube.com/watch?v=G59BG3VCfio][practical quick release vise]]
 ** TODO 
 *** [[https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Models][we REALLY need to read about MODELS before proceeding with Django]]
 ** TODO 
@@ -141,136 +214,16 @@ Join 4,100+ Data professionals:
 ** TODO 
 *** Where to find small keychain ring
 *** contact https://www.mypianomalaysia.com/contact-us/ and mention the piano not being yours, and the possibility. Ask for minimum price, or average price. mention a pin replacement
-** TODO 
-*** we must change our question to "how o  embed jars inside a bundle"
-*** https://everythingcomputerscience.com/books/osgibook_preview_20091217.pdf
-** TODO a proper way to sstore tasks we can leaarn from
-*** https://projects.zoho.com/portal/redplanet0#todomilestones/1234245000004681025/customview/1234245000007125003
-** TODO 
-*** how to create a jar file:
-#+begin_quote
-
-jar cvfm .\sw_core.vertx.ardie.1.jar manifest.txt .\sw_core.vertx.1.jar.src\
-
-#+end_quote
-*** this also seems to convert existing jar files, but the result is nested, doesnt seem to work.
-**** why is my .jar nested
-** TODO 
-*** insteaad of using bnd.jar as inside GE doc, can use [[https://experienceleague.adobe.com/en/docs/experience-cloud-kcs/kbarticles/ka-17475][jar cvfm]]
-** TODO 
-*** important terminologies, Java beginners:
-**** make sure you know the usual, inheretence, but also interface
-**** what is jars, libraries, modules, packages. Whats the difference between aall this
-**** what is an osgi bundle
-**** what is annotation
-**** getting familiar with manifest.mf is very useful. 
-** TODO 
-*** write how javac is recursive
-*** playing with javac classpath is REALLY annoying!!
-** TODO 
-*** im pretty sure it  will be really cool when we master async vs sync understanding. anyway heres a [[https://pwrteams.com/content-hub/blog/async-programming-and-completablefuture-in-java#par2][link]]
-** TODO 
-*** we need to write about this modules. How come  we never knew about modules? https://jenkov.com/tutorials/java/modules.html#the-module-java-platform
-*** to include as well as pathway of learning Java https://www.baeldung.com/java-modularity
-** Write this sommewhere, especially that multiple member of an object  (last part). Javais not always obvious.
-*** https://www.geeksforgeeks.org/returning-multiple-values-in-java/
-** TODO Task 
-** Write somewhere about your dependencies order, it matters whether mvn fails or not
-*** https://www.baeldung.com/maven-dependencies-order
-*** Write somewhere about Redis Sorted Set
-** List out some of the tests from the book. Tests you havent done yet. 
-*** List out about the sleep stages and post it somewhere on the awll
-** moe the new hydra mode to remote (25)
-** Write somehwere IMPORTANT about FugueProcs.class
-** EMACS:
-** [[https://emacs.stackexchange.com/questions/59621/how-to-us-a-shortcut-to-add-semicolon-to-end-of-current-line][java major mode EMACS]]
-*** https://dev.to/downtherabbithole/creating-an-emacs-major-mode-because-why-not-11de
-** TODO 
-*** Lets test ur ability to read meaning from single lines:
-#+begin_src java
-
-  String carAsString = objectMapper.writeValueAsString(car);
-  //
-  String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
-  Car car = objectMapper.readValue(json, Car.class);
-  //
-  Car car = objectMapper.readValue(new File("src/test/resources/json_car.json"), Car.class);
-  //
-  JsonNode productNode = new ObjectMapper().readTree(SOURCE_JSON);
-  JsonNode productNode = jp.getCodec().readTree(jp);
-  product.setOwnerName(productNode.get("brand").get("owner").get("name").textValue());
-
-
-#+end_src
-*** Read about MongoDB spacialqueries
-*** Read about Redis in GIS, how its done, and the challenges
-*** Read about 
-*** What is [[https://github.com/StevenLooman/magik-tools][this]]
-** TODO 
-*** Java common errors:
-**** Dealing package naming problems, and such related errors, will become VERY common for the beginner Java developer. As you are leaarning, you will encounter many of these types of errors.
-**** **** Error: Missing interoperability module javajsonitem
-***** there are invalid spaces in the manifest.mf
-**** unresolved requirement
-#+begin_quote
-
-org.osgi.framework.BundleException: Could not resolve module: javajsonitem [967]
-  Unresolved requirement: Import-Package: com.fasterxml
-
-#+end_quote
-***** wrong naming of package in Import-Package (manifest.mf)
-**** When reading an error, you get an exception:
-***** .\java_json_item.java:126: error: unreported exception MalformedURLException; must be caught or declared to be thrown
-***** Solution: import java.io.*;
-***** add throws IOException to method declaration
-#+begin_quote
-
- public static void main(String[] args) throws IOException
-    
-
-#+end_quote
-**** Java package related problems (package does not exist) are VERY common problems, and can disrupt your ability to learn Java. Its always best to  keep   your work structure simple, or take the time to learn Maven, or CLI tools (whicher tool works for u)
-** [[https://dev.to/downtherabbithole/creating-an-emacs-major-mode-because-why-not-11de][finish reading on major mode, we need this for our own Java mode]]
-*** https://emacs.stackexchange.com/questions/59621/how-to-us-a-shortcut-to-add-semicolon-to-end-of-current-line
 ** [[https://ringgitplus.com/en/blog/income-tax/how-to-file-your-taxes-for-the-first-time.html][read on how to do e-filing for d first time]]
-** e-filing
-** Write on how to add tablemodel. organize ur table links
-** https://stackoverflow.com/questions/10283265/trying-to-import-my-own-packages
-** What to do:
-*** Reinstall JRE 21 to see what happens   to the path
 ** SO COOL:
 *** https://github.com/WingTillDie/adjust-volume/
-** Not sure what we  have to do with our Java links
 ** wrote a little n Scriabin nocturne
-** TODO 
-*** Doom Emacs, try with Emacs 29, and change the init-directory
-*** alt-Enter in Java Mode, will write ; at end of   line, sould be easy
 ** Read about your Hugo
 *** Understand layouts and everything inside (partials, shortcodes, _default)
 *** When you replaced your /layouts folder, it fails, simple rename back /_layouts
 ** contact the fabric guys for your Myanmar project
-** buy the jean bag from Pudu Plaza
-** Remember you done it before, the kind of Sam Seder-ish intellect fuck-off, it feels right. 
-** Mask handmade practice, start with small paper mache bowl
-** Yammer 7:
-** Dirty solution to the Magik-Java interop query tool
-** Yammer 8:
-*** GIS maintains a single of truth for utilities
-*** https://geospatialworld.net/article/gis-maintains-a-single-source-of-truth-for-utilities/
-*** GIS had entered the utility enterprise simply as a system for automating map production, but has now evolved into a core-enabling technology. Why is CAD-GIS integration important in a utilities project?
-*** Bentley Map leverages the powerful 3D capabilities of microstation
-*** Water utilities use variables/parameters like pipe break data, year installed, material, neighbourhood, - to prioritize pipe renewal
-**** Does electrical utilities do the same thing. 
-** Yammer 9:
-*** Write about code documentation
-*** And code is documentation
 * Piano (no social media progress)
 ** You need to buy a stand
-** Post on FB after its done (things that happened):
-*** Write about piano, how theres a strong argument to be made of how the only people who like Schoenberg of deluded elitists. True snobs, who fail to look inside themselves. And there are plenty of serious musicians who dont get or even dislike Schoenberg. Turns out I also hate Schoenberg. Also write something about comparing Scriabin and Schoenberg.
-**** https://www.talkclassical.com/threads/arnold-schoenberg-1874-%E2%80%93-1951.4505/
-*** Guy who knows about ergonomical split keyboards, presents a study (Masters? PhD?  something else?). And absolutely impressed the judges. I  even  feel  amazing his success on Reddit. People dont know that ergo-keyboards literally reduce injuries and  pain (pre-existing or  otherwise). [[https://www.reddit.com/r/ErgoMechKeyboards/comments/1h7r6de/just_finished_my_thesis][Link]]
-*** Amos Yee, I dont know anything about him, and only remember him from a YouTube video where he mocked Lee Kuan Yee and Islam. Never was particularly offended, obviously. But then I saw ShoeOnHeads response to  his video defending pedophiles. I searched his name on Google. Interesting results, most English-language results highlighted his child sex case, while most Bahasa Melayu results highlight his criticism of religion. (In fact, one Bahasa article only mentioned his child sex case at the VERY end). Even after decades of sacrifice, Malaysians still like their pedophiles. Holy shit, just thinking about that, makes me want to assassinate an random Ulamak.
 * More org notes
 ** For your recipes
 *** Balti
@@ -280,8 +233,32 @@ org.osgi.framework.BundleException: Could not resolve module: javajsonitem [967]
 *** 011 70018033
 *** 013 343 2049
 *** 018 398 5048
-* Read
-** endometriosis
-*** The only way to defniitely diagnose endometriosis is laparoscopy. A small camera looking into your pelvis
-** https://www.medicalnewstoday.com/articles/315066#treatment-and-self-care
-** abdominal bracing
+* Tonight:
+#+begin_quote
+
+
+
+Subject: Response to Domestic Inquiry Intiation
+To Whom It May Concern,
+
+I hope this message finds you well. I am writing in response to your email regarding the initiation of domestic inquiry, scheduled for 9:30am 5th March.
+
+I would like to confirm my attendance at the domestic inquiry and assure you that I will be present as requested. I understand the importance of this matter and am fully prepared to provide any necessary information or clarification.
+
+I would like to know if it is possible for Lukman Hakim and Farahin to attend the inquiry as witnesses. I would also like to know the procedure in bringing in a witness, and if am I allowed to call/contact the witness before the inquiry in any way, as well as how early will HR inform the witness. 
+
+Thank you for the opportunity to address this matter, and I look forward to meeting with you.
+
+Sincerely,
+Wan Ahmad Ardie
+
+
+
+
+
+ 
+
+
+
+
+#+end_quote

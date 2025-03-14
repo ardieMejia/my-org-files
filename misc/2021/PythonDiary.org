@@ -1,0 +1,260 @@
+* Day 1
+** successfully installed elpy (projectfile first as requirement)
+** we can try anaconda next time
+** the key to using our virtualenv
+#+begin_src lisp
+
+  (setq elpy-rpc-virtualenv-path <our-virtual-env-path>)
+  ;; ========== M-x pythonic-activate
+  ;; ========== turns out we have to use pyvenv-activate
+
+#+end_src
+* Also, satisfying way to see if it works, install the following so Python Turtle can finally work
+#+begin_quote
+
+sudo apt install python3-tk
+
+#+end_quote
+* Day 2
+** How to tell the Python import search path:
+#+begin_src python
+
+  import sys
+  print(sys.path)
+
+#+end_src
+** instead of pythonic-activate, pyvenv-activate will correctly connect our virtual env with elpy-config (so no warning)
+** But this will still not solve running models.py in isolation (C-c C-y b)
+* Runing C-c C-y b doesnt look at file directory, but rather some config we dont know.
+#+begin_src python
+
+  from pathlib import Path# adds
+  cwd = Path.cwd()# adds
+
+  img = Image.open(cwd / '../pomodoro.png')
+
+#+end_src
+* only adding our new app will make makemigrations and migrate work.
+#+begin_src python
+
+  # Application definition
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "polls" # ========== add this
+]
+
+#+end_src
+* in order to use elpy. We can either install lsp-mode globally or locally (virtual env). We did virtual and Emacs lsp-mode will work. As easy as the following:
+#+begin_quote
+
+pip install python-lsp-server
+
+#+end_quote
+** we should pyvenv-activate instead of pythonic-activate
+** And as usual, we dont need to restart any virtual env. Enabling lsp-mode will ask project root.
+* Day 3
+** Projectile, it doesnt interfere with LSP or elpy
+*** For projectile to work, we need this at the minimum:
+#+begin_src lisp
+
+  (setq projectile-globally-ignored-file-suffixes '(".png" ".jpg" ".gif" ".woff" ".woff2" ".ttf" ".cache")) ;; ===== anything you dont desire to hide
+
+#+end_src
+** LSP
+*** we were exploring some LSP features when we discovered [[https://emacs-lsp.github.io/lsp-ui/][this]]. lsp-ui is just one of them. Apparently uses xref-find-references, cool existing feature.
+*** In order to use lsp-ui, its recommeneded to use use-package ([[https://github.com/jwiegley/use-package][use-package]] lsp-ui). But im thinking use-package is good enough.
+** Lets read this cool [[https://github.com/YeasirArafatRatul/DjangoBooks/blob/master/The%20Django%20Book%20(%20PDFDrive.com%20).pdf][pdf]] on Django
+** Django Settings: 
+*** So it turns out we can use elpy with lsp. We started lsp before elpy, i think it doesnt matter Access settings like this will still not work:
+#+begin_src python
+
+  from django.db import connection
+  print(connection.vendor) 
+
+  # should show: sqlite
+#+end_src
+*** you can access settings in the shell, for that inferior shell to work
+#+begin_src python
+
+  os.environ["DJANGO_SETTINGS_MODULE"] = "mysite.settings"
+
+#+end_src
+* TODO 
+** In settings.py, when adding an app. Both of these have the same effect. My guess is config is more "mature"
+#+begin_src python
+
+  INSTALLED_APPS = [
+    "polls.apps.PollsConfig", # ===== #1
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles"
+    # "polls" # ===== #1
+]
+
+#+end_src
+* Day 4:
+** We managed our code
+* Day 5:
+** We finally separated crud operations into crud.py. This feels mature a bit
+* Day 6:
+** Our super random notes
+#+begin_src python
+
+
+  # ========== class based view
+  # django controller (what they refer to as view) accepts a list of names as method names:
+  # "get" "post" "put"
+
+  # the above are essentially base view. But for template views, we can have any name (with argument being the templateview itself). Just import the following:
+  from django.views.generic.base import TemplateView
+
+  # and notice the template_name is inherited
+  # 
+  class HomePageView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["latest_articles"] = Article.objects.all()[:5]
+        return context
+
+
+#+end_src
+* Day 7:
+** We finally managed to understand passing state between the pages. First attempt:
+[[./PythonDiary/framework_001.png]]
+** Our second attempt felt really professional
+[[./PythonDiary/framework_002.png]]
+* Day 8:
+** Why is documentation on Flask configs so bad?
+** 
+* Day 9:
+** Replaced the conditionals and prompts in the "input"ing functions to simple assignment and pandas to excel writes
+** finally discovered logger
+* Day 10:
+** Created dropdown with event names finally. Passing from controller (or views) to the html file works with Panda, but requires to_dict in some manner. Things we can try:
+#+begin_src python
+
+  a_df.to_dict()
+  a_df.to_dict('records')
+  a_df.tolist()
+
+#+end_src
+* Day 11:
+** NOTE: What is XMLHttpRequest?
+*** Its a misnomer, XHR can also be used to send jSON, HTML, Plain Text & XML
+*** a request sent, client -> server, to retreive data
+*** to update the page without a ful page refresh
+*** It is part of AJAX = a model to make web apps faster (update bits of webpage, without a full refresh)
+** ajax basics like this
+#+begin_src javascript
+
+      <!-- first we have a button -->
+    
+      <button type="button" onclick="loadDoc()">test</button>
+
+      <!-- then, we have something like this, notice the {{{}}} for function, xhttp, this.status & -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+      function loadDoc(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("demo").innerHTML = this.responseText;
+              }
+          };
+          xhttp.open("GET", "/process_form", true);
+          xhttp.send();
+      }  
+
+#+end_src
+
+** another one with a project I did, dynamic dropdown
+#+begin_src javascript
+
+  	   $( "#mylist" ).on( "change", function() {
+	       var val = this.value;
+	       $.ajax({
+		   type:"GET",
+		   url:"/ajax",
+		   data:{ 'event_id': val },
+		   success: function(resp){
+		       $( '#event_details' ).show();		       		       
+		       document.getElementById("event_date").innerHTML = resp['event_date'];
+		       document.getElementById("event_format").innerHTML = resp['event_format'];
+		       document.getElementById("no_of_rounds").innerHTML = resp['no_of_rounds'];
+		       document.getElementById("gender").innerHTML = resp['gender'];
+		       document.getElementById("cat").innerHTML = resp['cat'];
+		       document.getElementById("subcat").innerHTML = resp['subcat'];
+		       document.getElementById("cost").innerHTML = resp['cost'];
+		   }
+	       });
+	   });
+
+#+end_src
+
+** NOTE, basics:
+*** We create XMLHttpRequest class and capture in variable
+*** open a basic request, to a basic API (commonly used for testing)
+#+begin_src javascript
+
+
+  // <script>
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', 'https://jsonplaceholder.typicode.com/users');
+  xhttp.send();
+
+  // handing an XHR response, the anonymous function onreadystatechange() responds to any change xhttp.readyState
+  xhttp.onreadystatechange = () =>{
+      if(xhttp.readyState == 4  && xhttp.status == 200){
+          document.write(xhttp.response);          
+      }
+  }
+  // </script>
+
+
+#+end_src
+*** xhttp.readyState
+[[./PythonDiary/xhr_basics.png]]
+*** Exercise:
+**** Try including these 2 to get content by clicking a button
+#+begin_src javascript
+
+  const p = document.getElementById('myp);
+
+  // ========== snip
+  // ========== inside ifs
+  p.innerText = xhttp.response;
+
+
+
+#+end_src
+* Day 12:
+** installed pip install flask-sqlalchemy
+** installed pip install flask-migrate
+** sqlalchemy object and migrate object
+** created an object that inherits db.Model, sqlalchemy as sa, sqlalchemy.orm as so
+** we created a migration repository, basically folder that stores scripts. These scripts are created everytime we do some database schema changes
+** we created the migration script
+** we do the migration
+** Relationship:
+** apart from so.mapped_field, we also have so.relationship which is just a CODE-only field (not database field)
+* Day 13:
+** finally made a html form for the user, but still havent done for blog Posts
+** improved Emacs select Hydra
+** Made the first relationship, with everything in 1 file though
+[[./PythonDiary/framework_003.png]]
+* Day 14:
+** created both Users and Posts through messy forms
+** went back a Git branch
+** properly learnt the entire process for initiializing a migration repo, creating migration script, and executing the script
+** 

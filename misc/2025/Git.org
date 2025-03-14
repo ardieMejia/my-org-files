@@ -1,0 +1,23 @@
+* add something
+* getting versions of file from previous branch, in a much simpler way
+** git show <somehash>:path/to/file > new_filename.ext
+*** [[https://stackoverflow.com/questions/44400736/how-do-i-get-a-particular-older-version-of-a-file-from-git-repository-without][Link]]: simpler and more physical
+* restoring local changes, after "checking out" other branches
+** git stash pop 
+*** most basic
+** git stash apply stash@{MyBranch}
+** git stash list
+*** to see what you stashed, helps previous commands
+* Managing branches
+** [[https://stackoverflow.com/questions/13000563/how-to-push-multiple-branches-from-multiple-commits][pushing multiple branches into origin]]
+* 
+* Removing files from staging area, [[https://stackoverflow.com/questions/19730565/how-to-remove-files-from-git-staging-area][OOPS]], we dont want those files. But also the working copy
+** git reset HEAD -- path/to/file
+*** we dont want specific ones in staging
+** git reset HEAD -- .
+*** we dont want all from stagin
+* Reset all local changes [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][here]]
+** git reset --hard
+* References:
+** https://refine.dev/blog/git-stash/#how-to-use-git-stash-apply
+** 

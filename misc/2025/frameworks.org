@@ -1,0 +1,66 @@
+* Jinja:
+** [[https://realpython.com/primer-on-jinja-templating/][realpython]]. Has primer on jinja templating. Better read this instead of searching forever for beginners doc.
+** How to call function from within Jinja:
+- [[https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/][saidvandeklundert]] and some [[https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2][stackoverflow]] shows . Basically, "normal html" has no awarenss of functions inside view. So this is necessary.
+- The idea is:
+#+begin_src python
+
+  # ========== inside __init__.py im assuming, or any main file .py
+  def clever_function():
+      return u'HELLO'
+
+  app.jinja_env.globals.update(clever_function=clever_function)
+
+  # ========== and somewhere in your templates/
+  {{ clever_function() }}
+
+
+#+end_src
+- Another, this time a template/ file calling 2 functions
+#+begin_src python
+
+  def hello_world():
+      return "hello world from within the function"
+
+  def multiply(x, y):
+      return str(x * y)
+
+  func_dict = {
+      "hello_world": hello_world,
+      "multiply": multiply,
+  }
+
+
+  def render(template):
+      # ===== snip
+      jinja_template.globals.update(func_dict)
+      template_string = jinja_template.render()
+      return template_string
+
+
+
+
+#+end_src
+* Basics:
+** [[https://www.askpython.com/python-modules/flask/flask-crud-application][askpython]] shows Flask CRUD
+* Alternative software:
+** Cool list of software to view DBs [[https://stackoverflow.com/questions/66545908/how-to-see-sqlalchemy-database][here]]
+** [[https://www.apriorit.com/dev-blog/web-python-libraries-for-database-management#using-python][site]] that shows specific modules/packages to connect to DBs such as SQLite or Apache, etc
+** 
+* Flask
+** [[https://flask.palletsprojects.com/en/stable/cli/][palletsprojects]]. Has better links for configs. Example:
+#+begin_quote
+
+$ flask run --extra-files file1:dirA/file2:dirB/
+
+#+end_quote
+*** becoz setting environment variables dont seem to work
+** asd
+* Django
+** 
+* AJAX, html elements
+** AJAX
+** Forms
+*** 
+* Arrange 
+** https://www.codersjungle.com/2024/07/09/handling-http-methods-in-flask-get-and-post-requests/

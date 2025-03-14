@@ -11,7 +11,36 @@
 *** Also, mostly a library advert
 ** [[https://www.freecodecamp.org/news/python-string-methods-tutorial-how-to-use-find-and-replace-on-python-strings/][freecodecamp]]
 *** freecodecamp -> a classic, but I never liked their "huge-ass font" & weird soydev presentation
-* Packages, virtual environment, frameworks:
+* Pandas Dataframes, etc:
+** [[https://docs.kanaries.net/topics/Pandas/dataframe-to-list][converting Pandas dataframe to list]]
+#+begin_src python
+
+  # NOTE: notice how a Pandas dataframe treats column names with respect
+  df = pd.DataFrame({'numbers': [1, 2, 3], 'letters': ['a', 'b', 'c']})
+
+  alist = df.values.tolist()
+
+  # ===== alist
+  [[1, 'a'], [2, 'b'], [3, 'c']]
+
+
+
+  ac_list = df['numbers'].tolist()
+
+  # ===== ac_list from column
+  [[1, 'a'], [2, 'b'], [3, 'c']]
+
+#+end_src
+** [[https://stackoverflow.com/questions/29815129/pandas-dataframe-to-list-of-dictionaries][Pandas dataframe to list of dicts]]
+#+begin_src python
+
+  df.to_dict('records')
+
+#+end_src
+** [[https://devqa.io/converting-dataframe-list-dictionaries-python/][iterating over dataframe to create list-of-dict, to allow some reshaping/algo/manipulation]]
+* Packages, virtual environment, frameworks, paths:
+** Paths:
+*** Your Python path is the list of directories on your system where Python looks when you use the Python import statement.
 ** Virtual environment:
 *** links:
 **** https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
@@ -33,30 +62,88 @@
 ** [[https://confluence.jetbrains.com/pages/viewpage.action?pageId=51945983][Change look and feel of PyCharm]]
 ** disabling PyCharm auto-suggestion (great for those learning Python)
 *** Settings -> Editor -> General -> Code Completion -> Tick -- Show suggestions as you type
-* Emacs IDE for Python
-** Day 1
-*** successfully installed elpy (projectfile first as requirement)
-*** we can try anaconda next time
-*** the key to using our virtualenv
-#+begin_src lisp
-
-  (setq elpy-rpc-virtualenv-path <our-virtual-env-path>)
-  ;; ========== M-x pythonic-activate
-
-#+end_src
-** Also, saisfying way to see if it works, install the following so Python Turtle can finally work
-#+begin_quote
-
-sudo apt install python3-tk
-
-#+end_quote
-** Day 2
 * TODO 
 ** separate virtualenv in Emacs. so its easy to switch between Python project inside Emacs
+** we need to try this setup from a Reddit [[https://www.reddit.com/r/emacs/comments/10nctt8/elpy_or_lsp_plus_x/][post]]. Its got eglot
+#+begin_src lisp
+
+
+  (use-package eglot
+  :ensure t
+  :bind (:map eglot-mode-map
+              ("C-." . xref-find-references)))
+
+(use-package python
+  :defer t)
+
+(use-package elpy
+  :ensure t
+  :defer t
+  :init (advice-add 'python-mode :before 'elpy-enable))  
+
+#+end_src
 * Python writing to  file:
 ** Writing text to file, but also has a context manager example
 *** https://stackoverflow.com/questions/5214578/print-string-to-text-file
+* Life-easy Scripts
+** [[https://github.com/dilshod/xlsx2csv][xlsx2csv]] helps with projects managing xlsx
+** 
 * OOP, PyGame:
+** Avoiding circular imports:
+*** import only when needed. Defer import until later. Cons: cant read package imports at the top.
+#+begin_src python
+
+  # module a.py
+  def func():
+    from package import b
+
+  # module b.py
+    def func():
+      from package import a
+
+#+end_src
+*** central module. My favourite. Altough mine is simpler. Cons: names can get extra long.
+#+begin_src python
+
+  # __init__.py
+  from . import a
+  from . import b
+
+
+  # a.py
+  import package
+
+  def func():
+      package.b.some_object()
+
+
+  # b.py
+  import package
+
+  def func():
+      package.a.some_object()
+#+end_src
+*** Import the Whole Module. Similar to fully functional. Feels like a module inside a module inside a module.
+#+begin_src python
+
+
+
+  # module_a.py
+  def function_a():
+      return "This is function A in Module A"
+
+  # module_b.py
+  import module_a  # Import the whole module
+
+  def function_b():
+      return f"This is function B in Module B, calling: {module_a.function_a()}"
+
+  # main.py
+  from module_b import function_b
+
+  print(function_b())
+  
+#+end_src
 ** [[https://stackoverflow.com/questions/59330578/how-to-avoid-using-global-variables][childish way to avoid Global keyword]]
 *** Childish non-OOP way to avoid Global  keyword, sinnce its quite obviously bad and confusing
 ** [[https://www.geeksforgeeks.org/inheritance-and-composition-in-python/][finally understand composition thanks to my RPS company]]
@@ -144,11 +231,6 @@ events.on_change += something_changed # remember this is kinda cool, becoz event
 events.on_change("i have diarrhea")
 
 #+end_quote
-* Arrange:
-** https://skymind.ai/wiki/lstm
-*** A beginners guide to LSTM's and Recurrent Neural Network. One is (RNN) time dependent, one is not. 
-*** The RNN preserves sequential information in the hidden state. 
-*** The output of the hidden layer is used as input to the next time step. 
-*** The sum of the hidden state and weight is squashed by a funtion (eg. logistic sigmoid function). Because of this feedback loop, each hidden state contains not only of (directly) previous hidden state, but also those before h_t-1 as long as memory cna persist
-*** Recurrent nets are old (like most neural network), and major OLD problem is the "vanishing gradient problem"
-*** LSTMs are a variation of recurrent net. They help preserve the error that can be propagated through time and layers. By maintaining a more constant error, they allow recurrent nets to continue to learn over many time steps (over 1000)
+* IMPORTANT add later:
+** [[https://codingnomads.com/python-flask-wtf-forms][python flask wtf!!]]
+** [[https://stackoverflow.com/questions/32550487/how-to-print-from-flask-app-route-to-python-console][debugging aka print in Flask, not default]]

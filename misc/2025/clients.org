@@ -1,0 +1,6 @@
+* Terry:
+** Points
+1. show him a very empty and basic form
+2. show him a module, that makes validation work easy.
+3. question him first, and see if its ok to explain to him each module/package you used
+** 
