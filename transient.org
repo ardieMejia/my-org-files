@@ -8,12 +8,9 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast theme]]
+** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
-** we create html pages like these
-*** /events
-*** /events/create
-*** /events/edit
-*** /events/delete
 ** the details we should memorize by now
 *** tournament name
 *** start date
@@ -28,7 +25,6 @@
 *** age group
 ** FB:
 *** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
-** create a section in Python for dataframes
 ** Write about the concept of traceback and dump() and dump(obj)
 ** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
 #+begin_quote
@@ -46,7 +42,7 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 #+end_quote
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** Read about Python docstring
-** you managed tomake flas run wathc work. document IMPORTANT
+** you managed to make flas run wathc work. document IMPORTANT
 ** contact African guy again
 ** github repo for new emcas.init
 *** README
