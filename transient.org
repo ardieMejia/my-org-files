@@ -8,7 +8,23 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast theme]]
+** Spokeshave:
+*** The first photo you see is my own handmade spokeshave. The second photo you see is 1 from Carousell, is rusted, and he's selling at RM 45 (jacked up from RM 35). One of the problem with the returning popularity of handtools in woodworking/carpenting, is that there are sellers taking advantage of nostalgic buyers. Nostalgic buyers buy anything that is nostalgic at a high price, based on vibe. If sellers keep doing this, that means such buyers are  more common than I think.
+*** This wouldnt be a problem, except for several facts: (1) Some of these buyers would not do this a decade ago, before Instagram woodworkers got really big, where the price of this items would sell literally at snack prices (I heard comon stories in USA garage sales or UK car boot sales, people selling this stuff at the equivalent of RM 1-5) (2) My own tool (1st photo) works many times better than a newly bought spokeshave, refining a spokeshave takes effort and skill (3) Restoring a rusted tool is doubly the effort, it takes a patience, time and skill to do this, not to mention looking for the paint for the spokeshave body.
+*** Im not complaining really. Just trying to emphasize the fact the market value of something has more to do with perceived value of something. Very similar to the relationship of investors and businesses. If Mark Zuckerberg were discovered to have sexually assaulted a women in the past, and successfully charged in court (actually Elon Musk almost got caught in a case involving sexual charges, but nothing happened), Facebook would lose market value like magic. 
+*** Market value is perceived more than anything. A smaller percentage of it could be attributed to actual quality.
+*** I still love the influence of Instagram on hobbies. But this is ridiculus. This is why the upcycle market is mostly a scam, and the entire dynamic will never encourage people to actually upcycle. Is the money important? If its important, then stop pretending its not important. Is the upcycling more important? Then why punish the upcyclers/buyers with ridiculus prices? Coupled this fact with some upcycled wood businesses propping up like mushrooms, trying to feed on the demand, and there might be no way to tell if its upcycled or cut from fresh trees. Which means the upcycling sentiment was not important after all. 
+*** By the way, my spokeshave feels its like worth RM 300 in effort alone (not including material). Shaves wood like butter. And uses old parts of furniture. 
+** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
+** from our phone link
+** Emacs:
+*** to avoid the annoying behaviour of select hydra accidental canceling, we make it only 1 way to quit it, that is q
+*** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
+*** Hydra mode, buffer hydra, so far we have no use any of the "mark whole buffer", so we make yank and kill a main hydra
+*** we forget completely about html-mode vs web-mode vs emmet-mode, instead we focus on how to create 
+** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
+** Lets read some hydra [[stuff][stuff]]
+** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
 ** the details we should memorize by now
@@ -42,7 +58,6 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 #+end_quote
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** Read about Python docstring
-** you managed to make flas run wathc work. document IMPORTANT
 ** contact African guy again
 ** github repo for new emcas.init
 *** README

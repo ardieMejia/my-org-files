@@ -257,4 +257,67 @@ pip install python-lsp-server
 ** created both Users and Posts through messy forms
 ** went back a Git branch
 ** properly learnt the entire process for initiializing a migration repo, creating migration script, and executing the script
-** 
+* Day 15:
+** learnt how to properly migrate (creating a script) and upgrade (applying the script)
+** discovered that a primary key can be any field. However, it doesnt stop entry of duplicates. Turns out we dont have unique set to True.
+* Day 16:
+** We successfully created a delete (no Javascript, fully Flask, by id)
+* Day 17 
+** We successfully learnt to bulk insert
+** But we have yet to bulk insert parent and child models
+** We managed to use declarative_base (which seems to imply some auto-mapping logic)
+** declarative_base works even you already have a database. Which means no create_engine
+** The non-declarative-base way:
+#+begin_src python
+
+  with open(r'./input/input.csv', newline='') as csvfile:
+
+    dictreader = csv.DictReader(csvfile, delimiter=',')
+    for row in dictreader:
+      app.logger.info(row)
+      e = Event(tournamentName=row['tournamentName'], startDate=row['startDate'], endDate=row['endDate'], discipline=row['discipline'])
+      db.session.add(e)
+      # ===== commit..
+
+#+end_src
+** The kinda cool declarative-base, first create a class that inherits a [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]], and then:
+#+begin_src python
+
+  with open(r'./input/input.csv', newline='') as csvfile:
+    dictreader = csv.DictReader(csvfile, delimiter=',')
+    listings = [EventListing(**row) for row in dictreader]
+    db.session.add_all(listings)
+
+#+end_src
+* Day 18
+** we struggled for the longest time. Struggled with InstrumentedList, which is the the default query result in Flask_Sqlalchemy. Turns out, something like "parent.child.name", becoz its a many-to-many, instead, we do loop in Jinja
+** We either use db.Model or Base as args in our model classes. BUT! db can should be passed from our original app context, NOT a raw import like db = SQLAlchemy(). This is why our raw SQLAlchemy attempt was not read by commands like "flask db migrate". The command itself depends on the app context.
+*** Note how SQLAlchemy(app) is the same object as raw SQLAlchemy object. In the Flask-Sqlalchemy version:
+#+begin_src python
+
+  # ========== Eg: fed from app.py
+  db = SQLAlchemy(app)
+
+  # ========== Eg: model files
+  event_member = db.Table(
+    "event_members",
+    db.Column("event_id", db.ForeignKey("event.id")),
+    db.Column("member_id", db.ForeignKey("member.mcfId"))
+)
+#+end_src
+*** In raw SQLAlchemy:
+#+begin_src python
+
+  from sqlalchemy import Column, Table, ForeignKey, Integer, String
+  
+  event_member = Table(
+    "event_members",
+    Base.metadata,
+    Column("event_id", ForeignKey("event.id")),
+    Column("member_id", ForeignKey("member.mcfId")),
+    extend_existing=True,
+
+#+end_src
+* Day 19:
+** we learned from the cool table from [[https://www.geeksforgeeks.org/tailwind-css-tables-complete-reference/?ref=shm][GeeksForGeeks]] but its still a very slow process.
+** it seems we should very soon do a Bootstrap version
