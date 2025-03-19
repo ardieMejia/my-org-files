@@ -23,7 +23,6 @@
 *** Hydra mode, buffer hydra, so far we have no use any of the "mark whole buffer", so we make yank and kill a main hydra
 *** we forget completely about html-mode vs web-mode vs emmet-mode, instead we focus on how to create 
 ** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
-** Lets read some hydra [[stuff][stuff]]
 ** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
