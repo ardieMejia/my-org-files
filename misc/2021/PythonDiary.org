@@ -321,3 +321,83 @@ pip install python-lsp-server
 * Day 19:
 ** we learned from the cool table from [[https://www.geeksforgeeks.org/tailwind-css-tables-complete-reference/?ref=shm][GeeksForGeeks]] but its still a very slow process.
 ** it seems we should very soon do a Bootstrap version
+* Day 20:
+** We spent time reading from both Bootstrap and Tailwind CSS. We managed to create proper behaving columns and tables inside every page.
+** We also learnt about templating inheritance in Jinja. Properly
+* Day 21:
+** Small snippets learnt (CSS). As we learnt, CSS is contextual, and often "projects its context onto child/parent". In this example, button behaves correctly.
+#+begin_src html
+
+  <td>
+    <div class="m-3">
+      <button type="submit" class="w-full ...">Submit</button>
+    </div>
+  </td>
+
+#+end_src
+** [[./PythonDiary/css_div_1.png]]
+** In this example, button disrespects the parent, overflows out.
+#+begin_src html
+
+  <td>
+    <div>
+      <button type="submit" class="w-full m-3 rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Submit</button>
+    </div>
+  </td>
+
+#+end_src
+** [[./PythonDiary/css_div_2.png]]
+* Day 22:
+** We read on deploying Django Flask apps on Render. Basic minimum things we have to change
+** Django:
+*** DATABASES (but requires the Python package dj_database_url to parse but Flask doesnt require this, also requires pyscopg2-binary for Python postgresql drivers)
+*** our migration worked, can be seen from PostgreSQL viewer apps, such as, dbeaver. 
+*** DEBUG (conditional value on environment setting)
+*** ALLOWED_HOST (conditional on environment, split(), and spaced it in render)
+*** SECRET_KEY (conditional on environment)
+*** the pip freeze workflow
+** Flask, settings.py:
+* Day 23
+** DONE Terry started asking reminding the money is running out. But why? He doesnt seem to realize that this thing takes effort and money. Also, he cant see the reward in his face.
+** Object debugging
+#+begin_src python
+
+  pd.read_sql(query,db.session.connection())
+  # ========== in the middle debugging through type().
+  # I disovered that connection shows up as <class 'method'> and connection() shows up as  <class 'sqlalchemy.engine.base.Connection'>
+  # Sometimes what is function and what is an object is not always obvious. In this case, connection that we wanted for pandas, was easily accessible from Flask-Sqlalchemy but with a function
+
+#+end_src
+** Gunicorn:
+*** Our entry point is wsgi.py (instead of app.wsgi in some online examples)
+#+begin_src python
+
+  gunicorn --bind 127.0.0.1:5000 'wsgi:app'
+
+#+end_src
+*** [[https://kevalnagda.github.io/flask-app-with-wsgi-and-nginx][best link so far]]
+*** 
+* Day 24:
+** Tried so many links showing @jwt_required, but none of them work so far. Always with the "Missing Authorization Header". 
+** Flask sessions works much better. But always needs conditional.
+** We spent 3 days doing nothing but reading on this, we dont need to deliver. We need more communication.
+** 
+** 
+* Day 25:
+** We installed PostgreSQL for the first time, becoz SQLite doesnt support foreign key
+** we tried Flask session, it works, but soon we should Flask-sessions
+** Spent 2 hours solving the PostgreSQL installationg problem:
+*** We just needed to execute commands with semicolon (IMPORTANT), before we got to see database, after \l command
+*** [[https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/][RealPython]] examples, but it assumes no setup and login problems for DB
+*** General flow
+#+begin_quote
+
+CREATE USER <your_username> WITH PASSWORD '<your_password>';
+CREATE DATABASE <your_database> OWNER <your_username>;
+GRANT ALL PRIVILEGES ON DATABASE <your_database> TO <your_username>;
+# ===== disable login required
+# Edit pg_hba.conf (location: /etc/postgresql/<version>/main/pg_hba.conf
+# ===== where all lines mention local setup, replace MD5, with trust
+
+#+end_quote
+*** 

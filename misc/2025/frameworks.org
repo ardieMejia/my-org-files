@@ -1,3 +1,4 @@
+
 * Jinja:
 ** [[https://realpython.com/primer-on-jinja-templating/][realpython]]. Has primer on jinja templating. Better read this instead of searching forever for beginners doc.
 ** How to call function from within Jinja:
@@ -47,20 +48,117 @@
 ** Cool list of software to view DBs [[https://stackoverflow.com/questions/66545908/how-to-see-sqlalchemy-database][here]]
 ** [[https://www.apriorit.com/dev-blog/web-python-libraries-for-database-management#using-python][site]] that shows specific modules/packages to connect to DBs such as SQLite or Apache, etc
 ** 
-* Flask
+* Flask:
+* Flask environment
 ** [[https://flask.palletsprojects.com/en/stable/cli/][palletsprojects]]. Has better links for configs. Example:
 #+begin_quote
 
 $ flask run --extra-files file1:dirA/file2:dirB/
 
 #+end_quote
-*** becoz setting environment variables dont seem to work
-** asd
-* Django
-** 
-* AJAX, html elements
-** AJAX
-** Forms
+*** mostly becoz certain env variables are unsafe to have it running in production, hence some like  FLASK_RUN_EXTRA_FILES are disabled (?)
+** Our way
+#+begin_src python
+
+  class Config:
+
+    JWT_SECRET_KEY = "my-secret-key"
+    JWT_TOKEN_LOCATION = ['headers']
+    SECRET_KEY = "also_my_secret_key"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # ===== cool conditional example, fast, for prod and dev environment
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'app.db')
+    # ===== can also do this
+    if os.environ.get('YOURAPPLICATION_MODE') == "production":
+        SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        SECRET_KEY = os.environ.get('SECRET_KEY')
+
+    # ===== from app.py
+    from config import Config
+#+end_src
+* Flask authorization (middleware), not fun at all
+** To learn basic, random, advanced:
+*** we always use sha256 compared to those older ones
+*** [[https://pypi.org/project/flask-auth-middleware/][protect routes here and there]] BASIC
+*** [[https://variable-scope.com/posts/storing-and-verifying-passwords-with-sqlalchemy][variable-scope]] quite advanced with functions for password checking defined inside User model (Eg)
+*** [[https://realpython.com/flask-google-login/][Google-login]]?
+*** [[https://www.freecodecamp.org/news/jwt-authentication-in-flask/][freecodecamp]]
+*** [[https://dev.to/abbyesmith/password-hashing-using-bcrypt-in-python-2i08][dev.to]] also has functions for inside model
+*** [[https://www.geeksforgeeks.org/hashing-passwords-in-python-with-bcrypt/][bcrypt]] BASIC
+** The first trick we first did was this:
+#+begin_src python
+
+  m = Member.query.filter_by(mcfId=mcfId).first() # ===== where 2nd mcfId is request.form['mcfId']
+  isVerified = bcrypt.check_password_hash(bcrypt.generate_password_hash(password).decode('utf-8'), m.password)
+
+#+end_src
+** In [[https://tedboy.github.io/flask/generated/werkzeug.check_password_hash.html][check_password_hash()]], arguments are 1 - hashed password and 2 - paintext password, to compare against. But in our example, the plainttext is from our DB, and hased is from login form. Below is proper.
+** One can:
+*** hash during the argument when creating a user from User model. Like this [[https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login][link]]
+#+begin_src python
+
+  new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+  # ...
+  password = request.form.get('password')
+  # ...
+  check_password_hash(user.password, password) # ===== here its the DB first, form 2nd
+
+#+end_src
+*** with full conditional cases. Examples [[https://www.loginradius.com/blog/engineering/guest-post/securing-flask-api-with-jwt/][here]]
+*** we wanna learn [[https://www.freecodecamp.org/news/how-to-setup-user-authentication-in-flask/][blueprints?]]
+** We wasted so much time with JWT, SIMPLE, we need Javascript to set tokens in header, [[https://flask-jwt-extended.readthedocs.io/en/stable/token_locations.html][official site]] has great example
+** Flask-Login
+*** instead of using Sessions, we can try LoginManager (Flask-Login), heres the [[https://flask-login.readthedocs.io/en/latest/][link]]
+*** [[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins][miguel's]] blog
+** SQLite:
+*** One day we can try [[https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#foreign-key-support][this]], so we can blindly and stupidly create Python on any setup.
 *** 
+* Flask SQLAlchemy, using ORMs avoids pitfalls like SQL injection
+** Relationships
+*** [[https://medium.com/@mandyranero/one-to-many-many-to-many-and-one-to-one-sqlalchemy-relationships-8415927fe8aa][medium]] example for one-to-one & others
+*** one-to-one puts foreign key on 1 SIDE. Becoz [[https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-one]["the ORM considers the “one-to-one” pattern as a convention, where it makes the assumption"]], which means its a constraint on the code/ORM level, not SQL level. So the child.parent side is "expecting" a 1-to-1, but not constrained in the database itself.
+*** [[https://medium.com/@philipdutra/understanding-relationships-in-flask-sqlalchemy-one-to-many-vs-many-to-many-6050d04c6cf0][one-to-many & many-to-many]]
+*** 
+*** We did this (no need that extra bracket):
+#+begin_src python
+
+  fide = db.relationship("Fide", backref="member", uselist=False)
+
+#+end_src
+* Flask projects:
+** What is this insane [[https://stackoverflow.com/questions/23714864/efficient-ways-to-store-multiple-excel-files-in-a-database][Excel shit]]
+* Django
+* app configs, server configs, tips, tricks and hacks
+** [[https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-apps-using-gunicorn-http-server-behind-nginx][Why]] you should try to deploy gunicorn (app server) behind a "real server" like ngix
+*** This same [[https://www.digitalocean.com/community/tutorials/a-comparison-of-web-servers-for-python-based-web-applications][link]] from DigitalOcean justifies why
+** Keepalive:
+*** (Read about werkzeug below) The trick is to [[https://stackoverflow.com/questions/10523879/how-to-make-flask-keep-ajax-http-connection-alive][set HTTP protocol version]] to 1.1
+*** [[https://github.com/KangersHub/python-flask-example-keepalive][alternative]]
 * Arrange 
 ** https://www.codersjungle.com/2024/07/09/handling-http-methods-in-flask-get-and-post-requests/
+** https://frankvalcarcel.com/blog/conveniently-storing-lists-in-database/
+** When exporting data from Database to excel, we can do this:
+#+begin_src python
+
+  query = sa.select(Member)
+  ms = db.session.scalars(query).all()
+  download_data = pd.read_sql(query,db.session.connection())
+
+  byte_object = BytesIO()
+  download_data.to_excel(byte_object, index=False)
+  byte_object.seek(0)
+
+  return send_file(byte_object, 
+                   download_name="hello.xlsx", as_attachment=True)
+
+
+#+end_src
+*** Our code above is inspired by examples like this [[https://www.geeksforgeeks.org/uploading-and-downloading-files-in-flask/][uploading and downloading file]] online, and treat the BytesIO like a file object itself, before passing to send_file. Heres another [[https://stackoverflow.com/questions/67894605/downloading-a-file-in-downloads-directory-flask-python][one]]. We also need to make sure we pull seek back to 0 since its an Byte object like in this [[https://stackoverflow.com/questions/68568527/create-excel-file-from-dataframe-and-allow-download-in-flask-error-file-format][example]]
+*** send_file is the proper Flask way to deal with downlaods
+*** we havent experimented with finer control possible with more advanced Pandas Dataframe [[https://medium.com/@alice.yang_10652/python-how-to-export-data-from-database-to-excel-step-by-step-guide-9cf6ea476abe][tricks]]. It might help if someone wants to exports to a single sheet
+*** we can also use the mysterious [[https://stackoverflow.com/questions/18977387/how-to-export-sql-server-result-to-excel-in-python][cursor]] object when writing to Excel, cursors are lower level elements of db sessions. They are how Python executes PostgreSQL command in a database session. 
+*** This [[https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html][page]] from the official Pandas documentation shows at the bottom an example of writing to several sheets of a single file. We can truy seduce Terry with this. But that might be overkill. 
+* Educational
+** [[https://werkzeug.palletsprojects.com/en/stable/][werkzeug]] is a WSGI web application library. This is what lies underneath Flask 
+** 

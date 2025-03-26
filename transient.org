@@ -8,39 +8,57 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Spokeshave:
-*** The first photo you see is my own handmade spokeshave. The second photo you see is 1 from Carousell, is rusted, and he's selling at RM 45 (jacked up from RM 35). One of the problem with the returning popularity of handtools in woodworking/carpenting, is that there are sellers taking advantage of nostalgic buyers. Nostalgic buyers buy anything that is nostalgic at a high price, based on vibe. If sellers keep doing this, that means such buyers are  more common than I think.
-*** This wouldnt be a problem, except for several facts: (1) Some of these buyers would not do this a decade ago, before Instagram woodworkers got really big, where the price of this items would sell literally at snack prices (I heard comon stories in USA garage sales or UK car boot sales, people selling this stuff at the equivalent of RM 1-5) (2) My own tool (1st photo) works many times better than a newly bought spokeshave, refining a spokeshave takes effort and skill (3) Restoring a rusted tool is doubly the effort, it takes a patience, time and skill to do this, not to mention looking for the paint for the spokeshave body.
-*** Im not complaining really. Just trying to emphasize the fact the market value of something has more to do with perceived value of something. Very similar to the relationship of investors and businesses. If Mark Zuckerberg were discovered to have sexually assaulted a women in the past, and successfully charged in court (actually Elon Musk almost got caught in a case involving sexual charges, but nothing happened), Facebook would lose market value like magic. 
-*** Market value is perceived more than anything. A smaller percentage of it could be attributed to actual quality.
-*** I still love the influence of Instagram on hobbies. But this is ridiculus. This is why the upcycle market is mostly a scam, and the entire dynamic will never encourage people to actually upcycle. Is the money important? If its important, then stop pretending its not important. Is the upcycling more important? Then why punish the upcyclers/buyers with ridiculus prices? Coupled this fact with some upcycled wood businesses propping up like mushrooms, trying to feed on the demand, and there might be no way to tell if its upcycled or cut from fresh trees. Which means the upcycling sentiment was not important after all. 
-*** By the way, my spokeshave feels its like worth RM 300 in effort alone (not including material). Shaves wood like butter. And uses old parts of furniture. 
+** [[https://hyperskill.org/learn/step/36181][IMPORTANT]]
+** Downloading the event_members table as an excel
+** date time object in flask sqlalchemy
+** Write documentation for your event management system
+** Social:
+*** If you share your video to people who are not interested in your content, it will only kill it. When people click off your video within the first few seconds, the algorithm picks up this behaviour as your content being not engaging enough and will deprioritize it. Thats why you need to be smart about sharing and only do it in the right places such as facebook groups dedicated to your niche.
+*** Post about SPOKESHAVE again, as Aaron says, you are a curator. so mention [[https://www.youtube.com/watch?v=nsi9kTmU5-0][Wright's]] project and Paul Sellers project.
+** Read about GitGurdian and alternative tools that can help explore web vulnerabilities for idiots like me
+** Mistakes we did, that we spnt a very long time to make the conditiaonl env loading work, is the "export" missing in bashrc. Why is an easy mistake to overlook?
+*** So turns out bash doesnt automatically export environmnt variables to child processes
+** Git:
+*** the trick of git rm --cached -r env/ (also setting that in .gitignore)
+*** Write it down somewhere
+** Python:
+
+
+** Reading personal blogs is always cool. This ones about [[https://jasonrudolph.com/blog/2009/02/25/git-tip-how-to-merge-specific-files-from-another-branch/][Git]]
+*** https://stackoverflow.com/questions/1911109/how-do-i-clone-a-specific-git-branch
+** Its very important to be knowledgable on common practices of "deploying to production". So READ [[https://flask.palletsprojects.com/en/stable/tutorial/deploy/][THIS]]. Also, read on lots of [[https://flask.palletsprojects.com/en/stable/deploying/][CONCEPTS]]
+** We are going to READ on FILE VALIDATION, COMMON skill:
+*** https://imagekit.io/blog/how-to-upload-files-in-html/
+*** https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/
+** The best way to read CSS frameworks, while learning an actual project in your real work, while also spending time doing your personal project, is to read all the documentation of several. Im currently reading both Bootstrap and Tailwind CSS. The frameworks come from different perspectives and opinions. And trying to get into the mind fo the guys who created the "language", means trying to think "what is the creator trying to convey", when reading all their documentations. 
+** Think of a project to use with typst
+*** Also write something about typst
+** We are going to publish our site, either in render or fly.io
+** Remember to move image files from Hanifas laptop during the meeting later.
+** Progress
+*** write about how you successfully did flex properly (3 child divs). Also flex and grid-cols dont mix very well. Remember to note how you read repeatedly sources from Bootstrap and Tailwind docs to get a sense of  CSS logic. You also tried to memorize slightly tailwind CSS. 
+*** Do you want to write about thinking in terms of context. 
 ** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
 ** from our phone link
+** How we generate our SECRET_KEY for our Flask app
 ** Emacs:
-*** to avoid the annoying behaviour of select hydra accidental canceling, we make it only 1 way to quit it, that is q
+*** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
+*** we need another Hydra to ehsily go to other-window using (other-window 1)
+*** [[https://zck.org/define-keymap][keymap]] very cool stuff
+*** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
+*** we need to add web-mode content select to our hydra.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
 *** Hydra mode, buffer hydra, so far we have no use any of the "mark whole buffer", so we make yank and kill a main hydra
 *** we forget completely about html-mode vs web-mode vs emmet-mode, instead we focus on how to create 
+*** we are going to try to use enriched mode to color Emacs
+*** I like Xah Lee's Emacs material online. But why is he charging his Xah HTML Mode for 32 US dollars? I guess it must be amazing, and he needs to eat. But it seems be against the spirit of Emacs open source, to keep it behind a paywall. Well, must be a work of art. So many praises online. (Im combining Emacs web-mode with many cool custom Hydra mode settings. Coz Im tired of hunting and looking around for html modes. And Emmet mode means memorizing a lot of stuff, its cool and short but too much to memorize. Amazing stuff, no need to type Ctrl-c Ctrl-e and such. Literal semicolon and some other keys. No need to hold down on keys. Every Emacs guy should eventually get his hands dirty with Hydra mode for even simple stupid stuff. Opens the door to many cool tricks)
 ** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
 ** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
-** the details we should memorize by now
-*** tournament name
-*** start date
-*** end date
-*** discipline (actual category)
-*** type (kinda like scope)
-*** eligibility (who can enter)
-*** limitation (which rank can enter)
-*** rounds
-*** time control
-*** event category
-*** age group
 ** FB:
 *** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
-** Write about the concept of traceback and dump() and dump(obj)
+*** I guess one of the reason I struggled with frameworks for the longest time, is becoz the template "language" confused how i thnk of code "state" in general
 ** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
 #+begin_quote
 
@@ -58,11 +76,6 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** Read about Python docstring
 ** contact African guy again
-** github repo for new emcas.init
-*** README
-** Code is about simplifying complexity. Emacs is about making my mind simple. Coz I need to love the programming language (LOL), at least eLisp makes me love programming agian
-** Facebook:
-*** Dont be ashamed to be admit that it takes a long time to learn a certain computer technology/language/framework. Even several years. Computer programming concepts for example are built on top of layers of abstraction. And the more the abstraction, the more mental effort it requires. A beginner Python programmer for example, cant tell the difference between modules and folders. And its useful for him/her to think in terms of physical folders for a long amount of time. We evolved from primates, and our brains havent evolved that much from the understanding of "object permanence".
 ** Social
 *** Use ur existing fiverr clients to improve your stats in other platforms
 *** Respond to the Daniel in Developer Kaki
