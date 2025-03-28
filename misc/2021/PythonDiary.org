@@ -401,3 +401,8 @@ GRANT ALL PRIVILEGES ON DATABASE <your_database> TO <your_username>;
 
 #+end_quote
 *** 
+* Day 26:
+** We finally made a "proper" c_templater. It accepts list and uses a global dict. But classing that dict is not necessary
+** We successfully did a "cascade delete" for members and FIDE
+** discovered a super-impressive Excel stackoverflow that we migt try someday
+

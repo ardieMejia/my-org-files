@@ -8,7 +8,14 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** We need to test duplicates of everything, but for now only FIDE ID
+** Errors and exceptions:
+*** lets learn how to handle errors [[https://www.digitalocean.com/community/tutorials/how-to-handle-errors-in-a-flask-application][here]]
+*** [[https://docs.python.org/3/library/exceptions.html][built-in]] python exceptions
+*** [[https://docs.sqlalchemy.org/en/20/core/exceptions.html][SQLalchemy core]] exceptions
 ** [[https://hyperskill.org/learn/step/36181][IMPORTANT]]
+** Software Engineering:
+*** [[https://softwareengineering.stackexchange.com/questions/252448/representation-of-a-question-mark-in-variable-names][predicate variable naming]]
 ** Downloading the event_members table as an excel
 ** date time object in flask sqlalchemy
 ** Write documentation for your event management system
@@ -22,8 +29,8 @@
 *** the trick of git rm --cached -r env/ (also setting that in .gitignore)
 *** Write it down somewhere
 ** Python:
-
-
+*** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment
+*** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
 ** Reading personal blogs is always cool. This ones about [[https://jasonrudolph.com/blog/2009/02/25/git-tip-how-to-merge-specific-files-from-another-branch/][Git]]
 *** https://stackoverflow.com/questions/1911109/how-do-i-clone-a-specific-git-branch
 ** Its very important to be knowledgable on common practices of "deploying to production". So READ [[https://flask.palletsprojects.com/en/stable/tutorial/deploy/][THIS]]. Also, read on lots of [[https://flask.palletsprojects.com/en/stable/deploying/][CONCEPTS]]
@@ -35,6 +42,7 @@
 *** Also write something about typst
 ** We are going to publish our site, either in render or fly.io
 ** Remember to move image files from Hanifas laptop during the meeting later.
+** Store this link somewhere ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])
 ** Progress
 *** write about how you successfully did flex properly (3 child divs). Also flex and grid-cols dont mix very well. Remember to note how you read repeatedly sources from Bootstrap and Tailwind docs to get a sense of  CSS logic. You also tried to memorize slightly tailwind CSS. 
 *** Do you want to write about thinking in terms of context. 
@@ -42,6 +50,9 @@
 ** from our phone link
 ** How we generate our SECRET_KEY for our Flask app
 ** Emacs:
+*** Hydra, disable ALL buffer operations, except next-buffer moves. 
+*** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
+*** Hydra we need to change our my-mode-line-generic-1 function by using (car my-list1) instead of  'hydra-face-blue. So we create a list like (setq my-list1 '(eww-form-text 2)) an use (car my-list1) or (nth <some-num> my-list1)
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
 *** we need another Hydra to ehsily go to other-window using (other-window 1)
 *** [[https://zck.org/define-keymap][keymap]] very cool stuff
@@ -57,6 +68,7 @@
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
 ** FB:
+*** How do you guys fill your breaks between coding session? Or how do you guys spend your weekend or days away from computers? Some of you probably have lots of snacks for between sessions, some of you probably have lots of cider in your fridge. Maybe not so healthy. Any hobbies outside of programming you guys have? Or maybe a side project, but a prog lang so different, as to be unmarketable but you cant live without it? ----- Gone are the days I do heavy workouts, I can only manage hikes during the weekend: cheap, free and a chance to escape the grayness of buildings and roads. The mental gear shift is so great between coding and non-coding, that even for my hikes during the weekend I need some downtime by doing playing music or reading a book the whole night before hike, and a full day afterwards. ---- What about you guys? Any cool unusual hobbies youd like to share? I know this group wont dissapoint, some of you are great at focusing for hours on end, your hobbies have to be different 
 *** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
 *** I guess one of the reason I struggled with frameworks for the longest time, is becoz the template "language" confused how i thnk of code "state" in general
 ** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
@@ -108,39 +120,6 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 *** [[https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Models][we REALLY need to read about MODELS before proceeding with Django]]
 ** TODO 
 *** post about why you write in Emacs. a constant in the software world, is bad documentation.
-** TODO 
-*** post about you rewatching The imitation Game
-** TODO write inside python.org
-*** Notice the repetition of words like details. But notice as well, the mention of index. The nature of traditional html being static/real files, means this is necessary to avoid a hard link between a --> b. This means one can link file a -> b and have the content vary endlessly between a and b
-#+begin_src python
-
-  # file urls.py under app /polls
-    urlpatterns = [
-      path("", views.index, name="index"),
-      path("details", views.details, name="details")
-  ]
-
-
-#+end_src
-** TODO "view management"
-*** I thought I was going to do some impressive class/method-overloading view management, but examples online showed conditional
-#+begin_src python
-
-  # in the views.py
-  def details(request, id=None):
-      if id is None:
-	  return HttpResponse("You're looking at the main page")
-      else:
-	  return HttpResponse("You're looking at question %s" % id)
-
-
-      
-  # inside urlpatterns array []
-  path("details/<int:id>/", views.details, name="details")
-
-
-
-#+end_src
 ** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
 *** https://adf.org.au/drug-facts/ketamine/
 *** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol
