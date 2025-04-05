@@ -42,6 +42,15 @@
 
 
 #+end_src
+** Multiple inheritance, one trick is shown [[https://stackoverflow.com/questions/1976651/multiple-level-template-inheritance-in-jinja2][here]]:
+*** by using includes in all in-betweens
+#+begin_export html
+
+{% include "some-parent.html" %}
+
+#+end_export
+*** So the naming I came up with might be base-layout.html -> inner-layout_h.html -> inner-layout_n.html -> post.html. 
+**** where the _h, _n stands for header or navigation
 * Basics:
 ** [[https://www.askpython.com/python-modules/flask/flask-crud-application][askpython]] shows Flask CRUD
 * Alternative software:

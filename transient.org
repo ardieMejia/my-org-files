@@ -8,7 +8,16 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** Bulk Upload:
+*** [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][correct one]]
+*** [[https://stackoverflow.com/questions/36272316/using-bulk-update-mappings-in-sqlalchemy-to-update-multiple-rows-with-different/74103044#74103044][much better bulk update to COPY]]
+*** https://www.restack.io/p/adding-columns-sqlalchemy-models-answer-bulk-insert-example
+** We need pagination from MEGA FLASK tutorial
 ** We need to test duplicates of everything, but for now only FIDE ID
+** More links on file uploads:
+*** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
+*** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][in flask]]
+*** [[https://stackoverflow.com/questions/7076042/what-mime-type-should-i-use-for-csv][the mimetypethat should be used]]
 ** Errors and exceptions:
 *** lets learn how to handle errors [[https://www.digitalocean.com/community/tutorials/how-to-handle-errors-in-a-flask-application][here]]
 *** [[https://docs.python.org/3/library/exceptions.html][built-in]] python exceptions
@@ -29,6 +38,7 @@
 *** the trick of git rm --cached -r env/ (also setting that in .gitignore)
 *** Write it down somewhere
 ** Python:
+*** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
 ** Reading personal blogs is always cool. This ones about [[https://jasonrudolph.com/blog/2009/02/25/git-tip-how-to-merge-specific-files-from-another-branch/][Git]]
@@ -50,6 +60,10 @@
 ** from our phone link
 ** How we generate our SECRET_KEY for our Flask app
 ** Emacs:
+*** try perspective el
+*** try key chords
+**** https://github.com/emacsorphanage/key-chord
+**** [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams for what keys to avoid]]
 *** Hydra, disable ALL buffer operations, except next-buffer moves. 
 *** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
 *** Hydra we need to change our my-mode-line-generic-1 function by using (car my-list1) instead of  'hydra-face-blue. So we create a list like (setq my-list1 '(eww-form-text 2)) an use (car my-list1) or (nth <some-num> my-list1)
@@ -68,7 +82,8 @@
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
 ** FB:
-*** How do you guys fill your breaks between coding session? Or how do you guys spend your weekend or days away from computers? Some of you probably have lots of snacks for between sessions, some of you probably have lots of cider in your fridge. Maybe not so healthy. Any hobbies outside of programming you guys have? Or maybe a side project, but a prog lang so different, as to be unmarketable but you cant live without it? ----- Gone are the days I do heavy workouts, I can only manage hikes during the weekend: cheap, free and a chance to escape the grayness of buildings and roads. The mental gear shift is so great between coding and non-coding, that even for my hikes during the weekend I need some downtime by doing playing music or reading a book the whole night before hike, and a full day afterwards. ---- What about you guys? Any cool unusual hobbies youd like to share? I know this group wont dissapoint, some of you are great at focusing for hours on end, your hobbies have to be different 
+*** post your spokeshaves both photos and in action. In FB "handmade tools" group first. Then elsewhere
+*** Write about the death of personal computing. Make it relatable. Think of relating the topic with Haiku. Complain slightly about these being a time sink. Also relate to GUIX, Nix, and Emacs.
 *** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
 *** I guess one of the reason I struggled with frameworks for the longest time, is becoz the template "language" confused how i thnk of code "state" in general
 ** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
@@ -100,7 +115,6 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 *** [[https://stackoverflow.com/questions/7460938/how-to-run-a-python-script-in-a-web-page][ways to embed python script in website. But maybe we dont need this.]]
 *** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
 *** [[https://flask.palletsprojects.com/en/stable/][Im not sure why i was reading about Flask]]
-*** [[https://starkie.dev/blog/how-a-browser-renders-a-web-page][WRITE: how a website renders page, very informative]]
 ** Read about web-mode features, haha
 *** and alternatives
 ** Writing about:
@@ -210,12 +224,6 @@ Join 4,100+ Data professionals:
 
   
 #+end_src
-** TODO 
-*** use an AbstractTableModel to make it simple to add data & column as a new table
-*** https://coderanch.com/t/335326/java/Dynamic-JTable
-** TODO 
-*** Where to find small keychain ring
-*** contact https://www.mypianomalaysia.com/contact-us/ and mention the piano not being yours, and the possibility. Ask for minimum price, or average price. mention a pin replacement
 ** [[https://ringgitplus.com/en/blog/income-tax/how-to-file-your-taxes-for-the-first-time.html][read on how to do e-filing for d first time]]
 ** SO COOL:
 *** https://github.com/WingTillDie/adjust-volume/

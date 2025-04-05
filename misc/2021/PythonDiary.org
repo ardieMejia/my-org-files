@@ -1,4 +1,5 @@
 * Day 1
+** At first started out using Excel as a Database and CLI only app (inspired by [[https://github.com/AnthonyDjogan/Excel-Based-Employee-Management-System_Python-CRUD-Application][AnthonyDjogan EMS]]), and slowly shifted into a proper CRUD (or FUCK) app. 
 ** successfully installed elpy (projectfile first as requirement)
 ** we can try anaconda next time
 ** the key to using our virtualenv
@@ -405,4 +406,73 @@ GRANT ALL PRIVILEGES ON DATABASE <your_database> TO <your_username>;
 ** We finally made a "proper" c_templater. It accepts list and uses a global dict. But classing that dict is not necessary
 ** We successfully did a "cascade delete" for members and FIDE
 ** discovered a super-impressive Excel stackoverflow that we migt try someday
+* Day 27:
+** We spent a lot of time with this error:
+#+begin_quote
 
+ERROR [flask_migrate] Error: Can't locate revision identified by '00de22c8141a'
+
+#+end_quote
+** A common solution is to remove the [[https://stackoverflow.com/questions/56596756/how-to-remove-a-row-from-the-alembic-version-table-in-flask-app][alembic_version]] TABLE from our database. But then we ancountered an error.
+#+begin_quote
+
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.DuplicateTable) relation "event" already exists
+
+#+end_quote
+** Simply deleting all our model tables (member, event, event_members) solved the problem. No deleting migrations/ folder needed. We simply migrate as usual
+* Day 28:
+** Learnt a new trick, of solving squeezed tables in Tailwind. (Becoz we use divs for resizing, but we dont expect tables to move about). Using w-<somenum>, the header becomes the column size.
+#+begin_src html
+
+  <table class="some-class">
+    <thead>
+      <tr class="some-class">
+        <th class="w-30">Header 1</th>
+        <th class="w-200">Header 2</th>
+        <!-- ..... snip ..... -->
+      </tr>
+    </thead>
+  </table>
+  
+#+end_src
+** We cant do migrations our usual migrations using a free Render account, we should either do a full drop_all() create_all() with an app context. We maybe need to read more on this.
+#+begin_src python
+
+  # ===== this solves migration issues using Renders free account
+  with app.app_context():
+      db.drop_all()
+      db.create_all()
+
+#+end_src
+* Day 29: 
+** Due to database migration issue, and many other problems. Spent most of the time recreating what I did before, + some new templates (logo) for errors.
+* Day 30
+** Heres a common error for you below. 
+#+begin_quote
+
+No 'id' attribute - override 'get_id'
+
+#+end_quote
+** It simply means to override default function get_id() as in below.
+#+begin_src python
+
+  class User(#...):
+          # ...
+          def get_id(self):
+          return (self.user_id)
+          # ...
+
+
+#+end_src
+* Day 31:
+** Its only when I asked the question "How do I center an SVG inside a table" do I solve my "uncentreable" SVG in a table.
+*** it shows in this [[https://stackoverflow.com/questions/8639383/how-do-i-center-a-svg-in-a-div][stackoverflow]] to use:
+#+begin_src css
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+#+end_src
+*** It seems simply adding a "flex" to a "dead" item inside a table, gives it life again (with div of course)

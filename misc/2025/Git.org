@@ -1,7 +1,8 @@
 * add something
-* getting versions of file from previous branch, in a much simpler way
-** git show <somehash>:path/to/file > new_filename.ext
+* version of files
+** getting versions of file from previous branch, in a much simpler way. git show <somehash>:path/to/file > new_filename.ext
 *** [[https://stackoverflow.com/questions/44400736/how-do-i-get-a-particular-older-version-of-a-file-from-git-repository-without][Link]]: simpler and more physical
+** jasonrudolph blog for [[https://jasonrudolph.com/blog/2009/02/25/git-tip-how-to-merge-specific-files-from-another-branch/][simpler solution]]
 * restoring local changes, after "checking out" other branches
 ** git stash pop 
 *** most basic

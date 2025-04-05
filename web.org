@@ -119,5 +119,6 @@
 * SEO basics
 ** https://www.youtube.com/watch?v=JSm4aQl4w_U
 *** Very basic & better for developers (instead of for business guys, which focuses on keyword building and content optimization)
-
+* REDO the whole section
+** [[https://starkie.dev/blog/how-a-browser-renders-a-web-page][starkie.dev: how a website renders page, very informative]]
 
