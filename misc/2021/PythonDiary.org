@@ -64,7 +64,7 @@ pip install python-lsp-server
 *** For projectile to work, we need this at the minimum:
 #+begin_src lisp
 
-  (setq projectile-globally-ignored-file-suffixes '(".png" ".jpg" ".gif" ".woff" ".woff2" ".ttf" ".cache")) ;; ===== anything you dont desire to hide
+  (setq projectile-globally-ignored-file-suffixes '(".png" ".jpg" ".gif" ".woff" ".woff2" ".ttf" ".cache")) ;; ===== anything you desire to hide
 
 #+end_src
 ** LSP
@@ -476,3 +476,13 @@ No 'id' attribute - override 'get_id'
 
 #+end_src
 *** It seems simply adding a "flex" to a "dead" item inside a table, gives it life again (with div of course)
+* Day 32:
+** I struggled with flask db migration scripts:
+*** When running both upgrade and downgrade both produces errors
+*** running flask db migrate shows database as not up to date. But it should be producing a script
+*** Running flask db stamp head works
+** What does flask db stamp head do?
+* Stop, were doing UPLOADS:
+** https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html
+** https://saturncloud.io/blog/efficiently-appending-to-a-dataframe-within-a-for-loop-in-python/
+** [[https://stackoverflow.com/questions/68568527/create-excel-file-from-dataframe-and-allow-download-in-flask-error-file-format][and finally writing]]

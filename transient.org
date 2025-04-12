@@ -8,11 +8,19 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Bulk Upload:
-*** [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][correct one]]
-*** [[https://stackoverflow.com/questions/36272316/using-bulk-update-mappings-in-sqlalchemy-to-update-multiple-rows-with-different/74103044#74103044][much better bulk update to COPY]]
-*** https://www.restack.io/p/adding-columns-sqlalchemy-models-answer-bulk-insert-example
-** We need pagination from MEGA FLASK tutorial
+** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
+** Social media posting:
+*** clickbait thumbnails that are more artistic
+*** create a plea on threads
+**** Any fellow Malaysian artist or social media manager (or familiar with the nuances) wants to connect with me? Help me sell my stuff for a cut/commission of 30%. Benefits includes freebies of some of my wooden products.
+*** If someone actually wantedto buy this from me, how much would I charge?
+** Job:
+*** https://www.maukerja.my/
+*** https://www.jorawork.com/
+*** https://www.ricebowl.my
+*** Read about orchestration and automation
+*** about Google cloud platforms: Snowflake and Databricks (good to have)
+*** maybe SQL and Azure diffs
 ** We need to test duplicates of everything, but for now only FIDE ID
 ** More links on file uploads:
 *** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
@@ -25,12 +33,13 @@
 ** [[https://hyperskill.org/learn/step/36181][IMPORTANT]]
 ** Software Engineering:
 *** [[https://softwareengineering.stackexchange.com/questions/252448/representation-of-a-question-mark-in-variable-names][predicate variable naming]]
+** Jokes:
+*** For ages, scholars have debated which comes first. A project or a project template.
 ** Downloading the event_members table as an excel
-** date time object in flask sqlalchemy
 ** Write documentation for your event management system
 ** Social:
+*** Post about how your wedges last a very long time. Post with old small table, it lasts forever. The medium sized table broke where IKEA glued it up, not me. Yes, Im proud of what I did to something that shouldnt last this long. 
 *** If you share your video to people who are not interested in your content, it will only kill it. When people click off your video within the first few seconds, the algorithm picks up this behaviour as your content being not engaging enough and will deprioritize it. Thats why you need to be smart about sharing and only do it in the right places such as facebook groups dedicated to your niche.
-*** Post about SPOKESHAVE again, as Aaron says, you are a curator. so mention [[https://www.youtube.com/watch?v=nsi9kTmU5-0][Wright's]] project and Paul Sellers project.
 ** Read about GitGurdian and alternative tools that can help explore web vulnerabilities for idiots like me
 ** Mistakes we did, that we spnt a very long time to make the conditiaonl env loading work, is the "export" missing in bashrc. Why is an easy mistake to overlook?
 *** So turns out bash doesnt automatically export environmnt variables to child processes
@@ -38,11 +47,15 @@
 *** the trick of git rm --cached -r env/ (also setting that in .gitignore)
 *** Write it down somewhere
 ** Python:
+*** 
+*** Learn Polars
+*** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
+*** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
+*** Spend time reading a Github example [[https://github.com/adityaShar24/Social-Media-Backend?tab=readme-ov-file][Flask social media]] app, for MORE examples
+*** Read on Blueprints
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
-** Reading personal blogs is always cool. This ones about [[https://jasonrudolph.com/blog/2009/02/25/git-tip-how-to-merge-specific-files-from-another-branch/][Git]]
-*** https://stackoverflow.com/questions/1911109/how-do-i-clone-a-specific-git-branch
 ** Its very important to be knowledgable on common practices of "deploying to production". So READ [[https://flask.palletsprojects.com/en/stable/tutorial/deploy/][THIS]]. Also, read on lots of [[https://flask.palletsprojects.com/en/stable/deploying/][CONCEPTS]]
 ** We are going to READ on FILE VALIDATION, COMMON skill:
 *** https://imagekit.io/blog/how-to-upload-files-in-html/
@@ -58,13 +71,39 @@
 *** Do you want to write about thinking in terms of context. 
 ** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
 ** from our phone link
-** How we generate our SECRET_KEY for our Flask app
+** Watch:
+*** https://www.youtube.com/watch?v=YRvBQdJlBeo
+*** https://www.youtube.com/watch?v=421twOHytG0
+*** https://www.youtube.com/watch?v=1MSy6epsU6Y
+*** https://www.youtube.com/watch?v=9UIIMBqq1D4
+*** https://www.youtube.com/watch?v=afA0b5ygTyA
 ** Emacs:
+*** Convincing others:
+**** A few things that scare newcomers and Vimers, or frustrations that turn them away after trying Emacs for a month or two
+***** Ctrl Alt haevy, aka pinky finger. An overly cool solution: Hydra Mode and Key Chords, you'll be able to do stuff no-one else can do
+***** typing the wrong way, yes there is such a thing at least, not ideal, but this has a lot more to do, physical wiring of motor skills in the brain
+***** awkward defaults, overcome, with searching for "sensible defaults" for config ideas
+***** Emacs having the image of dinosaurs IDE, or an old mans IDE: Not true at all, witaout going into complete detail, cool packages that are new-ish that make your Emacs feel completely different or even radical. Hydra-mode, Helm, Vertico, Hydra-mode, Emacs Application Framework (if youre willing to install Python modules globally) and so many more.
+**** Reasons why I proseltize Emacs:
+***** Sincerely believe it would benefit non-programmers more than programmers, especially who love both writing and coding, and cant live without writing. And programmers, even myself included, are often opinionated with biases towards what is correct and non-correct in technology.
+***** Removing stereotypes, contrary to belief, Emacs communtiy are not wholly insular. Many partsa of the community, are increbly open and progressive, and pushing for changes such as Emacs default being less weird (I personally, dont understand why searching for "recent-files" is not enabled by default, I always forget the exact config, and have to copy it from some blog, when setting up Emacs on a new system).
+***** A consistent and fun to learn language across the entire ecosystem. If you want to be really cool, you can learn Lisp in both Emas and Nyxt (web browser which also uses a Lisp, very hackable). Even cooler? use Nyxt and Emacs inside GUIX (a stateless Operating System using Guile Scheme Lisp entirely, personally Ive never tried this). GUIX is something Ive always wanted to try, but not enough resources to buy a new laptop at the moment. GUIX is quite cool if you can get the hang of it, coz if Im not mistake, it has the concept of "profiles", which means every "state", every installation, every change is reproducible. From a laymans term, its like Apple's Time Machine. Whatever happens to your system, you can roll back to a previous "state". As a programmer, I imagine everyone here understands the idea of "state", or at least understands it on a "feel" level.
+***** We need more David beating up Big Tech Goliaths
+**** How to be cool and educated at the same time in Emas
+***** Im rather new to Emacs (relatively), but I progressed quite fast by reading a lot of blogs and opinions. So I can proudly claim, Im a very fast learner in the Emacs ecosystem. My usage of Org-Mode has helped me in this.
+**** But enough about that, why would YOU want to learn Emacs?
+***** Lets think of it this way. Everyone was once an idiot, yes, thats right, even Seniors, they were also once idiots. C programmers, Lispers, Web Developers, we were all once idiots
+***** If you are like me, Emacs and its ecosystem, is perhaps the ONLY technology of its kind, that rewards you if you know more. The more you read and explore and experiment, the higher returns. You cant say that for most things in the programming world. Sometimes, knowing more punishes you. 
+**** Other tips:
+***** use the try package
+*** emacs iconfy frame with emacs client should work with non-openbox managers. try that with a new laptop
+*** Ive installed Nyxt browser, uses Common Lisp, havent fully explored, but the documentation is fun to read so far. 
+**** The word hacking can have both negative and positive connotations. Even if one were to remove the negative MORAL connotations, hacking in your OWN code and software seems to imply a sort of un-naturalness, as if expecting something to break.
+**** Reading eLisp, Emacs and now Nyxt browser documentation, I get the impression that hacking can be both pleasant when there is consistency in the ecosystem. Maybe should try that approach in convincing others. Yes, writing is hard work. But writing both beautifully yet meaningfully accurate is even harder. 
+**** I remember my first few but very huge fears when I used Emacs the first time. Feels like treading on literal abstraction. More like walking on nothingness. Nowadays, I feel less of that fear. I think partly its becoz, one knows that all software Apple/Android/Windows/whatever is essentially an elaborate hack. Just gotta turn your hack into a work of art. Art as in beauty in words and language, I guess.
+**** Wow, this post seems just another rant.
 *** try perspective el
-*** try key chords
-**** https://github.com/emacsorphanage/key-chord
-**** [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams for what keys to avoid]]
-*** Hydra, disable ALL buffer operations, except next-buffer moves. 
+*** Also try Emacs Application Framework on a new laptop
 *** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
 *** Hydra we need to change our my-mode-line-generic-1 function by using (car my-list1) instead of  'hydra-face-blue. So we create a list like (setq my-list1 '(eww-form-text 2)) an use (car my-list1) or (nth <some-num> my-list1)
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
@@ -73,10 +112,7 @@
 *** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
 *** we need to add web-mode content select to our hydra.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
-*** Hydra mode, buffer hydra, so far we have no use any of the "mark whole buffer", so we make yank and kill a main hydra
-*** we forget completely about html-mode vs web-mode vs emmet-mode, instead we focus on how to create 
 *** we are going to try to use enriched mode to color Emacs
-*** I like Xah Lee's Emacs material online. But why is he charging his Xah HTML Mode for 32 US dollars? I guess it must be amazing, and he needs to eat. But it seems be against the spirit of Emacs open source, to keep it behind a paywall. Well, must be a work of art. So many praises online. (Im combining Emacs web-mode with many cool custom Hydra mode settings. Coz Im tired of hunting and looking around for html modes. And Emmet mode means memorizing a lot of stuff, its cool and short but too much to memorize. Amazing stuff, no need to type Ctrl-c Ctrl-e and such. Literal semicolon and some other keys. No need to hold down on keys. Every Emacs guy should eventually get his hands dirty with Hydra mode for even simple stupid stuff. Opens the door to many cool tricks)
 ** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
 ** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
@@ -115,12 +151,8 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 *** [[https://stackoverflow.com/questions/7460938/how-to-run-a-python-script-in-a-web-page][ways to embed python script in website. But maybe we dont need this.]]
 *** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
 *** [[https://flask.palletsprojects.com/en/stable/][Im not sure why i was reading about Flask]]
-** Read about web-mode features, haha
-*** and alternatives
 ** Writing about:
 *** Write about how you read tech documentation different from stories. 
-** Send CVs to at least 2 companies
-*** keywords and terminology in the skill section using bullet point.
 ** First we need to create another class for event, then we need to create a cleanup script
 ** TODO 
 *** we should read about pandas reading null from excel, and validating null from excel
@@ -144,20 +176,9 @@ And then progressively organizing and splitting code and CRUD in my own way. It 
 **** green, black and oolong tea
 **** brown rice, soy and adzuki beans, chestnuts, mushrooms, tomatoes, spinach, broccoli, cabbage, cauliflower, Brussels sprouts, sprouted grains and sweet potatoes
 ** TODO 
-*** think of a way to manipulate clipbaords in openbox
-*** make openbox display 
-** TODO 
 *** Study example uses of defmacro in Emacs
 ** TODO 
 *** add details to linked for [[https://outlier.ai/][Outlier]]
-** TODO 
-*** Write somewhere about creating swapfile in ubuntu 22 for hibernation, coz with no swap file big enough, cant hibernate.
-*** [[https://dev.to/dansteren/ubuntu-2204-hibernate-using-swap-file-1ca1][first]]
-*** [[https://www.stefanproell.at/posts/2022-11-01-fde-hibernate/][coz the first forgot to include how to edit the grubfile]]
-** TODO 
-*** We should store this link somewhere on [[https://www.cosmicpython.com/book/introduction.html][Architecture Patterns with Python]]
-** TODO 
-*** should you write about Jenkov being the best sources? maybe suggest forums, blogs and communities as better alternatives.
 ** Write this one somewhere!!
 #+begin_src
 

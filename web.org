@@ -1,124 +1,14 @@
-* https://dev.to/pixeline/the-easy-way-to-turn-a-website-into-a-progressive-web-app-77g
-** PWAs only work behind https
-** realfavicongenerator.net takes care of the visual layer of the PWA, it generates the manifest.json 
-*** (It has to involve more than just a manifest.json file !!). I dont get it!?!
-** Apparently, according to site, just setup manifest.json file, and keep testing with Google's lighthouse, and repeat till its 100% on the prog meter
-* https://linuxhostsupport.com/blog/install-lets-encrypt-ssl-certificates-using-certbot/
-** The SSL certificates issued by Let's Encrypt are valid for 90 days, & trusted by most web browsers today
-** Let's Encrypt has an installer called Certbot: can be used on Nginx and Apache.
-** You install is (as usual) with apt-get commands, but on top of your domain names
-** You have the option to redirect HTTP to HTTPS
-** You set auto-renewal of SSL certificate (every month) in crontab. This is only 1 command
-* https://serverguy.com/security/redirect-http-to-https/
-** To perform this redirect, you first need SSL cert (huh? basically SSL is required for https)
-** 4 ways to do this:
-*** .htaccess file via FTP
-**** 2 primary directives (just a fancy word for a specific config file syntax): Redirects and Rewriting URLs. 
-**** edit file on your computer and upload to server (Basically document root)
-*** .htaccess vis cPanel
-**** Files > File Manager > Document Root
-**** select your domain name, select "show hidden files" (dotfiles), then edit
-*** via Apache
-**** Redirect all Web traffic (adding some directives. The only RewriteCond is for server port, which is 80) 
-**** Redirect specific domain (extra RewriteCond)
-**** Redirect only a specific folder (the usual domain name includes folder: https://www.yourdomain.com/folder/$1. Additional RewriteCond is for REQUEST_URI) 
-*** via NGINX
-**** Login to NGINX 
-**** Add "return 301 https://$server_name$request_uri" in server directive
-**** save and restart
-* https://medium.com/net-magazine/html-manifest-402e6a8cc0e9#.kyg4r82s2
-** No new information
-* https://www.talater.com/upup/getting-started-with-offline-first.html
-** Simply: include upup.js & define object of contents (simple?)
-*** UpUp registers 'service workers' for your browser. 
-*** the service workers listens for network errors, if a request fails, it returns a file from a cache as it came from te network
-*** 
-** Next improvement: 
-*** define separate file for offline content. Object is: 
-**** 'content-url': 'offline.html'
-*** define assets. Objects:
-**** 'assets': ['css/bootstrap.min.css', 'css/offline.css']
-** Not a trivial point:
-*** the scope of the service worker depends on where you put the UpUp.js file. So for https://yoursite.com/js/upup.sw.min.js, users will only see offline content, when visiting /js. So ideally, place UpUp.js in project root
-** This is just the surface!:
-*** offline content customized on each user:
-*** 
-     'assets': [                 
-       'img/logo.png',           // images
-       'css/offline.css',        
-       'schedule.json?user=joe', // dynamic requests with data per user,
-       'js/angular.min.js',      // javascript libraries and frameworks,
-       'mov/intro.mp4',          // videos,
-       'contacts.pdf'            // and more.
-     ]
-* https://developers.google.com/web/fundamentals/primers/service-workers
-* https://www.wpbeginner.com/beginners-guide/how-to-get-a-free-ssl-certificate-for-your-wordpress-website/
-** How SSL works?:
-*** Browser requests connection, server sends cert with public key, browser checks cert validity, encrypts data with public key, server decrypts data with public key and private key
-** Cost of SSL:
-*** popular: 
-**** Domain.com: offers from 35.99 per year
-*** free:
-**** Let's Encrypt decided to pioneer in offering free SSL
-**** major support form Google and Facebook
-**** requires coding and server knowledge
-**** thankfully, the best WordPress hosting companies offer free SSL certs:
-***** Bluehost, SiteGround, HostGator, WPEngine, Dreamhost, InMotion, Hosting, GreenGeeks, iPage, Liquid Web
-**** In WordPress, you do this by installing SSL plugins (as with most of their features)
-* https://github.com/TalAter/UpUp/blob/master/docs/README.md
-** same old info
-** updates:
-*** When there are cahnges to the offline site, cache needs to be updated
-*** This is automatically for: 'content', 'content-url', or 'assets' array/objects/values
-*** But if the file content changes (without filename change), cache will NOT be updated
-*** For example: 'content-url': '/offline.html'. offline.html contents changed will not update cache
-*** Solution, define a cache version: 'cache-version': 'v2'
-* https://developers.google.com/web/fundamentals/primers/service-workers
-** What is a service worker (older solution was a an AppCache):
-*** service workers are Javascript workers, so it cant access DOM directly. Instead it uses an object/interface called postMessage to interact with the pages it controls
-*** service are programmable network proxy (??), allowing you to control the handling of network requests
-*** Its auto terminated and restarted depending on usage. Which means programmers dont use global state when using service worker's onfetch and onmessage handlers. For info to persist, you can use  IndexedDB API which service worker can access
-*** Service workers make extensive of promises.
-** Service worker lifecycle (completely separate from website lifecycle):
-*** You install by registering it in your Javascript code.
-*** But during install it will cache static assets you defined (?), if it fails, install will quit
-*** This means if it is installed, you'll know all assets have been cached
-*** activation
-*** once activated, it will controll all pages in its scope
-*** once in control, it will be either 2 states, terminated OR message handling
-*** 
-** Why https?:
-*** service workers are very powerful. 
-*** examples: https://pages.github.com/ which serves demo projects
-** Register service worker:
-*** there is a javascript file that is specified
-*** 
-   if ('serviceWorker' in navigator) {
-       window.addEventListener('load', function() {
-           navigator.serviceWorker.register('/sw.js').then(function(registration) {
-           // message to indicate success
-*** Again, as the TalAter example, the location of sq.js determines the scope. So best put in project root
-*** You can check service worker  is working, by using a Chome development tool. Visit the url: chrome://inspect/#service-workers
-*** A good development practice is using Incognito window for a service worker, so a previous service worker wont effect a new window
-** Install service worker:
-*** define callback function 'install'
-*** inside callback function
-**** open cache (basically create a variable name for cache): 
-         caches.open(CACHE_NAME).then // CACHE_NAME is the variable name
-**** cache our files
-         cache.addAll()
-** Cache and return requests:
-*** We define a 'fetch' event (callback), and pass in a promise: 
-        caches.match()
-*** (Remember that service workers are like a network handler?). This is where the promise method decides whether to return cache if exists or return back to 'fetch' which will make a network request
-*** For cumulative reponse:
-**** at the end of the previous code!! (return back to 'fetch' which will make a network request...), we add a callback to a .then 
-**** inside the callback: check valid reponse, check status is 200, ensure reponse type if 'basic' (no requests from 3rd-party), CLONE the response.
-**** we clone the response because the response is a Stream, where the body can only be comsumed once. (we need to send 1 to browser and 1 to cache)
-** MOREEEEE Update a service workers:
-* SEO basics
-** https://www.youtube.com/watch?v=JSm4aQl4w_U
-*** Very basic & better for developers (instead of for business guys, which focuses on keyword building and content optimization)
+* Just childish ideas:
+** https://dev.to/pixeline/the-easy-way-to-turn-a-website-into-a-progressive-web-app-77g
+*** PWAs only work behind https
+* Interesting websites (or preferably blogs) on the conceptual & tutorial stuff
+** https://linuxhostsupport.com/blog/
+** https://developers.google.com/
+** 
 * REDO the whole section
 ** [[https://starkie.dev/blog/how-a-browser-renders-a-web-page][starkie.dev: how a website renders page, very informative]]
-
+* Html, CSS, Javascript (I guess) main/cool websites/blog
+** https://www.tutorialrepublic.com
+** 
+* jQuery:
+** Use classlist instead of classname then .split() [[https://stackoverflow.com/questions/1227286/get-class-list-for-element-with-jquery][here]].

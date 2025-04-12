@@ -11,7 +11,6 @@
 *** to see what you stashed, helps previous commands
 * Managing branches
 ** [[https://stackoverflow.com/questions/13000563/how-to-push-multiple-branches-from-multiple-commits][pushing multiple branches into origin]]
-* 
 * Removing files from staging area, [[https://stackoverflow.com/questions/19730565/how-to-remove-files-from-git-staging-area][OOPS]], we dont want those files. But also the working copy
 ** git reset HEAD -- path/to/file
 *** we dont want specific ones in staging
@@ -19,6 +18,13 @@
 *** we dont want all from stagin
 * Reset all local changes [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][here]]
 ** git reset --hard
-* References:
-** https://refine.dev/blog/git-stash/#how-to-use-git-stash-apply
-** 
+* Radical or new, coz we keep forgetting:
+** [[https://sentry.io/answers/rename-a-local-git-branch/][rename/delete branches and push changes]]
+** [[https://refine.dev/blog/git-stash/#how-to-use-git-stash-list][git stash apply]] is great, but you gotta change your workflow a bit
+** [[*** https://stackoverflow.com/questions/1911109/how-do-i-clone-a-specific-git-branch][clone specific branch]], great if you like to see how far you can manage a mess of a script
+** Removing files from history, local, or local and remote, such as sensitive files. Its got the git rm <file> --cached. Link: [[https://www.freecodecamp.org/news/how-to-uncommit-sensitive-files-from-git/][freecodecamp]]s
+* Photos
+** The different "hardness" of git reset. From [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][theserverside]]
+[[./Git/git-reset.png]]
+
+

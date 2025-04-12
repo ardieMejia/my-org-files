@@ -5,3 +5,7 @@
 
 qpaeq # ========== to change eq settings
 pulseaudio --kill && pulseaudio --start # ========== to restart and read settings
+* Swapfile:
+** ubuntu 22 needs swapfile for hibernation, coz with no swap file big enough, cant hibernate.
+** [[https://dev.to/dansteren/ubuntu-2204-hibernate-using-swap-file-1ca1][example]]
+** [[https://www.stefanproell.at/posts/2022-11-01-fde-hibernate/][link above forgot to include how to edit the grubfile]]

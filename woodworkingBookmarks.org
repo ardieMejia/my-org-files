@@ -24,4 +24,21 @@
 **** runs on electrical engine
 * Very cool simple plans for woodworking
 ** https://www.familyhandyman.com/list/surprisingly-simple-woodworking-projects-for-beginners/
+* Client personas:
+** The all-natural shake drinker
+*** Loves Montessori toys
+*** cares nothing about "joint quality"
+*** very good eye for detail
+** Classy physics nerd
+*** always wanted to build his own tool, but never had the timeor resource
+*** thinks making a box is easy
+*** probably has potential to become a great woodworker, but needs a trigger
+*** will LIKE your product
+*** respects the fine line between design and function
+** IKEA hater:
+*** Loves cringe bulky wooden stuff
+*** Hates IKEA, but still a corporate simp at heart
+*** Likes Bosch
+*** power obsessed,similar to yourself but you dont want to admit it.
+** 
 
