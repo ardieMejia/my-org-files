@@ -8,12 +8,27 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** Streamlit presentation
+*** Microsoft Fabric
+*** graph_builder.add_node
+** Instagram, YouTube:
+*** share messages
+** Watch EmacsConf about Emacs editor "there are now better alternatives", 40 years
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** Post your YouTube video again:
+**** https://youtu.be/X65kUYPJnw8
+*** Is Emacs enough from being trapped in a singular software ecosystem (Eg: Apple)?
+**** Even for something as simple as search and replace, there lacks a  "repository" of "best practices". Although, it might be easy for me, its certainly straightforward enough for beginners
+**** Advantages: A consistent language paradigm across all its "tools" (packages, configs, etc...)
+**** Advantages: A ridiculus easy excuse to experiment with the functional paradigm without guilt (No installation whatsoever)
+**** Possible cons: Personally, I use Emacs for a TODO and knowledge manager (categorizing blogs and links). Some coders Ive met dont seem to be interested in that
+**** Possible cons: Coders who have tried (and gave up) seem to sight (either from experience or anecdote from other coders), of the Emacs pinky condition. While most cited solutions is mapping Caps Lock to Ctrl, I rewire my brain to always use both hand (Eg: Ctrl-p becomes Left-Ctrl and p, Ctrl-f, becomes Right-Ctrl and f). Rewire your brain doesnt seem a compelling argument enough.
+**** Possible advantages: Learning Lisp might lead you to an incredible journey of self-discovery of other extensible tools. (GUIX, Nyxt browser)
 *** clickbait thumbnails that are more artistic
-*** create a plea on threads
-**** Any fellow Malaysian artist or social media manager (or familiar with the nuances) wants to connect with me? Help me sell my stuff for a cut/commission of 30%. Benefits includes freebies of some of my wooden products.
-*** If someone actually wantedto buy this from me, how much would I charge?
+*** what I wished I knew about programming earlier on
+*** Why handtools in woodworking?
+**** Apart from the obvious artistic/crafty and detail reasons. There's a reason some woodworkers still use handtools despite the over-advertising of power tools. Its accuracy. Some woodworkers know this instinctively but cant put it on words. Utilizing all your 5 senses enhances accuracy, where powertools add an overpowered layer separating the woodworker from their product. When you feel and see the cuts, the planed surfaces, you ensure accuracy. Becoz a mistake multiplies in the face of your senses. We use sunlight before mating 2 wooden surface. And thats just 1 example, of multiplying the mistakes/perfection, when we use higher senses. Its not some airy nonsense of "artistry" (becoz art seems like a dirty word to some engineers, very strange). 
 ** Job:
 *** https://www.maukerja.my/
 *** https://www.jorawork.com/
@@ -22,6 +37,8 @@
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
 ** We need to test duplicates of everything, but for now only FIDE ID
+** Write down somewhere about Chopin, why YOUR rubato is correct, becoz notations of pitch and rhythm, which meant composers sometimes left rhythm out with no notation. 
+*** https://themusicsalon.blogspot.com/2012/07/chopins-rubato-and-everyone-elses.html
 ** More links on file uploads:
 *** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
 *** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][in flask]]
@@ -43,11 +60,7 @@
 ** Read about GitGurdian and alternative tools that can help explore web vulnerabilities for idiots like me
 ** Mistakes we did, that we spnt a very long time to make the conditiaonl env loading work, is the "export" missing in bashrc. Why is an easy mistake to overlook?
 *** So turns out bash doesnt automatically export environmnt variables to child processes
-** Git:
-*** the trick of git rm --cached -r env/ (also setting that in .gitignore)
-*** Write it down somewhere
 ** Python:
-*** 
 *** Learn Polars
 *** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
 *** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
@@ -78,6 +91,40 @@
 *** https://www.youtube.com/watch?v=9UIIMBqq1D4
 *** https://www.youtube.com/watch?v=afA0b5ygTyA
 ** Emacs:
+*** Finish this somewhere:
+#+begin_src lisp
+
+  (defun mytest1 ()
+  (interactive)
+  (let ((ardie-len-list (length(dired-get-marked-files))))
+    (if (eq 1 ardie-len-list)
+	  (if (member (file-name-extension (car (dired-get-marked-files)))
+		      '("jpg" "png" "jpeg" "webp")		      
+		      )
+	      ;; (print " it workrs")
+	      
+	      ;; (call-process-shell-command
+	      (start-process
+	     ;; "magick   /home/ardie/my-trash/temp_what/flask.png ~/Desktop/hahaha.png"
+	       "my-magick"
+	       "*my-magick*"
+	       "magick"
+	       (car (dired-get-marked-files))
+	       (concat "/home/ardie/Pictures/"
+		       (format "%s-%s-%s__" (ts-hour (ts-now)) (ts-minute (ts-now)) (ts-second (ts-now)))
+		       (file-name-sans-extension (file-name-nondirectory (car (dired-get-marked-files))))
+		       ".png")
+
+	       )
+	    (print "nope, wrong extension")
+	    )
+      
+      (print "command only works for single files")
+      )
+    )
+  )
+
+#+end_src
 *** Convincing others:
 **** A few things that scare newcomers and Vimers, or frustrations that turn them away after trying Emacs for a month or two
 ***** Ctrl Alt haevy, aka pinky finger. An overly cool solution: Hydra Mode and Key Chords, you'll be able to do stuff no-one else can do
@@ -89,13 +136,17 @@
 ***** Removing stereotypes, contrary to belief, Emacs communtiy are not wholly insular. Many partsa of the community, are increbly open and progressive, and pushing for changes such as Emacs default being less weird (I personally, dont understand why searching for "recent-files" is not enabled by default, I always forget the exact config, and have to copy it from some blog, when setting up Emacs on a new system).
 ***** A consistent and fun to learn language across the entire ecosystem. If you want to be really cool, you can learn Lisp in both Emas and Nyxt (web browser which also uses a Lisp, very hackable). Even cooler? use Nyxt and Emacs inside GUIX (a stateless Operating System using Guile Scheme Lisp entirely, personally Ive never tried this). GUIX is something Ive always wanted to try, but not enough resources to buy a new laptop at the moment. GUIX is quite cool if you can get the hang of it, coz if Im not mistake, it has the concept of "profiles", which means every "state", every installation, every change is reproducible. From a laymans term, its like Apple's Time Machine. Whatever happens to your system, you can roll back to a previous "state". As a programmer, I imagine everyone here understands the idea of "state", or at least understands it on a "feel" level.
 ***** We need more David beating up Big Tech Goliaths
-**** How to be cool and educated at the same time in Emas
-***** Im rather new to Emacs (relatively), but I progressed quite fast by reading a lot of blogs and opinions. So I can proudly claim, Im a very fast learner in the Emacs ecosystem. My usage of Org-Mode has helped me in this.
 **** But enough about that, why would YOU want to learn Emacs?
 ***** Lets think of it this way. Everyone was once an idiot, yes, thats right, even Seniors, they were also once idiots. C programmers, Lispers, Web Developers, we were all once idiots
 ***** If you are like me, Emacs and its ecosystem, is perhaps the ONLY technology of its kind, that rewards you if you know more. The more you read and explore and experiment, the higher returns. You cant say that for most things in the programming world. Sometimes, knowing more punishes you. 
-**** Other tips:
-***** use the try package
+**** Non-destructive ways to test Emacs packages:
+***** use the try package. Then do the usual use-package, or any normal config for that package you found online.
+**** Community
+***** Anyone who knows of any other Emacs "community" or learning resource. Obviously, I cant discover everything by myself. This is me hoping to inspire those who havent made the leap towards Emacs but always wanted to. Hopefully I learn something from this too.
+**** Proper 1:
+***** My last post seem to attract a few (maybe too few) interested folks. So here I am posting again. I need help in organizing learning material (or learning community) to help spread Emacs. The ones Im familiar so far, SystemCrafters (fresh and progressive, from beginers to advanced), Xah Lee (very opinionated, but knowledgeable on programming concepts and paradigms, his "look" is misleading, hes more progressive than first impression). This is also a learning experience for myself too.
+***** Also, as a side note, Im hunting for a job change, and would like to use this opportunity to connect, either for job/business/community opportunities. Im desperately in need of more opportunities and connections with like minded people. If I wanted to get into more Python based work, what are the areas I should be focusing on? I quite like the language element of Python, exploring the newer features. But sometimes, what the market demands often dont match where the language (Python) itself is heading in terms of development. If I were to go into Machine Learning, what is the market like and what should I be studying?
+*** create a emacs script that calls magick on any dired
 *** emacs iconfy frame with emacs client should work with non-openbox managers. try that with a new laptop
 *** Ive installed Nyxt browser, uses Common Lisp, havent fully explored, but the documentation is fun to read so far. 
 **** The word hacking can have both negative and positive connotations. Even if one were to remove the negative MORAL connotations, hacking in your OWN code and software seems to imply a sort of un-naturalness, as if expecting something to break.
@@ -105,12 +156,10 @@
 *** try perspective el
 *** Also try Emacs Application Framework on a new laptop
 *** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
-*** Hydra we need to change our my-mode-line-generic-1 function by using (car my-list1) instead of  'hydra-face-blue. So we create a list like (setq my-list1 '(eww-form-text 2)) an use (car my-list1) or (nth <some-num> my-list1)
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
 *** we need another Hydra to ehsily go to other-window using (other-window 1)
 *** [[https://zck.org/define-keymap][keymap]] very cool stuff
 *** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
-*** we need to add web-mode content select to our hydra.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
 *** we are going to try to use enriched mode to color Emacs
 ** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
