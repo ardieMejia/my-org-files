@@ -8,16 +8,304 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Streamlit presentation
-*** Microsoft Fabric
-*** graph_builder.add_node
+** Details for creatin DB becoz it will expire:
+*** mcf-postgresql-2 name
+*** 5432
+*** Singapore
+** Firefox:
+*** user_def.js: 3 minutes
+*** 
+** Terry:
+*** kill_member should redirect to start of members page (or better is previous page)
+*** fix our main pages for both admin and 
+*** We need to time our kill_events() query. 
+**** https://flask-sqlalchemy.readthedocs.io/en/stable/record-queries/
+*** Faster deletes SQL:
+**** https://www.sqlservercentral.com/articles/how-to-delete-large-amounts-of-data
+*** kill_events (thats with an S!!), we only did the kill_event/<int:id>
+*** Read on how to limit login session timeout
+*** for null check, we need feedback for the users
+*** REMEMBER to include requst_limit to prevent DDOS
+*** Admin from AI, yuck:
+#+begin_src python
+
+    from flask import Flask, redirect, url_for
+    from flask_login import LoginManager, UserMixin, login_required, current_user
+
+  app = Flask(__name__)
+  app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong, randomly generated key
+  login_manager = LoginManager()
+  login_manager.init_app(app)
+
+  class User(UserMixin):
+      def __init__(self, id, username, password, is_admin=False):
+          self.id = id
+          self.username = username
+          self.password = password
+          self.is_admin = is_admin
+
+      def get_id(self):
+          return str(self.id)
+
+  # Example user data (replace with database interaction)
+  users = {
+      1: User(1, 'admin', 'adminpass', is_admin=True),
+      2: User(2, 'user', 'userpass')
+  }
+
+  @login_manager.user_loader
+  def load_user(user_id):
+      return users.get(int(user_id))
+
+  @app.route('/admin')
+  @login_required
+  def admin_page():
+      if current_user.is_admin:
+          return 'Welcome, Admin!'
+      else:
+          return redirect(url_for('home_page'))
+
+  @app.route('/')
+  def home_page():
+      return 'Welcome, User!'
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+
+#+end_src
+*** Password reset link from AI, yuck:
+#+begin_src python
+
+  from flask import Flask, render_template, request, url_for
+  from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+  from flask_mail import Mail, Message
+
+  app = Flask(__name__)
+  app.config['SECRET_KEY'] = 'your_secret_key' # Replace with a strong, random key
+  app.config['MAIL_SERVER'] = 'smtp.example.com'
+  app.config['MAIL_PORT'] = 587
+  app.config['MAIL_USE_TLS'] = True
+  app.config['MAIL_USERNAME'] = 'your_email@example.com'
+  app.config['MAIL_PASSWORD'] = 'your_email_password'
+
+  mail = Mail(app)
+  s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+  @app.route('/forgot_password', methods=['GET', 'POST'])
+  def forgot_password():
+      if request.method == 'POST':
+          email = request.form['email']
+          token = s.dumps(email, salt='password-reset-salt')
+          link = url_for('reset_password', token=token, _external=True)
+          msg = Message('Password Reset Request', sender='noreply@example.com', recipients=[email])
+          msg.body = f"Click this link to reset your password: {link}"
+          mail.send(msg)
+          return 'Password reset link sent to your email.'
+      return render_template('forgot_password.html')
+
+  @app.route('/reset_password/<token>', methods=['GET', 'POST'])
+  def reset_password(token):
+      try:
+          email = s.loads(token, salt='password-reset-salt', max_age=3600) # Token valid for 1 hour
+      except SignatureExpired:
+          return 'The password reset link is expired.'
+      except Exception as e:
+           return f'Invalid password reset link. {e}'
+
+      if request.method == 'POST':
+          new_password = request.form['new_password']
+          # Update password in database for the user with this email
+          return 'Password updated successfully.'
+      return render_template('reset_password_form.html', token=token)
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+
+#+end_src
+*** to avoid confirm form resubmission, we add these (sugested by AI), to redirect to the same form (GET). So going back, simply resend a GET request.
+#+begin_src python
+
+  from flask import Flask, render_template, request, redirect, url_for
+
+  app = Flask(__name__)
+
+  @app.route('/form', methods=['GET', 'POST'])
+  def my_form():
+      if request.method == 'POST':
+          # Process the form data
+          # ...
+          # Redirect to a success page or the same form page (GET)
+          return redirect(url_for('my_form'))
+      return render_template('form.html')
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+
+#+end_src
+*** we should put all db.session.commit() or db.session.close(), even after every SELECT queries, before opening endpoint template
+*** remember to convince Terry, that publishing online and locally on laptop are 2 very different things. Online, you have to consider DDOS and everything. Becoz anything can happen when you decide to make something online. Sorry to sound technial but thats it. Of course, modern framework have ways of making it easier, but it still requires reading.
+*** Stupid app, we should recheck all of our validations, should be FIDE
+*** Security:
+**** https://snyk.io/blog/secure-python-flask-applications/
+**** 
+** Reply to Reddit about your SQLAlchemy problem solved, a simple database restart worked. But youre not sure, if it also becoz of you     close_all_sessions() and db.engine.dispose()    
+    
+** SQLAlchemy:
+*** https://docs.sqlalchemy.org/en/20/orm/session_basics.html
+*** https://docs.sqlalchemy.org/en/20/core/pooling.html
+*** https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine.dispose
+*** https://docs.sqlalchemy.org/en/20/core/pooling.html#dealing-with-disconnects
+*** https://docs.sqlalchemy.org/en/20/tutorial/index.html
+*** https://docs.sqlalchemy.org/en/20/core/engines.html#engine-configuration
+*** 
+** Emacs 
+*** join multi into 1 without spaces
+*** [[https://karthinks.com/software/fringe-matters-finding-the-right-difference/][another cool blog]]
+*** keychord split-window-right needs change of keys ro reflect prose direction
+*** try save-excursion and return in quit for select-hydra. Or the similar trick in your word-hydra
+** Reddit:
+*** Next
+#+begin_quote
+
+Hello everyone, 
+Im a noob in Flask. And i have never deployed a web app. Im currently working on a project, which allows bulk uploading to the app. And later on, the client can use it with relative ease, helping his workflow.
+I could push my commits up to a certain point. And it kept failing with the same messages: sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "....." (10...), port ... failed: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute
+(at first it was a different message, then it repeated became this message)
+Details:
+Flask
+TailWind CSS
+attempted both gunicorn and recently waitress, with no difference in recent result.
+I would post my code, but I dont know which part would help. Its quite big already. 
+
+Example of commands I ran:
+gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 300 --keep-alive 300
+
+#+end_quote
+*** Next:
+#+begin_quote
+
+So I have managed to successfully solved my previous issue (include link from previous Reddit). I simply made sure I dropped all connections before a complete drop of all tables. My current workflow is to build all the tables from scratch everytime I push a commit. As to avoid such related issues (which costed me up to week of no progress). I want to know any reading sources I should do on session management. Some info:
+ - I know the Select queries in general dont need closing.
+ - I know I can use session_scope, but Im not using it throughout all my code
+ - My code is not that huge, quite simple, but later it will be used by several users online. Not critical transaction, but still several users online.
+But as a precaution, any more "best practices" I should be concerned about regarding sessions? Any book/resource/site I should read. I want to really make sure I catch everything, its already costing me 1 week of no progress.
+
+#+end_quote
+** Your switching to other-window, switch the keys
+** GIT:
+*** put this somewhere, SQUASH
+*** https://www.freecodecamp.org/news/git-squash-commits/
+** Finish making your Chopin video so that you can uplaod it one day
+** We need to refactor error message of upload, what do we do with all the ID info?? Maybe theres no need for it.
+*** Put some tests in case of wrongly named CSV files
+*** create checks for duplicate events
+*** we should add timestamp naming for CSV files
+** We should finish our context manager lessons from our diary somewhere else, and also finish our NaN error somewhere else. But remember, that we have no need for it actually, our example below works wonders.
+***  return int(num) if num and num.isdigit() else 0
+** Python web app security practices:
+*** https://qwiet.ai/hacking-and-securing-python-applications/
+** Emacs, improve your web-mode, make it highlight matching tags
+*** try Dirvish 
+*** df23b19d-8e6b-4f20-af0a-6bba949e2cf5
+** Very good source of information for SQLALCHEMY models to dictionary!!
+** Make sure you share-rate is above 3%
+** Post in Pythons Group Malaysia, your willingness to work for Django, having experience in Flask and used Django for a side project.
+** async sync promise? build something simple??
+** Write how your opinion of Jai changed in a more mature way
+** I seriously dont know
+*** https://www.restack.io/p/adding-columns-sqlalchemy-models-answer-query-result-dict
+** Write this in software_engineering
+** Practice your app with [[https://adventofcode.com/][Advent of Code]]
+** FB groups for your interpretaions (aim more than 3% share rate & more than 100 views):
+*** All About Music in Malaysia
+*** Chopin groups
+*** Scriabin
+*** Malaysia art groups
+*** Malaysia music groups
+*** etsy Malaysia
+*** crafts Malaysia
+** You managed to get the attention of Nick and Nardine
+**** Time to post something REALLY clickbaity
+**** Use a cartoon image of yourself, maybe Gimpify your face.
+** Present your Emacs teaching class inside University of Malaya International students main discussion group. Gauge reaction
+** Obsidian config, we should include obsidian image link generation, and auto-file deletion (Obsidian side)
+#+begin_src lisp
+
+  (defun refactor--process-files (dir-name policy)
+  (setq dir-files (directory-files dir-name))
+  (dolist (element dir-files)
+    (unless (or (string= "." element)
+		(string= ".." element)
+		(file-directory-p element))
+      (find-file element)
+      (print element)
+      (funcall policy (point-min) (point-max))
+      (save-buffer))))
+
+(defun untabify-dir ()
+  "Untabify the contents of a folder"
+  (interactive)
+  (let ((dir-name
+	 "~/storage/shared/Documents/my-org-and-obsidian/my-org-notes"
+	 ))
+    (refactor--process-files dir-name 'untabify))
+  )
+
+
+
+
+;; NOTE: since this is only a single execution everytimme,
+;; and we only have a single project,
+;; we dont need to play around putting "my-org" into a variable
+(setq org-publish-project-alist
+      '(("my-org"
+	 :base-directory "~/storage/shared/Documents/my-org-and-obsidian/my-org-notes"
+	 :recursive t
+	 :publishing-function org-md-publish-to-md
+	 :publishing-directory "~/storage/shared/Documents/my-org-and-obsidian/my-oob-notes"
+	 :base_extension "org"
+	 :with-sub-superscript nil
+	 :section-numbers nil
+	 :base-extension "org"
+	 :with-toc nil)))
+
+(setq rd-a-project (assoc "my-org" org-publish-project-alist))
+(setq ardie/list-of-post-publish 'nil)
+(setq ardie/list-of-previous-publish 'nil)
+
+;; initilialize first, otherwise, org-publish-cache produces error
+(org-publish-initialize-cache "my-org")
+
+
+
+(dolist (rd-long-filename (directory-files-recursively "~/storage/shared/Documents/my-org-and-obsidian/my-oob-notes" "\\.md$"))
+  (delete-file rd-long-filename)
+  )
+
+
+(org-publish-project "my-org" t)
+
+
+
+
+(save-buffers-kill-terminal)
+
+
+#+end_src
 ** Instagram, YouTube:
-*** share messages
-** Watch EmacsConf about Emacs editor "there are now better alternatives", 40 years
+*** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
-*** Post your YouTube video again:
-**** https://youtu.be/X65kUYPJnw8
+*** Share your video uploaded direct on Facebook with this message:
+#+begin_quote
+
+My interpretation of Scriabins 2 Nocturnes Op5 No1.
+
+Please like and subscribe to my YouTube channel to show support.
+
+https://www.youtube.com/@ArdieMejia83
+
+#+end_quote
 *** Is Emacs enough from being trapped in a singular software ecosystem (Eg: Apple)?
 **** Even for something as simple as search and replace, there lacks a  "repository" of "best practices". Although, it might be easy for me, its certainly straightforward enough for beginners
 **** Advantages: A consistent language paradigm across all its "tools" (packages, configs, etc...)
@@ -25,11 +313,13 @@
 **** Possible cons: Personally, I use Emacs for a TODO and knowledge manager (categorizing blogs and links). Some coders Ive met dont seem to be interested in that
 **** Possible cons: Coders who have tried (and gave up) seem to sight (either from experience or anecdote from other coders), of the Emacs pinky condition. While most cited solutions is mapping Caps Lock to Ctrl, I rewire my brain to always use both hand (Eg: Ctrl-p becomes Left-Ctrl and p, Ctrl-f, becomes Right-Ctrl and f). Rewire your brain doesnt seem a compelling argument enough.
 **** Possible advantages: Learning Lisp might lead you to an incredible journey of self-discovery of other extensible tools. (GUIX, Nyxt browser)
-*** clickbait thumbnails that are more artistic
-*** what I wished I knew about programming earlier on
 *** Why handtools in woodworking?
 **** Apart from the obvious artistic/crafty and detail reasons. There's a reason some woodworkers still use handtools despite the over-advertising of power tools. Its accuracy. Some woodworkers know this instinctively but cant put it on words. Utilizing all your 5 senses enhances accuracy, where powertools add an overpowered layer separating the woodworker from their product. When you feel and see the cuts, the planed surfaces, you ensure accuracy. Becoz a mistake multiplies in the face of your senses. We use sunlight before mating 2 wooden surface. And thats just 1 example, of multiplying the mistakes/perfection, when we use higher senses. Its not some airy nonsense of "artistry" (becoz art seems like a dirty word to some engineers, very strange). 
 ** Job:
+*** Interesting companies
+**** PostCo: really likes open minded developers, who learn rare stuff. says want developers open to learning Ruby on Rails 
+**** Hero Plus Group: uses Ruby in Rails. Specifically mentions Flask.
+*** https://my.hiredly.com
 *** https://www.maukerja.my/
 *** https://www.jorawork.com/
 *** https://www.ricebowl.my
@@ -37,8 +327,6 @@
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
 ** We need to test duplicates of everything, but for now only FIDE ID
-** Write down somewhere about Chopin, why YOUR rubato is correct, becoz notations of pitch and rhythm, which meant composers sometimes left rhythm out with no notation. 
-*** https://themusicsalon.blogspot.com/2012/07/chopins-rubato-and-everyone-elses.html
 ** More links on file uploads:
 *** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
 *** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][in flask]]
@@ -78,7 +366,6 @@
 *** Also write something about typst
 ** We are going to publish our site, either in render or fly.io
 ** Remember to move image files from Hanifas laptop during the meeting later.
-** Store this link somewhere ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])
 ** Progress
 *** write about how you successfully did flex properly (3 child divs). Also flex and grid-cols dont mix very well. Remember to note how you read repeatedly sources from Bootstrap and Tailwind docs to get a sense of  CSS logic. You also tried to memorize slightly tailwind CSS. 
 *** Do you want to write about thinking in terms of context. 
@@ -91,46 +378,14 @@
 *** https://www.youtube.com/watch?v=9UIIMBqq1D4
 *** https://www.youtube.com/watch?v=afA0b5ygTyA
 ** Emacs:
-*** Finish this somewhere:
-#+begin_src lisp
-
-  (defun mytest1 ()
-  (interactive)
-  (let ((ardie-len-list (length(dired-get-marked-files))))
-    (if (eq 1 ardie-len-list)
-	  (if (member (file-name-extension (car (dired-get-marked-files)))
-		      '("jpg" "png" "jpeg" "webp")		      
-		      )
-	      ;; (print " it workrs")
-	      
-	      ;; (call-process-shell-command
-	      (start-process
-	     ;; "magick   /home/ardie/my-trash/temp_what/flask.png ~/Desktop/hahaha.png"
-	       "my-magick"
-	       "*my-magick*"
-	       "magick"
-	       (car (dired-get-marked-files))
-	       (concat "/home/ardie/Pictures/"
-		       (format "%s-%s-%s__" (ts-hour (ts-now)) (ts-minute (ts-now)) (ts-second (ts-now)))
-		       (file-name-sans-extension (file-name-nondirectory (car (dired-get-marked-files))))
-		       ".png")
-
-	       )
-	    (print "nope, wrong extension")
-	    )
-      
-      (print "command only works for single files")
-      )
-    )
-  )
-
-#+end_src
+*** Also, finish this somewhere, about starting, and its not that simple, becoz things go wrong, Emacs tends to hide it, when use the usual shell-command, so instead, your UNIT OF ABSTRACTION must be the process:
+**** http://xahlee.info/emacs/emacs/elisp_start_external_process.html
 *** Convincing others:
-**** A few things that scare newcomers and Vimers, or frustrations that turn them away after trying Emacs for a month or two
+**** A few things that scare newcomers and Vimers, or frustrations that turn them away after trying Emacs for a month or two, and solutions that only work but might make life better.
 ***** Ctrl Alt haevy, aka pinky finger. An overly cool solution: Hydra Mode and Key Chords, you'll be able to do stuff no-one else can do
-***** typing the wrong way, yes there is such a thing at least, not ideal, but this has a lot more to do, physical wiring of motor skills in the brain
+***** typing the wrong way, yes there is such a thing at least, not ideal, but this has a lot more to do, with physical wiring of motor skills in the brain. These days, I "always" remember to use both Left and Right hands for all modifier combinations. Eg: Ctrl-a = Right-Ctrl + Left a, Alt-w = Right-Ctrl + Left w, Ctrl-h = Left-Ctrl + Right h. These advice might seem to "hardwiry" for some.
 ***** awkward defaults, overcome, with searching for "sensible defaults" for config ideas
-***** Emacs having the image of dinosaurs IDE, or an old mans IDE: Not true at all, witaout going into complete detail, cool packages that are new-ish that make your Emacs feel completely different or even radical. Hydra-mode, Helm, Vertico, Hydra-mode, Emacs Application Framework (if youre willing to install Python modules globally) and so many more.
+***** Emacs having the image of dinosaurs IDE, or an old mans IDE: Not true at all, witaout going into complete detail, cool packages that are new-ish that make your Emacs feel completely different or even radical. Hydra-mode, Helm, Vertico, Hydra-mode, Emacs Application Framework (if youre willing to install Python modules globally) and so many more. (This is from my personal experience, and the craziest thing about Emacs is, that every Emacser will have some interesting/cool/new workflow/trick/package he has discovered)
 **** Reasons why I proseltize Emacs:
 ***** Sincerely believe it would benefit non-programmers more than programmers, especially who love both writing and coding, and cant live without writing. And programmers, even myself included, are often opinionated with biases towards what is correct and non-correct in technology.
 ***** Removing stereotypes, contrary to belief, Emacs communtiy are not wholly insular. Many partsa of the community, are increbly open and progressive, and pushing for changes such as Emacs default being less weird (I personally, dont understand why searching for "recent-files" is not enabled by default, I always forget the exact config, and have to copy it from some blog, when setting up Emacs on a new system).
@@ -166,11 +421,6 @@
 ** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** Copy Hanifas key
-** FB:
-*** post your spokeshaves both photos and in action. In FB "handmade tools" group first. Then elsewhere
-*** Write about the death of personal computing. Make it relatable. Think of relating the topic with Haiku. Complain slightly about these being a time sink. Also relate to GUIX, Nix, and Emacs.
-*** I know some of you are not particular attached to the idea of writing for your own personal sake. In our world, the code itself is documentation. But I can never help feel childish and selfish when it comes to having something personal to write on. I have a personal diary which I write on my favourite piece of software. I find that it helps even when it comes to small stuff (like installing a piece of software, or creating a new repo). I find that it personally helps me with my personal hobbies too (as I have trouble separating between professional work and passionate side project). What setup do you guys have that helps with dealing with the complexity that comes with this job (and the complexity that comes from dealing with separating professional like and side projects). A diary? A knowledge manage system like Obsidian?
-*** I guess one of the reason I struggled with frameworks for the longest time, is becoz the template "language" confused how i thnk of code "state" in general
 ** Post on LinkIn, you dontactually need a big project to practice using frameworks. Just start with a very simple selfish, even stupid idea. Many of the modern frameworks we have out there are quite progressive, meaning as long as you have some idea of good code organization, your stupid ( and big and creative) idea can be made gradually better. Dont be intimidated by all the naysayers out there. Or maybe that only happened to me. But frameworks can be applied gradually to your creative idea. So I tried it with the stupid idea of using Excel as a data base using this REPO as a base. It works, I carefully replace with little bits of Flask here and there.
 #+begin_quote
 
@@ -313,32 +563,5 @@ Join 4,100+ Data professionals:
 *** 011 70018033
 *** 013 343 2049
 *** 018 398 5048
-* Tonight:
-#+begin_quote
-
-
-
-Subject: Response to Domestic Inquiry Intiation
-To Whom It May Concern,
-
-I hope this message finds you well. I am writing in response to your email regarding the initiation of domestic inquiry, scheduled for 9:30am 5th March.
-
-I would like to confirm my attendance at the domestic inquiry and assure you that I will be present as requested. I understand the importance of this matter and am fully prepared to provide any necessary information or clarification.
-
-I would like to know if it is possible for Lukman Hakim and Farahin to attend the inquiry as witnesses. I would also like to know the procedure in bringing in a witness, and if am I allowed to call/contact the witness before the inquiry in any way, as well as how early will HR inform the witness. 
-
-Thank you for the opportunity to address this matter, and I look forward to meeting with you.
-
-Sincerely,
-Wan Ahmad Ardie
-
-
-
-
-
- 
-
-
-
-
-#+end_quote
+* Address:
+** G-12-30, BLOCK G MENTARI COURT Gate 1, Jalan PJS 8/9, Bandar Sunway, 46150 Petaling Jaya, Selangor, Malaysia

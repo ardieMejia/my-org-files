@@ -18,6 +18,15 @@
 *** we dont want all from stagin
 * Reset all local changes [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][here]]
 ** git reset --hard
+* [[https://www.freecodecamp.org/news/git-squash-commits/][How to squash commits]]:
+** git rebase -i HEAD~6
+** "replace pick with squash except the one u want"
+** "Git will open text editor twice, put ur fave message"
+* Contextual:
+** Git push 
+*** git push origin main
+*** git push --force-with-lease origin <some-branch> # after squash
+*** git push -d origin <some-branch>
 * Radical or new, coz we keep forgetting:
 ** [[https://sentry.io/answers/rename-a-local-git-branch/][rename/delete branches and push changes]]
 ** [[https://refine.dev/blog/git-stash/#how-to-use-git-stash-list][git stash apply]] is great, but you gotta change your workflow a bit

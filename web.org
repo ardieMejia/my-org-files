@@ -9,6 +9,24 @@
 ** [[https://starkie.dev/blog/how-a-browser-renders-a-web-page][starkie.dev: how a website renders page, very informative]]
 * Html, CSS, Javascript (I guess) main/cool websites/blog
 ** https://www.tutorialrepublic.com
-** 
+** https://www.htmldog.com
+* CSS
+** Tailwind:
+*** For aligning: items-<> (items-start) goes with flex, content-<> (content-start) goes with grid
 * jQuery:
 ** Use classlist instead of classname then .split() [[https://stackoverflow.com/questions/1227286/get-class-list-for-element-with-jquery][here]].
+* React terminologies:
+** Transpiling: converting ES6 or later to ES5, becoz not all browsers supported it
+** Babel transpiler:
+#+begin_export html
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js">
+</script>
+<!-- ===== any script that includes text/babel this will automatically transpile ===== -->
+<script src="script.js" type="text/babel">
+</script>
+
+#+end_export
+* Resources:
+** Useful SVG repos for downloads ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])

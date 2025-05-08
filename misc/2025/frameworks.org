@@ -59,6 +59,8 @@
 ** 
 * Flask:
 * Flask environment
+** Avoiding circular imports:
+*** https://stackoverflow.com/questions/42909816/can-i-avoid-circular-imports-in-flask-and-sqlalchemy
 ** [[https://flask.palletsprojects.com/en/stable/cli/][palletsprojects]]. Has better links for configs. Example:
 #+begin_quote
 
@@ -135,15 +137,115 @@ $ flask run --extra-files file1:dirA/file2:dirB/
   fide = db.relationship("Fide", backref="member", uselist=False)
 
 #+end_src
-* Flask projects:
+** To avoid the headache of database relationship, we use, strings split into list, so later on we just use a join:
+*** https://stackoverflow.com/questions/61013648/how-to-store-a-list-within-a-model-in-flask-sqlalchemy
+** Dropping practice (from Brave)
+#+begin_src python
+
+  from sqlalchemy.engine import reflection
+from sqlalchemy.schema import (
+    MetaData, Table, DropTable, ForeignKeyConstraint, DropConstraint
+)
+
+def db_DropEverything(db):
+    conn = db.engine.connect()
+    trans = conn.begin()
+
+    inspector = reflection.Inspector.from_engine(db.engine)
+
+    metadata = MetaData()
+
+    tbs = []
+    all_fks = []
+
+    for table_name in inspector.get_table_names():
+        fks = []
+        for fk in inspector.get_foreign_keys(table_name):
+            if not fk['name']:
+                continue
+            fks.append(ForeignKeyConstraint((), (), name=fk['name']))
+        t = Table(table_name, metadata, *fks)
+        tbs.append(t)
+        all_fks.extend(fks)
+
+    for fkc in all_fks:
+        conn.execute(DropConstraint(fkc))
+
+    for table in tbs:
+        conn.execute(DropTable(table))
+
+    trans.commit()
+
+#+end_src
+** [[https://stackoverflow.com/questions/24289808/drop-all-freezes-in-flask-with-sqlalchemy][close_all_sessions() before dropping tables]]. One reply to comment correctly points version change means using close_all_sessions()
 ** What is this insane [[https://stackoverflow.com/questions/23714864/efficient-ways-to-store-multiple-excel-files-in-a-database][Excel shit]]
+* Flask projects
 * Django
-* app configs, server configs, tips, tricks and hacks
+* app configs, server configs, tips, tricks and hacks, deployment
+** General important read on [[https://docs.gunicorn.org/en/stable/settings.html][gunicorn exhaustive settings]]
+** gunicorn command:
+#+begin_src python
+
+  gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 300 --keep-alive 300
+  gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 30 --keep-alive 3
+  gunicorn --workers=3 -b 0.0.0.0:54284 'wsgi:app' -t 30 --keep-alive 3  --max-requests 1200 --preload
+  gunicorn --workers=3 -b 0.0.0.0:10000 -t 30 --keep-alive 120  --max-requests 1200 'wsgi:app'
+  
+
+#+end_src
+*** from Render:
+#+begin_quote
+
+HI there, I would recommend you don't randomise the port. You can set it, but if it's not set, we will default it to it 10000. Using -b 0.0.0.0:10000 It would be what it defaults to if you don't use the -b option.
+I'm not a regular user of Gunicorn, but I seem to recall that at some stage the positioning of the parameters mattered. I don't know if this is the case now. I would probably recommend you put your app entry point last, so I would do the command as gunicorn --workers 3 -b 0.0.0.0:10000 -t 30 --keep-alive 30 --max-requests 1200 wsgi:app.
+A couple of other notes:
+
+    The worker timeout defaults to 30 seconds, so -t 30 isn't needed.
+    We would recommend setting keep-alives to 120 seconds.
+
+#+end_quote
+*** from Render:
+#+begin_quote
+
+https://community.render.com/t/optimizing-gunicorn/2068
+
+gunicorn --worker-tmp-dir /dev/shm --workers=2 --threads=4 --worker-class=gthread --log-file=- <application_path>
+
+#+end_quote
+*** from Render
+#+begin_quote
+
+Render has a 100-minute timeout. The timeout here is the Gunicorn worker timeout, and using -t / --timeout sets this to a specific value. The default is 30 seconds.
+Some users set it at 60 or higher
+
+#+end_quote
+** waitress:
+*** [[https://blog.etianen.com/][dont user gunicorn]]
+*** [[https://flask.palletsprojects.com/en/stable/deploying/waitress/][waitress docs]]
+*** [[https://flask.palletsprojects.com/en/stable/deploying/waitress/][deploying with waitress]]
+**** Dont use --host, to avoid running as root. INFO: root requires port 80 or 443
+*** [[https://docs.pylonsproject.org/projects/waitress/en/stable/runner.html][waitress-serve arguments]]
+#+begin_quote
+
+
+
+#+end_quote
+*** 
+** [[https://docs.gunicorn.org/en/stable/settings.html#limit-request-line][Stop DDOS]]
+** Common render deploy issues:
+*** https://community.render.com/t/gunicorn-port-is-bound-but-deploy-is-failing-to-detect-port-python-fast-api/33846
+*** https://devcenter.heroku.com/articles/python-gunicorn
 ** [[https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-apps-using-gunicorn-http-server-behind-nginx][Why]] you should try to deploy gunicorn (app server) behind a "real server" like ngix
 *** This same [[https://www.digitalocean.com/community/tutorials/a-comparison-of-web-servers-for-python-based-web-applications][link]] from DigitalOcean justifies why
 ** Keepalive:
 *** (Read about werkzeug below) The trick is to [[https://stackoverflow.com/questions/10523879/how-to-make-flask-keep-ajax-http-connection-alive][set HTTP protocol version]] to 1.1
 *** [[https://github.com/KangersHub/python-flask-example-keepalive][alternative]]
+*** Look at [[https://stackoverflow.com/questions/24130305/postgres-ssl-syscall-error-eof-detected-with-python-and-psycopg][this]], if the error is
+#+begin_quote
+
+(psycopg2.OperationalError) SSL SYSCALL error: EOF detected 
+
+#+end_quote
 * Arrange 
 ** https://www.codersjungle.com/2024/07/09/handling-http-methods-in-flask-get-and-post-requests/
 ** https://frankvalcarcel.com/blog/conveniently-storing-lists-in-database/

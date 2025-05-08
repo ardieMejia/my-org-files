@@ -486,3 +486,67 @@ No 'id' attribute - override 'get_id'
 ** https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html
 ** https://saturncloud.io/blog/efficiently-appending-to-a-dataframe-within-a-for-loop-in-python/
 ** [[https://stackoverflow.com/questions/68568527/create-excel-file-from-dataframe-and-allow-download-in-flask-error-file-format][and finally writing]]
+* Day 33:
+** Installed pyenv under '/home/ardie/.pyenv' to allow multiple Python versions
+** Installed Py version 3.10
+** 
+* Day 34:
+** Finished setting up a jQuery site on laptop for learning jQuery
+** jQuery is actually VERY readable with help of all those curly brackets & parenthesis
+** https://github.com/avazquezcendron/memory-card-game
+* Day 35:
+** Finished creating simple Event registration, fixed class member of "discipline" list, new errorsList for invalid data
+* Day 36:
+** Successfully made update/delete of events (avoiding ORM declared relationships)
+** Attempting to remove working circular imports using __init__.py
+* Day 37:
+** Commands I tried before:
+#+begin_quote
+
+gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 300 --keep-alive 300
+
+#+end_quote
+** Errors, endless errors:
+***     df.fillna(0) # otherwise: ValueError: cannot convert float NaN to integer
+#+begin_src python
+
+    from sqlalchemy.orm import sessionmaker
+    from contextlib import contextmanager
+
+
+    db = SQLAlchemy(app)
+    app.app_context().push()
+
+    # without app.app_context().push(), both below will fail
+    Session = sessionmaker(bind=db.engine)
+
+  @contextmanager
+  def session_scope():
+      """Provides a transactional scope around a series of operations."""
+      session = Session()
+      try:
+          yield session
+          session.commit()
+      except Exception:
+          session.rollback()
+          raise
+      finally:
+          session.close()
+
+
+  # we should finih this stupid example below
+  def something():
+      with session_scope() as session:
+          m = session.query(Member).filter_by(mcfId=row[mapFrom['mcfId']]).first()
+
+#+end_src
+** 
+* Day 38:
+** We included, apart from drop_all create_all: close_all_sessions(), engine.dispose(), session.commit(). To make sure no idle connections, or idle drop_table
+** Not sure if its just that, but restarting the DB and doing this, solved everything.
+* Day 39:
+** We fixed the saving and deleting of tounrnament names. 
+** success: redirected the members saving events 
+** most of the ERRORS came from [].remove and [].append. In which it operates on the object calling it, No need to assign =
+* Day 40:
+** 

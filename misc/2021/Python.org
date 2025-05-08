@@ -160,10 +160,8 @@
 * Kinda important:
 ** Installing Pillow module, the "usual pip way" will produce lots of errors. Instead use this link:
 *** https://pillow.readthedocs.io/en/latest/installation.html
-* SELF (make sure to write about this IMPORTANT topic later)
-** https://www.knowledgehut.com/blog/programming/self-variabe-python-examples
-** https://www.edureka.co/blog/self-in-python/amp/ (THIS IS A BAD EXPLANATION, dont delete, just point its bad-ness)
-** https://medium.com/quick-code/understanding-self-in-python-a3704319e5f0
+* Functions:
+** [[https://docs.python.org/3/tutorial/controlflow.html#match-statements][all sorts of functions]], time to be cool? Play with cool context-y stuff
 * Vector (PyGame related)
 ** zip() function which returns a list of tuples, where the 1st items of the list is paired/grouped together, the 2nd items of the list grouped, etc
 * Python Decorators from the l([[https://realpython.com/primer-on-python-decorators/][Primer]]):
@@ -298,6 +296,13 @@ say_whee = decorator(say_whee)
 ** 
 * Performance tricks:
 ** [[https://aashishkumar12376.medium.com/10-python-performance-tips-i-wish-i-knew-years-ago-7869b19585d1][This link]] includes list comprehension
+* Readability:
+** While list comprehension shows a kind of elegance, in terms of reducing multi-lines to a single line. It quickly gets very confusing with its lack of parenthesis. The following produces "a list of lists", but constant spaces between everything show shows no clear hierarchy between everything inside the []'s.
+#+begin_src python
+
+  [[i,j] for i in range(1,10) for j in range(15,20)]  
+
+#+end_src
 * Event handling
 ** I finally made this code sample work. Detailed below are the mistake I made, which should  be a common mistake
 #+begin_quote
@@ -366,6 +371,9 @@ events.on_change("i have diarrhea")
 * IMPORTANT add later:
 ** [[https://codingnomads.com/python-flask-wtf-forms][python flask wtf!!]]
 ** [[https://stackoverflow.com/questions/32550487/how-to-print-from-flask-app-route-to-python-console][debugging aka print in Flask, not default]]
+** pyenv (for managing Python versions) and Emacs's own pyvenv
+*** https://fredrikmeyer.net/2020/08/26/emacs-python-venv.html
+*** https://ddavis.io/blog/emacs-python-lsp/
 * Educational/Business:
 ** [[https://www.cosmicpython.com/book/introduction.html][Architecture Patterns with Python]]
 ** [[https://www.naukri.com/code360][CodingNinjas exercises are more fun than GeeksforGeeks]]

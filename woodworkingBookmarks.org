@@ -1,27 +1,36 @@
-* https://toolsforworkingwood.com/store/item/GT-SAWV
-* https://www.simplecove.com/406/an-inexpensive-frame-saw/
-* https://www.allanbreed.com/blog/make-your-own-woodworking-tools/
-* https://www.classichandtools.com/shop-by-brand/pfeil/pfeil-standard-size-carving-tools/pfeil-v-parting-tools/c755
-* [[https://www.youtube.com/watch?v=qK17mwJM0sE][Shinto Rasp]]
+
+* 
+*
 * https://www.fine-tools.com/liogier.html
-** Domestika course:
-*** technical drawing has helped
-*** Manuel de Barros, just a Brazilian poet
-*** Pierre Jaquet Droz. watchmaker:
-**** built anthropomorphic sculptures and birds using mechanisms.
-*** Paul Spooner
-**** his work full of humor and simplicity
-*** Kazuaki Harada
-**** also simplicity and humor
-*** Arthur Ganson. American kinetic artist
-**** uses complex mechanism for relatively simple tasks
-*** Lisa Slater. English artist
-**** simple mechanism
-*** Mestre Molina
-**** MUST CHECK HIM OUT
-**** builds table top featuring Brazilian life
-**** several puppets on his "diorama"
-**** runs on electrical engine
+* Specific links:
+** https://toolsforworkingwood.com
+** https://www.classichandtools.com
+* Specific tools:
+** https://www.simplecove.com/406/an-inexpensive-frame-saw/
+** [[https://www.youtube.com/watch?v=qK17mwJM0sE][Shinto Rasp]]
+** [[https://paulsellers.com/2016/12/a-rasp-by-liogier/][A Rasp by Liogier]]
+** 
+* Specific tool build:
+** [[https://www.youtube.com/watch?v=qsTGsKT7UN4][Spokeshave from a block of wood, technique]]
+** 
+* Domestika course:
+** technical drawing has helped
+** Manuel de Barros, just a Brazilian poet
+** Pierre Jaquet Droz. watchmaker:
+*** built anthropomorphic sculptures and birds using mechanisms.
+** Paul Spooner
+*** his work full of humor and simplicity
+** Kazuaki Harada
+*** also simplicity and humor
+** Arthur Ganson. American kinetic artist
+*** uses complex mechanism for relatively simple tasks
+** Lisa Slater. English artist
+*** simple mechanism
+** Mestre Molina
+*** MUST CHECK HIM OUT
+*** builds table top featuring Brazilian life
+*** several puppets on his "diorama"
+*** runs on electrical engine
 * Very cool simple plans for woodworking
 ** https://www.familyhandyman.com/list/surprisingly-simple-woodworking-projects-for-beginners/
 * Client personas:
@@ -39,6 +48,6 @@
 *** Loves cringe bulky wooden stuff
 *** Hates IKEA, but still a corporate simp at heart
 *** Likes Bosch
-*** power obsessed,similar to yourself but you dont want to admit it.
+*** power obsessed, another side of you
 ** 
 

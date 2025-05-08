@@ -1,4 +1,4 @@
-* Emacs frameworks, for when you want ready packages, without over-thinking the config.
+* Emacs frameworks, a good introduction of Emacs, with lots of built-in defaults.
 ** https://www.spacemacs.org/
 ** https://prelude.emacsredux.com/en/latest/
 ** https://docs.doomemacs.org/latest/
@@ -80,6 +80,15 @@
   (desktop-save-mode 1)
   
 #+end_src
+** Instead of relying on init.el  branching, if using SmallWorld as the pivot, we can just load Emacs through the shortcut (or batch file like our Git Demo). But by copying the shortcut, and pointing to a our own gis_aliases in own folders.  And the gis_aliases will have
+#+begin_quote
+
+ARGS = -q --load C:\path\to\our_custom_init.el
+
+#+end_quote
+** [[https://www.youtube.com/watch?v=XZjyJG-sFZI][Teach your Emacs to keep folders clean]]
+*** Already used variables --> user-emacs-directory, package-user-dir, default-directory
+* Loading subtlety, hooks, eval, yadayada
 ** Auto-save when out-of-focus, a better alternative to "saving every minute" that most IDE's use
 *** https://www.emacswiki.org/emacs/AutoSave
 #+begin_src lisp
@@ -91,15 +100,7 @@
   (add-hook 'focus-out-hook 'my-save-all)
 
 #+end_src
-** Instead of relying on init.el  branching, if using SmallWorld as the pivot, we can just load Emacs through the shortcut (or batch file like our Git Demo). But by copying the shortcut, and pointing to a our own gis_aliases in own folders.  And the gis_aliases will have
-#+begin_quote
-
-ARGS = -q --load C:\path\to\our_custom_init.el
-
-#+end_quote
-** [[https://www.youtube.com/watch?v=XZjyJG-sFZI][Teach your Emacs to keep folders clean]]
-*** Already used variables --> user-emacs-directory, package-user-dir, default-directory
-* Loading subtlety, hooks, eval, yadayada
+** [[https://emacs.stackexchange.com/questions/14438/remove-hooks-for-specific-modes][how to remove hook for a mode]]
 ** In the long term, once we understand, we should avoid -eval- & hooks (??)
 *** https://www.wisdomandwonder.com/emacs/12783/are-load-hooks-always-a-bad-idea
 ** How to "hook" a minor mode to a major mode. The # (hash) is NOT necessary
@@ -151,9 +152,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** https://lucidmanager.org/productivity/using-emacs-image-dired/
 *** TODO!!!!!
 *** Very cool, imagine opening GIMP automaticallly from inside Emacs
-* tricks
-** Very Cool. But important to not over-rely. Auto-saving for Emacs, by exploiting "out-of-focus"
-*** 'focus-out-hook'
 * Looks, looks, looks:
 ** If you want some really great looking suggestion on fonts, from usable examples. Look at this
 *** https://www.reddit.com/r/emacs/comments/14q399t/hi_out_of_curiosity_what_are_your_favourite_fonts/
@@ -435,7 +433,76 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** Examples:
 **** For files you can delete, copy, rename
 **** For buffers, you can kill or switch
-* Small but important packages:
+* Taxy:
+** alphpapa himself created this [[https://github.com/alphapapa/taxy.el][taxy]]. Great for organizing values/objects/stuffs
+#+begin_src lisp
+
+
+  ;; things ive tried so far
+
+  (require 'taxy)
+
+
+
+  (defvar numbery
+    (make-taxy
+     :name "Numbery"
+     :description "A silly taxonomy of numbers."
+     :taxys (list (make-taxy
+                   :name "< 10"
+                   :description "Numbers below 10 (consuming)"
+                   :predicate (lambda (n) (< n 10)))
+                  (make-taxy
+                   :name "the others"
+                   :description "remainder (non-consuming)"
+                   :predicate (lambda (n) t)
+                   :then #'identity)
+                  )))
+
+
+  (setq my-numbers (cl-loop for i from 5 to 15 collect i))
+
+
+  (setq a-numbery (taxy-emptied numbery))
+
+
+
+  (taxy-fill '(23 1 4 1 5 9829) a-numbery)
+  (taxy-fill '(10000 9000 5432) a-numbery)
+
+
+
+  (setq important (nth 3 (taxy-plain a-numbery)))
+  (defun print-elements-of-list (list)
+    "Print each element of LIST on a line of its own."
+    (while list
+      (print (car list))
+      (setq list (cdr list))))
+
+  (print-elements-of-list important)
+  (nth 2 (car (cdr important
+                   )))
+
+
+  (taxy-items (car (taxy-taxys a-numbery)))
+
+
+
+
+  (dolist (
+           num
+           (taxy-plain (car (taxy-taxys a-numbery)))
+           )
+    (print num) )
+
+
+  (taxy-flatten a-numbery)
+
+
+
+
+#+end_src
+* Cool packages to try, or already tried:
 ** [[https://github.com/emacsorphanage/key-chord][Key Chords]] for Emacs allows simultaneous keys
 *** Its a good idea to use rare [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams]], which are rare key combinations for these settings
 * How do we export to PDFs:
@@ -586,3 +653,9 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** Write this down somehow.
 *** changing Emacs behaviour, doesnt have to be an all out ddisruptive process.
 **** Eg: one thing we can do with mode-line, is to create a function that defines mode-line-format and (force-mode-line-update), binds that function to a mode-hook (magik-mode-hook)
+* Common mistakes:
+** try package:
+*** when using try package, sometimes a common error is "elpa not found". Solution:
+**** package-refresh-contents
+** Debugging, mysterious errors?, try toggle-debug-on-error:
+*** https://stackoverflow.com/questions/4180111/what-does-it-mean-when-emacs-tells-me-file-mode-specification-error
