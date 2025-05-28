@@ -144,4 +144,9 @@ std::getline(std::cin >> std::ws, s);
 *** has a cool triangle pattern challenge, probably applicable to Python as well
 *** has a cool trick of generating random numbers from Eg: 1 to 10 (instead of random.randint(1,10)):
 **** yi = getrandom_int() % maxlines; # ---------- modulus as a range cutter
-*** 
+** 
+* Arrange
+** [[https://alexott.net/en/writings/emacs-devenv/EmacsCedet.html][CEDET to read briefly]]
+** [[https://cedet.sourceforge.net/][CEDET briefly]]
+* Makefile awesome writing, but maybe the tool itself is not awesome
+** https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/

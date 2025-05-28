@@ -58,6 +58,20 @@
 ** [[https://www.apriorit.com/dev-blog/web-python-libraries-for-database-management#using-python][site]] that shows specific modules/packages to connect to DBs such as SQLite or Apache, etc
 ** 
 * Flask:
+** Forms Basics:
+*** Multiple buttons in a single form:, first do this:
+#+begin_export html
+
+<button type="submit" name="button" value="add">Add</button>
+
+#+end_export
+*** Then this:
+#+begin_src python
+
+  request.form.get("button") == "add"
+  # will return true
+
+#+end_src
 * Flask environment
 ** Avoiding circular imports:
 *** https://stackoverflow.com/questions/42909816/can-i-avoid-circular-imports-in-flask-and-sqlalchemy
@@ -125,6 +139,8 @@ $ flask run --extra-files file1:dirA/file2:dirB/
 ** SQLite:
 *** One day we can try [[https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#foreign-key-support][this]], so we can blindly and stupidly create Python on any setup.
 *** 
+** JWT (we dont understand this mostly)
+*** [[https://hyperskill.org/learn/step/36181][IMPORTANT]]
 * Flask SQLAlchemy, using ORMs avoids pitfalls like SQL injection
 ** Relationships
 *** [[https://medium.com/@mandyranero/one-to-many-many-to-many-and-one-to-one-sqlalchemy-relationships-8415927fe8aa][medium]] example for one-to-one & others
@@ -179,6 +195,10 @@ def db_DropEverything(db):
 #+end_src
 ** [[https://stackoverflow.com/questions/24289808/drop-all-freezes-in-flask-with-sqlalchemy][close_all_sessions() before dropping tables]]. One reply to comment correctly points version change means using close_all_sessions()
 ** What is this insane [[https://stackoverflow.com/questions/23714864/efficient-ways-to-store-multiple-excel-files-in-a-database][Excel shit]]
+* Error Handling:
+** lets learn how to handle errors [[https://www.digitalocean.com/community/tutorials/how-to-handle-errors-in-a-flask-application][here]]
+** [[https://docs.python.org/3/library/exceptions.html][built-in]] python exceptions
+** [[https://docs.sqlalchemy.org/en/20/core/exceptions.html][SQLalchemy core]] exceptions
 * Flask projects
 * Django
 * app configs, server configs, tips, tricks and hacks, deployment

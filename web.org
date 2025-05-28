@@ -10,11 +10,20 @@
 * Html, CSS, Javascript (I guess) main/cool websites/blog
 ** https://www.tutorialrepublic.com
 ** https://www.htmldog.com
+** 
 * CSS
 ** Tailwind:
 *** For aligning: items-<> (items-start) goes with flex, content-<> (content-start) goes with grid
 * jQuery:
 ** Use classlist instead of classname then .split() [[https://stackoverflow.com/questions/1227286/get-class-list-for-element-with-jquery][here]].
+** [[https://www.zipy.ai/blog/jquery-errors][common jquery mistakes]]
+** onload vs ready
+*** [[https://www.geeksforgeeks.org/difference-between-body-onload-and-document-ready-function/][onload only once, document.ready can have several]]
+*** document.ready is once DOM is loaded, onload is once all resources are loaded (+images,etc)
+*** [[https://stackoverflow.com/questions/3698200/window-onload-vs-document-ready][stackoverflows definition]]
+*** onload is DOM standard, document.ready is jQuery-specific
+*** 
+** [[https://api.jquery.com/data/][The data-* attribute is a Global Attribute, and can be used on any HTML element]]
 * React terminologies:
 ** Transpiling: converting ES6 or later to ES5, becoz not all browsers supported it
 ** Babel transpiler:

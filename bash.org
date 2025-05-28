@@ -48,6 +48,9 @@ zzzd(){
 }
 ** Escaping exclamation mark (basically, best stick single quotes in Bash)
 *** https://superuser.com/questions/133780/in-bash-how-do-i-escape-an-exclamation-mark
+* Common mistakes:
+** Mistakes we did, we spent a very long time to make the conditiaonl env loading work, the "export" was missing in bashrc. Easy mistake
+** So turns out bash doesnt automatically export environmnt variables to child processes
 * Cool new stuff you should try:
 ** fzf:
 *** For those of you who use Spacemacs (or other similar Emacs user-friendly variations), a cool thing Spacemacs can do is search recent files, using a fuzzy search algorithm. This allows you to search recently used files by rough matching (typing "cycle" instead of "Recycle Bin", or even rougher than this). Before you compare this to a normal Windows folder "file search", this is actually many times faster, it instantly changes the list closer to your match everytime you type or remove a character.

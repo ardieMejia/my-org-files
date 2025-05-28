@@ -549,4 +549,153 @@ gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 300 --keep-alive 300
 ** success: redirected the members saving events 
 ** most of the ERRORS came from [].remove and [].append. In which it operates on the object calling it, No need to assign =
 * Day 40:
+** We solved disabling buttons based on dropdown (if none) values with jQuery
+#+begin_src javascript
+
+  $(document).ready(function(){
+      var choiceCount = $( "#memberEventForm #tournament_name option" ).length
+      if (choiceCount == 0){
+          $('#memberEventForm button').hide()		 
+      }
+
+#+end_src
+** jQuery is always good to get familiar with, nothing wrong. Great documentation, relevant, nested (coming from a Lisp background, amazing to read, just refer to closing brackets). And important terms we've learnt (otherwise we spend forever searching stackoverflow):
+*** Descendants/ancestors. 
+*** .toggle() disables and enables. But one can use show() or hide()
+* Day 41:
+** Write about this one somewhere:
+#+begin_export html
+
+<input type="file" class="bg-yellow-400 file:bg-white file:text-black">
+
+#+end_export
+* Day 42:
+** We replace previous "disablig buttons bsaed on dropdown" with:
+#+begin_src javascript
+
+  $(window).on('load', function() {
+      var choiceCount = $( "#tournament_name option" ).length
+      console.log(choiceCount)
+      if (choiceCount == 0){
+          /* $('#memberEventForm button').hide()		  */
+          $('button[name]').hide()
+      }
+  }); 
+
+#+end_src
+** becoz both behaves different and we need to document this
+** We created another 
+* Day 43:
+** We alongated the data in the form of (form elements) in a table called FormStructure. We blindly dump to avoid constraint on the DB level
+** Relying on the database to collect all matching data (across 2 columns).
+** We then reshape the data using the code below. Becoz our data has no uniqueness, hence reshaping is tricky
+#+begin_src python
+
+      frs_list = []
+    # _elements = {}
+    for fr in frs:
+        frs_list.append(fr.to_dict())
+
+
+    # the problem is our data is not unique
+    # - hence we need to create a key from field+type
+    # - so it becomes eg: nametext, genderdropdown, agetext
+    a_dict = {}
+    for fr_dict in frs_list:
+        fieldtype_key = fr_dict["field"]+fr_dict["type"]
+        
+        # ===== becoz append is non-destructive, append logic always goes first
+        if fr_dict["type"] == "dropdown" or fr_dict["type"] == "checkbox":
+            try:
+                a_dict[fieldtype_key]["value"].append(fr_dict["value"])
+            except:
+                a_dict[fieldtype_key] = {}
+                a_dict[fieldtype_key]["value"] = [fr_dict["value"]]
+                a_dict[fieldtype_key]["field"] = fr_dict["field"]
+                a_dict[fieldtype_key]["type"] = fr_dict["type"]
+                
+        else:
+            a_dict[fieldtype_key] = {"field": fr_dict["field"], "type": fr_dict["type"]}
+
+
+    elements = list(a_dict.values())
+
+#+end_src
+** Tha goal is from a to b:
+#+begin_quote
+
+| formname | field  | value | type     |
+|----------+--------+-------+----------|
+| Q1 event | gender | M     | dropdown |
+| Q1 event | gender | F     | dropdown |
+|          |        |       |          |
+
+#+end_quote
+
+#+begin_src python
+
+  elements = [        
+      {
+          "value": "", "field": "name", "type" : "text"
+      },
+      {
+          "value": ["M", "F", "Open"], "field": "gender", "type" : "dropdown"
+      }
+  ]
+
+#+end_src
+* Day 44:
+** in our Model definitions, theres a difference in putting the function result and the function object itself. Both codes work, but only function object is correct. And I dont know why:
+#+begin_src python
+  # Example 
+  created_at = db.Column(db.DateTime, default=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+
+  # Another example 
+  unique_number_uuid = db.Column(db.String(36), unique=True, default=lambda: str(uuid.uuid4()))
+  unique_number_uuid = db.Column(db.String(36), unique=True,  default=uuid.uuid4)
+
+
+
+
+
+#+end_src
+* Day 45:
+** All bugs fixed smoothly.
+** We successfully added loosely connected FormQuestion
+** Next goal is to add FormQuestionAnswers, loosely connected, with eventName instead of eventId
+** Later on the "connection" can be made by replacing all eventNames/tournamentNames and hardcoded names with eventId
+* Day 46:
+** We should write some where about scalars making accessing trhoug for loops more predictable
+* Day 47:
 ** 
+* Day 48:
+** there are scoping problems when using counter with jinja. The problem is with the way the templating works, when the loop exits, the html now is not aware of the counter again, it always remains at 1. So we need to use namepsace. Example:
+#+begin_export html
+
+
+{% set ns = namespace(counter=1) %}    
+{% for value in element.value %}
+<div>
+  <input id="default-checakakbox" name={{ element.fieldName + ns.counter | string }} type="checkbox" value={{ value }}>
+  <label for="default-checkbox">{{  value }}</label>
+</div>
+{% set ns.counter = ns.counter + 1 %}    
+{% endfor %}
+
+#+end_export
+* Day 49:
+** We successfully added a subgroup, we solved our "question ordering problem"
+** We solve by deciding to split table display into columnds after the main questin columns
+** "Ordering" becomes the main problem, becoz we rely on ordering to display questions and answers correctly table
+** Even the null input problem is important, becoz null values get "pushed", resulting in columns out of whack. Instead, there should be default empty values like "-" in radio for exampe, and None for empty checkboxes
+* Day 50:
+** We binded a radio button (<input> type=radio) to a div with specific ID using ideas below:
+#+begin_src javascript
+
+  var subgroupId = $(this).data('action-subgroup-id'); // (where this is each radio throughout all document)
+  // and then show the div
+  $("#" + subgroupId).show()
+
+#+end_src

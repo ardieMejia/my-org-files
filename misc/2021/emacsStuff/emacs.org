@@ -653,6 +653,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** Write this down somehow.
 *** changing Emacs behaviour, doesnt have to be an all out ddisruptive process.
 **** Eg: one thing we can do with mode-line, is to create a function that defines mode-line-format and (force-mode-line-update), binds that function to a mode-hook (magik-mode-hook)
+** Some more cool navigation tricks:
+*** [[https://superuser.com/questions/629090/emacs-displaying-list-of-subroutines-functions-classes-in-a-source-file][occur]]
 * Common mistakes:
 ** try package:
 *** when using try package, sometimes a common error is "elpa not found". Solution:

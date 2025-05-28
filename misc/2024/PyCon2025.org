@@ -33,6 +33,8 @@
 * Acceptance:
 ** 1 of 3 is met either: talk is future proof, keeps up with current development. lowers barier of entry to python. contributes discource in Py community
 * Read  about [[https://www.youtube.com/watch?v=ujfiVr1NaSM][this]]:
+* PyCon 2025 Volunteer work:
+** [[https://otter.ai/group/21973239][otter ai notetaking]]
 
     
 
