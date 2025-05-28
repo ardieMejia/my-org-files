@@ -1,0 +1,37 @@
+* Day 1:
+** [[https://makefiletutorial.com/#makeflags][makefiletutorial]]
+** 3 things: targets, preq, commands
+** targets can also be files
+** preq appear generally in the middle, (optically). Example
+#+begin_src makefile-gmake
+
+  blah: blah.o
+          cc blah.o -o blah # blah.o appears middle, (optics)
+
+  blah.o: blah.c
+          cc -c blah.c -o blah.o # # blah.c appears middle, (optics)
+
+  # Typically blah.c would already exist, but I want to limit any additional required files
+  blah.c:
+          echo "int main() { return 0; }" > blah.c # runs if file doesnt exist
+
+#+end_src
+** [[https://makefiletutorial.com/#variables-pt-2][makefiletutorial variables]]
+** symbols like := act like parenthesis scoping, in that it stops the assignment from going up to the parent
+#+begin_src makefile-gmake
+
+
+  one = one ${later_variable}
+
+  two := two ${later_variable}
+  # ===== it looks similar to this:
+  # (two := two ${later_variable})
+
+
+  later_variable = later
+
+  all:
+          echo $(one)
+          echo $(two)
+
+#+end_src
