@@ -14,6 +14,8 @@
 * CSS
 ** Tailwind:
 *** For aligning: items-<> (items-start) goes with flex, content-<> (content-start) goes with grid
+** Great practices:
+*** https://elementor.com/blog/css-buttons/
 * jQuery:
 ** Use classlist instead of classname then .split() [[https://stackoverflow.com/questions/1227286/get-class-list-for-element-with-jquery][here]].
 ** [[https://www.zipy.ai/blog/jquery-errors][common jquery mistakes]]

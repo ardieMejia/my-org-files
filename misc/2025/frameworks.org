@@ -51,6 +51,32 @@
 #+end_export
 *** So the naming I came up with might be base-layout.html -> inner-layout_h.html -> inner-layout_n.html -> post.html. 
 **** where the _h, _n stands for header or navigation
+** Jinja as problem of awarenes of dict structure . Hence, we use tricks like this:
+#+begin_export web
+
+{% for membersAnswer in membersAnswers.values() %}
+    {% if loop.first %}
+
+	{% for fieldname,answer in membersAnswer.items() %}
+	    {% if answer.subgroupId is none %}
+		<th class="w-20 p-4 bg-yellow-400">
+		    {{ fieldname }}
+		</th>
+	    {% else %}
+		<th class="w-20 p-4 border-x-2 border-yellow-600 bg-yellow-200 font-light">
+		    {{ fieldname }}
+		</th>
+	    {% endif %}
+	{% endfor %}
+
+
+
+    {% endif %}
+{% endfor %}
+
+
+
+#+end_export
 * Basics:
 ** [[https://www.askpython.com/python-modules/flask/flask-crud-application][askpython]] shows Flask CRUD
 * Alternative software:
@@ -290,6 +316,9 @@ Some users set it at 60 or higher
 *** we havent experimented with finer control possible with more advanced Pandas Dataframe [[https://medium.com/@alice.yang_10652/python-how-to-export-data-from-database-to-excel-step-by-step-guide-9cf6ea476abe][tricks]]. It might help if someone wants to exports to a single sheet
 *** we can also use the mysterious [[https://stackoverflow.com/questions/18977387/how-to-export-sql-server-result-to-excel-in-python][cursor]] object when writing to Excel, cursors are lower level elements of db sessions. They are how Python executes PostgreSQL command in a database session. 
 *** This [[https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html][page]] from the official Pandas documentation shows at the bottom an example of writing to several sheets of a single file. We can truy seduce Terry with this. But that might be overkill. 
+* Node, NPM:
+** NPM is just the online repository of Javascript modules. Installing Node comes with npm command, which is used to interact with this repo
+** 
 * Educational
 ** [[https://werkzeug.palletsprojects.com/en/stable/][werkzeug]] is a WSGI web application library. This is what lies underneath Flask 
 ** 

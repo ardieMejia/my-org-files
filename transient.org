@@ -8,11 +8,64 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** write this somewhere:
+*** a blocking custom dialog like [[https://stackoverflow.com/questions/56130393/jquery-custom-confirm-dialog][this]]. he native confirm function, like alert, is blocking, and prevents any further script execution or page interaction until the user responds to the prompt. This has no equivalence in anything you can write in the GUI.
+** write this somewhere:
+*** we can actually learn MORE about JS, fromh this javascript
+#+begin_src javascript
+
+
+  console.log($(this))
+
+#+end_src
+** we need to create a backup system, possible using rsync
 ** buttons scientists, store this somewhere:
 *** https://adrianroselli.com/2019/06/target-size-and-2-5-5.html
 ** we have to save this somewhere:
 *** [[https://www.w3schools.com/css/css_display_visibility.asp][link]]: CSS display property commonly used by Javascript
 ** Terry:
+*** event names should be unique at DB level
+*** our member-front page needs a reload check
+*** CRSF error hndler, otherwise it becomes dull: [[https://www.google.com/search?client=ubuntu&channel=fs&q=flask+check+if+crsf+token+expired+and+redirect][link]]
+*** when a member deletes an event, it should also appropriate descendents => FormQuestionAnswers, and also refill FormQuestionAnswersDeleted, think of recalling the same function
+*** we need to do element ebhaviour for subgroups as well
+*** a link beside form-creator, or tooltip that suggests ideas for fieldnames
+*** we need to disable disable add buttons on subgroup leading question. Also need to disable values when subgroup button is selected (although it doesnt really matter)
+*** rename #tournament_name as someting very unique, its too generic, OR remove all IDs from form-template elements, since that is not used
+*** check that overwritten submissions gets carried into File model, and file sumission stores minutes and hours of day. And also, that 
+*** IMPORTANT: check multiple file inputs and see the effect of log in form_submission()
+*** we should put "storage", root path of uploads, into a global var
+*** we should check ALL checkboxes input, including our downloader
+*** we should write this somewhere. Jinja when looping through dict, has NO "awareness" of dict structure by default hence has to resort to jinja tricks like these:
+#+begin_export web
+
+{% for membersAnswer in membersAnswers.values() %}
+    {% if loop.first %}
+
+	{% for fieldname,answer in membersAnswer.items() %}
+	    {% if answer.subgroupId is none %}
+		<th class="w-20 p-4 bg-yellow-400">
+		    {{ fieldname }}
+		</th>
+	    {% else %}
+		<th class="w-20 p-4 border-x-2 border-yellow-600 bg-yellow-200 font-light">
+		    {{ fieldname }}
+		</th>
+	    {% endif %}
+	{% endfor %}
+
+
+
+    {% endif %}
+{% endfor %}
+
+
+
+#+end_export
+*** for "form creator" button, we can add deletion of FormQuestionAnswersDeleted
+*** UI: we need to limit the subgroup creation (leadingquestion) to radio only, UI level constraint 
+*** we need to put in element form creator, checks for "-" for empty text box default values
+*** we need to stop at UI element levvel , all spaces in fieldname 
 *** UI idea: form_creator, dropdown will have leading question option, which enable subgroupname onselect()
 *** when memebrs answer fhe same form again, it overwrites. we havent done that yet
 *** questionString or questionstring??
@@ -22,47 +75,12 @@
 *** withdraw event, clause to warn no refund. 50% refund. 0% refund.
 *** rather than terminating event completely on closing date, we warn/info user on closing date
 *** the type, eligibility, important, can be put at top of form or dropdown display
-*** we sa.delete() all formQuestions and formQuestionAnswers, before member re-fills form. In effect, "overwriting" each time
 *** create kill all form button that will kill altogether eventFormQuestions, eventFormQuestionAnaswers, and eventFormQuestionSubgroup
 *** our admin doesnt session timeout
 [[https://www.freekb.net/Article?id=4560][this link]]
 *** for our form creator:
-**** for our SubGroupId, we need a unique, non-primary, nullable ID. We use code below, but instead of using default=, we generate it from classmethod or model function. a_object.subGroupId = a_object.setSubGroupId():
-#+begin_src python
-
-    from flask_sqlalchemy import SQLAlchemy
-  import uuid
-  import time
-
-  db = SQLAlchemy()
-
-  class MyModel(db.Model):
-      id = db.Column(db.Integer, primary_key=True)
-      # unique_number_uuid = db.Column(db.String(36), unique=True, nullable=False, default=lambda: str(uuid.uuid4()))
-      # we should try this instead
-      unique_number_uuid = db.Column(db.String(36), unique=True, nullable=False, default=uuid.uuid4)
-      unique_number_timestamp = db.Column(db.BigInteger, unique=True, nullable=False, default=lambda: int(time.time()*1000000))
-      data = db.Column(db.String(255))
-
-#+end_src
-**** we need another field for our formStructure = questionString
-**** 
-**** for formSheetAnswer, we need something like this:
------------------------------
-| user | formId | question | answers |
-|------+--------+----------+---------|
-|  123 | abc    | gender   | M       |
-|  123 | abc    | name     | ardie   |
-|  123 | abc    | days     | 3       |
-|      |        |          |         |
-
-**** we need to insert "value" field from our FormStructure into our default value for HTML input elements
-**** replace all membe-events operations (update, delete, save) with a database operation
 **** our forms will have expire date, Terry will have to personally manage late expcetions if he wants.
 *** for kill_event, we need to replace render_template with redirect
-*** subgroupsof questions cannot be tied to each answer, the logic is now to be complicated. It can only be tied to a question
-*** and it will only be limited to a single radio button (and values: selected or on-selectd)
-*** UI: we need to limit the subgroup creation (leadingquestion) to radio only, UI level constraint     
 ** Tests:
 *** Put some tests in case of wrongly named CSV files
 *** Test form link when there is no matching event, or no event entirely
@@ -311,7 +329,56 @@ except Exception as e:
 *** https://docs.sqlalchemy.org/en/20/core/pooling.html#dealing-with-disconnects
 *** https://docs.sqlalchemy.org/en/20/tutorial/index.html
 *** https://docs.sqlalchemy.org/en/20/core/engines.html#engine-configuration
-** Emacs
+** Emacs:
+*** we need a Emacs feature/mode that provides some cool jquery selector shortcut
+*** we need to really try javascript console in Emacs, we forgot where th link was
+*** we should really learn all the paredit tricks
+*** there are several ways to exit hydras in fact, some more stable than others (becoz of nested hydras
+**** [[https://emacs.stackexchange.com/questions/36597/returning-to-the-parent-hydra][link]]
+**** [[https://emacspeak.blogspot.com/2020/09/emacs-paired-commands-efficient.html][repeatable hydra yank]]
+*** warning level for Emacs config setup, not sure if we ever need it:
+**** [[https://emacs.stackexchange.com/questions/78800/how-to-disable-automatic-appearance-of-warnings-buffer-in-emacs][warning levels]]
+*** combobulate:
+**** [[https://github.com/mickeynp/combobulate][main repo]]
+**** 
+*** Company mode readings:
+**** [[https://www.reddit.com/r/emacs/comments/q8u2l4/unsetting_return_in_company_mode/][finally disabled company mode completion with better keybindings company-active-map]]
+**** [[https://github.com/company-mode/company-mode/issues/640][variuos ideas of use-package for company-mode]]
+**** [[https://company-mode.github.io/manual/Getting-Started.html#Usage-Basics][good verbose doc]]
+*** Read about Bookmarks+ or some other way of preserving state between session
+*** Read about elpy-rpc, and why do we have an elpy-rpc-buffer, it sounds cool but i dont know what its used for
+*** building
+**** https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
+**** [[https://www.masteringemacs.org/article/how-to-get-started-tree-sitter][building emacs with tree sitter support]]
+**** [[https://www.masteringemacs.org/article/whats-new-in-emacs-29-1][emacs 29 whats new]]
+**** [[https://apple.stackexchange.com/questions/81930/compiling-ns-cocoa-emacs-on-osx-with-svg-support][emacs build on mac with svg support]]
+**** [[https://gist.github.com/abidanBrito/2b5e447f191bb6bb70c9b6fe6f9e7956][emacs build on gist github]]
+**** [[https://www.youtube.com/watch?v=MsP5QF2Ajdw][building emacs bit-mage]]
+**** [[https://www.rahuljuliato.com/posts/compiling_emacs_30_1][compile emacs 30 rahul]]
+**** [[https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/][build emacs with pgtk]]
+**** [[https://github.com/jimeh/build-emacs-for-macos/issues/12][issue with emacs build on mac with SVG]]
+**** [[https://www.adventuresinwhy.com/post/compiling-emacs-with-tree-sitter/][adventuresonwhy build emacs 29 with tree-sitter]]
+**** [[https://famme.sk/blog/compilation-of-gnu-emacs-29-30-in-debian-12.html][famme.sk compile emacs 30 on Debian 12]]
+**** [[https://ryanfleck.ca/2024/compiling-emacs-29/][on mac good minimal tips]]
+**** [[https://www.reddit.com/r/emacs/comments/1e3nav3/emacs_29_wont_build_with_svg_even_with_withrsvg/][emacs with svg requires these apprently: sudo apt-get install librsvg2-2 librsvg2-dev]]
+**** 
+*** treesitter:
+**** [[https://www.masteringemacs.org/article/lets-write-a-treesitter-major-mode][writing a major mode that uses tree-sitter]]
+*** more efficient faster completions for our Python, using this code, for now. We just need to set company-mode properly, and then use configs below from this [[https://github.com/joaotavora/eglot/discussions/1436][link]]
+#+begin_src lisp
+
+
+(use-package company
+  :config (setq company-idle-delay 0
+		company-minimum-prefix-length 1
+		company-tooltip-align-annotations t))
+(add-hook 'after-init-hook 'global-company-mode)
+  
+#+end_src
+*** Write somewhere why syntax trees (for parsers) are very difficult to get correct. Compilers are kinda "closed source"https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter. While compilers are the source of truth, we cant rely on its "closed sourceness
+*** [[https://www.deusinmachina.net/p/tree-sitter-revolutionizing-parsing][parsing tree-sitter link]]
+*** [[https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter][another one on tree-sitter]]
+*** 
 *** [[https://jackjamison.xyz/blog/emacs-garbage-collection/][garbage collection, basically to reduce stuttering]]
 *** [[https://kitchingroup.cheme.cmu.edu/blog/2016/11/10/Persistent-highlighting-in-Emacs/][The Kitchin Research Group]]
 *** [[https://github.com/rougier/svg-tag-mode][really cool, possible improvement to our html editing]]
@@ -349,84 +416,40 @@ except Exception as e:
 **** [[https://learnbevy.com/playground][bevy playground]]
 **** 
 ** Emacs, improve your web-mode, make it highlight matching tags
-*** try Dirvish 
-** Very good source of information for SQLALCHEMY models to dictionary!!
 ** Make sure you share-rate is above 3%
 ** Post in Pythons Group Malaysia, your willingness to work for Django, having experience in Flask and used Django for a side project.
 ** You managed to get the attention of Nick and Nardine
 **** Time to post something REALLY clickbaity
 **** Use a cartoon image of yourself, maybe Gimpify your face.
 ** Present your Emacs teaching class inside University of Malaya International students main discussion group. Gauge reaction
-** Obsidian config, we should include obsidian image link generation, and auto-file deletion (Obsidian side)
-#+begin_src lisp
-
-  (defun refactor--process-files (dir-name policy)
-  (setq dir-files (directory-files dir-name))
-  (dolist (element dir-files)
-    (unless (or (string= "." element)
-		(string= ".." element)
-		(file-directory-p element))
-      (find-file element)
-      (print element)
-      (funcall policy (point-min) (point-max))
-      (save-buffer))))
-
-(defun untabify-dir ()
-  "Untabify the contents of a folder"
-  (interactive)
-  (let ((dir-name
-	 "~/storage/shared/Documents/my-org-and-obsidian/my-org-notes"
-	 ))
-    (refactor--process-files dir-name 'untabify))
-  )
-
-
-
-
-;; NOTE: since this is only a single execution everytimme,
-;; and we only have a single project,
-;; we dont need to play around putting "my-org" into a variable
-(setq org-publish-project-alist
-      '(("my-org"
-	 :base-directory "~/storage/shared/Documents/my-org-and-obsidian/my-org-notes"
-	 :recursive t
-	 :publishing-function org-md-publish-to-md
-	 :publishing-directory "~/storage/shared/Documents/my-org-and-obsidian/my-oob-notes"
-	 :base_extension "org"
-	 :with-sub-superscript nil
-	 :section-numbers nil
-	 :base-extension "org"
-	 :with-toc nil)))
-
-(setq rd-a-project (assoc "my-org" org-publish-project-alist))
-(setq ardie/list-of-post-publish 'nil)
-(setq ardie/list-of-previous-publish 'nil)
-
-;; initilialize first, otherwise, org-publish-cache produces error
-(org-publish-initialize-cache "my-org")
-
-
-
-(dolist (rd-long-filename (directory-files-recursively "~/storage/shared/Documents/my-org-and-obsidian/my-oob-notes" "\\.md$"))
-  (delete-file rd-long-filename)
-  )
-
-
-(org-publish-project "my-org" t)
-
-
-
-
-(save-buffers-kill-terminal)
-
-
-#+end_src
 ** Instagram, YouTube:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
-*** Think of a way to post again about you direcitonal keys (rare bigrams, rare key combination). Basically a cool way to use key-chords in Emacs
-*** Im not sure if this might be userful to anyone, butI found a clever way to make Python more readable when lots of nesting is involved. I rely on themes that make comments color bolder. So I put #endstuff at the end of certain control flow, like important ifs and elses. I find that I can skip code better this way when reading. Yes OOP isnt exactly next-level, but this makes such a big difference. 
+*** Post again your 
+*** Managing 2 Emacs version (28 and 29 in my case) minimally, not much fancy hack.
+*** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
+**** Completely rewire how I use my my keyboard. This ones more like "hardwired" hack. Basically, I always use both hands, and as little pinky as possible. When I am pressing Ctrl-w, instead of using Left hand for both Ctrl and W, I use Right hand for Ctrl and Left hand for w.
+**** I experimented with Hydra mode as much as possible. Using Hydra mode, I map shortcuts like ;;t to a Personal learning Diary, and ;;p to my Python Diary, and there are 24 more alphabets to go. If I were to ever code in C or C++, I could remap those modes to exclusively not use those.
+**** I use a rather less-known package called Key Chord. Using key chords, I create a directional bigram, that is highly ergonomic. I will explain this in a later post, but simply, instead of Ctrl-_ for Undo, I use qw for Undo, since qw is a key combination rarely used in writing (aka bigram). Since qw is placed on the left (aka directional), left hints on "going back", since its our natural reading direction. These directional key presses are a theme I apply throughout (]\ for opening empty scratch buffer on the right, p[ is for moving to opened window on the right, and [] for moving to opened window on the left, zx for moving to previous buffer, and ,. for moving to next buffer). 
+**** I paste small Velcro pieces on all my keyboard modifiers, such as Ctrl and Alt with braille-inspired variations, so I can literally just feel the Alt and Ctrl. Similarly applied to by directional bigram key chords. In my current workflow, I no longer look at the keys for Ctrl or Alt, and this braille addition makes my navigation many times more ergonomic.
+**** Thats it, so far, my only complain is this Velcro addition makes my keyboard look ugly, my next move might be to epoxy necklace beads to my keyboards for those braille-inspired patterns. Yes its very hacky, but its better than carrying a very bulky mechnical keyboard everywhere with me.
+**** References: [[https://github.com/emacsorphanage/key-chord][Key Chords]] and [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams]]
+**** Well, its either this or a very expensive split keyboard that is completely out of my reach.
+*** Things I learnt from the book UNIX-haters.  So many, but the few things that were useful to me:
+**** Commands like rm, cp, are badly designed due to cryptic naming (2-letter word), inconsistent documentation (beginning users learn are told to use "man <command>", but many commands dont have man, such as fg, jobs, set). 
+**** UNIX does not respect many forms of boundaries such as files, even though everything is supposedly a file in UNIX philosophy, many UNIX commands (some are carried forward over to Linux) easily overwrites files, when used wrongly (and mistakes are very easy to make in UNIX, even for sys-admins). So I made tinkered my Emacs to force myself to chane my habit. Actually not "force", I ensured Emacs navigation was more comfortable thn navigating using cd commands or removing files using rm command. I dont want to use aliases for rm, so I dont forget just how dangerous the rm command is. 
+**** In Emacs Dired (the file manager of Emacs), I replaced <enter> and ^ with Alt-<right> and Alt-<left>. more comfortable than a terminal. And I defined the variable trash-directory so that deleting a file gets moved to a trashcan first, like other operating system's. The usual delete commands in Emacs Dired are already comfortable
+**** Some of the bad design elements were also due to "market constraint". There was millitary funding of UNIX development at University of Berkeley. And you had to please millitary general requirements or maybe just contraints. Which is proof that most of techs history is closely related "culture and art" than it is to something rational and logical. And UNIX has infested everywhere at our current time.
+**** OSI model (of the network) sucks. Despite what people in tech make you think, tech is more art than science. Nothing wrong with that, but its a messy art. OSI are created by "standard makers", but just like the guys who libraries for programming, the guys who write the standards are usually not the same guys who use the standard. People who use UNIX's sendmail at the time (also a horrible tool) also complain about OSI
+*** Diary in Emacs, perhaps the best way to learn Emacs selfishly:
+**** So its me back, and im back with more "what I do with my Emacs". Some of the previous points last time, was integrating org-mode with Obsidian markdown files, so I can read everything I write in Emacs on my tablet, using the fancy Obsidian.
+**** I also mentioned in passing my org note setup. However, I wanna try to focus on writing a diary in Emacs, as well as some features that might be attractive to some of you, but I dont use personally. My way of learning Emacs during my early years, is to steal a little of time everyday to write a diary in Emacs.
+**** Why write a diary? Well for one, the human mind has a very abstract understanding of time. With regards to skil for example, im sure many of us have spent countless hours, even thousands of hours, learning a particular difficult skill, a football trick, a juggling trick, painting, a musical piece. This is not to mention solving a software skill, that is seemingly easy to understand but difficult to execute at as a junior. Writing a diary serves as a log of progress. If we spend so much time looking at computer code, why we cant we do the same with the most important software and hardware, our brain? Its not about optimizing for progress sake, but for mental health, so write in your diary your accomplishment in side projects or hobbies. You are more than just the value of what corporates give you. Make the technology you use serve you side passions too. Dont lose sight of the goal, technology is supposed to make your life easier not harder.
+**** Using a diary, you can split further your learning experience into Emacs and non-Emacs stuff. Eventually, you will reach an Emacs level, where you create not just shortcuts, but overpowered shortcuts that map to everything else, your Python notes, your current project, your favourite shell script, a shortcut that triggers a simple backup script, anything (we are not talking about running a script from the IDE, but rather mapping Ctrl-c Ctrl-g or whatever). But reaching there, like every other skill takes time. Use Emacs to learn Emacs, TODO lists, reminders, notes. Cheat your boss by including 30 minutes of Emacs reading. 
+**** there are many parts to explore. Actually the best thing to explore about Emacs which is org-mode. Its everything, a knowledge management system, a TODO organizer, a diary, a daily reminder, a timer, you name it, org-mode has it. Use Org-Mode as part of this "cheat" routine. Eventually, Org-Mode will make your life and work easier, but its one of those of things where you will never be able to convince your boss or colleague, it has so many advantages yet difficult to communicate to others. Forget an employer, even explaining to a friend is a struggle.
+**** yes, in a sense, Im using this as an excuse to advertize Emacs as an alternative. However, this comes with a warning. In short, if you want a software that has "opinions" on the best way to do things, this is not for you. Emacs is dangerous in a sense it has 0 opinions on the best way things. On top of that, you are not going to learn things in a month or 2, it is a real invesment.
+**** But Im gonna end this on a good note, eventually everything will turn out fine. The community is there r/emacs on Reddit, SachaChua, Xah Lee, SystemCrafters, Protesilaos. Some of these guys are not coders.
 ** Jobs:
 *** [[https://app.outlier.ai/en/expert][Outlier tasks]]
 *** micro1
@@ -441,9 +464,9 @@ except Exception as e:
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
 ** We need to test duplicates of everything, but for now only FIDE ID
-** Social:
-*** Post about how money management mindset is detrimental to development of skill that truly matters
 ** Python:
+*** understanding [[https://www.geeksforgeeks.org/python-flask-immutablemultidict/][immutablemultidict]], kinda important
+*** Jinja2 award winning [[https://ttl255.com/jinja2-tutorial-part-4-template-filters/][blog]]
 *** Learn Polars
 *** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
 *** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
@@ -455,15 +478,13 @@ except Exception as e:
 ** We are going to READ on FILE VALIDATION, COMMON skill:
 *** https://imagekit.io/blog/how-to-upload-files-in-html/
 ** The best way to read CSS frameworks, while learning an actual project in your real work, while also spending time doing your personal project, is to read all the documentation of several. Im currently reading both Bootstrap and Tailwind CSS. The frameworks come from different perspectives and opinions. And trying to get into the mind fo the guys who created the "language", means trying to think "what is the creator trying to convey", when reading all their documentations. 
-** Think of a project to use with typst
-*** Also write something about typst
 ** We are going to publish our site, either in render or fly.io
-** Remember to move image files from Hanifas laptop during the meeting later.
 ** Progress
 *** write about how you successfully did flex properly (3 child divs). Also flex and grid-cols dont mix very well. Remember to note how you read repeatedly sources from Bootstrap and Tailwind docs to get a sense of  CSS logic. You also tried to memorize slightly tailwind CSS. 
 *** Do you want to write about thinking in terms of context. 
 ** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
-** from our phone link
+** Reading
+*** [[https://www.jstor.org/stable/2053842][Japanese anti-monopoly law]]
 ** Watch:
 *** https://www.youtube.com/watch?v=YRvBQdJlBeo
 *** https://www.youtube.com/watch?v=421twOHytG0
@@ -489,12 +510,8 @@ except Exception as e:
 ** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
 ** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
 ** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
-** Copy Hanifas key
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** contact African guy again
-** Social
-*** Respond to the Daniel in Developer Kaki
-*** ISO for free theaded rod more than 2 feet at least and a few matching nuts
 ** Python project notes, jot down the folowing:
 *** [[https://jinja.palletsprojects.com/en/stable/templates/][we should read more Jinja, just read documentation, spend 1 hour]]
 *** [[https://stackoverflow.com/questions/5458048/how-can-i-make-a-python-script-standalone-executable-to-run-without-any-dependen][pythinstaller -f will create a proper .exe]]

@@ -35,14 +35,21 @@
 * Read  about [[https://www.youtube.com/watch?v=ujfiVr1NaSM][this]]:
 * PyCon 2025 Volunteer work:
 ** [[https://otter.ai/group/21973239][otter ai notetaking]]
-
-    
-
-
-
-
-
-
- 
-
+* 28th May
+** announce CFP next 2 weeks?
+** this year,CFP settle by 2 months
+** 1st tier, voting, ask speaker for details
+** 2nd round, voting
+** 3 months just to do CFP selection
+** 100-200 submissions on average
+** work with sponsors for prospectus design
+** https://pyconmy.wordpress.com/
+** we no longer do rolling:
+*** the review reviews
+*** thinks good, admit straight away
+*** 
+*** 
+** https://github.com/pycon-my/pyconmy-call-for-paper/blob/main/call-for-papers.md
+** our old system
+** https://www.papercall.io/pycon-my-2023
 

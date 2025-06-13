@@ -35,3 +35,61 @@
           echo $(two)
 
 #+end_src
+* Day 2:
+** https://earthly.dev/blog/make-flags/
+** flags
+*** flags can be placeholders for options in commands
+*** Eg: ls -lhrt, so a flag might be $mylist for -lhrt
+*** However, make defines standard, such as CFLAGS or CXXFLAGS
+*** why? actually, it doesnt matter. But with standard naming, you can use implicit rules
+*** "implicit rules" = you dont have to list commands, for common operations, like compiling file.c to file.o
+*** remember our recursive variable definition? By recursive definition, we can have a flag with both "default required" and "user additions"
+#+begin_src makefile-gmake
+
+CFLAGS = -g # Optional. Not required for proper compilation
+ALL_CFLAGS = -I. $(CFLAGS) # -I. is required for proper compilation
+main.o: main.c
+        $(CC) -c $(ALL_CFLAGS) main.c
+
+#+end_src
+** $(CFLAGS)
+*** the required option passed to compiler
+** $(CXXFLAGS)
+*** same but for C++ compilers
+** $(CPPFLAGS)
+*** its for the preprocessor, its a separate exe from compiler, but the compiler calls it, so we pass this to the compiler
+** $(LDFLAGS)
+*** -L
+*** like preprocessor but for linker, the compiler calls it, we pass directory path containing the libraries
+** $(LDLIBS)
+*** -l
+*** space separated libraries
+* Day 3:
+** installed tree-sitter
+** cloned emacs 29 from savannah
+#+begin_quote
+
+git clone https://git.savannah.gnu.org/git/emacs.git -b emacs-29
+
+#+end_quote
+* Day 4:
+** Successfully compiled Emacs 29 in ~/my-emacs-29, the few installed stuff below
+#+begin_quote
+
+./configure --with-tree-sitter --with-json  --with-native-compilation=aot --with-mailutils --with-pop --prefix=/home/ardie/my-emacs-29
+sudo apt install gcc-10
+sudo apt install libgccjit0 libgccjit-10-dev
+sudo apt-get install libjansson4 libjansson-dev
+
+#+end_quote
+* Day 5:
+** Successfully installed treesitter, but have yet to fully utilize it, dont understand combobulate at all
+** created treesit-language-source-alist, and ran M-x treesit-install-language-grammar
+* Day 6:
+** Successfully installed combobulate by using this [[https://github.com/mickeynp/combobulate?tab=readme-ov-file][link]] (and make sure "path-to-git-checkout-of-combobulate" is pointing our checkedout combobulate repo)
+* Day 7:
+** Successfully added hydra mode using combobulates 
+* Day 8:
+** eCreated an image copying script correctly with directory creation for my Org-mode Obsidian tablet
+* Day 9:
+** we improved our Emacs hydra mode to use both ***-sexp and ***-word functions

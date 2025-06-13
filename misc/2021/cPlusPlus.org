@@ -149,4 +149,5 @@ std::getline(std::cin >> std::ws, s);
 ** [[https://alexott.net/en/writings/emacs-devenv/EmacsCedet.html][CEDET to read briefly]]
 ** [[https://cedet.sourceforge.net/][CEDET briefly]]
 * Makefile awesome writing, but maybe the tool itself is not awesome
-** https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+** [[https://web.mit.edu/gnu/doc/html/make_14.html][mit makefile doc]] : rather useless, in its weird jumbled writing style. Informative, if only reference or experience. Almost written as an afterthought.
+** [[https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/][colby cs]] : slightly better, but specific. Calls variables "macro", target "rule", hence not great for beginners. Include s ways to make Makefile (haha), more generic. 

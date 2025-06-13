@@ -9,6 +9,18 @@
 *** https://zzamboni.org/
 **** An awesome collection of Emacs config (includes Kaushal Modi)
 ***** https://github.com/caisah/emacs.dz
+* Building your own, what I did:
+** also tree-sitter before (compile) not package manager
+** read ./configure --help
+** Successfully compiled Emacs 29 in ~/my-emacs-29, the few installed stuff below
+#+begin_quote
+
+./configure --with-tree-sitter --with-json  --with-native-compilation=aot --with-mailutils --with-pop --prefix=/home/ardie/my-emacs-29
+sudo apt install gcc-10
+sudo apt install libgccjit0 libgccjit-10-dev
+sudo apt-get install libjansson4 libjansson-dev
+
+#+end_quote
 * basic navigation, behaviours, buffers
 ** Navigation, behaviours
 *** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 

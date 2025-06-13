@@ -699,3 +699,19 @@ gunicorn -b 0.0.0.0:9000 'wsgi:app' -t 300 --keep-alive 300
   $("#" + subgroupId).show()
 
 #+end_src
+* Day 51:
+** new model FormQuestionAnswersDeleted
+** smoothly displayed form-question-ansers-overwrittedn, but have still yet tested, duplicate IDs, but can still be done in the future, since we have the deleted_at attribute
+** default values for unfilled subgroups
+* Day 52:
+** we learnt preventDefault() before, but we had trouble in resubmitting, so we misunderstood. Turns out, the data is still there, and we can resubmit by unbinding. And we unbind the event by name "submit", like so:
+#+begin_export javascript
+
+$(this).unbind("submit").submit();
+
+// when we have our own flow (such as custom multiple buttons not named submit)
+$(this).unbind("submit")
+
+#+end_export
+* Day 53:
+** we discovered that extracting files from the form are not straightforward in our case, becoz request.files[] uses a the key from request.form.items() correctly but it when files are actually uploaded, there are no keys associated with that file. Hence we need hidden <input> hack
