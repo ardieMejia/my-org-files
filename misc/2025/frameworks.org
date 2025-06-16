@@ -221,6 +221,16 @@ def db_DropEverything(db):
 #+end_src
 ** [[https://stackoverflow.com/questions/24289808/drop-all-freezes-in-flask-with-sqlalchemy][close_all_sessions() before dropping tables]]. One reply to comment correctly points version change means using close_all_sessions()
 ** What is this insane [[https://stackoverflow.com/questions/23714864/efficient-ways-to-store-multiple-excel-files-in-a-database][Excel shit]]
+** Time our queries, [[https://flask-sqlalchemy.readthedocs.io/en/stable/record-queries/][link]]
+** Faster deletes SQL:
+*** https://www.sqlservercentral.com/articles/how-to-delete-large-amounts-of-data
+* SQLAlchemy:
+*** https://docs.sqlalchemy.org/en/20/orm/session_basics.html
+*** https://docs.sqlalchemy.org/en/20/core/pooling.html
+*** https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine.dispose
+*** https://docs.sqlalchemy.org/en/20/core/pooling.html#dealing-with-disconnects
+*** https://docs.sqlalchemy.org/en/20/tutorial/index.html
+*** https://docs.sqlalchemy.org/en/20/core/engines.html#engine-configuration
 * Error Handling:
 ** lets learn how to handle errors [[https://www.digitalocean.com/community/tutorials/how-to-handle-errors-in-a-flask-application][here]]
 ** [[https://docs.python.org/3/library/exceptions.html][built-in]] python exceptions

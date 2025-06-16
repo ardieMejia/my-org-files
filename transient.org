@@ -8,6 +8,66 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
+** Fiverr:
+#+begin_quote
+
+Freelancer Brief: Beginner-Friendly ImageMagick Script for Product Artwork Overlays
+Hi! I need help creating a super simple script using ImageMagick that can overlay artwork onto product images.
+
+⚠️ Please note: I am not technical and have never used ImageMagick or scripts before. I typically just work by copy-pasting screenshots of products (like mugs) into a folder, and I want to apply artwork to those images without breaking or changing anything else.
+
+🖼️ My Typical Workflow
+I copy or screenshot multiple product photos (e.g., mugs) into a folder on my computer.
+
+These are usually JPG or PNG files of real products, with the photo background included.
+
+I want to add surface artwork (like a logo or graphic) to each product photo, without altering anything else in the image.
+
+🧱 Folder Setup (What You'll Work With)
+css
+Copy
+Edit
+/input/     → the folder with screenshots or product photos (e.g., mug1.jpg, mug2.jpg)
+/artwork/   → a single transparent PNG I want to overlay (e.g., logo.png)
+/output/    → a folder where I want the new images saved
+🎯 What I Need the Script to Do
+Batch process all the images in /input/
+
+Overlay the same artwork file (from /artwork/logo.png) onto each image
+
+Place the artwork in a fixed position (e.g., centered, or at X/Y coordinates I can change easily)
+
+Save the new images in /output/ without overwriting the originals
+→ Example: mug1_art.jpg, mug2_art.jpg
+
+🔒 What the Script Must NOT Do
+Do NOT change the product image’s size, shape, lighting, color, resolution, or angle
+
+Do NOT touch or alter the background
+
+Do NOT re-render, distort, or filter the photo in any way
+
+Only the new artwork should be added—everything else must stay visually identical
+
+✅ What I Need from You
+A working script for Mac (.sh) or Windows (.bat)—please let me know which one
+
+Step-by-step instructions on how to install ImageMagick (for someone who has never done it)
+
+Clear directions on how to run the script, like copy-paste commands I can follow
+
+Comments in the script so I understand what each part does
+
+Optional: allow me to easily tweak the artwork size or position
+
+💬 I’ll gladly answer any questions—but please assume I have zero coding or design experience, and that I’m just working with basic screenshots and PNG files.
+
+
+Would you be able to help me build this?
+
+Let me know if you’d like me to prepare this as a downloadable text or Word document for posting!
+
+#+end_quote
 ** write this somewhere:
 *** a blocking custom dialog like [[https://stackoverflow.com/questions/56130393/jquery-custom-confirm-dialog][this]]. he native confirm function, like alert, is blocking, and prevents any further script execution or page interaction until the user responds to the prompt. This has no equivalence in anything you can write in the GUI.
 ** write this somewhere:
@@ -24,9 +84,66 @@
 ** we have to save this somewhere:
 *** [[https://www.w3schools.com/css/css_display_visibility.asp][link]]: CSS display property commonly used by Javascript
 ** Terry:
+*** there should be a way for users to downlaod questions created, in the form of CSV
+**** kill_event(id) should put all delete operations into a single session "unit"
+*** we simplify dict structure for event_answers_page and event_answers_page_overwritten
+*** our register and withdraw buttons are very confusing, they dont separate enough from Events Registered.
+**** Solution put wthdrawn events under "Events Registered", NOT the registration dropdown
 *** event names should be unique at DB level
+*** we need this scrip before all delete operations
+#+begin_src js
+
+
+  $("[id^='hardDelete_']").click(function(e){
+      let objectToDel = hardDeleteButtonID.split('_')[1]
+      e.preventDefault();
+      let hardDeleteButtonID = $(this).prop("id")
+      let parentDialogID = 'hardDelete_'+objectToDel+'Dialog'
+      function passTextToDialog(someText){
+          $('#'+parentDialogID+'Text').html(data)
+          $('#'+parentDialogID).show()
+          my_confirm(function(continueClick) {
+              if (continueClick){		    
+                  $(this).unbind("click")
+                  $(this).click(); /* trigger click of button, our days long struggle was this simple, we dont know this */
+              }else{
+		
+              }
+          });
+      }
+      passTextToDialog(objectToDel);
+  });
+
+
+
+  function my_confirm(confirmCallback, cancelCallback) {
+      // your confirm dialog	
+      $(document).on( 'click', '#'+parentDialogID+' #confirmDelete'+objectToDel, function() {
+          // if(typeof confirmCallback === 'function') {
+          //     confirmCallback();
+          // }
+          console.log("clicked confirm");
+          $('#confirmWithdrawal').hide();
+          confirmCallback(true);
+      });
+      $(document).on('click', '#'+parentDialogID+' #cancelDelete'+objectToDel , function() {
+          // if(typeof confirmCallback === 'function') {
+          //     confirmCallback();
+          // }
+          console.log("clicked confirm");
+          $('#confirmWithdrawal').hide();
+          confirmCallback(false);
+      });
+      // cancelWithdrawalButton
+  }
+
+
+
+
+
+
+#+end_src
 *** our member-front page needs a reload check
-*** CRSF error hndler, otherwise it becomes dull: [[https://www.google.com/search?client=ubuntu&channel=fs&q=flask+check+if+crsf+token+expired+and+redirect][link]]
 *** when a member deletes an event, it should also appropriate descendents => FormQuestionAnswers, and also refill FormQuestionAnswersDeleted, think of recalling the same function
 *** we need to do element ebhaviour for subgroups as well
 *** a link beside form-creator, or tooltip that suggests ideas for fieldnames
@@ -81,20 +198,27 @@
 *** for our form creator:
 **** our forms will have expire date, Terry will have to personally manage late expcetions if he wants.
 *** for kill_event, we need to replace render_template with redirect
+*** we should have a dummy page.
+*** we should have a form preview at a separate page
 ** Tests:
 *** Put some tests in case of wrongly named CSV files
+*** kill event should successfully kill all event descendent data
+**** create event
+**** create form questions with sub questions
+**** get 2 members to register for event and fill form
+**** get 1 member to register for event ONLY
+**** get 1st memebr to register again
+**** KILL event
+**** check event, eventmember, formquestion, formquestionsubgroup, formquestionanswers, formquestionanswersdeleted of specific event ID are deleted
 *** Test form link when there is no matching event, or no event entirely
+*** Insert the exact same name for tournament name, make sure it catches error properly, shoulfd show DB level error message
+*** Go thrhough the usual uplaod of Jan Feb and March, check messages
+*** Upload Jan Feb March, and try uploading FRL in Feb, it should fail wih "wrong type"
+*** Uplaod Jan Feb march, and try updating FRL in Feb, it should correctly updated FIDE. Check 1 members to confirm
+*** login as member and update a FIDE
 ** Write somewhere:
 *** Deleting data from DBS is [[https://softwareengineering.stackexchange.com/questions/159232/should-we-ever-delete-data-in-a-database][usually a good idea]]
-** Prototype:
-*** We have a subGroupId, unique, nullable, mostly useless except for subgroups.
-
-FormStructure
-| eventid | formid   | fieldname | type | values | questionString | subGroupId | 
-
-FormSubGroup
-| subGroupId | fieldname | type | values | questionString | 
-
+*** [[https://www.sourcecodester.com/tutorial/javascript/14998/creating-dynamic-confirmation-dialog-using-jquery-and-bootstrap-modal][good read on jquery and confirmation delete with jquery]]
 *** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries]]
 *** Form creator:
 **** We need to show content of database more apparently, instead of hiding behind interface. The admin must completely understand what is inside.
@@ -148,10 +272,6 @@ except Exception as e:
 *** to deploy our system, from scratch with Admin AND Users. We should have an entry point that searches an admin. If True, redirect to main_page, Else admin_register.html
 **** this means we need to create our password reset email delivery system.
 **** only then can we finally protect all our end points
-*** We need to time our kill_events() query. 
-**** https://flask-sqlalchemy.readthedocs.io/en/stable/record-queries/
-*** Faster deletes SQL:
-**** https://www.sqlservercentral.com/articles/how-to-delete-large-amounts-of-data
 *** kill_events (thats with an S!!), we only did the kill_event/<int:id>
 *** Flask session timeout:
 **** [[https://mulgrew.me/posts/session-timeout-flask.html][this one has module g, dont know]]
@@ -254,27 +374,6 @@ except Exception as e:
       app.run(debug=True)
 
 #+end_src
-*** to avoid confirm form resubmission, we add these (sugested by AI), to redirect to the same form (GET). So going back, simply resend a GET request.
-#+begin_src python
-
-  from flask import Flask, render_template, request, redirect, url_for
-
-  app = Flask(__name__)
-
-  @app.route('/form', methods=['GET', 'POST'])
-  def my_form():
-      if request.method == 'POST':
-          # Process the form data
-          # ...
-          # Redirect to a success page or the same form page (GET)
-          return redirect(url_for('my_form'))
-      return render_template('form.html')
-
-  if __name__ == '__main__':
-      app.run(debug=True)
-
-#+end_src
-*** we should put all db.session.commit() or db.session.close(), even after every SELECT queries, before opening endpoint template
 *** to split our app.py later on before it becomes more thn 5000 lines, from AI (yuck):
 #+begin_src python
 
@@ -322,16 +421,14 @@ except Exception as e:
 *** Stupid app, we should recheck all of our validations, should be FIDE
 *** Security:
 **** https://snyk.io/blog/secure-python-flask-applications/
-** SQLAlchemy:
-*** https://docs.sqlalchemy.org/en/20/orm/session_basics.html
-*** https://docs.sqlalchemy.org/en/20/core/pooling.html
-*** https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine.dispose
-*** https://docs.sqlalchemy.org/en/20/core/pooling.html#dealing-with-disconnects
-*** https://docs.sqlalchemy.org/en/20/tutorial/index.html
-*** https://docs.sqlalchemy.org/en/20/core/engines.html#engine-configuration
 ** Emacs:
-*** we need a Emacs feature/mode that provides some cool jquery selector shortcut
 *** we need to really try javascript console in Emacs, we forgot where th link was
+*** we should really explore combobulate to explore doing tricks in HTML and JAVSCRIPT, like moving a tree outside parent
+**** moving everything outisde of any bracket
+**** moving everyghing outside tag
+**** but first start the experiment (and as practice), splitting the content into separate lines
+*** we have to remap some of our Emacs hudra to mark-sexp. But only for Emacs29. Also we need modify our select line in hydra to save-excursion
+*** we need a Emacs feature/mode that provides some cool jquery selector shortcut
 *** we should really learn all the paredit tricks
 *** there are several ways to exit hydras in fact, some more stable than others (becoz of nested hydras
 **** [[https://emacs.stackexchange.com/questions/36597/returning-to-the-parent-hydra][link]]
@@ -340,12 +437,13 @@ except Exception as e:
 **** [[https://emacs.stackexchange.com/questions/78800/how-to-disable-automatic-appearance-of-warnings-buffer-in-emacs][warning levels]]
 *** combobulate:
 **** [[https://github.com/mickeynp/combobulate][main repo]]
-**** 
+***** 
 *** Company mode readings:
 **** [[https://www.reddit.com/r/emacs/comments/q8u2l4/unsetting_return_in_company_mode/][finally disabled company mode completion with better keybindings company-active-map]]
 **** [[https://github.com/company-mode/company-mode/issues/640][variuos ideas of use-package for company-mode]]
 **** [[https://company-mode.github.io/manual/Getting-Started.html#Usage-Basics][good verbose doc]]
 *** Read about Bookmarks+ or some other way of preserving state between session
+*** We need to learn setting up opening module in Emacs rust. 
 *** Read about elpy-rpc, and why do we have an elpy-rpc-buffer, it sounds cool but i dont know what its used for
 *** building
 **** https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
@@ -393,6 +491,7 @@ except Exception as e:
 ** Python web app security practices:
 *** https://qwiet.ai/hacking-and-securing-python-applications/
 ** RUST:
+*** For those that missed the session, simply go to [[https://github.com/rust-malaysia/bevy_workshop][github repo of bevy malaysia]], copy src, clear out obstacles.rs, and start from there. It should be the same thing.
 *** Some recommended (please go through them, defo begging you...) resources:
 **** Install Rust - Rust Programming Language (A must!)
 ****     Official Introduction to Bevy (Highly recommended!)
@@ -464,13 +563,13 @@ except Exception as e:
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
 ** We need to test duplicates of everything, but for now only FIDE ID
+** Teaching notes:
+*** I finally understand callback functions, but I am convinced that setTimeout functions are a bad example to teach. I feel like trying to create a custom dialog mimicking the browsers builtin confirm delete dialog, THAT is a much better example.
 ** Python:
 *** understanding [[https://www.geeksforgeeks.org/python-flask-immutablemultidict/][immutablemultidict]], kinda important
 *** Jinja2 award winning [[https://ttl255.com/jinja2-tutorial-part-4-template-filters/][blog]]
-*** Learn Polars
 *** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
 *** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
-*** Spend time reading a Github example [[https://github.com/adityaShar24/Social-Media-Backend?tab=readme-ov-file][Flask social media]] app, for MORE examples
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment. This one is [[https://www.react-graph-gallery.com/build-axis-with-react][from react]]
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
@@ -479,18 +578,9 @@ except Exception as e:
 *** https://imagekit.io/blog/how-to-upload-files-in-html/
 ** The best way to read CSS frameworks, while learning an actual project in your real work, while also spending time doing your personal project, is to read all the documentation of several. Im currently reading both Bootstrap and Tailwind CSS. The frameworks come from different perspectives and opinions. And trying to get into the mind fo the guys who created the "language", means trying to think "what is the creator trying to convey", when reading all their documentations. 
 ** We are going to publish our site, either in render or fly.io
-** Progress
-*** write about how you successfully did flex properly (3 child divs). Also flex and grid-cols dont mix very well. Remember to note how you read repeatedly sources from Bootstrap and Tailwind docs to get a sense of  CSS logic. You also tried to memorize slightly tailwind CSS. 
-*** Do you want to write about thinking in terms of context. 
 ** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
 ** Reading
 *** [[https://www.jstor.org/stable/2053842][Japanese anti-monopoly law]]
-** Watch:
-*** https://www.youtube.com/watch?v=YRvBQdJlBeo
-*** https://www.youtube.com/watch?v=421twOHytG0
-*** https://www.youtube.com/watch?v=1MSy6epsU6Y
-*** https://www.youtube.com/watch?v=9UIIMBqq1D4
-*** https://www.youtube.com/watch?v=afA0b5ygTyA
 ** Emacs:
 *** Also, finish this somewhere, about starting, and its not that simple, becoz things go wrong, Emacs tends to hide it, when use the usual shell-command, so instead, your UNIT OF ABSTRACTION must be the process:
 **** http://xahlee.info/emacs/emacs/elisp_start_external_process.html

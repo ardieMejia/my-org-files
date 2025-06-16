@@ -715,3 +715,48 @@ $(this).unbind("submit")
 #+end_export
 * Day 53:
 ** we discovered that extracting files from the form are not straightforward in our case, becoz request.files[] uses a the key from request.form.items() correctly but it when files are actually uploaded, there are no keys associated with that file. Hence we need hidden <input> hack
+* Day 54:
+** we added a confirm dialog using this example:
+#+begin_src js
+
+
+
+
+
+  $('#eventDeleteButton').click(function(e){
+      e.preventDefault();
+      function getClause(){
+          // ajax request to get data, only 2 keys, url: and data:
+      }
+      function handleClause(data){
+          if (data == null || data === ""){
+              // unbind 'click' event and trigger click() for main delete button
+          }else{
+              // fill confirm dialog with data, and unhide dialog
+              my_confirm(function(continueClick) {
+                  if (continueClick){
+                      // unbind 'click' event and trigger click() for main delete button
+                  }else{			
+                  }
+              });		
+          }
+      }
+      getClause().done(handleClause) // this is just to organize code better		
+  });
+
+
+
+  function my_confirm(confirmCallback, cancelCallback) {
+      $(document).on( 'click', '#<some-confirm-button-ID>', function() {
+          $('#confirmWithdrawal').hide();
+          confirmCallback(true);
+      });
+      $(document).on( 'click', '#<some-cancel-button-ID>', function() {
+          $('#confirmWithdrawal').hide();
+          confirmCallback(false);
+      });
+  }
+
+
+
+#+end_src

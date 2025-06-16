@@ -1,0 +1,49 @@
+* Arrange all this:
+#+begin_quote
+
+
+
+
+
+
+    C-c C-c C-u rust-compile
+    C-c C-c C-k rust-check
+    C-c C-c C-r rust-run
+    C-c C-c C-t rust-test
+    C-c C-c C-l rust-run-clippy
+
+
+rustc --explain
+
+scalar types
+- pointer-size? size of architecture, thats all
+- char is single-quoted,
+- stack is sequential, and heap is dynamic ()
+- let s: &str = "Rust"
+- character, reference string, and string
+- tupple = uniqueness, stack
+- arrays = fixed size, heap
+- struct
+- enum = Result, Option
+- Reference Types: shared,mutable
+- Collections: vectors
+- Copy or borrowing
+- non-copy = string, vectors,
+
+
+
+
+mutability and copy-type, dont be confused
+
+
+
+
+
+
+
+
+
+in Rust we d our best to avoid copy, becoz its expensive
+
+
+#+end_quote

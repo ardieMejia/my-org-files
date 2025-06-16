@@ -199,6 +199,9 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://joaotavora.github.io/yasnippet/snippet-reference.html
 ** I finally know how setup config (dirs etc) properly
 *** https://joaotavora.github.io/yasnippet/snippet-organization.html
+* Autocompletion backends:
+** It works:
+** we finally managed to make LSP work, use the simple config in this link: [[https://www.reddit.com/r/emacs/comments/ejc1az/lspmode_select_python_interpreter_virtual/][reddit link on minimal Emacs lsp setup]]
 * Org Mode
 ** org templates:
 *** Finally once you start inserting your first code block (template, whatever). We can read this

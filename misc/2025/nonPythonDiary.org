@@ -93,3 +93,29 @@ sudo apt-get install libjansson4 libjansson-dev
 ** eCreated an image copying script correctly with directory creation for my Org-mode Obsidian tablet
 * Day 9:
 ** we improved our Emacs hydra mode to use both ***-sexp and ***-word functions
+* Day 10:
+** I instaled Rust using this link: [[https://www.digitalocean.com/community/tutorials/install-rust-on-ubuntu-linux][digitalocean]]
+* Day 11:
+** Fixed the radio to include values Yes and No, now it works to trigger subgroup elements (ID that starts with subgroup::)
+* Day 12:
+** managed to successfully install LSP from [[https://www.reddit.com/r/emacs/comments/ejc1az/lspmode_select_python_interpreter_virtual/][reddit link]]. Using eglot and LSP works automatically by default. Just point the variable. But since Virtual Environments are the "parents" of both of these, we need to setup insude use-package pyvenv
+#+begin_src lisp
+
+(setenv "WORKON_HOME" "/home/ardie/python-emacs-workspace/project_delete_1/myenv")
+  
+#+end_src
+** Which required:
+#+begin_src shell
+
+  pip install 'python-language-server[all]'
+
+#+end_src
+** we learnt a little Rust Bevy. Our understanding of events and sprites, and having played with PyGame, seems to help slightly. We needed to install some libraries in order for bevy to work
+#+begin_src shell
+
+  sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
+
+#+end_src
+* Day 13:
+** we learnt to draw boxes for our foldable stool
+** I think we figured out a way to make foldable stools thanks to our plan

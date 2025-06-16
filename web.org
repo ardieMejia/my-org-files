@@ -26,6 +26,49 @@
 *** onload is DOM standard, document.ready is jQuery-specific
 *** 
 ** [[https://api.jquery.com/data/][The data-* attribute is a Global Attribute, and can be used on any HTML element]]
+** We did this for our confirm dialog
+#+begin_src js
+
+  $('#eventDeleteButton').click(function(e){
+      e.preventDefault();
+      function getClause(){
+          // ajax request to get data, only 2 keys, url: and data:
+      }
+      function handleClause(data){
+          if (data == null || data === ""){
+              // unbind 'click' event and trigger click() for main delete button
+          }else{
+              // fill confirm dialog with data, and unhide dialog
+              my_confirm(function(continueClick) {
+                  if (continueClick){
+                      // unbind 'click' event and trigger click() for main delete button
+                  }else{			
+                  }
+              });		
+          }
+      }
+      getClause().done(handleClause) // this is just to organize code better		
+  });
+
+
+
+  function my_confirm(confirmCallback, cancelCallback) {
+      $(document).on( 'click', '#<some-confirm-button-ID>', function() {
+          $('#confirmWithdrawal').hide();
+          confirmCallback(true);
+      });
+      $(document).on( 'click', '#<some-cancel-button-ID>', function() {
+          $('#confirmWithdrawal').hide();
+          confirmCallback(false);
+      });
+  }
+
+
+  
+#+end_src
+** Instead of of setTimeout(), a better example to learn JS callback is actually implementing a custom confirm dialog (replacing browser built-in confirm dialog)
+** A better example of javascript callback in this [[https://stackoverflow.com/questions/3458553/javascript-passing-parameters-to-a-callback-function][link]]. Coz its several parameters for a callback function
+
 * React terminologies:
 ** Transpiling: converting ES6 or later to ES5, becoz not all browsers supported it
 ** Babel transpiler:
