@@ -8,12 +8,21 @@
 ** BASICS:
 * ffmpeg (splitting/cutting)
 ** https://superuser.com/questions/140899/ffmpeg-splitting-mp4-with-same-quality
-#+begin_quote
 
-ffmpeg -i largefile.mp4 -t 00:50:00 -c copy smallfile1.mp4 \
--ss 00:50:00 -c copy smallfile2.mp4
+#+begin_src shell
 
-#+end_quote
+  ffmpeg -i largefile.mp4 -t 00:50:00 -c copy smallfile1.mp4 \
+  -ss 00:50:00 -c copy smallfile2.mp4
+
+  # ===== how to remember
+  # -input
+  # -time =
+  # -copycopy =
+  # -splitstart = 
+  # -copycopy =
+
+#+end_src
+** 
 * ffmpeg (basic video rescale)
 *** ffmpeg -i DSCF9322.MOV -crf 25 -vf scale=1280:-1 new.mp4
 *** https://trac.ffmpeg.org/wiki/Scaling

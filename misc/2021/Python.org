@@ -157,6 +157,28 @@
 ** [[https://stackoverflow.com/questions/37800894/what-is-the-surface-blit-function-in-pygame-what-does-it-do-how-does-it-work][surface blit basics]]
 * Better file handling, text file handing, path handling!! using pathlib, great for Fiverr clients:
 ** https://medium.com/@ageitgey/python-3-quick-tip-the-easy-way-to-deal-with-file-paths-on-windows-mac-and-linux-11a072b58d5f
+* Image manipulation, Wand, PIL, and dovetail it into TKinter
+** Both of these acheive the same effect, although the thumbnail avoids stretching
+#+begin_src python
+
+  from wand.image import Image as wandImage
+
+  from PIL import ImageTk
+  from PIL import Image as PILimage
+
+  Vimage = PILimage.open(r"./temp/current.jpg")
+  Vimage.thumbnail((500,500))
+  VmainImage = ImageTk.PhotoImage(Vimage)
+
+
+  Vimage = wandImage(filename=r"./temp/current.jpg")
+  Vimage.resize(500,500)
+  blob = Vimage.make_blob(format="jpg")
+  VmainImage = ImageTk.PhotoImage(data=blob)
+
+  # then dovetail it into TKinter elements
+
+#+end_src
 * Kinda important:
 ** Installing Pillow module, the "usual pip way" will produce lots of errors. Instead use this link:
 *** https://pillow.readthedocs.io/en/latest/installation.html

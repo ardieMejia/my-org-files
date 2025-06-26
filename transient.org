@@ -8,66 +8,28 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Fiverr:
-#+begin_quote
+** we need to read vscode cool features for web editing, what makes it easy not to forget, we need VSCODE KILLER
+*** wecan fix web-mode-element-wrap with combobulate's forward-sexp and backward-sexp, and (insert "\n"). No need to save-excursion, becoz sexps apparently dont stop your thin
+** [[https://runestone.academy/ns/books/published/thinkcspy/GUIandEventDrivenProgramming/05_widget_grouping.html][we need to read for FIVERR]]
+** Randomizer
+#+begin_src lisp
 
-Freelancer Brief: Beginner-Friendly ImageMagick Script for Product Artwork Overlays
-Hi! I need help creating a super simple script using ImageMagick that can overlay artwork onto product images.
+  (setq var1 '(
+               "UNIX"
+               "drawing"
+               "web"
+               "Emacs backend"
+               "fiverr"
+               "email"
+               "audio guy, YouTube copyright algo, BOIDS, LIDAR"
+               "music"
+               "PyCon uplad profile photo with proper name you want, like Wan Ardie.png"
+               ))
 
-⚠️ Please note: I am not technical and have never used ImageMagick or scripts before. I typically just work by copy-pasting screenshots of products (like mugs) into a folder, and I want to apply artwork to those images without breaking or changing anything else.
-
-🖼️ My Typical Workflow
-I copy or screenshot multiple product photos (e.g., mugs) into a folder on my computer.
-
-These are usually JPG or PNG files of real products, with the photo background included.
-
-I want to add surface artwork (like a logo or graphic) to each product photo, without altering anything else in the image.
-
-🧱 Folder Setup (What You'll Work With)
-css
-Copy
-Edit
-/input/     → the folder with screenshots or product photos (e.g., mug1.jpg, mug2.jpg)
-/artwork/   → a single transparent PNG I want to overlay (e.g., logo.png)
-/output/    → a folder where I want the new images saved
-🎯 What I Need the Script to Do
-Batch process all the images in /input/
-
-Overlay the same artwork file (from /artwork/logo.png) onto each image
-
-Place the artwork in a fixed position (e.g., centered, or at X/Y coordinates I can change easily)
-
-Save the new images in /output/ without overwriting the originals
-→ Example: mug1_art.jpg, mug2_art.jpg
-
-🔒 What the Script Must NOT Do
-Do NOT change the product image’s size, shape, lighting, color, resolution, or angle
-
-Do NOT touch or alter the background
-
-Do NOT re-render, distort, or filter the photo in any way
-
-Only the new artwork should be added—everything else must stay visually identical
-
-✅ What I Need from You
-A working script for Mac (.sh) or Windows (.bat)—please let me know which one
-
-Step-by-step instructions on how to install ImageMagick (for someone who has never done it)
-
-Clear directions on how to run the script, like copy-paste commands I can follow
-
-Comments in the script so I understand what each part does
-
-Optional: allow me to easily tweak the artwork size or position
-
-💬 I’ll gladly answer any questions—but please assume I have zero coding or design experience, and that I’m just working with basic screenshots and PNG files.
+  (nth (random (length var1)) var1)
 
 
-Would you be able to help me build this?
-
-Let me know if you’d like me to prepare this as a downloadable text or Word document for posting!
-
-#+end_quote
+#+end_src
 ** write this somewhere:
 *** a blocking custom dialog like [[https://stackoverflow.com/questions/56130393/jquery-custom-confirm-dialog][this]]. he native confirm function, like alert, is blocking, and prevents any further script execution or page interaction until the user responds to the prompt. This has no equivalence in anything you can write in the GUI.
 ** write this somewhere:
@@ -78,18 +40,70 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
   console.log($(this))
 
 #+end_src
-** we need to create a backup system, possible using rsync
+** rsync:
+#+begin_quote
+
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Documents /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Desktop /home/ardie/mybackup2025/
+
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-python-workspace /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Music /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-trash /home/ardie/mybackup2025/
+
+
+
+#+end_quote
 ** buttons scientists, store this somewhere:
 *** https://adrianroselli.com/2019/06/target-size-and-2-5-5.html
 ** we have to save this somewhere:
 *** [[https://www.w3schools.com/css/css_display_visibility.asp][link]]: CSS display property commonly used by Javascript
 ** Terry:
+*** create admin on startup, also save this reddit link somewhere important, [[https://www.reddit.com/r/flask/comments/117qm79/create_initialadmin_user/][reddit flask create admin on startup]]
+*** all buttons in form creator need proper cursor
+*** all form creator butons are a mess, first start check with main DONE  button of form-creator
+*** subgroup also needs file input
+*** new expirt config, test out the 1 hour expiry
+*** members should see list of uploaded files 
+**** How is this safely synced with the physical files? We make File logs simple, they persist independent, but are hard deleted alongside with Event hard-delete. So users will still see their files long quite a while.
+*** kill_event(id) will have a function delegated to another. deleting expiry will call that function
+*** looks like we're dealing OOP shit again. How event deletes work
+1) deleted event gets copy to EventsDeleted table and deleted from Events and all its desceidents and its related entities
+2) EventsDeleted table has extra field "deleted_at"
+3) define del_expired_events()
+   - expiry period is set to 1 month
+   - when creating event, call del_expired_events()
+4) there are now 2 delete buttons for event, "expire event" and hard delete event
+5) Also not to forget that event dropdown in members-front, will also listed deleted events
+6) When member attempts to register for expired event
+*** Form Deletes TOO!!
+1) when creating a new form, expired form answers also get deleted
+   
+*** type in Python model, is a built in class, replace!!
+*** set event expiry as environment variable, that way we can just simply set development env (expiry)  as 1 day, and test it
+*** form_creator, fieldname should be bold
+*** a log is mostly left as is, when you hard delete event, the log of all files uploaded for that event is also delete, physical files is left to manual management
+*** we need a dummy user to test
+*** WAIT, also just create an admin user password, can add reset password later. no need to do anything special. And then LATER:
+**** Change user model:
+***** add admin field
+**** Add code that creates admin on app start
+***** Ignore environment, as admin account can change password through password reset/recovery mechanic
+***** make sure there are 2 admins
+**** Make conditional
+*** under upload_document(), the order is wrong, coz we are easily overwriting files, what we should do instead "folder name = memberID", and "file name = memberId+uploadDate+fieldname"
+**** Our filepath in File(db.model) should also include filename
+*** we have a file upload log, but only 1 single log, no deleted-files-log, And the Proof of payment in member-front, will look through that log, plain and simple. 
+*** we should replace bulk_upload_members_csv with db.session.add_all() form-submission
+*** form creator DONE button hasnt been tested
+*** tooptip for "finish subgroup button" saying "this will ignore currently entered input and return back to main form creator"
+*** we need to highlight the element type and name created during form creation (also applies for subgroup)
 *** there should be a way for users to downlaod questions created, in the form of CSV
-**** kill_event(id) should put all delete operations into a single session "unit"
-*** we simplify dict structure for event_answers_page and event_answers_page_overwritten
-*** our register and withdraw buttons are very confusing, they dont separate enough from Events Registered.
-**** Solution put wthdrawn events under "Events Registered", NOT the registration dropdown
-*** event names should be unique at DB level
+**** kill_event(id) doesnt need to be in a single db transaction session, coz the db rolback() handles it, instead we just make to redirect() or render_template()
 *** we need this scrip before all delete operations
 #+begin_src js
 
@@ -143,7 +157,7 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
 
 
 #+end_src
-*** our member-front page needs a reload check
+*** our member-front page needs a reload check, like also after FIDE update/fill
 *** when a member deletes an event, it should also appropriate descendents => FormQuestionAnswers, and also refill FormQuestionAnswersDeleted, think of recalling the same function
 *** we need to do element ebhaviour for subgroups as well
 *** a link beside form-creator, or tooltip that suggests ideas for fieldnames
@@ -151,7 +165,6 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
 *** rename #tournament_name as someting very unique, its too generic, OR remove all IDs from form-template elements, since that is not used
 *** check that overwritten submissions gets carried into File model, and file sumission stores minutes and hours of day. And also, that 
 *** IMPORTANT: check multiple file inputs and see the effect of log in form_submission()
-*** we should put "storage", root path of uploads, into a global var
 *** we should check ALL checkboxes input, including our downloader
 *** we should write this somewhere. Jinja when looping through dict, has NO "awareness" of dict structure by default hence has to resort to jinja tricks like these:
 #+begin_export web
@@ -179,17 +192,10 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
 
 
 #+end_export
-*** for "form creator" button, we can add deletion of FormQuestionAnswersDeleted
-*** UI: we need to limit the subgroup creation (leadingquestion) to radio only, UI level constraint 
 *** we need to put in element form creator, checks for "-" for empty text box default values
 *** we need to stop at UI element levvel , all spaces in fieldname 
-*** UI idea: form_creator, dropdown will have leading question option, which enable subgroupname onselect()
 *** when memebrs answer fhe same form again, it overwrites. we havent done that yet
-*** questionString or questionstring??
 *** file input in template and subgroup-template
-*** we need more tooltips, for subgroup creator too
-*** we need to rename model data member "type" to something else
-*** withdraw event, clause to warn no refund. 50% refund. 0% refund.
 *** rather than terminating event completely on closing date, we warn/info user on closing date
 *** the type, eligibility, important, can be put at top of form or dropdown display
 *** create kill all form button that will kill altogether eventFormQuestions, eventFormQuestionAnaswers, and eventFormQuestionSubgroup
@@ -198,7 +204,6 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
 *** for our form creator:
 **** our forms will have expire date, Terry will have to personally manage late expcetions if he wants.
 *** for kill_event, we need to replace render_template with redirect
-*** we should have a dummy page.
 *** we should have a form preview at a separate page
 ** Tests:
 *** Put some tests in case of wrongly named CSV files
@@ -217,9 +222,24 @@ Let me know if you’d like me to prepare this as a downloadable text or Word do
 *** Uplaod Jan Feb march, and try updating FRL in Feb, it should correctly updated FIDE. Check 1 members to confirm
 *** login as member and update a FIDE
 ** Write somewhere:
+*** we dont use this very often, but its very common, and also userful for @classmethods:
+**** 
+In Flask-SQLAlchemy, filtering queries based on conditions is a common operation. The query attribute available on your model classes, provided by Flask-SQLAlchemy, allows you to build and execute queries, including applying filters.
+#+begin_src python
+
+  from app import db, User
+
+  # Find users with a specific username
+  user = User.query.filter_by(username='john_doe').first()
+
+  # Find all active users
+  active_users = User.query.filter_by(is_active=True).all()
+
+#+end_src
 *** Deleting data from DBS is [[https://softwareengineering.stackexchange.com/questions/159232/should-we-ever-delete-data-in-a-database][usually a good idea]]
+**** Soft deletes are messy tricky, but [[https://blog.miguelgrinberg.com/post/implementing-the-soft-delete-pattern-with-flask-and-sqlalchemy/page/0][miguelgrinberg]] suggests other alternatives at article end, like separate table (my style)
 *** [[https://www.sourcecodester.com/tutorial/javascript/14998/creating-dynamic-confirmation-dialog-using-jquery-and-bootstrap-modal][good read on jquery and confirmation delete with jquery]]
-*** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries]]
+*** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries, or deleting with expired entries]]
 *** Form creator:
 **** We need to show content of database more apparently, instead of hiding behind interface. The admin must completely understand what is inside.
 *** replace all request.args.get('mcfid') occurence with current_user.mcfId
@@ -273,6 +293,60 @@ except Exception as e:
 **** this means we need to create our password reset email delivery system.
 **** only then can we finally protect all our end points
 *** kill_events (thats with an S!!), we only did the kill_event/<int:id>
+** Password resets for Terry's app:
+*** The simple example, without anythng special [[https://stackoverflow.com/questions/48983616/reset-the-password-in-flask-python][stackoverflow]]
+*** 
+*** from [[https://diginantony.medium.com/how-to-create-a-password-reset-in-flask-python-4dd458c22815][medium]] (yuck), and its bad english
+*** username and password only no longer support in Google [[https://stackoverflow.com/questions/72478573/how-to-send-an-email-using-python-after-googles-policy-update-on-not-allowing-j][workaround]] 
+*** Password reset link from AI, yuck:
+#+begin_src python
+
+  from flask import Flask, render_template, request, url_for
+  from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+  from flask_mail import Mail, Message
+
+  app = Flask(__name__)
+  app.config['SECRET_KEY'] = 'your_secret_key' # Replace with a strong, random key
+  app.config['MAIL_SERVER'] = 'smtp.example.com'
+  app.config['MAIL_PORT'] = 587
+  app.config['MAIL_USE_TLS'] = True
+  app.config['MAIL_USERNAME'] = 'your_email@example.com'
+  app.config['MAIL_PASSWORD'] = 'your_email_password'
+
+  mail = Mail(app)
+  s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+  @app.route('/forgot_password', methods=['GET', 'POST'])
+  def forgot_password():
+      if request.method == 'POST':
+          email = request.form['email']
+          token = s.dumps(email, salt='password-reset-salt')
+          link = url_for('reset_password', token=token, _external=True)
+          msg = Message('Password Reset Request', sender='noreply@example.com', recipients=[email])
+          msg.body = f"Click this link to reset your password: {link}"
+          mail.send(msg)
+          return 'Password reset link sent to your email.'
+      return render_template('forgot_password.html')
+
+  @app.route('/reset_password/<token>', methods=['GET', 'POST'])
+  def reset_password(token):
+      try:
+          email = s.loads(token, salt='password-reset-salt', max_age=3600) # Token valid for 1 hour
+      except SignatureExpired:
+          return 'The password reset link is expired.'
+      except Exception as e:
+           return f'Invalid password reset link. {e}'
+
+      if request.method == 'POST':
+          new_password = request.form['new_password']
+          # Update password in database for the user with this email
+          return 'Password updated successfully.'
+      return render_template('reset_password_form.html', token=token)
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+
+#+end_src
 *** Flask session timeout:
 **** [[https://mulgrew.me/posts/session-timeout-flask.html][this one has module g, dont know]]
 **** [[https://stackoverflow.com/questions/11783025/is-there-an-easy-way-to-make-sessions-timeout-in-flask][more basic timeout]]
@@ -323,56 +397,7 @@ except Exception as e:
 
   if __name__ == '__main__':
       app.run(debug=True)
-
-#+end_src
-*** Password reset link from AI, yuck:
-#+begin_src python
-
-  from flask import Flask, render_template, request, url_for
-  from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-  from flask_mail import Mail, Message
-
-  app = Flask(__name__)
-  app.config['SECRET_KEY'] = 'your_secret_key' # Replace with a strong, random key
-  app.config['MAIL_SERVER'] = 'smtp.example.com'
-  app.config['MAIL_PORT'] = 587
-  app.config['MAIL_USE_TLS'] = True
-  app.config['MAIL_USERNAME'] = 'your_email@example.com'
-  app.config['MAIL_PASSWORD'] = 'your_email_password'
-
-  mail = Mail(app)
-  s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-  @app.route('/forgot_password', methods=['GET', 'POST'])
-  def forgot_password():
-      if request.method == 'POST':
-          email = request.form['email']
-          token = s.dumps(email, salt='password-reset-salt')
-          link = url_for('reset_password', token=token, _external=True)
-          msg = Message('Password Reset Request', sender='noreply@example.com', recipients=[email])
-          msg.body = f"Click this link to reset your password: {link}"
-          mail.send(msg)
-          return 'Password reset link sent to your email.'
-      return render_template('forgot_password.html')
-
-  @app.route('/reset_password/<token>', methods=['GET', 'POST'])
-  def reset_password(token):
-      try:
-          email = s.loads(token, salt='password-reset-salt', max_age=3600) # Token valid for 1 hour
-      except SignatureExpired:
-          return 'The password reset link is expired.'
-      except Exception as e:
-           return f'Invalid password reset link. {e}'
-
-      if request.method == 'POST':
-          new_password = request.form['new_password']
-          # Update password in database for the user with this email
-          return 'Password updated successfully.'
-      return render_template('reset_password_form.html', token=token)
-
-  if __name__ == '__main__':
-      app.run(debug=True)
-
+      
 #+end_src
 *** to split our app.py later on before it becomes more thn 5000 lines, from AI (yuck):
 #+begin_src python
@@ -422,6 +447,66 @@ except Exception as e:
 *** Security:
 **** https://snyk.io/blog/secure-python-flask-applications/
 ** Emacs:
+*** we need to do this for swiper
+#+begin_src lisp
+
+  (defhydra my-swiper-hydra 
+  (:color purple)
+  "my swiper hydra"
+
+
+  ;; I dont understand why 2 functions are allowed and still works
+  ("q"
+   (pop-mark)
+   (hydra-pop)
+   :exit t) 
+
+  ("i" (swiper-isearch
+	 )
+
+   "SWIPER only" :column "1"))
+
+;; ========== global swiper minor mode for hydras.
+
+;;;###autoload
+(define-minor-mode my-swiper-mode
+  "A minor mode so that my key settings override annoying major modes."
+  ;; If init-value is not set to t, this mode does not get enabled in
+  ;; `fundamental-mode' buffers even after doing \"(global-my-mode 1)\".
+  ;; More info: http://emacs.stackexchange.com/q/16693/115
+  :init-value t
+  :lighter " my-swiper"
+  :keymap (let ((map (make-sparse-keymap)))
+	    (define-key map
+	      ;; (kbd "C-c ;")
+	      (kbd "; i")
+	      'my-swiper-hydra/body) map))
+
+(add-hook 'python-ts-mode-hook #'my-swiper-mode)
+
+#+end_src
+*** we need to create a script that goes uses both next-logical-line and forward-word to copy, but we are only it works in web-mode
+*** we need to create a el script fr we-mode that splits tags (once wrapped) into separate lines, or can use forward-sexp into it, think
+#+begin_src lisp
+
+
+
+  (split-string "<br><br>" ">")
+
+
+(let ((separator "_"))
+  
+  (dolist (var1 '("1" "2" "3"))
+    (print
+     (concat
+      var1
+      separator
+      )
+     )
+    )
+  )
+
+#+end_src
 *** we need to really try javascript console in Emacs, we forgot where th link was
 *** we should really explore combobulate to explore doing tricks in HTML and JAVSCRIPT, like moving a tree outside parent
 **** moving everything outisde of any bracket
@@ -525,6 +610,15 @@ except Exception as e:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** Do you have a cool Python project to share? Actually, I dont have anything cool to say about Python coz I like Python for web dev, but Im not an expert in it, Im obsessed about Emacs. I dont do heavy OOP or data science in Python, but if you do, PyCon2025 is the place to go. Anyway [[https://cfp.pycon.my/pyconmy-2025/cfp][CALL FOR PAPERS!!!!!..]].. Dont worry about advanced topics, I myself like showing off, but I personally prefer casual Python talk, like last years talk on a Filipinos womens experience as the only female in her Python team. Yes, it can be that casual, but the more variety the better (Check out the section for targeting your type of audience: Beginner, Intermediate and Advanced User)
+*** Just wanna be clear about Clarks Desert Boot. While I clearly recommend Clarks, I want to be specific. Make sure its Suede. Its more luscious than leather. Make sure its 1 under your size (Desert Boots are know to be oversized). And if you suffer from some tightness in specific areas like your little toe, offer to the Clarks staff, to stretch it for you. I know how to stretch it these days (either with leather conditioner, or simple heat from hair dryer to soften the leater a little at the beginng before leaving it overnight), but if you are scared of damaging that hard earned shoe, the staff should be able to do it for you. Stretching usually takes overnight, and Clarks will keep it for several days, before handing it back to you.
+*** I hold by me view that most programming books are usually rubbish. And even for the Rust language is the same. I learnt more stuff in just a few hours at an introducory class in APU event, than searching for the better book. 
+**** Here's the thing, most Rust books spend the 1st few chapters discussing high level stuff, and it turns out, from the APU (Asia Pacific Unviersity) class, the low level stuff is important to make that important fundamental leap. Why? Becoz Rust is quite different from other languages, that learning its datatypes, a little about the compiler, and design choices concept (something like between mutability and immutability, but also as it relates to copy and non-copy types) kinda is rewarding.
+**** Its unlikely that most who learn Rust are starting at the complete beginning. Maybe in a few Unis. But when youre learning programming at school, your most likely learning the same syllabus that place did for years. So youre learning C or C++, or even skip to Python completely. But for most, your learning Rust, becoz you want to know what the fuss is all about. But instead, most Rust books, they dont start "X language vs Y language", or datatypes and why it matters. They start by some high level concept. Huh? Why do that, when beginners can just use Python. And even in books that are kinda good, the examples are just not that great.
+**** I guess programmers are still bad at communication, even with all that big brain.
+**** Maybe theyre doing this to advertise Rust as much as possible to programmers who dont want to even consider Rust. 
+*** ask everywhere, is it normal for SD cards to fail constantly?
+*** Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
 *** Post again your 
 *** Managing 2 Emacs version (28 and 29 in my case) minimally, not much fancy hack.
 *** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
@@ -541,6 +635,8 @@ except Exception as e:
 **** In Emacs Dired (the file manager of Emacs), I replaced <enter> and ^ with Alt-<right> and Alt-<left>. more comfortable than a terminal. And I defined the variable trash-directory so that deleting a file gets moved to a trashcan first, like other operating system's. The usual delete commands in Emacs Dired are already comfortable
 **** Some of the bad design elements were also due to "market constraint". There was millitary funding of UNIX development at University of Berkeley. And you had to please millitary general requirements or maybe just contraints. Which is proof that most of techs history is closely related "culture and art" than it is to something rational and logical. And UNIX has infested everywhere at our current time.
 **** OSI model (of the network) sucks. Despite what people in tech make you think, tech is more art than science. Nothing wrong with that, but its a messy art. OSI are created by "standard makers", but just like the guys who libraries for programming, the guys who write the standards are usually not the same guys who use the standard. People who use UNIX's sendmail at the time (also a horrible tool) also complain about OSI
+**** Metasyntactic operator.What is it? Most programmers are familiar with it, even when they cant quite explain what it is. Examples are backslashes. They are metasyntactic becoz they are not part of the syntax (of the command) but operate ON the command itself. Backslashes (/) doesnt represent itself, but some operation on the following character. So "representing" itself usually means quoting it. Very common in programming
+***** ` command output substition
 *** Diary in Emacs, perhaps the best way to learn Emacs selfishly:
 **** So its me back, and im back with more "what I do with my Emacs". Some of the previous points last time, was integrating org-mode with Obsidian markdown files, so I can read everything I write in Emacs on my tablet, using the fancy Obsidian.
 **** I also mentioned in passing my org note setup. However, I wanna try to focus on writing a diary in Emacs, as well as some features that might be attractive to some of you, but I dont use personally. My way of learning Emacs during my early years, is to steal a little of time everyday to write a diary in Emacs.

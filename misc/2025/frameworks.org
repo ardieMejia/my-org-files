@@ -79,6 +79,7 @@
 #+end_export
 * Basics:
 ** [[https://www.askpython.com/python-modules/flask/flask-crud-application][askpython]] shows Flask CRUD
+** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries, or deleting with expired entries]]
 * Alternative software:
 ** Cool list of software to view DBs [[https://stackoverflow.com/questions/66545908/how-to-see-sqlalchemy-database][here]]
 ** [[https://www.apriorit.com/dev-blog/web-python-libraries-for-database-management#using-python][site]] that shows specific modules/packages to connect to DBs such as SQLite or Apache, etc

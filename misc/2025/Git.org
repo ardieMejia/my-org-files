@@ -20,6 +20,7 @@
 ** git reset --hard
 * [[https://www.freecodecamp.org/news/git-squash-commits/][How to squash commits]]:
 ** git rebase -i HEAD~6
+*** the stupid way to remember. "I want to squeeze my head from ermmm 6"
 ** "replace pick with squash except the one u want"
 ** "Git will open text editor twice, put ur fave message"
 * Contextual:
@@ -35,5 +36,6 @@
 * Photos
 ** The different "hardness" of git reset. From [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][theserverside]]
 [[./Git/git-reset.png]]
-
+* Arrange:
+** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]
 

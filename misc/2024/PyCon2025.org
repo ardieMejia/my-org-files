@@ -52,4 +52,10 @@
 ** https://github.com/pycon-my/pyconmy-call-for-paper/blob/main/call-for-papers.md
 ** our old system
 ** https://www.papercall.io/pycon-my-2023
-
+* 25th June:
+** sponsorship rejection problems are very common
+** Some CFP coming in
+** 14th June to September
+** what are speaker follows?
+** if you have a friend who has great Python work to show. PyCon 2025 is the way to show. But how to promote?
+** no limit for attendees right now

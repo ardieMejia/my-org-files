@@ -119,3 +119,52 @@ sudo apt-get install libjansson4 libjansson-dev
 * Day 13:
 ** we learnt to draw boxes for our foldable stool
 ** I think we figured out a way to make foldable stools thanks to our plan
+* Day 14:
+** we did our fiverr finally,
+** Write this somewhere
+*** [[https://www.pythontutorial.net/tkinter/tkinter-photoimage/][OOP way to make PhotoImage always available, and never mysteriously dissapear]]
+*** [[https://python-forum.io/thread-43494.html][read this please]]
+** tkinter by design is single threaded, reduced complexity, but also makes it awkward, we need a button to basically to refresh view of edited image
+#+begin_src python
+
+  Vimage = wandImage(filename=r"./temp/current.jpg")
+  Vimage.resize(mainLabelWindowX,mainLabelWindowY)
+  blob = Vimage.make_blob(format="jpg")
+  VmainImage = ImageTk.PhotoImage(data=blob)
+
+  tkinter.Button(window, text='View', command=updateImageLabel).pack()
+
+  # ===== we define function before that like this
+  # ===== NOTE: example should include try catch to show possible errors
+
+  def updateImageLabel():
+    global VmainImage
+    Vlabel.configure(image=VmainImage)
+
+
+#+end_src
+** As a best practice, we always put declare when passing the PhotoImage, based on the OOP link above
+* Day 15:
+** Fiverr madsstudio: we struggled with the error of "VlabelImage has no attribute .config()", thinking it was "global" keyword. turns out .grid should be in a separate line, becoz we wont be getting the correctn object/variable type. We found the error online, LUCKY us, we have to be very careful. Solution? Dont know, maybe always datatype?
+#+begin_src python
+
+  def VupdateImageLabel():
+    global VlabelImage
+
+    VmainImage = # some stuff obviously
+    ImageTk.PhotoImage(Vimage)
+    VlabelImage.config(image=VmainImage)
+
+
+  VlabelImage = tkinter.Label() # some options obviously
+  VlabelImage.grid() # some options obviously
+
+  # ===== never do this
+  # VlabelImage = tkinter.Label().grid()
+
+
+
+
+#+end_src
+* Day 16:
+** we discovered several documentation alternatives in python. Using the inspect module

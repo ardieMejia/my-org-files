@@ -4,17 +4,6 @@
 
 
 
-
-
-    C-c C-c C-u rust-compile
-    C-c C-c C-k rust-check
-    C-c C-c C-r rust-run
-    C-c C-c C-t rust-test
-    C-c C-c C-l rust-run-clippy
-
-
-rustc --explain
-
 scalar types
 - pointer-size? size of architecture, thats all
 - char is single-quoted,
@@ -38,12 +27,47 @@ mutability and copy-type, dont be confused
 
 
 
-
-
-
-
-
 in Rust we d our best to avoid copy, becoz its expensive
 
 
 #+end_quote
+* Emacs: rust-mode
+** rust mode commands, these will fail in rust-ts-mode, so we need some remapping done
+#+begin_src shell
+
+  C-c C-c C-u rust-compile
+  C-c C-c C-k rust-check
+  C-c C-c C-r rust-run
+  C-c C-c C-t rust-test
+  C-c C-c C-l rust-run-clippy
+
+#+end_src
+* Emacs: rust-ts-mode 
+** 
+* rust commands, toolchain(?)
+** help explain an option
+#+begin_src shell
+
+  rustc --explain
+
+  
+#+end_src
+** Simplest: M-x compile
+#+begin_src shell
+
+  cargo run
+
+#+end_src
+** Simplest: M-x compile
+#+begin_src shell
+
+  cargo build
+
+#+end_src
+** 
+* Links so far, and learnings
+** [[https://doc.rust-lang.org/std/macro.dbg.html][Standard lib]], explaining datatypes, and macros, such as dbg! important for your basic printing debugging. Also modules and keywords (no clue)
+** 
+* Yet to read:
+** [[https://robert.kra.hn/posts/rust-emacs-setup/][Robert Krahn blog]] on setting up Emacs for Rust development
+** 

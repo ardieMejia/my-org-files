@@ -760,3 +760,16 @@ $(this).unbind("submit")
 
 
 #+end_src
+* Day 55:
+** When solving elements that blindly lay on top of each other. A simple class="flex", solves everything. But as with everything CSS, flex, grid,etc... are not meant to be use just by itself.
+#+begin_export web
+
+<div class="m-2 justify-items-center">
+    <div data-tooltip-target="tooltip-form-data-kill-button" class="flex" >
+    </div>
+</div>
+
+#+end_export
+** [[./PythonDiary/tailwind_stuff1.jpg]]
+** [[./PythonDiary/tailwind_stuff2.jpg]]
+* Day 56:
