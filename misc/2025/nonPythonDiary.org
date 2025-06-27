@@ -168,3 +168,6 @@ sudo apt-get install libjansson4 libjansson-dev
 #+end_src
 * Day 16:
 ** we discovered several documentation alternatives in python. Using the inspect module
+* Day 17:
+** we had some progress on little the Python Fiverr Lightroom alternative. Now effect hides better
+* 

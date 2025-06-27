@@ -23,7 +23,9 @@
                "email"
                "audio guy, YouTube copyright algo, BOIDS, LIDAR"
                "music"
-               "PyCon uplad profile photo with proper name you want, like Wan Ardie.png"
+               "PyCon uplad profile photo with proper name you want, like Wan Ardie.png, and papers needed"
+               "teach cycling, or something for Hanifas health"
+               "myeg account"
                ))
 
   (nth (random (length var1)) var1)
@@ -64,29 +66,10 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 *** [[https://www.w3schools.com/css/css_display_visibility.asp][link]]: CSS display property commonly used by Javascript
 ** Terry:
 *** create admin on startup, also save this reddit link somewhere important, [[https://www.reddit.com/r/flask/comments/117qm79/create_initialadmin_user/][reddit flask create admin on startup]]
-*** all buttons in form creator need proper cursor
-*** all form creator butons are a mess, first start check with main DONE  button of form-creator
-*** subgroup also needs file input
-*** new expirt config, test out the 1 hour expiry
 *** members should see list of uploaded files 
 **** How is this safely synced with the physical files? We make File logs simple, they persist independent, but are hard deleted alongside with Event hard-delete. So users will still see their files long quite a while.
 *** kill_event(id) will have a function delegated to another. deleting expiry will call that function
-*** looks like we're dealing OOP shit again. How event deletes work
-1) deleted event gets copy to EventsDeleted table and deleted from Events and all its desceidents and its related entities
-2) EventsDeleted table has extra field "deleted_at"
-3) define del_expired_events()
-   - expiry period is set to 1 month
-   - when creating event, call del_expired_events()
-4) there are now 2 delete buttons for event, "expire event" and hard delete event
-5) Also not to forget that event dropdown in members-front, will also listed deleted events
-6) When member attempts to register for expired event
-*** Form Deletes TOO!!
-1) when creating a new form, expired form answers also get deleted
-   
 *** type in Python model, is a built in class, replace!!
-*** set event expiry as environment variable, that way we can just simply set development env (expiry)  as 1 day, and test it
-*** form_creator, fieldname should be bold
-*** a log is mostly left as is, when you hard delete event, the log of all files uploaded for that event is also delete, physical files is left to manual management
 *** we need a dummy user to test
 *** WAIT, also just create an admin user password, can add reset password later. no need to do anything special. And then LATER:
 **** Change user model:
@@ -95,8 +78,6 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 ***** Ignore environment, as admin account can change password through password reset/recovery mechanic
 ***** make sure there are 2 admins
 **** Make conditional
-*** under upload_document(), the order is wrong, coz we are easily overwriting files, what we should do instead "folder name = memberID", and "file name = memberId+uploadDate+fieldname"
-**** Our filepath in File(db.model) should also include filename
 *** we have a file upload log, but only 1 single log, no deleted-files-log, And the Proof of payment in member-front, will look through that log, plain and simple. 
 *** we should replace bulk_upload_members_csv with db.session.add_all() form-submission
 *** form creator DONE button hasnt been tested
@@ -447,6 +428,7 @@ except Exception as e:
 *** Security:
 **** https://snyk.io/blog/secure-python-flask-applications/
 ** Emacs:
+*** we need to cancel our swiper to hydra, becoz swiper doesnt auto inclde last search, or should at least do somwthing about it
 *** we need to do this for swiper
 #+begin_src lisp
 
