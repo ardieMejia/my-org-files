@@ -8,38 +8,41 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** we need to read vscode cool features for web editing, what makes it easy not to forget, we need VSCODE KILLER
-*** wecan fix web-mode-element-wrap with combobulate's forward-sexp and backward-sexp, and (insert "\n"). No need to save-excursion, becoz sexps apparently dont stop your thin
-** [[https://runestone.academy/ns/books/published/thinkcspy/GUIandEventDrivenProgramming/05_widget_grouping.html][we need to read for FIVERR]]
+** Our terminology REALLY needs branch display in prompt. It also needs more powerful colors
+** Boid, save somewhere:
+*** https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html
+**** separation = avoid factor (position aware)
+**** alignment = matching factor (not position aware)
+**** cohesion = centering factor (position award)
+*** https://cs.stanford.edu/people/eroberts/courses/soco/projects/2008-09/modeling-natural-systems/boids.html
+*** https://github.com/meznak/boids_py
+*** https://github.com/SverreNystad/boids-in-python
+*** https://github.com/Nikorasu/PyNBoids
+*** https://alan-turing-institute.github.io/rse-course/html/module03_research_data_in_python/03_06_boids.html
+*** https://rits.github-pages.ucl.ac.uk/intro-research-prog/morea/lesson17/reading2.html
 ** Randomizer
 #+begin_src lisp
 
-  (setq var1 '(
-               "UNIX"
-               "drawing"
-               "web"
-               "Emacs backend"
-               "fiverr"
-               "email"
-               "audio guy, YouTube copyright algo, BOIDS, LIDAR"
-               "music"
-               "PyCon uplad profile photo with proper name you want, like Wan Ardie.png, and papers needed"
-               "teach cycling, or something for Hanifas health"
-               "myeg account"
-               ))
+  (make-list 10 2)
+
+  (setq var1 (-cons*
+              "social media posting, esp. prog lang nerd"
+              "combobulate, especially dealing with nodes, search engine history"
+              "Emacs backend, BACKUP our data, better Python comint alternaive, also read on COMINT, Git worktree"
+              "email, CV, also Audiosockets, GRAB, adding my lightweight Lightroom to Github"
+              "audio guy, YouTube copyright algo, BOIDS, LIDAR, Python make own ufunc"
+              "music"
+              "teach cycling, or something for Hanifas health, stitching mattress, Boeing, crochet, https://www.youtube.com/watch?v=aAxGTnVNJiE"
+              "download books that introduce AI and blabla, record class discriminator, record handling, Hoare (1966) discriminated unions, dynmaic polymorphism, software test PDF"
+              (append
+               (make-list 2 "fiverr")
+               (make-list 4 "web")
+               (make-list 3 "drawing")
+               )
+              ))
 
   (nth (random (length var1)) var1)
 
-
-#+end_src
-** write this somewhere:
-*** a blocking custom dialog like [[https://stackoverflow.com/questions/56130393/jquery-custom-confirm-dialog][this]]. he native confirm function, like alert, is blocking, and prevents any further script execution or page interaction until the user responds to the prompt. This has no equivalence in anything you can write in the GUI.
-** write this somewhere:
-*** we can actually learn MORE about JS, fromh this javascript
-#+begin_src javascript
-
-
-  console.log($(this))
 
 #+end_src
 ** rsync:
@@ -60,93 +63,31 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 
 #+end_quote
-** buttons scientists, store this somewhere:
-*** https://adrianroselli.com/2019/06/target-size-and-2-5-5.html
-** we have to save this somewhere:
-*** [[https://www.w3schools.com/css/css_display_visibility.asp][link]]: CSS display property commonly used by Javascript
 ** Terry:
+*** admin should be able to download, withdrawal AND upload logs as CSV
+*** test again withdrawal and registration of events. Lots of test please surrounding logs
+*** we should test it on chrome and firefox
+*** correct color scheme for all whatHappened
+*** All our pages need their title checked
+*** we need to test reset token limit in production, first set it to 20 minutes (1200 sec)
+*** At the last stage we want to remove the verbose logging, AND we need to write somewhere how we added logging in Render.
+*** we need separate ENV variable for MAIL, especially our app password, NOT SAFE
+*** events page need a log delete button, makes it simpler. its the only thing we need.
+*** we need to test if users can still proceed properly unsigning claused event, even with @login_required
+*** replace our create-member with a create-dummy-member
+*** we need to test again members partial download page
+*** we always upload using march/update_inc_new
+*** relocate svg to its own dir
+*** autocomplete="off"
+*** we test EVERY endpoint from LOGGEDOUT and NONADMIN states, we first LIST every endpoint before doing so
+*** we need to test every endpoint for (user accessing admin endpoints) for satisfaction
 *** create admin on startup, also save this reddit link somewhere important, [[https://www.reddit.com/r/flask/comments/117qm79/create_initialadmin_user/][reddit flask create admin on startup]]
-*** members should see list of uploaded files 
-**** How is this safely synced with the physical files? We make File logs simple, they persist independent, but are hard deleted alongside with Event hard-delete. So users will still see their files long quite a while.
-*** kill_event(id) will have a function delegated to another. deleting expiry will call that function
+**** [[https://stackoverflow.com/questions/72296682/simplest-way-to-securely-distinguish-between-admins-and-other-users-in-flask][validate redirect with python urlparse netloc]]
 *** type in Python model, is a built in class, replace!!
 *** we need a dummy user to test
-*** WAIT, also just create an admin user password, can add reset password later. no need to do anything special. And then LATER:
-**** Change user model:
-***** add admin field
-**** Add code that creates admin on app start
-***** Ignore environment, as admin account can change password through password reset/recovery mechanic
-***** make sure there are 2 admins
-**** Make conditional
-*** we have a file upload log, but only 1 single log, no deleted-files-log, And the Proof of payment in member-front, will look through that log, plain and simple. 
-*** we should replace bulk_upload_members_csv with db.session.add_all() form-submission
-*** form creator DONE button hasnt been tested
-*** tooptip for "finish subgroup button" saying "this will ignore currently entered input and return back to main form creator"
-*** we need to highlight the element type and name created during form creation (also applies for subgroup)
-*** there should be a way for users to downlaod questions created, in the form of CSV
-**** kill_event(id) doesnt need to be in a single db transaction session, coz the db rolback() handles it, instead we just make to redirect() or render_template()
-*** we need this scrip before all delete operations
-#+begin_src js
-
-
-  $("[id^='hardDelete_']").click(function(e){
-      let objectToDel = hardDeleteButtonID.split('_')[1]
-      e.preventDefault();
-      let hardDeleteButtonID = $(this).prop("id")
-      let parentDialogID = 'hardDelete_'+objectToDel+'Dialog'
-      function passTextToDialog(someText){
-          $('#'+parentDialogID+'Text').html(data)
-          $('#'+parentDialogID).show()
-          my_confirm(function(continueClick) {
-              if (continueClick){		    
-                  $(this).unbind("click")
-                  $(this).click(); /* trigger click of button, our days long struggle was this simple, we dont know this */
-              }else{
-		
-              }
-          });
-      }
-      passTextToDialog(objectToDel);
-  });
-
-
-
-  function my_confirm(confirmCallback, cancelCallback) {
-      // your confirm dialog	
-      $(document).on( 'click', '#'+parentDialogID+' #confirmDelete'+objectToDel, function() {
-          // if(typeof confirmCallback === 'function') {
-          //     confirmCallback();
-          // }
-          console.log("clicked confirm");
-          $('#confirmWithdrawal').hide();
-          confirmCallback(true);
-      });
-      $(document).on('click', '#'+parentDialogID+' #cancelDelete'+objectToDel , function() {
-          // if(typeof confirmCallback === 'function') {
-          //     confirmCallback();
-          // }
-          console.log("clicked confirm");
-          $('#confirmWithdrawal').hide();
-          confirmCallback(false);
-      });
-      // cancelWithdrawalButton
-  }
-
-
-
-
-
-
-#+end_src
-*** our member-front page needs a reload check, like also after FIDE update/fill
-*** when a member deletes an event, it should also appropriate descendents => FormQuestionAnswers, and also refill FormQuestionAnswersDeleted, think of recalling the same function
-*** we need to do element ebhaviour for subgroups as well
-*** a link beside form-creator, or tooltip that suggests ideas for fieldnames
-*** we need to disable disable add buttons on subgroup leading question. Also need to disable values when subgroup button is selected (although it doesnt really matter)
+*** make sure there are 2 admins
 *** rename #tournament_name as someting very unique, its too generic, OR remove all IDs from form-template elements, since that is not used
-*** check that overwritten submissions gets carried into File model, and file sumission stores minutes and hours of day. And also, that 
 *** IMPORTANT: check multiple file inputs and see the effect of log in form_submission()
-*** we should check ALL checkboxes input, including our downloader
 *** we should write this somewhere. Jinja when looping through dict, has NO "awareness" of dict structure by default hence has to resort to jinja tricks like these:
 #+begin_export web
 
@@ -173,19 +114,10 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 
 #+end_export
-*** we need to put in element form creator, checks for "-" for empty text box default values
-*** we need to stop at UI element levvel , all spaces in fieldname 
-*** when memebrs answer fhe same form again, it overwrites. we havent done that yet
-*** file input in template and subgroup-template
-*** rather than terminating event completely on closing date, we warn/info user on closing date
 *** the type, eligibility, important, can be put at top of form or dropdown display
 *** create kill all form button that will kill altogether eventFormQuestions, eventFormQuestionAnaswers, and eventFormQuestionSubgroup
 *** our admin doesnt session timeout
 [[https://www.freekb.net/Article?id=4560][this link]]
-*** for our form creator:
-**** our forms will have expire date, Terry will have to personally manage late expcetions if he wants.
-*** for kill_event, we need to replace render_template with redirect
-*** we should have a form preview at a separate page
 ** Tests:
 *** Put some tests in case of wrongly named CSV files
 *** kill event should successfully kill all event descendent data
@@ -203,26 +135,6 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 *** Uplaod Jan Feb march, and try updating FRL in Feb, it should correctly updated FIDE. Check 1 members to confirm
 *** login as member and update a FIDE
 ** Write somewhere:
-*** we dont use this very often, but its very common, and also userful for @classmethods:
-**** 
-In Flask-SQLAlchemy, filtering queries based on conditions is a common operation. The query attribute available on your model classes, provided by Flask-SQLAlchemy, allows you to build and execute queries, including applying filters.
-#+begin_src python
-
-  from app import db, User
-
-  # Find users with a specific username
-  user = User.query.filter_by(username='john_doe').first()
-
-  # Find all active users
-  active_users = User.query.filter_by(is_active=True).all()
-
-#+end_src
-*** Deleting data from DBS is [[https://softwareengineering.stackexchange.com/questions/159232/should-we-ever-delete-data-in-a-database][usually a good idea]]
-**** Soft deletes are messy tricky, but [[https://blog.miguelgrinberg.com/post/implementing-the-soft-delete-pattern-with-flask-and-sqlalchemy/page/0][miguelgrinberg]] suggests other alternatives at article end, like separate table (my style)
-*** [[https://www.sourcecodester.com/tutorial/javascript/14998/creating-dynamic-confirmation-dialog-using-jquery-and-bootstrap-modal][good read on jquery and confirmation delete with jquery]]
-*** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries, or deleting with expired entries]]
-*** Form creator:
-**** We need to show content of database more apparently, instead of hiding behind interface. The admin must completely understand what is inside.
 *** replace all request.args.get('mcfid') occurence with current_user.mcfId
 *** for uploads
 **** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][secure file uplaods]]
@@ -273,14 +185,15 @@ except Exception as e:
 *** to deploy our system, from scratch with Admin AND Users. We should have an entry point that searches an admin. If True, redirect to main_page, Else admin_register.html
 **** this means we need to create our password reset email delivery system.
 **** only then can we finally protect all our end points
-*** kill_events (thats with an S!!), we only did the kill_event/<int:id>
 ** Password resets for Terry's app:
+*** [[https://nrodrig1.medium.com/flask-mail-reset-password-with-token-8088119e015b][better example]]
 *** The simple example, without anythng special [[https://stackoverflow.com/questions/48983616/reset-the-password-in-flask-python][stackoverflow]]
-*** 
+*** [[https://freelancefootprints.substack.com/p/yet-another-password-reset-tutorial][using FlaskForm]]
 *** from [[https://diginantony.medium.com/how-to-create-a-password-reset-in-flask-python-4dd458c22815][medium]] (yuck), and its bad english
 *** username and password only no longer support in Google [[https://stackoverflow.com/questions/72478573/how-to-send-an-email-using-python-after-googles-policy-update-on-not-allowing-j][workaround]] 
 *** Password reset link from AI, yuck:
 #+begin_src python
+
 
   from flask import Flask, render_template, request, url_for
   from itsdangerous import URLSafeTimedSerializer, SignatureExpired
@@ -332,7 +245,6 @@ except Exception as e:
 **** [[https://mulgrew.me/posts/session-timeout-flask.html][this one has module g, dont know]]
 **** [[https://stackoverflow.com/questions/11783025/is-there-an-easy-way-to-make-sessions-timeout-in-flask][more basic timeout]]
 *** for null check, we need feedback for the users
-*** REMEMBER to include requst_limit to prevent DDOS
 *** Admin from AI, yuck:
 #+begin_src python
 
@@ -426,47 +338,81 @@ except Exception as e:
 *** remember to convince Terry, that publishing online and locally on laptop are 2 very different things. Online, you have to consider DDOS and everything. Becoz anything can happen when you decide to make something online. Sorry to sound technial but thats it. Of course, modern framework have ways of making it easier, but it still requires reading.
 *** Stupid app, we should recheck all of our validations, should be FIDE
 *** Security:
-**** https://snyk.io/blog/secure-python-flask-applications/
 ** Emacs:
-*** we need to cancel our swiper to hydra, becoz swiper doesnt auto inclde last search, or should at least do somwthing about it
-*** we need to do this for swiper
+*** Write this as function to get variable/identifier as a hydra, in Python, but also, write as Doc somewhere
 #+begin_src lisp
 
-  (defhydra my-swiper-hydra 
-  (:color purple)
-  "my swiper hydra"
+
+  ;; (treesit-node-text NODE &optional NO-PROPERTY)
+  ;; (treesit-node-at POS &optional PARSER-OR-LANG NAMED)
+  ;; (treesit-node-string NODE)
 
 
-  ;; I dont understand why 2 functions are allowed and still works
-  ("q"
-   (pop-mark)
-   (hydra-pop)
-   :exit t) 
+  (global-set-key (kbd "C-<drag-mouse-8>") 'ardie/fun-treesit-get-var)
+  (global-set-key (kbd "C-<mouse-8>") 'ardie/fun-treesit-get-var)
 
-  ("i" (swiper-isearch
-	 )
 
-   "SWIPER only" :column "1"))
+  (defun ardie/fun-treesit-get-var()
+    (interactive)
+    (if (treesit-parser-list)
+        (if (equal (treesit-node-string (treesit-node-at (point))) "(identifier)")
+            (let ((killed-text (treesit-node-text (treesit-node-at (point)) t))
+                  (our-node (treesit-node-at (point))))
+              (kill-new killed-text)
+              (combobulate--mark-node our-node)
+              ;; (append-to-buffer "*ardie-scratch*" "\n" )
+	    
+              (with-current-buffer "*ardie-scratch*" 	(end-of-buffer)(insert "\n"))
+              (append-to-buffer "*ardie-scratch*" (region-beginning) (region-end))
+              (message (format "appended to ardie-scratch: %s" killed-text))
+              ;; (with-current-buffer "*ardie-scratch*" (insert "\n"))
+              (deactivate-mark))	  
+            (print "not an identifier/variable"))
+        (print "buffer has no parser")))
+#+end_src
+*** for more Emacs buffer ergonomic magic, also post in on Social Media
+#+begin_src lisp
 
-;; ========== global swiper minor mode for hydras.
+  (progn
+    ;; http://xahlee.info/emacs/emacs/emacs_ido_setup.html
+    (require 'ido)
+    (ido-mode 1)
+    ;; show choices vertically
+  
+    (setf (nth 2 ido-decorations) "\n")
+    (setq ido-enable-flex-matching t)
+    (setq ido-default-file-method 'selected-window)
+    (setq ido-default-buffer-method 'selected-window)
+    (setq max-mini-window-height 0.5))
 
-;;;###autoload
-(define-minor-mode my-swiper-mode
-  "A minor mode so that my key settings override annoying major modes."
-  ;; If init-value is not set to t, this mode does not get enabled in
-  ;; `fundamental-mode' buffers even after doing \"(global-my-mode 1)\".
-  ;; More info: http://emacs.stackexchange.com/q/16693/115
-  :init-value t
-  :lighter " my-swiper"
-  :keymap (let ((map (make-sparse-keymap)))
-	    (define-key map
-	      ;; (kbd "C-c ;")
-	      (kbd "; i")
-	      'my-swiper-hydra/body) map))
+  (defhydra my-b-hydra 
+      (:color purple)
+    "my switch to buffer"
+    ("b" (progn (ido-switch-buffer)) :exit t))
 
-(add-hook 'python-ts-mode-hook #'my-swiper-mode)
+  ;; ========== global goto1 minor mode for hydras.
+
+  ;;;###autoload
+  (define-minor-mode my-b-mode
+      "A minor mode so that my key settings override annoying major modes."
+    ;; If init-value is not set to t, this mode does not get enabled in
+    ;; `fundamental-mode' buffers even after doing \"(global-my-mode 1)\".
+    ;; More info: http://emacs.stackexchange.com/q/16693/115
+    :init-value t
+    :lighter " my-b"
+    :keymap (let ((map (make-sparse-keymap)))
+              (define-key map
+                  ;; (kbd "C-c ;")
+                  (kbd "; b")
+                'my-b-hydra/body) map))
 
 #+end_src
+*** we need to replace all ;;y with ;;p, make my-symbol avaialble
+*** we need ;;h for select all, coz we still use it a lot for example in adding org-insert-structure-template
+**** Also need indent-region hydra
+*** we change add alternative to ;ii as highlight, coz swiper is messy
+*** combobulate links:
+**** [[https://sqrtminusone.xyz/configs/emacs/]]
 *** we need to create a script that goes uses both next-logical-line and forward-word to copy, but we are only it works in web-mode
 *** we need to create a el script fr we-mode that splits tags (once wrapped) into separate lines, or can use forward-sexp into it, think
 #+begin_src lisp
@@ -512,23 +458,6 @@ except Exception as e:
 *** Read about Bookmarks+ or some other way of preserving state between session
 *** We need to learn setting up opening module in Emacs rust. 
 *** Read about elpy-rpc, and why do we have an elpy-rpc-buffer, it sounds cool but i dont know what its used for
-*** building
-**** https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
-**** [[https://www.masteringemacs.org/article/how-to-get-started-tree-sitter][building emacs with tree sitter support]]
-**** [[https://www.masteringemacs.org/article/whats-new-in-emacs-29-1][emacs 29 whats new]]
-**** [[https://apple.stackexchange.com/questions/81930/compiling-ns-cocoa-emacs-on-osx-with-svg-support][emacs build on mac with svg support]]
-**** [[https://gist.github.com/abidanBrito/2b5e447f191bb6bb70c9b6fe6f9e7956][emacs build on gist github]]
-**** [[https://www.youtube.com/watch?v=MsP5QF2Ajdw][building emacs bit-mage]]
-**** [[https://www.rahuljuliato.com/posts/compiling_emacs_30_1][compile emacs 30 rahul]]
-**** [[https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/][build emacs with pgtk]]
-**** [[https://github.com/jimeh/build-emacs-for-macos/issues/12][issue with emacs build on mac with SVG]]
-**** [[https://www.adventuresinwhy.com/post/compiling-emacs-with-tree-sitter/][adventuresonwhy build emacs 29 with tree-sitter]]
-**** [[https://famme.sk/blog/compilation-of-gnu-emacs-29-30-in-debian-12.html][famme.sk compile emacs 30 on Debian 12]]
-**** [[https://ryanfleck.ca/2024/compiling-emacs-29/][on mac good minimal tips]]
-**** [[https://www.reddit.com/r/emacs/comments/1e3nav3/emacs_29_wont_build_with_svg_even_with_withrsvg/][emacs with svg requires these apprently: sudo apt-get install librsvg2-2 librsvg2-dev]]
-**** 
-*** treesitter:
-**** [[https://www.masteringemacs.org/article/lets-write-a-treesitter-major-mode][writing a major mode that uses tree-sitter]]
 *** more efficient faster completions for our Python, using this code, for now. We just need to set company-mode properly, and then use configs below from this [[https://github.com/joaotavora/eglot/discussions/1436][link]]
 #+begin_src lisp
 
@@ -540,7 +469,6 @@ except Exception as e:
 (add-hook 'after-init-hook 'global-company-mode)
   
 #+end_src
-*** Write somewhere why syntax trees (for parsers) are very difficult to get correct. Compilers are kinda "closed source"https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter. While compilers are the source of truth, we cant rely on its "closed sourceness
 *** [[https://www.deusinmachina.net/p/tree-sitter-revolutionizing-parsing][parsing tree-sitter link]]
 *** [[https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter][another one on tree-sitter]]
 *** 
@@ -551,12 +479,7 @@ except Exception as e:
 *** [[https://github.com/minad/org-modern][org-modern look]]
 *** join multi into 1 without spaces
 *** [[https://karthinks.com/software/fringe-matters-finding-the-right-difference/][another cool blog]]
-*** try save-excursion and return in quit for select-hydra. Or the similar trick in your word-hydra
-** We need to refactor error message of upload, what do we do with all the ID info?? Maybe theres no need for it.
-*** create checks for duplicate events
-*** we should add timestamp naming for CSV files
 ** Python web app security practices:
-*** https://qwiet.ai/hacking-and-securing-python-applications/
 ** RUST:
 *** For those that missed the session, simply go to [[https://github.com/rust-malaysia/bevy_workshop][github repo of bevy malaysia]], copy src, clear out obstacles.rs, and start from there. It should be the same thing.
 *** Some recommended (please go through them, defo begging you...) resources:
@@ -580,29 +503,63 @@ except Exception as e:
 **** [[https://www.youtube.com/watch?v=AirfWcVOEHw][Entity Component System]]
 **** [[https://www.youtube.com/watch?v=sfFQrhajs6o][YouTube introduction]]
 **** [[https://learnbevy.com/playground][bevy playground]]
+** Present your Emacs teaching class inside University of Malaya International students main discussion group. Gauge reaction
+*** kill_events (thats with an S!!), we only did the kill_event/<int:id>
+**** https://snyk.io/blog/secure-python-flask-applications/
+*** try save-excursion and return in quit for select-hydra. Or the similar trick in your word-hydra
+** We need to refactor error message of upload, what do we do with all the ID info?? Maybe theres no need for it.
+*** create checks for duplicate events
+*** we should add timestamp naming for CSV files
+*** https://qwiet.ai/hacking-and-securing-python-applications/
 **** 
-** Emacs, improve your web-mode, make it highlight matching tags
 ** Make sure you share-rate is above 3%
 ** Post in Pythons Group Malaysia, your willingness to work for Django, having experience in Flask and used Django for a side project.
-** You managed to get the attention of Nick and Nardine
-**** Time to post something REALLY clickbaity
-**** Use a cartoon image of yourself, maybe Gimpify your face.
-** Present your Emacs teaching class inside University of Malaya International students main discussion group. Gauge reaction
 ** Instagram, YouTube:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** Reddit:
+**** Ask about how to auto wrap around if else, the same way we can do with sexp
+*** Post for RemoteWorkMalaysia:
+**** I have been jobless for 3 months. Im extremely hungry for solving problems, if given the opportunity.
+**** If you have any suggestions or advice or if you know anyone who would be willing to give me a chance, it would be very much appreciated. 
+**** Thank you in advanced for reading this long post 
+**** My name is Ardie and I’m currently looking for a job. Some of you remember me from some of my previous posts in the main group about Emacs. If there are any job opportunity that I could apply for or be a part, please do consider me.
+**** My project experience includes creating a software module that has been successfully integrated into the production branch of a GIS company. This company client includes an electrical utility company. Other experiences include fixing bugs for a Study Aboard Education platform. I have also made a small Python web app (Flask, TailWind CSS, Javascript) which is kept in sync locally with a Github workflow, so Im very much familiar with Git workflow.
+**** My past academic experience includes Bachelor of Information Technology and Masters in Marine Science. My Masters is where I was introduced to Linux during its early years. My programming experience includes Python, Javascript, SQL and some minor C, Fortran as well as Java. My recent experiences include a full-stack Python web app using the Flask framework (utilizing both frontend and backend) as well as a software module for a GIS-based company. Both heavily utilizes SQL. My total experience in programming is more than 8 years, both academic and work related. I am a self-motivated learner, having taught myself various technologies such as web development frameworks, Git version control, Linux, and Emacs. Outside of my professional work, I have recently created a personal Django project.
+**** Additionally, I am highly adaptable in my approach to problem-solving. I thrive in environments that promote knowledge sharing and look forward to collaborating with diverse individuals on engaging and innovative projects. Im also an avid reader of filds slightly outside of the technical aspects, such as domain-driven design in programming. If there are any jobs that fit my experience or might benefit additional talent, please PM me for further discussions.
+**** If any company or anyone has a project that utilizes Ruby on Rails or other non-mainstream alternatives. Not just looking forward, but rather I will be extremely excited in mastering something new like this.
+**** Im not just a quick learner, but i make efforts to expand my familiarity with not just different programming languages but different paradigms, as I have managed to decently master eLisp (Emacs) and Lisp in just 3 years.
+*** Post for programming language nerd inMalaysia, EDIT
+**** Ive always wanted a split keyboard, the sheer ergonomic game changer. But now Im far too deep into Emacs land, I came up with soe radical tips on Emacs ergonomics in avoiding the famed "Emacs pinky"
+**** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
+****     Completely rewire how I use my my keyboard. This ones more like "hardwired" hack. Basically, I always use both hands, and as little pinky as possible. When I am pressing Ctrl-w, instead of using Left hand for both Ctrl and W, I use Right hand for Ctrl and Left hand for w.
+****     I experimented with Hydra mode as much as possible. Using Hydra mode, I map shortcuts like ;;t to a Personal learning Diary, and ;;p to my Python Diary, and there are 24 more alphabets to go. If I were to ever code in C or C++, I could remap those modes to exclusively not use those.
+****     I use a rather less-known package called Key Chord. Using key chords, I create a directional bigram, that is highly ergonomic. I will explain this in a later post, but simply, instead of Ctrl-_ for Undo, I use qw for Undo, since qw is a key combination rarely used in writing (aka bigram). Since qw is placed on the left (aka directional), left hints on "going back", since its our natural reading direction. These directional key presses are a theme I apply throughout (]\ for opening empty scratch buffer on the right, p[ is for moving to opened window on the right, and [] for moving to opened window on the left, zx for moving to previous buffer, and ,. for moving to next buffer).
+****     I paste small Velcro pieces on all my keyboard modifiers, such as Ctrl and Alt with braille-inspired variations, so I can literally just feel the Alt and Ctrl. Similarly applied to by directional bigram key chords. In my current workflow, I no longer look at the keys for Ctrl or Alt, and this braille addition makes my navigation many times more ergonomic. The braille like pieces are not applied everywhere, just 5-7 keys
+****     Thats it, so far, my only complain is this Velcro addition makes my keyboard look ugly, my next move might be to epoxy necklace beads to my keyboards for those braille-inspired patterns. Yes its very hacky, but I can almost touch type, not looking at keys most of the time
+****     References: https://github.com/emacsorphanage/key-chord and https://www.johndcook.com/blog/2015/02/01/rare-bigrams/
+****     Well, its either this or a very expensive split keyboard that is completely out of my reach. 
+*** we need to write about [[https://www.critique-musicale.com/bachen.htm][Bach]] being over-rated
+*** Post something on Linux Fans Group
+*** Reddit: Anyone knows how to "combobulate" the string inside app.config[], preferably without the quotes. Since combobulate maintains "structure", this would be doable. I know how tod o it in html using web-mode, but I cant do it in Python, although combobulate works normally (such as combobulate-python-envelope-nest-if-else). If this question sounds very general, maybe you can guide me to an article/blog on configs that combobulate a lot (Ive already read some of MasteringEmacs)
+*** So I created a lightweight alternative to Photoshop Lightroom. Edits a single photo, and applies when you want the same "stacked" effect to batch photos. The real advantange of this, is tht its  incredibly lightweight, no need for 1-10 minutes loading an app. Just a mere seconds. 
 *** Do you have a cool Python project to share? Actually, I dont have anything cool to say about Python coz I like Python for web dev, but Im not an expert in it, Im obsessed about Emacs. I dont do heavy OOP or data science in Python, but if you do, PyCon2025 is the place to go. Anyway [[https://cfp.pycon.my/pyconmy-2025/cfp][CALL FOR PAPERS!!!!!..]].. Dont worry about advanced topics, I myself like showing off, but I personally prefer casual Python talk, like last years talk on a Filipinos womens experience as the only female in her Python team. Yes, it can be that casual, but the more variety the better (Check out the section for targeting your type of audience: Beginner, Intermediate and Advanced User)
-*** Just wanna be clear about Clarks Desert Boot. While I clearly recommend Clarks, I want to be specific. Make sure its Suede. Its more luscious than leather. Make sure its 1 under your size (Desert Boots are know to be oversized). And if you suffer from some tightness in specific areas like your little toe, offer to the Clarks staff, to stretch it for you. I know how to stretch it these days (either with leather conditioner, or simple heat from hair dryer to soften the leater a little at the beginng before leaving it overnight), but if you are scared of damaging that hard earned shoe, the staff should be able to do it for you. Stretching usually takes overnight, and Clarks will keep it for several days, before handing it back to you.
+*** So basically, tree-sitter has something to do with concrete syntax tree which is slightly related to abstract syntax tree. Basically, its what the compiler usually deals with. But why is such a big deal these days, is becoz these things are no longer secret these days, while historically, compiler secrets are guarded by corporations with jealousy. 
+**** A good article to read on combobulate and tree-sitter is on MasteringEmacs website. 
+**** Anyway, the great thing about combobulate, is that if you managed to setup tree-sitter properly (think: tree-sitter is the "math" behind combobulate), its actually in the background never interfering with your current workflow.
+**** I use Hydra-mode a lot in my workflow. Makes for some really cool and pleasant editing experience. (I radically use semicolon as "leading key" replacing Ctrl and Alt for a few editing and buffer navigation stuff, my Hydra file is the messiest, but its the most fun to add).
+**** I then simply added without a second thought another Hydra head that uses (combobulate-python-envelope-nest-if-else). Now ;;sf selects n lines and wraps in if..else with indentation.
+**** Why this is such a big deal is that, some old timer eLisp coders use a lot of cool paredit tricks (powerful shortcuts moving logic around, by just moving parenthesis). And combobulate seeks to emulate this in other languages.
+**** Just my writeup, hoping to inspire others (or inviting criticism).
 *** I hold by me view that most programming books are usually rubbish. And even for the Rust language is the same. I learnt more stuff in just a few hours at an introducory class in APU event, than searching for the better book. 
 **** Here's the thing, most Rust books spend the 1st few chapters discussing high level stuff, and it turns out, from the APU (Asia Pacific Unviersity) class, the low level stuff is important to make that important fundamental leap. Why? Becoz Rust is quite different from other languages, that learning its datatypes, a little about the compiler, and design choices concept (something like between mutability and immutability, but also as it relates to copy and non-copy types) kinda is rewarding.
 **** Its unlikely that most who learn Rust are starting at the complete beginning. Maybe in a few Unis. But when youre learning programming at school, your most likely learning the same syllabus that place did for years. So youre learning C or C++, or even skip to Python completely. But for most, your learning Rust, becoz you want to know what the fuss is all about. But instead, most Rust books, they dont start "X language vs Y language", or datatypes and why it matters. They start by some high level concept. Huh? Why do that, when beginners can just use Python. And even in books that are kinda good, the examples are just not that great.
 **** I guess programmers are still bad at communication, even with all that big brain.
 **** Maybe theyre doing this to advertise Rust as much as possible to programmers who dont want to even consider Rust. 
 *** ask everywhere, is it normal for SD cards to fail constantly?
-*** Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
-*** Post again your 
-*** Managing 2 Emacs version (28 and 29 in my case) minimally, not much fancy hack.
+*** SIMPLIFICATION: Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
+**** Another thing I do is close-all-buffers, its such a mind-clearer, an advantage over other IDEs
 *** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
 **** Completely rewire how I use my my keyboard. This ones more like "hardwired" hack. Basically, I always use both hands, and as little pinky as possible. When I am pressing Ctrl-w, instead of using Left hand for both Ctrl and W, I use Right hand for Ctrl and Left hand for w.
 **** I experimented with Hydra mode as much as possible. Using Hydra mode, I map shortcuts like ;;t to a Personal learning Diary, and ;;p to my Python Diary, and there are 24 more alphabets to go. If I were to ever code in C or C++, I could remap those modes to exclusively not use those.
@@ -611,22 +568,6 @@ except Exception as e:
 **** Thats it, so far, my only complain is this Velcro addition makes my keyboard look ugly, my next move might be to epoxy necklace beads to my keyboards for those braille-inspired patterns. Yes its very hacky, but its better than carrying a very bulky mechnical keyboard everywhere with me.
 **** References: [[https://github.com/emacsorphanage/key-chord][Key Chords]] and [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams]]
 **** Well, its either this or a very expensive split keyboard that is completely out of my reach.
-*** Things I learnt from the book UNIX-haters.  So many, but the few things that were useful to me:
-**** Commands like rm, cp, are badly designed due to cryptic naming (2-letter word), inconsistent documentation (beginning users learn are told to use "man <command>", but many commands dont have man, such as fg, jobs, set). 
-**** UNIX does not respect many forms of boundaries such as files, even though everything is supposedly a file in UNIX philosophy, many UNIX commands (some are carried forward over to Linux) easily overwrites files, when used wrongly (and mistakes are very easy to make in UNIX, even for sys-admins). So I made tinkered my Emacs to force myself to chane my habit. Actually not "force", I ensured Emacs navigation was more comfortable thn navigating using cd commands or removing files using rm command. I dont want to use aliases for rm, so I dont forget just how dangerous the rm command is. 
-**** In Emacs Dired (the file manager of Emacs), I replaced <enter> and ^ with Alt-<right> and Alt-<left>. more comfortable than a terminal. And I defined the variable trash-directory so that deleting a file gets moved to a trashcan first, like other operating system's. The usual delete commands in Emacs Dired are already comfortable
-**** Some of the bad design elements were also due to "market constraint". There was millitary funding of UNIX development at University of Berkeley. And you had to please millitary general requirements or maybe just contraints. Which is proof that most of techs history is closely related "culture and art" than it is to something rational and logical. And UNIX has infested everywhere at our current time.
-**** OSI model (of the network) sucks. Despite what people in tech make you think, tech is more art than science. Nothing wrong with that, but its a messy art. OSI are created by "standard makers", but just like the guys who libraries for programming, the guys who write the standards are usually not the same guys who use the standard. People who use UNIX's sendmail at the time (also a horrible tool) also complain about OSI
-**** Metasyntactic operator.What is it? Most programmers are familiar with it, even when they cant quite explain what it is. Examples are backslashes. They are metasyntactic becoz they are not part of the syntax (of the command) but operate ON the command itself. Backslashes (/) doesnt represent itself, but some operation on the following character. So "representing" itself usually means quoting it. Very common in programming
-***** ` command output substition
-*** Diary in Emacs, perhaps the best way to learn Emacs selfishly:
-**** So its me back, and im back with more "what I do with my Emacs". Some of the previous points last time, was integrating org-mode with Obsidian markdown files, so I can read everything I write in Emacs on my tablet, using the fancy Obsidian.
-**** I also mentioned in passing my org note setup. However, I wanna try to focus on writing a diary in Emacs, as well as some features that might be attractive to some of you, but I dont use personally. My way of learning Emacs during my early years, is to steal a little of time everyday to write a diary in Emacs.
-**** Why write a diary? Well for one, the human mind has a very abstract understanding of time. With regards to skil for example, im sure many of us have spent countless hours, even thousands of hours, learning a particular difficult skill, a football trick, a juggling trick, painting, a musical piece. This is not to mention solving a software skill, that is seemingly easy to understand but difficult to execute at as a junior. Writing a diary serves as a log of progress. If we spend so much time looking at computer code, why we cant we do the same with the most important software and hardware, our brain? Its not about optimizing for progress sake, but for mental health, so write in your diary your accomplishment in side projects or hobbies. You are more than just the value of what corporates give you. Make the technology you use serve you side passions too. Dont lose sight of the goal, technology is supposed to make your life easier not harder.
-**** Using a diary, you can split further your learning experience into Emacs and non-Emacs stuff. Eventually, you will reach an Emacs level, where you create not just shortcuts, but overpowered shortcuts that map to everything else, your Python notes, your current project, your favourite shell script, a shortcut that triggers a simple backup script, anything (we are not talking about running a script from the IDE, but rather mapping Ctrl-c Ctrl-g or whatever). But reaching there, like every other skill takes time. Use Emacs to learn Emacs, TODO lists, reminders, notes. Cheat your boss by including 30 minutes of Emacs reading. 
-**** there are many parts to explore. Actually the best thing to explore about Emacs which is org-mode. Its everything, a knowledge management system, a TODO organizer, a diary, a daily reminder, a timer, you name it, org-mode has it. Use Org-Mode as part of this "cheat" routine. Eventually, Org-Mode will make your life and work easier, but its one of those of things where you will never be able to convince your boss or colleague, it has so many advantages yet difficult to communicate to others. Forget an employer, even explaining to a friend is a struggle.
-**** yes, in a sense, Im using this as an excuse to advertize Emacs as an alternative. However, this comes with a warning. In short, if you want a software that has "opinions" on the best way to do things, this is not for you. Emacs is dangerous in a sense it has 0 opinions on the best way things. On top of that, you are not going to learn things in a month or 2, it is a real invesment.
-**** But Im gonna end this on a good note, eventually everything will turn out fine. The community is there r/emacs on Reddit, SachaChua, Xah Lee, SystemCrafters, Protesilaos. Some of these guys are not coders.
 ** Jobs:
 *** [[https://app.outlier.ai/en/expert][Outlier tasks]]
 *** micro1
@@ -640,25 +581,100 @@ except Exception as e:
 *** Read about orchestration and automation
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
-** We need to test duplicates of everything, but for now only FIDE ID
-** Teaching notes:
-*** I finally understand callback functions, but I am convinced that setTimeout functions are a bad example to teach. I feel like trying to create a custom dialog mimicking the browsers builtin confirm delete dialog, THAT is a much better example.
 ** Python:
+*** Examples of making a Query filter by default, we dont need REALLY this for now, as we added a password reset much later, and its at a confusing stage.
+#+begin_src python
+
+  # ===== in Model.py
+
+  from flask_sqlalchemy import SQLAlchemy, BaseQuery
+
+  class MyFilteredQuery(BaseQuery):
+      def __init__(self, entities, session=None):
+          super().__init__(entities, session)
+          # Apply your default filter here
+          self._set_default_filter()
+
+      def _set_default_filter(self):
+          # Example: Filter all queries for a 'deleted' column being False
+          if hasattr(self.column_descriptions[0].entity, 'deleted'):
+              self.filter_by(deleted=False)
+
+
+  from flask_sqlalchemy import SQLAlchemy
+
+  db = SQLAlchemy()
+
+  class User(db.Model):
+      __tablename__ = 'users'
+      id = db.Column(db.Integer, primary_key=True)
+      name = db.Column(db.String(80), unique=True, nullable=False)
+      deleted = db.Column(db.Boolean, default=False)
+
+      # Assign the custom query class
+      query_class = MyFilteredQuery
+
+
+  # ===== Usage
+  # This query will automatically include `WHERE deleted = False`
+  active_users = User.query.all()
+#+end_src
+*** [[https://stackoverflow.com/questions/76131622/itsdangerous-security-typeerror-unsupported-operand-types-for-int-and][link:]] ADD THIS SOMEWHERE. Many of the examples are outdated. Instead of this:
+#+begin_src python
+
+  from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
+  s=Serializer(app.config['SECRET_KEY'], 600)
+
+  # ===== theres a way to do it like this, but nothing works so far,
+  token = s.dumps({'some_id': current_user.mcfId}).decode('utf-8')
+  some_id = s.loads(token)['some_id']
+
+#+end_src
+*** We are using this
+#+begin_src python
+
+  from itsdangerous import URLSafeTimedSerializer as Serializer
+
+  s=Serializer(app.config['SECRET_KEY'], 600)
+
+  token = s.dumps({'some_id': 123})
+  some_id = s.loads(token, max_age=600)["some_id"]
+
+#+end_src
+*** We also avoided too much OOP (tying function to object, especially since we are only using the feature in a simple password reset and nothing else)
+*** iterating through an an object like its a list, not the most readable sh*t, but at least feels cool. We need to TRY THIS. We can also explore this by using app.config as an example. Why does app.config.from_object(Config) work?
+#+begin_src python
+
+  class MyIterableObject:
+      def __init__(self, data):
+          self.data = data
+
+      def __getitem__(self, key):
+          # This method is called when you use obj[key]
+          return self.data[key]
+
+  # Example usage
+  obj = MyIterableObject([1, 2, 3, 4])
+  print(obj[0])  # Output: 1
+
+  # You can now iterate through it like a list
+  for item in obj:
+      print(item)
+
+#+end_src
 *** understanding [[https://www.geeksforgeeks.org/python-flask-immutablemultidict/][immutablemultidict]], kinda important
+*** should we try this SMTP one day? network stuff is always a nightmare
+**** [[https://stackoverflow.com/questions/37224073/smtp-auth-extension-not-supported-by-server][SMTP stackoverflow]]
+*** common errors with Python bcrypt:
+**** ValueError: Invalid salt Bcrypt hashes begin with a specific prefix (e.g., $2b$). If this prefix is missing, altered, or incorrectly encoded (e.g., b'\(2b\)'), bcrypt will interpret it as an invalid salt. If you stored password as plain text, when other parts of your code uses bcrypt, this can happen
 *** Jinja2 award winning [[https://ttl255.com/jinja2-tutorial-part-4-template-filters/][blog]]
 *** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
 *** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment. This one is [[https://www.react-graph-gallery.com/build-axis-with-react][from react]]
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
-** Its very important to be knowledgable on common practices of "deploying to production". So READ [[https://flask.palletsprojects.com/en/stable/tutorial/deploy/][THIS]]. Also, read on lots of [[https://flask.palletsprojects.com/en/stable/deploying/][CONCEPTS]]
-** We are going to READ on FILE VALIDATION, COMMON skill:
-*** https://imagekit.io/blog/how-to-upload-files-in-html/
-** The best way to read CSS frameworks, while learning an actual project in your real work, while also spending time doing your personal project, is to read all the documentation of several. Im currently reading both Bootstrap and Tailwind CSS. The frameworks come from different perspectives and opinions. And trying to get into the mind fo the guys who created the "language", means trying to think "what is the creator trying to convey", when reading all their documentations. 
 ** We are going to publish our site, either in render or fly.io
-** read about [[https://www.linkedin.com/pulse/power-css-organizing-data-rows-columns-shydra-murray-h8t9c/][Flexbox]] please and differences between [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][css frameworks]]
-** Reading
-*** [[https://www.jstor.org/stable/2053842][Japanese anti-monopoly law]]
 ** Emacs:
 *** Also, finish this somewhere, about starting, and its not that simple, becoz things go wrong, Emacs tends to hide it, when use the usual shell-command, so instead, your UNIT OF ABSTRACTION must be the process:
 **** http://xahlee.info/emacs/emacs/elisp_start_external_process.html
@@ -670,27 +686,14 @@ except Exception as e:
 *** Also try Emacs Application Framework on a new laptop
 *** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
-*** we need another Hydra to ehsily go to other-window using (other-window 1)
-*** [[https://zck.org/define-keymap][keymap]] very cool stuff
 *** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
-*** we are going to try to use enriched mode to color Emacs
-** Store this cool [[https://www.andrewvillazon.com/move-data-to-db-with-sqlalchemy/][declarative_base]] link, coz we managed to make it work for bulk upload. Note how you dont need to remove your usual model in your class. The declarative_model simply maps your class with the existing table.
-** override modus theme, a masterpiece theme according to 1 guy, into a [[https://github.com/idlip/haki/tree/haki][high contrast tasheme]]
-** Store this [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][cool Emacs link]] somewhere
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** contact African guy again
 ** Python project notes, jot down the folowing:
-*** [[https://jinja.palletsprojects.com/en/stable/templates/][we should read more Jinja, just read documentation, spend 1 hour]]
-*** [[https://stackoverflow.com/questions/5458048/how-can-i-make-a-python-script-standalone-executable-to-run-without-any-dependen][pythinstaller -f will create a proper .exe]]
-*** [[https://stackoverflow.com/questions/16981805/how-does-templating-engine-work][templating engine pedagogy]]
-*** [[https://stackoverflow.com/questions/7460938/how-to-run-a-python-script-in-a-web-page][ways to embed python script in website. But maybe we dont need this.]]
 *** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
-*** [[https://flask.palletsprojects.com/en/stable/][Im not sure why i was reading about Flask]]
 ** TODO 
 *** [[https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Models][we REALLY need to read about MODELS before proceeding with Django]]
-** TODO 
-*** post about why you write in Emacs. a constant in the software world, is bad documentation.
 ** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
 *** https://adf.org.au/drug-facts/ketamine/
 *** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol
@@ -700,8 +703,6 @@ except Exception as e:
 ****  kimchi, miso and tempeh
 **** green, black and oolong tea
 **** brown rice, soy and adzuki beans, chestnuts, mushrooms, tomatoes, spinach, broccoli, cabbage, cauliflower, Brussels sprouts, sprouted grains and sweet potatoes
-** TODO 
-*** Study example uses of defmacro in Emacs
 ** [[https://ringgitplus.com/en/blog/income-tax/how-to-file-your-taxes-for-the-first-time.html][read on how to do e-filing for d first time]]
 ** wrote a little n Scriabin nocturne
 ** Read about your Hugo
