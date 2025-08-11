@@ -1,0 +1,11 @@
+* GUIX:
+** [[https://guix.gnu.org/en/blog/2018/multi-dimensional-transactions-and-rollbacks-oh-my/][i need to read this someday]]
+** [[https://www.youtube.com/watch?v=MV8SOJ2hlWQ][check 1 of the comments in this YT vid, good resource]]
+* NixOS:
+** [[https://nixos-and-flakes.thiscute.world/introduction/][nixos and nix flakes]], nix flakes is enhancement, but poorer documentation. Nix better documentation mostly focuses configuration.nix
+** [[https://www.reddit.com/r/NixOS/comments/vxqt28/preferred_way_of_configuring_emacs_on_nix/][Emacs with Nix]]
+** [[https://nix.dev/tutorials/nix-language][nix language basics]]
+** [[https://discourse.nixos.org/t/your-favorite-intro-tutorial-to-nix/36829/3][forum with 1 resourceful comment]]
+* Pros and Cons:
+** [[https://forum.systemcrafters.net/t/nixos-vs-guix-a-non-programmers-novice-perspective/875][pros and cons from novice persp]]
+** 

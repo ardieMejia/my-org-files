@@ -1,0 +1,9 @@
+* Some Python audio stuff separated here, to avoid clutter:
+** https://people.csail.mit.edu/hubert/pyaudio/#examples
+** https://stackoverflow.com/questions/31674416/python-realtime-audio-streaming-with-pyaudio-or-something-else
+** https://stackoverflow.com/questions/36664121/modify-volume-while-streaming-with-pyaudio
+** https://arxiv.org/html/2403.09789v1
+** https://musicianshq.com/a-beginners-guide-to-midi/
+** https://riptutorial.com/python/example/31900/callback-mode-audio-i-o
+** https://stackoverflow.com/questions/7632589/getting-realtime-output-from-ffmpeg-to-be-used-in-progress-bar-pyqt4-stdout
+** https://raspberrypi.stackexchange.com/questions/41933/pyaudio-playing-audio-in-callback-is-choppy

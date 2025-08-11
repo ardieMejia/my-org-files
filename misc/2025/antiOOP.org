@@ -1,0 +1,4 @@
+* All anti-OOP readings, especially the papers will be stored here.
+* Words to describe it:
+** "compile-time hierarchy of encapsulation that matches the domain model was a mistake"
+* 

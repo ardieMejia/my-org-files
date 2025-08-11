@@ -1,0 +1,109 @@
+#+OPTIONS: toc:nil
+
+* Core Concepts:
+** Introduction to Python: Setting up the environment, basic syntax, variables, data types (integers, floats, strings, booleans).
+** Input and Output: Using print() and input() for user interaction.
+** Control Flow: Conditional statements (if, elif, else), loops (for, while).
+** Data Structures: Lists, tuples, dictionaries, sets.
+** Functions: Defining and calling functions, parameters, return values.
+** Modules and Libraries: Importing and using pre-built functionality (e.g., math, random).
+** File Handling: Reading from and writing to files.
+** Error Handling: Understanding and managing exceptions (try, except).
+** Object-Oriented Programming (Introduction): Basic concepts of classes and objects
+* Practical:
+** Simple Text-Based Games: Guessing games, rock-paper-scissors.
+** Interactive Stories or Chatbots: Using conditional logic and user input.
+** Graphical Projects: Utilizing libraries like Turtle for drawing or Pygame for basic game development.
+** Data Analysis Basics: Working with simple datasets and potentially introducing libraries like Pandas for older teens.
+** Web Scraping (Basic): Extracting information from websites (with guidance on ethical use).
+* Advanced:
+** numpy
+** panda
+** pd.merge??
+* Links:
+** [[https://www.youtube.com/watch?v=AAS8yoKuK7M][numpy on jupyter]]
+* Day 1
+** Introduction to Python and Programming
+*** What is Python?
+*** Real-world use cases (AI, games, apps, etc.)
+** Setting Up Python
+*** Installing Python & VS Code/IDLE
+*** Introduction to Turtle module
+*** Writing your first Python script
+** Basic Syntax and Data Types
+*** Strings, numbers, variables
+*** Comments and print statements
+** Input/Output
+*** Getting user input
+*** User input to draw in Turtle
+** Control Structures
+*** If/else conditions
+*** Comparison and logical operators
+*** if else conditionals to draw different patterns in Turtle
+** Loops
+*** for loops
+*** while loops
+*** Looping through strings and ranges
+** Functions:
+*** def, parameters, return values
+*** Reusability and scope
+** Mini Project:
+*** Build a basic quiz app or number guessing game
+* Day 2:
+** Lists and Tuples
+*** Indexing, slicing, looping
+*** List methods
+** Dictionaries
+*** Key-value pairs
+*** Practical examples (e.g. storing student scores)
+** Functions
+*** def, parameters, return values
+*** Reusability and scope
+** Error Handling
+*** Try/except blocks
+*** Simple debugging tips
+** Importing Modules
+*** Using built-in modules like random, math, datetime
+** Mini Project:
+*** Create a "To-Do List Manager"
+* Day 3:
+** Recap of Key Concepts
+** Functions, loops, lists, dictionaries
+** Intro to Object-Oriented Programming (light intro)
+*** What is a class/object?
+*** Build a simple class (e.g. Student or Car)
+** Working with Files
+*** Reading/writing to .txt files
+*** Example: saving a high score or user data
+** Project Planning
+*** Brainstorming ideas
+*** Group or individual project: Game, App, or Tool
+** Final Project:
+*** Choose from:
+*** Text Adventure Game
+*** Flashcard Quiz App
+*** Budget Tracker with File Save
+** Project Showcase & Feedback
+*** Presentation to peers
+*** Receive feedback and final suggestions
+* Syllabus:
+** Pengkomputeran (Computing & Ethics)
+*** Impacts of computing innovations and recognition of unethical practices in computing.
+*** Understanding data security (encryption/decryption), including hands-on with techniques like Caesar Cipher.
+*** Discussion of cyber ethics, piracy, and exposure to cyber laws across countries.
+*** Exploration of future computer-related careers, culminating in a digital folio.
+** Seni Bina Komputer (Computer Architecture)
+*** Learning the Fetch–Decode–Execute (FDE) cycle, Von Neumann architecture, and components like ALU, registers, control units, buses.
+*** Comparing types of processors and understanding compilers vs interpreters.
+*** Applying these concepts in creative demonstrations.
+** Get Logik (Logic Gates & Boolean Logic)
+*** Identifying and drawing basic logic gates (NOT, AND, OR) and their combinations (NAND, NOR, XOR, XNOR).
+*** Constructing truth tables and Boolean expressions; designing logic circuits to solve problems.
+** Pangkalan Data Lanjutan (Advanced Databases)
+*** Introduction to SQL and Entity Relationship Diagrams (ERD).
+*** Creating normalized relational database schemas.
+*** Executing SQL commands (SELECT, INSERT, UPDATE, DELETE), using GROUP BY, ORDER BY.
+** Pengaturcaraan Berasaskan Web (Web-Based Programming)
+*** Development using client-side scripting (e.g. HTML, JavaScript) and server-side scripting (e.g. PHP).
+*** Tools like WAMP, XAMPP, Notepad, MySQL are commonly used in school labs.
+*** Building interactive web applications combining frontend and backend technologies. 
