@@ -1,14 +1,17 @@
-* Emacs frameworks, a good introduction of Emacs, with lots of built-in defaults.
+* Emacs frameworks, and other init examples:
 ** https://www.spacemacs.org/
 ** https://prelude.emacsredux.com/en/latest/
 ** https://docs.doomemacs.org/latest/
+** [[https://github.com/caisah/emacs.dz][An awesome collection of Emacs config (includes Kaushal Modi)]]
 ** A list of other help
 *** https://www.emacswiki.org
 *** http://xahlee.info/
 *** https://www.gnu.org/software/emacs/manual/
 *** https://zzamboni.org/
-**** An awesome collection of Emacs config (includes Kaushal Modi)
-***** https://github.com/caisah/emacs.dz
+** useful beginner common problems (Can't check signature: No public key):
+*** gnu-elpa-keyring-update is not installed
+*** set package-check-signature temporarily to nil
+*** install the package mentioned above
 * Building your own, what I did:
 ** also tree-sitter before (compile) not package manager
 ** read ./configure --help
@@ -21,6 +24,27 @@ sudo apt install libgccjit0 libgccjit-10-dev
 sudo apt-get install libjansson4 libjansson-dev
 
 #+end_quote
+* Other building Emacs links:
+** https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
+** [[https://www.masteringemacs.org/article/how-to-get-started-tree-sitter][building emacs with tree sitter support]]
+** [[https://www.masteringemacs.org/article/whats-new-in-emacs-29-1][emacs 29 whats new]]
+** [[https://apple.stackexchange.com/questions/81930/compiling-ns-cocoa-emacs-on-osx-with-svg-support][emacs build on mac with svg support]]
+** [[https://gist.github.com/abidanBrito/2b5e447f191bb6bb70c9b6fe6f9e7956][emacs build on gist github]]
+** [[https://www.youtube.com/watch?v=MsP5QF2Ajdw][building emacs bit-mage]]
+** [[https://www.rahuljuliato.com/posts/compiling_emacs_30_1][compile emacs 30 rahul]]
+** [[https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/][build emacs with pgtk]]
+** [[https://github.com/jimeh/build-emacs-for-macos/issues/12][issue with emacs build on mac with SVG]]
+** [[https://www.adventuresinwhy.com/post/compiling-emacs-with-tree-sitter/][adventuresonwhy build emacs 29 with tree-sitter]]
+** [[https://famme.sk/blog/compilation-of-gnu-emacs-29-30-in-debian-12.html][famme.sk compile emacs 30 on Debian 12]]
+** [[https://ryanfleck.ca/2024/compiling-emacs-29/][on mac good minimal tips]]
+** [[https://www.reddit.com/r/emacs/comments/1e3nav3/emacs_29_wont_build_with_svg_even_with_withrsvg/][emacs with svg requires these apprently: sudo apt-get install librsvg2-2 librsvg2-dev]]
+* Combobulate, treesitter:
+** Theory:
+*** Syntax trees (for parsers) are very difficult to get correct. Compilers are kinda "closed source"https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter. Compilers are the source of truth, we cant rely on its "closed sourceness"
+*** 
+** Writing our features:
+*** [[https://www.masteringemacs.org/article/lets-write-a-treesitter-major-mode][masteringemacs]]
+*** 
 * basic navigation, behaviours, buffers
 ** Navigation, behaviours
 *** There are other tips on [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Visiting.html][basic visiting/opening file]], but most of these I myself dont even use 
@@ -35,6 +59,10 @@ sudo apt-get install libjansson4 libjansson-dev
 *** https://stackoverflow.com/questions/9709121/is-there-a-way-to-narrow-to-region-in-one-window-while-not-narrowing-in-another
 *** C-x 4 c to open temporarily a buffer, maybe to indent or something
 *** this behaviour probably not encouraged, probably becoz there are other better alternatives, and confusing for beginners
+** Cool nav packages:
+*** [[https://superuser.com/questions/629090/emacs-displaying-list-of-subroutines-functions-classes-in-a-source-file][occur]]
+** [[https://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs][move region/line up/down]]
+*** Can try drag-stuff  coz its super cool but can try Ji Han examples, coz its super simple
 * Inits
 ** The following are taken from this link: [[https://www.sandeepnambiar.com/my-minimal-emacs-setup/][Sandeep minimal defaults]]
 #+begin_src lisp
@@ -100,7 +128,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 #+end_quote
 ** [[https://www.youtube.com/watch?v=XZjyJG-sFZI][Teach your Emacs to keep folders clean]]
 *** Already used variables --> user-emacs-directory, package-user-dir, default-directory
-* Loading subtlety, hooks, eval, yadayada
+* Loading logic, hooks, eval, etc:
 ** Auto-save when out-of-focus, a better alternative to "saving every minute" that most IDE's use
 *** https://www.emacswiki.org/emacs/AutoSave
 #+begin_src lisp
@@ -141,17 +169,12 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 * Emacs Daemon. No success for when under Windows
 ** https://stuff-things.net/2014/12/16/working-with-emacsclient/
 ** https://wikemacs.org/wiki/Emacs_server
-* Navigation improved
-** [[https://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs][move region/line up/down]]
-*** Can try drag-stuff  coz its super cool but should start with Ji Han examples, coz its super simple
 * Keybinding
 ** Lots of information
 *** https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 **** Interestingly, C-c ? (where ? is any single character), is reserved for user & USERS alone. But most 3rd packages dont give a shit
-***** I actually personally use C-S-c coz I learnt my Emacs by deep diving dangerously, by blindly copying a config from some Indian Emacs developer named Kaushal Modi. Theres a Github link of the most famous configs collected under one repo. [[https://github.com/caisah/emacs.dz][right here]]
-**** Also, 2 keys that are reserved (remnants from ancient 80's keys), are Hyper & Super. Today, Super is "Windows key" & Hyper is "Application-Context"
-***** These keys are also reserved, might be very useful
-**** Also, in "key lookup order", confusingly, Minor Mode comes before Local which also comes befor Global. (I tot Local overrides Global?)
+**** Also, 2 keys that are reserved (remnants from ancient 80's keys), are Hyper & Super. But usually, Super is "Windows key" & Hyper is "Application-Context"
+**** Also, in "key lookup order", confusingly, Minor Mode comes before Local which also comes befor Global. (I thought Local overrides Global?)
 * dired file manager
 ** https://www.youtube.com/watch?v=PMWwM8QJAtU
 *** System crafters
@@ -162,8 +185,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 **** v - dired-view-file, allows view without opening the file, quick q exits to previous dired buffer
 **** C-M-o - dired-display-file
 ** https://lucidmanager.org/productivity/using-emacs-image-dired/
-*** TODO!!!!!
 *** Very cool, imagine opening GIMP automaticallly from inside Emacs
+** [[https://github.com/alexluigit/dirvish][Dirvish]]
 * Looks, looks, looks:
 ** If you want some really great looking suggestion on fonts, from usable examples. Look at this
 *** https://www.reddit.com/r/emacs/comments/14q399t/hi_out_of_curiosity_what_are_your_favourite_fonts/
@@ -202,7 +225,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 * Autocompletion backends:
 ** It works:
 ** we finally managed to make LSP work, use the simple config in this link: [[https://www.reddit.com/r/emacs/comments/ejc1az/lspmode_select_python_interpreter_virtual/][reddit link on minimal Emacs lsp setup]]
-* Org Mode
+* Org Mode, Org Mode looks
 ** org templates:
 *** Finally once you start inserting your first code block (template, whatever). We can read this
 **** https://www.nicholasvanhorn.com/posts/org-structure-completion.html
@@ -218,58 +241,41 @@ ARGS = -q --load C:\path\to\our_custom_init.el
     (org-md-export-to-markdown)))
 
 #+end_src
-** We finally came up with this, we solved all the issues, by deleting everything beforehand, everytime we update our Obsidian. Overkill, but its fine, since this is a personal project, and unlikely it will ever read 100 MB or more
-#+begin_src lisp
-
-  (setq org-publish-project-alist
-	'(("my-org"
-	   :base-directory "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021"
-	   :recursive t
-	   :exclude ".*obsidian"
-	   :publishing-function org-md-publish-to-md
-	   :publishing-directory "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021_md"
-	   :base_extension "org"
-	   :with-sub-superscript nil
-	   :section-numbers nil
-	   :base-extension "org"
-	   :with-toc nil)))
-
-  (setq rd-a-project (assoc "my-org" org-publish-project-alist))
-  (setq ardie/list-of-post-publish 'nil)
-  (setq ardie/list-of-previous-publish 'nil)
-
-  ;; initilialize first, otherwise, org-publish-cache produces error
-  (org-publish-initialize-cache "my-org")
-
-  (dolist (rd-long-filename (directory-files-recursively "C:/Users/ahmadardie.r/Documents/my-trash/_delete_/2021_md" "\\.md$"))
-    (delete-file rd-long-filename))
-
-  (org-publish-project "my-org" t)
-
-#+end_src
+** We finally came up with this, we solved all the issues, by deleting everything beforehand, everytime we update our Obsidian. Overkill, but its fine, since this is a personal project, and unlikely it will ever read 100 MB or more. Edit: we added more logic that updates images as well, but we HAVENT added image deletion logic, I think
+*** [[https://github.com/ardieMejia/my-mobile-tablet-notes][my org toobsidian publishing script for tablets]]
 ** Presentations in org mode
 *** https://github.com/yjwen/Org-Reveal
-* Only applicable to my old Kaushal Modi copy (cut loading short):
-** https://github.com/jwiegley/use-package/issues/494
-*** Personally, I just removed "package-refresh-contents" from setup-packages.el
-** Additional read too
-*** https://ianyepan.github.io/posts/setting-up-use-package/
+** [[https://yannesposito.com/posts/0020-cool-looking-org-mode/index.html][Emacs prettify ideas]]
+** [[https://irreal.org/blog/?p=9910][org pretty]]
+** [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][also org prettify]]
+* Hydra, MUST read this and write properly later
+*** We finally found it!!. A fix to all of this quitting hydra madness, its basically an attribute thing :<attribute>, basically, the end of our hydra head has to look like this, "kill" :exit t
+#+begin_src lisp
+
+  ("k" (progn
+         (if buffer-read-only
+             (read-only-mode -1)
+             nil
+             )
+         (kill-region (region-beginning) (region-end))
+         ;; (kill-line)
+         nil
+         )
+       "kill" :exit t)
+
+  ;; ( .. "kill" :exit t) are like attributes so you could add more
+  ;; ( .. "comment sexp" :column "2" :exit t) are like attributes so you could add more
+
+
+#+end_src
+*** https://elpa.gnu.org/packages/hydra.html
+*** https://github.com/abo-abo/hydra
+*** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 * An apparently, very cool init.el, according to one good emacs user. Must read it 1 day
 ** https://github.com/eastwood/config/blob/master/emacs.d/init.el
 * Cool for development, you might want to include this in an init file. Maybe as a separate development-init.el
 ** https://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer/171#171
-* [[https://guix.gnu.org/manual/en/html_node/Application-Setup.html][GUIX magically works along with my spacemacs, how?]]
-** Something about locales GUIX_LOCPATH, will never allow foreign-distro programs to load GUIX stuff,
-*** -> while ensuring GUIX only loads everything foreign  and local.
-*** this "foreign-distro" programs cant see GUIX_LOCPATH
-** If thats the case, we can install Tramp by:
-*** unset the GUIX_LOCPATH variable
-*** reload original spacemacs safely
-*** and try to install Tramp and load Google drive from there
-** If that doesnt work then, its safe to
-*** reset everything back to GUIX spacemacs, and
-*** install TRAMP from there
-* Basics, education:
+* Basics, fundamentals:
 ** Lisp
 *** One of the best basic intro into eLisp:
 **** https://cs.gmu.edu/~sean/lisp/LispTutorial.html
@@ -280,10 +286,16 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** Errors:
 *** https://discourse.doomemacs.org/t/common-errors-how-to-deal-with-them/58
 **** A bit useful, should read one day.
-** car? cdr? Yes it is confusing
+** car, cdr, cons and some other different ones
 *** https://www.math.utah.edu/docs/info/emacs-lisp-intro_8.html#SEC92
 *** So many cool things to try, like nyanmode, cute cat that browses with you.
 **** https://www.emacswiki.org/emacs/ModeLineConfiguration
+*** -cons is way to "float a list" up a level. It actually belongs to dash.el
+#+begin_src lisp
+
+  (-cons* 1 2 '(1 3)) 
+  
+#+end_src
 ** [[https://www.math.utah.edu/docs/info/elisp_2.html][UTAH Emacs Lisp Intro]]
 ** File to buffer:
 *** Learning common lisp and eLisp, eLisp doesnt have the stream function, they have insert-file-contents
@@ -349,6 +361,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://emacs.stackexchange.com/questions/81232/can-cape-be-disabled-on-a-mode-basis
 ** alist is very important 
 *** assoc
+** The reason why Emacs uses an alist. It works a little like a stack, where stacks simply adds on top, ignoring the rest, 
+*** https://emacs.stackexchange.com/questions/3397/how-to-replace-an-element-of-an-alist
 * Macro, Function, Lambda, Mapcar, Error-handling, etc:
 ** Macro
 *** Our first example: (NOTE: defmacro tries to be smart, (list) normally passes unaffected, but it expands anyway)
@@ -393,6 +407,9 @@ ARGS = -q --load C:\path\to\our_custom_init.el
       (set-face-attribute 'default nil :font "Iosevkaasd" :weight 'regular)
     ('error (progn (set-face-attribute 'default nil :font "Georgia" :weight 'regular)  "Iosevka failed, loading Georgia")))
 #+end_src
+* OS interprocess
+** Also, finish this somewhere, about starting, and its not that simple, becoz things go wrong, Emacs tends to hide it, when use the usual shell-command, so instead, your UNIT OF ABSTRACTION must be the process:
+*** http://xahlee.info/emacs/emacs/elisp_start_external_process.html
 * string, regexp, patterns, and others related
 ** We made our own select-whole-defun-ish using our code and magik-regexp (also save-excursion)
 #+begin_src lisp
@@ -517,9 +534,17 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 
 
 #+end_src
-* Cool packages to try, or already tried:
+* Packages, package management:
 ** [[https://github.com/emacsorphanage/key-chord][Key Chords]] for Emacs allows simultaneous keys
 *** Its a good idea to use rare [[https://www.johndcook.com/blog/2015/02/01/rare-bigrams/][bigrams]], which are rare key combinations for these settings
+** try package:
+*** when using try package, sometimes a common error is "elpa not found". Solution:
+**** package-refresh-contents
+* Debugging tips, warning levels:
+** Debugging, mysterious errors?, try toggle-debug-on-error:
+*** https://stackoverflow.com/questions/4180111/what-does-it-mean-when-emacs-tells-me-file-mode-specification-error
+** warning level for Emacs config setup, not sure if we ever need it:
+*** [[https://emacs.stackexchange.com/questions/78800/how-to-disable-automatic-appearance-of-warnings-buffer-in-emacs][warning levels]]
 * How do we export to PDFs:
 ** This one MAGICALLY worked in our home Linux
 
@@ -602,24 +627,6 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 #+LaTeX_HEADER: \usepackage[top=1in]{geometry}
 
 #+end_quote
-* From Redplanet (rearrange later):
-** https://lists.gnu.org/archive/html/help-gnu-emacs/2003-04/msg00767.html
-*** This code adds directories and its sub-directories to load-path. The reason why we dont do this is probably becoz load-path can get excessively long, and Emacs users might want to selectively disable some features.
-#+begin_src lisp
-
-  (let* ((dir (expand-file-name "~/emacs"))
-	 (default-directory dir))
-    (when (file-directory-p dir)
-      (add-to-list 'load-path dir)
-      (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-	  (normal-top-level-add-subdirs-to-load-path))))
-  
-#+end_src
-
-** The reason why Emacs uses an alist
-*** https://emacs.stackexchange.com/questions/3397/how-to-replace-an-element-of-an-alist
-** This one is DEFINITELY relevant to our GIS system
-*** https://groups.io/g/sw-gis/topic/install_emacs_for_smallworld/75042662?p=
 * Some  cool Emacs modifications for Windows (or issues):
 ** https://www.emacswiki.org/emacs/CategoryWThirtyTwo
 *** Its got an R user Emacs too
@@ -628,15 +635,14 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** There are many ports of GNU tools available
 *** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
+* Must read blogs
+** [[https://zck.org/define-keymap][its about keymap, still OK, but read his other links]]
+** https://endlessparentheses.com/provide-input-to-the-compilation-buffer.html
 * Extras!!
 ** https://masteringemacs.com/article/diacritics-in-emacs
 ** Email
 *** https://shom.dev/posts/20220108_setting-up-protonmail-in-emacs/
 **** Unlike systemcrafters (ubuntu I guess), guix version of mu includes mu4e
-** Hydra, MUST read this and write properly later
-*** https://elpa.gnu.org/packages/hydra.html
-*** https://github.com/abo-abo/hydra
-*** https://www.reddit.com/r/emacs/comments/8of6tx/tip_how_to_be_a_beast_with_hydra/
 ** http://xahlee.info/emacs/emacs/emacs_auto_save.html
 *** an argument against making save an automatic feature. And an argument for saving whenever you switch out of Emacs (that is switching to other apps, like a browser, or switching workspace). Ive had this on, for a long time. But now reading argument for it, what a relief. For some time, I was thinking whether Emacs not having an auto-save every second (like other IDE's) a benefit or annoyance. Now I guess, my practice has always made sense (Besides, when we are developing/writing, we mostly need saving when we do something else, browswing a word/article, so attaching it to 'focus-out-hook makes complete sense)
 
@@ -669,10 +675,4 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** changing Emacs behaviour, doesnt have to be an all out ddisruptive process.
 **** Eg: one thing we can do with mode-line, is to create a function that defines mode-line-format and (force-mode-line-update), binds that function to a mode-hook (magik-mode-hook)
 ** Some more cool navigation tricks:
-*** [[https://superuser.com/questions/629090/emacs-displaying-list-of-subroutines-functions-classes-in-a-source-file][occur]]
-* Common mistakes:
-** try package:
-*** when using try package, sometimes a common error is "elpa not found". Solution:
-**** package-refresh-contents
-** Debugging, mysterious errors?, try toggle-debug-on-error:
-*** https://stackoverflow.com/questions/4180111/what-does-it-mean-when-emacs-tells-me-file-mode-specification-error
+

@@ -77,6 +77,7 @@
 
 
 #+end_export
+** Jinja2 award winning [[https://ttl255.com/jinja2-tutorial-part-4-template-filters/][blog]]
 * Basics:
 ** [[https://www.askpython.com/python-modules/flask/flask-crud-application][askpython]] shows Flask CRUD
 ** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][removing old entries, or deleting with expired entries]]
@@ -168,7 +169,7 @@ $ flask run --extra-files file1:dirA/file2:dirB/
 *** 
 ** JWT (we dont understand this mostly)
 *** [[https://hyperskill.org/learn/step/36181][IMPORTANT]]
-* Flask SQLAlchemy, using ORMs avoids pitfalls like SQL injection
+* Flask SQLAlchemy, which is mostly used to avoid ORM pitfalls like SQL injection
 ** Relationships
 *** [[https://medium.com/@mandyranero/one-to-many-many-to-many-and-one-to-one-sqlalchemy-relationships-8415927fe8aa][medium]] example for one-to-one & others
 *** one-to-one puts foreign key on 1 SIDE. Becoz [[https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-one]["the ORM considers the “one-to-one” pattern as a convention, where it makes the assumption"]], which means its a constraint on the code/ORM level, not SQL level. So the child.parent side is "expecting" a 1-to-1, but not constrained in the database itself.
@@ -225,6 +226,22 @@ def db_DropEverything(db):
 ** Time our queries, [[https://flask-sqlalchemy.readthedocs.io/en/stable/record-queries/][link]]
 ** Faster deletes SQL:
 *** https://www.sqlservercentral.com/articles/how-to-delete-large-amounts-of-data
+** @classmethod tricks:
+*** In Flask-SQLAlchemy, filtering queries based on conditions is a common operation. The query attribute available on your model classes, provided by Flask-SQLAlchemy, allows you to build and execute queries, including applying filters.
+#+begin_src python
+
+  from app import db, User
+
+  # Find users with a specific username
+  user = User.query.filter_by(username='john_doe').first()
+
+  # Find all active users
+  active_users = User.query.filter_by(is_active=True).all()
+
+#+end_src
+* Moving away from SQLAlchemy, learning, or better control
+** Apparently, there are lots of people using Flask without sqlalchemy. Some claim its easy, but you need to google a lot on sql queries. Read this [[https://neon.com/postgresql/postgresql-python][LINK]] someday
+**** Also this [[https://www.psycopg.org/psycopg3/docs/][LINK]]
 * SQLAlchemy:
 *** https://docs.sqlalchemy.org/en/20/orm/session_basics.html
 *** https://docs.sqlalchemy.org/en/20/core/pooling.html
@@ -232,10 +249,136 @@ def db_DropEverything(db):
 *** https://docs.sqlalchemy.org/en/20/core/pooling.html#dealing-with-disconnects
 *** https://docs.sqlalchemy.org/en/20/tutorial/index.html
 *** https://docs.sqlalchemy.org/en/20/core/engines.html#engine-configuration
+* Handling deletions, a huge decision:
+** But, deleting data from DBS is [[https://softwareengineering.stackexchange.com/questions/159232/should-we-ever-delete-data-in-a-database][usually a GOOD IDEA]]
+** Soft deletes are messy tricky, but [[https://blog.miguelgrinberg.com/post/implementing-the-soft-delete-pattern-with-flask-and-sqlalchemy/page/0][miguelgrinberg]] suggests other alternatives at article end, like separate table (my style)
+** [[https://www.silvaneves.org/deleting-old-items-in-sqlalchemy][And heres what we used, removing old entries, or deleting with expired entries]]
+** Examples of making a Query filter by default, we did NOT need it, as we added a password reset much later, if our code gets bigger, we will need this, coz imagine if we added an attribute like "hard delete", and we have 3 other parts of the site that uses this, we WILL eventually forget. But we dont need this, coz we only have 1 part.
+#+begin_src python
+
+  # ===== in Model.py
+
+  from flask_sqlalchemy import SQLAlchemy, BaseQuery
+
+  class MyFilteredQuery(BaseQuery):
+      def __init__(self, entities, session=None):
+          super().__init__(entities, session)
+          # Apply your default filter here
+          self._set_default_filter()
+
+      def _set_default_filter(self):
+          # Example: Filter all queries for a 'deleted' column being False
+          if hasattr(self.column_descriptions[0].entity, 'deleted'):
+              self.filter_by(deleted=False)
+
+
+  from flask_sqlalchemy import SQLAlchemy
+
+  db = SQLAlchemy()
+
+  class User(db.Model):
+      __tablename__ = 'users'
+      id = db.Column(db.Integer, primary_key=True)
+      name = db.Column(db.String(80), unique=True, nullable=False)
+      deleted = db.Column(db.Boolean, default=False)
+
+      # Assign the custom query class
+      query_class = MyFilteredQuery
+
+
+  # ===== Usage
+  # This query will automatically include `WHERE deleted = False`
+  active_users = User.query.all()
+#+end_src
 * Error Handling:
 ** lets learn how to handle errors [[https://www.digitalocean.com/community/tutorials/how-to-handle-errors-in-a-flask-application][here]]
 ** [[https://docs.python.org/3/library/exceptions.html][built-in]] python exceptions
 ** [[https://docs.sqlalchemy.org/en/20/core/exceptions.html][SQLalchemy core]] exceptions
+* Email, password resets, tokens for reset, itsdangerous, CSRF
+** The minimum required to send email, (after setting app password, instead of using your email pass):
+#+begin_src python
+
+  # ========== config, either app.config[] or app.config.from_object(Config)
+  MAIL_SERVER = 'smtp.mail.yahoo.com'  # e.g., 'smtp.gmail.com'
+  MAIL_PORT = 587  # or 465 for SSL
+  MAIL_USE_TLS = True  # Set to False if using SSL (port 465)
+  MAIL_USE_SSL = False  # Set to True if using SSL (port 465)
+  MAIL_USERNAME = 'wan_ahmad_ardie@yahoo.com'
+  MAIL_PASSWORD = 'rppfxeiuwqrxjilk'
+  MAIL_DEFAULT_SENDER = 'wan_ahmad_ardie@yahoo.com' # Optional default sender, not needed if we always set sender in msg body
+
+  from flask_mail import Mail, Message
+
+  @app.route('/send-email')
+  def send_mail():
+      msg = Message(
+          subject="hello i just got sent from Flask",
+          recipients=["wan.ardie.mejia@gmail.com"],
+          body="this is a test body"
+          )
+
+      try:
+          mail.send(msg)
+          return redirect(url_for("main_page", whatHappened="Info: Password reset link successfully sent"))
+      except Exception as e:
+          return redirect(url_for("main_page", whatHappened="Error: Password reset link failed to send"))
+
+
+#+end_src
+** Password resets
+*** TimedJSONWebSignatureSerializer is [[https://stackoverflow.com/questions/76131622/itsdangerous-security-typeerror-unsupported-operand-types-for-int-and][outdated]]  , yet some doc still shows it.
+*** from itsdangerous import URLSafeTimedSerializer as Serializer: basically its time-aware secret keys, making it excellent for password resets (the other option is to use DB, which is also perfectly fine)
+*** The logic needed fixing further. Something to do with an URLSafeTimedSerializer instance, not converting string to integer automatically for max_age attribute. (Note below the int()).
+#+begin_src python
+
+  token = s.dumps({'some_id': current_user.mcfId}, salt="reset_pass")
+  some_id = s.loads(token, salt="reset_pass", max_age=int(app.config["TOKEN_MAX_AGE"]))['some_id']
+
+#+end_src
+** Common errors:
+*** If CSRF tokens are still missing, the g (app context) variable is still up and this might need to be set (anywhere after initializing app). Fix: we are not entirely sure
+#+begin_src python
+
+  @app.teardown_request
+  def teardown_request(response_or_exc):
+      db.session.remove()
+
+  @app.teardown_appcontext
+  def teardown_appcontext(response_or_exc):
+      db.session.remove()
+
+#+end_src
+** ----- somethineg ----
+** A good [[https://stackoverflow.com/questions/72092485/the-csrf-session-token-is-missing-when-csrf-token-is-present-in-request][link]] for CSRF basics, but its stackoverflow
+*** why does CSRF [[https://stackoverflow.com/questions/21501058/form-validation-fails-due-missing-csrf][fail]]
+* Cloud service:
+** Render, to make logging work we need these:
+#+begin_src python
+
+
+  from logging.config import dictConfig
+
+    dictConfig({
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+            }
+        },
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://sys.stdout", # Or ext://sys.stderr
+                "formatter": "default",
+            }
+        },
+        "root": {"level": "INFO", "handlers": ["console"]}, # Set root level to INFO
+    })
+
+    app.logger.setLevel(logging.DEBUG) # Or DEBUG more verbose than INFO
+
+#+end_src
+** [[https://flask.palletsprojects.com/en/stable/tutorial/deploy/][flask deployment basic notes]] and its associated [[https://flask.palletsprojects.com/en/stable/deploying/][concepts]]
 * Flask projects
 * Django
 * app configs, server configs, tips, tricks and hacks, deployment

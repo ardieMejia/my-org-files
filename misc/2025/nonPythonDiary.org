@@ -170,4 +170,322 @@ sudo apt-get install libjansson4 libjansson-dev
 ** we discovered several documentation alternatives in python. Using the inspect module
 * Day 17:
 ** we had some progress on little the Python Fiverr Lightroom alternative. Now effect hides better
-* 
+* Day 18:
+** I downloaded Scriabin Etude, the "beautiful octave" piece. Using this [[https://github.com/LibreScore/dl-librescore][link]]. I used Tampermonkey, very hacky
+* Day 19:
+** I filed the half nut. I mortised an angle.  
+** Getting mentally ready for teaching Hanifa cycling
+* Day 20:
+** The quick release vise project completely failed. Never forget the goal, to save money, and defeat corporate monopoly
+** Created template of very cool eLisp (mouse-8) shortcut, using combobulate and treesitter. No fail so far, but not sure how to build others upon this
+* Day 21:
+** We added some batch operations, it was simple but our brain is spaghetti, so we became super slow
+** We added eLisp that saves buffer, and auto-runs shell-command before a special mouse click
+* Day 22:
+** We added the -color-matrix (IM) for the tinting. Seems overkill, but if felt like it had potential. It seems playing with raw IM commands is much more fun and interesting (such as swapping colors, red and blue)
+** Our code has no awareness of key events, becoz aparently pg.event.get() only work once. 
+* Day 23:
+** We read 
+* Day 24:
+** created a very cool Emacs workflow, that uses moues buttons
+** the workflow script is branch-aware and commit-aware.
+** mouse button 9 clicked => if branch is working, and commit is work and fuzz, commit is amended
+** mouse button 9 clicked => if branch is working and commit is NOT work and fuzz, it creates a clean empty work and fuzz
+** mouse button 9 clicked => if branch is fuzz, it points to the latest working changes (using detached switch)
+** mouse button 10 clicked => runs project
+** combined with worktree, and branch-commit-aware functions, these is no longer any need, for stashing, squashing, etc
+* Day 25:
+** we managed simple text integer filtering of our practice CPP code, success
+* Day 26:
+** We managed a simple Qmake and make .pro file
+** so far still no Qt GUI example
+* Day 27:
+** Installing with the following makes Qt includes work in c++:
+#+begin_quote
+
+sudo apt install qt5-default qtbase5-examples qtbase5-doc-html
+
+#+end_quote
+* Day 28:
+** fixed the Emacs neovim killer workflow, still using (compile) command, but interactive now. So now it works for user prompt input as well
+** added a kill-buffer hydra, neovim killer
+* Day 29:
+** managed a very simple Qtwindow and Qtlabel
+** learnt how to supress warning using qmake (no need makefile), with QMAKE_CXXFLAGS += -Wno-unused-variable
+** getting a sense of what is, /initializing a base class constructor/, so I understand this error
+#+begin_quote
+
+hello.cpp:59:47: error: no matching function for call to ‘QVBoxLayout::QVBoxLayout(QWidget&)’
+
+#+end_quote
+** it simply means im passing the wrong argument, so below is ths fix:
+#+begin_src c++
+
+
+  // instead of this
+  QWidget window;
+
+  // should be this
+  QWidget *window = new QWidget();
+
+  
+
+#+end_src
+** Now window is pointer, /*window instead of window, we use this now:
+#+begin_src c++
+
+  // instead of this
+  pointOneLongLabel.setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  pointOneLongLabel.setText("first line\nsecond line");
+  pointOneLongLabel.setAlignment(Qt::AlignBottom | Qt::AlignRight);
+
+  // should be this
+  pointOneLongLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  pointOneLongLabel->setText("first line\nsecond line");
+  pointOneLongLabel->setAlignment(Qt::AlignBottom | Qt::AlignRight);
+
+
+#+end_src
+** 
+* Day 30:
+** sudo apt install qtcreator qt6-base-dev 
+* Day 31:
+** Created a very simple 2 label, 1 text, 1 button
+** We can use either lambda inside entry point
+#+begin_src c++
+
+  int main(int argc, char *argv[]){
+    // --- snip ---
+    QObject::connect(ui.pushButton, &QPushButton::clicked, [&]() {
+      ui.textEdit->append("Text inserted by button.\n"); // Appends text to a new line
+      // Or textEdit->insertPlainText("Text inserted by button."); for plain text
+    });
+    // --- snip ---
+  }
+
+#+end_src
+** We can also do the same above inside class constructor, reminder, QObject is parent of all, hence no "imports" needed
+** We can also create do the on_.._clicked, and even combine to provide 2 actions, but why would we?
+#+begin_src c++
+
+
+
+  void MainWindow::on_pushButton_clicked()
+  {
+    // Accessing a QLabel named 'myLabel'
+    ui->label->setText("Button clicked!");
+    ui->textEdit->append("Text inserted by button.\n"); // Appends text to a new line
+  
+      newbox = new NewBox(this);
+      newbox->show();
+  }
+
+#+end_src
+** Remember to include the includes in the header files (pun intended)
+** The entry point:
+#+begin_src c++
+
+
+  #include <QApplication>
+  #include "mainwindow.h" // Assuming your MainWindow class is defined in mainwindow.h
+
+  int main(int argc, char *argv[])
+  {
+    QApplication a(argc, argv); // Create the application object
+    MainWindow w;               // Create an instance of your MainWindow class
+    w.show();                   // Display the main window
+    return a.exec();            // Start the application's event loop
+  }
+
+
+#+end_src
+* Day 32:
+**   // In summary: You should call show() on the instance of your MainWindow class, not on the Ui::MainWindow object. The Ui::MainWindow object is responsible for setting up the visual components within your MainWindow.
+** It means its wrong name inside the Ui namespace:
+#+begin_quote
+
+mainwindow.cpp: In constructor ‘MainWindow::MainWindow(QWidget*)’:
+mainwindow.cpp:7:16: error: ‘justAnotherBox’ in namespace ‘Ui’ does not name a type
+
+#+end_quote
+** We finally understand \*cpp \*ui \*h can be a different name. we can call it special_box.h special_box.cpp, then special_-_box.ui. 
+*** Our Qt qmake will create ui_special_-_box.h
+*** we decided to rename our parent widget different
+*** When we use Qt designer, we open a .ui as mainwindow, widget, etc.... -> that is the parent widget (QMainWindow, QWidget) with a name
+*** The only "connecting dot" required is the class name
+#+begin_src nxml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <ui version="4.0">
+    <class>NewBox</class>
+    <!-- ... -->
+   <connections/>
+  </ui>
+#+end_src
+*** the rest to remember:
+**** member initializer list for a constructor -- !make sure to remember to write the correct widget!
+**** constructor body is optional, but we can put stuff. We can put out our Ui from the .Ui file, we can also change stuff of the members we defined in the list (above)
+#+begin_src c++
+
+
+
+  MyWidget::MyWidget(QWidget *parent)
+    : QWidget(parent), // Initialize the base class QWidget
+      m_button("Click Me!", this), // Initialize m_button
+      m_label("Hello, Qt!", this)  // Initialize m_label
+  {
+    // Constructor body (optional, for additional setup)
+    m_label.setGeometry(10, 10, 100, 30);
+    m_button.setGeometry(10, 50, 100, 30);
+  }
+
+
+
+  NewBox::NewBox(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::NewBox)
+  {
+    ui->setupUi(this);
+  }
+#+end_src
+
+***** 
+* Day 33:
+** Header files serve to make as "appends" to the main .cpp
+** Although, its implied, apparently we STILL need to manually #include <...>
+** This implies compilers unawareness of names
+** This adds confusion -> itsnt better to just make includes implied and the compiler do that work?
+** Another confusion is that includes dont act like namespaces, includes often have different names, we discovered we can do this:
+*** a file called specialbox.h --> so we do this --> #include "specialbox.h"
+*** the class inside called NewBox --> so we do this -->   newbox = new NewBox(this);
+** So maybe just use the same name
+** We also need to this inside our mainwindow.h
+#+begin_src c++
+
+  class MainWindow : public QMainWindow
+  {
+    // --- snip ---
+  private:
+    Ui::MainWindow *ui;
+    QLabel *myLabel;
+    QWidget *newbox; // --- becoz includes is what makes the .cpp code "aware" of the classes/objects
+  };
+#+end_src
+** Otherwise we get this error, which can be difficult to catch:
+#+begin_quote
+
+mainwindow.cpp:40:3: error: ‘newbox’ was not declared in this scope; did you mean ‘NewBox’?
+
+#+end_quote
+* Day 34:
+** We need to test these:
+*** headers
+#+begin_src c++
+  
+
+
+  #include <QCoreApplication>
+  #include <QSqlDatabase>
+  #include <QSqlQuery>
+  #include <QSqlError>
+  #include <QDebug>
+#+end_src
+*** connection
+#+begin_src c++
+
+  int main(int argc, char *argv[])
+  {
+    QCoreApplication a(argc, argv);
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+    db.setHostName("localhost"); // or your PostgreSQL server IP
+    db.setPort(5432); // Default PostgreSQL port
+    db.setDatabaseName("your_database_name");
+    db.setUserName("your_username");
+    db.setPassword("your_password");
+
+    if (!db.open()) {
+      qDebug() << "Error: Failed to connect to database:" << db.lastError().text();
+      return 1;
+    } else {
+      qDebug() << "Connected to database!";
+    }
+
+    // ... perform database operations ...
+
+    db.close(); // Close the connection when no longer needed
+
+    return a.exec();
+  }
+
+#+end_src
+*** queries
+#+begin_src c++
+
+  QSqlQuery query;
+
+  // Example: Inserting data
+  if (query.exec("INSERT INTO users (name, email) VALUES ('John Doe', 'john.doe@example.com')")) {
+    qDebug() << "Data inserted successfully.";
+   } else {
+    qDebug() << "Error inserting data:" << query.lastError().text();
+   }
+
+  // Example: Selecting data
+  if (query.exec("SELECT id, name, email FROM users")) {
+    while (query.next()) {
+      int id = query.value(0).toInt();
+      QString name = query.value(1).toString();
+      QString email = query.value(2).toString();
+      qDebug() << "ID:" << id << "Name:" << name << "Email:" << email;
+    }
+   } else {
+    qDebug() << "Error selecting data:" << query.lastError().text();
+   }
+#+end_src
+*** .pro
+#+begin_quote
+
+QT += core sql
+
+#+end_quote
+*** [[https://doc.qt.io/qtforpython-6/tutorials/basictutorial/tablewidget.html][Py related example for filling table]]
+*** we really need to learn focus shit
+*** https://www.google.com/search?client=ubuntu&channel=fs&q=c%2B%2B+qt+textbox+focus+selected
+* Day 35:
+** Comon error, caused by forgetting to put it in qmake .pro file
+#+begin_quote
+
+hello.cpp:27:10: fatal error: QSqlDatabase: No such file or directory
+
+#+end_quote
+* Day 36:
+** We spent so much time listening to AI about installing postgresql drivers, but instead its as simple as this (from askubuntu.com)
+#+begin_quote
+
+
+sudo apt install libqt5sql5-psql
+
+#+end_quote
+** If we listened to AI, we would have created stupid Makefiles, inside Qt plugins directory (this is usually inside Qt installation directory)
+* Day 37:
+** We spent so much on time on learning the db.setHostName() function, only to discover the url was wrong, dpg-d288ja49c44c73a6oi5g-a.singapore-postgres.render.com
+* Day 38:
+** We discovered package-check-signature is the way to solve the -> Can't check signature: No public key
+** We discovered a trick using 
+* Day 39:
+** "Code is data!!"
+** So turns out alist, is an example of "code is data", alist entries are treated as literal data, so functions will and variables will not work
+** Here is an example, we used to solve our alist (which will be used in our Windows Emacs)
+#+begin_src emacs-lisp
+
+
+  (setq backup-directory-alist `(("." . ,(concat ardie/all-compute-cfg-dir "emacs_backup_files"))))
+  
+  ;; instead of this
+  (setq backup-directory-alist '(("." . "/home/ardie/my-emacs-29-config/emacs_backup_files")))
+
+
+#+end_src
+** The backquote (also known as quasiquote) stops evaluation of list, which allows the comma to force evaluation of sub-expressions inside.
+** 
+

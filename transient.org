@@ -8,7 +8,6 @@
 *** Most reporters worth their salt, take their job as a mostly a joke. They know the illusion of freedom of speech
 *** remember, you made the FUCKING d minor prelude??
 * What to do today:
-** Our terminology REALLY needs branch display in prompt. It also needs more powerful colors
 ** Boid, save somewhere:
 *** https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html
 **** separation = avoid factor (position aware)
@@ -26,23 +25,36 @@
   (make-list 10 2)
 
   (setq var1 (-cons*
-              "social media posting, esp. prog lang nerd"
-              "combobulate, especially dealing with nodes, search engine history"
-              "Emacs backend, BACKUP our data, better Python comint alternaive, also read on COMINT, Git worktree"
-              "email, CV, also Audiosockets, GRAB, adding my lightweight Lightroom to Github"
-              "audio guy, YouTube copyright algo, BOIDS, LIDAR, Python make own ufunc"
-              "music"
-              "teach cycling, or something for Hanifas health, stitching mattress, Boeing, crochet, https://www.youtube.com/watch?v=aAxGTnVNJiE"
+              "social media posting, esp. prog lang nerd, BEtter s conf .org file, ask the 3 guys who respected u on lang group on part time job, and also mal in sin group"
+              "combobulate, especially dealing with nodes, search engine history, Lady Bird"
+              "Emacs backend, BACKUP our data, Git worktree, magit, iPython or alt setup, trying flycheck with pylint"
+              "email, CV, also Audiosockets, GRAB"
+              "audio guy, YouTube copyright algo, BOIDS, LIDAR, Python make own ufunc, we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
+              "RISC-v, ISA, that original video you watch on Tablet?, Forth"
+              "crochet, Hanifas health, prepare for Emacs video of kill workflow"
               "download books that introduce AI and blabla, record class discriminator, record handling, Hoare (1966) discriminated unions, dynmaic polymorphism, software test PDF"
               (append
-               (make-list 2 "fiverr")
-               (make-list 4 "web")
+               (make-list 2 "Qt practice")
+               (make-list 4 "web, TEST and check that CSRF for a whole day")
                (make-list 3 "drawing")
                )
               ))
 
   (nth (random (length var1)) var1)
 
+
+  ;; testing our url randomizer
+
+
+  (defun ardie1()
+  (interactive)
+  (org-copy-subtree)
+  (let (
+        (ardie/org-random-list (butlast (split-string (substring-no-properties (current-kill 0)) "\n")))
+        )
+    (message
+     (nth (random (length ardie/org-random-list)) ardie/org-random-list)
+     )))
 
 #+end_src
 ** rsync:
@@ -245,130 +257,103 @@ except Exception as e:
 **** [[https://mulgrew.me/posts/session-timeout-flask.html][this one has module g, dont know]]
 **** [[https://stackoverflow.com/questions/11783025/is-there-an-easy-way-to-make-sessions-timeout-in-flask][more basic timeout]]
 *** for null check, we need feedback for the users
-*** Admin from AI, yuck:
-#+begin_src python
-
-    from flask import Flask, redirect, url_for
-    from flask_login import LoginManager, UserMixin, login_required, current_user
-
-  app = Flask(__name__)
-  app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong, randomly generated key
-  login_manager = LoginManager()
-  login_manager.init_app(app)
-
-  class User(UserMixin):
-      def __init__(self, id, username, password, is_admin=False):
-          self.id = id
-          self.username = username
-          self.password = password
-          self.is_admin = is_admin
-
-      def get_id(self):
-          return str(self.id)
-
-  # Example user data (replace with database interaction)
-  users = {
-      1: User(1, 'admin', 'adminpass', is_admin=True),
-      2: User(2, 'user', 'userpass')
-  }
-
-  @login_manager.user_loader
-  def load_user(user_id):
-      return users.get(int(user_id))
-
-  @app.route('/admin')
-  @login_required
-  def admin_page():
-      if current_user.is_admin:
-          return 'Welcome, Admin!'
-      else:
-          return redirect(url_for('home_page'))
-
-  @app.route('/')
-  def home_page():
-      return 'Welcome, User!'
-
-  if __name__ == '__main__':
-      app.run(debug=True)
-      
-#+end_src
-*** to split our app.py later on before it becomes more thn 5000 lines, from AI (yuck):
-#+begin_src python
-
-  # auth.py ==================================================
-    from flask import Blueprint
-
-    auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
-
-    @auth_bp.route('/login')
-    def login():
-        return 'Login Page'
-
-    @auth_bp.route('/register')
-    def register():
-        return 'Register Page'
-
-    # blog.py ==================================================
-    from flask import Blueprint
-
-    blog_bp = Blueprint('blog', __name__, url_prefix='/blog')
-
-    @blog_bp.route('/')
-    def index():
-        return 'Blog Index'
-
-    @blog_bp.route('/create')
-    def create():
-        return 'Create New Post'
-
-    # app.py ==================================================
-    from flask import Flask
-    from auth import auth_bp
-    from blog import blog_bp
-
-    app = Flask(__name__)
-
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(blog_bp)
-
-    if __name__ == '__main__':
-        app.run(debug=True)
-
-#+end_src
 *** remember to convince Terry, that publishing online and locally on laptop are 2 very different things. Online, you have to consider DDOS and everything. Becoz anything can happen when you decide to make something online. Sorry to sound technial but thats it. Of course, modern framework have ways of making it easier, but it still requires reading.
 *** Stupid app, we should recheck all of our validations, should be FIDE
 *** Security:
-** Emacs:
-*** Write this as function to get variable/identifier as a hydra, in Python, but also, write as Doc somewhere
-#+begin_src lisp
+** CPP, c++:
+*** 
+*** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
+*** 
+** Emacs
+*** We need to makea video about how we manage config safely, when we have multiple Emacs (Eg: 2 versions, and 1 on Windows), minimally without any additional installation, useful if our main config file is quite large
+**** The error usually looks like C:\Users\<your_username>\AppData\Roaming\elpa not found
+**** 
+*** For our keyboard video:
+**** I can almost use my Emacs without looking at the keyboad these days
+**** Im not exactly sure how to explain the amazing ergonomics Im experiencing
+**** Im currently writing on Windows, so forgive for the slightly off speed, becoz I remapped the H key on my Linux
+**** Here are some ergonomic tricks
+**** If I wanted to undo some text, I type 2 keys qw together, which triggers the key-chord functions in Emacs
+**** Here are some text to undo
+**** lets switch between riht and lft window
+**** lets quickly navigate between next-buffer and previous-buffer
+**** I can do all this without looking at my keys, and only feeling the keys
+**** this is becoz I setup my keys like Braille
+**** imagine combining both senses, look and feel
+**** now I can feel my Ctrl and Alt, and my key-chords
+**** I also setup my key-chords to have a "directional prose"
+**** navigating to left or previous, has a "Lefty" feel
+**** same with right, and opening a scratch buffer on the right window
+**** lets see all that again
+**** as you can see this releases lots of mental overhead when Im writing on Emacs all day
+*** we need to watch more Git videos, like [[https://www.youtube.com/watch?app=desktop&v=NXaEImbo-n8&t=920s][this]], and systemcrafters vid on git reflog. Also, we faster diff checks inside Emacs. Make it EPIC!!
+*** we need to do a command that copies from current buffer folder into other buffer folder, with confirm prompt from user
+*** we need a "code as data" note/file
+*** for C++, from this [[https://fanpengkong.com/post/emacs-ccpp/emacs-ccpp/][link]], we use this everyday, with try packages, until we are familiar, DONT use this until we figure which one uses the , we made it shorter these days.
+#+begin_src emacs-lisp
 
+  ;; from this point on, we deleted all :ensure t to avoid auto-installation
+    ;; lsp
+  (use-package lsp-mode
+    :hook ((c-mode . lsp)
+           (c++-mode . lsp)
+           ;; (lsp-mode . lsp-enable-which-key-integration)
+           )
+    :commands lsp
+    ;; :config
+    ;; (setq lsp-keymap-prefix "C-c l")
+    ;; (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+    ;; (setq lsp-file-watch-threshold 15000)
+    )
 
-  ;; (treesit-node-text NODE &optional NO-PROPERTY)
-  ;; (treesit-node-at POS &optional PARSER-OR-LANG NAMED)
-  ;; (treesit-node-string NODE)
+  ;; (use-package lsp-ui
+  ;;   :commands (lsp-ui-mode)
+  ;;   :config
+  ;;   (setq lsp-ui-doc-enable nil)
+  ;;   (setq lsp-ui-doc-delay 0.5)
+  ;;   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  ;;   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  ;;   )
 
+  ;; (use-package lsp-ivy
+  ;;   :commands lsp-ivy-workspace-symbol)
 
-  (global-set-key (kbd "C-<drag-mouse-8>") 'ardie/fun-treesit-get-var)
-  (global-set-key (kbd "C-<mouse-8>") 'ardie/fun-treesit-get-var)
+  ;; (use-package lsp-treemacs
+  ;;   :commands lsp-treemacs-errors-list)
 
+  ;; company
+  (use-package company
+    :bind ("M-/" . company-complete-common-or-cycle) ;; overwritten by flyspell
+    :init (add-hook 'after-init-hook 'global-company-mode)
+    :config
+    (setq company-show-numbers            t
+          company-minimum-prefix-length   1
+          company-idle-delay              0.5
+          company-backends
+          '((company-files          ; files & directory
+             company-keywords       ; keywords
+             company-capf           ; what is this?
+             company-yasnippet)
+            (company-abbrev company-dabbrev))))
 
-  (defun ardie/fun-treesit-get-var()
-    (interactive)
-    (if (treesit-parser-list)
-        (if (equal (treesit-node-string (treesit-node-at (point))) "(identifier)")
-            (let ((killed-text (treesit-node-text (treesit-node-at (point)) t))
-                  (our-node (treesit-node-at (point))))
-              (kill-new killed-text)
-              (combobulate--mark-node our-node)
-              ;; (append-to-buffer "*ardie-scratch*" "\n" )
-	    
-              (with-current-buffer "*ardie-scratch*" 	(end-of-buffer)(insert "\n"))
-              (append-to-buffer "*ardie-scratch*" (region-beginning) (region-end))
-              (message (format "appended to ardie-scratch: %s" killed-text))
-              ;; (with-current-buffer "*ardie-scratch*" (insert "\n"))
-              (deactivate-mark))	  
-            (print "not an identifier/variable"))
-        (print "buffer has no parser")))
+  (use-package company-box
+    :after company
+    :hook (company-mode . company-box-mode))
+
+  ;; flycheck
+  ;; (use-package flycheck
+  ;;   :init (global-flycheck-mode)
+  ;;   :config
+  ;;   (setq flycheck-display-errors-function
+  ;;         #'flycheck-display-error-messages-unless-error-list)
+
+  ;;   (setq flycheck-indication-mode nil))
+
+  ;; (use-package flycheck-pos-tip
+  ;;   :after flycheck
+  ;;   :config
+  ;;   (flycheck-pos-tip-mode))
+
 #+end_src
 *** for more Emacs buffer ergonomic magic, also post in on Social Media
 #+begin_src lisp
@@ -378,7 +363,7 @@ except Exception as e:
     (require 'ido)
     (ido-mode 1)
     ;; show choices vertically
-  
+
     (setf (nth 2 ido-decorations) "\n")
     (setq ido-enable-flex-matching t)
     (setq ido-default-file-method 'selected-window)
@@ -407,7 +392,77 @@ except Exception as e:
                 'my-b-hydra/body) map))
 
 #+end_src
-*** we need to replace all ;;y with ;;p, make my-symbol avaialble
+*** for our new Git worktree trick
+#+begin_src lisp
+
+
+
+      (global-set-key (kbd "C-<drag-mouse-8>") 'ardie/discard-unstaged-changes)
+    (global-set-key (kbd "C-<mouse-8>") 'ardie/discard-unstaged-changes)
+
+  (defun ardie/discard-unstaged-changes ()
+    (interactive)
+
+    (let
+        ((current-branch (shell-command-to-string "git rev-parse --abbrev-ref HEAD")))
+      (if (string-match-p "working" current-branch)
+          (if (y-or-n-p "discard changes, sto restart from prev commit? (y or n) ")
+              (let ((discard-change-output (shell-command-to-string "git checkout .")))
+                (print discard-change-output))
+            (print "action canceled")
+            )
+        (print "not working branch: nothing done")
+        )
+      )
+    )  
+
+
+
+  ;; ===== New: under test
+
+  (defun ardie/project-save-all-buffers (&optional proj arg)
+    "Save all file-visiting buffers in PROJ without asking.
+
+  Falls back to `project-current' if PROJ is not specified."
+    (let* ((proj (or proj (project-current)))
+           (buffers (project-buffers (project-current))))
+      (dolist (buf buffers)
+        ;; Act on base buffer of indirect buffers, if needed.
+        (with-current-buffer (or (buffer-base-buffer buf) buf)
+          (when (and (buffer-file-name buf)   ; Ignore all non-file-visiting buffers.
+                     (buffer-modified-p buf)) ; Ignore all unchanged buffers.
+            (let ((buffer-save-without-query t))  ; Save silently.
+              (save-buffer arg)))))))
+  ;; ===== New: under test
+#+end_src
+**** Also in our attempt at improving further our powerful shortcuts and "no stash" workflow
+*** Also for our rust-ts-mode:
+#+begin_src lisp
+
+
+    ;; ===== we no longer need rust-mode becoz we dont need rust-run
+    ;; ===== we digged inside rust-run and discovered (compile) function used
+    ;; ===== in most Emacs major programming modes
+
+  ;; WRITE THESE SOME WHERE
+  ;; ===== we unbound a key after a mistake
+  ;; (fmakunbound 'my-rust-endline)
+  ;; (unbind-key (kbd "RET") rust-ts-mode-map)
+
+  (defun my-rust-endline ()
+    (interactive)
+    (insert ";")
+    (newline)
+    )
+
+  (add-hook 'rust-mode-hook 'my-rust-endline)
+  (add-hook 'rust-ts-mode-hook 'my-rust-endline)
+
+
+  (define-key rust-ts-mode-map (kbd "C-<return>") 'my-rust-endline)
+
+
+#+end_src
 *** we need ;;h for select all, coz we still use it a lot for example in adding org-insert-structure-template
 **** Also need indent-region hydra
 *** we change add alternative to ;ii as highlight, coz swiper is messy
@@ -446,16 +501,10 @@ except Exception as e:
 *** there are several ways to exit hydras in fact, some more stable than others (becoz of nested hydras
 **** [[https://emacs.stackexchange.com/questions/36597/returning-to-the-parent-hydra][link]]
 **** [[https://emacspeak.blogspot.com/2020/09/emacs-paired-commands-efficient.html][repeatable hydra yank]]
-*** warning level for Emacs config setup, not sure if we ever need it:
-**** [[https://emacs.stackexchange.com/questions/78800/how-to-disable-automatic-appearance-of-warnings-buffer-in-emacs][warning levels]]
-*** combobulate:
-**** [[https://github.com/mickeynp/combobulate][main repo]]
-***** 
 *** Company mode readings:
 **** [[https://www.reddit.com/r/emacs/comments/q8u2l4/unsetting_return_in_company_mode/][finally disabled company mode completion with better keybindings company-active-map]]
 **** [[https://github.com/company-mode/company-mode/issues/640][variuos ideas of use-package for company-mode]]
 **** [[https://company-mode.github.io/manual/Getting-Started.html#Usage-Basics][good verbose doc]]
-*** Read about Bookmarks+ or some other way of preserving state between session
 *** We need to learn setting up opening module in Emacs rust. 
 *** Read about elpy-rpc, and why do we have an elpy-rpc-buffer, it sounds cool but i dont know what its used for
 *** more efficient faster completions for our Python, using this code, for now. We just need to set company-mode properly, and then use configs below from this [[https://github.com/joaotavora/eglot/discussions/1436][link]]
@@ -511,13 +560,130 @@ except Exception as e:
 *** create checks for duplicate events
 *** we should add timestamp naming for CSV files
 *** https://qwiet.ai/hacking-and-securing-python-applications/
-**** 
 ** Make sure you share-rate is above 3%
 ** Post in Pythons Group Malaysia, your willingness to work for Django, having experience in Flask and used Django for a side project.
 ** Instagram, YouTube:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** OOP:
+**** The programmers mind is too precious, and programming possibilities is too exciting to let OOP of the hook.
+**** OOP should be treated like what it is.
+**** A cult/ideology/religion masquerading as "only a tool". 
+*** Should I apply? 
+**** [[https://compro.miu.edu/?utm_source=facebook&utm_medium=cpc&utm_content=text&utm_campaign=compro&utm_id=120210340864320345_v2_s06_e7201_sp_110&utm_term=120210340864370345&fbclid=IwY2xjawMLi3hleHRuA2FlbQEwAGFkaWQBqyPoGbLBuWJyaWQRMTdOY0lpSzRXbW01aklUMmcBHuTWV54DUfqMu-CpPxs7DLCAuV0srbD9sXm0FAIjSMlbXVa-WZ7VU3B8dSOi_aem_3t2fF1lsPdx-YHLCOJmAxw][masters in computer sciecne]]
+*** Forth
+**** What if a language can be simultaneously low-level and high-level?
+**** And what if all our current software problems attributed to so many bad decisions along the way (some of them C/C++) can be reversed?
+**** Is there such a thing as a programming language that has enough anti-capitalist blood in its vein to reverse this trajectory?
+**** Maybe not (half joking about those last 2...)
+**** Enter the programming language called Forth.
+**** Some say, you can make this programming language as OOP or non-OOP as you want. (OOP is not baked in, you have to build it from the ground up).
+**** Some describe it as the language that writes itself.
+**** Some describe it as Python meets Assembly
+**** Some says it has no syntax.
+**** The article below says its too "hacky" as a language (yet it is used in some aerospace applications)
+**** The entire usable programming language (interpreter?) and code written in it is incredibly small.
+**** an OS written in Forth would be so small, it could be installed in a post apocalyptic future with throwaway hardware.
+**** Its not functional, its imperative.
+**** No, Ive never tried it.
+**** https://hackaday.com/2017/01/27/forth-the-hackers-language/
+*** meta-language
+**** Going out on a limb, until Im correct.
+**** Im guessing Makefiles are a meta-language.
+**** Thats the problem with C and C++, it needs a meta language.
+**** Ideally, an amazing and beautiful language would have the mantra of "code is data too".
+**** Some languages, including functional have that mantra of "code is data" 
+**** The language itself describes itself. The computer knows how to build/compile/etc.. based on that same language.
+**** Actually, C and C++ has a lot of problems with its design.
+**** But again, if recommending to a youngster. He/she would still have to learn C and C++. Its okay, just enjoy the process (and learn another prog lang so you dont go super frustrated and actually feel progress and fun in other areas).
+**** It'll be a VERY long time until we are no longer dependent on C/C++. SO MANY hardware will be using it for a very long time.
+**** Just keep in mind, that prog langs are like our spoken languages. With bloat in its design, comes the bloat of the mind too.
+**** Learn other languages for this reason.
+*** [[https://northeastbylines.co.uk/news/national-news/flag-fetishism-by-gaslight/][flag fetishism by gas light]]
+*** Teaching later:
+**** some differences = Neovim has remove keybinding, Emacs has modes, so you usually have overwrites instead of removing
+**** autocommand detects events such as opening a file. Emacs uses hooks. And there are so many hooks, but the nature of Emacs documentation means its up to you to explore this
+**** eerything is a buffer, running a terminal inside Emacs, and the terminal is a buffer. whereas in Neovim, im guessing Neovim is inside terminal
+**** to truly take advanage of Emacs, the learning experience is different from Neovim. If you start with only suggested configs with Neovim, and learn only 1 prog lang, you can already do amazing stuff. But with Emacs, you often need to read and explore more, becoz Emacs has so many packages most emacs users havenever heard of 
+**** Neovim has much better defaults. Emacs has horrible defaults by FAR
+**** Org-Mode is literally what Emacs is all about, in a sense
+*** (1) To clarify a previous post, coz apparently some seniors thought I made things complicated.
+**** I posted this a while ago in a Dev group.
+**** Some senior said I made things overcomplicated.
+**** I guess Im bad at explaining stuff.
+**** I guess the point is, I can engage in a long-week coding experiment writing throwaway code. 
+**** If Im happy, and its clean code, I can push. Thats a single mouse button, (no need fir git add <file1> <file2>) 
+**** if its good code, but I dont wanna show this version upstream in a repo or in front of the team. I can just click a mouse  button, to start everything over.
+**** If I want to test its also, a single button.
+**** In total, 4 special powerful mouse buttons.
+**** And these buttons work regardless of the project or language (thanks to some function and .dir-locals.el for project-specific variable)..
+**** Yes, the almost powerful ergonomic feel of a modern IDE without the bloat, and keeping all the custom extensibility.
+**** Would take a very long time to achieve this in VSCode Im sure.
+**** I dont wanna feel too weird, so this is like balance of Emacs weirdness and modern IDE.
+**** Come one, someone. Tell me this make sense without needing to understand my config.
+*** Video on my project-agnostic Neovim killer workflow.
+**** My attempt at using Emacs like badass
+**** I basically combined project local variables (Emacs.dir-locals.el), which is basically directory local variables, with Git worktree and some eLisp functions to create a workflow that consists of a fuzzing branch and working branch
+**** As summarized before:
+***** each Emacs instance in its own workspace
+***** simply switching between Emacs changes branch
+***** 1 Emacs for working code,1 Emacs for fuzzing code
+***** no more stashing
+***** blindly do a "git add ." (triggered by a single mouse button)
+***** a single mouse button to run/test the project
+**** But the real takeaway is, Im doing  3 mouse button cliks every single time. For every project, regardless of the programming language.
+**** And if after a long, maybe long week session of coding, the code works but i dont like how it looks like, there's a fourth button press, that reverts to a previous commit.
+**** there's basically more or less 3 things to note in the code:
+***** The code needs to be branch-aware
+***** The code needs to be commit-aware
+**** If Im pushing into production, the repo will see none of this.
+**** The whole purpose is to create a furious hacking workflow that is completely hidden from any main branching. And no personal micro-managing of files with Git stashing/etc.
+**** If after a long week changes look good enough, I can push it to the repo. If not, I can do a reset with the ardie/back-to-square-one function (which is also bound to a Alt-single mouse button)e
+**** Since Git is mostly a toolkit, it doesnt make sense to me, to not abuse it in a personalized way.
+**** Useful for: 1 - not wanting push code that works but too embarassing for public 2 - playing with week-long throwaway code, and can start over easily 3 - avoiding pushing unclean commits to control freak team leads ("why is there a space in this commit history? And why are you using single-quotes instead of double quotes?").
+*** Post about your worktree discovery:
+**** This is a continuation from my previous post
+**** Git (vcs) can be a mental challenge. Even when youve mastered, it is still considered a huge mental gear change from code logic. You have to "put your head outside" a bit to go "Git mode". Is important that we learn tools that increase programmer comfort. While Git is mostly a version control tool, it should also not only NOT get in thw way of your personal progress and project, but also make your programmer life more comfortable and cooler. 
+**** Welcome to Git Worktree. Logically its just a "branch made into physical folders". But if we work through this site example, we can improve it further. The site shows another way of using Git Worktree, that involves a "fuzzing" branch (kinda like "testing") that will hold most of your work assets/build files. While the site was not entirely clear on where the "main" branch sits in this. I used an extra branch that represents main, "working". So in practice, I just merge "working" back to "main" whenever Im satisfied with my commit amends. So "working" (and of course, main) has only your tracked files, while fuzzing includes the files you dont want commited.
+**** I should do a video to increase my YouTube channel views with this trick. But heres the code snippet I use. 
+**** Basically, ardie/add-all-amend-commit -> ardie/git-get-rev-parse -> ardie/switch-d
+**** In summary:
+***** each Emacs instance in its own workspace
+***** simply switching between Emacs changes branch
+***** 1 Emacs for code,1 Emacs for test/fuzz
+***** no more stashing (hopefully)
+***** blindly do a "git add ." (triggered by a single shortcut)
+***** a single mouse button to run/test the project
+**** This is just a sample and a reminder, to not just use Emacs as an "efficient Vim alternative" or just "Vim movements", but use it like a selfish badass. Ergonomics (not just efficiency, that is a misleading term) that extend to project management, knowledge management, and Git workflow.
+*** remote work anonymous:
+#+begin_quote
+
+Hi everyone,
+I have been retrenced for to 6 months and still struggling looking for a job. If there are remote gigs that I could be a part, please do consider me.
+Im a programmer but also very musician  writer. Despite my talent I have trouble socializing these days.
+Eventually, if this gets any worse I will suffer serious mental health problems.
+I have sent lots of CVs.
+Im over 40 years old, and beginning to suspect this is what is avoiding most companies in avoiding taking a chance with me.
+If anyone has data entry jobs, I am willing to take at a passable salary.
+And obviously communication is also key.
+I believe in 2nd chanches, as my firm belief that everyone, women, minorities, autistic or ADHD people deserve a 2nd chance.
+Not only will they often not dissapoint, but they often exceen expectations provide the right opportunity.
+My belief in giving people 2nd chances is what often causes rift with people I communicate especially in software engineering world.
+Anyway, I digress, If I do not get a job soon, all that creative juice will not mean anything.
+I will pass on my CV upon request in PM.
+#+end_quote
+*** share an improved Python/Emacs class on FB Malaysia teaching group
+**** Share on several Malaysia teaching groups again
+#+begin_quote
+
+Anyone interested in a free introductory crash course in Emacs? I dont want a price for successive classes, coz Im too afraid of being judged. Hah.
+But personally, its just a half excuse for me to meet with weirdos, or to make connections with people who have different ideas. Hahahaha.
+I cant be the only guy who uses softwares very very differently.
+Contact info also available in the link.
+(Note: this is not for seniors. Also ignore the Python description in the link page, I have yet to update it)
+
+#+end_quote
 *** Reddit:
 **** Ask about how to auto wrap around if else, the same way we can do with sexp
 *** Post for RemoteWorkMalaysia:
@@ -542,8 +708,6 @@ except Exception as e:
 ****     Well, its either this or a very expensive split keyboard that is completely out of my reach. 
 *** we need to write about [[https://www.critique-musicale.com/bachen.htm][Bach]] being over-rated
 *** Post something on Linux Fans Group
-*** Reddit: Anyone knows how to "combobulate" the string inside app.config[], preferably without the quotes. Since combobulate maintains "structure", this would be doable. I know how tod o it in html using web-mode, but I cant do it in Python, although combobulate works normally (such as combobulate-python-envelope-nest-if-else). If this question sounds very general, maybe you can guide me to an article/blog on configs that combobulate a lot (Ive already read some of MasteringEmacs)
-*** So I created a lightweight alternative to Photoshop Lightroom. Edits a single photo, and applies when you want the same "stacked" effect to batch photos. The real advantange of this, is tht its  incredibly lightweight, no need for 1-10 minutes loading an app. Just a mere seconds. 
 *** Do you have a cool Python project to share? Actually, I dont have anything cool to say about Python coz I like Python for web dev, but Im not an expert in it, Im obsessed about Emacs. I dont do heavy OOP or data science in Python, but if you do, PyCon2025 is the place to go. Anyway [[https://cfp.pycon.my/pyconmy-2025/cfp][CALL FOR PAPERS!!!!!..]].. Dont worry about advanced topics, I myself like showing off, but I personally prefer casual Python talk, like last years talk on a Filipinos womens experience as the only female in her Python team. Yes, it can be that casual, but the more variety the better (Check out the section for targeting your type of audience: Beginner, Intermediate and Advanced User)
 *** So basically, tree-sitter has something to do with concrete syntax tree which is slightly related to abstract syntax tree. Basically, its what the compiler usually deals with. But why is such a big deal these days, is becoz these things are no longer secret these days, while historically, compiler secrets are guarded by corporations with jealousy. 
 **** A good article to read on combobulate and tree-sitter is on MasteringEmacs website. 
@@ -552,12 +716,6 @@ except Exception as e:
 **** I then simply added without a second thought another Hydra head that uses (combobulate-python-envelope-nest-if-else). Now ;;sf selects n lines and wraps in if..else with indentation.
 **** Why this is such a big deal is that, some old timer eLisp coders use a lot of cool paredit tricks (powerful shortcuts moving logic around, by just moving parenthesis). And combobulate seeks to emulate this in other languages.
 **** Just my writeup, hoping to inspire others (or inviting criticism).
-*** I hold by me view that most programming books are usually rubbish. And even for the Rust language is the same. I learnt more stuff in just a few hours at an introducory class in APU event, than searching for the better book. 
-**** Here's the thing, most Rust books spend the 1st few chapters discussing high level stuff, and it turns out, from the APU (Asia Pacific Unviersity) class, the low level stuff is important to make that important fundamental leap. Why? Becoz Rust is quite different from other languages, that learning its datatypes, a little about the compiler, and design choices concept (something like between mutability and immutability, but also as it relates to copy and non-copy types) kinda is rewarding.
-**** Its unlikely that most who learn Rust are starting at the complete beginning. Maybe in a few Unis. But when youre learning programming at school, your most likely learning the same syllabus that place did for years. So youre learning C or C++, or even skip to Python completely. But for most, your learning Rust, becoz you want to know what the fuss is all about. But instead, most Rust books, they dont start "X language vs Y language", or datatypes and why it matters. They start by some high level concept. Huh? Why do that, when beginners can just use Python. And even in books that are kinda good, the examples are just not that great.
-**** I guess programmers are still bad at communication, even with all that big brain.
-**** Maybe theyre doing this to advertise Rust as much as possible to programmers who dont want to even consider Rust. 
-*** ask everywhere, is it normal for SD cards to fail constantly?
 *** SIMPLIFICATION: Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
 **** Another thing I do is close-all-buffers, its such a mind-clearer, an advantage over other IDEs
 *** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
@@ -582,93 +740,9 @@ except Exception as e:
 *** about Google cloud platforms: Snowflake and Databricks (good to have)
 *** maybe SQL and Azure diffs
 ** Python:
-*** Examples of making a Query filter by default, we dont need REALLY this for now, as we added a password reset much later, and its at a confusing stage.
-#+begin_src python
-
-  # ===== in Model.py
-
-  from flask_sqlalchemy import SQLAlchemy, BaseQuery
-
-  class MyFilteredQuery(BaseQuery):
-      def __init__(self, entities, session=None):
-          super().__init__(entities, session)
-          # Apply your default filter here
-          self._set_default_filter()
-
-      def _set_default_filter(self):
-          # Example: Filter all queries for a 'deleted' column being False
-          if hasattr(self.column_descriptions[0].entity, 'deleted'):
-              self.filter_by(deleted=False)
-
-
-  from flask_sqlalchemy import SQLAlchemy
-
-  db = SQLAlchemy()
-
-  class User(db.Model):
-      __tablename__ = 'users'
-      id = db.Column(db.Integer, primary_key=True)
-      name = db.Column(db.String(80), unique=True, nullable=False)
-      deleted = db.Column(db.Boolean, default=False)
-
-      # Assign the custom query class
-      query_class = MyFilteredQuery
-
-
-  # ===== Usage
-  # This query will automatically include `WHERE deleted = False`
-  active_users = User.query.all()
-#+end_src
-*** [[https://stackoverflow.com/questions/76131622/itsdangerous-security-typeerror-unsupported-operand-types-for-int-and][link:]] ADD THIS SOMEWHERE. Many of the examples are outdated. Instead of this:
-#+begin_src python
-
-  from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-
-  s=Serializer(app.config['SECRET_KEY'], 600)
-
-  # ===== theres a way to do it like this, but nothing works so far,
-  token = s.dumps({'some_id': current_user.mcfId}).decode('utf-8')
-  some_id = s.loads(token)['some_id']
-
-#+end_src
-*** We are using this
-#+begin_src python
-
-  from itsdangerous import URLSafeTimedSerializer as Serializer
-
-  s=Serializer(app.config['SECRET_KEY'], 600)
-
-  token = s.dumps({'some_id': 123})
-  some_id = s.loads(token, max_age=600)["some_id"]
-
-#+end_src
-*** We also avoided too much OOP (tying function to object, especially since we are only using the feature in a simple password reset and nothing else)
-*** iterating through an an object like its a list, not the most readable sh*t, but at least feels cool. We need to TRY THIS. We can also explore this by using app.config as an example. Why does app.config.from_object(Config) work?
-#+begin_src python
-
-  class MyIterableObject:
-      def __init__(self, data):
-          self.data = data
-
-      def __getitem__(self, key):
-          # This method is called when you use obj[key]
-          return self.data[key]
-
-  # Example usage
-  obj = MyIterableObject([1, 2, 3, 4])
-  print(obj[0])  # Output: 1
-
-  # You can now iterate through it like a list
-  for item in obj:
-      print(item)
-
-#+end_src
 *** understanding [[https://www.geeksforgeeks.org/python-flask-immutablemultidict/][immutablemultidict]], kinda important
 *** should we try this SMTP one day? network stuff is always a nightmare
 **** [[https://stackoverflow.com/questions/37224073/smtp-auth-extension-not-supported-by-server][SMTP stackoverflow]]
-*** common errors with Python bcrypt:
-**** ValueError: Invalid salt Bcrypt hashes begin with a specific prefix (e.g., $2b$). If this prefix is missing, altered, or incorrectly encoded (e.g., b'\(2b\)'), bcrypt will interpret it as an invalid salt. If you stored password as plain text, when other parts of your code uses bcrypt, this can happen
-*** Jinja2 award winning [[https://ttl255.com/jinja2-tutorial-part-4-template-filters/][blog]]
 *** A good Flask read on getting data back from DB, from another good site called [[https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html][python-adv-web-apps]]
 *** not a good bulk update tutorial, but its got exampe of [[https://github.com/sqlalchemy/sqlalchemy/discussions/10537][python tricks]] with lists
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
@@ -676,13 +750,9 @@ except Exception as e:
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
 ** We are going to publish our site, either in render or fly.io
 ** Emacs:
-*** Also, finish this somewhere, about starting, and its not that simple, becoz things go wrong, Emacs tends to hide it, when use the usual shell-command, so instead, your UNIT OF ABSTRACTION must be the process:
-**** http://xahlee.info/emacs/emacs/elisp_start_external_process.html
 *** Convincing others:
 **** Non-destructive ways to test Emacs packages:
 ***** use the try package. Then do the usual use-package, or any normal config for that package you found online.
-*** create a emacs script that calls magick on any dired
-*** try perspective el
 *** Also try Emacs Application Framework on a new laptop
 *** You like trying cool custom personalized Emacs el. This one is useful simpler bookmark, might help a lot in you html editing: [[https://github.com/joodland/bm][here]]
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
@@ -692,8 +762,6 @@ except Exception as e:
 ** contact African guy again
 ** Python project notes, jot down the folowing:
 *** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
-** TODO 
-*** [[https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Models][we REALLY need to read about MODELS before proceeding with Django]]
 ** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
 *** https://adf.org.au/drug-facts/ketamine/
 *** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol

@@ -1,3 +1,55 @@
+* Now that we understand the nastiness of OOP, we can finally read [[https://doc.qt.io/archives/qt-5.15/designer-using-a-ui-file.html][this]]. We REALLY need to transition smoothly from QT designer to Emacs workflow
+* Basics:
+** An asterisk /* placed before a variable means the variable is a pointer.
+** Example:
+#+begin_src c++
+
+
+  int* myPointer; // Declares myPointer as a pointer to an integer
+  QString* namePtr; // Declares namePtr as a pointer to a QString object
+
+
+
+
+
+#+end_src
+** Ampersand & is "address of"
+#+begin_src emacs-lisp
+
+  int value = 10;
+  int* ptr = &value; // ptr stores the address of 'value'
+  ,*ptr = 20;         // Dereferences ptr and changes the value at that address to 20.
+  // Now, 'value' is also 20.
+
+#+end_src
+** Notice how 3 lines magically mean "2 variables mean the same thing"
+** How to instantiate a base class constructor, aka, its important to understand semicolons locations (coz that will be very confusing)
+#+begin_src c++
+
+  class Base {
+  public:
+    Base() {
+      // Default base constructor
+    }
+  };
+
+  class Derived : public Base {
+  public:
+    Derived() {
+      // Base::Base() is implicitly called here before this body executes
+    }
+  };
+
+#+end_src
+* Errors learnt
+** Compiler error, getting a sense of what is, /initializing a base class constructor/, so I understand this error
+#+begin_quote
+
+hello.cpp:59:47: error: no matching function for call to ‘QVBoxLayout::QVBoxLayout(QWidget&)’
+
+#+end_quote
+** It simply means wrong argument type passed, so we should pass pointer type to a QWidget object
+
 * Introduction:
 ** Tools:
 *** [[https://earthly.dev/blog/autoconf/][Components of Autotools]]  (probably very Linux centric way of making makefiles)
@@ -151,3 +203,6 @@ std::getline(std::cin >> std::ws, s);
 * Makefile awesome writing, but maybe the tool itself is not awesome
 ** [[https://web.mit.edu/gnu/doc/html/make_14.html][mit makefile doc]] : rather useless, in its weird jumbled writing style. Informative, if only reference or experience. Almost written as an afterthought.
 ** [[https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/][colby cs]] : slightly better, but specific. Calls variables "macro", target "rule", hence not great for beginners. Include s ways to make Makefile (haha), more generic. 
+* Links:
+** [[https://woboq.com/blog/new-signals-slots-syntax-in-qt5.html][a Qt5 blog]]
+** 

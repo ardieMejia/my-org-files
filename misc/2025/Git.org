@@ -15,7 +15,19 @@
 ** git reset HEAD -- path/to/file
 *** we dont want specific ones in staging
 ** git reset HEAD -- .
-*** we dont want all from stagin
+*** we dont want all from staginx
+* Git Worktree
+** git worktree add <path> -b branch
+** git worktree add <path>
+** Links
+*** [[https://www.gitkraken.com/learn/git/git-worktree][gitkraken]]
+*** [[https://matklad.github.io/2024/07/25/git-worktrees.html][matklad]]
+** git worktree add
+*** thats good enough to learn use for most of us
+** for "git worktree add" there are 4
+*** add tree to dir that has same name as existing branch
+*** and then different name
+** matklad mentions cool trick, a branch for "fuzzing" (like testing?), so we can just add "git add ." and keep testing,building,running on "fuzzing" branch
 * Reset all local changes [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][here]]
 ** git reset --hard
 * [[https://www.freecodecamp.org/news/git-squash-commits/][How to squash commits]]:
@@ -36,6 +48,8 @@
 * Photos
 ** The different "hardness" of git reset. From [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][theserverside]]
 [[./Git/git-reset.png]]
+* Git history cleaning masturbation:
+** [[https://www.reddit.com/r/emacs/comments/5tn86g/magit_git_pull_automatically_before_git_push/][Great Reddit explanation of pulling early to avoid seeing ugly merge message in history]]
 * Arrange:
 ** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]
 

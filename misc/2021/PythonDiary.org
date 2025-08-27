@@ -773,3 +773,128 @@ $(this).unbind("submit")
 ** [[./PythonDiary/tailwind_stuff1.jpg]]
 ** [[./PythonDiary/tailwind_stuff2.jpg]]
 * Day 56:
+** We improved our confirm dialog, we changed to a different once, but we notice, that when we dont think of terms of "context", we struggle with centering our div, all we had to do was remove md:inset from the top class, and tadaaaa:
+#+begin_export web
+
+
+<div id="confirmWithdrawal" class="hidden border-2 overflow-y-auto overflow-x-hidden fixed top-1/3 justify-center items-center">
+    <div class="relative w-full max-w-2xl max-h-full">
+	<!-- Modal content -->
+	<div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+	    <!-- Modal header -->
+	    <div>
+	    </div>
+	    <!-- Modal body -->
+	    <div class="p-4 md:p-5 space-y-4">
+		<p id="confirmWithdrawalText">
+		</p>
+	    </div>
+	    <!-- Modal footer -->
+	    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+		<button id="confirmWithdrawalButton"  type="button">I accept</button>
+		<button id="cancelWithdrawalButton"  type="button">Decline</button>
+	    </div>
+	</div>
+    </div>
+</div>
+#+end_export
+* Day 57:
+** We finally added @admin_required and @login_required
+** Also, noted we should be reading about python decorator concepts, and also iterating through a Python object using __getitem__()
+* Day 58:
+** We figured how to send email. by using only 1 function send_mail(), and Mail from flask_mail
+* Day 59:
+** we created 3 functions for password reset logic: send_reset_email(), verify_reset_token(), reset_password()
+* Day 60:
+** adding unique=True  to our fideID in Member model, completely triggered an old IntegrityError (that was unchecked and triggered syntax level errors)
+** The solution was adding nullable=True
+* Day 61:
+** I chased forever an error (hidden thanks to try-catch), involving password reset verification failing. Something to do with an URLSafeTimedSerializer instance, not converting string to integer automatically for max_age attribute. (Note below the int())
+#+begin_src python
+
+  token = s.dumps({'some_id': current_user.mcfId}, salt="reset_pass")
+  some_id = s.loads(token, salt="reset_pass", max_age=int(app.config["TOKEN_MAX_AGE"]))['some_id']
+
+#+end_src
+* Day 62:
+** Pygame: pg.Vector2.as_polar() returns magnitude & angle (from x-axis)
+* Day 63:
+** Successfully added a Game class to run code that doesnt use it, and run the main loop using
+#+begin_src python
+
+  def main():
+      game = Game()
+      game.main_loop()
+  
+
+#+end_src
+* Day 64:
+** We played with 2 games that implement update() method differently.
+** update() is the standard way to move your sprite frame-by-frame, bit-by-bit.
+** [[https://stackoverflow.com/questions/64835155/why-do-group-lists-in-pygame-have-to-have-update-functions-and-not-any-other][Group update() stackoverflow]]
+*** pygame.sprite.Group.update() and pygame.sprite.Group.draw() are methods which are provided by pygame.sprite.Group. The former delegates to the update method of the contained pygame.sprite.Sprites - you have to define the method.
+** In our boids code:
+#+begin_src python
+
+  class Vehicle(pg.sprite.Sprite):
+      def update(self, dt, steering):
+
+  class Boid(Vehicle):
+      def update(self, dt, boids):
+          super().update(dt, steering)
+
+  def update(dt, boids):
+      # .. snip ..
+      for b in boids:
+          b.update(dt, boids)
+    
+  def main(args):
+      while True:
+          update(dt, boids)
+
+  main(args)
+
+#+end_src
+** In our thefizzyfish code:
+#+begin_src python
+
+  class Player(pygame.sprite.Sprite):
+      def update(self, *args):
+          # .. snip .. 
+
+  class Enemy(pygame.sprite.Sprite):
+      def update(self, timer):
+          # .. snip .. 
+
+  class Bullet(pygame.sprite.Sprite):
+      def update(self, *args):
+          # .. snip .. 
+
+  all_sprites = pygame.sprite.Group()
+  # .. snip .. 
+  all_sprites.update()
+
+#+end_src
+* Day 65:
+** Our thefizzefish, we managed to add Vector2() operations
+** the "function" is mostly, POSITION (being a function of) VELOCITY and DT
+** the code
+#+begin_src python
+
+  class Player(pygame.sprite.Sprite):
+      def __init__(self):
+          self.velocity = pygame.Vector2((.2,0))
+          self.position = pygame.Vector2((self.rect.centerx,self.rect.bottom))
+
+      def update(self,dt, *args):
+          self.position += self.velocity * dt
+          self.rect = self.image.get_rect(center=self.position)
+
+        
+  class Enemy(pygame.sprite.Sprite):
+      def __init__(self):
+          # .. almost same stuff ..
+      def update(self,dt, *args):
+          # .. almost same stuff ..
+
+#+end_src

@@ -1,0 +1,2 @@
+* Links:
+** https://thechipletter.substack.com/p/a-history-of-c-compilers-part-1-performance

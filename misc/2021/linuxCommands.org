@@ -11,6 +11,12 @@ pulseaudio --kill && pulseaudio --start # ========== to restart and read setting
 ** [[https://www.stefanproell.at/posts/2022-11-01-fde-hibernate/][link above forgot to include how to edit the grubfile]]
 * decrypt:
 ** [[https://unix.stackexchange.com/questions/749766/best-way-to-encrypt-a-file-with-just-password-no-keypairs-that-is-easily-usabl][easiest way for our passes]]
+** Or easier still, sure only 80%:
+#+begin_src shell
+
+  gpg -c passes.txt
+
+#+end_src
 ** decrypting it back
 #+begin_src shell
 

@@ -43,7 +43,6 @@ in Rust we d our best to avoid copy, becoz its expensive
 
 #+end_src
 * Emacs: rust-ts-mode 
-** 
 * rust commands, toolchain(?)
 ** help explain an option
 #+begin_src shell
@@ -65,9 +64,47 @@ in Rust we d our best to avoid copy, becoz its expensive
 
 #+end_src
 ** 
-* Links so far, and learnings
+* Detailed links:
 ** [[https://doc.rust-lang.org/std/macro.dbg.html][Standard lib]], explaining datatypes, and macros, such as dbg! important for your basic printing debugging. Also modules and keywords (no clue)
-** 
+* Conceptual links, forewarning, Rust is obsessed with memory:
+** [[https://mortenvistisen.com/posts/how-to-build-a-simple-blog-using-rust][mortenvistisen]]: a simple blog
+*** actix-web = Rust web framework
+*** serde = serializing & deserializing data structure. If you cant find a method for your data structure, use this
+*** tera = templating engine
+*** site talks a lot about "move".
+*** Rust basically talks a lot about ownership, abstracting "ownership" is an important part of the logic (such as "move")
+*** HttpServer::new() or App::new() are called closures
+*** prepending closure with move || says "closure, take ownership of any var passed in"
+** [[https://crates.io/crates/text_io][text_io]] package/crate
+*** NOTE TO SELF: scanning will not work for your amazing Emacs project setup
+*** sample quickly shows "mut"and "&mut"
+*** [[https://doc.rust-lang.org/std/keyword.mut.html][mut]] can be added before variable type annotation. Example:
+#+begin_src rust
+
+  fn foo(mut x: u8, y: u8) -> u8 {
+      x += y;
+      x
+  }
+
+#+end_src
+*** the usual:
+#+begin_src rust
+
+  let mut a = 5;
+  a = 6;
+
+
+#+end_src
+*** its all about memory when it comes to Rust. mut is 1 of those to enforce programmers to think all the time about memory
+#+begin_src rust
+
+
+  let mut v = vec![0, 1];
+  let mut_ref_v = &mut v;
+  let ref_v = &v;
+  mut_ref_v.push(2);
+
+#+end_src
 * Yet to read:
 ** [[https://robert.kra.hn/posts/rust-emacs-setup/][Robert Krahn blog]] on setting up Emacs for Rust development
 ** 

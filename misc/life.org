@@ -1,5 +1,12 @@
 * Crochet, stitching.
-** [[./life/crochet_tips_1.jpg]]
+** We may not need this, DELETE?
+*** [[./life/crochet_tips_1.jpg]]
+** For all stitches
+*** The chain stitch is our "base"
+*** That is why we always skip the first hole, when we do our first turning
+** Single crochet (n is 1) : we skip 1 hole : we go into (1+n)
+** Double crochet (n is 2) : we skip 2 hole : we go into (1+n)
+** and so on
 * We need to make sense of all the hardwork we did with woodworking
 ** [[https://www.metalsupermarkets.com/difference-annealing-tempering/][annealing and tempering steel, I dont know where to put this one]]
 ** https://www.explainthatstuff.com/how-clockwork-works.html

@@ -11,6 +11,27 @@
 *** Also, mostly a library advert
 ** [[https://www.freecodecamp.org/news/python-string-methods-tutorial-how-to-use-find-and-replace-on-python-strings/][freecodecamp]]
 *** freecodecamp -> a classic, but I never liked their "huge-ass font" & weird soydev presentation
+* Some nasty basics: Iterable object
+** iterating through an an object like its a list, is it mature? I dont know, Im not an expert, but at least it feels cool. We need to TRY THIS. We can also explore this by using app.config as an example. Why does app.config.from_object(Config) work?
+#+begin_src python
+
+  class MyIterableObject:
+      def __init__(self, data):
+          self.data = data
+
+      def __getitem__(self, key):
+          # This method is called when you use obj[key]
+          return self.data[key]
+
+  # Example usage
+  obj = MyIterableObject([1, 2, 3, 4])
+  print(obj[0])  # Output: 1
+
+  # You can now iterate through it like a list
+  for item in obj:
+      print(item)
+
+#+end_src
 * Pandas Dataframes, etc:
 ** [[https://docs.kanaries.net/topics/Pandas/dataframe-to-list][converting Pandas dataframe to list]]
 #+begin_src python
@@ -38,6 +59,28 @@
 
 #+end_src
 ** [[https://devqa.io/converting-dataframe-list-dictionaries-python/][iterating over dataframe to create list-of-dict, to allow some reshaping/algo/manipulation]]
+** transpose to switch rows and columns
+#+begin_src python
+
+  import pandas as pd
+
+  data = {'col1': [1, 2, 3], 
+          'col2': [4, 5, 6]}
+  df = pd.DataFrame(data)
+  print("Original DataFrame:\n", df)
+
+  df_transposed = df.T
+  print("\nTransposed DataFrame (using .T):\n", df_transposed)
+
+#+end_src
+** One of the ways, we solved ordering with our form creator dillema. And how to get the first item in our dict without a key
+#+begin_src python
+
+  my_dict = {'apple': 1, 'banana': 2, 'cherry': 3}
+  first_item = next(iter(my_dict.items()))
+  print(first_item)
+
+#+end_src
 * Packages, virtual environment, frameworks, paths:
 ** Paths:
 *** Your Python path is the list of directories on your system where Python looks when you use the Python import statement.
@@ -166,11 +209,12 @@
   from PIL import ImageTk
   from PIL import Image as PILimage
 
+  # we resorted to this, save hassle
   Vimage = PILimage.open(r"./temp/current.jpg")
   Vimage.thumbnail((500,500))
   VmainImage = ImageTk.PhotoImage(Vimage)
 
-
+  # and we ignored this
   Vimage = wandImage(filename=r"./temp/current.jpg")
   Vimage.resize(500,500)
   blob = Vimage.make_blob(format="jpg")
@@ -179,6 +223,7 @@
   # then dovetail it into TKinter elements
 
 #+end_src
+** [[https://runestone.academy/ns/books/published/thinkcspy/GUIandEventDrivenProgramming/05_widget_grouping.html][great tips on tkinter grouping]]
 * Kinda important:
 ** Installing Pillow module, the "usual pip way" will produce lots of errors. Instead use this link:
 *** https://pillow.readthedocs.io/en/latest/installation.html
@@ -390,12 +435,29 @@ events.on_change += something_changed # remember this is kinda cool, becoz event
 events.on_change("i have diarrhea")
 
 #+end_quote
+* Publishing
+** [[https://stackoverflow.com/questions/5458048/how-can-i-make-a-python-script-standalone-executable-to-run-without-any-dependen][pythinstaller -f will create a proper .exe]]
 * IMPORTANT add later:
 ** [[https://codingnomads.com/python-flask-wtf-forms][python flask wtf!!]]
 ** [[https://stackoverflow.com/questions/32550487/how-to-print-from-flask-app-route-to-python-console][debugging aka print in Flask, not default]]
 ** pyenv (for managing Python versions) and Emacs's own pyvenv
 *** https://fredrikmeyer.net/2020/08/26/emacs-python-venv.html
 *** https://ddavis.io/blog/emacs-python-lsp/
+* Reminder, Python audio goes in audio-production.org
+* Documentation
+    type(obj): Returns the type of the object obj.
+    dir(obj): Returns a list of valid attributes for the object obj. This includes methods, data attributes, and special "dunder" methods (e.g., __init__, __str__).
+    help(obj): Displays the documentation (docstring) for the object obj, including its methods and attributes if available.
+    id(obj): Returns the unique identity of the object obj.
+    callable(obj): Returns True if the object obj appears callable (e.g., a function, a method, or a class), and False otherwise.
+    hasattr(obj, name): Returns True if the object obj has an attribute named name, and False otherwise.
+    getattr(obj, name[, default]): Returns the value of the named attribute of the object obj. If the attribute does not exist, default is returned if provided, otherwise an AttributeError is raised.
+#+begin_src python
+
+  import inspect
+  inspect.signature()
+
+#+end_src
 * Educational/Business:
 ** [[https://www.cosmicpython.com/book/introduction.html][Architecture Patterns with Python]]
 ** [[https://www.naukri.com/code360][CodingNinjas exercises are more fun than GeeksforGeeks]]

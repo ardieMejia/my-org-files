@@ -10,13 +10,23 @@
 * Html, CSS, Javascript (I guess) main/cool websites/blog
 ** https://www.tutorialrepublic.com
 ** https://www.htmldog.com
-** 
+** More thorough [[https://imagekit.io/blog/how-to-upload-files-in-html/][upload file input]]
 * CSS
 ** Tailwind:
 *** For aligning: items-<> (items-start) goes with flex, content-<> (content-start) goes with grid
 ** Great practices:
 *** https://elementor.com/blog/css-buttons/
+** HTML [[https://www.w3schools.com/css/css_display_visibility.asp][display property]] commonly used in CSS
+** What is [[https://medium.com/@MakeComputerScienceGreatAgain/understanding-flexbox-a-comprehensive-guide-992bcd5f04de][FLEXBOX]]
+** [[https://pieces.app/blog/top-5-best-css-frameworks-for-responsive-web-design-in-2024][CSS for LLM driven apps]]
+** 
 * jQuery, basic JS:
+** Learning everything about an object:
+#+begin_src js
+
+  console.log($(this))
+
+#+end_src
 ** Easy to forget, disabling a button (we can put this in <a></a>)
 #+begin_export html
 
@@ -32,7 +42,7 @@ onclick="return false;"
 *** onload is DOM standard, document.ready is jQuery-specific
 *** 
 ** [[https://api.jquery.com/data/][The data-* attribute is a Global Attribute, and can be used on any HTML element]]
-** We did this for our confirm dialog
+** We did this for our confirm dialog, we learnt it from this link [[https://stackoverflow.com/questions/56130393/jquery-custom-confirm-dialog][link]] as well. The native browser confirm dialog has no equivalent, anything you can write in the GUI. So you need a custom one
 #+begin_src js
 
   $('#eventDeleteButton').click(function(e){
@@ -73,7 +83,7 @@ onclick="return false;"
   
 #+end_src
 ** Instead of of setTimeout(), a better example to learn JS callback is actually implementing a custom confirm dialog (replacing browser built-in confirm dialog)
-** A better example of javascript callback in this [[https://stackoverflow.com/questions/3458553/javascript-passing-parameters-to-a-callback-function][link]]. Coz its several parameters for a callback function
+** This [[https://stackoverflow.com/questions/3458553/javascript-passing-parameters-to-a-callback-function][link]] shows a better example with 2 or more parameters for a callback function
 
 * React terminologies:
 ** Transpiling: converting ES6 or later to ES5, becoz not all browsers supported it
@@ -90,3 +100,4 @@ src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js">
 #+end_export
 * Resources:
 ** Useful SVG repos for downloads ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])
+** [[https://adrianroselli.com/2019/06/target-size-and-2-5-5.html][Button science]]

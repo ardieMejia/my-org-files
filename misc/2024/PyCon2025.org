@@ -59,3 +59,21 @@
 ** what are speaker follows?
 ** if you have a friend who has great Python work to show. PyCon 2025 is the way to show. But how to promote?
 ** no limit for attendees right now
+* 9th July:
+** dispute
+** refund
+** social media traction?
+** ways to reach people
+** we cant reach Grab for some reason
+** Tian Gao, who talks about Python debugging, we want to secure an interview with him
+* 20th Aug
+** Finexus might sponsor us
+** magesh will reach to Red Hat
+** end early bird at merdeka
+** normal price Rm 180, student ticket club (what? AI mispell), RM 80
+** Some companies are waiting for HRDF
+** 26 submissions (CFP) so far
+** orsted is sponsor, they might ask for discount
+** promotion of early ticket, and hopefully closing it by Merdeka, then can start normal tickets
+* 
+
