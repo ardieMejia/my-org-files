@@ -76,6 +76,7 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 #+end_quote
 ** Terry:
+*** withdrawal logs should be downloadable
 *** admin should be able to download, withdrawal AND upload logs as CSV
 *** test again withdrawal and registration of events. Lots of test please surrounding logs
 *** we should test it on chrome and firefox
@@ -265,27 +266,88 @@ except Exception as e:
 *** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
 *** 
 ** Emacs
+*** We need to use an Ubuntu clipboardmanager with Emacs built in function (rather than Emacs kill ring), and post a video on that
+**** No GUI manager:
+#+begin_quote
+
+sudo apt update
+sudo apt install xclip xsel
+
+#+end_quote
+**** and use this:
+#+begin_src emacs-lisp
+
+  (require 'clip-mode)
+  (setq clip-mode-functions '(clip-insert-selection-at-point)) ; Use for inserting text into Emacs
+  (setq clip-selection-at-point-functions '(clip-get-selections)) ; Use for selecting text from Emacs
+
+  ;; Optional: Bind keys for copy and paste (adjust as needed)
+  (global-set-key (kbd "C-c y") 'clip-yank) ; Copy and yank the selection
+  (global-set-key (kbd "C-c p") 'clip-paste) ; Paste the selection
+
+#+end_src
+**** Use a clipboard manager, which works with Emacs built in copy/paste, or create a more advanced function to show history or even paste specific items
+#+begin_quote
+
+
+sudo apt install copyq. 
+sudo apt install gpaste. 
+
+
+#+end_quote
+*** We need a really cool markdown live preview that works, with eww
+#+begin_src emacs-lisp
+
+
+
+    (setq browse-url-browser-function 'eww-browse-url)
+
+
+
+  ;;     (defun ardie1 ()
+  ;;     (interactive)
+  ;;     (shell-command-on-region (point-min) 
+  ;;                              (point-max) 
+  ;;                              "markdown"
+  ;;                              "testest")
+  ;; (with-current-buffer "testest"
+  ;;       (html-mode))
+  ;; (with-current-buffer "testest"
+  ;;       (impatient-mode))
+  ;;     )
+
+
+  ;; (defun ardie1 ()
+  ;; (i
+   nteractive)
+  (let ((ardie/current-buffer (buffer-name)))
+    (shell-command-on-region (point-min) 
+                             (point-max) 
+                             "markdown"
+                             "testest")
+    (switch-to-buffer ardie/current-buffer)
+    )
+  (with-current-buffer "testest"
+    (html-mode))
+  (with-current-buffer "testest"
+    (impatient-mode))
+
+
+  )
+
+#+end_src
 *** We need to makea video about how we manage config safely, when we have multiple Emacs (Eg: 2 versions, and 1 on Windows), minimally without any additional installation, useful if our main config file is quite large
 **** The error usually looks like C:\Users\<your_username>\AppData\Roaming\elpa not found
 **** 
-*** For our keyboard video:
-**** I can almost use my Emacs without looking at the keyboad these days
-**** Im not exactly sure how to explain the amazing ergonomics Im experiencing
-**** Im currently writing on Windows, so forgive for the slightly off speed, becoz I remapped the H key on my Linux
-**** Here are some ergonomic tricks
-**** If I wanted to undo some text, I type 2 keys qw together, which triggers the key-chord functions in Emacs
-**** Here are some text to undo
-**** lets switch between riht and lft window
-**** lets quickly navigate between next-buffer and previous-buffer
-**** I can do all this without looking at my keys, and only feeling the keys
-**** this is becoz I setup my keys like Braille
-**** imagine combining both senses, look and feel
-**** now I can feel my Ctrl and Alt, and my key-chords
-**** I also setup my key-chords to have a "directional prose"
-**** navigating to left or previous, has a "Lefty" feel
-**** same with right, and opening a scratch buffer on the right window
-**** lets see all that again
-**** as you can see this releases lots of mental overhead when Im writing on Emacs all day
+*** things we should consider wriing in our new YT video (Ultra-ergonomic directional buffer and window navigation, for distraction free writing and coding, conditional on hard-wiring your usage of Ctrl and Alt)
+**** ideas for even more "distraction free" writing or coding 
+**** as you notice, I also use both left and right Ctrl and Alt, Ctrl-w for example becomes (right)Ctrl-w, becoz thats better ergonomically
+**** the hydra keys are mapped to my TODO file, and other important files
+**** I have funny leading keys for my hydra
+**** I also have hydra for selecting, killing lines, selecting functions, super cool, etc....
+**** fuure consideraiont include epoxied flat beads instead of velcro, but I have trouble finding small and flat beads, coz the velcro absorbs dust easily
+**** References: https://github.com/emacsorphanage/key-chord and https://www.johndcook.com/blog/2015/02/01/rare-bigrams/
+*** Code is Data:
 *** we need to watch more Git videos, like [[https://www.youtube.com/watch?app=desktop&v=NXaEImbo-n8&t=920s][this]], and systemcrafters vid on git reflog. Also, we faster diff checks inside Emacs. Make it EPIC!!
 *** we need to do a command that copies from current buffer folder into other buffer folder, with confirm prompt from user
 *** we need a "code as data" note/file
@@ -566,10 +628,90 @@ except Exception as e:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
-*** OOP:
-**** The programmers mind is too precious, and programming possibilities is too exciting to let OOP of the hook.
-**** OOP should be treated like what it is.
-**** A cult/ideology/religion masquerading as "only a tool". 
+*** Today Id like to talk about some cool Hydra ideas and tricks that I use in my daily workflow
+**** I use this trick a lot in many places, usually to avoid overlying on Ctrl and Alt for most of the basic text editing.
+**** Im not going to explaing what Hydra mode is in detail, becoz theres a lot of better resources. So Im just going to give you some ideas on how I use it
+**** If you already a long time Emacs user, and haave not explored, even youre a writer, I higaly recommend.
+**** And if youre a writer, or using Emacs as a knowledge management system, Im going to explain how hydra mode might be personally useful for you too
+**** first im going to an example file, and show some of the things I can do 
+**** so the first hydra that im using is for selecting a line and do whatever action  want with it.
+**** once im selecting a line, I can do whatever I want with it. For example, I can kill a line,or even move a line up or down.
+**** so that second trick was quite cool, but Im gonna explain what the first does. Now usually when I want to kill a line and paste it somewhere else, I do a Ctrl....
+**** in Hydra I do a ...
+**** So you can think of Hydra as leading key that triggers a key map, or a space with temporary keys, and selecting another key or head, either calls a function, or creates another key map or space.
+**** Since, Emacs is very extensible, I can bind the K head to an existing kill-region function
+**** and i can still use the same Ctrl-w key
+**** usually in Hydra examples you see online, most use someghin like Ctrl-l as a leader key
+**** I use semicolon which is inspired my Spacemacs or Neovims spacebar as a leader key. 
+**** So the code looks so,ething this
+#+begin_src emacs-lisp
+
+  (defhydra hydra-my-commands (global-map "SPC")
+  "My Commands"
+  ("f" find-file "Find File")
+  ("s" save-buffer "Save Buffer")
+  ("q" kill-emacs "Quit Emacs")
+  :color blue)
+
+#+end_src
+**** Now if you wanted to map it to something els you would define a child like this.
+**** The space key in this is defined globally, but I wanted my hydra to be flexible either globally or only in certain major modes.
+**** A trick I found online is using minor-modes, but I cant find the link where I found this, so I dont know who or what to attribute to.
+**** this is all just a boilerplate code, and defaults to global, but if I want to add this minor-mode to a major-mode, I use this, where the 2nd argument is the minor mode
+#+begin_src emacs-lisp
+
+  (add-hook 'web-mode-hook #'my-custom-web-mode)
+
+#+end_src
+**** minor modes are basicalt more flexible, and you can have multipel minor modes for a single major mode
+**** as you can see I have lots of minor modes and just name it the similar to my hydra, so each hydra has its own minor mode, that makes it simple
+**** its probably quite messy, but if I ever wanted to add another cool hydra, its straigghtforward for me
+*** this doesnt belong here:
+**** https://cloud-native.slack.com/
+**** https://clotributor.dev/
+*** Read about more 
+*** Literally all knitting and crocheting is like programming. Physicists are literally confused by the knitting "science". Yes I tried crocheting. And the "patterns" that crocheters read are also a bit like reading code. The most mind boggling thing, is a non-crocheter would be quite perplexed and joining the dots between crochet (software product) and patterns. Good crocheters can read a cryptic pattern code, and produce something really beautiful.
+**** https://www.youtube.com/watch?v=iTLvD6-X8WQ
+*** Own your IDE:
+**** Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
+**** Another thing I do is close-all-buffers, its such a mind-clearer, an advantage over other IDEs
+*** A post on Ubuntu clipboardmanager with Emacs function
+*** Code is data:
+#+begin_src emacs-lisp
+
+  (if (< emacs-major-version 29)
+      (setq backup-directory-alist `(("." . ,(concat ardie/all-compute-cfg-dir "emacs_backup_files"))))  
+    (setq backup-directory-alist '(("." . "/home/ardie/my-emacs-29-config/emacs_backup_files")))  
+    )
+
+#+end_src
+*** Strange Loop Conference
+
+    What does observability mean for the "dark matter developers". The "dark matter developers" -> the embedded developers still working with C/C++, the guys who still have to deal ASP.NET 1.1 in some small office, the ones who still get the job done despite not being those adjacent to "observability influencers".
+    Some things mentioned: Some teams (especially if they werent part of the original team building the system) are not even aware of all the API endpoints. Some only need to know what is my weakest endpoints, and dont need the type of optimization of these "power tools".
+    The existing observability power tools are great for expert teams, or those adjacent to "observability influencers".
+    Some points to take out: "we need to make tooling usable for people inherited a mess of a system".
+    She made a joke on coming up with an alternative term to "observability", becoz its quite daunting, and not associated with 99% of developers. But "General Understanding of Your Software System" doesnt seem catchy enough.
+    Part of the challenge they (her team) set out for themselves, how far can you get (observability) without any instrumentation.
+    Quite funny talk.
+    Disclaimer: Im DONT know ANYTHING about observability.
+
+(Strange Loop Conference is where I discovered "stack-based languages" like Forth, and was curious about Forth)
+https://www.youtube.com/watch?v=UJA4PGKny2k
+*** Strange loop conference, post on Dev Kaki
+*** Interesting analysis on Harry Potter (https://www.youtube.com/watch?v=wRkHBNT7NQ0)
+**** School stories, turns out Harry Potter is more of a "school stories" rather than fantasy. School Stories are genre popular during a period in English literature. It explains the strange romnaticism of school board hierarchies in JK Rowling writings, rather than criticism meant to dismantle hierarchy. This isnt a specifically a JK Rowling issue, as it was common for authors of this genre to write like this, often rarely bringing up issues of toxic hierarchy in boarding schools. (So now, you also know that toxic hierarchy in boarding schools in not necessarily a specific a Meley thing). Charles Dickens writings seems to be the one of the few that goes against this norm, taking a stance against boarding schools corporal punishment, often for very small mistakes. Other authors including JK Rowling romantacize boarding schools.
+**** There are many interesting points this video raises as well.
+*** Explaining Emacs:
+**** Emacs, is stateless, in a sense
+**** If you were to delete your config, and restart your Emacs, your entire Emacs would be vanilla all over again
+**** autocommand detects events such as opening a file. Emacs uses hooks. And there are so many hooks, but the nature of Emacs documentation means its up to you to explore this
+**** eerything is a buffer, running a terminal inside Emacs, and the terminal is a buffer. whereas in Neovim, im guessing Neovim is inside terminal
+**** to truly take advanage of Emacs, the learning experience is different from Neovim. If you start with only suggested configs with Neovim, and learn only 1 prog lang, you can already do amazing stuff. But with Emacs, you often need to read and explore more, becoz Emacs has so many packages most emacs users havenever heard of 
+**** Neovim has much better defaults. Emacs has horrible defaults by FAR
+**** Org-Mode is literally what Emacs is all about, in a sense
+*** Society and work:
+**** Society works because people work without complaining. You are a captive tax farm animal, do you duty and no harm will come to you while being a caged animal for the “farmer” aka religious/biz/political leader who hired thugs with weapons to guard all viable land and natural resources so you must work for one of them in exchange for food and shelter. If you are made poor—deprived of opportunity—you are more likely to become petty, criminal, even violent. Collective prosperity prevents crime, not capitalism, socialism, liberalism, or cops. But with all viable land and natural resources taken, an individual has no choice but to work for and reinforce the very status quo that oppresses them, in exchange for the means of survival. Your will to live is leveraged against you; your best and only years on God’s green Earth are used to build, maintain, and restock ivory towers for people you’ll never meet. Prolife isn’t about life—it’s about social control, the manufacturing of cheap and renewable labor. A life born, especially in desperation, is easily leveraged into a life of economic slavery and ideological subservience. This is why suicide and the right to die have long been criminalized. How else can the elite secure generations of compliant labor? Rebellion is associated with youth not because the young are especially rebellious, but because the rebellious are not allowed to grow old. Economic systems of any kind inevitably pool wealth, create disparity, and lead to conflict—both within borders and beyond. “Work sets you free” because even homelessness is a crime. Religion is primitive government. Government is resource control through politics. And politics? It’s just mediation between the haves and have-nots by the old—deciding who gets what, where, when, how much, and why. If you work for them, you might survive. Work against them, and you suffer.
 *** Should I apply? 
 **** [[https://compro.miu.edu/?utm_source=facebook&utm_medium=cpc&utm_content=text&utm_campaign=compro&utm_id=120210340864320345_v2_s06_e7201_sp_110&utm_term=120210340864370345&fbclid=IwY2xjawMLi3hleHRuA2FlbQEwAGFkaWQBqyPoGbLBuWJyaWQRMTdOY0lpSzRXbW01aklUMmcBHuTWV54DUfqMu-CpPxs7DLCAuV0srbD9sXm0FAIjSMlbXVa-WZ7VU3B8dSOi_aem_3t2fF1lsPdx-YHLCOJmAxw][masters in computer sciecne]]
 *** Forth
@@ -588,18 +730,6 @@ except Exception as e:
 **** Its not functional, its imperative.
 **** No, Ive never tried it.
 **** https://hackaday.com/2017/01/27/forth-the-hackers-language/
-*** meta-language
-**** Going out on a limb, until Im correct.
-**** Im guessing Makefiles are a meta-language.
-**** Thats the problem with C and C++, it needs a meta language.
-**** Ideally, an amazing and beautiful language would have the mantra of "code is data too".
-**** Some languages, including functional have that mantra of "code is data" 
-**** The language itself describes itself. The computer knows how to build/compile/etc.. based on that same language.
-**** Actually, C and C++ has a lot of problems with its design.
-**** But again, if recommending to a youngster. He/she would still have to learn C and C++. Its okay, just enjoy the process (and learn another prog lang so you dont go super frustrated and actually feel progress and fun in other areas).
-**** It'll be a VERY long time until we are no longer dependent on C/C++. SO MANY hardware will be using it for a very long time.
-**** Just keep in mind, that prog langs are like our spoken languages. With bloat in its design, comes the bloat of the mind too.
-**** Learn other languages for this reason.
 *** [[https://northeastbylines.co.uk/news/national-news/flag-fetishism-by-gaslight/][flag fetishism by gas light]]
 *** Teaching later:
 **** some differences = Neovim has remove keybinding, Emacs has modes, so you usually have overwrites instead of removing
@@ -716,8 +846,6 @@ Contact info also available in the link.
 **** I then simply added without a second thought another Hydra head that uses (combobulate-python-envelope-nest-if-else). Now ;;sf selects n lines and wraps in if..else with indentation.
 **** Why this is such a big deal is that, some old timer eLisp coders use a lot of cool paredit tricks (powerful shortcuts moving logic around, by just moving parenthesis). And combobulate seeks to emulate this in other languages.
 **** Just my writeup, hoping to inspire others (or inviting criticism).
-*** SIMPLIFICATION: Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
-**** Another thing I do is close-all-buffers, its such a mind-clearer, an advantage over other IDEs
 *** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
 **** Completely rewire how I use my my keyboard. This ones more like "hardwired" hack. Basically, I always use both hands, and as little pinky as possible. When I am pressing Ctrl-w, instead of using Left hand for both Ctrl and W, I use Right hand for Ctrl and Left hand for w.
 **** I experimented with Hydra mode as much as possible. Using Hydra mode, I map shortcuts like ;;t to a Personal learning Diary, and ;;p to my Python Diary, and there are 24 more alphabets to go. If I were to ever code in C or C++, I could remap those modes to exclusively not use those.
