@@ -487,5 +487,261 @@ sudo apt install libqt5sql5-psql
 
 #+end_src
 ** The backquote (also known as quasiquote) stops evaluation of list, which allows the comma to force evaluation of sub-expressions inside.
-** 
+* Day 40:
+** Reminder, this error is usually compiler having trouble finding that declaration, maybe header files naming the wrong variables:
+#+begin_quote
 
+table.cpp:13:12: error: ‘mData’ was not declared in this scope
+
+#+end_quote
+* Day 41:
+** We spent so much time trying to change header data in different ways.
+** First we thought of ways to use QList or something for the header "stream".   QStringList is apparently a string stream (whatever??). POINTLESS
+#+begin_src c++
+
+      mainHeader << "Column 1" << "Column 2" << "Column 3"; // Example headers
+
+#+end_src
+** We then spent so much time on setHeaderData, several points
+#+begin_src c++
+
+
+  // ===== void will not work
+  void TableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant& value, int role)
+  {
+    // ===== example from https://forum.qt.io/topic/157414/how-to-implement-setheaderdata-in-a-subclass-of-qabstracttablemodel
+    // ===== has no assignment of value (QVariant) itself
+    headerDataChanged(orientation, section, section);  // emit signal!
+
+  }
+#+end_src
+** Whats the purpose of const override? we have no clue, probably more OOP excessiveness
+#+begin_src c++
+
+  // table.h 
+  // whats this for??
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+
+#+end_src
+** when it comes bool return types in func declaration, we can do a simple:
+#+begin_src c++
+
+
+  if(// calling the setHeaderData())
+  qDebug() << "unable to set header";
+
+#+end_src
+** without   <int, QVariant> below;
+#+begin_src c++
+
+  QHash<int, QVariant> m_horizontalHeaderData;
+
+  // without which, we get this error READ (??) --> class template argument deduction
+  // table.h:31:3: error: invalid use of template-name ‘QHash’ without an argument list
+  // table.h:31:3: note: class template argument deduction is only available with ‘-std=c++17’ or ‘-std=gnu++17’
+  // ===== apparently solution: CONFIG += c++17 in .pro, we havent tried
+
+#+end_src
+** so turns out setHeaderData internally calls headerData, which explains why we need to set both:
+#+begin_src c++
+
+
+
+  QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
+  {
+    if (role == Qt::DisplayRole) {
+      if (orientation == Qt::Horizontal) {
+        // return mainHeader.at(section); ----- the original does nothing, simply copy existing
+        return m_horizontalHeaderData[section];
+      } else {
+        return section + 1; // Row numbers
+      }
+    }
+    return QVariant();
+  }
+
+  bool TableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant& value, int role)
+  {
+    m_horizontalHeaderData[section] = value;
+    headerDataChanged(orientation, section, section);  // emit signal!
+    return true;
+  }
+#+end_src
+* Day 42:
+** We attempted llama.cpp from the [[https://github.com/ggml-org/llama.cpp][ggml link]], and according to some ggml is what makes it runnable on non-dedicated-GPU laptops.
+** It uses some concept called "inference", to infer what your hardware is running on
+** this needed cmake installed to run llama-cli, so thats what we installed
+* Day 43:
+** our attempt at using qmodelinde led to a stupid rabbithole, although we did learn a lot
+** we test our code awareness, we could NOT get a specific item using qmodelindex.
+** everytime we tried we got a segmentation fault error.
+** Inside MainWindow::on_pushButton_clicked(), created again:
+#+begin_src c++
+
+  TableModel *tablemodel = new TableModel(this);
+
+
+  QModelIndex var1 = tablemodel->index(0,0);
+
+      qDebug() << "Data at var1:" << tablemodel->data(var1, Qt::DecorationRole).toString();
+
+
+#+end_src
+** the "implemented" data() ☝️ always produced error, becoz our tablemodel is out of bounds
+*** our table.h used this constructor as a member variable
+  // explicit TableModel(QObject *parent = nullptr);
+*** it should look something like this, more or less
+#+begin_src c++
+
+  // pointer or reference to the QAbstractTableModel
+  explicit MyWidget(QAbstractTableModel* model, QWidget* parent = nullptr);
+  ~MyWidget();
+
+  // and our "implementation" of constructor should look like this
+  // note it needs "awareness" of our parents
+  MyWidget::MyWidget(QAbstractTableModel* model, QWidget* parent)
+    : QWidget(parent), m_tableModel(model) // Initialize m_tableModel
+      
+#+end_src
+** we learn how a Qlist looks like
+(("Data A1", "Data B1", "Data C1"), ("Data A2", "Data B2", "Data C2"), ("Data A3", "Data B3", "Data C3"))
+** but becoz of our scope "awareness" problem as above, this produced an error
+#+begin_src c++
+
+  return mainData[index.row()][index.column()];
+  // but qDebug() works at looking at it.
+  qDebug() << mainData;
+
+#+end_src
+* Day 44:
+** we need to learn various ways on passing a pointer to the model, as, argument to constructor
+
+#+begin_src c++
+
+  // MyWidget.h
+  #include <QWidget>
+  #include <QAbstractTableModel>
+
+  class MyWidget : public QWidget
+  {
+    Q_OBJECT
+
+  public:
+    explicit MyWidget(QAbstractTableModel* model, QWidget* parent = nullptr);
+    ~MyWidget();
+
+  private:
+    QAbstractTableModel* m_tableModel; // Pointer to the shared model
+  };
+
+#+end_src
+** using that argument passed in member initializer list
+#+begin_src c++
+
+    // MyWidget.cpp
+  #include "MyWidget.h"
+  #include <QTableView> // Example usage
+
+  MyWidget::MyWidget(QAbstractTableModel* model, QWidget* parent)
+      : QWidget(parent), m_tableModel(model) // Initialize m_tableModel
+  {
+      // Now you can access m_tableModel within the constructor
+      // For example, setting it to a QTableView
+      QTableView* tableView = new QTableView(this);
+      tableView->setModel(m_tableModel);
+
+      // ... further constructor logic using m_tableModel
+  }
+
+  MyWidget::~MyWidget()
+  {
+      // No need to delete m_tableModel here if it's owned elsewhere
+  }
+  
+#+end_src
+** Create the model and pass it to your constructor
+#+begin_src c++
+
+      // main.cpp or another class
+    #include <QApplication>
+    #include <QStandardItemModel> // Example model
+    #include "MyWidget.h"
+
+    int main(int argc, char *argv[])
+    {
+        QApplication a(argc, argv);
+
+        // Create the model (e.g., QStandardItemModel)
+        QStandardItemModel* myModel = new QStandardItemModel(10, 3); // 10 rows, 3 columns
+
+        // Pass the model to the constructor of MyWidget
+        MyWidget myWidget(myModel);
+        myWidget.show();
+
+        return a.exec();
+    }
+
+#+end_src
+** This example of declaring member variable pointer and "initialize" it inside a mamber initializer list. It might be different. BUT WE NEED TO READ:
+#+begin_src c++
+
+  #include <iostream>
+
+  // A simple class to be pointed to
+  class Data
+  {
+  public:
+    int value;
+    Data(int val) : value(val)
+    {
+      std::cout << "Data object created with value: " << value << std::endl;
+    }
+    ~Data()
+    {
+      std::cout << "Data object destroyed with value: " << value << std::endl;
+    }
+  };
+
+  class MyClass
+  {
+  private:
+    Data *dataPtr; // Declare a pointer member variable
+  public:
+    // Constructor using a member initializer list to initialize the pointer
+    MyClass(int initialValue) : dataPtr(new Data(initialValue))
+    {
+      std::cout << "MyClass object created." << std::endl;
+    }
+
+    // Destructor to deallocate the dynamically allocated memory
+    ~MyClass()
+    {
+      delete dataPtr; // Deallocate the memory pointed to by dataPtr
+      dataPtr = nullptr; // Set the pointer to nullptr to avoid dangling pointers
+      std::cout << "MyClass object destroyed." << std::endl;
+    }
+
+    void printData() const
+    {
+      if (dataPtr)
+        {
+          std::cout << "Value pointed to by dataPtr: " << dataPtr->value << std::endl;
+        }
+      else
+        {
+          std::cout << "dataPtr is null." << std::endl;
+        }
+    }
+  };
+
+  int main()
+  {
+    MyClass obj(100); // Create an object of MyClass, which in turn creates a Data object
+    obj.printData(); // Access and print the data through the pointer
+
+    // When obj goes out of scope, its destructor will be called,
+    // which then calls the destructor of the Data object pointed to by dataPtr.
+    return 0;
+  }
+
+#+end_src

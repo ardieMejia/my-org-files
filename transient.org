@@ -26,7 +26,7 @@
 
   (setq var1 (-cons*
               "social media posting, esp. prog lang nerd, BEtter s conf .org file, ask the 3 guys who respected u on lang group on part time job, and also mal in sin group"
-              "combobulate, especially dealing with nodes, search engine history, Lady Bird"
+              "combobulate, especially dealing with nodes, search engine history, Lady Bird, https://github.com/vedang/pdf-tools?tab=readme-ov-file#about-pdf-tools"
               "Emacs backend, BACKUP our data, Git worktree, magit, iPython or alt setup, trying flycheck with pylint"
               "email, CV, also Audiosockets, GRAB"
               "audio guy, YouTube copyright algo, BOIDS, LIDAR, Python make own ufunc, we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
@@ -76,6 +76,7 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 #+end_quote
 ** Terry:
+*** IMPORTANT: we need to add auto-increment column, becoz there is NO guarantee the SQL table will read (SELECT) the same way
 *** withdrawal logs should be downloadable
 *** admin should be able to download, withdrawal AND upload logs as CSV
 *** test again withdrawal and registration of events. Lots of test please surrounding logs
@@ -295,6 +296,7 @@ sudo apt install gpaste.
 
 
 #+end_quote
+*** We need to make this tool [[https://news.ycombinator.com/item?id=22129636][array-ify]]
 *** We need a really cool markdown live preview that works, with eww
 #+begin_src emacs-lisp
 
@@ -628,6 +630,15 @@ sudo apt install gpaste.
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** Post your youtube channel to Peppers Lim sciencey channel, and Johnson "flat chest" 
+*** Emacs as a fast and lightweight and FREE writing tool:
+**** Why speed matters for note-taking and throwaway ideas. It doesnt have to be split second, but easily-reachable and in the realm of less than 5 seconds.
+**** When we are dong research, or or trapped in deep thought, we often come up with ideas from unexpected places, and we quickly forget them.
+**** We assume those ideas are not important ("if its important, you would not forget"). Only to find it, someone else made something based on that idea.
+**** The obsession of speed is NOT the same as obsession with speed when developing software. (premature optimization doesnt apply here)
+**** becoz the range of seconds we are thinking is not 0.1 - 1.0, but rather less than 5 seconds. Which makes a big difference, especially when we want to write throwaway ideas.
+**** Maybe we're reading on a random topic, and we came up with idea for a blog post. So instead of opening the Word doc, we can bind it to an Emacs org file with just 3 key presses
+**** REMEMBER: we need to do a snippet that makes it look TOO EASY
 *** Today Id like to talk about some cool Hydra ideas and tricks that I use in my daily workflow
 **** I use this trick a lot in many places, usually to avoid overlying on Ctrl and Alt for most of the basic text editing.
 **** Im not going to explaing what Hydra mode is in detail, becoz theres a lot of better resources. So Im just going to give you some ideas on how I use it
@@ -666,13 +677,15 @@ sudo apt install gpaste.
 **** minor modes are basicalt more flexible, and you can have multipel minor modes for a single major mode
 **** as you can see I have lots of minor modes and just name it the similar to my hydra, so each hydra has its own minor mode, that makes it simple
 **** its probably quite messy, but if I ever wanted to add another cool hydra, its straigghtforward for me
-*** this doesnt belong here:
+*** this doesnt belong here, CNCF, Linux, open source:
 **** https://cloud-native.slack.com/
 **** https://clotributor.dev/
-*** Read about more 
+*** Forth
+**** A compiler is a social construct
 *** Literally all knitting and crocheting is like programming. Physicists are literally confused by the knitting "science". Yes I tried crocheting. And the "patterns" that crocheters read are also a bit like reading code. The most mind boggling thing, is a non-crocheter would be quite perplexed and joining the dots between crochet (software product) and patterns. Good crocheters can read a cryptic pattern code, and produce something really beautiful.
 **** https://www.youtube.com/watch?v=iTLvD6-X8WQ
 *** Own your IDE:
+**** REMEMBER: we need to do a snippet that makes it look TOO EASY
 **** Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
 **** Another thing I do is close-all-buffers, its such a mind-clearer, an advantage over other IDEs
 *** A post on Ubuntu clipboardmanager with Emacs function
@@ -685,24 +698,11 @@ sudo apt install gpaste.
     )
 
 #+end_src
-*** Strange Loop Conference
-
-    What does observability mean for the "dark matter developers". The "dark matter developers" -> the embedded developers still working with C/C++, the guys who still have to deal ASP.NET 1.1 in some small office, the ones who still get the job done despite not being those adjacent to "observability influencers".
-    Some things mentioned: Some teams (especially if they werent part of the original team building the system) are not even aware of all the API endpoints. Some only need to know what is my weakest endpoints, and dont need the type of optimization of these "power tools".
-    The existing observability power tools are great for expert teams, or those adjacent to "observability influencers".
-    Some points to take out: "we need to make tooling usable for people inherited a mess of a system".
-    She made a joke on coming up with an alternative term to "observability", becoz its quite daunting, and not associated with 99% of developers. But "General Understanding of Your Software System" doesnt seem catchy enough.
-    Part of the challenge they (her team) set out for themselves, how far can you get (observability) without any instrumentation.
-    Quite funny talk.
-    Disclaimer: Im DONT know ANYTHING about observability.
-
-(Strange Loop Conference is where I discovered "stack-based languages" like Forth, and was curious about Forth)
-https://www.youtube.com/watch?v=UJA4PGKny2k
-*** Strange loop conference, post on Dev Kaki
 *** Interesting analysis on Harry Potter (https://www.youtube.com/watch?v=wRkHBNT7NQ0)
 **** School stories, turns out Harry Potter is more of a "school stories" rather than fantasy. School Stories are genre popular during a period in English literature. It explains the strange romnaticism of school board hierarchies in JK Rowling writings, rather than criticism meant to dismantle hierarchy. This isnt a specifically a JK Rowling issue, as it was common for authors of this genre to write like this, often rarely bringing up issues of toxic hierarchy in boarding schools. (So now, you also know that toxic hierarchy in boarding schools in not necessarily a specific a Meley thing). Charles Dickens writings seems to be the one of the few that goes against this norm, taking a stance against boarding schools corporal punishment, often for very small mistakes. Other authors including JK Rowling romantacize boarding schools.
 **** There are many interesting points this video raises as well.
 *** Explaining Emacs:
+**** REMEMBER: we need to do a snippet that makes it look TOO EASY
 **** Emacs, is stateless, in a sense
 **** If you were to delete your config, and restart your Emacs, your entire Emacs would be vanilla all over again
 **** autocommand detects events such as opening a file. Emacs uses hooks. And there are so many hooks, but the nature of Emacs documentation means its up to you to explore this
@@ -714,22 +714,6 @@ https://www.youtube.com/watch?v=UJA4PGKny2k
 **** Society works because people work without complaining. You are a captive tax farm animal, do you duty and no harm will come to you while being a caged animal for the “farmer” aka religious/biz/political leader who hired thugs with weapons to guard all viable land and natural resources so you must work for one of them in exchange for food and shelter. If you are made poor—deprived of opportunity—you are more likely to become petty, criminal, even violent. Collective prosperity prevents crime, not capitalism, socialism, liberalism, or cops. But with all viable land and natural resources taken, an individual has no choice but to work for and reinforce the very status quo that oppresses them, in exchange for the means of survival. Your will to live is leveraged against you; your best and only years on God’s green Earth are used to build, maintain, and restock ivory towers for people you’ll never meet. Prolife isn’t about life—it’s about social control, the manufacturing of cheap and renewable labor. A life born, especially in desperation, is easily leveraged into a life of economic slavery and ideological subservience. This is why suicide and the right to die have long been criminalized. How else can the elite secure generations of compliant labor? Rebellion is associated with youth not because the young are especially rebellious, but because the rebellious are not allowed to grow old. Economic systems of any kind inevitably pool wealth, create disparity, and lead to conflict—both within borders and beyond. “Work sets you free” because even homelessness is a crime. Religion is primitive government. Government is resource control through politics. And politics? It’s just mediation between the haves and have-nots by the old—deciding who gets what, where, when, how much, and why. If you work for them, you might survive. Work against them, and you suffer.
 *** Should I apply? 
 **** [[https://compro.miu.edu/?utm_source=facebook&utm_medium=cpc&utm_content=text&utm_campaign=compro&utm_id=120210340864320345_v2_s06_e7201_sp_110&utm_term=120210340864370345&fbclid=IwY2xjawMLi3hleHRuA2FlbQEwAGFkaWQBqyPoGbLBuWJyaWQRMTdOY0lpSzRXbW01aklUMmcBHuTWV54DUfqMu-CpPxs7DLCAuV0srbD9sXm0FAIjSMlbXVa-WZ7VU3B8dSOi_aem_3t2fF1lsPdx-YHLCOJmAxw][masters in computer sciecne]]
-*** Forth
-**** What if a language can be simultaneously low-level and high-level?
-**** And what if all our current software problems attributed to so many bad decisions along the way (some of them C/C++) can be reversed?
-**** Is there such a thing as a programming language that has enough anti-capitalist blood in its vein to reverse this trajectory?
-**** Maybe not (half joking about those last 2...)
-**** Enter the programming language called Forth.
-**** Some say, you can make this programming language as OOP or non-OOP as you want. (OOP is not baked in, you have to build it from the ground up).
-**** Some describe it as the language that writes itself.
-**** Some describe it as Python meets Assembly
-**** Some says it has no syntax.
-**** The article below says its too "hacky" as a language (yet it is used in some aerospace applications)
-**** The entire usable programming language (interpreter?) and code written in it is incredibly small.
-**** an OS written in Forth would be so small, it could be installed in a post apocalyptic future with throwaway hardware.
-**** Its not functional, its imperative.
-**** No, Ive never tried it.
-**** https://hackaday.com/2017/01/27/forth-the-hackers-language/
 *** [[https://northeastbylines.co.uk/news/national-news/flag-fetishism-by-gaslight/][flag fetishism by gas light]]
 *** Teaching later:
 **** some differences = Neovim has remove keybinding, Emacs has modes, so you usually have overwrites instead of removing
@@ -786,23 +770,6 @@ https://www.youtube.com/watch?v=UJA4PGKny2k
 ***** blindly do a "git add ." (triggered by a single shortcut)
 ***** a single mouse button to run/test the project
 **** This is just a sample and a reminder, to not just use Emacs as an "efficient Vim alternative" or just "Vim movements", but use it like a selfish badass. Ergonomics (not just efficiency, that is a misleading term) that extend to project management, knowledge management, and Git workflow.
-*** remote work anonymous:
-#+begin_quote
-
-Hi everyone,
-I have been retrenced for to 6 months and still struggling looking for a job. If there are remote gigs that I could be a part, please do consider me.
-Im a programmer but also very musician  writer. Despite my talent I have trouble socializing these days.
-Eventually, if this gets any worse I will suffer serious mental health problems.
-I have sent lots of CVs.
-Im over 40 years old, and beginning to suspect this is what is avoiding most companies in avoiding taking a chance with me.
-If anyone has data entry jobs, I am willing to take at a passable salary.
-And obviously communication is also key.
-I believe in 2nd chanches, as my firm belief that everyone, women, minorities, autistic or ADHD people deserve a 2nd chance.
-Not only will they often not dissapoint, but they often exceen expectations provide the right opportunity.
-My belief in giving people 2nd chances is what often causes rift with people I communicate especially in software engineering world.
-Anyway, I digress, If I do not get a job soon, all that creative juice will not mean anything.
-I will pass on my CV upon request in PM.
-#+end_quote
 *** share an improved Python/Emacs class on FB Malaysia teaching group
 **** Share on several Malaysia teaching groups again
 #+begin_quote

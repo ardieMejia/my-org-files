@@ -203,6 +203,15 @@ std::getline(std::cin >> std::ws, s);
 * Makefile awesome writing, but maybe the tool itself is not awesome
 ** [[https://web.mit.edu/gnu/doc/html/make_14.html][mit makefile doc]] : rather useless, in its weird jumbled writing style. Informative, if only reference or experience. Almost written as an afterthought.
 ** [[https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/][colby cs]] : slightly better, but specific. Calls variables "macro", target "rule", hence not great for beginners. Include s ways to make Makefile (haha), more generic. 
+* Not sure how to arrange, this link is VERY useful, after so much past failure:
+** [[https://www.bogotobogo.com/Qt/Qt5_QListView_QStringListModel_ModelView_MVC.php][bogotobogo blog]]
+* QT:
+** we learnt that you have Q--widget, Q--model, and Q--view
 * Links:
 ** [[https://woboq.com/blog/new-signals-slots-syntax-in-qt5.html][a Qt5 blog]]
+** [[https://woboq.com/codebrowser.html][insane code browser]]
 ** 
+* READ THIS, FUCK YOU:
+** https://doc.qt.io/archives/qt-5.15/model-view-programming.html
+** https://doc.qt.io/archives/qt-5.15/model-view-programming.html#creating-new-models
+** https://felgo.com/doc/qt/qtquick-modelviewsdata-cppmodels/

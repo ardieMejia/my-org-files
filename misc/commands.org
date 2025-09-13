@@ -51,5 +51,10 @@ $ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 $ ffmpeg -i "some-link" -codec copy video.mp4
 
 #+end_quote
+* yt-dlp, firefox or any other browser
+#+begin_quote
 
+yt-dlp -f mp4 --write-sub  --cookies-from-browser firefox <url>
+
+#+end_quote
 
