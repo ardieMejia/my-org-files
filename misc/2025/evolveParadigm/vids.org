@@ -1,0 +1,8 @@
+* Links:
+** Raylib, C+
+*** [[https://www.youtube.com/watch?v=HPDLTQ4J_zQ][compiling Raylib]]
+*** [[https://www.youtube.com/watch?v=Mp129YWGUZk][C + Clay + Raylib]]
+** CPU
+*** [[https://www.youtube.com/watch?v=jC_z1vL1OCI][Casey Muratori on CPU]]
+** Game
+*** [[https://www.youtube.com/watch?v=8dinUbg2h70][rewind in braid]]

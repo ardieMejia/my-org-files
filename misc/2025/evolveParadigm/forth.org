@@ -1,0 +1,47 @@
+* Links:
+** [[https://www.youtube.com/watch?v=9MSJGzYELBA][SmithForth workings]]
+** [[https://mecrisp-stellaris-folkdoc.sourceforge.io/#index][mecrisp stellaris]] checkout the quickstart!!
+** [[https://gforth.org/manual/Stack-Manipulation-Tutorial.html#Stack-Manipulation-Tutorial][we are doing thse exercises first, basic stack manipulation]]
+** [[https://www.youtube.com/watch?v=umSuLpjFUf8][strange loop conference]]
+*** lets write about this one 
+** [[https://www.youtube.com/watch?v=JqYCt9rTG8g][prog lang matters]]
+*** lets write about this one 
+* Basics we have learnt so far:
+** stack manipulation
+drop
+dup
+rot
+swap
+nip
+tuck
+over
+** 
+* Completed (temp)
+** Given 1 2 3 Get 1 2 3 1 2 3
+#+begin_src forth
+
+  \ created my own word to rotate the 4th
+  : _rot4
+    rot dup 2swap rot ;
+
+  1 2 3 _rot4 _rot4 _rot4
+  
+
+#+end_src
+* Forth:
+** Forth consumes values, even "if" conditional, its apparently its part of its beauty.
+*** Eg: when we solved our min problem, we we simplified if-else to if, using nip, to rely on stack Forth consuming values
+** we learnt from stack manipulation, that more "iterative-complex??" words can be made from its root word. Eg: rot4 = rot3, others
+** 
+* Embedded:
+** Yes, we can use it on a microcontroller.
+** Unlike the usual compiler & flashing process -> which compiles your source code to machine code, and then we flash to the microcontroller.... Forth allows Python-style REPL
+** Using STM 32, which is based on ARM architecture, there are too many variations:
+#+begin_quote
+
+The perceived "too many variations" in ARM controller registers stem from ARM's design strategy of offering a broad range of processor families and configurations, each with different register sets, modes, and optional features. To understand ARM registers, you must consider the specific processor architecture (e.g., Cortex-M0 vs. Cortex-A), the operating state (e.g., ARM state vs. Thumb state), and the execution mode (e.g., User mode, Privileged mode, Hyp mode). Each mode and architecture can expose different registers, and within registers, different internal hardware might map or assign special functions. 
+
+
+#+end_quote
+** https://www.youtube.com/watch?v=dvTI3KmcZ7I
+*** best example so far, clear voice, clear recording, GOOD if you understand forth a bit, explains STM to noobs
