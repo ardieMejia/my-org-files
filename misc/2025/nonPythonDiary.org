@@ -745,3 +745,321 @@ table.cpp:13:12: error: ‘mData’ was not declared in this scope
   }
 
 #+end_src
+* Day 45:
+** We are learning signals and slots, it seems sophisticated and better. But we forgot C++ is stupid, we need a template function for the compiler to resolve overloads.
+** Stupid C++ 
+** Notice the QOverload which is a template function (cant remember the compile error). We need the ::of, in older C++
+#+begin_src c++
+
+  connect(ui->comboBox_ssync, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this,  [&]() {
+    qDebug() << "whaataat";
+   });
+
+#+end_src
+* Day 46:
+** We kept reinstalling Hugo becoz our 1s post never got views (locally)
+** The error looks like something like this:
+#+begin_quote
+
+function "css" not defined
+
+#+end_quote
+** This is becoz the css function was introduced in Hugo 0.128+. And most popular themes seem to be updated along with it anway
+** Our Hugo .deb (amd64) was never successful, becoz it required a some common features required extended_hugo, and that requires a newer GCC
+** How it works: packaged Hugo uses latest GCC. 
+** Only option -> install from source
+** So we also installed Go (installed under /usr/local/go) -> installed HUGO (default: installed inside ~/go)
+*** If any at any point, we installed the wrong hugo (Eg: instead of extended_hugo), we just remove ~/go. 
+#+begin_quote
+
+CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
+
+#+end_quote
+* Day 47:
+** Note the example below, which always confuses us. We are already getting better at C++, and yet this still confuses us.
+** Note this is the recommended declaration of QString and QStringListModel inside a parent class definition
+#+begin_src c++
+
+  // ===== inside mainwindow.h
+  QStringListModel *a_model;
+  QStringListModel *model2;
+  QString textInput_model;
+
+
+
+  // ===== inside mainwindow.cpp
+  model2 = new QStringListModel(this);
+  QStringList list2;
+  list2 << "Hanifa" << "Bev" << "Ardie";
+  model2->setStringList(list2);
+
+  ui->comboBox_ssync->setModel(model2); 
+
+  ui->textEdit_ssync->setText(textInput_model);
+
+#+end_src
+** We keep getting perplexed by whether or not to put * in the parent definition
+** Lesson 1:
+*** In official docs, the constructor shows passing of parent
+#+begin_src c++
+
+  QStringListModel::QStringListModel(QObject *parent = nullptr)
+
+#+end_src
+*** QString:
+#+begin_src c++
+
+
+  QString::QString()
+
+#+end_src
+*** 
+** Lesson 2 (ChatGPT):
+*** Using a pointer
+(QStringListModel *model)
+**** is recommended because most Qt widgets and models are designed to work with the parent-child memory management system.
+**** otherwise we have to manage lifetime ourselves
+*** Why QString is different?
+**** QString is not a QObject.
+**** It does not participate in Qt’s parent-child memory management system.
+**** It is lightweight and uses implicit sharing / copy-on-write under the hood, which makes it efficient to copy and pass by value.
+** Lesson 3:
+*** The QStringListModel definition (header) looks "eerily similar" to QMainWindow child definition
+#+begin_src c++
+
+  // ===== inside header definition
+  MyWindow(QWidget *parent = nullptr);
+
+  // ===== inside header definition
+    MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
+    {    
+    }
+#+end_src
+*** But we only deal with "implementations" with QMainWindow so far
+*** But we pass the parent in QStringListModel in the example above. Reminder:
+#+begin_src c++
+
+  model2 = new QStringListModel(this);
+  // ===== Other non-related example:
+  QStringListModel *model = new QStringListModel(parentWidget); 
+
+#+end_src
+* Day 48:
+** C++ function argument definitions, either the asterisk * and the ampersand &
+*** Pointeres:
+#+begin_src c++
+
+  void modifyValueByPointer(int* ptr) {
+    ,*ptr = 100; // Modifies the value at the address pointed to by ptr
+  }
+
+  int main() {
+    int x = 10;
+    modifyValueByPointer(&x); // Pass the address of x
+    // x is now 100
+    return 0;
+  }
+
+#+end_src
+*** References:
+#+begin_src c++
+
+  void modifyValueByReference(int& ref) {
+    ref = 200; // Modifies the original variable referred to by ref
+}
+
+int main() {
+    int y = 20;
+    modifyValueByReference(y); // Pass y by reference
+    // y is now 200
+    return 0;
+}
+
+#+end_src
+*** Both are same-y
+*** Pointer (*) is about control. It allows null. A common practice is this
+#+begin_src c++
+  time_t time (time_t *result);
+#+end_src
+*** the *result hints the user that passing null is allowed, if not current time is used.
+*** In normal practice (outside function):
+#+begin_src c++
+
+  ,*var1 = 100;
+  // means dereferencing (get deep value)
+  &var1 = 100;
+  // means getting address
+  var1 = 100;
+  // means assigning to pointer itself
+
+  
+#+end_src
+*** And then
+#+begin_src c++
+
+  some_function(&regular_variable);
+  // means passing the pointer by reference, regardless of source
+
+#+end_src
+*** "regardless of source", becoz the pointer doesnt care. It can be a local variable on the stack, or a register mapped into RAM
+*** Yes, thats right. It can be a RAM!!
+*** [[https://hackaday.com/2018/04/04/the-basics-and-pitfalls-of-pointers-in-c/][hackadays pointer in C]]
+*** This is inline with the Strange Loop Conference presentation --> A programming system has 2 parts. The programming 'environment' is the part thats installed on the computer. The programming 'language' is the part that's installed in the programmer's head 
+*** Extreme childish example: if each variable represented each motor, then its extreme control of motor on the language level.
+* Day 49:
+** We finally tried psycopg2 in a move away from sqlalchemy
+* Day 50:
+** We managed to do raw postgresql, we learnt about query parameters (as a way to avoid sql injection)
+** We used 2 blogs, neon.com and 
+* Day 51:
+** Exploratory tip, there are is no "restart" for databases such as PostgreSQL:
+** Which means control at that operation is often required in the "real world". 
+** This is a great tip when learning stuff in the future
+** Obviously, this is no indicator of good design
+** So we have 
+*** DROP SCHEMA public CASCADE;
+*** CREATE SCHEMA public;
+*** GRANT ALL ON SCHEMA public TO postgres;
+*** GRANT ALL ON SCHEMA public TO public; -- Or to specific roles/users
+** this means databases are not set (public) permissions by default. Probably, becoz of security freaks
+* Day 52:
+** Stupid childish dopamine hit, seeing the button works. what
+* Day 53:
+** New Admin Window
+** I was correct, that programming requires a lot of personal space and freedom
+** Who says pride is a sin? (Vaush)
+** As usual C++ being stupid, it has no awareness of, array size, index position and also a new file you added in the language itself. 
+** AKA, adding #include statements are not enough, the Makefile (in our case: .pro file for qmake) needs "awareness of the new file"
+* Day 54:
+** Lessons learnt, there is, the .ccls-cache files are in fact for IDE, and are safe to .gitignore
+** While "undefined reference", we usually imagine to be imports related (header files), for constructors OurClass::OurClass(QWidget*) they in fact refer to Makefile issues. Again, C++ has "awareness" issues
+* Day 55:
+** We explored several stuff:
+** For simple endpoints, (Chatgpt has several good examples). We explored:
+** await 
+#+begin_src javascript
+
+  await fetch();
+
+  await response.text(); // for this one, we could do JSON.parse, but it depends on whether the reponse object has JSONs
+
+#+end_src
+** express.js, its just a fast to setup a stupid server, LOL. Why is chatgpt helping me too much?
+#+begin_src javascript
+
+  const express = require('express');
+  // ...
+
+#+end_src
+** https module to do the same thing, which we havent explored
+#+begin_src javascript
+
+  const https = require('https');
+
+#+end_src
+** eLisp, we managed to explore url-retrieve-synchronously, and it worked for the simple JSON example!!
+#+begin_src emacs-lisp
+
+  (let
+    (
+     ;; (url-request-extra-headers '(("Content-Type" . "application/json")))
+     ;; ("Cookie" . "token_v2=testtest tets")     
+     ;; (url-request-data (json-encode '(("requests" . ((("id" . "some-ID") ("table" . "block")))))))
+     ;; "Authorization": "Bearer " + token,
+     (url-request-extra-headers '(
+				  ("Content-Type" . "application/json")
+				  ("Accept" . "application/json")
+				  ;; ("Authorization" . "Bearer some-notion-token")
+				  ))
+     )
+     (progn
+          (setq buffer (url-retrieve-synchronously "https://api.notion.com"))
+          (setq buffer (url-retrieve-synchronously "https://jsonplaceholder.typicode.com/posts/1"))
+          ;; (with-current-buffer buffer
+	  ;;   (goto-char (point-min))
+	  ;;   (re-search-forward "^$")
+	  ;;   (delete-region (point) (point-min))
+	  ;;   (buffer-string)
+	  ;;   )
+	  (switch-to-buffer
+	   buffer
+	   )
+  ))
+
+#+end_src
+** Unfortunately, it still didnt work for notion, which is our MAIN GOAL
+** We should read this again? Maybe that'll help
+#+begin_src javascript
+
+  import { Client } from '@notionhq/client';
+
+// Initialize the Notion client
+const notion = new Client({ auth: <notion-token> });
+
+// Replace with the actual UUID of your Notion block
+// const blockId_childPage = some block ID';
+const blockId_paragraph = 'some ID';
+
+async function getBlockContent(blockId_paragraph) {
+  try {
+    const response = await notion.blocks.retrieve({
+      block_id: blockId_paragraph,
+    });
+
+    console.log('Block content:', response);
+    console.log('type:', response.type);
+  
+    // To access the specific value, you'll need to inspect the 'response' object
+    // based on the 'type' of the block.
+    if (response.type === 'paragraph') {
+      console.log('Paragraph text:', response.paragraph.rich_text[0].plain_text);
+    }
+      else if (response.type === 'heading_1') {
+      console.log('Heading 1 text:', response.heading_1.rich_text[0].plain_text);
+    } 
+
+    // Add more conditions for other block types (e.g., 'to_do', 'bulleted_list_item') 
+    // as needed, inspecting the 'response' object to find the relevant property.
+
+  } catch (error) {
+    console.error('Error retrieving block:', error);
+  }
+}
+
+getBlockContent(blockId_paragraph);
+
+
+#+end_src
+** We fonud this cool link too: [[https://developers.notion.com/reference/intro][its got cool working curl example for a Notion database]]
+* Day 56:
+** setters and getters are a disease, although according to C++, if its public scoped, we can just
+#+begin_src c++
+
+  obj.publicMember = 10;
+
+#+end_src
+** we added a button to connect database and enable isUsersTableFilled, so we can view table
+#+begin_src c++
+
+  void MainWindow::on_buttonTableExists_clicked (){
+    QVariant result = _openDatabase();
+    isUsersTableFilled = true;
+  }
+
+#+end_src
+** We NEED to redesign, so that the first button is a popup before opening window to either restart DB or not
+** "Selected Indexes" are not entirely straightforward. They are protected behind, QItemSelectionModel (QTableView::selectionModel()) and QModelIndexList (from QItemSelectionModel::selectedIndexes())
+** So the "model"and not the widget stores the selection
+** Advantage? You can select several data to delete from DB.
+** Again C++ has no awareness of index positions, so we use QModelIndexList::at(0)
+#+begin_src c++
+
+    QItemSelectionModel* selectionModel = ui->userTableView->selectionModel();
+
+    QModelIndexList indexes = selectionModel->selectedIndexes();
+    if (indexes.size()){
+      QModelIndex index = indexes.at(0);
+      qDebug() << index.row();
+    }
+
+#+end_src

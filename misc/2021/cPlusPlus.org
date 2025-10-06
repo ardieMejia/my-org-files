@@ -1,4 +1,68 @@
 * Now that we understand the nastiness of OOP, we can finally read [[https://doc.qt.io/archives/qt-5.15/designer-using-a-ui-file.html][this]]. We REALLY need to transition smoothly from QT designer to Emacs workflow
+* \*Pointers are a nightmare:
+** C++ function argument definitions, either the asterisk * and the ampersand &
+*** Pointeres:
+#+begin_src c++
+
+  void modifyValueByPointer(int* ptr) {
+    ,*ptr = 100; // Modifies the value at the address pointed to by ptr
+  }
+
+  int main() {
+    int x = 10;
+    modifyValueByPointer(&x); // Pass the address of x
+    // x is now 100
+    return 0;
+  }
+
+#+end_src
+*** References:
+#+begin_src c++
+
+  void modifyValueByReference(int& ref) {
+    ref = 200; // Modifies the original variable referred to by ref
+}
+
+int main() {
+    int y = 20;
+    modifyValueByReference(y); // Pass y by reference
+    // y is now 200
+    return 0;
+}
+
+#+end_src
+*** Both are same-y
+*** Pointer (*) is about control. It allows null. A common practice is this
+#+begin_src c++
+  time_t time (time_t *result);
+#+end_src
+*** the *result hints the user that passing null is allowed, if not current time is used.
+*** In normal practice (outside function):
+#+begin_src c++
+
+  ,*var1 = 100;
+  // means dereferencing (get deep value)
+  &var1 = 100;
+  // means getting address
+  var1 = 100;
+  // means assigning to pointer itself
+
+  
+#+end_src
+*** And then
+#+begin_src c++
+
+  some_function(&regular_variable);
+  // means passing the pointer by reference, regardless of source
+
+#+end_src
+*** "regardless of source", becoz the pointer doesnt care. It can be a local variable on the stack, or a register mapped into RAM
+*** Yes, thats right. It can be a RAM!!
+*** [[https://hackaday.com/2018/04/04/the-basics-and-pitfalls-of-pointers-in-c/][hackadays pointer in C]]
+*** This is inline with the Strange Loop Conference presentation --> A programming system has 2 parts. The programming 'environment' is the part thats installed on the computer. The programming 'language' is the part that's installed in the programmer's head 
+*** Extreme childish example: if each variable represented each motor, then its extreme control of motor on the language level.
+** But the REAL problem:
+*** I've determined over the years that the main problem with pointers isn't the concept, it's the syntax. The * position being optional is one barrier to clarity, the second is the declaration which is opposite of a pointer's usage (you don't use the * if you are re-assigning the address of the pointer ptr_to_x = &y;). Then there's pointer arithmetic which overloads the + and -. Sadly it's way too late to clean it all up now, but in my opinion most people are bewildered because the syntax just isn't predictable. -- "Russell Beattie from Void Pointer in C demystified"
 * Basics:
 ** An asterisk /* placed before a variable means the variable is a pointer.
 ** Example:
@@ -207,10 +271,16 @@ std::getline(std::cin >> std::ws, s);
 ** [[https://www.bogotobogo.com/Qt/Qt5_QListView_QStringListModel_ModelView_MVC.php][bogotobogo blog]]
 * QT:
 ** we learnt that you have Q--widget, Q--model, and Q--view
+* QT: separation of concern, model view logic
+** [[https://felgo.com/doc/apps-howto-model-view-separation/][felgo]]
+** [[https://medium.com/e-fever/revised-qml-application-architecture-guide-with-flux-a1de143fe13e][revised QML application arch with Flux]]
+** [[https://www.freecodecamp.org/news/an-introduction-to-the-flux-architectural-pattern-674ea74775c9/][flux unidirectional data flow]]
 * Links:
 ** [[https://woboq.com/blog/new-signals-slots-syntax-in-qt5.html][a Qt5 blog]]
 ** [[https://woboq.com/codebrowser.html][insane code browser]]
-** 
+** [[https://samdutton.wordpress.com/2008/10/03/debugging-signals-and-slots-in-qt/][sam dutton Debugging signals and slots]], wait this ones kinda stupid, becoz we found a better blog on signals and slots
+** https://riptutorial.com/qt/example/17048/connecting-overloaded-signals-slots
+** [[https://wiki.qt.io/Qt_for_Beginners][unusually great for beginners OFFICIAL documentation]]
 * READ THIS, FUCK YOU:
 ** https://doc.qt.io/archives/qt-5.15/model-view-programming.html
 ** https://doc.qt.io/archives/qt-5.15/model-view-programming.html#creating-new-models

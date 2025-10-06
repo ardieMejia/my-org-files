@@ -28,8 +28,9 @@
               "email, CV, also Audiosockets"
               "BOIDS, LIDAR, Python make own ufunc, we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
               "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Forth"
-              "crochet, Hanifas health, prepare for -> Emacs As A Writing Tool"
+              "crochet, Hanifas health, code generation (internet of bugs)"
               "read Rust perspective PDF, commityour treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely"
+              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org"
               (append
                (make-list 3 "Qt practice")
                (make-list 2 "boppps")
@@ -64,6 +65,12 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-python-workspace /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-gforth-workspace /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-go-workspace /home/ardie/mybackup2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-csharp-workspace /home/ardie/mybackup2025/
 
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Music /home/ardie/mybackup2025/
 
@@ -264,6 +271,17 @@ except Exception as e:
 *** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
 *** 
 ** Emacs
+*** We need to write a "separator function" that auto-separates a lne based in symbols, example:
+#+begin_quote
+
+#include <QMainWindow> -----into-----
+#
+include
+<
+QMainWindow
+>
+
+#+end_quote
 *** Do we need this? Its Emacs hiding text being made professional
 #+begin_src emacs-lisp
 
@@ -301,6 +319,7 @@ except Exception as e:
 
 #+end_src
 *** [[https://www.awseducate.com/student/s/content][AWS Educate]]
+**** [[https://console.cloud.google.com/welcome/new?project=steel-fin-473905-g3&authuser=1][GCP google cloud]]
 *** Holy SH*T again!!
 #+begin_src emacs-lisp
 
@@ -698,40 +717,23 @@ sudo apt install gpaste.
 *** [[https://github.com/minad/org-modern][org-modern look]]
 *** join multi into 1 without spaces
 *** [[https://karthinks.com/software/fringe-matters-finding-the-right-difference/][another cool blog]]
-** Python web app security practices:
-** RUST:
-*** For those that missed the session, simply go to [[https://github.com/rust-malaysia/bevy_workshop][github repo of bevy malaysia]], copy src, clear out obstacles.rs, and start from there. It should be the same thing.
-*** Some recommended (please go through them, defo begging you...) resources:
-**** Install Rust - Rust Programming Language (A must!)
-****     Official Introduction to Bevy (Highly recommended!)
-****     What is an ECS? feat. Bevy and Rust (Entity-Component-System, a core concept in Bevy, explained in a video by Chris Biscardi)
-****     Game Engine Of The Future - YouTube (A very fun and nice introduction to the Bevy engine by TanTan! Definitely not trying to convince you to switch over to Bevy for your future projects hahaha)
-****     Bevy Playground (Try Bevy on your browser now!!!! Highly recommended!)
-**** Contact us organizers at
-****  +60164410216 (Ivan Tham)
-****     +60129851338 (Jeffrey Lean)
-****     +60173389100 (Nixon)
-**** [[https://t.me/+dF46Fly4A_BjOTJl][subscribe for more events]]
-****  https://rust-malaysia.github.io/meetup/
-**** [[https://www.youtube.com/playlist?list=PL85XCvVPmGQh3V0Pz-_xFm6VAUTR4aLUw][YouTube]]
-**** [[https://nixon-voxell.itch.io/lumina][game1]]
-**** [[https://github.com/nixon-voxell/lumina][game2]]
-**** [[https://bevyengine.org/learn/quick-start/getting-started/setup/][install bevy]]
-**** [[https://www.rust-lang.org/tools/install][install rust]]
-**** [[https://bevyengine.org/learn/quick-start/introduction/][introduction to bevy]]
-**** [[https://www.youtube.com/watch?v=AirfWcVOEHw][Entity Component System]]
-**** [[https://www.youtube.com/watch?v=sfFQrhajs6o][YouTube introduction]]
-**** [[https://learnbevy.com/playground][bevy playground]]
 ** We need to refactor error message of upload, what do we do with all the ID info?? Maybe theres no need for it.
 *** create checks for duplicate events
 *** we should add timestamp naming for CSV files
 *** https://qwiet.ai/hacking-and-securing-python-applications/
 ** Make sure you share-rate is above 3%
-** Post in Pythons Group Malaysia, your willingness to work for Django, having experience in Flask and used Django for a side project.
 ** Instagram, YouTube:
 *** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** Put this in another post:
+**** After many years, Ill have to finally admit, that software engineering is arguably more difficult than even electrical engineering. Becoz of the many abusive elements, which includes lack of structural support. Software Engineering is an ever-shifting field. That alone is fine, arguably "fun", if it wasnt for the fact that software engineering doesnt get the same respect as other engineering, hence we are treated like gig workers. Until, software engineering matures and "grows up", it will continue to be the less-respected field. The problem is also the multitude of newcomers who, but dont treat it with same respect once they land their cushy jobs. So lots of Javascript-only developers, with no respect of the umbrella field (dont blame them, they need to eat too). And so many problematic "ideologies" that have fully conquered many parts of SE in the corporate world, such as "Clean Code" and pervasive Java style OOP. You could argue fields like Electrical Engineering is easier, becoz its stable, bounded by historical terms/culture/ the law of a country (such as how power generators, distribution and transmission of power differ between countries). Electrical Engineering is more "resistant" to change and idiot proof. In contrast, Software Engineers are somehow expected to be simultaneously "flexible" and "locked-in". Simultaneously "independent" yet "hierarchical". Every "expert" in this field has what you call, "survivors bias". Most "experts" also havent really met another "expert". So one "expert" lives and dies by "clean code", while another will not touch it with a 5 feet pole. And many contrasting opinions. (Oh by the way, quite a number of superbly talented developers that dont believe in Clean Code). The average expert also doesnt believe in documentation, but the amount of overly verbose documentation when corporate money decides to back documentation, holy sh*t (think Java docs: overly verbose, lacking in examples).
+**** Dont get me wrong, I love programming. But isnt this ridiculus? Software Engineering is just an underfunded art+science+hack+math.
+*** The clean code debacle
+**** Casey 
+**** The odin guy
+**** the internet of bugs guy
+*** NixOS (and ehem, GUIX..). The most under-rated Linux distro? Its an OS with declarative configuration, atomic upgrades and rollbacks, etc... Its a "stateless OS", basically infinitely "BACKUP-able". Instead of the state of the machine being determined by step-by-step installs and configs. The state of your system is determined entirely by your config. If you used Emacs before, but havent tried NixOS (and GUIX, ehem) its kinda the same thing. Where your config literally determines the current "state". Except its for OSes. Being reproducible makes it great for mass deploys (of the exact system and apps on multiple computers).
 *** Niri? Leonardo drawing app? Infinitely and organically spawning depending on your current workflow seems to the future
 *** What would you do if you could go back in time, and inform your younger self. I would inform my younger self, that software engineering world is filled with misnomers and misleading terminologies, and if you only "disrespected" it more, you would become so much more epic. But the key in the "real world", is to navigate between corporate projects and personal projects. But not only is it "too late" for that, the notion of "programmers freedom and happiness" is dependent on top of "personal responsibilities", "real religious dogma" and "political stability". Down here, this is pretty much unachievable. 
 *** What is an OS?
@@ -774,14 +776,20 @@ https://web.stanford.edu/class/cs81n/command.txt
 
 #+end_quote
 *** [[https://app.syncuid.com/syncuid?fbclid=IwY2xjawM-1JJleHRuA2FlbQIxMABicmlkETE5TThhZ3BxR0x0c1VQVmxGAR4M_qdd0WbvJkzNS2aSS2XYAcRlbt3copbZvhLiHV7HNzdLSRt7q3K-CJuKOg_aem_n09274JffIIpXAW7qRl-DA][You must JOIN this group]]
-*** [[https://www.youtube.com/watch?v=DRn3-MN92H4][human shaped robots are stupid]]
 *** Why we have a lot to learn old Emacs tools
+*** Using a library also involves understanding how the creators of the library think. At least thats how I try to think when I learn a new language. Most of the time, that just means realizing, the guys who made those libraries love hiding data and functions as private members of some class, making it difficult to actually hunt down hidden logic. Learning library becomes a just as challenging as learning the language.
+*** Is it more valuable to master a programming language or know a lot of libraries?
+**** Its not a simple binary answer
+**** Some libraries are entirely solving problems that are native to the language (e.g. assisting the language’s packaging tools or enhancing the syntax).
+**** Even for libraries that are solving general purpose problems, how they interact with the language is important
+**** Do you want to write libraries that other people will use? To do that well, you need both a good general understanding of libraries and quite a deep knowledge of the language.
+**** People do over-obsess about “language mastery”, but “learn programming, not languages” is the flipside that seems to encourage in people "you dont need to learn anything to contribute to society"
+*** With the increase in Python adoption, comes an increase in programmers who will only learn 1 language (and unable to move to another). But we cant stop the march of time. Progress is progress, I asked some random guys at events. and interviews, they say its about flexibility. No, I actually hate that word. "Flexibility" seems to imply, a willingness to sacrifice your "obvious" strengths to pursues a skill that "might" be useful, but theres no guarantee, becoz someone else will have mastered it several years before you. The problem is people no longer knows "why" we learn prog langs anyway. The answer is sometimes quite simple. If you wanna learn more about computer hardware, you will learn more about hardware learning a prog lang, than holding a screwdriver. If you wanna learn about libraries, you will more about libraries by creating a simple library in a language, than mastering an entire library. Soon, people will master a prog lang, acheiving a lot, but still not realizing, they are actually already learning about hardware, liraries, etc. 
 *** Why cant we just use technology and AI to bootstrap ourselves to nature. The same way Python can be bootstrapped to the low-level hardware, in a sense that no longer
 *** The reason why people get defensive over programming languages, is that already installed systems often need defending. The installed systems are large, really large. And the laws that govern that installed system are written by incompetent folks. Of course, ideally most computer scientists and software engineers with deep knowledge of the system should be writing the laws, but its either one or the other. So people defending Java against all other languages are mostly defending the system, constrained by bloated dinosaur laws.
 *** [[https://people.kernel.org/linusw/rust-in-perspective][rust in perspective, AMAZING history of languages]]
 **** There are many illuminating quotes inside. But one particular interesting bit. How Niklaus Wirth (some creator of a language called Pascal), both critized C language. Something along the lines of "it gives the appearance of high level language while not behaving like 1". An example is how C has no "awareness" of array sizes and we are dealing with memory addresses. (This explains the weirdness of dealing with C++ in my own project, where appending new table rows, requires you to pass in as arguments, along the data, array size. You dont have this nonsense in Python). Of course, the benefit of having this low level of control, is that the pointer can refer to anything, register/RAM/etc. The kind of control that programmers love, giving some true hacking powers.
 *** llamo and llama.cpp enables LLM inference on consumer hardware. Layman terms: it lowers the precision of the floating point numbers used in the model. So me no knowing anything, I decided to try it on my not-really-high-end laptop. Bad idea. It completely halted to a stop.
-*** 
 *** LinkedIn:
 **** Any meaningful software or software-adjecent project is often created by 1 man. Saying this makes you sound like some toxic pro-individualistic guy. Taken from Jonathon Blow's own quote, but unfortunately its true. So we have the Leonardo drawing app. When it comes to drawing it completely blows Photoshop out of the water. Professional illustrators are giving good reviews for a Beta version. 1 man vs a software developed by an entire skyscapers worth of community. Im not sure what that says about the state of modern software as a whole, but its saying something substantial. I just dont know how to put in words. "Mind boggling sh*tshow?". But the software is still in Beta. "Mind boggling" is somehow not enough. But a point to consider is that is that Photoshop history came from "Photographers" in mind. But still..
 *** Saving Malaysian education with open source tools
@@ -847,10 +855,10 @@ unless youre trapped in a universe with nothing but an embedded device.
 **** Mention the article first. But we are going to summarize it. Link in description.
 **** https://web.stanford.edu/class/cs81n/command.txt
 **** Someone commented on how I jumped right into eLisp, and that seems to scare people. Another friend Imet Zoom, commented on how this is bad way to make money. So instead, if you see me writing eLisp, always assume im going to explain this very soon, and the eLisp, is just to demonstrate the immediate effect of eLisp on your editors behaviour.
-**** Why do we use GUI? Computers are much more powerful than most people realize. Modern software are multiple layers of abstraction. That includes your fat and sluggish Microsft Word. Abstraction in this sense isnt just the prog lang of choice. It is various layers of metaphors built on past abstractions, and that layer includes the font you choose, or the QWERTY keyboard you type on.
+**** Why do we use GUI? Computers are much more powerful than most people realize. Modern software are multiple layers of abstraction. That includes your fat and sluggish Microsft Word. Abstraction in this sense isnt just the prog lang of choice. It is various layers of metaphors built on many abstractions of the past, and that layer includes the font you choose, or the QWERTY keyboard you type on.
 **** When you talk to programmers and their fascination with the efficiency and power of command line apps. Their arguments are 100% convincing, but its easy to get lost in meaning. GUI's and mouses are not evil, they are meant to be altruistic, to let the average user access the power of the computer. 
 **** But the GUI itself is not evil, its a tool. The existing GUI is an abstraction for accessibility. Its a tool that has many flaws, but it works. 
-**** Modern Operating Systems and software have successfully fooled people into thinking computers are too complex to learn for most, but too simple as problem solving tool, and that there's only 1 way to do things. 
+**** Modern Operating Systems and software have successfully fooled people into thinking computers are too complex to learn and enslave for the average mortal, and that terminal apps are too simple to actually be "computers" 
 **** Emacs has had a long history of surviving this tug of war between GUI and CLI, and between the many ways of doing many things. And it came out on top by being VERY extensible.
 **** What is extensibility?
 ***** Extensibility is "the quality of being designed to allow the addition of new capabilities or functionality." 
@@ -858,11 +866,8 @@ unless youre trapped in a universe with nothing but an embedded device.
 ***** Packages is not what makes Emacs works. Its the other way around, Emacs is what makes the packages works. Why? Becoz eLisp.
 ***** If I attempted to explain eLisp, I would sound llike a fool.
 **** Extensibility is the very DNA of eLisp
-**** So, here's the struggle, how do I explain eLisp to a writer who is Emacs adjacent? 
-**** The answer I cant. But I can show tricks I foud online
-**** We have to include our eLisp of saving on losing focus. How does Microsoft Word do this? It has a version of you file every 10 minutes. But its not the real file, but AutoRecoverable version.
+**** How I eLisp-ed my way into that cool trick I achieved at the beginning.
 **** Is this still scary? Even for those who are Emacs-adjacent? Ok lets try using a package instead.
-**** Try!!
 **** We can try the jinx package which is supposed to be faster.
 **** Install both of these packages
 **** Both Hunspell and aspell works, but for pesonal dictrionary only aspell worksm, getting it to work completely from Emacs is also quite tricky. So the most sane option.
@@ -884,8 +889,20 @@ aspell check ~/sample.txt
 **** So we learnt about eLisp ability to take text as data, and transform our writing experience completely.
 **** We also learnt that Jynx package, but making it to work with hunspell is difficult
 **** Please consider buying me coffee in the Ko-Fi link in the description. It matters a lot.
-*** Part 3: 
+*** Part 3, "But what about capitalism?": 
+**** We learnt some cool abbrev-mode tricks. And how we can do some great tricks, to make a personalized autocorrect.
+**** The strange effect Software Engineering tribalism, and subtle strain of anti-intellectualism down here, in my country.
+**** If software engineers in "developed" parts of the world, isnt it much worse?
+**** Sometimes, I feel like Im trying so hard to enjoying what Im doing, since software engineering isnt a field thats gonna develop "some maturity"
+**** Is this the same feeling everywhere, capitalism and climate change, and AI, and software engineers losing its appeal and respect. And newcomers treating aspect of it like disposable.
 **** 3 things from (Internet of bugs), survivors bias, and blub paradox, but also putting Jonathon Blow into a corporate position would be a waste of talent
+**** We have to include our eLisp of saving on losing focus. How does Microsoft Word do this? It has a version of you file every 10 minutes. But its not the real file, but AutoRecoverable version.
+**** Most of us already know Emacs doesnt save time initially, it only saves time if you actually overcome a certain learning curve.
+**** I once worked for this company, that uses Emacs as the IDE and launching point. They used Emacs version 22, which is the last Emacs to not have a package manager. They start their app, by feeding a gis.exe an emacs exe as a parameter, and some app configs. I used a clever workarond that involved installing Emacs with packages on my local, all under 1 folder, and I copied the zipped folder the remote. So there was no messing around with any app files. Everything as done with configs in my personal folder and even the Emacs and all the packages installed was inside a personal folder. Im jobless now, but that has NOTHING to do with how I use Emacs there. It was mostly about me writing some highly opinionated posts about Java and some of the tasks. But here I got some questions.
+**** What do you think of companies who are suspicious of hiding their codebase, even when their codebase isnt really that attractive, not well documented, would require a VERY long time to read, its just a messy pile of OOP. And its also written in a VERY rare language (built on top of JVM), so the likelihood of it landing into the hands of competitors is close to nil. Also company that purposely have vague statements, such as, "expected behaviour". 
+**** Pre-assessment: What do my viewers already know:
+***** They already know hydra
+***** 
 **** Hydra mode, finally I understand:
 #+begin_src emacs-lisp
 
@@ -908,6 +925,7 @@ aspell check ~/sample.txt
 
 
 #+end_src
+**** Im still unemployed, and I am currently managing this between responsiblities. 
 *** this doesnt belong here, CNCF, Linux, open source:
 **** https://cloud-native.slack.com/
 **** https://clotributor.dev/
@@ -1100,9 +1118,6 @@ Contact info also available in the link.
 *** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
 ** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
-** contact African guy again
-** Python project notes, jot down the folowing:
-*** [[https://skulpt.org/using.html][skulpt is cheat for running python like its javascript]]
 ** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
 *** https://adf.org.au/drug-facts/ketamine/
 *** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol
@@ -1113,7 +1128,6 @@ Contact info also available in the link.
 **** green, black and oolong tea
 **** brown rice, soy and adzuki beans, chestnuts, mushrooms, tomatoes, spinach, broccoli, cabbage, cauliflower, Brussels sprouts, sprouted grains and sweet potatoes
 ** [[https://ringgitplus.com/en/blog/income-tax/how-to-file-your-taxes-for-the-first-time.html][read on how to do e-filing for d first time]]
-** wrote a little n Scriabin nocturne
 ** Read about your Hugo
 *** Understand layouts and everything inside (partials, shortcodes, _default)
 *** When you replaced your /layouts folder, it fails, simple rename back /_layouts

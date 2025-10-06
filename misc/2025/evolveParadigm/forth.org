@@ -31,8 +31,28 @@ over
 * Forth:
 ** Forth consumes values, even "if" conditional, its apparently its part of its beauty.
 *** Eg: when we solved our min problem, we we simplified if-else to if, using nip, to rely on stack Forth consuming values
-** we learnt from stack manipulation, that more "iterative-complex??" words can be made from its root word. Eg: rot4 = rot3, others
+** we learnt from stack manipulation, that more "repeating" words can be made from its root word. Eg: rot4 = rot3, others
 ** 
+* [[https://www.forth.com/starting-forth/2-stack-manipulation-operators-arithmetic/][Starting Forth]]
+** Both below mean the same thing:
+#+begin_src forth
+
+  17 20 + 132 + 3 + 9 + .
+  
+  17 20 132 3 9 + + + + .
+
+#+end_src
+** This means we can treat the whole stack as arguments of the function (the orders matter). and then we can define a word, like so.
+#+begin_src forth
+
+  \ A train has traveled a total of 10 km. Its moving at constant a speed of 60 km/h. What is the total distance traveled after 5 hours.
+  10 60 5 * + .
+  \ In word form
+  : mileg_spd_tm_total
+    ,* + ;
+
+#+end_src
+** exaggarated the word name to highlight stack order
 * Embedded:
 ** Yes, we can use it on a microcontroller.
 ** Unlike the usual compiler & flashing process -> which compiles your source code to machine code, and then we flash to the microcontroller.... Forth allows Python-style REPL

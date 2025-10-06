@@ -1,2 +1,31 @@
 * Begin
 * [[https://softwareengineering.stackexchange.com/questions/252448/representation-of-a-question-mark-in-variable-names][predicate variable naming]]
+* Casey
+** according to Casey, function naming is not a good replacement for semantics (what the function does?), but rather the language itself
+* Set Theory
+** Set
+** Set Notation
+#+begin_quote
+
+# Roster Method
+𝐴 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+Set Builder Not.: {𝑥 𝑥 𝑖𝑠 𝑎 𝑛𝑎𝑡𝑢𝑟𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑓𝑟𝑜𝑚 1 𝑡𝑜 10}
+
+#+end_quote
+** Cardinality of a set:
+#+begin_quote
+
+n(A)
+
+#+end_quote
+** Equal Sets -> two sets containing the same elements, ignore order and duplicates
+** Equivalent Sets -> two sets that contain the same number of unique elements
+** NOTE, misnomer:
+*** If 2 sets are equal, they are equivalent. Its becoz Equal Sets are like "an identity split into 2, and breeding itself"
+** Subsets -> all elements of A are also in B
+** Proper Subsets -> all elements of A are also in B, but A is not equal B. (its got foreign extras)
+** NOTE, misnomer:
+*** Subsets are like an identity, Proper Subsets are essentially something completely different, differnt "breed"
+** 
+

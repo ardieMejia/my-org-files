@@ -57,4 +57,4 @@ $ ffmpeg -i "some-link" -codec copy video.mp4
 yt-dlp -f mp4 --write-sub  --cookies-from-browser firefox <url>
 
 #+end_quote
-
+golang magik brainfudge zig 
