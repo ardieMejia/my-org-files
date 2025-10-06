@@ -1,0 +1,3 @@
+* [[https://www.youtube.com/watch?v=Txe4ji4EDUA][Get started with Otel, we REALLY need to write about this one]]
+** write especially about language details
+** 

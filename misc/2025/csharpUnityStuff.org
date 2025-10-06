@@ -1,0 +1,31 @@
+* Installation:
+** There is some nasty business going in thie Microsoft side, as usual
+** Although the articles are higly misleading, Ubuntu 20 (not just 22 and 24) highly support dotnet 9
+** [[https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404][dotnet 9]]:
+#+begin_quote
+
+# ===== this didnt work at first, becoz the /keyrings/ was not created =====
+sudo wget -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/microsoft.gpg
+
+sudo vi /etc/apt/sources.list.d/microsoft.sources
+
+sudo apt update
+
+sudo apt install dotnet-sdk-9.0
+
+#+end_quote
+** We need dotnet runtime, becoz now we understand back all the CS-ey stuff. This is just a environment. You know, becoz C# is "high level". So this provides, JIT, memory management, garbage collection, exception handling, and Microsoft's weird security policies
+*** [[https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404][aspnet or dotnet runtime]]
+* If for some reason, we are stuck witrh old code:
+** For older C# applications built with the .NET Framework, you might need to use Mono, an open-source implementation of the .NET Framework. install mono.
+#+begin_quote
+
+
+sudo apt install mono-complete
+mcs MyProgram.cs
+mono MyProgram.exe
+
+#+end_quote
+
+
+

@@ -1,0 +1,2 @@
+* Links of projects:
+** [[https://www.youtube.com/watch?v=h_noB1sI_e8][YT series: how to build a website in lisp]]

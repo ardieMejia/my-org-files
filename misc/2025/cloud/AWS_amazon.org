@@ -1,0 +1,5 @@
+* AWS
+** IAM -> recommended to create a non-personal email. Once you lose access to that email, you lose for good
+** EC2 -> can resize
+** SS3 -> similar to render persistent disks
+* 
