@@ -22,15 +22,14 @@
   (make-list 10 2)
 
   (setq var1 (-cons*
-              "Python Pydantic/dataclasses - Python Faker, BEtter s conf .org file, ask the 3 guys who respected u on lang group on part time job"
-              "combobulate, especially dealing with nodes"
-              "Emacs code compass, BACKUP our data, magit, write a HTTP server"
-              "email, CV, also Audiosockets"
-              "BOIDS, LIDAR, Python make own ufunc, we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
+              "combobulate, especially dealing with nodes, http://www.webupd8.org/2009/09/real-time-earth-wallpaper-for-linux.html, yayasan pemeraju bank slip"
+              "Emacs code compass, BACKUP our data, magit, write a HTTP server, "
+              "email, CV, also Audiosockets, https://vfunction.com/blog/3-tier-application/, https://www.youtube.com/watch?v=YOrRQtA8BsY"
+              "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
               "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Forth"
-              "crochet, Hanifas health, code generation (internet of bugs)"
-              "read Rust perspective PDF, commityour treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely"
-              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org"
+              "crochet, Hanifas health, code generation (internet of bugs), ambiguity in corpo legal terms"
+              "read Rust perspective PDF, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely"
+              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM"
               (append
                (make-list 3 "Qt practice")
                (make-list 2 "boppps")
@@ -76,7 +75,23 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-trash /home/ardie/mybackup2025/
 
+# ==================================================
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Documents /home/ardie/ardie-back-2025/
 
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Desktop /home/ardie/ardie-back-2025/
+
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-python-workspace /home/ardie/ardie-back-2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-gforth-workspace /home/ardie/ardie-back-2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-go-workspace /home/ardie/ardie-back-2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-csharp-workspace /home/ardie/ardie-back-2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Music /home/ardie/ardie-back-2025/
+
+rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-trash /home/ardie/ardie-back-2025/
 
 #+end_quote
 ** Terry:
@@ -152,57 +167,6 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 *** Upload Jan Feb March, and try uploading FRL in Feb, it should fail wih "wrong type"
 *** Uplaod Jan Feb march, and try updating FRL in Feb, it should correctly updated FIDE. Check 1 members to confirm
 *** login as member and update a FIDE
-** Write somewhere:
-*** replace all request.args.get('mcfid') occurence with current_user.mcfId
-*** for uploads
-**** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][secure file uplaods]]
-**** [[https://www.geeksforgeeks.org/uploading-and-downloading-files-in-flask/][file upload basics]]
-**** [[https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask][miguel file uploads]]
-**** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
-**** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][in flask]]
-**** [[https://stackoverflow.com/questions/7076042/what-mime-type-should-i-use-for-csv][the mimetypethat should be used]]
-**** We need database tracking each uploads.
-#+begin_src python
-
-  class File(db.Model):
-         id = db.Column(db.Integer, primary_key=True)
-         filename = db.Column(db.String(200), nullable=False)
-         filepath = db.Column(db.String(300), nullable=False)
-         created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-         def __repr__(self):
-             return f"File('{self.filenname}', '{self.filepath}')"
-
-  # and do the usual db.session.add() db.commit()
-
-#+end_src
-*** read about Render persistent disks. 
-**** navigating and modifying the folders from inside Render Dashboard shell tab
-**** [[https://community.render.com/t/files-in-render-disk-are-being-lost-with-starter-service/17440/4][use /data path]]. Being root is fine, it will persistent and be writable
-**** [[https://render.com/docs/disks?_gl=1*1c3j8ip*_gcl_au*MTU0Nzc2NjkxOS4xNzQyNDUzMTcw*_ga*NDI4NTk4MDM0LjE3NDI0NTEyMTU.*_ga_QK9L9QJC5N*czE3NDY3MTU2NjEkbzExJGcxJHQxNzQ2NzE1ODkwJGo1JGwwJGgw#transferring-files][persistent disk]]
-**** python write to disk
-#+begin_src python
-
-  import os
-
-disk_path = "/mnt/data"  # Path to the persistent disk
-folder_name = "my_folder"
-folder_path = os.path.join(disk_path, folder_name)
-
-try:
-    os.makedirs(folder_path, exist_ok=True)
-    print(f"Folder '{folder_name}' created successfully at '{folder_path}'.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-#+end_src
-**** [[https://magic-wormhole.readthedocs.io/en/latest/welcome.html][magic wormhole to download files]]
-**** [[https://www.youtube.com/watch?v=oFrTqQw0_3c][magic wormhole]]
-**** [[https://render.com/docs/disks?_gl=1*18deote*_gcl_au*MTU0Nzc2NjkxOS4xNzQyNDUzMTcw*_ga*NDI4NTk4MDM0LjE3NDI0NTEyMTU.*_ga_QK9L9QJC5N*czE3NDY3MTI2NDQkbzEwJGcxJHQxNzQ2NzEzMzQ0JGoyMSRsMCRoMA..][monitoring Render persistent disk]]
-**** And why people keep mentioning cron jobs.
-*** to deploy our system, from scratch with Admin AND Users. We should have an entry point that searches an admin. If True, redirect to main_page, Else admin_register.html
-**** this means we need to create our password reset email delivery system.
-**** only then can we finally protect all our end points
 ** Password resets for Terry's app:
 *** [[https://nrodrig1.medium.com/flask-mail-reset-password-with-token-8088119e015b][better example]]
 *** The simple example, without anythng special [[https://stackoverflow.com/questions/48983616/reset-the-password-in-flask-python][stackoverflow]]
@@ -271,6 +235,63 @@ except Exception as e:
 *** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
 *** 
 ** Emacs
+*** TODO Important, to test cascade deletes
+**** Story, we have a system that stores students and their departments. Here are the details.
+**** Joint Degree Program: A student enrolled in a combined Bachelor of Science in Mechanical Engineering and Bachelor of Science in Electrical Engineering program.
+**** Instead of cascaded deletes, it if we delete mechanical engineering department, it replaces that students column with NULL values
+#+begin_src sql
+
+  CREATE TABLE employees (
+  employee_id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  hire_date DATE DEFAULT CURRENT_DATE,
+  salary NUMERIC(10, 2) CHECK (salary > 0),
+  department_id INTEGER,
+  CONSTRAINT fk_department
+  FOREIGN KEY (department_id)
+  REFERENCES departments (department_id)
+  ON DELETE SET NULL
+  );
+
+  CREATE TABLE departments (
+  department_id SERIAL PRIMARY KEY,
+  department_name VARCHAR(50) UNIQUE NOT NULL
+  );
+
+#+end_src
+*** Fiverr classes, we need to do this:
+**** [[https://meet.google.com/hna-ufpo-dzv][google meet link]]
+**** [[https://www.reddit.com/r/vim/comments/qazue0/what_are_your_top_ten_or_so_essential_commands/][reddit]]
+**** [[https://github.com/emacs-evil/evil-collection][evil collection github]]
+**** early-init-file
+#+begin_src emacs-lisp
+
+  (progn
+
+    ;; Our imperfect example
+
+    ;; per user Emacs-specific files, sometimes Emacs will use this
+    (setq user-emacs-directory "~/my-emacs-29-config")
+    ;; if user installs packages the normal way, it gets installed here
+    (setq package-user-dir "~/my-emacs-29-config/elpa")
+
+    ;; add all subdirs of default-directory to load path
+    (let ((default-directory "~/my-emacs-29-config/elpa"))
+      (normal-top-level-add-subdirs-to-load-path))
+
+
+    (load-file "/home/ardie/_config/emacs/init_28.el")
+    )
+
+#+end_src
+**** (error "Done")
+**** try package
+**** BOPPPS
+***** Story to bringe ur content and his goal
+***** Whats the content? Is it just Vim? I offer tips as extra, maybe too Emacs heavy. What will he accomlissh. Maybe at least be great enough in 1 package
+***** pre-assessment, what he already knows. Also recall previous lesson
 *** We need to write a "separator function" that auto-separates a lne based in symbols, example:
 #+begin_quote
 
@@ -326,35 +347,36 @@ QMainWindow
   ;; inspired by https://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
 
 
+  ;; an idea is to use define-derived-mode to create a mode for safely writing in an overpowered mode
 
   (defun ardie/test()
-  (interactive)
-  ;; (print (substring-no-properties (ispell-get-word nil)))
-  (if mark-active
-      (let ((after (substring-no-properties (buffer-substring (region-beginning)(region-end)))))
-	(exchange-point-and-mark)
-	(pop-mark)
-	(backward-char)
-	;; (ispell-get-word nil)
-    ;; (print (word-at-point))
-	(let ((before (substring-no-properties (word-at-point))))
-      (define-abbrev xx-abbrev-table before after)
-      ))
-  (let ((after (substring-no-properties (word-at-point))))
-    (backward-word)
-    (backward-char)
-    ;; (ispell-get-word nil)
-    ;; (print (word-at-point))
-    (let ((before (substring-no-properties (word-at-point))))
-      (define-abbrev xx-abbrev-table before after)
-      ))
+    (interactive)
+    ;; (print (substring-no-properties (ispell-get-word nil)))
+    (if mark-active
+        (let ((after (substring-no-properties (buffer-substring (region-beginning)(region-end)))))
+          (exchange-point-and-mark)
+          (pop-mark)
+          (backward-char)
+          ;; (ispell-get-word nil)
+          ;; (print (word-at-point))
+          (let ((before (substring-no-properties (word-at-point))))
+            (define-abbrev xx-abbrev-table before after)
+            ))
+      (let ((after (substring-no-properties (word-at-point))))
+        (backward-word)
+        (backward-char)
+        ;; (ispell-get-word nil)
+        ;; (print (word-at-point))
+        (let ((before (substring-no-properties (word-at-point))))
+          (define-abbrev xx-abbrev-table before after)
+          ))
+      )
     )
-  )
 
 
-(setq xx-abbrev-table (make-abbrev-table ))
+  (setq xx-abbrev-table (make-abbrev-table ))
 
-(setq local-abbrev-table xx-abbrev-table)
+  (setq local-abbrev-table xx-abbrev-table)
 
 #+end_src
 *** we need to read stuff: Emacs autodocumentation on point
@@ -362,36 +384,6 @@ QMainWindow
 **** https://github.com/dawsers/emacs-qthelp
 **** https://fanpengkong.com/post/emacs-ccpp/emacs-ccpp/
 **** https://lahtela.me/2020/05/21/setting-up-emacs-for-qt-development.html
-**** 
-*** This works holy s**t!!
-#+begin_src emacs-lisp
-
-
-  (defun my-mark-line ()
-    (interactive)
-    "my own mark lien"
-
-    (if mark-active
-        (progn
-          (exchange-point-and-mark)
-          (when
-              (not (equal (window-end) (point)))
-            (next-line)
-            (move-end-of-line 1)
-            )
-          (exchange-point-and-mark)
-          )
-      (progn
-        (move-beginning-of-line 1)
-        (set-mark (point))
-        (move-end-of-line 1)
-        (exchange-point-and-mark)
-        )    
-      )
-
-    )
-
-#+end_src
 *** We need to use an Ubuntu clipboardmanager with Emacs built in function (rather than Emacs kill ring), and post a video on that
 **** No GUI manager:
 #+begin_quote
@@ -474,7 +466,6 @@ sudo apt install gpaste.
 **** I also have hydra for selecting, killing lines, selecting functions, super cool, etc....
 **** fuure consideraiont include epoxied flat beads instead of velcro, but I have trouble finding small and flat beads, coz the velcro absorbs dust easily
 **** References: https://github.com/emacsorphanage/key-chord and https://www.johndcook.com/blog/2015/02/01/rare-bigrams/
-*** Code is Data:
 *** we need to watch more Git videos, like [[https://www.youtube.com/watch?app=desktop&v=NXaEImbo-n8&t=920s][this]], and systemcrafters vid on git reflog. Also, we faster diff checks inside Emacs. Make it EPIC!!
 *** we need to do a command that copies from current buffer folder into other buffer folder, with confirm prompt from user
 *** we need a "code as data" note/file
@@ -658,27 +649,6 @@ sudo apt install gpaste.
 *** combobulate links:
 **** [[https://sqrtminusone.xyz/configs/emacs/]]
 *** we need to create a script that goes uses both next-logical-line and forward-word to copy, but we are only it works in web-mode
-*** we need to create a el script fr we-mode that splits tags (once wrapped) into separate lines, or can use forward-sexp into it, think
-#+begin_src lisp
-
-
-
-  (split-string "<br><br>" ">")
-
-
-(let ((separator "_"))
-  
-  (dolist (var1 '("1" "2" "3"))
-    (print
-     (concat
-      var1
-      separator
-      )
-     )
-    )
-  )
-
-#+end_src
 *** we need to really try javascript console in Emacs, we forgot where th link was
 *** we should really explore combobulate to explore doing tricks in HTML and JAVSCRIPT, like moving a tree outside parent
 **** moving everything outisde of any bracket
@@ -709,7 +679,6 @@ sudo apt install gpaste.
 #+end_src
 *** [[https://www.deusinmachina.net/p/tree-sitter-revolutionizing-parsing][parsing tree-sitter link]]
 *** [[https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter][another one on tree-sitter]]
-*** 
 *** [[https://jackjamison.xyz/blog/emacs-garbage-collection/][garbage collection, basically to reduce stuttering]]
 *** [[https://kitchingroup.cheme.cmu.edu/blog/2016/11/10/Persistent-highlighting-in-Emacs/][The Kitchin Research Group]]
 *** [[https://github.com/rougier/svg-tag-mode][really cool, possible improvement to our html editing]]
@@ -722,32 +691,182 @@ sudo apt install gpaste.
 *** we should add timestamp naming for CSV files
 *** https://qwiet.ai/hacking-and-securing-python-applications/
 ** Make sure you share-rate is above 3%
-** Instagram, YouTube:
-*** Join KLCC groups, Malaysian craft groups, Malaysian art group, Southeast Asian music groups to target more than 100 views by Saturday.
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** [[https://medium.com/@sameera.godakanda/the-real-reason-teslas-ai-chief-bailed-c7f5a0a52c39][Andrej Karpathy is sussy]]
+*** Hank Greens AI circle jerk
+*** YT: Companies have to be held accountable. 
+**** How Programmer Jobs Get Created And Destroyed, And How Ai Migat Change That
+*** [[https://www.youtube.com/watch?v=flYs1fwwACk][Emacs on the go]]
+*** Joke
+#+begin_quote
+
+Smirking and sneering in the workplace
+
+
+I used to not think much of it, coz I used to downplay myself a lot.
+
+
+Lots of lots self doubt.
+
+
+Then I realized that smirking and sneering especially among men is basically "conservative talk".
+
+
+Its how they talk to each other.
+
+
+Especially since the Software Engineering in corpo environment is kind of a half joke, no mature structure/interview/filtering process
+
+
+Its also how corpo types talk to juniors as a subtle way to humiliate them down here.
+
+
+It seems to be like its a passage of rite, for seniors to "sneer and smirk" talk.
+
+
+But part of me, doesnt want to believe it. Coz at the back of my head, Im always thinking of that possible future clone of me, a junior, who also struggles with the same self-doubt.
+
+
+Yeah, this field is a joke.
+
+
+Now with AI, it'll be an even a bigger joke.
+
+#+end_quote
+*** SmallWorld Magik multiple inheritance.
+#+begin_quote
+
+Magik, the programming language of SmallWorld.
+
+SmallWorld is developed by GE Vernova.
+
+SmallWorld is still used by a few Electrical Utility companies.
+
+One of them is our TNB.
+
+Maybe most programmers down here are not that great at explaining what they understand.
+
+Or the only way to know the ugly points of OOP is to go the deep end.
+
+Im reminded of Casey Muratori.
+
+So read somewhere, the Magik programming language is actually far too similar to SmallTalk. The programming language that helped define what OOP is.
+
+Another source, is how Magik is like a step backward from SmallTalk, becoz its got multiple inheritance.
+
+Inheritance while by itself is not bad, can cause some weird class inheritance shape.
+
+So if the software gets really big, and no one person knows everything about said software, everyone starts subclassing, you dont know how many subclasses of a parent class there are.
+
+Especially, if its large piece of software, and combined with DRY, you have some small piece of logic being used at many unknown places.
+
+Now with multiple inheritance, that gets even worse, much worse. Java removed multiple inheritance for good reason.
+
+But SmallWorld system itself is rife with multiple inheritance. SmallWorld is a dead end.
+
+#+end_quote
+*** datanoation:
+#+begin_quote
+
+The largest volcano in our solar system is definitely Olympus Mons. But according to https://eeps.rice.edu/news/2023/hotly-debated-history-largest-volcano-solar-system it was formed not by tectonic plates, but by a buildup of lava flow supplied by magma plume under the surface. It was the product of a world that had no tectonic plates. It is also a dead ancient volcano, so no scientist recorded explosions but instead speculated its activity.
+
+Olympus Mono sememangnya gunung berapi terbesar di sistem suria. Akan tetapi, berdasarkan https://eeps.rice.edu/news/2023/hotly-debated-history-largest-volcano-solar-system, ia tidal terbentuk dari plet tektonik, tetapi daripada pembinaan lava yang dialirkan dari jentul magma di bawah permukaan. Ia adalah produk era yang tidak bercirikan plet tektonik. I juga gunung berapi yang telah mati. Oleh itu, saintis tidak mempunyai rekod letupan tetapi hanya spekulasi aktikiti.
+
+
+
+#+end_quote
+*** "Public school is about education. It is NOT job training. And it should not be. Otherwise, the capitalists win." 
+*** [[https://www.youtube.com/watch?v=w3krYEeqnyk&t=1214s][conquering kubernetes with Emacs]]
+*** clever way to beg, example:
+#+begin_quote
+
+I will share something. 
+In my last job with intelligence service provider, I was earmarked to go to Muscat. However that time my leg was broken and i couldn't drive. If only I was fine that day, today I could have been earning middle east money and lived peacefully in my life. 
+It's not about rued opportunity. My boss who was close to my said my next choice was the worst but the offer was extended to him. I supported him and his manager and earned a good name. Who wouldn't want that? 
+Always be healthy, be top of your game in whatever you are good in. Some friends of mine disagree in competing but i always encourage to compete. Then you know where you lack .. 
+I left after 5 years in the company with some good memories. I know you guys will bitch say, "wat use gud memory can wash feet ony" likeddat but that's not the case. 
+I only have torn underwear so can you each bank in 0.01 dinar into my account? 😮 😛
+Goodnight.
+
+#+end_quote
+*** Is it true:
+#+begin_quote
+
+Is it true, that its really about how good you are at convincing your client?
+
+Thats what people down here keep saying.
+
+Now I dont believe in it anymore.
+
+Most clients dont know what they want.
+
+And your product could really be the better choice, and whats actually needed, but its not flashy enough to convince the client
+
+The communication is sometimes more important than the product itself.
+
+And the skill of Bullsh*tting is an under-rated skill
+
+#+end_quote
+*** The Bitter Lesson:
+#+begin_quote
+
+The bitter lesson is a claim in artificial intelligence that, in the long run, simpler systems that can scale with available computational power will outperform more complex systems that integrate domain-specific human knowledge, because they take better advantage of Moore's law.
+
+Also, first time hearing reinforcement learning.
+
+Richard Sutton, recipient of 2024 Turing Award, says Silicone Valley doesnt understand The Bitter Lesson.
+
+He says how LLMs interestingly while seemingly resemble the "simpler method scaled", the huge data centres seem like the complex method that integrates human knowledge. So LLM's are neither.
+
+So, i learnt from this interview, that LLM's have a learning cycle, and dont learn during "deployment". Basically, a form of intelligence that doesnt interact in the world.
+
+Sutton says the models dont really strictly "predict", since during "running", it doesnt interact with world, doesnt use users response as a way to adapt how it learns. (Its very different from some videos Ive watched of how "prediction" is just that "last word" token).
+
+In other talks, he mentions interesting concepts like meta-learning, which is "learning how to learn".
+
+Richard Sutton thinks LLMs are a dead end.
+
+https://www.youtube.com/watch?v=21EYKqUsPfg
+
+#+end_quote
+*** What:
+#+begin_quote
+
+Casey Muratori, in several of his infamous videos, commenting on OOP ideology. Described it as part of its problems, "associating data with methods", as in making it closely bound to each other.
+
+I knew OOP was an imperfect ideology, but could put my finger on it.
+
+Yes, survivors bias, but seriously I cant listen to anyone talk about OOP, clean code, without getting more confusion in getting what its about at its core.
+
+Yes, survivors bias, We need guys like this. Coz even guys who are seriously talented and treat OOP the treatment it deserves. As a tool not an ideology. Talking to them, makes both parties even more confused (I get more and more confused, when trying to explain, or someone explain to me).
+
+So seriously, survivors bias, yes. But unless SE grows up a bit. Im gonna rely on spicy opinions like a hungry child.
+
+#+end_quote
+*** So I thought it was mostly the state of education down here, that has led to SE to the mess that it is today. Turns out its a global phenomenon, but certain attributes exacerbate, developing countries, parasitic investors and its role in nations still in a political mess, etc. So the result of all this disillusionment Ive had for years in SE, is that the heroes at the top of SE down here have this idea in their head, that it takes "vision" to make it to the top. Well, some of them anyway. So this idea has been playing around in my head on and off for many years. The word "vision" sounds like on of those catchphrases and buzzwords. But it never sat well with me. Now, I realize you actually need the technical experience before you can have vision. I always hear, a CTO of some kind, saying to me, "I dont need to know the details", or "I cant read code". Are they lying in some way? Are they guys that view programming jobs as mere stepping stone to a managerial position? Becoz it makes no sense, anyone can have "vision". My 10 year old self had vision. Do these managerial types actually view this professions as a job for coolies?
+**** Anyway, thats just roundabout way of me saying, technical expertise matters (coz I cant put my thoughts into words yet). Its not that vision is not enough. Its that "vision" is almost like misleading term.
 *** Put this in another post:
 **** After many years, Ill have to finally admit, that software engineering is arguably more difficult than even electrical engineering. Becoz of the many abusive elements, which includes lack of structural support. Software Engineering is an ever-shifting field. That alone is fine, arguably "fun", if it wasnt for the fact that software engineering doesnt get the same respect as other engineering, hence we are treated like gig workers. Until, software engineering matures and "grows up", it will continue to be the less-respected field. The problem is also the multitude of newcomers who, but dont treat it with same respect once they land their cushy jobs. So lots of Javascript-only developers, with no respect of the umbrella field (dont blame them, they need to eat too). And so many problematic "ideologies" that have fully conquered many parts of SE in the corporate world, such as "Clean Code" and pervasive Java style OOP. You could argue fields like Electrical Engineering is easier, becoz its stable, bounded by historical terms/culture/ the law of a country (such as how power generators, distribution and transmission of power differ between countries). Electrical Engineering is more "resistant" to change and idiot proof. In contrast, Software Engineers are somehow expected to be simultaneously "flexible" and "locked-in". Simultaneously "independent" yet "hierarchical". Every "expert" in this field has what you call, "survivors bias". Most "experts" also havent really met another "expert". So one "expert" lives and dies by "clean code", while another will not touch it with a 5 feet pole. And many contrasting opinions. (Oh by the way, quite a number of superbly talented developers that dont believe in Clean Code). The average expert also doesnt believe in documentation, but the amount of overly verbose documentation when corporate money decides to back documentation, holy sh*t (think Java docs: overly verbose, lacking in examples).
 **** Dont get me wrong, I love programming. But isnt this ridiculus? Software Engineering is just an underfunded art+science+hack+math.
 *** The clean code debacle
-**** Casey 
-**** The odin guy
-**** the internet of bugs guy
 *** NixOS (and ehem, GUIX..). The most under-rated Linux distro? Its an OS with declarative configuration, atomic upgrades and rollbacks, etc... Its a "stateless OS", basically infinitely "BACKUP-able". Instead of the state of the machine being determined by step-by-step installs and configs. The state of your system is determined entirely by your config. If you used Emacs before, but havent tried NixOS (and GUIX, ehem) its kinda the same thing. Where your config literally determines the current "state". Except its for OSes. Being reproducible makes it great for mass deploys (of the exact system and apps on multiple computers).
 *** Niri? Leonardo drawing app? Infinitely and organically spawning depending on your current workflow seems to the future
 *** What would you do if you could go back in time, and inform your younger self. I would inform my younger self, that software engineering world is filled with misnomers and misleading terminologies, and if you only "disrespected" it more, you would become so much more epic. But the key in the "real world", is to navigate between corporate projects and personal projects. But not only is it "too late" for that, the notion of "programmers freedom and happiness" is dependent on top of "personal responsibilities", "real religious dogma" and "political stability". Down here, this is pretty much unachievable. 
 *** What is an OS?
 #+begin_quote
 
-I think what sets Emacs users apart.
+WARNING: Only for adults who are open-minded.
+
+I think what sets Emacs apart.
 
 Is how there's very little boundary between data, code, buffer, window, etc...
 
 And this lack of boundary, and translating this to power and control over your system, is kinda difficult to duplicate in other tools
 
-So after many years, proficient Emacs users already develop their own workflow.
+So after many years, proficient Emacs users already develop their own workflow. No 2 Emacsers after years, ever evolve a similar-ish workflow.
 
-Alienating them further from people coming from other tools. 
+Alienating them further from people coming from other tools.
 
 How is this all important?
 
@@ -757,22 +876,24 @@ But now it does, it makes sense. Having read "In the Beginning was the Command L
 
 Beautiful read.
 
-People assume theres some tangible boundary between OSes and the apps inside and computational logic. 
+People assume theres some tangible boundary between OSes and the apps inside and computational logic.
 
-A developer with sufficient understanding (but not necessarily skill) can create his own Operating System if he persists.
+A developer with incredible will and passion can create his own Operating System if he persists.
 
 He can also make his apps as integrated or loosely bound to the OS as he likes.
 
-Back in the day, when an Apple collapsed, it blacked out like a TV monitor, when Windows crashed, it devolved into endless terminal text.
+Back in the day, when an Apple collapsed, it blacked out like a TV monitor, when
+Windows crashed, it devolved into endless terminal text.
 
-The very DNA between Apple and Microsoft back then differed more.
+Did this mean Apple was fundamentally different even back then? Or was the monitor blacking out a social construct, made to fool customers into thinking Apple was fundamentally a different beast? (If so, the strategy worked, the average Apple user back then were real fanatics)
 
-But the difference between an OS and a usable app? Thats a social construct.
+But the difference between an OS and a usable app? Thats a social construct in a sense. Perhaps this is the idea behind Apple products. Where they have very little trust in their users. So an OS and an app might as well be the same thing.
 
 So in a sense Emacs really is an Operating System. With even far little boundary between all its elements.
 
-https://web.stanford.edu/class/cs81n/command.txt
+You can browse the internet, start a IRC chat, write your docs, all within an Emacs buffer. Or go far enough, you can personally blur the boundary between all the above.
 
+"In the Beginning was the Command Line" 👉 https://web.stanford.edu/class/cs81n/command.txt
 
 #+end_quote
 *** [[https://app.syncuid.com/syncuid?fbclid=IwY2xjawM-1JJleHRuA2FlbQIxMABicmlkETE5TThhZ3BxR0x0c1VQVmxGAR4M_qdd0WbvJkzNS2aSS2XYAcRlbt3copbZvhLiHV7HNzdLSRt7q3K-CJuKOg_aem_n09274JffIIpXAW7qRl-DA][You must JOIN this group]]
@@ -890,6 +1011,7 @@ aspell check ~/sample.txt
 **** We also learnt that Jynx package, but making it to work with hunspell is difficult
 **** Please consider buying me coffee in the Ko-Fi link in the description. It matters a lot.
 *** Part 3, "But what about capitalism?": 
+**** We use conditionals in eLisp, the advantage is that we can 
 **** We learnt some cool abbrev-mode tricks. And how we can do some great tricks, to make a personalized autocorrect.
 **** The strange effect Software Engineering tribalism, and subtle strain of anti-intellectualism down here, in my country.
 **** If software engineers in "developed" parts of the world, isnt it much worse?
@@ -969,27 +1091,12 @@ aspell check ~/sample.txt
     )
 
 #+end_src
-*** Singapore National Environment Agency
-Singapore has a "National Environment Agency".
-And the agents go around catching and fining people smoking in coffeeshops.
-Up to 500 SGD.
-Having that in a country that is obsessed with car ownership and unregulated capitalism (and maintaining that image) is absolutely HILARIOUS.
-"It's like the fire department going into houses fining for overcooked chicken… while the entire forest is on fire behind them."
 *** Learning programming languages are enough for a great understanding of computer logic and tech.
 **** Prog langs are more than just a "way to talk to computers"
 **** They enforce good design at the level language, rather than some "policy" level.
 *** Interesting analysis on Harry Potter (https://www.youtube.com/watch?v=wRkHBNT7NQ0)
 **** School stories, turns out Harry Potter is more of a "school stories" rather than fantasy. School Stories are genre popular during a period in English literature. It explains the strange romnaticism of school board hierarchies in JK Rowling writings, rather than criticism meant to dismantle hierarchy. This isnt a specifically a JK Rowling issue, as it was common for authors of this genre to write like this, often rarely bringing up issues of toxic hierarchy in boarding schools. (So now, you also know that toxic hierarchy in boarding schools in not necessarily a specific a Meley thing). Charles Dickens writings seems to be the one of the few that goes against this norm, taking a stance against boarding schools corporal punishment, often for very small mistakes. Other authors including JK Rowling romantacize boarding schools.
 **** There are many interesting points this video raises as well.
-*** Explaining Emacs:
-**** REMEMBER: we need to do a snippet that makes it look TOO EASY
-**** Emacs, is stateless, in a sense
-**** If you were to delete your config, and restart your Emacs, your entire Emacs would be vanilla all over again
-**** autocommand detects events such as opening a file. Emacs uses hooks. And there are so many hooks, but the nature of Emacs documentation means its up to you to explore this
-**** eerything is a buffer, running a terminal inside Emacs, and the terminal is a buffer. whereas in Neovim, im guessing Neovim is inside terminal
-**** to truly take advanage of Emacs, the learning experience is different from Neovim. If you start with only suggested configs with Neovim, and learn only 1 prog lang, you can already do amazing stuff. But with Emacs, you often need to read and explore more, becoz Emacs has so many packages most emacs users havenever heard of 
-**** Neovim has much better defaults. Emacs has horrible defaults by FAR
-**** Org-Mode is literally what Emacs is all about, in a sense
 *** Society and work:
 **** Society works because people work without complaining. You are a captive tax farm animal, do you duty and no harm will come to you while being a caged animal for the “farmer” aka religious/biz/political leader who hired thugs with weapons to guard all viable land and natural resources so you must work for one of them in exchange for food and shelter. If you are made poor—deprived of opportunity—you are more likely to become petty, criminal, even violent. Collective prosperity prevents crime, not capitalism, socialism, liberalism, or cops. But with all viable land and natural resources taken, an individual has no choice but to work for and reinforce the very status quo that oppresses them, in exchange for the means of survival. Your will to live is leveraged against you; your best and only years on God’s green Earth are used to build, maintain, and restock ivory towers for people you’ll never meet. Prolife isn’t about life—it’s about social control, the manufacturing of cheap and renewable labor. A life born, especially in desperation, is easily leveraged into a life of economic slavery and ideological subservience. This is why suicide and the right to die have long been criminalized. How else can the elite secure generations of compliant labor? Rebellion is associated with youth not because the young are especially rebellious, but because the rebellious are not allowed to grow old. Economic systems of any kind inevitably pool wealth, create disparity, and lead to conflict—both within borders and beyond. “Work sets you free” because even homelessness is a crime. Religion is primitive government. Government is resource control through politics. And politics? It’s just mediation between the haves and have-nots by the old—deciding who gets what, where, when, how much, and why. If you work for them, you might survive. Work against them, and you suffer.
 *** Should I apply? 
@@ -1002,20 +1109,6 @@ Having that in a country that is obsessed with car ownership and unregulated cap
 **** to truly take advanage of Emacs, the learning experience is different from Neovim. If you start with only suggested configs with Neovim, and learn only 1 prog lang, you can already do amazing stuff. But with Emacs, you often need to read and explore more, becoz Emacs has so many packages most emacs users havenever heard of 
 **** Neovim has much better defaults. Emacs has horrible defaults by FAR
 **** Org-Mode is literally what Emacs is all about, in a sense
-*** (1) To clarify a previous post, coz apparently some seniors thought I made things complicated.
-**** I posted this a while ago in a Dev group.
-**** Some senior said I made things overcomplicated.
-**** I guess Im bad at explaining stuff.
-**** I guess the point is, I can engage in a long-week coding experiment writing throwaway code. 
-**** If Im happy, and its clean code, I can push. Thats a single mouse button, (no need fir git add <file1> <file2>) 
-**** if its good code, but I dont wanna show this version upstream in a repo or in front of the team. I can just click a mouse  button, to start everything over.
-**** If I want to test its also, a single button.
-**** In total, 4 special powerful mouse buttons.
-**** And these buttons work regardless of the project or language (thanks to some function and .dir-locals.el for project-specific variable)..
-**** Yes, the almost powerful ergonomic feel of a modern IDE without the bloat, and keeping all the custom extensibility.
-**** Would take a very long time to achieve this in VSCode Im sure.
-**** I dont wanna feel too weird, so this is like balance of Emacs weirdness and modern IDE.
-**** Come one, someone. Tell me this make sense without needing to understand my config.
 *** Video on my project-agnostic Neovim killer workflow.
 **** My attempt at using Emacs like badass
 **** I basically combined project local variables (Emacs.dir-locals.el), which is basically directory local variables, with Git worktree and some eLisp functions to create a workflow that consists of a fuzzing branch and working branch
@@ -1036,31 +1129,6 @@ Having that in a country that is obsessed with car ownership and unregulated cap
 **** If after a long week changes look good enough, I can push it to the repo. If not, I can do a reset with the ardie/back-to-square-one function (which is also bound to a Alt-single mouse button)e
 **** Since Git is mostly a toolkit, it doesnt make sense to me, to not abuse it in a personalized way.
 **** Useful for: 1 - not wanting push code that works but too embarassing for public 2 - playing with week-long throwaway code, and can start over easily 3 - avoiding pushing unclean commits to control freak team leads ("why is there a space in this commit history? And why are you using single-quotes instead of double quotes?").
-*** Post about your worktree discovery:
-**** This is a continuation from my previous post
-**** Git (vcs) can be a mental challenge. Even when youve mastered, it is still considered a huge mental gear change from code logic. You have to "put your head outside" a bit to go "Git mode". Is important that we learn tools that increase programmer comfort. While Git is mostly a version control tool, it should also not only NOT get in thw way of your personal progress and project, but also make your programmer life more comfortable and cooler. 
-**** Welcome to Git Worktree. Logically its just a "branch made into physical folders". But if we work through this site example, we can improve it further. The site shows another way of using Git Worktree, that involves a "fuzzing" branch (kinda like "testing") that will hold most of your work assets/build files. While the site was not entirely clear on where the "main" branch sits in this. I used an extra branch that represents main, "working". So in practice, I just merge "working" back to "main" whenever Im satisfied with my commit amends. So "working" (and of course, main) has only your tracked files, while fuzzing includes the files you dont want commited.
-**** I should do a video to increase my YouTube channel views with this trick. But heres the code snippet I use. 
-**** Basically, ardie/add-all-amend-commit -> ardie/git-get-rev-parse -> ardie/switch-d
-**** In summary:
-***** each Emacs instance in its own workspace
-***** simply switching between Emacs changes branch
-***** 1 Emacs for code,1 Emacs for test/fuzz
-***** no more stashing (hopefully)
-***** blindly do a "git add ." (triggered by a single shortcut)
-***** a single mouse button to run/test the project
-**** This is just a sample and a reminder, to not just use Emacs as an "efficient Vim alternative" or just "Vim movements", but use it like a selfish badass. Ergonomics (not just efficiency, that is a misleading term) that extend to project management, knowledge management, and Git workflow.
-*** share an improved Python/Emacs class on FB Malaysia teaching group
-**** Share on several Malaysia teaching groups again
-#+begin_quote
-
-Anyone interested in a free introductory crash course in Emacs? I dont want a price for successive classes, coz Im too afraid of being judged. Hah.
-But personally, its just a half excuse for me to meet with weirdos, or to make connections with people who have different ideas. Hahahaha.
-I cant be the only guy who uses softwares very very differently.
-Contact info also available in the link.
-(Note: this is not for seniors. Also ignore the Python description in the link page, I have yet to update it)
-
-#+end_quote
 *** Reddit:
 **** Ask about how to auto wrap around if else, the same way we can do with sexp
 *** Post for RemoteWorkMalaysia:
@@ -1073,16 +1141,6 @@ Contact info also available in the link.
 **** Additionally, I am highly adaptable in my approach to problem-solving. I thrive in environments that promote knowledge sharing and look forward to collaborating with diverse individuals on engaging and innovative projects. Im also an avid reader of filds slightly outside of the technical aspects, such as domain-driven design in programming. If there are any jobs that fit my experience or might benefit additional talent, please PM me for further discussions.
 **** If any company or anyone has a project that utilizes Ruby on Rails or other non-mainstream alternatives. Not just looking forward, but rather I will be extremely excited in mastering something new like this.
 **** Im not just a quick learner, but i make efforts to expand my familiarity with not just different programming languages but different paradigms, as I have managed to decently master eLisp (Emacs) and Lisp in just 3 years.
-*** Post for programming language nerd inMalaysia, EDIT
-**** Ive always wanted a split keyboard, the sheer ergonomic game changer. But now Im far too deep into Emacs land, I came up with soe radical tips on Emacs ergonomics in avoiding the famed "Emacs pinky"
-**** My Noevim-killer setup. No, Ive got nothing againt Vim or Neovim, and I did not set out to create a Vim-binding alternative, but it feels so ergonomic, it might as well as be. However, I mostly combined this with some unique hacky modifications of my own keyboard, as well as my usage of both sides of Ctrl and Alt. So they might not work for your setup. One of the complaints I hear all the time from YouTubers who are pro Neovim are Emacs pinky's, which is the result of Emacs over-reliance on modifiers like Alt and Ctrl. Ive used Emacs for less than 10 years, so unlike others, I personally feel less attached if Emacs in the future decides to change some default keybindings. Theres always a workarond, by having a "classic bindings". Anyway, long story short, here are some of the clever tricks that I came up with in my journey to a more ergonomic Vim-binding alternative in Emacs:
-****     Completely rewire how I use my my keyboard. This ones more like "hardwired" hack. Basically, I always use both hands, and as little pinky as possible. When I am pressing Ctrl-w, instead of using Left hand for both Ctrl and W, I use Right hand for Ctrl and Left hand for w.
-****     I experimented with Hydra mode as much as possible. Using Hydra mode, I map shortcuts like ;;t to a Personal learning Diary, and ;;p to my Python Diary, and there are 24 more alphabets to go. If I were to ever code in C or C++, I could remap those modes to exclusively not use those.
-****     I use a rather less-known package called Key Chord. Using key chords, I create a directional bigram, that is highly ergonomic. I will explain this in a later post, but simply, instead of Ctrl-_ for Undo, I use qw for Undo, since qw is a key combination rarely used in writing (aka bigram). Since qw is placed on the left (aka directional), left hints on "going back", since its our natural reading direction. These directional key presses are a theme I apply throughout (]\ for opening empty scratch buffer on the right, p[ is for moving to opened window on the right, and [] for moving to opened window on the left, zx for moving to previous buffer, and ,. for moving to next buffer).
-****     I paste small Velcro pieces on all my keyboard modifiers, such as Ctrl and Alt with braille-inspired variations, so I can literally just feel the Alt and Ctrl. Similarly applied to by directional bigram key chords. In my current workflow, I no longer look at the keys for Ctrl or Alt, and this braille addition makes my navigation many times more ergonomic. The braille like pieces are not applied everywhere, just 5-7 keys
-****     Thats it, so far, my only complain is this Velcro addition makes my keyboard look ugly, my next move might be to epoxy necklace beads to my keyboards for those braille-inspired patterns. Yes its very hacky, but I can almost touch type, not looking at keys most of the time
-****     References: https://github.com/emacsorphanage/key-chord and https://www.johndcook.com/blog/2015/02/01/rare-bigrams/
-****     Well, its either this or a very expensive split keyboard that is completely out of my reach. 
 *** Post something on Linux Fans Group
 *** Do you have a cool Python project to share? Actually, I dont have anything cool to say about Python coz I like Python for web dev, but Im not an expert in it, Im obsessed about Emacs. I dont do heavy OOP or data science in Python, but if you do, PyCon2025 is the place to go. Anyway [[https://cfp.pycon.my/pyconmy-2025/cfp][CALL FOR PAPERS!!!!!..]].. Dont worry about advanced topics, I myself like showing off, but I personally prefer casual Python talk, like last years talk on a Filipinos womens experience as the only female in her Python team. Yes, it can be that casual, but the more variety the better (Check out the section for targeting your type of audience: Beginner, Intermediate and Advanced User)
 ** Jobs:
