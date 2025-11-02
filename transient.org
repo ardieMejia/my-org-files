@@ -23,10 +23,10 @@
 
   (setq var1 (-cons*
               "combobulate, especially dealing with nodes, http://www.webupd8.org/2009/09/real-time-earth-wallpaper-for-linux.html, yayasan pemeraju bank slip"
-              "Emacs code compass, BACKUP our data, magit, write a HTTP server, "
+              "Emacs code compass, BACKUP our data, magit, DB or vector for our persistent highlgiats"
               "email, CV, also Audiosockets, https://vfunction.com/blog/3-tier-application/, https://www.youtube.com/watch?v=YOrRQtA8BsY"
-              "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game"
-              "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Forth"
+              "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game, ur graphql link history"
+              "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Haskell"
               "crochet, Hanifas health, code generation (internet of bugs), ambiguity in corpo legal terms"
               "read Rust perspective PDF, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely"
               "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM"
@@ -235,6 +235,48 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 *** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
 *** 
 ** Emacs
+*** More cool Emacs functions, might be too much at this point:
+#+begin_src emacs-lisp
+
+  (defun ardie/open-current-file ()
+  (interactive)
+  (find-file
+
+  (current-kill 0 t)
+             )
+  )
+
+  
+#+end_src
+*** We need to JUST practice our eLisp skill by adding random pairs for specific modes. (Clue, this will make our understanding defer eval, or lazy eval, slightly more epic)
+*** emacs how to put org mode options in separate file
+*** For writing more efficiently in org-mode
+#+begin_src emacs-lisp
+
+
+    (defhydra my-test-hydra 
+      (:color purple)
+      "my super test"
+      ("/"
+       (progn
+         (org-end-of-line)
+         (org-meta-return)
+         )
+       :exit t))
+
+    (define-minor-mode my-test-mode
+      "A minor mode so that my key settings override annoying major modes."
+      :init-value nil
+      :global nil
+      :lighter " my-test"
+      :keymap (let ((map (make-sparse-keymap)))
+                (define-key map
+                            (kbd "//")
+                  'my-test-hydra/body) map))
+
+  (add-hook 'ardie/special-org-hook #'my-test-mode)
+
+#+end_src
 *** TODO Important, to test cascade deletes
 **** Story, we have a system that stores students and their departments. Here are the details.
 **** Joint Degree Program: A student enrolled in a combined Bachelor of Science in Mechanical Engineering and Bachelor of Science in Electrical Engineering program.
@@ -261,37 +303,6 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
   );
 
 #+end_src
-*** Fiverr classes, we need to do this:
-**** [[https://meet.google.com/hna-ufpo-dzv][google meet link]]
-**** [[https://www.reddit.com/r/vim/comments/qazue0/what_are_your_top_ten_or_so_essential_commands/][reddit]]
-**** [[https://github.com/emacs-evil/evil-collection][evil collection github]]
-**** early-init-file
-#+begin_src emacs-lisp
-
-  (progn
-
-    ;; Our imperfect example
-
-    ;; per user Emacs-specific files, sometimes Emacs will use this
-    (setq user-emacs-directory "~/my-emacs-29-config")
-    ;; if user installs packages the normal way, it gets installed here
-    (setq package-user-dir "~/my-emacs-29-config/elpa")
-
-    ;; add all subdirs of default-directory to load path
-    (let ((default-directory "~/my-emacs-29-config/elpa"))
-      (normal-top-level-add-subdirs-to-load-path))
-
-
-    (load-file "/home/ardie/_config/emacs/init_28.el")
-    )
-
-#+end_src
-**** (error "Done")
-**** try package
-**** BOPPPS
-***** Story to bringe ur content and his goal
-***** Whats the content? Is it just Vim? I offer tips as extra, maybe too Emacs heavy. What will he accomlissh. Maybe at least be great enough in 1 package
-***** pre-assessment, what he already knows. Also recall previous lesson
 *** We need to write a "separator function" that auto-separates a lne based in symbols, example:
 #+begin_quote
 
@@ -692,81 +703,47 @@ sudo apt install gpaste.
 *** https://qwiet.ai/hacking-and-securing-python-applications/
 ** Make sure you share-rate is above 3%
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
+** PyCon Emacs
+*** Hello everyone, Im just here to plug my YT channel. It sounds like Im shamelessly plugging my YouTube channel. But Im mostly trying to connect to other Emacs users in Maiaysia, or maybe there is soeone out there who is interested in learning Emacs,or maybe get exposed to it
+**** maybe can connect to me on LinkedIn, and then I can share myYT channel
+**** 2 things I want to point out - a forewarning or disclaimer - and a why it might be worthwhile to connect with me and why it mightbe worth while to connect and discuss with me on Emacs
+*** Dislcaimer - its a tool with a lot of history, but the most important disclaimer is that it comes witha lot of responsibilty and knowledge gathering
+*** Now, for the great points about it, you can do almost with it. If its about increasing
+*** Its also a great excuse to learn a functional language. 
+*** eLisp is a functional programming language, what gives programming langauges its abilty to start a HTTP request is just the library/API, so you can forget about the question on what software can I create with it. So eLisp is the perfect excuse to learn FP. And its a great way to demistify FP. 
+*** So maybe if you heard of the concept of "code as data" which is popular in some FPs. In eLisp or Lisp you have macros. But in Emacs almost everything has no boundary, windows,frame,buffers. So I have more control over a buffer.
+*** There are far too many tricks to describe it in words, but if you follow my YT chanel, I can share more stuff
+*** Also, if you comt from a scientific background, or even linguistics background, maybe we can connect, coz Emacs seem to have a reputation from the scientific background or an academic background
 ** Social media posting:
+*** backup
+#+begin_quote
+#+end_quote
+*** Emacs, when a "theory" of mine works like magic
+*** Emacs sucks (but we can blame Capitalism for this)
+**** what??
+*** YouTubers who have no issue with long/fat functions. And even those who like functions chunky (I like em chunky too, wink, wink)
+*** The #1 reason to use Emacs is to write a diary
+*** Cool video on what compilers do behind the scenes, explained in a very friendly manner. Also, now that Im going down the rabbit hole of programming langs again. I just realized English as a language has a lot ambiguity in it. It is "easy" only becoz of its dominance, but its actually difficult to master from a non-native speaker, becoz theres a lot overloaded terms.
+*** Even with all the problems of code naming in English. Im thankful some companies dont have problems like [[https://softwareengineering.stackexchange.com/questions/1483/do-people-in-non-english-speaking-countries-code-in-english][this]]. Even worse, is (spoken) language problems that result in 2 software environments (including code and docs) - "two type of software environments: code that's supposed to be shared with international parties (open source projects, Spanish offices of foreign multinationals, vendors who sell abroad) and code that's sold locally"
+*** China makes a lot of stuff by reverse engineering other bigger companies that monopolized that sector. They key word here is monopoly, not that plagiarization part. Its kinda badass, to be able to reverse engineer stuff. But this still seems very reactionary. Its doesnt revolutionary enough, to only "respond" to monopolies
+*** another messaging that may be misleading, programmers evolving a love of code, being inerpreted, as a kind masturbatiry love, but is in fact a very rational response to lack or wrong incentives in corporate software. The only way to be productive here is to love code. And you must evolve a loveof code, to become a great developer of anything creative. becoz theres no such thing is true originality, so a love of code, even from a "artistic" view makes a lot of sense. Also, people dont know that code can be very beautiful.
 *** [[https://medium.com/@sameera.godakanda/the-real-reason-teslas-ai-chief-bailed-c7f5a0a52c39][Andrej Karpathy is sussy]]
+**** Heres another video that makes me suspicious of Andrej, he makes incredibly arrogant assumptions about how animals think. (Hint: they DO think, they just dont think the way humans do). This is what happens when GPU nerds become overly arrogant in their understanding of the theory of evolution. https://www.youtube.com/watch?v=LnGRHVlsheo
 *** Hank Greens AI circle jerk
+**** OpenAI is losing more money than they're making.
+**** The amount of money to train and use models is more than theyre charging, even with their top 200$ per month tier
+**** In summary, speculative economy should be banned.
+**** The question is, is the demand for chips exceeding supply, or is NVIDIA generating that demand for AI services increasing or is OpenAI creating that demand 
+**** NVIDIA invests 100 bill dollars in OpenAI, in exchange of OpenAI buying more chips from them (they get more money if they buy the chips)
+**** OpenAI signs a 300 billion dollar deal with Oracle as the middle man in all this madness. Oracle building data centres spends many more on chips
+**** the theory of Supply and Demand means that if price keeps going up, then supply is there.
+**** the chip is not the product, the AI service is the product. but the money made from the AI service is an order of magnitude lower than the value of the hardware alone 
+**** firing everyone is not enough, in order to match this inflated value, currently, it has to create so much value and create many systems that capture this value (lock in)
+*** The bullshitness of supply and demand (write this in an org file)
 *** YT: Companies have to be held accountable. 
 **** How Programmer Jobs Get Created And Destroyed, And How Ai Migat Change That
 *** [[https://www.youtube.com/watch?v=flYs1fwwACk][Emacs on the go]]
-*** Joke
-#+begin_quote
-
-Smirking and sneering in the workplace
-
-
-I used to not think much of it, coz I used to downplay myself a lot.
-
-
-Lots of lots self doubt.
-
-
-Then I realized that smirking and sneering especially among men is basically "conservative talk".
-
-
-Its how they talk to each other.
-
-
-Especially since the Software Engineering in corpo environment is kind of a half joke, no mature structure/interview/filtering process
-
-
-Its also how corpo types talk to juniors as a subtle way to humiliate them down here.
-
-
-It seems to be like its a passage of rite, for seniors to "sneer and smirk" talk.
-
-
-But part of me, doesnt want to believe it. Coz at the back of my head, Im always thinking of that possible future clone of me, a junior, who also struggles with the same self-doubt.
-
-
-Yeah, this field is a joke.
-
-
-Now with AI, it'll be an even a bigger joke.
-
-#+end_quote
-*** SmallWorld Magik multiple inheritance.
-#+begin_quote
-
-Magik, the programming language of SmallWorld.
-
-SmallWorld is developed by GE Vernova.
-
-SmallWorld is still used by a few Electrical Utility companies.
-
-One of them is our TNB.
-
-Maybe most programmers down here are not that great at explaining what they understand.
-
-Or the only way to know the ugly points of OOP is to go the deep end.
-
-Im reminded of Casey Muratori.
-
-So read somewhere, the Magik programming language is actually far too similar to SmallTalk. The programming language that helped define what OOP is.
-
-Another source, is how Magik is like a step backward from SmallTalk, becoz its got multiple inheritance.
-
-Inheritance while by itself is not bad, can cause some weird class inheritance shape.
-
-So if the software gets really big, and no one person knows everything about said software, everyone starts subclassing, you dont know how many subclasses of a parent class there are.
-
-Especially, if its large piece of software, and combined with DRY, you have some small piece of logic being used at many unknown places.
-
-Now with multiple inheritance, that gets even worse, much worse. Java removed multiple inheritance for good reason.
-
-But SmallWorld system itself is rife with multiple inheritance. SmallWorld is a dead end.
-
-#+end_quote
-*** datanoation:
+*** data annotation:
 #+begin_quote
 
 The largest volcano in our solar system is definitely Olympus Mons. But according to https://eeps.rice.edu/news/2023/hotly-debated-history-largest-volcano-solar-system it was formed not by tectonic plates, but by a buildup of lava flow supplied by magma plume under the surface. It was the product of a world that had no tectonic plates. It is also a dead ancient volcano, so no scientist recorded explosions but instead speculated its activity.
@@ -777,6 +754,7 @@ Olympus Mono sememangnya gunung berapi terbesar di sistem suria. Akan tetapi, be
 
 #+end_quote
 *** "Public school is about education. It is NOT job training. And it should not be. Otherwise, the capitalists win." 
+*** [[https://www.stilldrinking.org/programming-sucks][programming sucks]]
 *** [[https://www.youtube.com/watch?v=w3krYEeqnyk&t=1214s][conquering kubernetes with Emacs]]
 *** clever way to beg, example:
 #+begin_quote
@@ -1048,16 +1026,11 @@ aspell check ~/sample.txt
 
 #+end_src
 **** Im still unemployed, and I am currently managing this between responsiblities. 
-*** this doesnt belong here, CNCF, Linux, open source:
-**** https://cloud-native.slack.com/
-**** https://clotributor.dev/
 *** Why programming languages matter
 **** Learning a new language "changes the path of least resistance" - Tom van Cutsem
 **** A language that doesnt affect the way you think about programming, is not worth knowing.
 **** You cant trust the opinion of others, because of the Blub paradox: theyre satisfied with whatever language they happen to use, because it dictates the way they think about programs. - Paul Graham (Beating The Averages)
 **** A programming system has 2 parts. The programming 'environment' is the part thats installed on the computer. The programming 'language' is the part that's installed in the programmer's head. - Brett Victor, Learnable Programming
-*** Literally all knitting and crocheting is like programming. Physicists are literally confused by the knitting "science". Yes I tried crocheting. And the "patterns" that crocheters read are also a bit like reading code. The most mind boggling thing, is a non-crocheter would be quite perplexed and joining the dots between crochet (software product) and patterns. Good crocheters can read a cryptic pattern code, and produce something really beautiful.
-**** https://www.youtube.com/watch?v=iTLvD6-X8WQ
 *** Own your IDE:
 **** REMEMBER: we need to do a snippet that makes it look TOO EASY
 **** Its easy to get distracted by additional tools. This still happens even when youre using Emacs, so when things get confusing, I just turn off all those autocomplete, and simply rely on highlighting to spend some quiet time just reading the code. Especially useful to forget all that noise. How about all of you? Are there any fallback tools, you end up relying solely on?
@@ -1091,9 +1064,6 @@ aspell check ~/sample.txt
     )
 
 #+end_src
-*** Learning programming languages are enough for a great understanding of computer logic and tech.
-**** Prog langs are more than just a "way to talk to computers"
-**** They enforce good design at the level language, rather than some "policy" level.
 *** Interesting analysis on Harry Potter (https://www.youtube.com/watch?v=wRkHBNT7NQ0)
 **** School stories, turns out Harry Potter is more of a "school stories" rather than fantasy. School Stories are genre popular during a period in English literature. It explains the strange romnaticism of school board hierarchies in JK Rowling writings, rather than criticism meant to dismantle hierarchy. This isnt a specifically a JK Rowling issue, as it was common for authors of this genre to write like this, often rarely bringing up issues of toxic hierarchy in boarding schools. (So now, you also know that toxic hierarchy in boarding schools in not necessarily a specific a Meley thing). Charles Dickens writings seems to be the one of the few that goes against this norm, taking a stance against boarding schools corporal punishment, often for very small mistakes. Other authors including JK Rowling romantacize boarding schools.
 **** There are many interesting points this video raises as well.
