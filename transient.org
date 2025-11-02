@@ -714,10 +714,10 @@ sudo apt install gpaste.
 *** So maybe if you heard of the concept of "code as data" which is popular in some FPs. In eLisp or Lisp you have macros. But in Emacs almost everything has no boundary, windows,frame,buffers. So I have more control over a buffer.
 *** There are far too many tricks to describe it in words, but if you follow my YT chanel, I can share more stuff
 *** Also, if you comt from a scientific background, or even linguistics background, maybe we can connect, coz Emacs seem to have a reputation from the scientific background or an academic background
+*** And just to relate to a previous Python presentation, you probably the PEP presentation by Nikha Sagala, one of the PEPs as pattern matching, and that actually came from FP. And its a myth, that technology is always moving forward. Prog langs have existed for a long time, And newer languages always get inspired by older languages. Lisp macros are especially, and if you wanna explore stuff like macros., etc. And sometimes certain concepts like lisp comprehension and pattern matching etc are implemented moreelegantly in FP langs. 
+*** And lastly, Emacs is really cool. the joke of thre learning curve. But once u get past that curve. You get the MOST personally customzied setup EVER bar none. And I dont say this lightly.
+*** I also not joking, when I say so far Ive met 2 other Emacs users, and my setup is the most "progressive"
 ** Social media posting:
-*** backup
-#+begin_quote
-#+end_quote
 *** Emacs, when a "theory" of mine works like magic
 *** Emacs sucks (but we can blame Capitalism for this)
 **** what??
