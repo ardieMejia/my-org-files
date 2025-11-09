@@ -1,2 +1,0 @@
-* On our new Alcatroz keyboard, we had no right Control key, other solutions never worked, no useful Emacs-native solution. The best one is actually to use AutoHotkey, coz you can actually change keyboard behavior without even installing the software.
-** https://www.thenickmay.com/how-to-install-autohotkey-even-without-administrator-access/

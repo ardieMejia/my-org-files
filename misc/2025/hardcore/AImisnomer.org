@@ -1,5 +1,19 @@
-* Links:
-** [[https://www.ie.edu/insights/articles/why-the-term-artificial-intelligence-is-misleading/][origins of the term, who coined it, who disagreed]]
-** [[https://www.youtube.com/watch?v=vEuKaSR_YWU][YT vid with BETTER diagram]]
-** [[https://blogs.lse.ac.uk/politicsandpolicy/why-artificial-intelligence-is-a-misnomer/][better than nothing, intro to math terms]]
+* [[https://www.youtube.com/watch?v=COOAssGkF6I][The AI scaling problem]]
+** Agent has goals
+** independently control its data streams and teach itself based on those goals
+** If an agent needs millions of examples to learn that can learn anything, that its not learning
+** To become intelligent, it needs to learn how to learn based on its datastream.
+** It needs to interact with the world.
+** AGI criteria: "continuous learning"
+*** fine tuning -> problems -> catatostrophic forgetting, loss of plasticity
+*** in-context learning -> problems -> frozen parameters limits learning
+** AGI criteria: "single experiential stream of data"
+*** problems -> samples from billions of disjointed sources 
+*** -> has no ability to learn over longer time horizons
+** AGI criteria: "scaling with compute"
+** current AI are designed with "big data" mindsets
 ** 
+* https://www.youtube.com/watch?v=gEbbGyNkR2U
+* https://www.youtube.com/watch?v=2__A_Mb0V0g
+* https://www.youtube.com/watch?v=ivfw_TcsHbw
+* https://www.youtube.com/watch?v=qvNCVYkHKfg

@@ -1,2 +1,12 @@
 * Links of projects:
 ** [[https://www.youtube.com/watch?v=h_noB1sI_e8][YT series: how to build a website in lisp]]
+* eLisp
+** Backquotes
+#+begin_src emacs-lisp
+
+      (setq backup-directory-alist `(("." . ,(concat ardie/all-compute-cfg-dir "emacs_backup_files"))))
+
+#+end_src
+** "Backquote constructs allow you to quote a list, but selectively evaluate elements of that list"
+** Basically its a cleaner way to "doublequote" a text, and evalute some chosen elements
+* [[https://www.youtube.com/playlist?list=PLE18841CABEA24090][playlist]]

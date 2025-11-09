@@ -26,6 +26,40 @@ mcs MyProgram.cs
 mono MyProgram.exe
 
 #+end_quote
+** This is often still not enough. Coz we need to link APIs
+#+begin_quote
+
+
+mcs MyForm.cs -r:System.Windows.Forms.dll -r:System.Drawing.dll
+    
+#+end_quote
+* I guess its not as bad as u think. We just need to undestand Mono
+** why did we include the dlls above? becoz of Mono history, Mono is suposed to be the open source implementation of .NET framework
+** so we have to include dlls by default. I guess
+** the dlls can be located under /usr/lib/mono. But thats not enough. It shows many versions
+#+begin_quote
+
+
+2.0-api/  4.0-api/    4.5.2-api/  ...
+
+#+end_quote
+** we need to check mono version (the command is just a Mictosoft monopoly, a command to run proprietary .exe on any platform). And then we can check online. I uses .NET framework 4.0
+#+begin_quote
+
+mono --version
+
+#+end_quote
+* Lets read, coz we are stuc:
+** [[https://eliza.sh/2021-06-01-using-unity-editor-with-emacs.html][Unity Editor with Emacs]]
+** Functional Programming in C#, 2nd (or 3rd or whatever is latest) edition. 
+** from Reddit:
+#+begin_quote
 
 
 
+Can you provide an idea of what "intermediate" means for you? What's your current knowledge and experience?
+
+If you don't yet have a good understanding of how LINQ-to-Objects, lambdas/delegates/deferred execution, tying extension methods together, or writing your own add-on LINQ-style extensions, then I cannot recommend enough Jon Skeet's Edulinq series: https://codeblog.jonskeet.uk/2011/02/23/reimplementing-linq-to-objects-part-45-conclusion-and-list-of-posts/
+
+
+#+end_quote

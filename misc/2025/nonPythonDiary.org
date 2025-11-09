@@ -1063,3 +1063,182 @@ getBlockContent(blockId_paragraph);
     }
 
 #+end_src
+* Day 57:
+** We upgraded our system, can follow this [[https://jumpcloud.com/blog/how-to-upgrade-ubuntu-20-04-to-ubuntu-22-04][link]], but ignore the TCP port
+** Scary error message solved it by commenting one line, in the /etc/fstab, its apparently a common problem, but different form. In my case, its the external drive.
+** LATER: we need to uncomment that line and test again, to reuse our external
+** we managed to install icewm, but nothing useful came out of it.
+** LATER: we need shortcuts -> switching desktop -> we need to customize our right click menu -> show desktop shortcut -> 
+* Day 58:
+** We implemented some delete functionality from a QTableView
+** We struggled a lot through passing a "list" type data to a function. 
+** Becoz append doesnt work with arrays. Its a fixed size
+** Note below
+#+begin_src c++
+
+  // We extract QModel from QModelList, as mentioned before
+  // we called deleteUser(), but note how the function usage has horrible syntax of no indicator of passing by ref
+  // this way, function is easy to use
+  // we put ampersand at function def
+
+  void MainWindow::deleteUser(QVector<int>& arr){}
+  ..
+  // the equivalent of Pythons for i in var1, note again the *ampersand*,  this is usage not declaration, different from function pass by ref, confusing
+  // but its optional
+  for(int &id : arr){}
+
+  // we managed 1-by-1 query and exec that query
+  query.prepare("DELETE FROM users "
+                "WHERE id = :id");
+  query.bindValue(":id", id);
+
+  // but we cant figure out how to do query parameter, as a vector
+
+  // ========================================
+  // ===== some option we SHOULD try in the future
+
+  QSqlQuery query;
+  query.prepare("SELECT * FROM items WHERE category = ANY(:categories)"); // Example for PostgreSQL's ANY operator
+
+  QVariantList categories;
+  categories << "Electronics" << "Books";
+
+  query.bindValue(":categories", categories);
+
+  if (!query.exec()) {
+    qDebug() << query.lastError();
+   }
+
+  // ===== some option we SHOULD try in the future
+  // ========================================
+
+  // this will VERY useful for multi field filter (like in our web app) app
+
+#+end_src
+* Day 59:
+** Some changes to icewm.
+** https://ice-wm.org/FAQ/
+* Day 60:
+** Sometimes its useful to avoid Git, to learn the language more. 
+** So we moved renamed mainwindow.cpp -> org_mainwindow.cpp (and the same with .h and ui)
+** commented out the pro file, apparently, the name of classes conflict, even though we are NOT IMPORTING the header files
+** We used doubleClicked function, but passing connect, we keep making mistakes
+** we dont QOverload becoz no ambiguity
+** We make the infamous beginners mistake (* or & ???)
+** We always put ampersand, also at the argument name (not at the STUPID DATATYPE)
+#+begin_src c++
+  // both the same
+  
+  oid some_function(const QModelIndex &index);
+
+  void MainWindow::some_function(const QModelIndex &index){
+    }
+
+#+end_src
+* Day 61:
+** Installing Haskell
+** First we installed ghcup
+#+begin_quote
+
+ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh 
+
+#+end_quote
+** [[https://linux.how2shout.com/how-to-install-alacritty-terminal-on-ubuntu-22-04-lts/][Built Alacritty fro source]]
+** For Alacritty we havent done the autocompletions from the link
+* Day 62:
+** Even though Ive been doing this C++ for a while, I even get confused by the multitude of ways to declare variable. And keep forgetting to use the simple one.
+#+begin_src c++
+
+  QStringList list_;
+  model2 = new QStringListModel(this);
+  AdminWindow *adminwindow = new AdminWindow(this);
+
+#+end_src
+** QAbstract__ types are a nightmare to use. Its virtual, to use u need to reimplement the ALL  index(), parent(), rowCount(), columnCount(), and data(). 
+** QSqlTableModel inherits QAbstractItemModel, the guys who create Qt decides the word "item" as a general object above "table". But QSqlTableModel more pleasant, u dont need FULL reimplement
+*** becoz of OOP, both seemingly serve diff purpose
+*** QSqlTableModel, after creating a model, like below, you 
+#+begin_src c++
+
+  QSqlTableModel *model = new QSqlTableModel(parent);
+
+#+end_src
+*** You can then use QTableView to set the model
+#+begin_src c++
+
+  QTableView *view = new QTableView();
+  view->setModel(model);
+
+#+end_src
+*** this applies for QAbstractItemModel too (except the FULL reimplement)
+** LESSON: QTableView is the key
+** this means qsqltablemodel also needs the full reimplemention of its functions
+* Day 63:
+** we gave up on Qt's set__ way of doing things
+** Instead of using the QSqlTableModel, we has some "locked-in" "built-in" (abstracted and tightly bound) functions to "get the DB data"
+** We are using QSqlQueryModel
+** And then we place the potential edits in a separate UI component
+*** We do this by using QSqlRecord & QStandardItemModel
+*** and we just loop through the single record col's (and setItem)
+** 
+** 
+* Day 64:
+** Possible plan from last task:
+*** This means if we were to change, we need to connect to an event that has awareness of column name (since we are using a query parameter this is fine)
+*** we can just do a simple emit
+** We learnt what a "variadic" is
+* Day 65:
+** we solved our stupid reveal.js portability problem
+** tip: make sure to use reveal.js & internal css (embedded styles) CUSTOM css after the CDN
+* Day 66:
+** We successfully created a delegate
+** In essence, becoz its protected, and some functions are implied (called behind the scene), you have to reimplement 3 functions (apart from the constructor and desctructor)
+** That one video ([[https://www.youtube.com/watch?v=rv3S1HVxwD4][Your prog lang cant understand you]])
+** Our intuition works!! Basically files dont need to be the same as class name (we used MainWindow.h to store our test delegate, it works)
+#+begin_src c++
+
+  class myTestDelegate : public QStyledItemDelegate
+  {
+    Q_OBJECT
+  public:
+    myTestDelegate(QObject *parent = nullptr);
+    ~myTestDelegate();
+
+
+    // ----- more -----
+  };
+
+
+#+end_src
+** As usual we declare a pointer to that variable, before we set a column to a delegate (of coz its a column, use ur brain)
+#+begin_src c++
+
+  myTestDelegate* myEditor = new myTestDelegate(ui->userUpdateView);
+  
+  ui->userUpdateView->setItemDelegateForColumn(1, myEditor);
+
+#+end_src
+** we familiarized slightly with a custom editor inside each a column. Eg:
+#+begin_src c++
+
+  // values passed in: *parent, QStyleOptionViewItem, QModelIndex
+  QSpinBox *editor = new QSpinBox(parent);
+  editor->setFrame(false);
+    editor->setMinimum(0);
+  editor->setMaximum(100);
+  // and return the editor
+
+  // ----- or -----
+
+  QComboBox *editor = new QComboBox(parent); 
+  // and return the editor 
+
+#+end_src
+* Day 67:
+** We successfully used quarto (publishing CLI) with our Emacs, no automation, but at least its not 
+* Day 68:
+** we went down a rabbit hole of installing OverKeys, we finally know the lessons that Flutter is easy to install, but Flutter also uses Ninja in the background, especialy since in many of its projects it uses C/C++ (FFI). Ninja is used as the "generator" for CMake (how it generates build files).
+** We understand command "flutter pub get" installs dependencies 
+** Despite all that, we came upon stupid mysterious error of -lstdc++ not found.
+** we also went down a rabbithole of installing Key-Mon Python. The module "gi" not found is a common error, solved by creating our virtual env with --system-site-packages.
+** Also failed, its becoz PyGObject, which is the module "gi" works with Gnome2, MATE is Gnome3

@@ -28,7 +28,7 @@
               "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game, ur graphql link history"
               "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Haskell"
               "crochet, Hanifas health, code generation (internet of bugs), ambiguity in corpo legal terms"
-              "read Rust perspective PDF, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely"
+              "try Razvan article on creating portabl GEntoo on USB, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely, https://www.datacamp.com/blog/docker-projects"
               "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM"
               (append
                (make-list 3 "Qt practice")
@@ -235,6 +235,19 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 *** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
 *** 
 ** Emacs
+*** Work [[https://malaysia.indeed.com/viewjob?jk=1a9c6c99aa19fc1b&tk=1j9en02s8g9jj801&from=jobi2a&advn=5811361332416831&adid=451081987&ad=-6NYlbfkN0CuqEhhOmRdlQP6O64ATa37Y1bNX7-bKBw5-I6spUECOc1_4r1Jjvs9W5ah8SQ6NufQzwKyo_9xv-dCHmcdacFHnexNQJTHcnjCZABYbljTTtoBeEhlU68M4U4fpvDoWPcfYTqT3uqIbnrRpFWB4_grgmJiuWkRH6KxkgGDf-NBPpFbDqWNv9Fv0kliarIK7rTlfirQD6vCB27NP3IvynglbARVlUbls10ZmWwsDoiqVDPgNIfo2X1J4qA8NyiXDm3WlWv4YdVPCdxKpWwFHULKQnONSY6RYYLed2RNwhy46SEtMCFCObya2GMW9QaakPhJdGkIpAXzYoYONiOyncyV7YscLamxSQnepuJ3qwfDDFvvxB3aXn9LQ52EYBUuWFRyBalr0hby_nT1Kb02fheb8kNUy_SIjcQY5rbW-2VZBOspt0e0X4oL8T9V45y74GWmSjFgYNlp-crHtLNbDysXIuFrB1J0iKMB2Yyj15OYP5XnWkcbFLzaNG1Ru1Oii3dGqHuxaSQDo6L2gsuBWNHh-UYvmywG427F7D9NwO0LjgWWqLzy9XoOYhys1HnEX-gz56YrJfKoOKm2BjWC-4yC&pub=21d85ca573e478f5e659e48885c828920cace3277f6b99df&i2af=jobi2a_multijob-en-MY_email&camk=UoKtGZLa3XK_HU2mmRB8Yw%3D%3D&jrtk=5-cmh1-1-1j9en021ri3vg815-1a9c6c99aa19fc1b&xkcb=SoAE6_M3run3FVS2zB0IbzkdCdPP&xpse=SoDJ6_I3run3FVS2zB0PbzkdCdPP&xfps=b63f800c-9286-47cc-a3c3-b8617ea9f628][work documentation with MUET, English]]
+*** We made another one!! Open a file at random
+#+begin_src emacs-lisp
+
+  (let ((ardie/files-i-want (directory-files "/home/ardie/Documents/my_notes/my-org-files/" t "/*org")))
+    (nth (random (length ardie/files-i-want)) ardie/files-i-want)
+    )
+
+#+end_src
+*** https://gcore.com/learning/how-to-install-mate-on-ubuntu
+*** Solve the Lubuntu keyboard shortcuts once and for all
+**** create randomizer of opening one of my notes upon Emacs startup
+**** 
 *** More cool Emacs functions, might be too much at this point:
 #+begin_src emacs-lisp
 
@@ -703,21 +716,117 @@ sudo apt install gpaste.
 *** https://qwiet.ai/hacking-and-securing-python-applications/
 ** Make sure you share-rate is above 3%
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
-** PyCon Emacs
-*** Hello everyone, Im just here to plug my YT channel. It sounds like Im shamelessly plugging my YouTube channel. But Im mostly trying to connect to other Emacs users in Maiaysia, or maybe there is soeone out there who is interested in learning Emacs,or maybe get exposed to it
-**** maybe can connect to me on LinkedIn, and then I can share myYT channel
-**** 2 things I want to point out - a forewarning or disclaimer - and a why it might be worthwhile to connect with me and why it mightbe worth while to connect and discuss with me on Emacs
-*** Dislcaimer - its a tool with a lot of history, but the most important disclaimer is that it comes witha lot of responsibilty and knowledge gathering
-*** Now, for the great points about it, you can do almost with it. If its about increasing
-*** Its also a great excuse to learn a functional language. 
-*** eLisp is a functional programming language, what gives programming langauges its abilty to start a HTTP request is just the library/API, so you can forget about the question on what software can I create with it. So eLisp is the perfect excuse to learn FP. And its a great way to demistify FP. 
-*** So maybe if you heard of the concept of "code as data" which is popular in some FPs. In eLisp or Lisp you have macros. But in Emacs almost everything has no boundary, windows,frame,buffers. So I have more control over a buffer.
-*** There are far too many tricks to describe it in words, but if you follow my YT chanel, I can share more stuff
-*** Also, if you comt from a scientific background, or even linguistics background, maybe we can connect, coz Emacs seem to have a reputation from the scientific background or an academic background
-*** And just to relate to a previous Python presentation, you probably the PEP presentation by Nikha Sagala, one of the PEPs as pattern matching, and that actually came from FP. And its a myth, that technology is always moving forward. Prog langs have existed for a long time, And newer languages always get inspired by older languages. Lisp macros are especially, and if you wanna explore stuff like macros., etc. And sometimes certain concepts like lisp comprehension and pattern matching etc are implemented moreelegantly in FP langs. 
-*** And lastly, Emacs is really cool. the joke of thre learning curve. But once u get past that curve. You get the MOST personally customzied setup EVER bar none. And I dont say this lightly.
-*** I also not joking, when I say so far Ive met 2 other Emacs users, and my setup is the most "progressive"
 ** Social media posting:
+*** mu4e
+#+begin_quote
+
+
+
+https://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and/
+
+How to setup email in Emacs
+-install mu (but mu is only for indexing and searchng emails)
+-offlineimap (becoz mu needs another software to keep a local copy of ur emails)
+-offlineimap can set up 2 emails (in the example, the guy sets a script to sync both emails every 5 minutes)
+-the configs are stored inside  ~/.offlineimaprc
+Concepts
+--in that file, just like Git, there is a "named" local and remote repo of your email
+--you can choose any folder
+--you can can STORE YOUR PASSWORD, not recommended, usually under remotepass\
+--we dont want that, so instead we can use Python and GPG
+--"folderfilter" can filter folders, as well Googles bad default "All Mail/Important"
+--to keep indexing we put "mu index" via postsynchook
+--this is DONE, so we call offlineimap thatstarts a process and syncs every 5 min
+--but this means leaving terminal open, so we start a daemon
+--mu4e comes installed with mu (mu is the "real package", mu4e is the Emacs package that comes with it), we need to include mu4e path in our Emacs load-path
+--in "headers", we have severl shortcu options
+--by setting mu4e-contexts variable, we can make our mu4e aware of our email source, if its Gmail, the variable mu4e-trash-folder and mu4e-refile-folder is changed. So our delete commands for example, are context-aware
+--he defines mu4e-refile-folder as a function, that filters using (cond) and (mu4e-message-field msg :subject) to check the message's subjct against a text and filters further more
+--
+
+mmu4e alert
+-mu4e-alert-enable-mode-line-display calling this would update modeline with unread msgs
+-which means we need to run-with-timer
+-problem: mu4e maintains connection with server, which mu index will never (we NEVER get email updates)
+-we solve this with mu4e~proc-kill
+-we put all these all in use-package (as in example)
+-we set variable mu4e-alert-interesting-mail-query for selective alerts, becoz Google being weird, marks all folders moved to trash as unread
+-to send email we need SMTP, we set a bunch of SMTP parameters just our like Python Flask project. But we also have account specific parameters (we use setq for the SMTP, and mostly defvar for the account-spec)
+-the my-mu4e-set-account function is to combine (set operation-ish) SMTP values and account-spec values,
+
+
+https://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html
+
+-offlineimap mentioned above is a tool (offline) to sync copy. An alternative here is mbsync.
+-just like before we are using symmetric encryption (one way, public key only). We create a dotfile, written in is our password, and generate a public key
+-they both seem to use 2 different hooks
+-there also some variables not used in previous article: mu4e-get-mail-command (here we set to a mbsync command) mu4e-html2text-command mu4e-update-interval mu4e-headers-auto-update mu4e-compose-signature-auto-include
+-we got more commands here
+
+
+  https://f-santos.gitlab.io/2020-04-24-mu4e.html
+
+#+end_quote
+*** Whats the rush?
+*** [[https://www.youtube.com/watch?v=ZJ09dPNJ8G8][How programming jobs get created and destroyed]]
+#+begin_quote
+
+ 
+How IT/programmers jobs are actually created.
+
+He hasnt worked in gaming indusrty and foesnt plan to
+
+everything tech indusrty is largely custome in the last few decandes
+
+the non tech is largely the same.
+
+So all programming jobsh is largely between a speectrum and a slidin scale, mainigng old code and a new stratup (and everyinqg in between)
+
+It was a lot like construction was, back before girders and planks were standardized, and construction used whatever resources they found at the time.
+
+Nowadays, the analogy no loner works, becoz construction is mostly standardized, nad programming isnt (even for "big" companies)
+
+what happend:
+
+ - some gets an idea,
+ - tis person, asometimes a solo entrpnour, getting money from investors, or gets money from a company
+ - why is tis money allocated, somtimes company gets somuch money, they spend all that money on a new projec
+ - this was true years ago, when programmer salaries were through the roof
+ - if this is not true, the money is borrowed or from investors, who believe once the money is built, he gets the money back.
+ - NOW, assuming the person with the idea isnt building it himeseves, he needs tecanical people. hires people as employees, and hires consultants from company that bulds sofware on demand.
+ - in ideal worlds, the first person they hire is a senior tech person to plan stuff, and hire others.
+ - mostly its not ideal, so they hire recruiter from the same or a consultant company. If the person hires full consultant company, they also look for more people by looking for recuiters themselves.
+ - 
+
+What spawned the leet-code interviews
+
+
+
+#+end_quote
+*** Be consistent like Louis Rossmann, how can we provide a counter-incentive structure to (the massive incentive use of) AI.
+*** With all the knowledge that we already have at our disposal, even old engineering and old "AI" knowledge. True innovation and progress will not feel "flashy" or "fancy". But will feel like comfort and peace. A socialist type revolution at the process level, will increase average satisfaction and happiness, and feels very "unremarkable". And thats perfectly fine. Coz the alternative is to be sold "AI" lies, expensive GPUs (but dont acheive anything becoz the software hasnt caught up with it). If companies are still claiming innovation, thats just another snake oil salesmen.
+*** How programming jobs are "created"
+*** The trick to learning C++'s hacky syntax "faster" is to think in terms of ambiguity. Each concept is about solving the ambiguity on the part of the compiler. Making the "stupid" compiler understand your intent. A bit like solving the ambiguity in overloaded English words (is "duck" bending over OR the animal, in a context). The most obvious thing I can think of right now, is C++ "casting" is communicating the ambiguity of a line when declaring a variable. The compiler is "confused" as to the multiple possible meanings of a declaration.
+*** Language:
+#+begin_quote
+
+The miracle of our species is hugely over-rated.
+
+All that intelligence and God thing is mostly over-rated.
+
+If the father of Reinforcement Learning (a type of machine learning) thinks that human intelligence is vastly over-rated, then its probably is true. Its obvious we are far too similar to squirrels that to any sentient being in the sky.
+
+Our chemicals and how we react to it, even against our will makes it so obvious.
+
+The only thing that makes us special is our language. But language is an interesting tool, it causes great harm and can create amazing things. Language makes building the impossible possible..
+
+We are also easily fooled by language. We get easily hurt and excited by language. Which explains why people get easily fooled by ChatGPT. Even though its just predicting next words of a sentence.
+
+In a strange way, language is also an over-rated indicator of intelligence.
+
+#+end_quote
+*** workers ignoring safety, isnt just a symtpom of stupidity (unlike Mat Rempit). Its also a symptom of Capitalism, Capitalism pushes the "average" negligence. The lower the class ad social status of said worker, the more he ignores safety being a captive of capitalism
+*** Maybe the word "introvert" is a misnomer, a proper word is closer to "insanity". Not meant as an insult. But rather, anyone suffiient competent artist or intellgient creative (a creative programmer for example) will develop a weird balance between thin and thick skin. The word for that is insanity. But most people will never develope that kind of level of creativity, "introvert" becomes an umbrella term. Sure introverts exist, but maybe not everyone who doesnt behave normal is an introvert.
 *** Emacs, when a "theory" of mine works like magic
 *** Emacs sucks (but we can blame Capitalism for this)
 **** what??
@@ -743,16 +852,6 @@ sudo apt install gpaste.
 *** YT: Companies have to be held accountable. 
 **** How Programmer Jobs Get Created And Destroyed, And How Ai Migat Change That
 *** [[https://www.youtube.com/watch?v=flYs1fwwACk][Emacs on the go]]
-*** data annotation:
-#+begin_quote
-
-The largest volcano in our solar system is definitely Olympus Mons. But according to https://eeps.rice.edu/news/2023/hotly-debated-history-largest-volcano-solar-system it was formed not by tectonic plates, but by a buildup of lava flow supplied by magma plume under the surface. It was the product of a world that had no tectonic plates. It is also a dead ancient volcano, so no scientist recorded explosions but instead speculated its activity.
-
-Olympus Mono sememangnya gunung berapi terbesar di sistem suria. Akan tetapi, berdasarkan https://eeps.rice.edu/news/2023/hotly-debated-history-largest-volcano-solar-system, ia tidal terbentuk dari plet tektonik, tetapi daripada pembinaan lava yang dialirkan dari jentul magma di bawah permukaan. Ia adalah produk era yang tidak bercirikan plet tektonik. I juga gunung berapi yang telah mati. Oleh itu, saintis tidak mempunyai rekod letupan tetapi hanya spekulasi aktikiti.
-
-
-
-#+end_quote
 *** "Public school is about education. It is NOT job training. And it should not be. Otherwise, the capitalists win." 
 *** [[https://www.stilldrinking.org/programming-sucks][programming sucks]]
 *** [[https://www.youtube.com/watch?v=w3krYEeqnyk&t=1214s][conquering kubernetes with Emacs]]
@@ -824,9 +923,7 @@ So seriously, survivors bias, yes. But unless SE grows up a bit. Im gonna rely o
 #+end_quote
 *** So I thought it was mostly the state of education down here, that has led to SE to the mess that it is today. Turns out its a global phenomenon, but certain attributes exacerbate, developing countries, parasitic investors and its role in nations still in a political mess, etc. So the result of all this disillusionment Ive had for years in SE, is that the heroes at the top of SE down here have this idea in their head, that it takes "vision" to make it to the top. Well, some of them anyway. So this idea has been playing around in my head on and off for many years. The word "vision" sounds like on of those catchphrases and buzzwords. But it never sat well with me. Now, I realize you actually need the technical experience before you can have vision. I always hear, a CTO of some kind, saying to me, "I dont need to know the details", or "I cant read code". Are they lying in some way? Are they guys that view programming jobs as mere stepping stone to a managerial position? Becoz it makes no sense, anyone can have "vision". My 10 year old self had vision. Do these managerial types actually view this professions as a job for coolies?
 **** Anyway, thats just roundabout way of me saying, technical expertise matters (coz I cant put my thoughts into words yet). Its not that vision is not enough. Its that "vision" is almost like misleading term.
-*** Put this in another post:
-**** After many years, Ill have to finally admit, that software engineering is arguably more difficult than even electrical engineering. Becoz of the many abusive elements, which includes lack of structural support. Software Engineering is an ever-shifting field. That alone is fine, arguably "fun", if it wasnt for the fact that software engineering doesnt get the same respect as other engineering, hence we are treated like gig workers. Until, software engineering matures and "grows up", it will continue to be the less-respected field. The problem is also the multitude of newcomers who, but dont treat it with same respect once they land their cushy jobs. So lots of Javascript-only developers, with no respect of the umbrella field (dont blame them, they need to eat too). And so many problematic "ideologies" that have fully conquered many parts of SE in the corporate world, such as "Clean Code" and pervasive Java style OOP. You could argue fields like Electrical Engineering is easier, becoz its stable, bounded by historical terms/culture/ the law of a country (such as how power generators, distribution and transmission of power differ between countries). Electrical Engineering is more "resistant" to change and idiot proof. In contrast, Software Engineers are somehow expected to be simultaneously "flexible" and "locked-in". Simultaneously "independent" yet "hierarchical". Every "expert" in this field has what you call, "survivors bias". Most "experts" also havent really met another "expert". So one "expert" lives and dies by "clean code", while another will not touch it with a 5 feet pole. And many contrasting opinions. (Oh by the way, quite a number of superbly talented developers that dont believe in Clean Code). The average expert also doesnt believe in documentation, but the amount of overly verbose documentation when corporate money decides to back documentation, holy sh*t (think Java docs: overly verbose, lacking in examples).
-**** Dont get me wrong, I love programming. But isnt this ridiculus? Software Engineering is just an underfunded art+science+hack+math.
+*** Programming and math are not the same thing. And in fact, thats kind of a good thing. They shouldnt be similar. The math language is for us humans alone. Prog lang are for entities, the human mind, and the computer struggling to put translate all that into "moving bits about in memory"
 *** The clean code debacle
 *** NixOS (and ehem, GUIX..). The most under-rated Linux distro? Its an OS with declarative configuration, atomic upgrades and rollbacks, etc... Its a "stateless OS", basically infinitely "BACKUP-able". Instead of the state of the machine being determined by step-by-step installs and configs. The state of your system is determined entirely by your config. If you used Emacs before, but havent tried NixOS (and GUIX, ehem) its kinda the same thing. Where your config literally determines the current "state". Except its for OSes. Being reproducible makes it great for mass deploys (of the exact system and apps on multiple computers).
 *** Niri? Leonardo drawing app? Infinitely and organically spawning depending on your current workflow seems to the future

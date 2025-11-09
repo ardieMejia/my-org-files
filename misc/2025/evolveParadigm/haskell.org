@@ -1,0 +1,32 @@
+* Haskell is lexically scoped. When we put function inside another function, it behaves VERY DIFFERENT than Python
+** each function has its own let
+** inner definition dont affect outer functions
+** So 
+* We still have trouble intuitively understanding "lazy evaluation"
+* Lesson learnt!?
+** The list is a function?!
+** So theres almost no difference between a finite list and infinite list?!
+** How come we neve noticed that
+** We need to think in terms of expression (returning a single value), NOT in terms of variable. Which is why expressions have types
+** So THIS is what a function should REALLY look like. THINK "transformations of data"
+#+begin_src emacs-lisp
+
+  (let ((var1 1))
+  (1+ (1+ var1)))
+
+#+end_src
+* List comprehension
+** A product is a very powerful concept!
+** Why is this not intuitive? I think we dont understand what a set is?
+#+begin_src haskell
+
+  var3 = [[x,y,z]| x <- [1..10], y <- [1..10], z <- [1..10]]
+
+#+end_src
+* Tuples (pairs are very common here)
+** "There's no need for runtime checks or dynamic resizing mechanisms that would be required if tuples could change size."
+** this means in order to get the real advantage of tuple, we need to be tuple-artists. Eg: constructing our logis/code in terms of pair tuples and functions applied on it
+
+
+
+

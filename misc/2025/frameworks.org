@@ -239,6 +239,52 @@ def db_DropEverything(db):
   active_users = User.query.filter_by(is_active=True).all()
 
 #+end_src
+* Flask-ish
+** Render persistent disk:
+*** navigating and modifying the folders from inside Render Dashboard shell tab
+*** [[https://community.render.com/t/files-in-render-disk-are-being-lost-with-starter-service/17440/4][use /data path]]. Being root is fine, it will persistent and be writable
+*** [[https://render.com/docs/disks?_gl=1*1c3j8ip*_gcl_au*MTU0Nzc2NjkxOS4xNzQyNDUzMTcw*_ga*NDI4NTk4MDM0LjE3NDI0NTEyMTU.*_ga_QK9L9QJC5N*czE3NDY3MTU2NjEkbzExJGcxJHQxNzQ2NzE1ODkwJGo1JGwwJGgw#transferring-files][persistent disk]]
+*** python write to disk
+#+begin_src python
+
+  import os
+
+disk_path = "/mnt/data"  # Path to the persistent disk
+folder_name = "my_folder"
+folder_path = os.path.join(disk_path, folder_name)
+
+try:
+    os.makedirs(folder_path, exist_ok=True)
+    print(f"Folder '{folder_name}' created successfully at '{folder_path}'.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+#+end_src
+*** [[https://magic-wormhole.readthedocs.io/en/latest/welcome.html][magic wormhole to download files]]
+*** [[https://www.youtube.com/watch?v=oFrTqQw0_3c][magic wormhole]]
+*** [[https://render.com/docs/disks?_gl=1*18deote*_gcl_au*MTU0Nzc2NjkxOS4xNzQyNDUzMTcw*_ga*NDI4NTk4MDM0LjE3NDI0NTEyMTU.*_ga_QK9L9QJC5N*czE3NDY3MTI2NDQkbzEwJGcxJHQxNzQ2NzEzMzQ0JGoyMSRsMCRoMA..][monitoring Render persistent disk]]
+** for uploads
+*** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][secure file uplaods]]
+*** [[https://www.geeksforgeeks.org/uploading-and-downloading-files-in-flask/][file upload basics]]
+*** [[https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask][miguel file uploads]]
+*** [[https://imagekit.io/blog/how-to-upload-files-in-html/][basic element]]
+*** [[https://www.pullrequest.com/blog/secure-file-uploads-in-flask-filtering-and-validation-techniques/][in flask]]
+*** [[https://stackoverflow.com/questions/7076042/what-mime-type-should-i-use-for-csv][the mimetypethat should be used]]
+*** We need database tracking each uploads.
+#+begin_src python
+
+  class File(db.Model):
+         id = db.Column(db.Integer, primary_key=True)
+         filename = db.Column(db.String(200), nullable=False)
+         filepath = db.Column(db.String(300), nullable=False)
+         created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+         def __repr__(self):
+             return f"File('{self.filenname}', '{self.filepath}')"
+
+  # and do the usual db.session.add() db.commit()
+
+#+end_src
 * Moving away from SQLAlchemy, learning, or better control
 ** Apparently, there are lots of people using Flask without sqlalchemy. Some claim its easy, but you need to google a lot on sql queries. Read this [[https://neon.com/postgresql/postgresql-python][LINK]] someday
 **** Also this [[https://www.psycopg.org/psycopg3/docs/][LINK]]

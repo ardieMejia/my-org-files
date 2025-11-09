@@ -281,6 +281,7 @@ std::getline(std::cin >> std::ws, s);
 ** [[https://samdutton.wordpress.com/2008/10/03/debugging-signals-and-slots-in-qt/][sam dutton Debugging signals and slots]], wait this ones kinda stupid, becoz we found a better blog on signals and slots
 ** https://riptutorial.com/qt/example/17048/connecting-overloaded-signals-slots
 ** [[https://wiki.qt.io/Qt_for_Beginners][unusually great for beginners OFFICIAL documentation]]
+** [[https://qt.developpez.com/doc/4.3/qstandarditemmodel/][A BETTER link less-abstracted docs on QStandardItemModel and others]]
 * READ THIS, FUCK YOU:
 ** https://doc.qt.io/archives/qt-5.15/model-view-programming.html
 ** https://doc.qt.io/archives/qt-5.15/model-view-programming.html#creating-new-models

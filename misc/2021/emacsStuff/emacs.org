@@ -203,8 +203,7 @@ ARGS = -q --load C:\path\to\our_custom_init.el
           '(lambda()
              (face-remap-add-relative 'bold :weight 'normal)
              (face-remap-add-relative 'default :weight 'light)))
-** System Crafters has a very cool Lisp code using the macro/function (?) called dolist
-*** https://systemcrafters.net/emacs-tips/presentations-with-org-present/
+
 ** How do you find out font (what Emacs calls faces) information?
 *** https://www.emacswiki.org/emacs/FaceList
 **** by M-x list-faces-display
@@ -635,6 +634,62 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 ** There are many ports of GNU tools available
 *** https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Other-useful-ports.html
 ** But we're interested only in one. Cygwin. Apparently, its also the most popular
+* Presentating/presentation in Emacs
+** System Crafters has a very cool Lisp code using the macro/function (?) called dolist
+*** https://systemcrafters.net/emacs-tips/presentations-with-org-present/
+** The options at the top of org mode we should be using, if we are exporting externally
+#+begin_quote
+
+#+TITLE: The best Knowledge Management System in the world
+#+AUTHOR: Wan Ardie
+#+EMAIL: wan_ahmad_ardie@yahoo.com
+#+OPTIONS: num:nil toc:nil ^:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_THEME: sky
+
+#+end_quote
+** using quarto to present (convert directly to pptx). (remember to refer to our github obsidian script)
+** The best doc is the "code" itself. (NOTE: the image for code snippets, quarto only supports a few langs). Also note the hash before image to demark new slide.
+#+begin_src markdown
+
+  ---
+title: "My Awesome Presentation"
+author: "Your Name"
+format: pptx
+---
+# Testing
+
+## Introduction
+
+## Welcome Slide
+
+-   This is an introductory slide.
+-   We will cover some key topics.
+
+
+## Agenda
+
+-   Topic 1
+-   Topic 2
+-   Conclusion
+
+##
+
+
+![testing tesintg](yammer2_a.png){width=300}
+
+
+
+#+end_src
+** And the quarto command is:
+#+begin_quote
+
+quarto render testing.md --to pptx
+
+#+end_quote
+** And the quarto relevant links:
+*** [[https://quarto.org/docs/authoring/figures.html][quarto figures]]
+*** [[https://quarto.org/docs/reference/formats/presentations/pptx.html][other pptx options to add]]
 * Must read blogs
 ** [[https://zck.org/define-keymap][its about keymap, still OK, but read his other links]]
 ** https://endlessparentheses.com/provide-input-to-the-compilation-buffer.html

@@ -1,0 +1,59 @@
+* 10 rules of low latency
+** Database Index
+** Payload compression
+** Request Grouping
+** CDN
+** Load Balancing
+** Vertical Scaling
+** Cache
+** Connection Pooling
+** Message Queue
+** Data Serialization
+* Database concurrency
+** [[https://www.youtube.com/watch?v=wEsPL50Uiyo][Understanding Database Concurrency Control is important]]
+*** Understanding race condition
+*** The example he shows, uses an update clause in JS db library
+*** We learnt: the "await" keyword can only be used inside "async" function. Its pause execution until a promise resolves. The example is quite good, where a DB is waited first
+** A way to solve it in PostgreSQL
+#+begin_src sql
+
+  BEGIN;
+
+-- Lock the account row to prevent concurrent modifications
+SELECT balance FROM accounts WHERE id = 1 FOR UPDATE;
+
+-- Perform some application-level logic (e.g., withdraw funds)
+-- ...
+
+-- Update the account balance
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+
+COMMIT;
+
+#+end_src
+* SQL grammar/syntax
+** SQL generally returns sets (unless its an expression, that's another subject)
+** this "set" can be further processed with "clauses", such as 
+*** WHERE
+*** GROUP BY
+*** HAVING
+*** ORDER BY
+** Clause?
+*** Clause = Subject + Verb
+*** Independent clauses ->
+*** "She sings"
+*** "I went to the store"
+*** Dependent clauses->
+*** "That I read" in "The book that I read was good"
+** Clause example:
+#+begin_src sql
+
+  SELECT	elective_class,
+  SUM(elective_class) AS total_fees
+  FROM students,
+  GROUP BY elective_class; -- verbed, subject
+
+  SELECT * FROM students
+  ORDER BY elective_class ASC; --verbed, subject, adjective?
+
+#+end_src

@@ -114,7 +114,7 @@
 *** Search:
 **** keyboard shortcuts, tricks Emacs Python
 * sklearn is a world of its own:
-** Some terminologies from main website:
+** Some terminologies from the main website:
 *** Classification
 *** Regression
 *** Clustering

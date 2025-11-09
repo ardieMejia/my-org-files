@@ -1,0 +1,34 @@
+affixes in languages
+ - suffix and prefix
+mora in languages like Japanese (their phonology unit), 
+ - becoz they dont have syllables
+morphosynctatic
+ - between morphology (up to the word) and syntax (above word)
+ - morpheme: smallest unit of morphosynctatic
+ - pens: has 2 (pen & s)
+ - pen is free morpheme (a word by itself)
+ - s is bound morpheme (not a word by itself)
+ - what is recursive structure in sentences and hierarchy structure (VP, NP and PP)
+The pen I bought in italy leaks (analyze)
+ - NP: The pen I bought in Italy
+ - VP: leaks
+The pen I bought in italy
+ - NP: The pen
+ - S: (which) I bought in Italy
+I bought in Italy
+ - N: I
+ - VP: bought in Italy 
+"a world without morphology"
+
+a spoken "expression" has 2 structures:
+ - morphosynctatic (meaningful elements)
+ - phonological (~ pronunciation)
+ - these dont map one to one (not isomorphic)
+another way to think of this is morpheme dont correspond to syllables (segments)
+Eg: Sue is ticklish
+ - su:z is 2 morphemes but 1 syllable
+ - this is interesting to note when learning a new language, coz then many "words" that otherwise 1 word can consist of 2 meaningful units
+The chapter concludes with a spoken "expression" having 2 parallel hierarchical structures.
+ - morphosynctatic
+ - phonological
+And they dont always map 1-to-1

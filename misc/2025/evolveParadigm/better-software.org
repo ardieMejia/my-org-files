@@ -1,0 +1,93 @@
+* Why Raylib is better
+* Better Software Conference
+* YouTube
+** [[https://www.youtube.com/watch?v=X30rNVgXtHQ][State Machines - How to engineer better software]]
+*** Writes an UML diagram
+*** He uses State Machines:
+#+begin_src c
+
+  /* num of all the states */
+  typedef enum {
+    game_state_remain = -1,
+    game_state_title,
+    game_state_play,
+    game_state_gameover,
+    game_state_count
+  } GameStates_e;
+
+
+  /* enum used as index in an array of game states */
+
+  GameState_t *game_states[game_state_count] = { &state_title, &state_game, NULL};
+
+  /* each item in an array is a pointer to a game state struct */
+  /* and it has all the pointer functions for that specific state  */
+
+  typedef struct {
+    void (*init)(void);
+    GameStates_e (*update)(void);
+    void (*draw)(void);
+    void (*shutdown)(void);
+  } GameStates_t;
+#+end_src
+* Set Theory
+** Set
+** Set Notation
+#+begin_quote
+
+# Roster Method
+𝐴 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+Set Builder Not.: {𝑥 𝑥 𝑖𝑠 𝑎 𝑛𝑎𝑡𝑢𝑟𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑓𝑟𝑜𝑚 1 𝑡𝑜 10}
+
+#+end_quote
+** Cardinality of a set:
+#+begin_quote
+
+n(A)
+
+#+end_quote
+** Equal Sets -> two sets containing the same elements, ignore order and duplicates
+** Equivalent Sets -> two sets that contain the same number of unique elements
+** NOTE, misnomer:
+*** If 2 sets are equal, they are equivalent. Its becoz Equal Sets are like "an identity split into 2, and breeding itself"
+** Subsets -> all elements of A are also in B
+** Proper Subsets -> all elements of A are also in B, but A is not equal B. (its got foreign extras)
+** NOTE, misnomer:
+*** Subsets are like an identity, Proper Subsets are essentially something completely different, differnt "breed"
+* The Bitter Lesson:
+** [[https://www.youtube.com/watch?v=QMGy6WY2hlM][Richard Sutton - Silicone Valley Doesnt Understand The Better Lesson]]
+** 
+* [[https://softwareengineering.stackexchange.com/questions/252448/representation-of-a-question-mark-in-variable-names][predicate variable naming]]
+* Clean Code
+** [[https://www.youtube.com/watch?v=hQJcGmWXDJw][Dont clean code with creator HTMX]]
+** [[https://www.youtube.com/watch?v=8ncQrGuunHY][Internet of bugs guy (Carl Brown) doesnt believe in Clean Code]]
+*** Clean Code and Design Pattern, some of them only applies to a specific language
+*** Its about "maintainability", and thats not just about how easy it is for someone whos not you to maintain that project.
+*** Most code is not "read" from top to bottom like a book. 
+*** Your values are wrong, if youre spending time optimizing code from a half a page to 2-3 lines (but then the logic gets spread across different places/files)
+*** Instead he argues that code is often not read but traced bottom-up, clean code doesnt do anything for that.
+*** And clean code encourages this weird inheritance shape, where a small piece of logic gets called from different places. And when someone else tries to debug it, its difficult to tell which different subclasses calls the method when that bug happens.
+** The odin guy
+** 
+* Misnomsers and misleading terminology
+** 
+* CI/CD vs Pull Request
+** [[https://www.youtube.com/watch?v=lXQEi1O5IOI][Apparently, CI is better]]
+* Random:
+** Interesting conversation, we use a three-layer enterprise architecture.  Each feature has its own UI, business, and data layer, minimising the cross-feature impacts. Dependent components are identified at design time. All changes to standard components (classes) are pushed to git as soon as they compile and pulled by the rest of the team to ensure there is no adverse impact.  All independent components are pushed daily once they compile without errors, which enables the rest of the team to get daily updates of the new class code, ensuring that all team members have full copies of the code they are working on.  Our primary concern is with the standard utility code used by multiple products.  Changes to this code are undertaken after consultation with product application architects.
+* Assertion, Macros
+** https://www.gnu.org/software/emacs/manual/html_node/cl/Assertions.html
+** https://stackoverflow.com/questions/59244410/lisp-when-to-use-a-function-vs-a-macro
+** https://pablofernandez.tech/2015/08/13/macros-the-lisp-advantage/
+** https://www.reddit.com/r/cpp/comments/qbuknv/asserts_vs_if_checks/
+** https://gcc.gnu.org/onlinedocs/gcc-3.2/cpp/Assertions.html
+** https://stackoverflow.com/questions/11468899/any-benefit-of-using-assert-instead-of-using-a-simple-if
+** https://stackoverflow.com/questions/11468899/any-benefit-of-using-assert-instead-of-using-a-simple-if
+** https://www.geeksforgeeks.org/cpp/assertions-cc/
+** https://www.quora.com/What-is-the-difference-between-assert-and-if-in-Java
+** https://legends2k.github.io/note/assert_vs_if/
+** https://stackoverflow.com/questions/10618582/difference-between-java-assert-and-if-else-exit
+** https://typesanitizer.com/blog/assertions.html
+** https://www.alooba.com/skills/concepts/csharp-debugging-and-testing-375/assertions/
+

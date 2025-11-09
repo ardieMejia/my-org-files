@@ -1,37 +1,3 @@
-* Proposal
-*** Lets read our PyCon notes
-*** Im sure this dooesnt apply here. But there are still lots of people out there wwho think programming is a ticket to creating an intellectual bubble. We want an open community. After all, technology is supposed to solve problems. And open source by extension, is supposed to solve even more problems.
-*** We dont want to scare people with in-group code or jargon
-*** A community can lose track of its plot, and create digital enclaves, with social pressure that is anti-thetical to learning  and exploration
-*** All programming languages, and all technology domains (for lack of better word, and to cover tech fields that goes beyond just software and framework, and to include even standards)
-*** The reaal world is often complex, and solving it in software, many times requires people outside of the tech field, requires deep uderstanding of the tech, yet fresh new eyes are important. These 2 points are often overlap each other
-*** those who own the hardware they work on, often develop their skills faster. Layers of abstraction as a way of thinking only works once you get the hang of it in those foundational important early years. Ownership of hardware accelerates this learning process. Open Source operating systems like Linux, and technologies like Python help level the plaaying field by giving the power of ownership back to the common man.
-*** Keywords from different fields often dont mean the same thing. Compound this with the fact that the tech  inner circle, is often smaller, and terms vary much more (Eg: compared to the scientific field)
-*** Critical systems meant for the medical profession or transportation, are critical in nature, and often have workflows and requirements very different to the open model of validation in systems like Linux. Linux's nature of general purpose, means it must be verified by as many people as possible, regardless of background --> the purpose is to avoid the progress becoming stagnated and avoid ownership of the code being monopoly. Critical systems in their nature, needs less "democracy" in validation, and the people who run the verification tests must be experts.
-*** Becoz most successful coders are self taught, the issue of poor documentation remains an issue only to those that actually or need it. Sometimes this is left to Herlucean effort by bloggers (who often dont  get paid enough). Compound this with the fact, that most people are willing to paay for software, but are not willing to pay to improve documentation
-*** Depending on the domain of your work, developers often have a common site/blog they go to. Different sites/blogs have different baggages, written by someone with specific background or written for a target  audience (for experts or beginner coders). Someone who is forced to stumble into an IT domain but coming from a very different background (Eg: a meteorologist/a climatologist), might not see this distinction
-*** The  struggle is not 1 dimensional. Its not a simple storyof  the battle between big proprietary guy vs. small open source guy
-*** Its also not just about owning your code. Its also about owning your data/knowledge
-*** Why is this important some programmers to care? (If they are in a position to care). Its a complete myth, that people with a different background who join a company brings no value. Eg: people with physical science background coming into IT. As long as there are channels and opportunities for expression and communication, it ALWAYS brings value
-*** Platform independence. Separating application model from platform requirement, thereby acheiving separation of concerns
-*** 
-* Redo (from [[https://how-to.dev/how-to-read-the-documentationhttps://how-to.dev/how-to-read-the-documentation][this]])
-** Programming can be scary to outsiders (beginners, or someone from a differet type of programming background), becoz of jargon
-** Searching inide existing project, using tools  such as Agent Ransack (or grep or ripgrep), aka in-code documentation, is also reading documentation
-** Dont worry if you dont understand documentation. Doc quality varies a lot. Some documentation makes assumptions about users having basics, such as system knowledge, but this assumption is not stated in the text
-** Closed source and commercial  have highly problematic documentation. If the team managing managing the codebase and documentation is small. It can be months, between new eyes reads the documentation. 
-** Open source documentation are usually slightly better
-** 
-** (From Google AI) Database versioning in GIS is a process that allows multiple users to edit, review, and publish changes to spatial data in a database without overwriting each other's work. It's a key feature of enterprise GIS systems, and it's based on an optimistic concurrency data-locking model. This model means that locks aren't applied to affected features and rows during long transactions. 
-*** Here are some benefits of database versioning in GIS:
-**** Concurrent editing: Multiple users can edit the same data at the same time. 
-**** No data duplication: Users don't need to create copies of the data. 
-**** Isolated views: Each user has their own unique view of the data.
-**** Long transactions: Editors can work across multiple edit sessions without impacting others.
-**** Merge edits: Once an editor is finished, they can merge their changes back to the parent version. 
-**** Some versioning strategies include traditional versioning and branch versioning. Each strategy is designed for different operational environments and workflow needs.
-* Acceptance:
-** 1 of 3 is met either: talk is future proof, keeps up with current development. lowers barier of entry to python. contributes discource in Py community
 * Read  about [[https://www.youtube.com/watch?v=ujfiVr1NaSM][this]]:
 * PyCon 2025 Volunteer work:
 ** [[https://otter.ai/group/21973239][otter ai notetaking]]
@@ -78,5 +44,40 @@
 * Sept 3:
 ** Voucher code confusion. Conditional on school email. (Siow Claire is managing this)
 ** Max yap is suggesting how the unconference will work. (2 hours). There'll be assigned speakers, in case no volunteers during unconf. Curate CPF papers to arrange for specific speakers for this
-** Student price RM 120, Sunway STC
+** Student price RM 120, Sunway STC, students get 10% discount (but why is the original price RM 180, math not mathing)
+* Oct 8:
+** Mid priced restaurants:
+*** Supamala Hotpot @ Sunway Pyramid
+**** starts RM38.90+ per person to RM 100-ish
+*** Tea Garden (Sunway Pyramid)
+**** RM13.90 to around RM30-ish
+*** Dolly Dim Sum (Sunway Pyramid branch)
+**** RM 10 to Rm 30-ish
+*** Cili Kampung Sunway Pyramic
+**** RM 35 to RM 80-ish (for more fancy dishes)
+*** Seoul Garden sunway menu
+**** RM 58.90 + RM 15 (total RM 73.90)
+***  Mohd Chan Dim Sum (quite far, sunway geo avenue)
+**** RM 5 to Rm 20-ish
+** What:
+#+begin_quote
 
+loss 500 Malaysia
+
+promotion posters for the event
+
+instagram effort
+
+theres no general poster for the entire event
+
+1 guy surprised there was Python event in Malaysia
+
+why petronas involved?
+
+Maxis problems??
+
+jungle girls
+
+hide stuff behind staircase beside JC
+
+#+end_quote
