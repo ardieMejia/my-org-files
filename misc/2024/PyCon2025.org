@@ -81,3 +81,23 @@ jungle girls
 hide stuff behind staircase beside JC
 
 #+end_quote
+* Review
+** Ticketing
+*** Pros:Smooth tickets with QR integration
+*** Cons: cant buy more than 1 ticket for friend
+** Publicity
+*** Pros: daily Insta posts
+*** Cons: need Facebook publicity
+** Logistics
+*** Pros: good food, great venue
+*** Cons: vouchers/foodtruck to save ticket price
+** swags
+*** Pros: great design
+*** Cons: swag storage
+** (corporations only incentive to join PyCon 2025 is to find talent)
+** General Pros:
+*** Django Girls workshop volunteers and participants helped to increase audience size for keynote (at least for day 1)
+** General Cons:
+*** website accessibility
+*** track budgeting to optimize
+*** James feels: speaker quality lacking?

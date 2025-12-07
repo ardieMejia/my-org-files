@@ -57,13 +57,4 @@
 * throwaway:
 ** [[https://m.youtube.com/watch?v=2Wmzl3bhyJE][folding stool for train]]
 ** [[https://m.youtube.com/watch?v=sbMVYTBY8-Q][another folding stool]]
-* TODO:
-** quick release (its ALMOST done)
-*** make a strhight small bore hole through fix+moving jaw. resize ENOUGH.
-*** file both nuts
-*** dry fit, and mortise hole
-*** fit and epoxy
-*** glue and screw
-*** file ENTIRE hole at an angle, make sure to NOT overfile the wooden parts
-*** make new wooden washer
-*** and the rest as usual
+* we finised our quick release!! should we document it?

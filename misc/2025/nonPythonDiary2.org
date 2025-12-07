@@ -1,0 +1,38 @@
+* Day 80:
+** added validation for my badass worklflow
+** attempting to do my folding stool, discovered a loop
+*** prepared tools, and material
+*** started minor work
+*** get tired, need minor project to stay motivated,
+*** also minor project while all tools are out and messy
+** We finally created proper UI for CSV.
+*** https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
+*** We planned on separating the Upload File part from the Upload To DB part. This means Upload File part will have validations and checks and good feedback
+*** Turns out uploading CSV's its own science and art.
+*** We discover ranged loops, we are sticking to the immutable version, like this:
+#+begin_src c++
+
+    for(const auto& a_row : full_csv){
+  // ==================================================    
+    }
+
+#+end_src
+*** We discovered std::string appends are not the best (well, we got bugs), but also, we use overloaded + anyway, because appends modify by default (and return this*), but + dont do anything special, and just returns a new modified string
+*** 
+* Day 81:
+** Played Chopin, recorded absolutely magnificent interpretation of Chopin Nocturne Op62.
+** Best supportive Reddit comment
+#+begin_quote
+
+Wow this is such a radical interpretation, you’re about to move the whole classical world (and piss off some snobs) with such novelty and creativity. Anyone who says otherwise is just dismissive of your obvious genius.
+
+
+I piss off on a small scale locally here, the conservatory and institution level, not worth it. Too much trouble and power dynamics.
+
+
+I agree! But still if someday you change your mind, you’d do something great for humanity!
+
+
+#+end_quote
+* Day 82:
+** 

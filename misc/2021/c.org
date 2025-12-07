@@ -1,0 +1,23 @@
+* Raylib
+** We installed it, the commands we used:
+#+begin_quote
+
+git clone --depth 1 https://github.com/raysan5/raylib.git raylib
+
+cd raylib/src/
+
+# ===== To make the static version.
+# ===== We used the static version, becoz if you dont know that's what you use
+make PLATFORM=PLATFORM_DESKTOP
+
+# ===== Static version.
+sudo make install
+
+#+end_quote
+** And to compile our 1st example:
+#+begin_quote
+
+gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+
+#+end_quote
+** 

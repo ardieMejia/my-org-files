@@ -4,3 +4,9 @@
 ** Years of brainwashing by the media, has taught us that market is "alive" in a sense. And is capable of sorting/fixing itself.
 * Quotes, not just capitalism, but badass quotes:
 ** John von Neumann Quotes :Anyone who attempts to generate random numbers by deterministic means is, of course, living in a state of sin.
+* Steve Keen (economics)
+** [[https://chrisaulddotcom.wordpress.com/2012/12/06/steve-keen-still-butchering-basic-microeconomics/][butchering basic microeconomics]]
+*** A “competitive” firm in economic theory is one which takes prices as given, ignoring the effect of its own output on price. 
+*** 
+** [[https://www.opendemocracy.net/en/opendemocracyuk/keen-krugman-debate/][keen krugman debate]]
+*** Mankiw and Krugman believe that banks do not create credit, rather they are simple intermediaries between savers and borrowers. Between "patient" savers and "impatient" borrowers

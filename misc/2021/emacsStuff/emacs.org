@@ -690,6 +690,20 @@ quarto render testing.md --to pptx
 ** And the quarto relevant links:
 *** [[https://quarto.org/docs/authoring/figures.html][quarto figures]]
 *** [[https://quarto.org/docs/reference/formats/presentations/pptx.html][other pptx options to add]]
+* Predicates:
+** This seem natural and powerful way to do things, but NOT super unintuitive. The predicate means, we can define electric-pair-pairs, and then exclude in certain context, making Emacs "aware" of moments we dont need matching pairs (not just modes as in the example below)
+#+begin_src emacs-lisp
+
+  (defvar my-electic-pair-modes '(emacs-lisp-mode powershell-mode python-mode python-ts-mode inferior-python-mode org-mode ardie/special-org javascript-mode js-mode rust-mode rust-ts-mode web-mode c++-mode c-mode c++-ts-mode ardie))
+
+  (defun my-inhibit-electric-pair-mode (char)
+    (not (member major-mode my-electic-pair-modes)))
+
+  (setq electric-pair-inhibit-predicate #'my-inhibit-electric-pair-mode)
+  
+
+#+end_src
+** Maybe this seems like a powerful way to do MANY insert character features
 * Must read blogs
 ** [[https://zck.org/define-keymap][its about keymap, still OK, but read his other links]]
 ** https://endlessparentheses.com/provide-input-to-the-compilation-buffer.html
@@ -730,4 +744,5 @@ quarto render testing.md --to pptx
 *** changing Emacs behaviour, doesnt have to be an all out ddisruptive process.
 **** Eg: one thing we can do with mode-line, is to create a function that defines mode-line-format and (force-mode-line-update), binds that function to a mode-hook (magik-mode-hook)
 ** Some more cool navigation tricks:
-
+** Gray out our asserts in C++
+*** https://softwareengineering.stackexchange.com/questions/87250/is-possible-to-write-too-many-asserts

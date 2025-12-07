@@ -1242,3 +1242,93 @@ getBlockContent(blockId_paragraph);
 ** Despite all that, we came upon stupid mysterious error of -lstdc++ not found.
 ** we also went down a rabbithole of installing Key-Mon Python. The module "gi" not found is a common error, solved by creating our virtual env with --system-site-packages.
 ** Also failed, its becoz PyGObject, which is the module "gi" works with Gnome2, MATE is Gnome3
+* Day 69:
+** Stupid Linux icewm made me waste 1 hour just fixing randomize wallpaper
+** 
+* Day 70:
+** We learnt that ->item() returns pointer, ->data() returns proper data. we got segmentation (memory error) from -> item(). AVOID using ->item()
+* Day 71:
+** qgetenv() needs 2 additional includes
+** we never tried the standard getenv()
+** we attempted several QString::toStdString() none worked
+** the key was to convert QByteArray to QString, which means using QString::fromLocal8Bit()
+** apart from this struggle, we also struggled with setting up env variable with either .bashrc or .profile. The solution is to just use .profile and source it. Coz Emacs doesnt read variables exported from .bashrc. I guess I never really understood bashrc.
+* Day 72:
+** We installed clojure
+#+begin_quote
+
+curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
+chmod +x linux-install.sh
+sudo ./linux-install.sh
+
+sudo apt get install supercollider
+# When you are presented with a screen asking you if you would like to enable realtime access priority, choose 'Yes'.
+
+#+end_quote
+** Forget it we attempted so many stuff, and while the Overtone produces sound from laptop speaker, it doesnt seem to work for Bluetooth audio. However, sclang itself does work.
+* Day 73:
+** We finished presenting our Sphinx. We did not convert anyone to Emacs. But 1 person became super interested. I think it was mostly becoz we did a great explanation. The effort felt around 50%. Not sure if it was worth it
+* Day 74:
+** We finally did our Git orphan branch. It doesnt matter, if we succeeded, it was not super intuitive. Mostly becoz, the original purpose is probably different
+** We also finally learnt alias. Emacs eshell has its own alias command. So far, this seems to make sense.
+** 
+* Day 75:
+** we failed to do memory-safe listing of dept inside combo, using the re-implemented seteditordata(), setmodeldata(), createeditor()
+** we know that QSqlRelationalDelegate doesnt work becoz, its assuming we are showing the entirety of the users, but we are only interested in editing one
+** We tried going low-level by subclassing QSqlQueryModel.   
+** becoz we are "respecting" our model, we need to put our QSqlQueryModel inside a constructor somewhere, instead of inside a button click
+** We learnt about forward declaration. Basically, when in header files, to declare our custom class inside our MainWindow, we have to put declarations in order (otherwise, undefined)
+* Day 76:
+** we are still going around in circles to add the QDataWidgetMapper for our "event dropdown", still no progress
+** So we learnt the idea of "promotion", so that components created in Ui (or Qt Designer) can be made into our custom class, 
+** This is basically, the logical conclusion, when we are trying to "retrofit" our Qt designer into our widget code.
+** This is similar reason to why Ui is a namespace
+** Although this is mostly for our visual workflow to work with our code.
+** Yuck
+* Day 77:
+** we were wrong, turns out we need extern keyword, this is weird, meaning we still doubt our understanding. Also, we struggled with stupids syntax of how "define" our struct
+#+begin_src c++
+
+  // database.h
+  struct DBconnectionStatus {
+    bool status;
+    std::string statusString;
+  };
+  
+  extern DBconnectionStatus g_current_connection_status;
+
+
+
+  // database.cpp
+  #include "database.h"
+
+  DBconnectionStatus g_current_connection_status = {false, ""}; // this is correct
+  DBconnectionStatus g_current_connection_status.status = false; // this is WRONG
+
+
+
+  // main.cpp
+  g_current_connection_status = _openDatabase();
+
+
+#+end_src
+* Day 78:
+** We only ran another Raylib example, and finally set up our beautiful environment
+* Day 79:
+** I solved the combobox currentIndex problem, it only required a for loop, and comparison.
+** Realized haing trouble understanding, or even thinking in general, better alt to QModelIndex:
+#+begin_src c++
+
+modelCombo2->setData(modelCombo2->index(i, 0), itemId, Qt::UserRole); // Store a custom ID
+
+
+qDebug() << modelCombo2->data(modelCombo2->index(1,0), Qt::DisplayRole);
+
+#+end_src
+** I remember advice by Internet of Bugs, and Casey Muratori. How its better to separate actions in each window, to its own thing. So, for the userUpdates, its better to pass arguments in functions, rather than always sharing model
+#+begin_src c++
+
+  UserUpdateWidget *userupdatewidget = new UserUpdateWidget(this, userId, userDepartmentId);
+
+#+end_src
+

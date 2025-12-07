@@ -48,7 +48,9 @@
 * Photos
 ** The different "hardness" of git reset. From [[https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/remove-revert-discard-local-uncommitted-changes-Git-how-to][theserverside]]
 [[./Git/git-reset.png]]
-* Git history cleaning masturbation:
+* Git history manips:
+** [[https://community.latenode.com/t/how-to-upload-only-the-latest-commit-to-github-without-previous-history/35267/6][an orphan commit is a great way to clean history, like in our example that has our DB passwords]]
+*** We can also do this with worktree, YAYYYYY!!
 ** [[https://www.reddit.com/r/emacs/comments/5tn86g/magit_git_pull_automatically_before_git_push/][Great Reddit explanation of pulling early to avoid seeing ugly merge message in history]]
 * Arrange:
 ** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]

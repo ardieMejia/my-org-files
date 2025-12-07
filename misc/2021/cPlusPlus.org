@@ -68,13 +68,8 @@ int main() {
 ** Example:
 #+begin_src c++
 
-
   int* myPointer; // Declares myPointer as a pointer to an integer
   QString* namePtr; // Declares namePtr as a pointer to a QString object
-
-
-
-
 
 #+end_src
 ** Ampersand & is "address of"
@@ -113,7 +108,6 @@ hello.cpp:59:47: error: no matching function for call to ‘QVBoxLayout::QVBoxLa
 
 #+end_quote
 ** It simply means wrong argument type passed, so we should pass pointer type to a QWidget object
-
 * Introduction:
 ** Tools:
 *** [[https://earthly.dev/blog/autoconf/][Components of Autotools]]  (probably very Linux centric way of making makefiles)
@@ -249,8 +243,6 @@ std::getline(std::cin >> std::ws, s);
 **** this is usually scoping issue, which means the function name doesnt exist in space.
 ***** Reasons ==> wrong naming in the 3 places, (cout produces same error if no -> using namespace std;)
 ** Alternative Libraries:
-*** 2D Game Engine
-****
 *** 3D Game Engine
 **** [[https://wiki.ogre3d.org/Ogre+Wiki+Tutorial+Framework][if we starting Ogre seriously, we rewrite this]]
 ***** Wewrite maybe not, coz were not using Ogre
@@ -260,29 +252,33 @@ std::getline(std::cin >> std::ws, s);
 *** has a cool triangle pattern challenge, probably applicable to Python as well
 *** has a cool trick of generating random numbers from Eg: 1 to 10 (instead of random.randint(1,10)):
 **** yi = getrandom_int() % maxlines; # ---------- modulus as a range cutter
-** 
-* Arrange
-** [[https://alexott.net/en/writings/emacs-devenv/EmacsCedet.html][CEDET to read briefly]]
-** [[https://cedet.sourceforge.net/][CEDET briefly]]
 * Makefile awesome writing, but maybe the tool itself is not awesome
 ** [[https://web.mit.edu/gnu/doc/html/make_14.html][mit makefile doc]] : rather useless, in its weird jumbled writing style. Informative, if only reference or experience. Almost written as an afterthought.
 ** [[https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/][colby cs]] : slightly better, but specific. Calls variables "macro", target "rule", hence not great for beginners. Include s ways to make Makefile (haha), more generic. 
-* Not sure how to arrange, this link is VERY useful, after so much past failure:
-** [[https://www.bogotobogo.com/Qt/Qt5_QListView_QStringListModel_ModelView_MVC.php][bogotobogo blog]]
-* QT:
+* QT nonsense:
 ** we learnt that you have Q--widget, Q--model, and Q--view
-* QT: separation of concern, model view logic
-** [[https://felgo.com/doc/apps-howto-model-view-separation/][felgo]]
+** [[https://www.bogotobogo.com/Qt/Qt5_QListView_QStringListModel_ModelView_MVC.php][cool trick]]
+** [[https://felgo.com/doc/apps-howto-model-view-separation/][felgo separation of concerns example]]
 ** [[https://medium.com/e-fever/revised-qml-application-architecture-guide-with-flux-a1de143fe13e][revised QML application arch with Flux]]
 ** [[https://www.freecodecamp.org/news/an-introduction-to-the-flux-architectural-pattern-674ea74775c9/][flux unidirectional data flow]]
-* Links:
 ** [[https://woboq.com/blog/new-signals-slots-syntax-in-qt5.html][a Qt5 blog]]
-** [[https://woboq.com/codebrowser.html][insane code browser]]
 ** [[https://samdutton.wordpress.com/2008/10/03/debugging-signals-and-slots-in-qt/][sam dutton Debugging signals and slots]], wait this ones kinda stupid, becoz we found a better blog on signals and slots
 ** https://riptutorial.com/qt/example/17048/connecting-overloaded-signals-slots
 ** [[https://wiki.qt.io/Qt_for_Beginners][unusually great for beginners OFFICIAL documentation]]
 ** [[https://qt.developpez.com/doc/4.3/qstandarditemmodel/][A BETTER link less-abstracted docs on QStandardItemModel and others]]
-* READ THIS, FUCK YOU:
-** https://doc.qt.io/archives/qt-5.15/model-view-programming.html
-** https://doc.qt.io/archives/qt-5.15/model-view-programming.html#creating-new-models
-** https://felgo.com/doc/qt/qtquick-modelviewsdata-cppmodels/
+* Qt better resources:
+** [[https://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/tutorial_packages_centos6/centos6/freesurfer-fsl-matlab-Linux-centos6_x86_64-dev/freesurfer/lib/qt/qt_doc/html/modelview.html][harvard tutorials]]
+* MACROS are semi-bad, semi-dangerous but powerful
+** [[https://www.reddit.com/r/C_Programming/comments/k37n57/how_to_properly_use_macros_in_c/][The shadowing problem]]
+*** Wshadow is worth gold. 
+*** It seems like the C way is to pick a unique identifier yourself -- e.g. prefixed with the macro's name. 
+** For performance alternative, use better modern alternative inline functions
+** 
+* Namespaces (we achieved some epiphany, we realized the purpose of Ui as a namespace in Qt, is to avoid Qt Designer made stuff from clashing with purely-code classes)
+** [[https://stackoverflow.com/questions/6955023/c-namespace-best-practice-dilemma][namespace some tricks]]
+*** its considered bad practice to put using statements inside header files. But this guy does it anyway, as a way to avoid fully qualified names
+** https://www.geeksforgeeks.org/cpp/namespace-in-c/
+** https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170
+** https://www.learncpp.com/cpp-tutorial/naming-collisions-and-an-introduction-to-namespaces
+** https://forum.qt.io/topic/27278/what-is-the-purpose-of-the-ui-namespace-in-qt
+** https://doc.qt.io/qt-6/qt.html

@@ -22,14 +22,14 @@
   (make-list 10 2)
 
   (setq var1 (-cons*
-              "combobulate, especially dealing with nodes, http://www.webupd8.org/2009/09/real-time-earth-wallpaper-for-linux.html, yayasan pemeraju bank slip"
+              "emacs built-in profiler, edebug, apropos, macro expansion, advising system, indirect buffers, etc."
               "Emacs code compass, BACKUP our data, magit, DB or vector for our persistent highlgiats"
-              "email, CV, also Audiosockets, https://vfunction.com/blog/3-tier-application/, https://www.youtube.com/watch?v=YOrRQtA8BsY"
+              "email, CV, also Audiosockets, https://vfunction.com/blog/3-tier-application/, do a Gtest for C++"
               "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game, ur graphql link history"
               "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Haskell"
               "crochet, Hanifas health, code generation (internet of bugs), ambiguity in corpo legal terms"
               "try Razvan article on creating portabl GEntoo on USB, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely, https://www.datacamp.com/blog/docker-projects"
-              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM"
+              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM, how banks or best practices for race condition"
               (append
                (make-list 3 "Qt practice")
                (make-list 2 "boppps")
@@ -58,24 +58,7 @@
 #+begin_quote
 
 
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Documents /home/ardie/mybackup2025/
 
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Desktop /home/ardie/mybackup2025/
-
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-python-workspace /home/ardie/mybackup2025/
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-gforth-workspace /home/ardie/mybackup2025/
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-go-workspace /home/ardie/mybackup2025/
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/emacs-csharp-workspace /home/ardie/mybackup2025/
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Music /home/ardie/mybackup2025/
-
-rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-trash /home/ardie/mybackup2025/
-
-# ==================================================
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Documents /home/ardie/ardie-back-2025/
 
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/Desktop /home/ardie/ardie-back-2025/
@@ -94,172 +77,65 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-trash /home/ardie/ardie-back-2025/
 
 #+end_quote
-** Terry:
-*** IMPORTANT: we need to add auto-increment column, becoz there is NO guarantee the SQL table will read (SELECT) the same way
-*** withdrawal logs should be downloadable
-*** admin should be able to download, withdrawal AND upload logs as CSV
-*** test again withdrawal and registration of events. Lots of test please surrounding logs
-*** we should test it on chrome and firefox
-*** correct color scheme for all whatHappened
-*** All our pages need their title checked
-*** we need to test reset token limit in production, first set it to 20 minutes (1200 sec)
-*** At the last stage we want to remove the verbose logging, AND we need to write somewhere how we added logging in Render.
-*** we need separate ENV variable for MAIL, especially our app password, NOT SAFE
-*** events page need a log delete button, makes it simpler. its the only thing we need.
-*** we need to test if users can still proceed properly unsigning claused event, even with @login_required
-*** replace our create-member with a create-dummy-member
-*** we need to test again members partial download page
-*** we always upload using march/update_inc_new
-*** relocate svg to its own dir
-*** autocomplete="off"
-*** we test EVERY endpoint from LOGGEDOUT and NONADMIN states, we first LIST every endpoint before doing so
-*** we need to test every endpoint for (user accessing admin endpoints) for satisfaction
-*** create admin on startup, also save this reddit link somewhere important, [[https://www.reddit.com/r/flask/comments/117qm79/create_initialadmin_user/][reddit flask create admin on startup]]
-**** [[https://stackoverflow.com/questions/72296682/simplest-way-to-securely-distinguish-between-admins-and-other-users-in-flask][validate redirect with python urlparse netloc]]
-*** type in Python model, is a built in class, replace!!
-*** we need a dummy user to test
-*** make sure there are 2 admins
-*** rename #tournament_name as someting very unique, its too generic, OR remove all IDs from form-template elements, since that is not used
-*** IMPORTANT: check multiple file inputs and see the effect of log in form_submission()
-*** we should write this somewhere. Jinja when looping through dict, has NO "awareness" of dict structure by default hence has to resort to jinja tricks like these:
-#+begin_export web
-
-{% for membersAnswer in membersAnswers.values() %}
-    {% if loop.first %}
-
-	{% for fieldname,answer in membersAnswer.items() %}
-	    {% if answer.subgroupId is none %}
-		<th class="w-20 p-4 bg-yellow-400">
-		    {{ fieldname }}
-		</th>
-	    {% else %}
-		<th class="w-20 p-4 border-x-2 border-yellow-600 bg-yellow-200 font-light">
-		    {{ fieldname }}
-		</th>
-	    {% endif %}
-	{% endfor %}
-
-
-
-    {% endif %}
-{% endfor %}
-
-
-
-#+end_export
-*** the type, eligibility, important, can be put at top of form or dropdown display
-*** create kill all form button that will kill altogether eventFormQuestions, eventFormQuestionAnaswers, and eventFormQuestionSubgroup
-*** our admin doesnt session timeout
-[[https://www.freekb.net/Article?id=4560][this link]]
-** Tests:
-*** Put some tests in case of wrongly named CSV files
-*** kill event should successfully kill all event descendent data
-**** create event
-**** create form questions with sub questions
-**** get 2 members to register for event and fill form
-**** get 1 member to register for event ONLY
-**** get 1st memebr to register again
-**** KILL event
-**** check event, eventmember, formquestion, formquestionsubgroup, formquestionanswers, formquestionanswersdeleted of specific event ID are deleted
-*** Test form link when there is no matching event, or no event entirely
-*** Insert the exact same name for tournament name, make sure it catches error properly, shoulfd show DB level error message
-*** Go thrhough the usual uplaod of Jan Feb and March, check messages
-*** Upload Jan Feb March, and try uploading FRL in Feb, it should fail wih "wrong type"
-*** Uplaod Jan Feb march, and try updating FRL in Feb, it should correctly updated FIDE. Check 1 members to confirm
-*** login as member and update a FIDE
-** Password resets for Terry's app:
-*** [[https://nrodrig1.medium.com/flask-mail-reset-password-with-token-8088119e015b][better example]]
-*** The simple example, without anythng special [[https://stackoverflow.com/questions/48983616/reset-the-password-in-flask-python][stackoverflow]]
-*** [[https://freelancefootprints.substack.com/p/yet-another-password-reset-tutorial][using FlaskForm]]
-*** from [[https://diginantony.medium.com/how-to-create-a-password-reset-in-flask-python-4dd458c22815][medium]] (yuck), and its bad english
-*** username and password only no longer support in Google [[https://stackoverflow.com/questions/72478573/how-to-send-an-email-using-python-after-googles-policy-update-on-not-allowing-j][workaround]] 
-*** Password reset link from AI, yuck:
-#+begin_src python
-
-
-  from flask import Flask, render_template, request, url_for
-  from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-  from flask_mail import Mail, Message
-
-  app = Flask(__name__)
-  app.config['SECRET_KEY'] = 'your_secret_key' # Replace with a strong, random key
-  app.config['MAIL_SERVER'] = 'smtp.example.com'
-  app.config['MAIL_PORT'] = 587
-  app.config['MAIL_USE_TLS'] = True
-  app.config['MAIL_USERNAME'] = 'your_email@example.com'
-  app.config['MAIL_PASSWORD'] = 'your_email_password'
-
-  mail = Mail(app)
-  s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-  @app.route('/forgot_password', methods=['GET', 'POST'])
-  def forgot_password():
-      if request.method == 'POST':
-          email = request.form['email']
-          token = s.dumps(email, salt='password-reset-salt')
-          link = url_for('reset_password', token=token, _external=True)
-          msg = Message('Password Reset Request', sender='noreply@example.com', recipients=[email])
-          msg.body = f"Click this link to reset your password: {link}"
-          mail.send(msg)
-          return 'Password reset link sent to your email.'
-      return render_template('forgot_password.html')
-
-  @app.route('/reset_password/<token>', methods=['GET', 'POST'])
-  def reset_password(token):
-      try:
-          email = s.loads(token, salt='password-reset-salt', max_age=3600) # Token valid for 1 hour
-      except SignatureExpired:
-          return 'The password reset link is expired.'
-      except Exception as e:
-           return f'Invalid password reset link. {e}'
-
-      if request.method == 'POST':
-          new_password = request.form['new_password']
-          # Update password in database for the user with this email
-          return 'Password updated successfully.'
-      return render_template('reset_password_form.html', token=token)
-
-  if __name__ == '__main__':
-      app.run(debug=True)
-
-#+end_src
-*** Flask session timeout:
-**** [[https://mulgrew.me/posts/session-timeout-flask.html][this one has module g, dont know]]
-**** [[https://stackoverflow.com/questions/11783025/is-there-an-easy-way-to-make-sessions-timeout-in-flask][more basic timeout]]
-*** for null check, we need feedback for the users
-*** remember to convince Terry, that publishing online and locally on laptop are 2 very different things. Online, you have to consider DDOS and everything. Becoz anything can happen when you decide to make something online. Sorry to sound technial but thats it. Of course, modern framework have ways of making it easier, but it still requires reading.
-*** Stupid app, we should recheck all of our validations, should be FIDE
-*** Security:
-** CPP, c++:
-*** 
-*** we need to think of a way to create a dynamic drag and drop table in qt cpp, as hinted here: [[https://forum.qt.io/topic/65304/table-with-dynamic-input-from-user-qt-c/2][link]]
-*** 
 ** Emacs
-*** Work [[https://malaysia.indeed.com/viewjob?jk=1a9c6c99aa19fc1b&tk=1j9en02s8g9jj801&from=jobi2a&advn=5811361332416831&adid=451081987&ad=-6NYlbfkN0CuqEhhOmRdlQP6O64ATa37Y1bNX7-bKBw5-I6spUECOc1_4r1Jjvs9W5ah8SQ6NufQzwKyo_9xv-dCHmcdacFHnexNQJTHcnjCZABYbljTTtoBeEhlU68M4U4fpvDoWPcfYTqT3uqIbnrRpFWB4_grgmJiuWkRH6KxkgGDf-NBPpFbDqWNv9Fv0kliarIK7rTlfirQD6vCB27NP3IvynglbARVlUbls10ZmWwsDoiqVDPgNIfo2X1J4qA8NyiXDm3WlWv4YdVPCdxKpWwFHULKQnONSY6RYYLed2RNwhy46SEtMCFCObya2GMW9QaakPhJdGkIpAXzYoYONiOyncyV7YscLamxSQnepuJ3qwfDDFvvxB3aXn9LQ52EYBUuWFRyBalr0hby_nT1Kb02fheb8kNUy_SIjcQY5rbW-2VZBOspt0e0X4oL8T9V45y74GWmSjFgYNlp-crHtLNbDysXIuFrB1J0iKMB2Yyj15OYP5XnWkcbFLzaNG1Ru1Oii3dGqHuxaSQDo6L2gsuBWNHh-UYvmywG427F7D9NwO0LjgWWqLzy9XoOYhys1HnEX-gz56YrJfKoOKm2BjWC-4yC&pub=21d85ca573e478f5e659e48885c828920cace3277f6b99df&i2af=jobi2a_multijob-en-MY_email&camk=UoKtGZLa3XK_HU2mmRB8Yw%3D%3D&jrtk=5-cmh1-1-1j9en021ri3vg815-1a9c6c99aa19fc1b&xkcb=SoAE6_M3run3FVS2zB0IbzkdCdPP&xpse=SoDJ6_I3run3FVS2zB0PbzkdCdPP&xfps=b63f800c-9286-47cc-a3c3-b8617ea9f628][work documentation with MUET, English]]
+*** Qt C++:
+**** we can try with a simpeCSV add
+**** most likely it wont be strightforward
+**** Py: we sorted our the reading CSV partfirst making sure ,we print the lines
+**** the wen printedout each columns
+**** we made key-index data structure, so we can separate column names from internal data representation
+**** we then made sure, there was validation
+**** we suffered a long process of sorting null values in our CSV
+**** remember, keeping this fun is difficult
+**** but more importantly, we dont want this to be a random feature,
+**** what if theres a special feature, to get something special out of our Qt C++ app
+**** in the end, we cant do anyting special with this
+*** math in games
+**** https://www.mathnasium.com/math-centers/richmondwest/news/role-mathematics-gaming-rw
+**** https://gamedesignskills.com/game-development/video-game-math/
+**** https://www.reddit.com/r/gamedev/comments/12nd3a/what_math_concepts_have_you_found_to_be_most/
+**** https://pikuma.com/blog/math-for-game-developers
+**** https://scenegraph.academy/article/why-is-math-needed-for-games-development/
+**** https://www.gamedeveloper.com/programming/mathematics-in-videogames
+**** https://www.effortlessmath.com/blog/how-math-skills-give-players-a-competitive-edge-in-various-online-games/
+*** we need to read all this links on C++ I guess:
+**** https://www.syncfusion.com/succinctly-free-ebooks/cplusplus/pointers-references-and-const-correctness
+**** https://www.embeddedrelated.com/showarticle/1651.php
+**** Also, on MOC objects, whats all that about
+*** CONCEPTUAL!
+**** We need to recognize other workflows that use a before-after value. So it can also be intuitively added like our (ardie/add-to-special-abbrev)
 *** We made another one!! Open a file at random
 #+begin_src emacs-lisp
 
-  (let ((ardie/files-i-want (directory-files "/home/ardie/Documents/my_notes/my-org-files/" t "/*org")))
-    (nth (random (length ardie/files-i-want)) ardie/files-i-want)
-    )
+
+
+  (let ((ardie/files-i-want (directory-files-recursively "/home/ardie/Documents/my_notes/my-org-files/" "\\.org\\'")))
+  (nth
+   (mod (random (current-time-string) ) (length ardie/files-i-want))
+       ardie/files-i-want)
+  )
 
 #+end_src
 *** https://gcore.com/learning/how-to-install-mate-on-ubuntu
+*** We need to try and write about Doom Emacs, and a little about Spacemacs
 *** Solve the Lubuntu keyboard shortcuts once and for all
 **** create randomizer of opening one of my notes upon Emacs startup
 **** 
 *** More cool Emacs functions, might be too much at this point:
 #+begin_src emacs-lisp
 
-  (defun ardie/open-current-file ()
-  (interactive)
-  (find-file
+  ;; ==========
+  ;; Edit: actually, we have a different idea. We found this magic trick, we have to make it more clever:
+  ;; find-file-at-point 
+  ;; ==========
 
-  (current-kill 0 t)
-             )
-  )
+  (defun
+      ardie/open-current-file ()
+    (interactive)
+    (find-file (current-kill 0 t))
+    )
 
-  
+
 #+end_src
 *** We need to JUST practice our eLisp skill by adding random pairs for specific modes. (Clue, this will make our understanding defer eval, or lazy eval, slightly more epic)
 *** emacs how to put org mode options in separate file
@@ -717,6 +593,95 @@ sudo apt install gpaste.
 ** Make sure you share-rate is above 3%
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** My new job
+**** RM 1400 for 12 hours a day is bad.
+**** the new minimum wage is 1700 (month) Malaysia
+**** RM8.7 is minimum per hour
+**** Desire: 9am - 3pm (6 hrs)
+**** 8*6*30 = RM 1440 (neutral target)
+**** Average hourly pay: RM 7.35, based on data from Payscale.
+**** Average hourly rate (Kuala Lumpur): RM 17, according to ERI SalaryExpert. 
+**** New adjusted: 6*30*9 = 1620
+*** https://scispace.com/pdf/the-constructivist-epistemology-of-jean-piaget-its-jemm67p3vi.pdf
+**** we are reading on the confusion surrounding constructivis
+**** Highlight of Piagets theory:
+- "formal operational period of intellectual development" = control of variables, proportional, hypothetico-deductive
+**** the article highlights early MISERABLE attempts at teaching formal reasoning patterns to children, adolescents. they were surprised (why surprised?) to find that most adolescents could not accelerate into formal operations
+**** pouring knowledge into youngsters heads is basicallly "empiricist" tradition.
+**** Piaget described his idea of knowledge differently. Basically, knowledge is constructed from previous knowledge & their interactions with the environment.
+**** the desire for a quick and easy solution leads to tunnel vision# ==================================================
+**** Ramii 1983, (important Piaget scholar here), noted 3 huge ideas the Sciencee Educators community ignored (??!!). Constructivism, the nature of human knowledge, and learner autonomy.
+**** the article discusses its historical emergence.
+**** science education community viewed Piaget as a child psychologist.
+**** Fact: Piaget studies link between "adaptive mechanisms" (biology-related), & "interpretation of scientific thought".
+**** the article compares Rationalism, Empiricism, Romanticism, Constructivism
+**** very good description
+**** but the most interesting is Hume's thought, which 1 quote reveals:
+- the statement "all triangles have 3 sides", does not prove triangles exist
+- he rejects Rationalism and Empiricism
+- he dealt a critical blow to empiricism because sense perception could not account for all knowledge
+- "in causal situation, the only experience is the conjuction of 2 objects in space and time"
+- "our experience of self are only psychic events, not the underlying self"
+*** The real problems with AI
+**** widespread disinformation
+**** large scale manipulation of individuals including children
+**** national and international security concerns
+**** mass unemplyment
+**** systematic human rights violation
+*** Reddit:
+#+begin_quote
+
+
+I thought it was wrong, becoz this function will print the bag of items will not work.
+
+(let ((bag-items (cdr (nth 2 a-list)))  )
+  (mapcar 'car bag-items)
+  )
+
+#+end_quote
+*** The only real argument for Emacs, is if you want to bring more out Vim, but struggled. I think if you've already established an efficient workflow in VSCode, theres no point, most likely youve relied on it too much. Also, Emacs is supposed to be the anti-thesis to Vim, becoz text is suppose to be the source of everything. Becoz of Vims "model editing", Vim doesnt treat "text" as the "source of everything". Emacs is an interesting case study of this paradigm when pushed to its extreme. Its the reason why Emacs has very little boundary between anything in it.
+*** Larian Studios
+#+begin_quote
+
+Good understanding of C++:
+Understanding of C++ concepts (such as types, OOP, Memory management etc.);
+Be able to write robust code without infinite loops and memory leaks;
+Strong mathematical skills, especially 3d math, vectors, matrices, etc.;
+Familiarity with game concepts such as state machines, pathfinding, AI, and others;
+Portfolio of personal project(s) developed in C++, including source code not older than 2 years; - does not apply if you have relevant professional gamedev experience
+Projects done during the coursework at university will not count as we would like to see what you like to work on and your level of coding;
+Well spoken and written English;
+Good feel for RPG systems and gameplay in general;
+Open-minded, willing to experiment and iterate over a specific feature;
+You are a team player and willing to take responsibility and ownership;
+
+
+You do not hesitate to reach out to stakeholders to clarify requirements or provide feedback, or ideas;
+You are capable of organising yourself and keeping track of your own progress and tasks;
+Passion for making and playing games.
+
+==================================================
+
+
+
+https://jobs.lever.co/larian/ad8ea7ad-77b1-4839-8268-412ab72faf8b
+
+#+end_quote
+*** Being nerdy for the sake of being nerdy. But also Lisp has taught me syntax that makes sense.
+#+begin_quote
+
+
+git worktree add ../feature-x
+
+git worktree add -b my-new-feature ../my-feature-worktree
+
+# both are correct, the 1st is for creating worktree for new branch from scratch, the 2nd is for creating new worktree with existing new branch. Coming from Lisp, I cant help but think, it would make more sense to have a nil (or Null) option added to the 2nd arguments.
+
+This is why you cant treat terminal commands as prog langs, they're messy, and make no syntax sense. In terms of "naturally committing to memory". It becomes difficult. Adding the nil or Null would make everyones (beginner or advanced) instantly familiriaze with this command.
+
+Of course, I might be stupid. Coz Lisp also has "optional commands options". Hahahaha, Im thinkg about too much.
+
+#+end_quote
 *** mu4e
 #+begin_quote
 
@@ -804,29 +769,8 @@ What spawned the leet-code interviews
 
 #+end_quote
 *** Be consistent like Louis Rossmann, how can we provide a counter-incentive structure to (the massive incentive use of) AI.
-*** With all the knowledge that we already have at our disposal, even old engineering and old "AI" knowledge. True innovation and progress will not feel "flashy" or "fancy". But will feel like comfort and peace. A socialist type revolution at the process level, will increase average satisfaction and happiness, and feels very "unremarkable". And thats perfectly fine. Coz the alternative is to be sold "AI" lies, expensive GPUs (but dont acheive anything becoz the software hasnt caught up with it). If companies are still claiming innovation, thats just another snake oil salesmen.
 *** How programming jobs are "created"
 *** The trick to learning C++'s hacky syntax "faster" is to think in terms of ambiguity. Each concept is about solving the ambiguity on the part of the compiler. Making the "stupid" compiler understand your intent. A bit like solving the ambiguity in overloaded English words (is "duck" bending over OR the animal, in a context). The most obvious thing I can think of right now, is C++ "casting" is communicating the ambiguity of a line when declaring a variable. The compiler is "confused" as to the multiple possible meanings of a declaration.
-*** Language:
-#+begin_quote
-
-The miracle of our species is hugely over-rated.
-
-All that intelligence and God thing is mostly over-rated.
-
-If the father of Reinforcement Learning (a type of machine learning) thinks that human intelligence is vastly over-rated, then its probably is true. Its obvious we are far too similar to squirrels that to any sentient being in the sky.
-
-Our chemicals and how we react to it, even against our will makes it so obvious.
-
-The only thing that makes us special is our language. But language is an interesting tool, it causes great harm and can create amazing things. Language makes building the impossible possible..
-
-We are also easily fooled by language. We get easily hurt and excited by language. Which explains why people get easily fooled by ChatGPT. Even though its just predicting next words of a sentence.
-
-In a strange way, language is also an over-rated indicator of intelligence.
-
-#+end_quote
-*** workers ignoring safety, isnt just a symtpom of stupidity (unlike Mat Rempit). Its also a symptom of Capitalism, Capitalism pushes the "average" negligence. The lower the class ad social status of said worker, the more he ignores safety being a captive of capitalism
-*** Maybe the word "introvert" is a misnomer, a proper word is closer to "insanity". Not meant as an insult. But rather, anyone suffiient competent artist or intellgient creative (a creative programmer for example) will develop a weird balance between thin and thick skin. The word for that is insanity. But most people will never develope that kind of level of creativity, "introvert" becomes an umbrella term. Sure introverts exist, but maybe not everyone who doesnt behave normal is an introvert.
 *** Emacs, when a "theory" of mine works like magic
 *** Emacs sucks (but we can blame Capitalism for this)
 **** what??
@@ -836,8 +780,6 @@ In a strange way, language is also an over-rated indicator of intelligence.
 *** Even with all the problems of code naming in English. Im thankful some companies dont have problems like [[https://softwareengineering.stackexchange.com/questions/1483/do-people-in-non-english-speaking-countries-code-in-english][this]]. Even worse, is (spoken) language problems that result in 2 software environments (including code and docs) - "two type of software environments: code that's supposed to be shared with international parties (open source projects, Spanish offices of foreign multinationals, vendors who sell abroad) and code that's sold locally"
 *** China makes a lot of stuff by reverse engineering other bigger companies that monopolized that sector. They key word here is monopoly, not that plagiarization part. Its kinda badass, to be able to reverse engineer stuff. But this still seems very reactionary. Its doesnt revolutionary enough, to only "respond" to monopolies
 *** another messaging that may be misleading, programmers evolving a love of code, being inerpreted, as a kind masturbatiry love, but is in fact a very rational response to lack or wrong incentives in corporate software. The only way to be productive here is to love code. And you must evolve a loveof code, to become a great developer of anything creative. becoz theres no such thing is true originality, so a love of code, even from a "artistic" view makes a lot of sense. Also, people dont know that code can be very beautiful.
-*** [[https://medium.com/@sameera.godakanda/the-real-reason-teslas-ai-chief-bailed-c7f5a0a52c39][Andrej Karpathy is sussy]]
-**** Heres another video that makes me suspicious of Andrej, he makes incredibly arrogant assumptions about how animals think. (Hint: they DO think, they just dont think the way humans do). This is what happens when GPU nerds become overly arrogant in their understanding of the theory of evolution. https://www.youtube.com/watch?v=LnGRHVlsheo
 *** Hank Greens AI circle jerk
 **** OpenAI is losing more money than they're making.
 **** The amount of money to train and use models is more than theyre charging, even with their top 200$ per month tier
@@ -1169,13 +1111,6 @@ aspell check ~/sample.txt
 *** Should I apply? 
 **** [[https://compro.miu.edu/?utm_source=facebook&utm_medium=cpc&utm_content=text&utm_campaign=compro&utm_id=120210340864320345_v2_s06_e7201_sp_110&utm_term=120210340864370345&fbclid=IwY2xjawMLi3hleHRuA2FlbQEwAGFkaWQBqyPoGbLBuWJyaWQRMTdOY0lpSzRXbW01aklUMmcBHuTWV54DUfqMu-CpPxs7DLCAuV0srbD9sXm0FAIjSMlbXVa-WZ7VU3B8dSOi_aem_3t2fF1lsPdx-YHLCOJmAxw][masters in computer sciecne]]
 *** [[https://northeastbylines.co.uk/news/national-news/flag-fetishism-by-gaslight/][flag fetishism by gas light]]
-*** Teaching later:
-**** some differences = Neovim has remove keybinding, Emacs has modes, so you usually have overwrites instead of removing
-**** autocommand detects events such as opening a file. Emacs uses hooks. And there are so many hooks, but the nature of Emacs documentation means its up to you to explore this
-**** eerything is a buffer, running a terminal inside Emacs, and the terminal is a buffer. whereas in Neovim, im guessing Neovim is inside terminal
-**** to truly take advanage of Emacs, the learning experience is different from Neovim. If you start with only suggested configs with Neovim, and learn only 1 prog lang, you can already do amazing stuff. But with Emacs, you often need to read and explore more, becoz Emacs has so many packages most emacs users havenever heard of 
-**** Neovim has much better defaults. Emacs has horrible defaults by FAR
-**** Org-Mode is literally what Emacs is all about, in a sense
 *** Video on my project-agnostic Neovim killer workflow.
 **** My attempt at using Emacs like badass
 **** I basically combined project local variables (Emacs.dir-locals.el), which is basically directory local variables, with Git worktree and some eLisp functions to create a workflow that consists of a fuzzing branch and working branch
@@ -1196,8 +1131,6 @@ aspell check ~/sample.txt
 **** If after a long week changes look good enough, I can push it to the repo. If not, I can do a reset with the ardie/back-to-square-one function (which is also bound to a Alt-single mouse button)e
 **** Since Git is mostly a toolkit, it doesnt make sense to me, to not abuse it in a personalized way.
 **** Useful for: 1 - not wanting push code that works but too embarassing for public 2 - playing with week-long throwaway code, and can start over easily 3 - avoiding pushing unclean commits to control freak team leads ("why is there a space in this commit history? And why are you using single-quotes instead of double quotes?").
-*** Reddit:
-**** Ask about how to auto wrap around if else, the same way we can do with sexp
 *** Post for RemoteWorkMalaysia:
 **** I have been jobless for 3 months. Im extremely hungry for solving problems, if given the opportunity.
 **** If you have any suggestions or advice or if you know anyone who would be willing to give me a chance, it would be very much appreciated. 
@@ -1232,7 +1165,6 @@ aspell check ~/sample.txt
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment. This one is [[https://www.react-graph-gallery.com/build-axis-with-react][from react]]
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
-** We are going to publish our site, either in render or fly.io
 ** Emacs:
 *** Convincing others:
 **** Non-destructive ways to test Emacs packages:
