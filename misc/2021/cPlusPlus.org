@@ -282,3 +282,9 @@ std::getline(std::cin >> std::ws, s);
 ** https://www.learncpp.com/cpp-tutorial/naming-collisions-and-an-introduction-to-namespaces
 ** https://forum.qt.io/topic/27278/what-is-the-purpose-of-the-ui-namespace-in-qt
 ** https://doc.qt.io/qt-6/qt.html
+* Mature tips:
+** [[https://agiledeveloper.com/articles/cloning072002.htm][why copying objects is a bad idea]], this link also mentioned OCP by Bertrand Meyer
+** [[https://hackernoon.com/the-open-closed-principle-c3dc45419784][Open-Closed Principle (OCP) by Bertrand Meyer]]
+* Reading is always fun:
+** [[https://www.syncfusion.com/succinctly-free-ebooks/cplusplus/pointers-references-and-const-correctness][pointers, references, const]], which also mentions RAII
+** [[https://cburch.com/books/cptr/][c pointers]]

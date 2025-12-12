@@ -35,4 +35,19 @@ I agree! But still if someday you change your mind, you’d do something great f
 
 #+end_quote
 * Day 82:
+** tried a bit of Common Lisp 
+** a Reddit comment somewhere said that we should habitualize using REPL, not running functions from file
+** always run rlwrap before sbcl
+** ASDF is a build system, but quicklisp manages external dependencies between Lisp systems
 ** 
+* Day 83:
+** there is no confusion between header declaration and the usage in .cpp. But we cant get our head around placement of & or *
+#+begin_src c++
+
+void UserCsvWidget::getFile__QStringList(QStringList& files){}
+
+#+end_src
+** we REALLY need to read the history of creation of & and *
+** QStringList 
+*** https://forum.qt.io/topic/143408/how-to-pass-and-simply-iterate-c-c
+** in modern C++, the recommended alternatives to using raw pointers and explicit new/delete are standard library containers and smart pointers.

@@ -593,50 +593,85 @@ sudo apt install gpaste.
 ** Make sure you share-rate is above 3%
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
-*** My new job
-**** RM 1400 for 12 hours a day is bad.
-**** the new minimum wage is 1700 (month) Malaysia
-**** RM8.7 is minimum per hour
-**** Desire: 9am - 3pm (6 hrs)
-**** 8*6*30 = RM 1440 (neutral target)
-**** Average hourly pay: RM 7.35, based on data from Payscale.
-**** Average hourly rate (Kuala Lumpur): RM 17, according to ERI SalaryExpert. 
-**** New adjusted: 6*30*9 = 1620
-*** https://scispace.com/pdf/the-constructivist-epistemology-of-jean-piaget-its-jemm67p3vi.pdf
-**** we are reading on the confusion surrounding constructivis
-**** Highlight of Piagets theory:
-- "formal operational period of intellectual development" = control of variables, proportional, hypothetico-deductive
-**** the article highlights early MISERABLE attempts at teaching formal reasoning patterns to children, adolescents. they were surprised (why surprised?) to find that most adolescents could not accelerate into formal operations
-**** pouring knowledge into youngsters heads is basicallly "empiricist" tradition.
-**** Piaget described his idea of knowledge differently. Basically, knowledge is constructed from previous knowledge & their interactions with the environment.
-**** the desire for a quick and easy solution leads to tunnel vision# ==================================================
-**** Ramii 1983, (important Piaget scholar here), noted 3 huge ideas the Sciencee Educators community ignored (??!!). Constructivism, the nature of human knowledge, and learner autonomy.
-**** the article discusses its historical emergence.
-**** science education community viewed Piaget as a child psychologist.
-**** Fact: Piaget studies link between "adaptive mechanisms" (biology-related), & "interpretation of scientific thought".
-**** the article compares Rationalism, Empiricism, Romanticism, Constructivism
-**** very good description
-**** but the most interesting is Hume's thought, which 1 quote reveals:
-- the statement "all triangles have 3 sides", does not prove triangles exist
-- he rejects Rationalism and Empiricism
-- he dealt a critical blow to empiricism because sense perception could not account for all knowledge
-- "in causal situation, the only experience is the conjuction of 2 objects in space and time"
-- "our experience of self are only psychic events, not the underlying self"
-*** The real problems with AI
-**** widespread disinformation
-**** large scale manipulation of individuals including children
-**** national and international security concerns
-**** mass unemplyment
-**** systematic human rights violation
-*** Reddit:
+*** Teaching desperate:
 #+begin_quote
 
+Want an experienced teacher to teach Python to your young ones at an affordable rate? ✨
+I offer engaging one-to-one online Python lessons designed using the BOPPPS teaching framework to ensure effective learning and steady progress.
 
-I thought it was wrong, becoz this function will print the bag of items will not work.
+🔗 Bridge: Connecting to Their Interests
+• Lessons begin by linking Python concepts to things your child already enjoys, such as games, animations, problem-solving, and more.
 
-(let ((bag-items (cdr (nth 2 a-list)))  )
-  (mapcar 'car bag-items)
-  )
+🎯 Learning Outcomes: Clear & Achievable Goals
+• Every session has specific, measurable goals.
+• Students know exactly what they will learn and why it matters.
+
+📘 Pre-Assessment: Learning at the Right Level
+• A short initial assessment to understand your child’s current coding skills.
+• Lessons are then tailored to match their pace and background.
+
+🧩 Participatory Learning: Hands-On, Fun & Interactive
+• Students learn by doing: mini-projects, coding challenges, visual examples.
+• Encourages creativity, curiosity, and confidence with real code.
+• My teaching style is friendly, patient, and easy to follow.
+
+📝 Post-Assessment: Immediate Feedback
+• Quick end-of-lesson checks to reinforce understanding.
+• Parents receive optional progress updates after each class.
+
+📚 Summary: Reinforcing Key Takeaways
+• Each session ends with a simple recap of what was learned + a short practice task.
+• Helps knowledge stick and builds long-term mastery.
+
+💵 Only RM30/hour
+
+WhatsApp or PM me for spots
+
+#+end_quote
+*** We need to post about our Github checkout misnomer discovery. And that edge case, that might not be so "edge"
+**** https://stackoverflow.com/questions/61130412/what-is-the-difference-between-git-checkout-vs-git-restore-for-reverting-un/61132733#61132733
+*** C/C++
+#+begin_quote
+
+Years aftercoming back to C/C++, my mind hasnt changed much.
+
+if you plan on making something at the beginning of your career, avoid C/C++ at all cost
+
+C/C++ will test character strength and patience.
+
+Sure it will teach you stuff at thelowlevel most modern languages wont.
+
+I guess C/C++ is more transferable than you think. Because most langs are built on top of C/C++. (And you'll understand OOP is a social construct, that actually uses C++ pointers in the background)
+
+But it might be bad advice.
+
+People joke about Emacs being for dinosaurs, bu nobody makes that joke about C/C++.
+
+The thing is, I became more creative learning Emacs and eLisp than anything else.
+
+If theres such a thing as a software that changed my mind, it is Emacs and eLisp.
+
+C/C++ is the one that deserves some PhD or dinosaurs joke.
+
+C/C++ taught me the patience of reading documentation.
+
+In fact my mind became laser focused, when I read. I went into "what is the authors intention? What if this terminology is misleading? What if theres better documentation for this concept than this article". Wrestling with the C/C++ syntax will hone that strength as a person.
+
+And I learnt "how to read", "how to search engine", "its not about how much you read, its about what you choose to read", etc.. from years of not touching programming and doing something els, before going back into C/C++
+
+People who become good at C/C++ have a tendency to love C/C++, it does that to you.
+
+So you have people like "all you need is C"
+
+Its like learning pushup as the single versatile tool to build your body.
+
+You will be creative with pushups. 1-armed pushups, power clap pushup, pushups that morph into stretches midway (like hindu pushups). You will master how different parts of your body react to different pushups.
+
+But not many people have time for that. But forget about time, why should you be a corpo simp always obsessed about time? Its not just time, it doesnt really change the way your mind works.
+
+So, C/C++, Im beginning to respect it. But I would still never recommend it to anyone, unless he has 5 years to spare. And even that 5 years is better spent learning Emacs and transforming it into your novel writing setup for your next publisher.
+
+Learn another language? Python is fine, but it wont make you think like a programmer who loves syntax. Maybe learn anything else, Go, Lisp, Javascript, whatever. Just not C/C++, unless your making something exotic.
 
 #+end_quote
 *** The only real argument for Emacs, is if you want to bring more out Vim, but struggled. I think if you've already established an efficient workflow in VSCode, theres no point, most likely youve relied on it too much. Also, Emacs is supposed to be the anti-thesis to Vim, becoz text is suppose to be the source of everything. Becoz of Vims "model editing", Vim doesnt treat "text" as the "source of everything". Emacs is an interesting case study of this paradigm when pushed to its extreme. Its the reason why Emacs has very little boundary between anything in it.

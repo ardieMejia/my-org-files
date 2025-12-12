@@ -156,3 +156,24 @@ ums and various sounds are absolutely impeccable. Soen sounds like nothing else 
 **** Lifetime reduced social interaction (encouraging different sensory seeking, or avoidance behaviour)
 **** 
 * Language Entropy
+* Learning theory:
+* [[https://scispace.com/pdf/the-constructivist-epistemology-of-jean-piaget-its-jemm67p3vi.pdf][The constructivist epistomology of Jean Piaget]]
+** we are reading on the confusion surrounding constructivis
+** Highlight of Piagets theory:
+- "formal operational period of intellectual development" = control of variables, proportional, hypothetico-deductive
+** the article highlights early MISERABLE attempts at teaching formal reasoning patterns to children, adolescents. they were surprised (why surprised?) to find that most adolescents could not accelerate into formal operations
+** pouring knowledge into youngsters heads is basicallly "empiricist" tradition.
+** Piaget described his idea of knowledge differently. Basically, knowledge is constructed from previous knowledge & their interactions with the environment.
+** the desire for a quick and easy solution leads to tunnel vision# ==================================================
+** Ramii 1983, (important Piaget scholar here), noted 3 huge ideas the Sciencee Educators community ignored (??!!). Constructivism, the nature of human knowledge, and learner autonomy.
+** the article discusses its historical emergence.
+** science education community viewed Piaget as a child psychologist.
+** Fact: Piaget studies link between "adaptive mechanisms" (biology-related), & "interpretation of scientific thought".
+** the article compares Rationalism, Empiricism, Romanticism, Constructivism
+** very good description
+** but the most interesting is Hume's thought, which 1 quote reveals:
+*** the statement "all triangles have 3 sides", does not prove triangles exist
+*** he rejects Rationalism and Empiricism
+*** he dealt a critical blow to empiricism because sense perception could not account for all knowledge
+*** "in causal situation, the only experience is the conjuction of 2 objects in space and time"
+*** "our experience of self are only psychic events, not the underlying self"
