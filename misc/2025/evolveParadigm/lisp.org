@@ -10,3 +10,13 @@
 ** "Backquote constructs allow you to quote a list, but selectively evaluate elements of that list"
 ** Basically its a cleaner way to "doublequote" a text, and evalute some chosen elements
 * [[https://www.youtube.com/playlist?list=PLE18841CABEA24090][playlist]]
+* Common sense links:
+** [[https://www.cs.cmu.edu/][Carnegie Mellon’s School of Computer Science]] but we have to make sure its about Lisp
+** Lispworks
+* Tail call recursion:
+** [[https://eighty-twenty.org/2011/10/01/oo-tail-calls][Why Object-Oriented Languages Need Tail Calls]]
+** [[https://dl.acm.org/doi/10.1145/1639949.1640133][On understanding data abstraction, revisited]]
+** [[https://www.cs.utexas.edu/~wcook/Drafts/2009/essay.pdf][On understanding data abstraction, revisited]]
+** [[https://gbracha.blogspot.com/2009/12/chased-by-ones-own-tail.html][tail call optimizations]], but with very important additional concepts
+** [[https://medium.com/@AlexanderObregon/how-racket-handles-tail-recursion-to-prevent-stack-overflow-94a547968693][medium: how racket handles tail recursion]]
+** 

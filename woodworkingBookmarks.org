@@ -58,3 +58,6 @@
 ** [[https://m.youtube.com/watch?v=2Wmzl3bhyJE][folding stool for train]]
 ** [[https://m.youtube.com/watch?v=sbMVYTBY8-Q][another folding stool]]
 * we finised our quick release!! should we document it?
+* TODO
+** [[https://www.youtube.com/watch?v=Nrga2vZ0As8][create a huge but simple tool chest]]
+** [[https://www.youtube.com/watch?v=-dwBiQL1Nag][groove plane DIY]]

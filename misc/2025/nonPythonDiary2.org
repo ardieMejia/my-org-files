@@ -51,3 +51,56 @@ void UserCsvWidget::getFile__QStringList(QStringList& files){}
 ** QStringList 
 *** https://forum.qt.io/topic/143408/how-to-pass-and-simply-iterate-c-c
 ** in modern C++, the recommended alternatives to using raw pointers and explicit new/delete are standard library containers and smart pointers.
+* Day 84:
+** we mostly learnt Rust (advent of code) and did woodworking. We only planed wood for our folding stool. Not much progress
+* Day 85:
+** Discovered that we can define QList from std::initializer_list, and define QStringList from QList
+** We can also define QStringList straight from curly brackets 
+** Some examples:
+#+begin_src c++
+
+  QList<QString> testlist = {"1", ":2014"};
+
+  QStringList testlist_better(testlist);
+
+  // or we can do this
+
+  QStringList fonts = { "Arial", "Helvetica", "Times" };
+
+  // probably more
+
+  
+
+#+end_src
+* Day 86:
+** We only read Rust code so far.
+** We attempted some basic file reading, but went nothing beyond that.
+** We decided to stop for a while and just Rust docs, coz its worth especially our encountering of strange symbols (pipe, ?question mark)
+** We finished planing a piece of wood, but that took literally 3 hours, when including rest and cleaning
+* Day 87:
+** We discovered that C++ compiler will actually STOP us from repeating definition of our parseCSVRow() function.
+** We discovered that we only needed to add namespace, and we define it and use it exactly the same way (only difference: MyParser::)
+** Theres boilerplate code for this. The usual header guards, but most important is the namespace
+#+begin_src c++
+
+  // we couldnt make it work without the namespace, but regardless, namespace is good practice
+  namespace MyParser
+  {
+    std::vector<std::string> parseCSVRow(const std::string& row);
+  }
+
+#+end_src
+** The rest is exactly the same
+** Remember: One Definition Rule
+* Day 88:
+** We successfully ran a vecto function that successfully outputs to a png file
+** We still havent done anything of significance with Common Lisp
+* Day 89:
+** We are struggling to learn Common Lips Recipes, but, things are looking up becoz we discovered Lisp is a very cool lang, with a history of GUI way ahead of its time. And other stuff we learnt
+** common lisp
+*** the symbol has its own properties like an object, even its own lifespan separate from the function or value it defines
+*** this is very different from other traditional langs, where the "variables name/label/whateer" is the same as the function, so all are like the "same object" with a single lifespan
+* Day 90:
+** we fixed our sly keybindings, which still feels like magic by itself
+* Day 91:
+** 

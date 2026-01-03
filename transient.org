@@ -22,14 +22,14 @@
   (make-list 10 2)
 
   (setq var1 (-cons*
-              "emacs built-in profiler, edebug, apropos, macro expansion, advising system, indirect buffers, etc."
-              "Emacs code compass, BACKUP our data, magit, DB or vector for our persistent highlgiats"
+              "we need to bind ;b to sly-mode parenthesis, Emacs versor, emacs built-in profiler, edebug, apropos, macro expansion, advising system, indirect buffers, etc."
+              "DB history, Emacs code compass, BACKUP our data, magit, DB or vector for our persistent highlgiats"
               "email, CV, also Audiosockets, https://vfunction.com/blog/3-tier-application/, do a Gtest for C++"
               "we do use this link http://programarcadegames.com/index.php?lang=en&chapter=introduction_to_animation with our game, ur graphql link history"
               "attention is all you need (transformer model), RISC-v, ISA, that original video you watch on Tablet?, Haskell"
               "crochet, Hanifas health, code generation (internet of bugs), ambiguity in corpo legal terms"
               "try Razvan article on creating portabl GEntoo on USB, commit your treesitter.so in user-emacs-directory coz its pretty safe unless your changing architecture completely, https://www.datacamp.com/blog/docker-projects"
-              "GUIX videos, url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM, how banks or best practices for race condition"
+              "url practices in ~/my-trash/delete/stupidNotion/README.org, STEAM, how banks or best practices for race condition"
               (append
                (make-list 3 "Qt practice")
                (make-list 2 "boppps")
@@ -78,6 +78,14 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 #+end_quote
 ** Emacs
+*** Regexp for our sly:
+#+begin_src emacs-lisp
+
+  ;; we are using this regexp
+
+  ;;  "<.*?>"
+
+#+end_src
 *** Qt C++:
 **** we can try with a simpeCSV add
 **** most likely it wont be strightforward
@@ -593,6 +601,7 @@ sudo apt install gpaste.
 ** Make sure you share-rate is above 3%
 ** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 ** Social media posting:
+*** "an expert is a person who has made all the mistakes that can be made in a very narrow field". -- Niels Bohr
 *** Teaching desperate:
 #+begin_quote
 
@@ -628,8 +637,36 @@ I offer engaging one-to-one online Python lessons designed using the BOPPPS teac
 WhatsApp or PM me for spots
 
 #+end_quote
-*** We need to post about our Github checkout misnomer discovery. And that edge case, that might not be so "edge"
-**** https://stackoverflow.com/questions/61130412/what-is-the-difference-between-git-checkout-vs-git-restore-for-reverting-un/61132733#61132733
+*** The key to understanding programming, it is not math, but rather linguistics.
+#+begin_Quote
+
+So programming is closer to linguistics
+
+And the key to becoming good at it, is to understand that most of engineering is about history.
+
+The "const" keyword in C/C++ can be understood from how, C is historically mutable (changed be changed), const makes it immutable.
+
+And the ampersand is because C historically passes default by value.
+
+And the asterisk can be thought of as a wild card, so we are "completing" the variable in a sense, by accessing its real value (they call it dereferencing).
+
+The additions are historical evolutions.
+
+Cant believe I finally understood this after many years.
+
+This is cause for hope, coz it means you dont need some high IQ thinking, as much as I used to think.
+
+It means most programming can be more beautiful than I thought.
+
+But its important to realize that its history is an important part of the lesson.
+
+Again this is great, coz history about engineering can be even more interesting than the math behind it
+
+But its somehow important I think to not force people to learn C/C++ early on. better explore functional languages, as it might help more.
+
+Learning C/C++ early on, and with a deadline might present more problems than do good.
+
+#+end_quote
 *** C/C++
 #+begin_quote
 
@@ -675,33 +712,6 @@ Learn another language? Python is fine, but it wont make you think like a progra
 
 #+end_quote
 *** The only real argument for Emacs, is if you want to bring more out Vim, but struggled. I think if you've already established an efficient workflow in VSCode, theres no point, most likely youve relied on it too much. Also, Emacs is supposed to be the anti-thesis to Vim, becoz text is suppose to be the source of everything. Becoz of Vims "model editing", Vim doesnt treat "text" as the "source of everything". Emacs is an interesting case study of this paradigm when pushed to its extreme. Its the reason why Emacs has very little boundary between anything in it.
-*** Larian Studios
-#+begin_quote
-
-Good understanding of C++:
-Understanding of C++ concepts (such as types, OOP, Memory management etc.);
-Be able to write robust code without infinite loops and memory leaks;
-Strong mathematical skills, especially 3d math, vectors, matrices, etc.;
-Familiarity with game concepts such as state machines, pathfinding, AI, and others;
-Portfolio of personal project(s) developed in C++, including source code not older than 2 years; - does not apply if you have relevant professional gamedev experience
-Projects done during the coursework at university will not count as we would like to see what you like to work on and your level of coding;
-Well spoken and written English;
-Good feel for RPG systems and gameplay in general;
-Open-minded, willing to experiment and iterate over a specific feature;
-You are a team player and willing to take responsibility and ownership;
-
-
-You do not hesitate to reach out to stakeholders to clarify requirements or provide feedback, or ideas;
-You are capable of organising yourself and keeping track of your own progress and tasks;
-Passion for making and playing games.
-
-==================================================
-
-
-
-https://jobs.lever.co/larian/ad8ea7ad-77b1-4839-8268-412ab72faf8b
-
-#+end_quote
 *** Being nerdy for the sake of being nerdy. But also Lisp has taught me syntax that makes sense.
 #+begin_quote
 
@@ -715,6 +725,16 @@ git worktree add -b my-new-feature ../my-feature-worktree
 This is why you cant treat terminal commands as prog langs, they're messy, and make no syntax sense. In terms of "naturally committing to memory". It becomes difficult. Adding the nil or Null would make everyones (beginner or advanced) instantly familiriaze with this command.
 
 Of course, I might be stupid. Coz Lisp also has "optional commands options". Hahahaha, Im thinkg about too much.
+
+#+end_quote
+*** YouTube
+#+begin_quote
+
+Show some support by buying me coffee on my Ko-fi page just setup recently. (It has both Debit/Credit Card and Paypal options, with 0% fee)
+https://ko-fi.com/ardiemejia83
+
+Or can donate straight to my PayPal
+https://paypal.me/ardiemejia83
 
 #+end_quote
 *** mu4e
@@ -806,25 +826,12 @@ What spawned the leet-code interviews
 *** Be consistent like Louis Rossmann, how can we provide a counter-incentive structure to (the massive incentive use of) AI.
 *** How programming jobs are "created"
 *** The trick to learning C++'s hacky syntax "faster" is to think in terms of ambiguity. Each concept is about solving the ambiguity on the part of the compiler. Making the "stupid" compiler understand your intent. A bit like solving the ambiguity in overloaded English words (is "duck" bending over OR the animal, in a context). The most obvious thing I can think of right now, is C++ "casting" is communicating the ambiguity of a line when declaring a variable. The compiler is "confused" as to the multiple possible meanings of a declaration.
-*** Emacs, when a "theory" of mine works like magic
-*** Emacs sucks (but we can blame Capitalism for this)
-**** what??
 *** YouTubers who have no issue with long/fat functions. And even those who like functions chunky (I like em chunky too, wink, wink)
 *** The #1 reason to use Emacs is to write a diary
 *** Cool video on what compilers do behind the scenes, explained in a very friendly manner. Also, now that Im going down the rabbit hole of programming langs again. I just realized English as a language has a lot ambiguity in it. It is "easy" only becoz of its dominance, but its actually difficult to master from a non-native speaker, becoz theres a lot overloaded terms.
 *** Even with all the problems of code naming in English. Im thankful some companies dont have problems like [[https://softwareengineering.stackexchange.com/questions/1483/do-people-in-non-english-speaking-countries-code-in-english][this]]. Even worse, is (spoken) language problems that result in 2 software environments (including code and docs) - "two type of software environments: code that's supposed to be shared with international parties (open source projects, Spanish offices of foreign multinationals, vendors who sell abroad) and code that's sold locally"
 *** China makes a lot of stuff by reverse engineering other bigger companies that monopolized that sector. They key word here is monopoly, not that plagiarization part. Its kinda badass, to be able to reverse engineer stuff. But this still seems very reactionary. Its doesnt revolutionary enough, to only "respond" to monopolies
 *** another messaging that may be misleading, programmers evolving a love of code, being inerpreted, as a kind masturbatiry love, but is in fact a very rational response to lack or wrong incentives in corporate software. The only way to be productive here is to love code. And you must evolve a loveof code, to become a great developer of anything creative. becoz theres no such thing is true originality, so a love of code, even from a "artistic" view makes a lot of sense. Also, people dont know that code can be very beautiful.
-*** Hank Greens AI circle jerk
-**** OpenAI is losing more money than they're making.
-**** The amount of money to train and use models is more than theyre charging, even with their top 200$ per month tier
-**** In summary, speculative economy should be banned.
-**** The question is, is the demand for chips exceeding supply, or is NVIDIA generating that demand for AI services increasing or is OpenAI creating that demand 
-**** NVIDIA invests 100 bill dollars in OpenAI, in exchange of OpenAI buying more chips from them (they get more money if they buy the chips)
-**** OpenAI signs a 300 billion dollar deal with Oracle as the middle man in all this madness. Oracle building data centres spends many more on chips
-**** the theory of Supply and Demand means that if price keeps going up, then supply is there.
-**** the chip is not the product, the AI service is the product. but the money made from the AI service is an order of magnitude lower than the value of the hardware alone 
-**** firing everyone is not enough, in order to match this inflated value, currently, it has to create so much value and create many systems that capture this value (lock in)
 *** The bullshitness of supply and demand (write this in an org file)
 *** YT: Companies have to be held accountable. 
 **** How Programmer Jobs Get Created And Destroyed, And How Ai Migat Change That
@@ -1200,7 +1207,9 @@ aspell check ~/sample.txt
 *** [[https://www.devdungeon.com/content/run-python-wsgi-web-app-waitress][READ WSGI]]
 *** What is this [[https://austinpoor.com/blog/plots-with-jinja][SVG]] experiment. This one is [[https://www.react-graph-gallery.com/build-axis-with-react][from react]]
 *** Good [[https://www.peterspython.com/en/blog/sqlalchemy-using-cascade-deletes-to-delete-related-objects][link]] on Python Flask SQLalchemy on cascade-deletes. Especially note the "Database object deletes using ForeignKey ON DELETE CASCADE"
-** Emacs:
+** Emacs
+*** We need to: how to get inline rust documentation in emacs without lsp server
+*** We need to: what is the qch file format qt
 *** Convincing others:
 **** Non-destructive ways to test Emacs packages:
 ***** use the try package. Then do the usual use-package, or any normal config for that package you found online.
@@ -1209,7 +1218,6 @@ aspell check ~/sample.txt
 *** we are professional, so we need to make Python SUBMIT to us. [[https://emacs.stackexchange.com/questions/3372/coloring-indentation-levels][Color diff indentation levels]]
 *** web-mode-element-wrap must be hydra-ed. We also need to auto-select a whole delimiter. But first try the stackoverflow templating engine trick.
 *** We need to learn this Emacs [[https://emacs.stackexchange.com/questions/23810/getting-proper-indentation-for-python-flask-templates][templating indent]] mode thingy
-** readng technical software/programming documentation for beginners requires a balance of conceptual and technical description.
 ** I read about ketamine, psilocybin and alcohol, and also neurotransmitter GABA
 *** https://adf.org.au/drug-facts/ketamine/
 *** https://www.psychologytoday.com/intl/blog/culturally-speaking/202312/the-magic-behind-the-molecules-psilocybin-vs-alcohol
