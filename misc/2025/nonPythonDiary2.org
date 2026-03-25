@@ -103,4 +103,119 @@ void UserCsvWidget::getFile__QStringList(QStringList& files){}
 * Day 90:
 ** we fixed our sly keybindings, which still feels like magic by itself
 * Day 91:
+** We learnt about in-place modification, and its a topic too in C++. Is it worth it? And does it really improve performance by that much?
+** there's a cool library called "algorithm" in cpp
+* Day 92:
+** We learnt QSqlQuery select from this one link, [[https://forum.qt.io/topic/71381/qsqlquery-select/3][qsqlquery select]]
 ** 
+* Day 93:
+** apart from evaluation, we attempted the same for our sql operation
+** we realized, its not 1-to-1, coz SQL works by a search
+** this means, we cant really do a function that "cleans a string before comparison"
+** we are beginning to notice a pattern
+** when we do search and comparison type operations between user interaction and DB, there needs to be a set rule or standard, for comparison, such as "always store as number" for a field, or "always a space before text" (spaces between are ignored by SQL usually)
+* Day 94:
+** we watched the Lisp video on constructing a list with conses
+** we did the same with (list) and backquotes
+** theres an important distinction, such as with (list we need ' to stop evaluating an uncreated name example: )
+  #+begin_src emacs-lisp
+
+    (list 'a 'b 'c)
+
+    ;; instead of
+
+    '( a b c)
+
+#+end_src
+** putting our "engineering is also history" cap on, this means '() is a short form
+* Day 95:
+** In order to indexOf("<some-field-name>") to work, we need a valid record. exec() simply prepares i guess, but first() or next() finally returns a valid record. (we spent too much time doing this)
+** This seems counter-intuitive, it just means we dont know whats the purpose of exec()
+#+begin_src c++
+
+  if(query_getDepartmentId.exec()) {
+    int fieldIndex = query_getDepartmentId.record().indexOf("id");
+    qDebug() << "fieldIndex is -1 here" << fieldIndex;
+    qDebug() << "isvalid is False here" << query_getDepartmentId.isValid();
+    if(query_getDepartmentId.first()){	
+      int fieldIndex = query_getDepartmentId.record().indexOf("id");
+      qDebug() << "fieldIndex is a proper number here" << fieldIndex;
+      qDebug() << "isvalid is True here" << query_getDepartmentId.isValid();
+      QString someValue = query_getDepartmentId.value(0).toString();
+    }
+  }
+
+#+end_src
+* Day 96:
+** what do we do today (coz we might accidentally delete this):
+- we need to read this link: https://www.amyschlesener.com/posts/2020/04/increasing-ubuntu-partition/
+- according to most, increasing partition is easy, but not shrinking
+- install baobab for Hanifa's laptop, setup a .desktop file
+- there's no God and there's no free will
+- we need to learn some QML concept
+  - https://doc.qt.io/archives/qt-5.15/qtquick-modelviewsdata-modelview.html
+  - https://doc.qt.io/qt-6/qtqml-cppintegration-contextproperties.html
+  - https://doc.qt.io/qt-6/qqmlcontext.html
+  - https://forum.qt.io/topic/76162/how-to-write-in-a-text-label-made-in-qml/5
+  - https://doc.qt.io/qt-6/qml-qtquick-mousearea.html
+  - https://doc.qt.io/qt-6/qtqml-syntax-signals.html
+  - to really get, which is not recommended, but we are a badass, so we will do it anyway. objectName is visible to the C++ meta-object system
+    #+begin_src qml
+
+      // MyItem.qml
+      import QtQuick
+
+      Item {
+          Rectangle {
+              objectName: "myTargetRect"
+              width: 100; height: 100
+              color: "blue"
+          }
+      }
+
+      
+    #+end_src
+  - the main.cpp
+#+begin_src c++
+
+  // main.cpp
+  #include <QQmlApplicationEngine>
+  #include <QQuickItem>
+
+  QQmlApplicationEngine engine;
+  engine.load(QUrl("main.qml"));
+
+  // 1. Get the root object (the Window or top-level Item)
+  QObject *rootObject = engine.rootObjects().first();
+
+  // 2. Search for the child by objectName
+  QObject *rect = rootObject->findChild<QObject*>("myTargetRect");
+  if (rect) {
+      // 3. Cast to the specific type if needed (e.g., QQuickItem)
+      QQuickItem *item = qobject_cast<QQuickItem*>(rect);
+      item->setProperty("color", "red");
+  }
+
+#+end_src
+  - the best advice is actually this: [[https://doc.qt.io/qt-6/qtqml-cppintegration-interactqmlfromcpp.html]["All QML methods are exposed to the meta-object system"]]
+* Day 97:
+** Tried cmake for the first time. The most important part of the CMakeLists.txt is acually target_link_libraries(hello PRIVATE Qt::Core Qt5::Widgets) and the Core and Widgets using find_package() is not enough
+** 
+* Day 98:
+** we figured out how to org-notify in the simplest way possible, in short:
+#+begin_quote
+
+systemctl start --user dunst
+
+#+end_quote
+** And example eLisp:
+#+begin_src emacs-lisp
+
+  (defun ardie/bien-biel-que-el-paso-paso()
+    (interactive)
+    (print "bien bien peuded que si, puede que no")
+    )
+
+  (run-with-timer 2 10 'ardie/bien-biel-que-el-paso-paso)
+
+#+end_src

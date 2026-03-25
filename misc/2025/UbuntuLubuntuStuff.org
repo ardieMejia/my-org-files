@@ -1,0 +1,1 @@
+* When install using sudo dpkg -i fails, its safe to keep trying. Installs are generally all or nothing. Fail once means nothing happens. So we can sudo dpkg -i, and sudo apt get, and whatever

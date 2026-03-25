@@ -57,3 +57,14 @@ COMMIT;
   ORDER BY elective_class ASC; --verbed, subject, adjective?
 
 #+end_src
+* An important precursor to understand Apache Kafka (maybe): [[https://mariadb.com/resources/blog/a-peek-under-the-hood-of-distributed-sql-engines/][Distributed SQL Engines]]
+** 1st: the NON-distributed
+** Approach 1: Multi instances of single server databases (replication/sharding)
+*** This is just simple copying of the same DB. Obviously, this means writing overhead, coz wew need to write twice
+** Approach 2: Sharding your data
+*** "When you shard your data, you divide your data into shards, based on a shard key" - The shard key seems to be the code/query level too. This means ur app also deals with the shard key. There is also an overhead of refactoring, data balancing, maintenance. This is becoz, it works well when there is high degree of isolation in ur data (no need to query across keys or shard). But if ur dataset grows and becomes unbalanced, u need to modify ur shards and app code as well.
+** Approach 3: Shared storage
+*** This section is a bit confusing. Its multiple database instances that share the same physical storage. Unified interface, where queries are sent to any of the front end nodes (a DIAGRAM pastes here is helpful). 
+*** This approach apparently, has limitations, latency increases dramatically with workload (especially Writes)
+** Approach 4: Distributed compute, shared nothing
+*** 

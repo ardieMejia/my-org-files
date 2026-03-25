@@ -288,3 +288,6 @@ std::getline(std::cin >> std::ws, s);
 * Reading is always fun:
 ** [[https://www.syncfusion.com/succinctly-free-ebooks/cplusplus/pointers-references-and-const-correctness][pointers, references, const]], which also mentions RAII
 ** [[https://cburch.com/books/cptr/][c pointers]]
+** [[https://codesignal.com/learn/courses/interview-practice-with-classic-coding-questions-in-cpp/lessons/advanced-vector-manipulation-techniques-in-cpp][in place modification and advanced vector stuff in cpp]]
+** [[https://www.geeksforgeeks.org/dsa/in-place-algorithm/][more in-place algorithm stuff]]
+** [[https://en.cppreference.com/w/cpp/algorithm.html][algrithm library, worth reading through]]

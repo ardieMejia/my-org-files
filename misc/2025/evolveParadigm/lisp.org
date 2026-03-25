@@ -20,3 +20,8 @@
 ** [[https://gbracha.blogspot.com/2009/12/chased-by-ones-own-tail.html][tail call optimizations]], but with very important additional concepts
 ** [[https://medium.com/@AlexanderObregon/how-racket-handles-tail-recursion-to-prevent-stack-overflow-94a547968693][medium: how racket handles tail recursion]]
 ** 
+* Common Lisp Recipes (book)
+** once a symbol is inside a package, it can only be removed with UNINTERN. This means packages act like "dictionaries", and it doesnt if you exit this package or enter that package, the symbols remain.
+** symbols are auto-created when you type them. This is called "interning"
+** symbols can be "inherited". Inheritance is "implied", which means usually it depends on the exported symbols of the parent package. Inheritance is not transtive (auto-generational wealth), coz it depends on the :export.
+** Although when you type to create symbols, it looks at previous existing symbol. In the case of (make-symbol ), it will create 2 different symbols with the same  name. This is also a nuance to understand. So in Lisp, symbols are not equivalent of "names of addresses/location in memory" like a variable, they are text that are data themselves, and have no meaning expcept that which is given by us

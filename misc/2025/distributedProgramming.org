@@ -1,0 +1,2 @@
+* Links:
+** [[https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture12/cme323_lec12.pdf][Google-relevant Data Flow models for distributed computing. Eg: MapReduce. MapReduce is popular, and Googl-relevant]]

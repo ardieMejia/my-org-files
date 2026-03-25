@@ -21,3 +21,40 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 #+end_quote
 ** 
+* Pointers are boring but important, theyre also kinf of distraction
+** a constant pointer VS a pointer to a constant
+#+begin_src c++
+
+
+
+  int aNumber1 = 20;
+  int const aNumber2 = 99;
+
+
+  // The way I memorize is constant pointer VS pointer to constant,
+  // is that asterisk(*) serves to take emphasis away,
+  // so you ignore the * in the declaration 
+
+  int const *imInside = &aNumber2;
+
+  imInside = &aNumber1;
+
+
+  // this will fail
+  // *imInside = 2000;
+
+
+
+
+
+
+  int* const imOutside = &aNumber2;
+
+  ,*imOutside = 2000;
+
+  // this will fail
+  // imOutside = &aNumber1;
+
+
+#+end_src
+** a double pointer (our personal internal term: pointer pointer)

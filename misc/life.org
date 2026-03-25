@@ -1,3 +1,9 @@
+* Sketching now, but more links for later:
+** [[https://barrycoombs.wordpress.com/tag/staedtler-pigment-ink-drawing-pens/][light and shadow in ink]]
+** [[https://www.youtube.com/watch?v=VwYg-s0YX7k][How to Draw Chrome Effects]]
+** [[https://tips.clip-studio.com/en-us/articles/2018][Techniques for Painting Chrome]]
+** [[https://mymodernmet.com/color-pencil-drawings-georgina-kreutzer/][super cool pencil color inspiration]]
+** [[https://willkempartschool.com/sketching-art-materials-with-pen-wash/][pen and wash with cool ink bottle example]]
 * Crochet, stitching.
 ** We may not need this, DELETE?
 *** [[./life/crochet_tips_1.jpg]]
@@ -144,17 +150,19 @@ ums and various sounds are absolutely impeccable. Soen sounds like nothing else 
 * Quotes:
 ** John von Neumann Quotes :Anyone who attempts to generate random numbers by deterministic means is, of course, living in a state of sin.
 * Whiteness as the default race:
-** https://www.sciencedirect.com/science/article/pii/S2667321523000963
-** [[https://www.writingdiversely.com/post/dismantling-the-white-default][writingdiversely]] - "White as default" is when whiteness is the litmus test for what is considered normal behavior, culture, and appearance.
-* Capitalism
-** [[https://www.youtube.com/watch?v=PNMLlX7tyQk][Neuroscientist: How To Escape The Rat Race | Robert Sapolsky]]
-** 
+*** https://www.sciencedirect.com/science/article/pii/S2667321523000963
+*** [[https://www.writingdiversely.com/post/dismantling-the-white-default][writingdiversely]] - "White as default" is when whiteness is the litmus test for what is considered normal behavior, culture, and appearance.
+** Capitalism
+*** [[https://www.youtube.com/watch?v=PNMLlX7tyQk][Neuroscientist: How To Escape The Rat Race | Robert Sapolsky]]
+*** 
 * Autism:
 ** [[https://www.youtube.com/watch?v=TDQFu1nULaA][Sensory processing in autism]]:
 *** Epiphenomenal - secondary effect, by-product of another primary process, no causal power of its own (in autism effect of a core deficit)
 *** Sensory routes development (possibilities)
 **** Lifetime reduced social interaction (encouraging different sensory seeking, or avoidance behaviour)
 **** 
+* Beethoven is fascist:
+** we need to write something
 * Language Entropy
 * Learning theory:
 * [[https://scispace.com/pdf/the-constructivist-epistemology-of-jean-piaget-its-jemm67p3vi.pdf][The constructivist epistomology of Jean Piaget]]
@@ -177,3 +185,10 @@ ums and various sounds are absolutely impeccable. Soen sounds like nothing else 
 *** he dealt a critical blow to empiricism because sense perception could not account for all knowledge
 *** "in causal situation, the only experience is the conjuction of 2 objects in space and time"
 *** "our experience of self are only psychic events, not the underlying self"
+* Download illegal sheets using tamper monkey
+** I downloaded Scriabin Etude, the "beautiful octave" piece. Using this [[https://github.com/LibreScore/dl-librescore][link]]. I used Tampermonkey, very hacky
+* TODO 
+** [[https://medium.com/the-mission/the-secret-to-developing-thick-skin-a6151c33ceb1][article: developing thick skin]]
+* Heidegger on post-aesthetic way of thinking of art.
+** https://plato.stanford.edu/entries/heidegger-aesthetics/
+* [[https://diebner.de/performativeScience/aboutPW.html][performative science]]
