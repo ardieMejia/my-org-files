@@ -70,6 +70,16 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/my-emacs-29-config/tree-sitter /media/ardie/ardie-back-2025/
 
+# ==================================================
+watch out for the different flag, a flag removed
+# ==================================================
+
+rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/.profile /home/ardie/.bashrc  /media/ardie/ardie-back-2025/my-hidden-shell-profiles/
+
+rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/.bash_history  /media/ardie/ardie-back-2025/my-hidden-shell-profiles/.bash_history_$(date +%Y-%m-%d)
+
+
+
 #+end_quote
 ** Emacs
 **** We need to this cool advicing
@@ -116,6 +126,16 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 
 #+end_src
 **** We also need to simplify our ;;t (sexp hydra)
+**** we should really do bindings for our Bash too, so it works in 42kl. This works temporarily, in our terminal session, so we can put this inside our .profile
+***** https://unix.stackexchange.com/questions/604703/bash-bind-command-not-working-with-alt-key-combination
+#+begin_quote
+
+bind '"\ea": backward-char'
+bind '"\ee": forward-char'
+bind '"\C-a": backward-word'
+bind '"\C-e": forward-word'
+
+#+end_quote
 **** We need to advice our hydra/ our self-insert so that the variable ardie/right-char-count gets unset again
 ***** https://www.reddit.com/r/emacs/comments/rlli0u/whats_your_favorite_defadvice/
 **** We need to write these down somewhere
@@ -683,16 +703,7 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
-***** what is the default terminal for mac ?
-****** Terminal
-****** ~/.zshrc
-****** You can use the bindkey command to map keys to specific shell functions. For example:
-#+begin_quote
-
-bindkey "^[b" backward-word
-# (Maps Option + Left Arrow to move back one word).
-
-#+end_quote
+***** 
 ***** a debugging framework in eLisp and Lisp, why is debugging so hard in Emacs and Lisp
 ***** the only thing you need to master Emacs is "highlight your text"
 ***** the real reason why we're changing is because I keep accidentally pressing M-v for scroll-down-command, so doing it this way feels like a lot of win
@@ -700,7 +711,6 @@ bindkey "^[b" backward-word
 ****** https://yumpickles.wordpress.com/2012/02/24/lovi-lovi-flacourtia-inermis-pickle/
 ****** https://archwaytomomsgarden.blogspot.com/2014/10/lovi-chutney-sweet-sweet-lovi-chutney-i.html
 ***** we should also post about infra-sounds of AI data centers.
-***** We should REALLY post on Reddit about if its completely find to link your download of the qmake.el
 ***** We need to post about 42KL somewhere in Facebook AND Developer Kaki
 ***** we need to practice typing using home rows: https://www.keybr.com/
 ****** lair liar line rail nail linen learn alien all real ill earlier

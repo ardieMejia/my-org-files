@@ -63,6 +63,33 @@ sudo apt-get install libjansson4 libjansson-dev
 *** [[https://superuser.com/questions/629090/emacs-displaying-list-of-subroutines-functions-classes-in-a-source-file][occur]]
 ** [[https://stackoverflow.com/questions/2423834/move-line-region-up-and-down-in-emacs][move region/line up/down]]
 *** Can try drag-stuff  coz its super cool but can try Ji Han examples, coz its super simple
+** Code, code, code for buffers, minibuffers:
+*** found this cool piece of code from: https://www.math.utah.edu/docs/info/elisp_18.html
+#+begin_src emacs-lisp
+
+  (edit-and-eval-command "Please edit: " '(forward-word 1))
+
+#+end_src
+*** found more examples all over such as, with call-process, a better way to execute commands: https://stackoverflow.com/questions/23299314/finding-the-exit-code-of-a-shell-command-in-elisp
+*** getting content of buffer: https://emacs.stackexchange.com/questions/696/get-content-of-a-buffer
+*** Several working examples in our learning process:
+#+begin_src emacs-lisp
+
+
+  ;; ===== yes, decent example, not the best
+  (with-temp-buffer
+    (call-process "git" nil (current-buffer) nil "switch" "-d" "5206a07cca90320679dae7afb8d82406ca9ae50a")
+    (buffer-string)
+    )
+
+  (get-buffer "some-buffer")
+
+  (with-current-buffer "some-buffer"
+    (insert "hello")
+    (switch-to-buffer "some-buffer")
+    )
+
+#+end_src
 * Inits
 ** The following are taken from this link: [[https://www.sandeepnambiar.com/my-minimal-emacs-setup/][Sandeep minimal defaults]]
 #+begin_src lisp

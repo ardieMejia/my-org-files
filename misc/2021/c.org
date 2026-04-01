@@ -58,3 +58,5 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 #+end_src
 ** a double pointer (our personal internal term: pointer pointer)
+* Misnomers                                                        :misnomer:
+** Signal: call_that_routine_when_this_interrupt_comes_in
