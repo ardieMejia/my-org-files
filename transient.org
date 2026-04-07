@@ -715,37 +715,38 @@ sudo apt install gpaste.
 #+begin_src emacs-lisp
 
 
-(setq var1 "drwxrwxr-x")
+  (setq var1 "drwxrwxr-x")
 
-(defun mguser(avar)
-  (interactive)
-  (substring avar 1 4))
+  (defun mguser(avar)
+    (interactive)
+    (substring avar 1 4))
 
-(defun mggroup(avar)
-  (interactive)
-  (substring avar 4 7))
+  (defun mggroup(avar)
+    (interactive)
+    (substring avar 4 7))
 
-(defun mgother(avar)
-  (interactive)
-  (substring avar 7 10))
+  (defun mgother(avar)
+    (interactive)
+    (substring avar 7 10))
 
-(defun getFullString(avar)
-  (interactive)
-  (concat
-   "chmod "
-   "u="
-(replace-regexp-in-string "-" "" (mguser avar))
-   ","
-   "g="
-(replace-regexp-in-string "-" "" (mggroup avar))
-   ","
-   "o="
-(replace-regexp-in-string "-" "" (mgother avar))
-   )
-  )
+  (defun getFullString(avar)
+    (interactive)
+    (concat
+     "chmod "
+     "u="
+     (replace-regexp-in-string "-" "" (mguser avar))
+     ","
+     "g="
+     (replace-regexp-in-string "-" "" (mggroup avar))
+     ","
+     "o="
+     (replace-regexp-in-string "-" "" (mgother avar))
+     )
+    )
 
-(getFullString "drwxr-xr--")
+  (getFullString "drwxr-xr--")
 
+  (current-kill 0 )
 
 
 
