@@ -82,6 +82,14 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 
 #+end_quote
 ** Emacs
+**** We need this for our battery somehow:
+#+begin_quote
+
+var1=`upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/perc/{print $2}'`; if [ ${var1%?} -gt 100 ]; then echo "haha"; fi
+
+zenity --info --text="Process complete!"
+
+#+end_quote
 **** We need to this cool advicing
 #+begin_src emacs-lisp
 
@@ -703,7 +711,55 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
-***** 
+***** this is VERY temporary for 42KL
+#+begin_src emacs-lisp
+
+
+(setq var1 "drwxrwxr-x")
+
+(defun mguser(avar)
+  (interactive)
+  (substring avar 1 4))
+
+(defun mggroup(avar)
+  (interactive)
+  (substring avar 4 7))
+
+(defun mgother(avar)
+  (interactive)
+  (substring avar 7 10))
+
+(defun getFullString(avar)
+  (interactive)
+  (concat
+   "chmod "
+   "u="
+(replace-regexp-in-string "-" "" (mguser avar))
+   ","
+   "g="
+(replace-regexp-in-string "-" "" (mggroup avar))
+   ","
+   "o="
+(replace-regexp-in-string "-" "" (mgother avar))
+   )
+  )
+
+(getFullString "drwxr-xr--")
+
+
+
+
+
+#+end_src
+***** we might have to lower org-drill-learn-fraction to increase frequency of our org-drill
+***** If you want to replace the keycaps on your PsychSparrow, look for sets explicitly labeled as "Low Profile MX-Compatible". Examples include:
+****** XVX Horizon/ Womier Low Profile: These are widely available on Shopee and are designed with the MX cross-stem but a shorter height to avoid hitting the plate.
+****** Keychron LSA Profile: These are high-quality PBT options available from Keychron Malaysia that fit cross-stem low-profile switches.
+#+begin_quote
+
+is womier 138 low profile r3 skyline keys compatible with armaggeddon psychsparrow
+
+#+end_quote
 ***** a debugging framework in eLisp and Lisp, why is debugging so hard in Emacs and Lisp
 ***** the only thing you need to master Emacs is "highlight your text"
 ***** the real reason why we're changing is because I keep accidentally pressing M-v for scroll-down-command, so doing it this way feels like a lot of win

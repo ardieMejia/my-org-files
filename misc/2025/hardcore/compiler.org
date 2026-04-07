@@ -1,2 +1,22 @@
 * Links:
 ** https://thechipletter.substack.com/p/a-history-of-c-compilers-part-1-performance
+
+* what did we read previously on compilers:
+** read-till-identifier
+*** the usual first step of get-token
+** get-token
+*** we dont know how it actually reads from input (promt? file?)
+**
+
+
+
+
+
+
+
+* what new stuff we read, [[https://courses.cs.washington.edu/courses/cse401/98a/details/lectures/94a/slides.pdf][washington uni]]:
+** lexical analysis: its just text analysis, stupid
+** syntax analysis: its just putting text into structure, stupid
+** semantic analysis: its typechecking?? [[https://thunderseethe.dev/posts/type-inference/][thunderseethe blog on typechecking]]
+* [[https://medium.com/@pasi_pyrro/how-to-write-your-own-c-compiler-from-scratch-with-python-90ab84ffe071][medium pasi pyrro compiler amazing write]]
+** We just learned that C is a one time pass compiler, as opposed to multi-pass compiler (Example: Loci)

@@ -1,4 +1,5 @@
-* Raylib
+
+* Things we installed: Raylib
 ** We installed it, the commands we used:
 #+begin_quote
 
@@ -21,7 +22,7 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 #+end_quote
 ** 
-* Pointers are boring but important, theyre also kinf of distraction
+* Pointers are almost like a completely C invention, an important disticiton made between address and value inside address is a C inventino
 ** a constant pointer VS a pointer to a constant
 #+begin_src c++
 
@@ -31,32 +32,70 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
   int const aNumber2 = 99;
 
 
-  // The way I memorize is constant pointer VS pointer to constant,
+  // The OLD way I memorize is constant pointer VS pointer to constant,
   // is that asterisk(*) serves to take emphasis away,
   // so you ignore the * in the declaration 
 
   int const *imInside = &aNumber2;
 
   imInside = &aNumber1;
-
-
-  // this will fail
+  // ----- this will fail
   // *imInside = 2000;
 
 
 
 
 
-
+  // we learnt the BEST way to read declarations. And yet, it doesnt work in this example, we KNOW now
   int* const imOutside = &aNumber2;
 
   ,*imOutside = 2000;
-
-  // this will fail
+  // ----- this will fail
   // imOutside = &aNumber1;
 
 
 #+end_src
+** Of course we now learnt the BETTER way to read declarations. (Again, our new way makes us fail in the constant pointer above)
+** We now KNOW the answer. When reading boustrophedonically
+*** when reaching "from the left", if we encounter either const, volatile or \*, we keep reading "from the left"
 ** a double pointer (our personal internal term: pointer pointer)
-* Misnomers                                                        :misnomer:
-** Signal: call_that_routine_when_this_interrupt_comes_in
+** string literals are not pointer type, but l-value, both of these work:
+*** but when you put it in an expression, they magically dont work.
+#+begin_src c
+
+  char *b = "hello there";
+  char[] = "hello there"
+
+#+end_src
+*** but this will not work, [[https://www.reddit.com/r/learnprogramming/comments/ziesu8/invalid_initializer_in_c/][reddit, invalid initializer]]:
+
+#+begin_src c++
+
+  char b[]=(a>0)?"positive":"negative";
+
+  // (a>0)?"positive":"negative" is an expression that produces a char * value
+  // although it seems to return a fixed size, the compiler cant know beforehand, so it treats it like an r-value
+
+
+
+#+end_src
+** so a string DOESNT EXIST (more or less) in C, hence we have %c and %s when printing the same "char *somevar"
+** More buggery on arrays and pointer
+*** This is more mind-f***ery, why does the 1st fail, but the 2nd work?
+#+begin_src c
+
+    char newOne[];
+
+    newOne = "tetsy";
+  
+
+#+end_src
+*** This fails
+#+begin_src c
+
+    char newOne[];
+
+    newOne = "tetsy";
+  
+#+end_src
+*** [[https://stackoverflow.com/questions/8040284/why-is-literal-string-assignment-in-c-not-possible-for-array-with-specified-leng][more string literal assignments from stackoverflow]]

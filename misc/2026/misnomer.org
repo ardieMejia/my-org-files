@@ -1,0 +1,4 @@
+* C
+** Signal: call_that_routine_when_this_interrupt_comes_in
+* Linux
+** Distro: the not-as-important-as-Desktop-Env

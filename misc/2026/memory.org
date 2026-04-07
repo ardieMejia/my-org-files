@@ -1,0 +1,5 @@
+
+* [[https://pmc.ncbi.nlm.nih.gov/articles/PMC8594559/][Linking creativity and false memory: Common consequences of a flexible memory system]]
+** Some previous studies show that flexible episodic memory system (sometimes leading to memory errors) has functional benefits for creativity.
+** If so, there SHOULD be a direct link between creativity and susceptibility to memory distortion.
+** However, previous studies examining such a link have yielded inconclusive results??
