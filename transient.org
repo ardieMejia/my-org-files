@@ -711,6 +711,78 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** lets read about Raylib
+#+begin_quote
+
+
+Several C implementations exist for generating and solving mazes, ranging from simple recursive backtracking to complex roguelike grid systems. Joe Wingbermuehle's 1999 maze.c uses a randomized depth-first search algorithm to carve paths through a grid, initializing the map with walls and recursively visiting unvisited cells to create a perfect maze. 
+
+Maze Generation and Solving
+Algorithm: The code typically initializes a grid filled with walls (1), then uses a recursive backtracking or "carve" function to remove walls (0) while moving in random directions until the entire grid is explored. 
+Simulation: Advanced versions, such as those from Purdue University assignments, include functions to simulate an agent's movement through a generated maze based on a direction file, returning the number of steps or -1 if the path is invalid. 
+Roguelike Style: Projects like "Decoded: Rogue" utilize K&R style C functions to handle data copying and maze structures, often employing a "cell" abstraction where walls occupy entire grid cells rather than single characters. 
+Code Example (Simplified Recursive Backtracker)
+A basic implementation initializes a 2D array, marks the start cell, and recursively visits neighbors to carve paths:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define WIDTH 21
+#define HEIGHT 21
+
+// 1 = Wall, 0 = Path
+int maze[HEIGHT][WIDTH];
+
+// Function to check if a cell is valid and unvisited
+int is_valid(int x, int y) {
+    return (x > 0 && x < WIDTH - 1 && y > 0 && y < HEIGHT - 1 && maze[y][x] == 1);
+}
+
+// Recursive function to generate the maze
+void generate_maze(int x, int y) {
+    int dx[] = {0, 0, 2, -2};
+    int dy[] = {2, -2, 0, 0};
+    
+    maze[y][x] = 0; // Mark current cell as path
+    
+    // Shuffle directions for randomness
+    srand(time(NULL));
+    
+    for (int i = 0; i < 4; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        
+        if (is_valid(nx, ny)) {
+            maze[(y + dy[i] / 2)][(x + dx[i] / 2)] = 0; // Carve wall between cells
+            generate_maze(nx, ny);
+        }
+    }
+}
+
+int main() {
+    // Initialize maze with walls
+    for (int y = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < WIDTH; x++) {
+            maze[y][x] = 1;
+        }
+    }
+    
+    // Start generation from (1, 1)
+    generate_maze(1, 1);
+    
+    // Print the maze
+    for (int y = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < WIDTH; x++) {
+            printf("%c ", maze[y][x] ? '#' : '.');
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+#+end_quote
 ***** this is VERY temporary for 42KL
 #+begin_src emacs-lisp
 
