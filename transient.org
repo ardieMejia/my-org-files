@@ -787,6 +787,8 @@ int main() {
 #+begin_src emacs-lisp
 
 
+  mkdir test0; chmod u=rwx,g=x,o=rx test0; touch -t "202606012047" test0; touch test1; truncate -s 4 test1; chmod u=rwx,g=x,o=r test1; touch -t "202606012146" test1; mkdir test2; chmod u=rx,g=,o=r test2; touch -t "202606012245" test2; touch test3; truncate -s 1 test3; chmod u=r,g=,o=r test3; touch -t "202606012344" test3; touch test4; truncate -s 2 test4; chmod u=rw,g=r,o=x test4; touch -t "202606012343" test4; ln test3 test5; chmod u=r,g=,o=r test5; touch -t "202606012344" test5; ln -s test0 test6; chmod u=rwx,g=rwx,o=rwx test6; touch -h -t "202606012220" test6
+
   (setq var1 "drwxrwxr-x")
 
   (defun mguser(avar)
