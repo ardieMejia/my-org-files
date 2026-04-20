@@ -711,6 +711,92 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** lvalue and rvalue:
+****** Welp, my world just turned upside down for an hour or 2, and I read all over again, coz it turns out I was wrong about "string literals" being "not a real thing". Its actually a non-modifiable lvalue. LOL
+****** Anyway, the reason why I think rvalue and lvalue is a much more useful mental model (but a bit of a leap for beginners) to understand C, instead "pointer pointing to protected parts of memory thingy", is becoz it would make sense as to why this example works
+#+begin_src c
+
+  char *firstPointer = "original";
+
+  firstPointer = "we cjhange";
+
+#+end_src
+****** And this does NOT work:
+#+begin_src c
+
+  *firstPointer = "as";
+
+#+end_src
+****** I struggled with C random weirdness years, stayed away, combing back to C, after noticing "lvalue" and "rvalue" in the book "Expert C Programming: Deep C Secrets", made more sense.
+****** Yeah, I know nobody reads stuff I write, and if they read, either dont understand, or disagree. But Im aiming for discoverability too. A few people now knows Emacs existence, now a few people knows the existence of lvalue and rvalue. So over a few days, Im gonna write snippets about this in different context under nerdy-stuff channel to avoid cluttering other channels
+***** what is an lvalue and rvaluer
+The reason why I believe lvalue and rvalue iots important to undertstand is because it would make sense of the many of the strange weirdness of C that "dont make sense", you will see this below.
+
+It definitely has NOTHING to do with compile time and run time.
+
+it may have something to do with what is an "expression"
+
+Basically, in order for C to make sense from a semantic or syntax(?) we need these 2 terminology.
+
+An lvalue are in the permanent part of memory, this is important so that it can exist beyond ats expression. Example: when the compiler sees a_variable = 42; the a_variable doesnt magically vanish beyond that line.
+
+An rvalue are temporary values, non long term memory.
+
+Now imagine on top of that, that lvalue is non-modifiable on top of being in persistent memory, and rvalue being temporary are also modifiable. C would not make any sense and collapse completely, and nothing would work.
+
+So rvalues
+
+ADD ABOUT LITERALS
+
+First, before we dive into examples, what is an expression? (according to some articles I found)
+
+Add another link that explains briefly what an expression is.
+
+show examples here
+
+- we finally understand rvalue and lvalue in C, and why ampersand (&) doesnt accept rvalue
+- rvalue and lvalue has nothing to do with compile time and run time
+- its actually has more to do with the semantics/syntax of the language (whatever)
+- so assigning like this doesnt work because we are assigning to a "unmodifiable lvalue"
+  #+begin_src c
+
+    char avar[];
+    avar = "hello"
+        
+  #+end_src
+- while this works , because a pointer is a normal lvalue (lvalue is physical and modifiable)
+  #+begin_src c
+
+    char *avar;
+    avar = "hello"    
+
+#+end_src
+
+# ==================================================  
+
+Other instances of lvalue and rvalue
+- we can do an expression like a_pointer + 4
+- but we cant to an expression like &a_char_array+ 4
+  #+begin_src c
+
+        char achar[] = "hello there";
+    char *tempPtr;
+    tempPtr = achar;
+    char *anotherPtr = tempPtr+4;
+    *anotherPtr = '_';
+    printf("%s", achar);
+
+    
+
+#+end_src
+- we cant do this
+  #+begin_src c
+
+        char achar1[] = "hello there";
+    char *tempPtr1 = &achar1+4;
+
+
+
 ***** lets read about Raylib
 #+begin_quote
 
