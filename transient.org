@@ -711,6 +711,53 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** anti-42 eLisp
+#+begin_src emacs-lisp
+
+  (defun ardie/test()
+  (interactive)
+  (shell-command
+   (concat
+    "source /home/ardie/my-trash/delete/shellPractice/myenv/bin/activate; cp "
+    buffer-file-name
+    " /home/ardie/my-emacs-29-config/trash/"
+        (file-name-base (buffer-file-name))
+    ".c"
+    (shell-command-to-string "date +'%H%M%S'")
+
+    )
+   ;; main.c ";c_formatter_42 < ~/my-trash/delete/shellPractice/main.c > ~/my-trash/delete/shellPractice/NEW_main.c"
+   
+   )
+  (shell-command
+   (concat
+    "source /home/ardie/my-trash/delete/shellPractice/myenv/bin/activate; c_formatter_42 < "
+    buffer-file-name
+    " > "
+    default-directory    
+    "NEW_"
+    (file-name-base (buffer-file-name))
+    ".c"
+    )
+   )
+  (shell-command
+   (concat
+        "mv "
+    default-directory    
+    "NEW_"
+    (file-name-base (buffer-file-name))
+    ".c"
+    " "
+    default-directory
+    (file-name-base (buffer-file-name))
+    ".c"
+    ))
+
+
+  
+  )
+
+#+end_src
 ***** lvalue and rvalue:
 ****** Welp, my world just turned upside down for an hour or 2, and I read all over again, coz it turns out I was wrong about "string literals" being "not a real thing". Its actually a non-modifiable lvalue. LOL
 ****** Anyway, the reason why I think rvalue and lvalue is a much more useful mental model (but a bit of a leap for beginners) to understand C, instead "pointer pointing to protected parts of memory thingy", is becoz it would make sense as to why this example works
