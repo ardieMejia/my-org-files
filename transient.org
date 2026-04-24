@@ -711,6 +711,37 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** lets create an abbrev in 42: the steps are:
+#+begin_src emacs-lisp
+
+    ;; forget our special functions that auto insert.
+    ;; we dont have any variable or filename of our abbrev, so we first need to bootstrap by creating our abbrev table AND file
+    ;; at first it will NOT read our file, and the variable needs to setup first, so its a chicken or egg problem. We first create our file, start Emacs which creates an empty vector (which is our table). upon saving it will finally read our file
+    ;; redefine abbrev-file-name
+
+    (setq abbrev-file-name "/home/ardie/Documents/delete/another_defs")
+
+  ;; (add-hook 'org-mode-hook 'abbrev-mode)
+
+  (setq xx-abbrev-table (make-abbrev-table ))
+
+
+  (define-abbrev-table 'xx-abbrev-table
+    '(
+     ("fn" "function")
+     ("function" "function name (x) { return x; }"))
+    )
+
+  (define-derived-mode xx org-mode "xx"
+    "A major mode for xx."
+    :abbrev-table xx-abbrev-table
+    (abbrev-mode 1)
+    )
+
+
+  ;; once we save we can see our changes in those files
+
+#+end_src
 ***** anti-42 eLisp
 #+begin_src emacs-lisp
 
