@@ -711,6 +711,19 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** Discord Emacs Badass
+#+begin_quote
+
+How I created 2 Emacs instances, one for fuzzing one for working. making it easy to focus on only code, and forget thinking about mnaging Git.
+I separate assets and build files inside the fuzzing branch
+but since im combinin got worktree and "directory-local variables", and i always keep 1 Emacs with differnt background color and font in fuzzing, its easy for me to work on a code, forget about destroying any part of it, and test it (fuzzing), if im not happy about anything I can justy rewrite fcode and test again.
+this works becoz I use git rev-parse on  a HEAD, copy that commit ID to clipboard, and my "fuzzing" branch siwtch -d into that commit
+working and fuzzing is the commit name I chose, and my Emacs functions search for that name, so I can also git reset head~ after all that furious hacking, if it brings to nothing
+i can literally do this on top of any repo, just clone, and furiousl hack with no worrie4s
+The workflow is so powerful, that it has necver failed me so far, I used it to play around with CPP Qt framework (dont judge me), and now im attempting to learn Raylib with it (also dont judge)
+this workflow is inspired by this website
+
+#+end_quote
 ***** lets create an abbrev in 42: the steps are:
 #+begin_src emacs-lisp
 
@@ -740,6 +753,17 @@ sudo apt install gpaste.
 
 
   ;; once we save we can see our changes in those files
+
+  ;; remember to comment the define-abbrev-table becoz it will overwrite that file everytime
+
+  ;; So, even after all this, it still might not work. If so, we need to actually include these functions inside abbrev-file-name, so that Emacs can actully read it and do something
+
+  ;; inside abbrev-file-name
+
+  (define-abbrev-table 'ardie/c++-mode-abbrev-table
+  '(
+    ("qd" "qDebug() <<" nil :count 7)
+   ))
 
 #+end_src
 ***** anti-42 eLisp
