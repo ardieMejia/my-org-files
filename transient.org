@@ -711,6 +711,21 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** Recursion in real life
+#+begin_quote
+
+Most modern languages support recursion, but only a few guarantee optimizations to prevent your program from crashing due to a "stack overflow." These optimizations typically fall into a category called Tail Call Optimization (TCO) or Tail Recursion Elimination (TRE). 
+🚀 Languages with Guaranteed Optimization 
+These languages are designed with recursion as a primary control flow (often replacing loops entirely). Their specifications or standard compilers must optimize tail-recursive calls. 
+
+    Scheme: One of the few languages that mandates TCO in its language standard.
+    Haskell: Uses "lazy evaluation" and graph rewriting to handle deep recursion without traditional stack frames, often achieving constant space.
+    Elixir & Erlang: Both target the BEAM virtual machine, which implements TCO to handle millions of lightweight processes that rely heavily on recursion.
+    Lua: The language definition requires proper tail calls, making it highly efficient for recursive logic. 
+
+
+
+#+end_quote
 ***** Discord Emacs Badass
 #+begin_quote
 
