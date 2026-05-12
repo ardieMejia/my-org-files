@@ -2,3 +2,10 @@
 ** Signal: call_that_routine_when_this_interrupt_comes_in
 * Linux
 ** Distro: the not-as-important-as-Desktop-Env
+* Graphics Pipeline ([[https://news.ycombinator.com/item?id=7536118][hacker news on shaders]])
+** Vertex shading: 
+** study this: https://community.khronos.org/t/pixel-vs-fragment-shader/52838
+** also these:
+*** https://sites.google.com/site/john87connor/advanced-opengl-tutorials/tutorial-05-2-gouraud-shading
+*** https://gabrielgambetta.com/computer-graphics-from-scratch/13-shading.html
+*** https://www.geeksforgeeks.org/computer-graphics/gouraud-shading-in-computer-graphics/

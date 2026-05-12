@@ -219,3 +219,187 @@ systemctl start --user dunst
   (run-with-timer 2 10 'ardie/bien-biel-que-el-paso-paso)
 
 #+end_src
+* Day 99:
+** based on our understanding of rvalue, lvalue and valid expressions like dest+3 or \*(dest+5), (as opposed to &(dest+5)) we can do something like this to change 3rd and 5th character
+#+begin_src c
+
+  char *call_me(char *dest, char *src){
+
+      char *temp = dest+3;
+      ,*temp = 'a' ;
+      if(*(dest+5) == 'y'){
+          char *temp2 = dest+5;
+          ,*temp2 = '_' ;
+      }
+
+      return dest;
+  }
+
+  int main(void){
+      char src[] = "hello";
+      char dest[] = "goodbye";
+      call_me(dest,src);
+      printf("%s", dest);
+      return 0;
+  }
+
+#+end_src
+* Day 100:
+** 
+#+begin_quote
+
+the steps in general looks like this, but we SHOULD REALLY try static linking, we havent tried it yet
+- 
+
+  we first create an object file. SAME with static, but we Position Independent Code
+
+  gcc -c -fPIC mysource.c -o mysource.o
+
+  we then create a static library using archiver. The archiver is a tool that can create input for the linker (think, linker was developed separate from compiler, and the logic behind it is almost completely different. Maybe its a separate paradigm/tool?)
+
+  we can now link it
+
+  gcc -o -shared mysource.so mysource.o
+
+    this will not work
+
+  gcc main.c -L. -lmylib
+
+  this will work
+
+  gcc main .c -L/home/ardie/location-of-library -Wl,-rpath=/home/ardie/location-... -o result mylib.c -lmylib
+
+  Note how the -L is basically telling thje compiler to pass the options to the linker instead.
+
+  mylib is some name coming from mylib.c and mylib.h, but the naming is convention, the true naming, im guessing, comes from #define MYLIB_H in the header file.
+
+  so what does header file do in this case?
+
+  anyway 
+
+#+end_quote
+** some links:
+*** https://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
+*** https://www.geeksforgeeks.org/c/how-do-i-create-a-library-in-c/
+*** Note how the the secind link uses 2 methof static and dynamic, and static doesnt work, but we SHOULD REALLY try..x
+* Day 101
+** Our Piscine is finished. What did we learnt so far:
+*** we learnt that making an Emacs exam config, and writing it from the beginning was definitely worth it.
+*** we learnt we have trouble separating life in shallow Sunway Uni, from reality of a brown man surviving in SEAsia.
+*** we learnt that it was actually not that difficult or that destructive to modify most navigation keys to something radical (as long as its not Ctrl-M, that messes <return> coz Emacs does that to Ctrl-M)
+*** we learnt that we still cant communicate our hatred of leetcode and corpo environment to the general public.
+*** we learnt that I get nervous, and I still need help practicing talking to people
+*** I learnt that I can do decent stuff in C.
+*** I learnt much more badass stuff in C, as long as I take the time to learn and absorb
+* Day 102
+** 1st attempt at installing opengl, just to draw a bloody triangle
+** downloading frmo nigel's github, only make (not cmake) works, (must build inside /auto). Why are they downloading stuff called "registry's"
+** stuff like OpenGL-Registry, EGL-Registry, only then creating glew.h
+** glew.h apparently is so important
+** read this??:
+*** https://stackoverflow.com/questions/12122631/difference-between-opengl-files-glew-h-and-gl-h-glu-h
+* Day 103:
+** Finally:
+#+begin_quote
+
+everything in programming is mostly history and linguistics than math, remember.
+
+
+static-linking used to be common. Linux made it weird, and shamed people for statically linking, shared/dynamic linking is apparently better, even though memory is getting cheap.
+
+Dynamically linking = runtime-ish
+
+First some basics:
+-I is for the compiler. Include files. Since includes are usually definitions, remember -> you cant have 1 (I)without the other (L). More or less. But usually gcc looks for libs by itself anyway.
+-L is for the linker, and tells the location of library (directory)
+-l is for the linker, and tells which library to use (file)
+
+But -l comes with convention (yuck). -lhelper means look for libhelper.a or libhelper.so
+
+
+
+Since, programming is history too, and dynamical linking came later. The gcc sometimes need more information.
+
+remember dynamical linked means at runtime (saving space thingy), and -L only helps at compile/linking time. So you would still usually need LD_LIBRARY_PATH sometimes.
+
+#+end_quote
+** to read on [[https://www.reddit.com/r/opengl/comments/sskqmu/how_do_i_link_glfw_to_my_cc_program_in_linux/][reddit]]
+*** apparently, you can use something like pkg-config, which is also a compiler-adjacent tool
+** for using nm with shared object, dynamically linked stuff, you can use the -D option (nm -D)
+* Day 104:
+** what we're learning right now: https://learnopengl.com/Getting-started/Hello-Window 
+* Day 105:
+** C macros might pollute namespace (???)
+** Notice how we create a "destructive-malloc-struct-creation" for our Person. Note how verbose it is. they keyword "struct" is everywhere, which is apparently a good thing
+#+begin_src c
+
+    struct Person * createNewStruct(){
+      struct Person * sarah = (struct Person*)malloc(sizeof(struct Person));
+      return sarah;
+  }
+
+  /* of course we can always start off with something simple, if we get lost */
+
+  int* createNewStruct(){
+      int *what = (int *)malloc(sizeof(int) * 5);
+      return what;
+  }
+
+#+end_src
+* Day 106:
+** gcc actually looks at the NAME when running with the -l<some-random-lib> (example: -lmylib)
+** GLAD and GLEW does the same exact thing. Dont include both (except for special reasons): [[https://community.khronos.org/t/problems-with-glad-and-glew-libraries/109452/5][khronos: GLAD and GLEW does the same thing]]
+** we generate a GLAD header from this link: [[https://gen.glad.sh/][GLAD]]
+** theres a Github example: https://github.com/dav1dde/glad
+** for the includes, you must always put glad before the glfw3 headers ([[https://community.khronos.org/t/help-with-setting-up-glfw-with-glad/107258][glad before glfw3]])
+** a very COOL link explainig what the true spirit of LD_LIBRARY_PATH, and some tips around, such as using env (rather than the export), or using a wrapper bash script. [[https://www.hpc.dtu.dk/?page_id=1180][hpc on ld_library_path]]
+** We live in a small world, better have fun, being a badass at GCC flags?? [[https://blog.httrack.com/blog/2014/03/09/what-are-your-gcc-flags/][httrack blog on GCC flags]]
+** 
+* Day 107:
+** this link makes much more sense:x
+*** [[https://www.steinwurf.com/blog/error-while-loading-shared-libraries][steinwurf: on thinking through loading our shared library]]
+** Thinking through:
+#+begin_src shell
+
+   gcc -fPIC -c readme.c # c: Creating object file, fPIC: position-independent-code
+
+   gcc -shared -o readme.so readme.o # o: output file, -shared: create shared object
+
+
+   # ----- and finally
+
+   sudo ldconfig /home/ardie/my-personal-libs/shared-objects/
+
+   # ----- note the the full file name is required, yes, this seems like OS-level stuff
+   # ----- turns out you dont need LD_LIBRARY_CONFIG
+
+#+end_src
+** Useful to know, and to understand.
+#+begin_src shell
+
+  ldconfig -p | grep <some-lib-we-looking-for>
+
+  # we know this
+  sudo ldconfig /some/path/
+
+  # lets look at the symbols, actually, nm is the dumber of the lot
+  nm -D gl_ardie.so
+
+  # more relevant for this task
+  readelf -d /home/ardie/my-personal-libs/shared-objects/test.so | grep SONAME
+
+  # seems similar t readelf, but looks better and more info, objdump can also do the same like nm using -D
+  objdump -p libcurl.so.3.0.0 | grep SONAME
+
+  # sometimes, grepping through the header files is much better
+
+  cat /path/to/glad/gl.h | grep glad_glEvalMesh2
+
+
+#+end_src
+* Day 108:
+** the process of compilation seems rather ugly, even though -l<some-lib-name> "seems" rather elegant, it feels very OS-ish, it seems like something the programmer should never touch, because you are dealing with ldconfig, which updates some cache that seems to be used SYSTEM-wide.
+** doesnt feel right AT ALL
+** actually, you can just use the full file name of the .so (shared object), but it quicly becomes super-long
+** why does nobody say how weird this feels
+** 

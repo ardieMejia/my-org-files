@@ -773,3 +773,5 @@ quarto render testing.md --to pptx
 ** Some more cool navigation tricks:
 ** Gray out our asserts in C++
 *** https://softwareengineering.stackexchange.com/questions/87250/is-possible-to-write-too-many-asserts
+** Abbrev mode is actually really cool:
+*** https://www.rahuljuliato.com/posts/abbrev-mode

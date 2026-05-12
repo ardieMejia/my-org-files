@@ -99,3 +99,71 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
   
 #+end_src
 *** [[https://stackoverflow.com/questions/8040284/why-is-literal-string-assignment-in-c-not-possible-for-array-with-specified-leng][more string literal assignments from stackoverflow]]
+* We finally FOUND a way to understand pointers for REAL, the key is understanding rvalue and lvalue and it pertains to compile-time and run-time
+** https://stackoverflow.com/questions/579734/assigning-strings-to-arrays-of-characters
+** https://stackoverflow.com/questions/8040284/why-is-literal-string-assignment-in-c-not-possible-for-array-with-specified-leng
+** Both of these links pertain to assigning string to characters, but more importantly, variable declaration, is an lvalue which is why this will work:
+#+begin_src c
+
+  /* -----this WILL work */
+  char var1[] = "some string";
+
+  /* -----this WILL work */
+  char *var1 = "some string";
+
+  /* -----this WILL work */
+  char *var1;
+  ,*var1 = "some string";
+
+
+  /* -----this WILL NOT work */
+  char var1[];
+  var1 = "some string";
+
+
+
+#+end_src
+* WRITE about how &someVar++ doesnt work becoz & is a function, and it accepts an lvalue. WE SHOULD ALSO TEST IT
+* MORE LINKS, this ones Raylib lib help: https://raylibhelp.wuaze.com/_info/raylib-struct.htm?i=2
+* Build system, compilation and more:
+** this link makes much more sense:x
+*** [[https://www.steinwurf.com/blog/error-while-loading-shared-libraries][steinwurf: on thinking through loading our shared library]]
+** Thinking through:
+#+begin_src shell
+
+   gcc -fPIC -c readme.c # c: Creating object file, fPIC: position-independent-code
+
+   gcc -shared -o readme.so readme.o # o: output file, -shared: create shared object
+
+
+   # ----- and finally
+
+   sudo ldconfig /home/ardie/my-personal-libs/shared-objects/
+
+   # ----- note the the full file name is required, yes, this seems like OS-level stuff
+   # ----- turns out you dont need LD_LIBRARY_CONFIG
+
+#+end_src
+** Useful to know, and to understand.
+#+begin_src shell
+
+  ldconfig -p | grep <some-lib-we-looking-for>
+
+  # we know this
+  sudo ldconfig /some/path/
+
+  # lets look at the symbols, actually, nm is the dumber of the lot
+  nm -D gl_ardie.so
+
+  # more relevant for this task
+  readelf -d /home/ardie/my-personal-libs/shared-objects/test.so | grep SONAME
+
+  # seems similar t readelf, but looks better and more info, objdump can also do the same like nm using -D
+  objdump -p libcurl.so.3.0.0 | grep SONAME
+
+  # sometimes, grepping through the header files is much better
+
+  cat /path/to/glad/gl.h | grep glad_glEvalMesh2
+
+
+#+end_src
