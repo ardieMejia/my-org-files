@@ -403,3 +403,88 @@ remember dynamical linked means at runtime (saving space thingy), and -L only he
 ** actually, you can just use the full file name of the .so (shared object), but it quicly becomes super-long
 ** why does nobody say how weird this feels
 ** 
+* Day 109:
+** it took us to watch Casey's video, to understand how GLFW actually stores window specific stuff, becoz we thought the separation was arbitrary. 
+** It actually makes sense, when you consider that, that openGL is a "specification", which actually means: God knows what your platform is doing, do you plan on using 2 windows, does your platform even have a concept of windows. So, this POV makes more sense
+** 
+* Day 110:
+** How IDs Work in OpenGL
+*** Generate - request 1 or more IDs, using glGenBuffers or glGeArrayVertex
+*** Bind - "activate" by binding ID to specific target (Eg: GL_ARRAY_BUFFER)
+*** Configure - now you can configure
+* Day 111:
+** In the normal way of doing things, "window" is directly tired to "context". And working with buffers outside of context, produces "core dumped"
+#+begin_src c++
+  
+  glfwInit();
+
+  GLFWwindow* window2 = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+  glfwMakeContextCurrent(window);
+
+  GLuint VertexArrayID;
+  printf("%d", VertexArrayID);
+
+  GLuint myBufferID = 0;
+  // ===== if we put these after glfwTerminate, it'll "core dump"
+  glGenBuffers(1,&myBufferID); //
+  glBindBuffer(GL_ARRAY_BUFFER,myBufferID); //
+
+
+  glfwTerminate();
+
+#+end_src
+* Day 112:
+** Opportunity for teaching!!:
+** This example is actually way to teaching reading other files in other formats.
+** Also an argument for putting EVERYTHING inside 1 file.
+** Yes, thats how its always been. "everything in 1 file rules all":
+#+begin_src c++
+
+  #include<iostream>
+#include<glad/glad.h>
+#include<GLFW/glfw3.h>
+
+// Vertex Shader source code
+const char* vertexShaderSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"}\0";
+//Fragment Shader source code
+const char* fragmentShaderSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(0.8f, 0.3f, 0.02f, 1.0f);\n"
+"}\n\0";
+
+
+#+end_src
+** Original file example here (Victor Gordon): [[https://github.com/VictorGordan/opengl-tutorials/blob/main/YoutubeOpenGL%202%20-%20Triangle/Main.cpp][main cpp]]
+* Day 113:
+** we still dont understaand how vertex
+  attributePointer() works.
+** Complete mystery, when we attempted to draw 2 triangles (obviously doesnt work, coz apparently, we're NOT ALLOWED to do that). VertexAttribPointer will attempt to create non-sensical coordinates, when you put more than the "size"
+  #+begin_src c++
+
+    // this will work
+    glVertexAttribPointer(0,3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    // this will NOT work
+    glVertexAttribPointer(0,6, GL_FLOAT, GL_FALSE, 0, 0);
+
+#+end_src
+* Day 114:
+** So again:
+#+begin_quote
+
+GenBuffer()
+BindBuffer()
+BufferData()
+
+Before that, we need to create shaders (which are ACTUAL OBJECTS) and link it to the program.
+
+We then need to use VertexAttribPointer, which is the ever confusing, WTF is this?? What does it do behind the scenes? Theres also the confusing bit where we CAN create another VBO, and turn it on - GenBuffers() - BindBuffers() - VertexAttribPointer() EnableVertexAttribPointer()
+
+#+end_quote

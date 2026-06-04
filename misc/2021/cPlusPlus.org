@@ -291,3 +291,23 @@ std::getline(std::cin >> std::ws, s);
 ** [[https://codesignal.com/learn/courses/interview-practice-with-classic-coding-questions-in-cpp/lessons/advanced-vector-manipulation-techniques-in-cpp][in place modification and advanced vector stuff in cpp]]
 ** [[https://www.geeksforgeeks.org/dsa/in-place-algorithm/][more in-place algorithm stuff]]
 ** [[https://en.cppreference.com/w/cpp/algorithm.html][algrithm library, worth reading through]]
+* More mature links, I guess:
+** [[https://blog.knatten.org/2010/07/01/the-order-of-include-directives-matter/][its useless lesson on headers order, but its a cool blog, check it]]
+** [[https://docs.huihoo.com/gnu/c++-tutorial/tutorial/tut3-6.html][interesting blog (spanish guy) on C++, this one on user defined datatypes]]
+** [[https://www.reddit.com/r/C_Programming/comments/o8pkns/obvious_reasons_not_to_typedef_a_struct/][reddit on to typedef or not to typedef]]
+** [[https://alexott.net/en/cpp/CppTestingIntro.html][we are supposed to not like TDD, but this is cool read]]
+** [[https://alessandrobelli.it/mastering-vector-internals-game-development/][master vector internals for game development]]
+** [[https://sergeytihon.com/2013/03/16/supersdg2-the-maze-game-%D1%81-opengl/][the most IMPORTANT game sample code, but in older opengl]]
+** [[https://lispchronicles.wordpress.com/2017/02/22/syntactic-abstractions/][cool Lisp material aimed at syntactis abstractions]]
+** [[https://playcontrol.net/ewing/jibberjabber/opengl_vertex_buffer_object.html][we should really read on Vertex Buffer Object]]
+** [[https://www.songho.ca/opengl/gl_vbo.html][Vertex Buffer Object]]
+** [[https://antongerdelan.net/opengl/vertexbuffers.html][samey samey]]
+** https://www.3dgep.com/using-opengl-vertex-buffer-objects/
+* The OpenGL tutorial that really helped me (the YT link is in the Github):
+** [[https://github.com/VictorGordan/opengl-tutorials][Victor Gordon OpenGL tutorials]]
+* Did you know that GLUT.h has the same stuff as GLFW.h, but with additional stuff like ctrl keys as input, its also OBSOLETE. But we have alternatives to replace. and since the code is mostly written before AI, we should still read good old docs like in the 2nd section
+** FreeGLUT: (we already have this in our GREP search)This is the most direct, open-source replacement for original GLUT. It is source-code compatible, meaning you can often swap out the original library for FreeGLUT without changing your code. It is still maintained and supports modern operating systems and features.
+** GLFW: Currently the industry favorite for new projects. GLFW is a modern, lightweight, and flexible library for creating windows with OpenGL contexts and managing input.
+** SDL (Simple DirectMedia Layer): A more robust library often used for full game development rather than just simple graphics demos. SDL2 handles audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+** good old docs of OBSOLETE GLUT
+*** https://gamedev.stackexchange.com/questions/23644/is-glut-obsolete

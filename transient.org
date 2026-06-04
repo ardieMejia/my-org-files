@@ -74,7 +74,7 @@ rsync -avzh --delete --max-size='400M' --exclude="/.*" --exclude='*/myenv*/' --e
 watch out for the different flag, a flag removed
 # ==================================================
 
-rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/.profile /home/ardie/.bashrc  /media/ardie/ardie-back-2025/my-hidden-shell-profiles/
+rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/.profile /home/ardie/.bashrc /home/ardie/.Xmodmap /home/ardie/.Xmodmap_ORG /home/ardie/my-autocompletes /media/ardie/ardie-back-2025/my-hidden-shell-profiles/
 
 rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/' --exclude='*/.git*' /home/ardie/.bash_history  /media/ardie/ardie-back-2025/my-hidden-shell-profiles/.bash_history_$(date +%Y-%m-%d)
 
@@ -711,6 +711,232 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** https://shahriyarshahrabi.medium.com/write-your-own-game-engine-df1132908cdf
+***** Write about the nightmare of shared library, and how ti relates to "GLIBC version not found"
+***** we found a badass guy in the accidentally in [[https://computergraphics.stackexchange.com/questions/10332/understanding-vao-and-vbo][computergraphics.stackexchange]] by the name of Nicol Bolas. He also a [[https://nicolbolas.github.io/oldtut/index.html][Github io]] that has full content of a book by Jason L. McKesson
+***** Kanata - true liberation of keyboard magic:
+****** https://github.com/jtroo/kanata/discussions/888
+****** https://shom.dev/start/using-kanata-to-remap-any-keyboard/#installation
+****** https://github.com/jtroo/kanata/releases
+****** https://github.com/jtroo/kanata/wiki/Avoid-using-sudo-on-Linux
+***** daily SPF
+***** https://stackoverflow.com/questions/21652546/what-is-the-role-of-glbindvertexarrays-vs-glbindbuffer-and-what-is-their-relatio
+****** misnomer (we REALLY need to write this one down):
+- the buffer is the binary/stream if you will, we dont pass it to the shader, we just "make it current", againt OpenGL has ugly globals, but we can think of it as this way
+- the vertex array is actually FOR the SHADER, we make it current, but we also define pointers to it, so the program knows when to use it.
+- also in the example below, you see more modern shortcuts, this time binding ALL attributes to buffer, NO defining a pointer for the shader, NO binding a buffer first, just straight deal with the array
+
+
+
+***** attempt:
+KMONAD (https://codebenchers.com/blog/kmonad-on-ubuntu-program-your-keyboard):
+- chmod +x kmonad
+- ./kmonad
+- using evtest and listing /dev/input/my-id or /dev/input/my-path
+- it should be ~/.config/kmonad/config.kbd
+- install kmonad as a service: copy executable to /usr/bin/kmonad
+- create a service file (that points to ur config): /etc/systemd/system/kmonad.service
+- "systemctl enable" and "systemctl start" that specific service
+***** macros
+C and C++ macros pollute the namespace because the preprocessor relies on simple text substitution. It does not respect scopes like namespaces, classes, or functions. Any macro you define can accidentally overwrite matching code downstream, causing silent bugs or compilation errors. [1, 2, 3] 
+## Why Macro Pollution Happens
+****** Global scope: Macros apply globally from the line they are defined until the end of the compilation unit.
+****** No type safety: The preprocessor runs before the compiler, replacing text blindly.
+****** Shadowing errors: A macro named MAX will break any variable, function, or class method named MAX. [4, 5] 
+
+## Modern Workarounds in C++
+You can replace almost all macros with standard C++ features that respect scope and types. [6, 7] 
+## 1. Use Inline Functions for Function-Like Macros [8] 
+Replace macro logic with inline or constexpr functions. They obey namespaces and classes. [9, 10, 11] 
+
+// Bad macro#define SQUARE(x) ((x) * (x))
+// Good workaroundnamespace MathUtils {
+template <typename T>
+    constexpr T square(T x) { return x * x; }
+}
+
+## 2. Use constexpr or const for Constant Macros [12, 13] 
+Replace numeric and string macros with typed constants.
+
+// Bad macro#define BUFFER_SIZE 1024
+// Good workaroundnamespace Config {
+    constexpr int BufferSize = 1024;
+}
+
+## 3. Use Enums for Groups of Constants [14, 15] 
+For related integer constants, strongly typed enum class keeps names isolated.
+
+// Bad macro#define COLOR_RED 0#define COLOR_BLUE 1
+// Good workaroundenum class Color {
+    Red,
+    Blue
+};
+
+## Legacy and C Workarounds
+If you must use macros for conditional compilation or platform-specific code, use these mitigation techniques. [16, 17] 
+## 1. Use Unique Prefixes [18] 
+Prefix macro names with your project or library name in all capital letters. [19] 
+
+#define MYPROJECT_LOG_ERROR(msg) // Less likely to collide
+
+## 2. Undefine Macros Immediately
+If a macro is only needed inside a specific file, undefine it as soon as you are done. [20] 
+
+#define TEMPORARY_MACRO 5// ... use macro here ...#undef TEMPORARY_MACRO // Pollution stops here
+
+## 3. Wrap in do-while(0) for Multi-line Blocks [21, 22] 
+This ensures the macro behaves like a single statement and does not break control flow structures. [23, 24] 
+
+#define SAFE_PRINT(x) do { \
+    std::cout << x << std::endl; \
+} while(0)
+
+Would you like to look at a specific macro in your codebase to see how we can rewrite it using modern C++?
+
+
+https://www.reddit.com/r/cpp/comments/gov4ap/what_do_we_need_to_get_completely_rid_of_macros/
+
+
+https://www.fluentcpp.com/2018/09/04/function-poisoning-in-cpp/
+
+https://locka99.gitbooks.io/a-guide-to-porting-c-to-rust/content/porting_from_cpp/namespace_collisions.html
+
+
+https://www.reddit.com/r/C_Programming/comments/vworgh/are_macros_like_this_evaluated_at_runtime_or_at/
+
+
+https://gist.github.com/lefticus/10191322
+
+
+https://www.reddit.com/r/learnprogramming/comments/xdffy4/are_cc_macros_bad/
+
+
+https://www.vaia.com/en-us/textbooks/computer-science/c-how-to-program-8-edition/chapter-14/problem-11-why-might-you-choose-to-use-a-function-template-i/
+
+
+https://learn.microsoft.com/en-us/cpp/preprocessor/macros-c-cpp?view=msvc-170
+
+
+https://dev.to/pauljlucas/cc-preprocessor-macros-fh5
+
+
+https://www.reddit.com/r/learnprogramming/comments/xdffy4/are_cc_macros_bad/
+
+
+https://www.mathworks.com/help/bugfinder/ref/certcrec.pre12c.html
+
+
+https://eecs390.github.io/notes/metaprogramming.html
+
+
+https://codefinity.com/blog/Understanding-Preprocessor-Directives-in-C-plus-plus
+
+
+https://mahinhasanaiub.medium.com/understanding-macros-in-c-define-directive-and-its-applications-called-macro-82899479dbbd
+
+https://news.ycombinator.com](https://news.ycombinator.com/item?id=26735655
+
+https://www.naukri.com](https://www.naukri.com/code360/library/macros-in-cpp
+
+https://softwareengineering.stackexchange.com/questions/412249/current-industry-standard-with-regards-to-c-macros
+
+https://unstop.com](https://unstop.com/blog/macros-in-c
+
+https://luckyresistor.me/page/avoid-preprocessor-macros/
+
+https://stackoverflow.com/questions/69755824/is-there-a-way-to-have-the-same-define-statement-in-different-files-that-are-in
+
+https://herovired.com/learning-hub/topics/macros-in-c
+
+
+https://stackoverflow.com/questions/23444371/how-to-write-safe-and-user-friendly-c-c-define-macros
+
+https://www.allpcb.com/allelectrohub/the-dowhile0-idiom-in-c-and-c
+
+https://spin.atomicobject.com/preprocessing-with-caution/
+
+***** civic tech idea:
+****** MY IDEA: a charitable giving platform that facilitates direct donations to homeless neighbors in need.
+****** Civic tech software projects bridge the gap between residents and local systems by enhancing public transparency, improving community service coordination, or streamlining public engagement.
+https://medium.com/civic-makers/civictech-primer-what-is-civic-tech-7ea788e766d3
+https://www.computer.org/csdl/magazine/so/2022/06/09786040/1DQPBo2560M
+https://github.com/awesomelistsio/awesome-civic-tech
+## 📊 Transparency & Open Data
+
+****** Municipal Budget Visualizer: A tool that converts complex PDF government budgets into interactive charts.
+****** Public Records Tracker: A system to automate and track Freedom of Information Act (FOIA) requests.
+****** Legislative Vote Checker: An app tracking local council votes to show if representatives align with campaign promises.
+****** Zoning Change Alerter: A web scraper that notifies residents when property zoning rules change in their neighborhood.
+
+## 🛠️ Community Service & Mutual Aid
+
+****** Disaster Response Coordinator: A lightweight, offline-first app mapping local resources and shelter capacities during emergencies.
+****** Food Rescue Network: A platform connecting local restaurants with surplus food directly to nearby shelters.
+****** Tool & Equipment Library: An open-source inventory system for neighborhoods to share tools, reduction waste.
+****** Air Quality Mapping: A platform crowd-sourcing data from cheap, DIY IoT air monitors to map local pollution blocks.
+
+## 🗳️ Civic Engagement & Democracy
+
+****** Virtual Town Hall: A platform allowing moderated asynchronous video or text debates on local city proposals.
+****** Plain-Language Law Translator: An AI-assisted parser turning dense local ordinances into simple, accessible text.
+****** Digital Ballot Builder: A mock voting sandbox helping citizens research local candidates and measures before election day.
+****** Tenant Rights Navigator: A decision-tree app guiding low-income renters through local legal options against eviction.
+
+## 📈 Infrastructure & Environment
+
+****** Crowdsourced Hazard Mapper: A mobile app letting citizens map broken streetlights, aggressive potholes, or blocked bike lanes.
+****** Tree Canopy Tracker: A computer-vision project analyzing satellite data to find local neighborhoods lacking green cover.
+****** Public Transit Delay Reporter: A community-driven, real-time alert platform for reporting bus or train route issues.
+
+Before writing any code, it is highly recommended to explore existing open-source ecosystems like the [Civic Tech Field Guide](https://directory.civictech.guide/listing-category/open-source) to avoid duplication. Building on top of existing tools can maximize community impact with minimal wasted developer resources.
+Could you share more about your goals? Let me know:
+
+****** Your target programming language or stack
+****** The specific community problem you hope to solve
+****** Your project scale (hackathon prototype vs. long-term production app)
+
+
+
+***** another one:
+****** https://www.luisllamas.es/en/cpp-vector/
+****** https://stackoverflow.com/questions/17712768/weird-things-using-stdvector
+****** https://stackoverflow.com/questions/19542545/is-it-good-practice-to-use-stdvector-as-a-simple-buffer
+****** as a ring buffer:
+#+begin_src c++
+
+  std::vector<int> ring = {1, 2, 3, 4, 5};
+// Rotate so the 2nd element is now the first element, wrapping around
+std::rotate(ring.begin(), ring.begin() + 1, ring.end());
+
+
+#+end_src
+****** https://stackoverflow.com/questions/18935167/can-most-of-the-data-structures-be-implemented-using-vectors
+****** https://www.youtube.com/watch?v=k_lOw_hwkM0
+****** https://stackoverflow.com/questions/18776094/unexplained-behavior-with-stdvector
+***** We need to write all this somehere:
+****** #pragma comment: compiler specific preprocessor directive, for linking behaviour of Microsoft Visual C++
+****** #pragma comment: commonly used to link static library
+****** #pragma comment: GCC uses flags instead
+****** #pragma comment: Windows uses registry based, or fixed paths. Auto linking wouldbe fragile in a Linux environment, where library locations vary widely
+****** Clang: a popular alternativew compiler to GCC for game dev, which goes well with CMake
+****** C/C++ macros: It always pollutes the global namespace becoz the preprocessor substitutes text before the compiler processes namespace.
+****** Lisp preprocessor: its just macros, syntactic transformation performed in the compilation environment, 
+****** Lisp preprocessor: syntactic vs lexical. Unlike substition, it uses AST or S-expressions, 
+****** Lisp homoiconic: all Lisp code is lists. so macros can use any list-processing in Lisp to generate new code. . Lisp macro (itself) is turing complete
+****** compile-time func execution: C  NO! C++ yes, with constexpr and consteval
+****** C compile time computation: For c, only macro expansion and  constant expression
+***** Links:
+****** [[https://stackoverflow.com/questions/15002550/c-macros-and-namespaces][macros know nothing about namespaces]]
+****** [[https://www.artima.com/articles/reducing-preprocessor-namespace-pollution][reducing preprocessor namespace pollution]]
+****** 
+***** its time to master grep alist
+****** compilation-error-regexp-alist
+****** https://emacsredux.com/blog/2026/03/06/mastering-compilation-mode/
+****** https://groups.google.com/g/gnu.emacs.help/c/cBvCocaCBfs?pli=1
+****** https://christiantietze.de/posts/2025/08/clickable-swift-testing-failure-messages-in-emacs-compile-mode/
+****** https://doc.endlessparentheses.com/Var/compilation-error-regexp-alist.html
+****** https://andreyor.st/posts/2023-01-10-compiling-clojure-projects-in-emacs/
+****** https://emacs.stackexchange.com/questions/43956/which-regexp-from-compilation-error-regexp-alist-is-used-by-compilation-mode
 ***** Lets read on creativity and false memory
 ****** https://www.psychologytoday.com/us/blog/ulterior-motives/202110/surprising-link-between-creativity-and-false-memories
 ****** https://pmc.ncbi.nlm.nih.gov/articles/PMC8594559/
