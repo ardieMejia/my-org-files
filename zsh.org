@@ -1,0 +1,28 @@
+* I have no idea why Im learning ZSH now, I just discovered the power of coloring as functionality, so Bash cant do this, so now I need stupid ZSH
+* Lets check this link out: https://github.com/zsh-users/zsh-syntax-highlighting: I understand fpath, autoload is some kind of stupid zah to "ooohh, quickly load fast functions". It was mostly a stupid ZSH thing:
+#+begin_src shell
+
+
+  echo "ad"
+
+  echo $1
+  echo $fpath
+
+  some_stupid() {
+      if "$1"
+      then
+          echo "whatever"
+          return 0
+
+      else
+          echo "elese else"
+          autoload -U +X -- "$1"
+          # autoload
+          return 0
+      fi
+  }
+
+
+  some_stupid
+
+#+end_src

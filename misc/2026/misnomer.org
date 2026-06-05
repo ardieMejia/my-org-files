@@ -1,11 +1,34 @@
-* C
+* C/C++
 ** Signal: call_that_routine_when_this_interrupt_comes_in
+** #pragma comment: compiler specific preprocessor directive, for linking behaviour of Microsoft Visual C++
+** #pragma comment: commonly used to link static library
+** #pragma comment: GCC uses flags instead
+** #pragma comment: Windows uses registry based, or fixed paths. Auto linking wouldbe fragile in a Linux environment, where library locations vary widely
+** Clang: a popular alternativew compiler to GCC for game dev, which goes well with CMake
+** C/C++ macros: It always pollutes the global namespace becoz the preprocessor substitutes text before the compiler processes namespace.
+** Lisp preprocessor: its just macros, syntactic transformation performed in the compilation environment, 
+** Lisp preprocessor: syntactic vs lexical. Unlike substition, it uses AST or S-expressions, 
+** Lisp homoiconic: all Lisp code is lists. so macros can use any list-processing in Lisp to generate new code. . Lisp macro (itself) is turing complete
+** compile-time func execution: C  NO! C++ yes, with constexpr and consteval
+** C compile time computation: For c, only macro expansion and  constant expression
 * Linux
 ** Distro: the not-as-important-as-Desktop-Env
 * Graphics Pipeline ([[https://news.ycombinator.com/item?id=7536118][hacker news on shaders]])
-** Vertex shading: 
+** Vertex shading: STUPID definiton, VERY misleading
 ** study this: https://community.khronos.org/t/pixel-vs-fragment-shader/52838
 ** also these:
 *** https://sites.google.com/site/john87connor/advanced-opengl-tutorials/tutorial-05-2-gouraud-shading
 *** https://gabrielgambetta.com/computer-graphics-from-scratch/13-shading.html
 *** https://www.geeksforgeeks.org/computer-graphics/gouraud-shading-in-computer-graphics/
+** anti-aliasing : playing with gradients (as oppose to contract) is the easiest way to trick the human eye
+** vertex shading: deform position of a vertice
+** fragment shader: (fragment program), also the pixel shader,  but its not a 1-to-1, you can also have a multiple fragments per pixel duing anti-aliassing.
+** you can have the vertex program move each vertex in a sinwave pattern (based on time), or a fragment program, change the color of each pixel (based on time)
+** vertex "shading": the vertex "program" doesnt "shade" a pixel, rather it passes that color info to a pixel shader. And the pixel shader decides what to do with it.
+** OpenGL immediate mode: sending geometric data directly to the GPU
+** glBegin: lets draw a shape (OLD)
+** glColor3f: lets change our brush (OLD)
+** glVertex3f: lets set a point (OLD)
+* What?
+** What are OpenGL hints? GL_POINTS, GL_TRIANGLES, GL_LINE_STRIP
+** 

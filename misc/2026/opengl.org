@@ -1,0 +1,2 @@
+* We need to move some stuff from cpp.org to here
+* we found a badass guy in the accidentally in [[https://computergraphics.stackexchange.com/questions/10332/understanding-vao-and-vbo][computergraphics.stackexchange]] by the name of Nicol Bolas. He also a [[https://nicolbolas.github.io/oldtut/index.html][Github io]] that has full content of a book by Jason L. McKesson

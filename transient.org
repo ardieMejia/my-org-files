@@ -711,9 +711,17 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** Sinar project links:
+****** https://sinarproject.org/get-involved
+****** https://www.slideshare.net/slideshow/making-sense-of-internet-of-things-using-airbox-as-an-example-82766546/82766546#20
+****** https://rimbawatchmy.com/forestTracker
+****** https://huggingface.co/datasets/HCSA/HCSA_Indonesia_Forest_Plot_Data_2023
+****** https://github.com/topics/canopy-height-models
+****** https://old.thinkcity.com.my/wp1/urban-analytics-portal/
+****** https://www.fixmystreet.com/
+***** we should be posting about Kanata, coz its really cool
 ***** https://shahriyarshahrabi.medium.com/write-your-own-game-engine-df1132908cdf
 ***** Write about the nightmare of shared library, and how ti relates to "GLIBC version not found"
-***** we found a badass guy in the accidentally in [[https://computergraphics.stackexchange.com/questions/10332/understanding-vao-and-vbo][computergraphics.stackexchange]] by the name of Nicol Bolas. He also a [[https://nicolbolas.github.io/oldtut/index.html][Github io]] that has full content of a book by Jason L. McKesson
 ***** Kanata - true liberation of keyboard magic:
 ****** https://github.com/jtroo/kanata/discussions/888
 ****** https://shom.dev/start/using-kanata-to-remap-any-keyboard/#installation
@@ -857,6 +865,9 @@ https://spin.atomicobject.com/preprocessing-with-caution/
 
 ***** civic tech idea:
 ****** MY IDEA: a charitable giving platform that facilitates direct donations to homeless neighbors in need.
+******* Tree Canopy Tracker: A computer-vision project analyzing satellite data to find local neighborhoods lacking green cover
+******* https://dspace.mit.edu/entities/publication/b091ea46-752a-4f99-9585-3cdf1f06ef30
+******* according to HUGSI, the "greeness" of Malaysia is rated at 35%, with a grade of D- globally
 ****** Civic tech software projects bridge the gap between residents and local systems by enhancing public transparency, improving community service coordination, or streamlining public engagement.
 https://medium.com/civic-makers/civictech-primer-what-is-civic-tech-7ea788e766d3
 https://www.computer.org/csdl/magazine/so/2022/06/09786040/1DQPBo2560M
@@ -872,6 +883,7 @@ https://github.com/awesomelistsio/awesome-civic-tech
 
 ****** Disaster Response Coordinator: A lightweight, offline-first app mapping local resources and shelter capacities during emergencies.
 ****** Food Rescue Network: A platform connecting local restaurants with surplus food directly to nearby shelters.
+******* run drives to supply them with temperature-controlled logistics or extra delivery fleets.
 ****** Tool & Equipment Library: An open-source inventory system for neighborhoods to share tools, reduction waste.
 ****** Air Quality Mapping: A platform crowd-sourcing data from cheap, DIY IoT air monitors to map local pollution blocks.
 
@@ -894,25 +906,6 @@ Could you share more about your goals? Let me know:
 ****** Your target programming language or stack
 ****** The specific community problem you hope to solve
 ****** Your project scale (hackathon prototype vs. long-term production app)
-
-
-
-***** another one:
-****** https://www.luisllamas.es/en/cpp-vector/
-****** https://stackoverflow.com/questions/17712768/weird-things-using-stdvector
-****** https://stackoverflow.com/questions/19542545/is-it-good-practice-to-use-stdvector-as-a-simple-buffer
-****** as a ring buffer:
-#+begin_src c++
-
-  std::vector<int> ring = {1, 2, 3, 4, 5};
-// Rotate so the 2nd element is now the first element, wrapping around
-std::rotate(ring.begin(), ring.begin() + 1, ring.end());
-
-
-#+end_src
-****** https://stackoverflow.com/questions/18935167/can-most-of-the-data-structures-be-implemented-using-vectors
-****** https://www.youtube.com/watch?v=k_lOw_hwkM0
-****** https://stackoverflow.com/questions/18776094/unexplained-behavior-with-stdvector
 ***** We need to write all this somehere:
 ****** #pragma comment: compiler specific preprocessor directive, for linking behaviour of Microsoft Visual C++
 ****** #pragma comment: commonly used to link static library
