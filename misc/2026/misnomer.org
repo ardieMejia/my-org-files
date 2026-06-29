@@ -29,6 +29,15 @@
 ** glBegin: lets draw a shape (OLD)
 ** glColor3f: lets change our brush (OLD)
 ** glVertex3f: lets set a point (OLD)
+* GLSL (some are assumed true, from diff sources such as Vulkan):
+** ([[https://web.engr.oregonstate.edu/~mjb/cs557/Handouts/VulkanGLSL.1pp.pdf][cs557]])
+*** Vertex + Fragment shader: minimum
+*** missing stages: perfectly fine, output of 1 shader becomes input of another
+* OpenGl
+** ([[https://www.opengl.org/archives/resources/faq/technical/rasterization.htm][OpenGL rasterization]])
+** getting address of the Framebuffer: You cant with OpenGL. People who usually write for a single format (Eg: VGA standard Windows) will want the address. OpenGL is designed for wide variety of hardware, so it doesnt have a standard framebuffer format.
+** 
 * What?
 ** What are OpenGL hints? GL_POINTS, GL_TRIANGLES, GL_LINE_STRIP
-** 
+*** 
+* 

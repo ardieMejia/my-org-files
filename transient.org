@@ -711,6 +711,63 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** misnomer:
+****** Uniform's are literally passed from CPU to GPU
+****** but that is jsut the mechanic, what really matters, is that the GPU is just secondary to the whole operation.
+****** Even though the entire pipeline is "important", data is passed to the GPU "imperatively". So uniforms, are "injecting data from your code to the pipeline of a single object"
+****** super important link: https://thebookofshaders.com/glossary/?search=mix
+****** just like in Photoshop, we must think what matters to most designers. We ask questons like "does shading matter?", in the case of Photoshop, only for text effects. whats powerful, is probably a way to use math. But again, as Blow says, programming isnt math, math is perfect and "a box", programming has a lot of "imperative injection into your perfect model"
+
+***** twitch ERC setup
+****** setup untested ( number is the real versoin)
+#+begin_quote
+
+access
+mt3sg1qie3e73u6en3mtlrvzzecppd
+
+client id
+gp762nuuoqcoxypju8c569th9wz7q5
+
+refresh token:
+p17sapasfwwvrykq4lfdd1tslvuy8gzi5jo1fk3xs6iq7tuz0e
+
+(erc-tls :server "irc.twitch.tv"
+         :port 6667
+         :password "<your OAuth token>"
+         :nick "<your nick>")
+
+#+end_quote
+***** the myth of the necessity of work:
+- suffering culture: the belief that "work has to be hard"
+- what is procrastination
+- what is boredom: is boredom a bad thing
+
+the myth of the necessity of work:
+- most think SUCCESS = doing things with a David Goggins vibe
+- working hard is a "protestant work ethic". Working hard and consume little
+- in modern times, hard work has replaced religion to make your life meaningful
+- Bertrand Russel was ahead of his time. He wrote about moving towards a 4-hour work day
+- https://aliabdaal.com/newsletter/the-myth-about-hard-work/  
+***** we should be reading about virtual memory, paging, and the difference with embedded
+***** We should download The Age Of Surveillance Capitalism by Shoshana Zhuboff
+***** stuff we collected for reading so far in OpenGL. 
+****** https://stackoverflow.com/questions/37972229/glvertexattribpointer-and-glvertexattribformat-whats-the-difference
+******  replacing the glVertexAttribPointer() with glVertexAttribFormat() and glBindVertexBuffer()
+****** the problems:
+******* it tries to do too many things in 1 function. Provide the format of the data (the step, the stride, etc), and where the data comes from.
+****** [[https://riptutorial.com/opengl/example/32426/using-textures-in-glsl-shaders][riptutorial has cool stuff on opengl that we STILL did not manage to work]]
+***** OpenGL 
+****** We should stop playing with frambuffer logic, (creating shader, linking it, create a vertice array, generating buffer and array, adding data to it, defining attributes and stride/steps and offset, etc...)
+****** Instead, we should just read built in variables and functions for a while, apparently, its quite powerful
+****** https://learnwebgl.brown37.net/12_shader_language/glsl_builtin_functions.html
+****** https://docs.vulkan.org/glsl/latest/chapters/builtinfunctions.html
+***** others texture OpenGL, glsl, vulkan, mid reading
+****** https://www.cs.cornell.edu/courses/cs4621/2015fa/lectures/lec04-practicum-fa15.pdf
+****** https://www.opengl.org/sdk/docs/tutorials/TyphoonLabs/Chapter_3.pdf
+****** https://github.com/mattdesl/lwjgl-basics/wiki/glsl-versions
+****** https://web.engr.oregonstate.edu/~mjb/cs557/Handouts/VulkanGLSL.1pp.pdf
+****** https://en.wikibooks.org/wiki/GLSL_Programming/Rasterization
+****** https://wikis.khronos.org/opengl/Built-in_Variable_(GLSL)
 ***** Sinar project links:
 ****** https://sinarproject.org/get-involved
 ****** https://www.slideshare.net/slideshow/making-sense-of-internet-of-things-using-airbox-as-an-example-82766546/82766546#20
@@ -720,6 +777,9 @@ sudo apt install gpaste.
 ****** https://old.thinkcity.com.my/wp1/urban-analytics-portal/
 ****** https://www.fixmystreet.com/
 ***** we should be posting about Kanata, coz its really cool
+****** the function (layer-toggle layers) is not simple, auto maps to layers depending on order, so its not a dumb function (sadly), but it works
+****** tap dances are too taxing on the typists mind, should not be used to trigger layers.
+****** 
 ***** https://shahriyarshahrabi.medium.com/write-your-own-game-engine-df1132908cdf
 ***** Write about the nightmare of shared library, and how ti relates to "GLIBC version not found"
 ***** Kanata - true liberation of keyboard magic:

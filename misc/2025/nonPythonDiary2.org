@@ -488,3 +488,17 @@ Before that, we need to create shaders (which are ACTUAL OBJECTS) and link it to
 We then need to use VertexAttribPointer, which is the ever confusing, WTF is this?? What does it do behind the scenes? Theres also the confusing bit where we CAN create another VBO, and turn it on - GenBuffers() - BindBuffers() - VertexAttribPointer() EnableVertexAttribPointer()
 
 #+end_quote
+* Day 115:
+** C is so hacky, you can literally use header files (.h) as a "transform to cpp file, if we define MACRO" file
+** Basically it goes something like this:
+*** #define your header file first, then #include your header
+*** put something meaningful inside #ifdef MYFILE_H (instead of #ifndef)
+*** now watch the magic of header files, becoming like .cpp files 
+* Day 116:
+** despite our accidental ardie/back-to-square-one, (which cancels ALL our work), in the end, its just the "working area", so we only cancled our workong area, our main didnt need fixing (LOL). my workflow WORKS YET again. (mostly becoz becoz Emacs still remembers our edits)
+** misnomer:
+*** Uniform's are literally passed from CPU to GPU
+*** but that is jsut the mechanic, what really matters, is that the GPU is just secondary to the whole operation.
+*** Even though the entire pipeline is "important", data is passed to the GPU "imperatively". So uniforms, are "injecting data from your code to the pipeline of a single object"
+*** super important link: https://thebookofshaders.com/glossary/?search=mix
+*** just like in Photoshop, we must think what matters to most designers. We ask questons like "does shading matter?", in the case of Photoshop, only for text effects. whats powerful, is probably a way to use math. But again, as Blow says, programming isnt math, math is perfect and "a box", programming has a lot of "imperative injection into your perfect model"
