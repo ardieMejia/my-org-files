@@ -502,3 +502,236 @@ We then need to use VertexAttribPointer, which is the ever confusing, WTF is thi
 *** Even though the entire pipeline is "important", data is passed to the GPU "imperatively". So uniforms, are "injecting data from your code to the pipeline of a single object"
 *** super important link: https://thebookofshaders.com/glossary/?search=mix
 *** just like in Photoshop, we must think what matters to most designers. We ask questons like "does shading matter?", in the case of Photoshop, only for text effects. whats powerful, is probably a way to use math. But again, as Blow says, programming isnt math, math is perfect and "a box", programming has a lot of "imperative injection into your perfect model"
+* Day 117:
+** [[https://thebookofshaders.com/glossary/?search=mix][Great link, but be careful with examples:]]
+*** The 2nd example, while interesting showcase of smoothstep, is hardly practical, and is just a fancy way of showing "how to plot a line using smoothstep()"
+*** Reminder: our previous example of using sin() to generate ratio cycles based on a linear input, is much more useful
+*** smoothstep is the only step, and the way to implement linearstep is writing oneself
+*** this implies that its a relatively common operation, looking at how ALL these functions are used might prove useful (even if its looks weird at first)
+*** now that we have some familiarity of what GLSL and shaders code look like (2 types of shaders at least), and how they feed code into each other. We should REALLY read about Graphics History. Some interest includes "what is z-buffer". We downloaded the file as History-of-graphics.pdf. But heres the link:
+**** https://graphics.stanford.edu/courses/cs248-01/History-of-graphics/History-of-graphics.pdf
+*** thats it!1
+* Day 118
+** [[https://developer.samsung.com/galaxy-gamedev/resources/articles/gpu-framebuffer.html][I hate samsung, but now we need to learn this, quite cool, make sure to rewrite this]]
+* Day 119 (Get ready for lots of unrelated progress (so its not real progress):):
+** misnomer:
+- Uniform's are literally passed from CPU to GPU
+- again, this results in lots of function bloat (so many APIs), becoz GPU can come in any form, this will be important for a very long time (think: Bolt Graphics)
+- Data is passed to the GPU "imperatively". So uniforms, are "injecting data from your code to the pipeline of a single object"
+- [[https://thebookofshaders.com/glossary/?search=mix][book of shaders]]
+- uniforms are NOT constant, but are global, I think
+- we finally understand how mix() works
+- x*(1−a)+y*a.
+- a sin wave = fluctuates = literal wave = also a wheel
+- Therefore: weight can come from "positivizing" sin of "infinite linear time"
+- we discovered "switches" inside a single GLSL script, so macros are not the perfect switches, but rather operate inside each pipeline (its fine, its a good way to test different GLSL in 1 file)
+- framebuffer: it is not a hack, computer researchers have been using this for decades
+- DirectX is more "direct". Its tightly integrated with Windows and XBOX ecosystem. Vulkan is cross-platform works well with Linux. (However, DirectX is not faster, both perform similarly)
+- DirectX will be around for a very long time, as Windows is ONLY ever updating this library
+Then, how does Linux handle Windows games??
+- Proton/Wine: it intercepts DirectX calls, and translates them into native Vulkan instructions
+** misnomer
+- we finally understand big o notation
+- when we look at the example, from this [[https://www.youtube.com/watch?v=XMUe3zFhM5c][YouTube video]], the example being AddUp(), it seems particular doable, and also you can apply (making your algorithm simpler), to almost any function
+** misnomer
+- we discovered renderdoc a cool debugging tool for graphics under linux
+- Cohen and Sutherland (1974) - sorting - according to this [[https://lodev.org/cgtutor/lineclipping.html][link]], a common representation is to use ourcode (binaries of a certain look), and the benefits of outcode is that we can have "trivial accept" and "trivial reject"
+** misnomer:
+- lookup-table is an imperitive hack. For any function F(x), x in the table can have a range of (a,b). Obviously, you decide that x has a "finite" range
+- its an optimization, but its speed depends on  frequency of function evaluation and storage
+- the [[https://paroj.github.io/gltut/Texturing/Tutorial%2014.html][article]] then proceeds to talk about Gaussian Specular function (what?!?!?!),
+** Raylib bubble example:
+- game state as: switch() inside while()
+- if offsety consistent throughout
+- drawmap() function
+- we need to know the full set of value range within the "map" variable (we do this in inilevel)
+- by separating the temp() from map(), the temp() can be a "ratio map"
+- the formular below, means, "tile is dynamically adjusted to screenwidth"
+- think of it as "desire", we desire this mapWidth, that screenWidth, so the code needs to know tileWidth from this calculation
+  #+begin_src c++
+
+        tileWidth = abs((float)screenWidth/(float)mapWidth);
+
+#+end_src
+- if we know anything about games, its that its not perfect, so while loops is not a constant perfection. For example, apart from rendering not being a perfect constant inside each loop iteration, will there be moments, where character level-ups pause everything
+* Day 120:
+** Apparently, everytime we try to go back to our GLSL and re-try the (color across primitive, gradiented by the coordinates). We keep encountering the same BUG again caused by implicit variables imported by default. This time by gl_FragCoord.
+** There should be a lesson from this, one we can generalize (I cant think of any)
+* Day 121:
+** we now know that using C preprocessor directives is very legit for test mechanic
+** variables like gl_FragCoord are EXTREMELY problematic!! Becoz it is implicit it CAN be a source of hard to detect bugs for beginners
+* Day 122:
+** Once we are reading many others, we can revisit this [[https://teaching.csse.uwa.edu.au/units/CITS3003/lectures/019_texture_mapping_in_OpenGL.pdf][link]], and see wherer understanding stands
+** we should also revisit link
+*** https://www.nv5geospatialsoftware.com/docs/PassingInfoShader.html
+** more revisiting:
+*** [[https://beta.p5js.org/tutorials/intro-to-glsl/][link]]
+*** [[https://research.ncl.ac.uk/game/mastersdegree/graphicsforgames/introductiontographics/IntroductionToGraphics.pdf][introduction to graphics]]
+** Finally a better explanation of Sutherland clipping algo. The [[https://www.dgp.toronto.edu/~ah/csc418/fall_2000/notes/clip2d.html][link]] shows how the vertex list gets updated each time
+** [[https://nils-olovsson.se/articles/heightfield_shading/][we havent read this]]
+** [[https://web.eecs.umich.edu/~sugih/courses/eecs487/lectures/16-Phong+Shading.pdf][or thhis one]]
+* Day 123:
+** we finally understand big o notation mostly by watching a YouTube video
+** Wait, based on this [[https://medium.com/@melekcharradi/understanding-state-machines-a-developers-guide-to-predictable-application-logic-d3df50e3e621][link]], im already implementing a state machine in my code, when I press r or t:
+*** But its not enough, "events" should be the only way to move between states, not key presses
+*** States should be mutually exclusive, no "isLoading" or "isError" at the same time. But how?
+*** But the article uses a stupid (or good?) example of if-elses to switch to ensure "we are always in 1 state"
+#+begin_src javascript
+
+  // assuming Javascript enum's are defined
+
+  class FormStateMachine {
+    constructor() {
+      this.state = STATES.IDLE;
+    }
+
+    transition(event) {
+      const currentState = this.state;
+
+      if (currentState === STATES.IDLE && event === EVENTS.SUBMIT) {
+        this.state = STATES.SUBMITTING;
+        return true;
+      }
+
+        // ... repeat ...
+
+      console.warn(`Invalid transition: ${event} in state ${currentState}`);
+      return false;
+    }
+
+    getState() {
+      return this.state;
+    }
+  }
+
+  const formMachine = new FormStateMachine();
+
+  formMachine.getState(); // => idle
+
+  formMachine.transition(EVENTS.SUBMIT); // => 'submitting'
+
+  formMachine.transition(EVENTS.SUCCESS); // => 'success'
+
+#+end_src
+*** We can also have hierarchical or parallel states. Example of hierarchical states would use enum's  (and hacky if-elses like above) like these:
+#+begin_src javascript
+
+  const musicPlayerStates = {
+  stopped: {},
+  playing: {
+    initial: 'normal',
+    states: {
+      normal: {},
+      volumeAdjusting: {},
+      seeking: {}
+    }
+  }
+      
+#+end_src
+** Another state machine we should be reading
+*** https://gameprogrammingpatterns.com/state.html
+** A super cool article, that I found, [[https://medium.com/@nainia_ayoub/floating-point-accuracy-on-gpus-57d01ddc7b0b][floating point accuracy in GPUs]]
+*** computers inherently, dont have a way to calculate division literally, so it usually boils down to addition and substraction operations (in the CPU).
+*** An example,  (34 / 8) is done as  ((((34 - 8) - 8) - 8) - 8), until you have a quotient 4 and a remainder of 2
+*** there are lots articles explaining reciprocal, but none of it made sense.
+*** Remember the example above such as 34/8? Now imagine dividing a number > 1000. The quick word we need to remember is "iteration" as we read further
+*** ULP (Unit in the Last Place) is the distance between floating-point numbers in a value (? I guess)
+*** ULP gives you a scale-aware way to talk about error.
+*** The value is not fixed
+*** Around small values, representable numbers are tightly packed.
+*** Around large values, they are farther apart.
+*** the error is 1 ULP: the result is off by about one representable step at that magnitude.
+*** ULP gives you a scale-aware way to talk about error.
+*** Errors involving ULP shows up in:
+**** iterative solvers
+**** optimizers
+**** physics simulations
+**** ML training loops with very small learning rates
+**** Nothing is “wrong” with the code. The stopping condition simply lives at the precision limit.
+**** Most real life effective numerical algos rely on the convergence test
+#+begin_quote
+
+stop when |x_new − x_old| < ε
+
+#+end_quote
+**** The usual ULP expected is <=0.5 ULP. But in real life, some algos dance around 102 ULP
+* Day 124:
+** https://developer.download.nvidia.com/assets/gamedev/docs/TransformAndLighting.pdf
+*** NVIDIA transform and lighting
+*** 3D is ultimately complex, so different frames of reference (different coordinate systems) is important to handle this data
+*** the different coordinate systems are world, eye, screen but since, coordinate systms are different, data must be "transformed" as it travels through the pipeline
+*** In this article we are STILL talking about Graphics Pipeline but in an NVIDIA context
+*** Its still important, coz its VERY accessible
+* Day 125:
+** Original [[https://github.com/jwiegley/use-package#notes-about-lazy-loading][article]] on use-package:
+*** (use-package) implies (require) only if package is in system
+*** init: misnomer, run code before package is loaded
+*** init: OVERWRITES lazy loading, takes precendence
+*** config: misnomer, run code before package loads
+*** config: SUBMITS to lazy loading
+*** you can actually nest (use-package)
+*** autoload: Its all about loading a file. Registers the location of the file, function is never loaded, once a function is called/etc..., the file is loaded
+*** use-package always autoloads, and its implied such as in this command:
+  #+begin_src emacs-lisp
+
+    (use-package ace-jump-mode
+  :bind ("C-." . ace-jump-mode))
+
+#+end_src
+*** bind-keymap: example
+  #+begin_src emacs-lisp
+
+    (use-package projectile
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
+
+#+end_src
+*** the article does a better job explainign this stuff, but we can think of it "2 layers of deferring evaluation"
+** After all that however, we learnt from [[https://batsov.com/articles/2025/04/17/using-use-package-the-right-way/][Batsov]] that its much better practice to actually to remove :init, :config, and move most of the code over to, such as, :bind, :hook, :custom, etc.. Most of these already have implied "defer loading"
+* Day 126:
+** [[https://www.escapistmagazine.com/realistic-graphics-are-broken/][realistic graphcis are broken]]
+*** console makers are still selling us systems based on how good the game looks
+*** realistic graphics are a dead end, becoz of many reasons, uncanny valley, higher production costs, diminishing returns with photo realism.
+*** but most important of all, game mechanics havent caught up with graphics improvement, players cant react realistically
+** But in the end, we DONT CARE about all this
+** [[https://forums.escapistmagazine.com/threads/why-arent-graphics-done-as-vectors.255501/][why arent graphics done as vectors]]
+*** drawing complex textures using mathematical operations instead of pixel is HIGHLY impractical
+*** 1 guy implies an interesting fact, using a system of pixels, means that all movement can be done as linear transformations (matrix). Vector operations, on the hand, commonly require square root operations. Square root operations are one of the slowest computation for a computer. Imagine millions of such operations per frame!!
+* TODO
+
+TODO:
+- https://community.khronos.org/t/glsl-clipping/59665
+- there are many ways to do clipping in GLSL: simple scanline conversion (huh??)
+- http://yummymelon.com/devnull/in-emacs-everything-looks-like-a-service.html
+- in Emacs, everything looks like a service
+- https://comp.anu.edu.au/courses/comp4610/assets/notes/slides_week_8.pdf
+- Phong lighting model
+- https://twodee.org/blog/17840
+- lighting in eye space
+- https://xoticpc.com/blogs/news/history-of-gpus?srsltid=AfmBOor8da8lUF7UfuEL_Xv7PwxIJvglqMS8jdKKI3ETKn-lQNqnaohR
+  - history of GPU
+- https://patents.google.com/patent/US6597363B1/en
+- deferred shading shit
+- https://www.cs.drexel.edu/~deb39/Classes/CS432/Assignments/a6.html
+- interactive computer graphics assignment
+- https://developer.download.nvidia.com/assets/gamedev/docs/TransformAndLighting.pdf
+- NVIDIA Transform and Lighting Engine
+- -----
+- world, eye, screen coordinate
+  - https://learnopengl.com/Getting-started/Coordinate-Systems
+- world, eye, screen coordinate
+- https://gamedev.stackexchange.com/questions/82494/why-is-h-blinn-used-instead-of-r-phong-in-specular-shading
+- why is blinn used instead of phong
+- https://alaingalvan.gitbook.io/a-trip-through-the-graphics-pipeline/chapter5-primitive-assembly
+- Cool website, a trip through the graphics pipeline
+- https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html
+- Also cool website, scratchapixel, perspective and orthographic projection
+- https://gabrielgambetta.com/computer-graphics-from-scratch/09-perspective-projection.html
+- A website on the book, Computer Graphics from Scratch
+- he link is on perspective projection
+- https://cientistavuador.github.io/articles/3_en-us.html
+- I dont know what this one is about, strange and confusing
+- https://medium.com/@breede/vex-ray-tracer-4-blinn-phong-shading-f0bf3042ba92
+- Guy who personally implements Blinn-Phong Shading
+- https://hero.handmade.network/forums/code-discussion/t/2479-using_opengl_uniforms_attributes_outputs_in_more_efficient_way
+- handmadehero mention of efficient use of uniform/attributes/outputs

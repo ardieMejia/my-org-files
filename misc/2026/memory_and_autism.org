@@ -1,0 +1,17 @@
+
+* [[https://pmc.ncbi.nlm.nih.gov/articles/PMC8594559/][Linking creativity and false memory: Common consequences of a flexible memory system]]
+** Some previous studies show that flexible episodic memory system (sometimes leading to memory errors) has functional benefits for creativity.
+** If so, there SHOULD be a direct link between creativity and susceptibility to memory distortion.
+** However, previous studies examining such a link have yielded inconclusive results??
+* https://pubmed.ncbi.nlm.nih.gov/20951630/
+** we already know that, the usual the usual "recollecting" "hardens" neurons, and spaced repetition moves short-term memory to long-term
+** this article, adds, that "tests" and "exams" are commonly accepted, as assessing our knowledge, and true learning is when we "study"
+** this is FALSE, as tests that encourage retrieval enhance mnemonics
+** this retrieval is still beneficial, even without the correct answer.
+** the power of retrieval practice is useful consolidating memory, and useful for education practices
+* [[https://www.sciencedirect.com/science/article/abs/pii/S0306453016301354][stress in the zoo]]
+** we learnt new things such as the important region of the brain responsible for memory formation is the amygdala and hippocampus
+** there is the fast acting sympathetic nervous system (releases catetholamines), and slow acting axis (releases cortisol)
+** the slow one seems to encourage memory retention, but only for a short while, then the slow axis, inhibits memory retention. 
+* we need to look for articles on convergent and divergent thinking as it relates to creative false memories
+* 

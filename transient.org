@@ -711,6 +711,62 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** we need to write about Jevons Paradox
+****** a very stupid paradox that might explain why its not worth it, for infinite growth of tech
+***** we really need to write about [[https://www.researchgate.net/publication/345242745_Marked_Men_White_Masculinity_in_Crisis][this one]], as well an article that "references" this article
+****** ... While men are consistently inundated with patriarcahl messages that limits their expression of intimacy and teaches them to suppress acts of vulnerability, they are simultaneously censured for upholding these very tenets of masculinity to which they were socialized. This contradiction in social expectation, leaves men with an uncertainty as to what is expected of them (Gourarier, 2019;Kimmel, 1987;Robinson, 2000). However, a contradiction in role expectations for men cannot merely be resolved through a modification in their gender ethos, as this conflict inherently threatens the legitimacy of their power and authority which has been traditionally enshrined within tenets of masculinity. ...
+***** https://wiki.c2.com/?LispForGames
+****** game code can be notoriously ugly, especially when using the typical state polling machine
+***** article after several months long experiment of learning graphics programming
+****** Its important this parallel with learning something else, as you will feel "long" moments of no progress (even for someone who likes digging deep, and with a knack or talent of creative programming)
+****** we need to chech this too: https://gabrielgambetta.com/computer-graphics-from-scratch/09-perspective-projection.html
+***** Links to WRITE:
+****** https://blog.mbedded.ninja/programming/design-patterns/state-machines/
+****** https://www.aleksandrhovhannisyan.com/blog/implementing-a-finite-state-machine-in-cpp/
+****** https://barrgroup.com/blog/how-code-state-machine-c-or-c
+****** https://www.embeddedrelated.com/showarticle/1625.php
+***** we need to write abot Lisp somewhere
+****** https://www.cs.colostate.edu/helpdocs/lispEmacs.html
+***** We wrote this in diary already: Now that we have some familiarity of what GLSL and shaders code look like (2 types of shaders at least), and how they feed code into each other. We should REALLY read about Graphics History. Some interest includes "what is z-buffer". We downloaded the file as History-of-graphics.pdf. But heres the link:
+****** https://graphics.stanford.edu/courses/cs248-01/History-of-graphics/History-of-graphics.pdf
+***** Our DevOps event, also about, Sinar Project event!!
+#+begin_quote
+
+I build AI agent.
+health tech startup
+5 agents in 1 workflow
+dont make users wait
+hanle stream
+
+60 seconds spinner reads as a crash
+
+stream evetes over SSE
+
+user -> init -> update 0> status -> message -> complete
+
+whatd does "stateful" and "load balancer" actually mean
+
+decouple: background thread + event buffer
+
+buffer strem in stream programming
+
+security, injection: guard rails are not enough
+
+cyrber cimr bill in malaysia government
+
+
+#+end_quote
+
+
+***** In Lisp, code and data share the same structure: nested lists known as Abstract Syntax Trees (ASTs). By skipping the traditional parsing step, programmers can manipulate Lisp source code directly as data, unlocking unparalleled metaprogramming capabilities and allowing them to seamlessly extend the language's syntax.
+***** This unique design stems from a core concept called homoiconicity, which provides several distinct advantages
+1. Code is Data (and Vice Versa)
+2. Powerful Macros
+3. Structural Editing & Refactoring
+4. Code Generation
+(Yeah, Im quoting AI, and Im still a noob. But Lisp still seems absolutely fascinating. And Id like to think this explains why Emacs seems so "borderless", even when many competent Lispers say eLisp is not real Lisp)
+***** https://docs.cocos.com/creator/3.6/manual/en/shader/glsl.html
+***** [[https://themaister.net/blog/2025/10/][insightful blog into learning importance of learning compute first when GPU programming, and not just "using API"]]
 ***** misnomer:
 ****** Uniform's are literally passed from CPU to GPU
 ****** but that is jsut the mechanic, what really matters, is that the GPU is just secondary to the whole operation.
@@ -769,6 +825,7 @@ the myth of the necessity of work:
 ****** https://en.wikibooks.org/wiki/GLSL_Programming/Rasterization
 ****** https://wikis.khronos.org/opengl/Built-in_Variable_(GLSL)
 ***** Sinar project links:
+****** https://kopitiam.sinarproject.org/
 ****** https://sinarproject.org/get-involved
 ****** https://www.slideshare.net/slideshow/making-sense-of-internet-of-things-using-airbox-as-an-example-82766546/82766546#20
 ****** https://rimbawatchmy.com/forestTracker
