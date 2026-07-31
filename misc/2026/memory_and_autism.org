@@ -14,4 +14,14 @@
 ** there is the fast acting sympathetic nervous system (releases catetholamines), and slow acting axis (releases cortisol)
 ** the slow one seems to encourage memory retention, but only for a short while, then the slow axis, inhibits memory retention. 
 * we need to look for articles on convergent and divergent thinking as it relates to creative false memories
-* 
+* [[https://www.harvardmagazine.com/2025/01/harvard-study-memory-creative-thinking][is memory connected to creativity]]
+** Despite our fatigue of memory (no thanks to fetishization of short term Exams such as in our culture), some are disgusted by the idea of putting value in memory. But this is not the same thing.
+** Creativity might be related to episodic memory, or ability to relive (id like to call it retrieve), specific moments from past experience
+** An interesting read is the 2001 book "The Seven Sins of Memory: How the Mind Forgets and Remembers"
+** referring to a recent research involving "episodic simulation", aka how the human constructs simulations of past and future events
+** It refers to a study, of an accident patient with a severe case of amnesia, with shattered "episodic memory", unable to recall personal past experiences, but his "general knowledge" was fine.
+** Most interestingly, when asked what he would to tomorrow, he was unable to plan for the future. Study suggest a strong link between, remembering the past and envisioning the future
+** Led to formation of "constructive episodic simulation hypothesis", merging pieces of the past ideas of the future.
+** Study involving an "induction" test, where non-control subjects did a recall experiment, reveal more detailed innovative ideas
+** 2 types of creative thinking: divergent creative thinking and convergent creative thinking
+** But it comes with a trade-off, subjects with higher divergent creative thinking, showed "memory distortions", adding false details 

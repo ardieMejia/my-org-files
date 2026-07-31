@@ -278,6 +278,14 @@ the steps in general looks like this, but we SHOULD REALLY try static linking, w
   anyway 
 
 #+end_quote
+** we can also make it simpler
+#+begin_quote
+
+gcc -fPIC -o libreadme.so -c readme.c
+
+gcc -o exec_file -L/home/ardie/my-trash/delete/a_library -lreadme main.c
+
+#+end_quote
 ** some links:
 *** https://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
 *** https://www.geeksforgeeks.org/c/how-do-i-create-a-library-in-c/
@@ -697,12 +705,142 @@ stop when |x_new − x_old| < ε
 ** [[https://forums.escapistmagazine.com/threads/why-arent-graphics-done-as-vectors.255501/][why arent graphics done as vectors]]
 *** drawing complex textures using mathematical operations instead of pixel is HIGHLY impractical
 *** 1 guy implies an interesting fact, using a system of pixels, means that all movement can be done as linear transformations (matrix). Vector operations, on the hand, commonly require square root operations. Square root operations are one of the slowest computation for a computer. Imagine millions of such operations per frame!!
-* TODO
+* Day 127:
+**  [[https://community.khronos.org/t/glsl-clipping/59665][glsl clipping, but how?]]
+*** still not enough explanation
+*** community mentions many ways to do clipping in GLSL, simple scanline conversion, but "SSC" is simply a way to vaguely draw a straight line on raster
+*** one such method mentioned among "SSC" is DDA (Digital Differential Analyzer). Note how in the algo below, "too high a slope" which will result in Y beyond too coarse is countered by the middle eq
+  #+begin_quote
 
+           (i).   If (m < 1): xN = x1 + 1 ,  yN = y1 + m  
+         (ii).  If (m > 1): xN = x1 + 1 / m ,  yN = y1 +1  
+         (iii).  If (m = 1): xN = x1 + 1 , yN = y1 + 1 
+
+#+end_quote
+* Day 128:
+** [[https://hackmd.io/@NTHU-OpenGL-Study-Group/By7R7TpSd][National Tsing Hua Open Study Group]]
+*** interesting article, but VERY BAD explanation
+*** local space:
+  #+begin_src c++
+
+    float vertices[] =
+        {
+            -0.5, -0.5, -0.0,
+            0.5, -0.5, 0.0,
+            0.0, 0.5, 0.0
+        };
+
+#+end_src
+*** basically all this is the object centering around the object
+** to convert to world space we multiply with something magical called "model matrix"
+** this "model matrix" is a combination of scaling, rotating, and finally translating
+** to convert to "view space" (or world, or eye), we multiply by the magical "view matrix"
+** if we imagine ourselves as the camera, the coordinate sys is the "right", "up" and "front" of us
+** next, we convert it to "clip space", this is the most interesting of the transformation
+** we multiply by the magical "projection matrix"
+** so clipping is implied, by simply using this project matrix (not a separate thing)
+** this is where another magic can happen, if we change the projection matrix, we change our view of the world (as magical as changing a cameras filter)
+** thanks to this stupid article, we now see we can learn GLM (OpenGL Mathematics) . NOOOOOO!!
+* Day 129:
+** [[https://gigamonkeys.com/book/programming-in-the-large-packages-and-symbols][gigamonkeys packages and symbols]]
+*** we discovered an article written by that Jean Phillipe guy, on understanding the Lisp reader
+*** Lisp reader: 1 of its function is to translate name to symbols
+*** apart from the usual : and ::, for exported (and private) symbols, you also have "keyword symbols".
+*** Keyword Symbols also do SEVERAL things at once: they interned in the package (dont ask), auto exported. Also, when it interns, it also defines a constant variable (with a value and name the same as the symbol). Thats why this works:
+  #+begin_src emacs-lisp
+
+    (eql ':foo :foo) ==> T
+
+#+end_src
+*** we MISUNDERSTOOD keyword symbols, :anything with a colon is just a keyword symbol
+*** keyword symbol is way to say "I always evaluate to myself"
+* Day 130:
+** The COMMON LISP RECIPES book
+*** Even though its technically, not assignment, the only way to understand how macro relly messes scope, is to do some kind of equivalent of an assignment inspired by our macro example in the Common Lisp Recipes book. That is, the right hand side will actually evaluate to the offending symbol. That is, to see the corrupion, we put the corrupion on the right side
+* Day 131:
+** Same topic of previous day (Page 5 of Common Lisp Recipes)
+#+begin_src lisp
+
+
+  (setf notemp 100)
+  (setf *a* 99)
+    (let ((temp notemp))
+  (setf notemp *a*
+        *a* temp)
+      (print temp)
+  (values))
+
+  
+  (setf temp 100)
+  (setf *a* 99)
+    (let ((temp temp))
+  (setf temp *a*
+        *a* temp)
+      (print temp)
+  (values))
+
+#+end_src
+** I finally understand:
+*** in the 2nd example, the global temp gets shadowed abd becomes the temporary variable only in that (let), but later gets restored. (a temporary "scope" gets added, basically). So nothing changes for temp
+*** as for *a*, a -> temp, and later, temp -> a, so a comes full circle
+*** 
+* Day 132:
+** C programming language is not only Imperative, but also Iterative, as evident by our own code in  "/home/ardie/my-trash/delete/c_practice/working/_first_macro_arg.c"
+** 
+* TODO
+** fix this please
+A Lisper mentioned in Hexstream (Chaitanya Gupta):
+- [[https://lisper.in/promises][promises in Lisp]]
+- the article also mentions promises by [[https://domenic.me/youre-missing-the-point-of-promises/][Domenic]]
+- which also mentions a [[https://www.slideshare.net/slideshow/callbacks-promises-and-coroutines-oh-my-the-evolution-of-asynchronicity-in-javascript/9953720][slide]]
+- promises are supposed to not look like this (note that this is blocking but more importantly, an Event Loop)
+#+begin_src javascript
+
+  $.get("https://example.com", function (result){...});
+#+end_src
+- event loop subtleties
+- yielding: meaning it passes control to its true master "runtime"
+- async not sync: in one of the example, console.log(some_var) becomes the blocker, becoz we need the value some_var for the $.get()  function, even though console.log() is normally non-blocking
+- its not magic: we can force "wating or blocking" by adding setTimeout()
+- Event loop is horrible, but its powerful
+- After getting our data, we have to do everything else in continuation (so we now why this does NOT work)
+  #+begin_src javascript
+
+    function getY(){
+        var y;
+        $.get("/gety", function (jsonData){
+            y = jsonData.y;
+
+            });
+        return y;
+    }
+
+    var x = 5;
+    var y = getY();
+
+    console.log(x + y);
+    
+
+#+end_src
+- but turns out, we need create a function (our function becomes a target, we can pass control to), and the function becomes the "name" we pass around
+    #+begin_src javascript
+
+    function getY(continueWith){
+        $.get("/gety", function (jsonData){
+            continueWith(jsonData.y);
+            });
+        }
+
+    var x = 5;
+
+    getY(function (y){
+        console.log(x + y);
+        });
+  #+end_src
+- even though we understand this now, we realize, having 2 functions is already too much think about
+- So now we know go to "promises"
+* TODO
 TODO:
-- https://community.khronos.org/t/glsl-clipping/59665
-- there are many ways to do clipping in GLSL: simple scanline conversion (huh??)
-- http://yummymelon.com/devnull/in-emacs-everything-looks-like-a-service.html
 - in Emacs, everything looks like a service
 - https://comp.anu.edu.au/courses/comp4610/assets/notes/slides_week_8.pdf
 - Phong lighting model
@@ -735,3 +873,38 @@ TODO:
 - Guy who personally implements Blinn-Phong Shading
 - https://hero.handmade.network/forums/code-discussion/t/2479-using_opengl_uniforms_attributes_outputs_in_more_efficient_way
 - handmadehero mention of efficient use of uniform/attributes/outputs
+* misnomer:
+** common lisp objects have types, but variables dont have type
+this explains why, its not common to have something like this:
+** isInteger
+** the returned result is a type specifier
+** when you inquiry into a type-of, it returns a "type specifier" which is strictly not a type
+** an integer and a vector is on the SAME LEVEL
+** so if you were to inquiry into a Lisp integer and vector
+  #+begin_src lisp
+
+    (INTEGER 0 4611686018427387903)
+     (vector double-float 100)
+
+#+end_src
+- and you can also have unspecified size/length
+  #+begin_src emacs-lisp
+
+     (vector double-float *)
+
+#+end_src
+- and even the type unspecified
+  #+begin_src emacs-lisp
+
+     (vector * 100)                                      
+
+#+end_src
+- subtypes are "implied" in Lisp, makes sense
+  #+begin_src lisp
+
+    (vector double-float 100) // type
+    (vector double-float *) // subtype
+
+#+end_src
+
+

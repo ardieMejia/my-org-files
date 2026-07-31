@@ -711,8 +711,85 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** https://slate.com/technology/2014/01/programmer-privilege-as-an-asian-male-computer-science-major-everyone-gave-me-the-benefit-of-the-doubt.html
+***** We need to fix this snippet:
+#+begin_src emacs-lisp
+
+  (let ((n 1))
+  (while (< n (length (buffer-list)))
+    (if (= (string-match " " (buffer-name (nth n (buffer-list)))) 0)
+    (with-current-buffer (nth n (buffer-list))
+    (rename-buffer "helloooooo")
+      )
+    ;; (bury-buffer (nth n (buffer-list)))
+    )
+
+    (setf n (1+ n))
+    )
+  )
+  
+#+end_src
+
+***** [[https://futurism.com/artificial-intelligence/ai-companies-destroying-rare-books][AI firms buying, destroying rare books to train models]]
+****** literally ripping off authors’ books to train its AI
+****** taking advantage of a legal concept known as first-sale dosctrine
+****** Print books from the pre-LLM era are structurally guaranteed to be free of this contamination
+****** this practice has become prevalent enough that even well-established book sellers are looking to cash in on the AI boom
+****** Once focused on helping libraries, distributors, and book shops find and sell books, ISBNdb now helps AI companies bulk-buy up a million.
+****** Some service companies like ISBNdb that are helping purchase in bulk, are keeping AI buyers anonymous as part of the huge deal
+***** [[https://thenextweb.com/news/tech-giants-hidden-off-balance-sheet-debt-ai][Five tech giants are hiding $1.65tn in AI debt, using the trick that toppled Enron]]
+****** We should read about this article, and its link terminologies, such as "replacement tenants"
+****** The mechanics are simple. The company packages the debt for chips, servers and power into separate legal entity, often a joint venture, so the cost never flows through its own accounts.
+***** We need a weekly reminder for our Emacs
+#+begin_src emacs-lisp
+
+  (let ((day (shell-command-to-string "LC_ALL=en_EN.utf8 date +%A")))
+    ;; (print " today is ~c" day)
+    (format "today is %s" (string-trim day))
+    )
+
+#+end_src
+***** Post in discord, the case for touch typing
+***** somehow there is an element of revenge of the nerds, when it comes to being a senior programmer. Somehow, life should be bigger than that. 
+***** [[https://onlinelibrary.wiley.com/doi/full/10.1002/eng2.70849][Music Visualization weirdness]]
+****** The author of solidity lang, related to "smart contract" wrote a PhD thesis on this topic
+****** Application of Music Data Visualization Technology in Music Appreciation Teaching
+***** Emacs ternimal emulator is no longer slow:
+****** its got eat-mode
+****** it is so responsive, it run Emacs inside of eat inside of Emacs
+***** [[https://www.harvardmagazine.com/2025/01/harvard-study-memory-creative-thinking][is memory connected to creativity]]
+****** Despite our fatigue of memory (no thanks to fetishization of short term Exams such as in our culture), some are disgusted by the idea of putting value in memory. But this is not the same thing.
+****** creativity might be related to episodic memory, or ability to relive (id like to call it retrieve), specific moments from past experience
+****** We should read about the book called "2001 book The Seven Sins of Memory: How the Mind Forgets and Remembers"
+****** referring to a recent research involving "episodic simulation", aka how the human constructs simulations of past and future events
+****** it refers to a study, of an accident patient with a severe case of amnesia, with shattered "episodic memory", unable to recall personal past experiences, but his "general knowledge" was fine.
+****** most interestingly, when asked what he would to tomorrow, he was unable to plan for the future. Study suggest a strong link between, remembering the past and envisioning the future
+****** led to formation of "constructive episodic simulation hypothesis", merging pieces of the past ideas of the future.
+****** study involving an "induction" test, where non-control subjects did a recall experiment, reveal more detailed innovative ideas
+****** but it comes with a trade-off, subjects with higher divergent creative thinking, showed "memory distortions", adding false details 
+***** Emacs eat-mode, this is worth writing, as its snappy than anything Emacs has previously as a terminal emulator
+***** Write about ur post (save in Important in IG) about "convenience triggering burnout on an unprecedented scale", across Asian countries. 
+***** https://www.instagram.com/p/Da2yRKegapt/?igsh=ZjFkYzMzMDQzZg==
+****** while its true, that most such protestors are usually carried out by NIMBY (Not In My Backyard) folks, those who protest at every idea of development in their neighbourhood. This is not the same, as a public utility like public trains (which proves better in the long run, becoz, as an example, Malaysian traffic isnt going to get better any time for many decades)
+****** This sounds like (but not necessarily similar) to secret Data Center deals across several states in America. One example, in Columbia, the mayor David Mitchell signed a secrecy agreement with DigiPowerX, a data center developer, without consulting Citi Council members.
+****** while NDA agreements are common in the economy. NDA regarding plans of Data Center locations is not a "trade secret", but are often multi-billion agreements under the table
+****** Data Centers consume a lot of energy and water, in some parts of the Western World, the general public has had to burden that additional bill. Becoz, for example, Data Centers are connected to the same power grid.
 ***** we need to write about Jevons Paradox
 ****** a very stupid paradox that might explain why its not worth it, for infinite growth of tech
+****** 
+***** Why Lisp? (Opinion is fully my own)
+****** [[https://gigamonkeys.com/book/lather-rinse-repeat-a-tour-of-the-repl][Link]]: A real story of, an impressive instance of remote debugging occurred on NASA's 1998 Deep Space 1 mission.
+****** An interesting case on how, even when the Lisp app is deployed, there's often still a way to get to a REPL. You can interact and even debug with an app while its also running a Web Server at the same time
+***** To successfully target the European and Western markets, optimize your LinkedIn profile for global recruiters, build a niche GitHub portfolio showcasing both Functional (e.g., Haskell, Scala, Rust) and Imperative (e.g., Python, Java) projects, and market your time-zone advantage for asynchronous work on global platforms like  [[https://arc.dev/][Arc.]] Here is a step-by-step strategy to position yourself as premium global talent from Malaysia:
+
+1. Frame Your "FP + Imperative" SkillsetWestern startups and tech companies value engineers who understand multiple paradigms.The Pitch: Position yourself as a pragmatic problem solver. You use FP to write highly reliable, bug-free, and maintainable core logic, and imperative languages for performance-critical systems or integrations.Show, Don't Just Tell: Write case studies or technical blog posts (on Medium or Dev.to) explaining why you choose specific paradigms for specific tasks.GitHub: Host open-source projects or toy compilers/libraries written in languages like Scala, Elixir, or Rust.
+
+2. Leverage the Time-Zone AdvantageThe time difference between Malaysia (GMT+8) and Europe (CET/CEST) is 5–6 hours.Asynchronous Advantage: Advertise this as a superpower. You can process pull requests and complete features while European teams sleep, leading to faster development cycles.Meeting Availability: Pitch availability for late-afternoon European syncs (your late evening) to ensure smooth collaboration. [[https://remoteineurope.com/blog/how-to-find-remote-software-developer-jobs-in-europe][remote in europe]]
+
+3. Target the Right PlatformsDo not rely solely on generic job boards. Focus on remote-first and Europe-specific platforms:Arc: A vetted talent platform that connects developers with Western startups and matches candidates for full-time and freelance roles.Remote in Europe: A highly specialized job board for candidates looking for remote tech roles within European time zones.We Work Remotely: The largest established remote-first job community, heavily frequented by US and European companies.LinkedIn: Update your location to "Remote / Europe (Open to Relocation)" or "Asia (EMEA Hours)," and set your target regions to "Europe" or "Worldwide".
+
+4. Optimize Your Resume & CommunicationLanguage: Polish your written English. European employers highly value clear, concise documentation and asynchronous communication.Rates/Salary: Research European developer salaries (e.g., via platforms like Remote Rocketship) to set competitive expectations.Payment Setup: Prepare digital payment rails like Wise or Payoneer to easily receive Euros or USD. [[https://www.remoterocketship.com/country/europe/jobs/developer/?page=1&sort=DateAdded&jobTitle=Developer&locations=Europe][remote rocket ship]]
+
 ***** we really need to write about [[https://www.researchgate.net/publication/345242745_Marked_Men_White_Masculinity_in_Crisis][this one]], as well an article that "references" this article
 ****** ... While men are consistently inundated with patriarcahl messages that limits their expression of intimacy and teaches them to suppress acts of vulnerability, they are simultaneously censured for upholding these very tenets of masculinity to which they were socialized. This contradiction in social expectation, leaves men with an uncertainty as to what is expected of them (Gourarier, 2019;Kimmel, 1987;Robinson, 2000). However, a contradiction in role expectations for men cannot merely be resolved through a modification in their gender ethos, as this conflict inherently threatens the legitimacy of their power and authority which has been traditionally enshrined within tenets of masculinity. ...
 ***** https://wiki.c2.com/?LispForGames
@@ -772,7 +849,6 @@ cyrber cimr bill in malaysia government
 ****** but that is jsut the mechanic, what really matters, is that the GPU is just secondary to the whole operation.
 ****** Even though the entire pipeline is "important", data is passed to the GPU "imperatively". So uniforms, are "injecting data from your code to the pipeline of a single object"
 ****** super important link: https://thebookofshaders.com/glossary/?search=mix
-****** just like in Photoshop, we must think what matters to most designers. We ask questons like "does shading matter?", in the case of Photoshop, only for text effects. whats powerful, is probably a way to use math. But again, as Blow says, programming isnt math, math is perfect and "a box", programming has a lot of "imperative injection into your perfect model"
 
 ***** twitch ERC setup
 ****** setup untested ( number is the real versoin)
@@ -1297,7 +1373,31 @@ What spawned the leet-code interviews
 ***** "Public school is about education. It is NOT job training. And it should not be. Otherwise, the capitalists win." 
 ***** [[https://www.youtube.com/watch?v=w3krYEeqnyk&t=1214s][conquering kubernetes with Emacs]]
 ***** [[https://people.kernel.org/linusw/rust-in-perspective][rust in perspective, AMAZING history of languages]]
-****** There are many illuminating quotes inside. But one particular interesting bit. How Niklaus Wirth (some creator of a language called Pascal), both critized C language. Something along the lines of "it gives the appearance of high level language while not behaving like 1". An example is how C has no "awareness" of array sizes and we are dealing with memory addresses. (This explains the weirdness of dealing with C++ in my own project, where appending new table rows, requires you to pass in as arguments, along the data, array size. You dont have this nonsense in Python). Of course, the benefit of having this low level of control, is that the pointer can refer to anything, register/RAM/etc. The kind of control that programmers love, giving some true hacking powers.
+****** What do you guys thik of this article?
+****** Article says that Rust is attempting to raise the abstraction of the programming language. (and to consolidate Computer Science and Software Engineering) (Ardie: I have no idea what that means)
+****** The first "real" Operating System that used virtual memory, used a language called Atlas autocode, a dialect ALGOL. 
+****** TIDBIT: What is virtual memory, The infamous schizophreniac racist Terry Davis who created his own super tiny, super efficient OS, his OS doesnt use virtual memory, the result is super fast and efficient.
+****** ALGOL inspired CPL which inspired BCPL which inspired B which inspired C
+****** ALGOL was popular the time of UNIX, and C was not universally loved for valid reasons
+****** Understatement: it was universally hated as well
+****** The original Bourne Shell source code at the time, showed a dialect of ALGOL in the code. Stephen Bourne, created a set of C macros, so the C preprocessor would translate his code into C. He went to quite an effort to avoid C.
+****** The article makes a VERY interesting point about TDD (Test Driven Development, you hear it everywhere in the real world)
+****** A conference that is famous among UNIX circles at the time is the Garmisch conference.
+****** Smaller mention in that conference. Of "analytic verification" and "correctness proof" ==> supposed to replace testing (or Test Driven Development)
+****** TDD is mostly Software Engineering. Analytic vertification is mostly Computer Science.
+****** TDD is not easy
+****** Interesing:
+******* The discussions in Garmisch had an influence on the programming language Pascal strings
+******* "Pascal strings": a massive improvement over ALGOL
+******* This String is stored in memory begins with a positive integer that defines of the string. The abstraction of strings is "raised", a higher level language thing. Different way to say it? In Pascal, strings in Pascal are set-entities.
+******* How Niklaus Wirth (some creator of a language called Pascal), both critized C language. Something along the lines of "it gives the appearance of high level language while not behaving like 1". An example is how C has no "awareness" of array sizes and we are dealing with memory addresses. (In C, you have to pass the size of the array into a function). If any benefit of having this low level of control, is that the pointer can refer to anything, register/RAM/etc. Its debatable whether its "good" power and control.
+******* Is C a high or low level language?.... C is misleading.... it claims to be higher than Assembly... but its actually amazingly stupid.... has no awareness of array or string size.... hence the necessity to pass size of arrays in a function
+****** Conclusion: I dont hate C that much actually (or I should really hate it more than I should). Coz a language like C (effiency-obsessed, hacky syntax and directly manipulating memory) is like Thanos, its inevitable. If Dennis Ritchie didnt make C, someone else would make a C-like (and by extension Linux is inevitable). Also, becoz society is generally shitty (and rent-seeking trascends everything) a lang like C is inevitable. 
+****** (Can you imagine, that compilers were once jealously guarded secrets? And a programmer had to pay LOTS of money for a compiler? in 1 example 200 USD, LOL)
+****** Also conclusion: Never trust anyone who has only programmed in 1 language.
+****** There are many other interesting points in this article that I either did not understand or mentioned
+****** References:
+******* https://hackaday.com/2018/04/04/the-basics-and-pitfalls-of-pointers-in-c/
 **** Jobs:
 ***** [[https://app.outlier.ai/en/expert][Outlier tasks]]
 ***** micro1
