@@ -1,0 +1,2 @@
+* 1st post:
+** understanding on a function basis, sounds like some shallow, "if you learn painting a wall 100x, you have mastered kingfu", unfortunately for Emacs, sometimes this is kind of a valid milestone

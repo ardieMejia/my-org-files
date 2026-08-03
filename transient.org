@@ -711,7 +711,27 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+**** 
+***** Emacs fido fuzzy literal substring:
+****** https://www.emacs.dyerdwelling.family/emacs/20250905100614-emacs--customizing-emacs-completion-from-fidos-fuzzy-matching-to-literal-substring-search/
 ***** https://slate.com/technology/2014/01/programmer-privilege-as-an-asian-male-computer-science-major-everyone-gave-me-the-benefit-of-the-doubt.html
+***** Another snippet, this one for file-find but our version, gets from recent clipboard (to test: diff instance or same):
+#+begin_src emacs-lisp
+
+  ;; we need a filter to check if clipboard latest is file-like 
+
+  (let ((ardie/temp-buffer (concat "*temp-" "*" (number-to-string (random 100000)))))
+  (with-temp-buffer ardie/temp-buffer
+
+                    (clipboard-yank)
+                    (mark-whole-buffer)
+    (kill-ring-save (region-beginning) (region-end))
+
+    )
+
+  (find-file (car kill-ring))
+
+#+end_src
 ***** We need to fix this snippet:
 #+begin_src emacs-lisp
 

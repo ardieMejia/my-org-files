@@ -54,4 +54,6 @@
 ** [[https://www.reddit.com/r/emacs/comments/5tn86g/magit_git_pull_automatically_before_git_push/][Great Reddit explanation of pulling early to avoid seeing ugly merge message in history]]
 * Arrange:
 ** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]
+** We are trying to make codeberg, Stupid piece of command, I hate Git now
+** [[https://gist.github.com/JonasGroeger/4393203cc846da558fec1531cdd822db][storing your credentials in libsecret]]
 

@@ -1,6 +1,3 @@
-* Just childish ideas:
-** https://dev.to/pixeline/the-easy-way-to-turn-a-website-into-a-progressive-web-app-77g
-*** PWAs only work behind https
 * Interesting websites (or preferably blogs) on the conceptual & tutorial stuff
 ** https://linuxhostsupport.com/blog/
 ** https://developers.google.com/
@@ -98,6 +95,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js">
 </script>
 
 #+end_export
+* Why the OAuth 2.0 "protocol" is bad
+** https://gist.github.com/nckroy/dd2d4dfc86f7d13045ad715377b6a48f
 * Resources:
 ** Useful SVG repos for downloads ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])
 ** [[https://adrianroselli.com/2019/06/target-size-and-2-5-5.html][Button science]]
+
