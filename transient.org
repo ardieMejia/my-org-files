@@ -711,7 +711,34 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
-**** 
+***** For 42KL:
+Things I recommend:
+- (for programming or organizing your life): Learning vanilla Emacs at your own pace, taking your own sweet time, while learning from various blogs, articles, YouTubers
+- (for organizing your life): Starting with a beginners "framework/distro" like Doom Emacs, Spacemacs, Prelude Emacs. And gradually moving (over several months) to vanilla stealing a config online
+- Starting to use Emacs as a simple note-taker, before shifting gradually
+- Playing around with eLisp or Lisp to get a taste of the language behind Emacs
+- Experiment with your keybind shortcuts and functions, taking lessons from experienced Emacs users who are visible online (YouTube/blogs). Emacs is meant to be messed around heavily
+- Learn from the visible masters online (Xah Lee, Protesilaos, Sacha Chua) (this order is how I started, becoz Im biased towards a bare config and obscure articles, before going more popular routes).
+- ALWAYS play around with eLisp and aim high to explore deep
+
+Things I dont recommend:
+- (as a beginner): reading the official manual
+- Watching SystemCrafters: His content is amazing. But only his early material from YEARS ago are good for learning. He is now doing his own thing, with making his own functional Lisp-like language, and a strange Linux distro called GUIX
+***** More Emacs snippets to improve, this one is for viewing history with specific commits
+#+begin_src emacs-lisp
+
+  (shell-command "git --git-dir=/home/ardie/Documents/knowledge/my-org-files/.git log --oneline")
+
+
+(let ((ardie/temp-buffer (read-buffer "select EMPTY existing buffer") ))
+  (with-current-buffer ardie/temp-buffer
+    (shell-command
+     (concat "git --git-dir=/home/ardie/Documents/knowledge/my-org-files/.git show " (car kill-ring)":misc/2021/emacsStuff/emacs.org")
+     ardie/temp-buffer)
+    )
+  )
+
+#+end_src
 ***** Emacs fido fuzzy literal substring:
 ****** https://www.emacs.dyerdwelling.family/emacs/20250905100614-emacs--customizing-emacs-completion-from-fidos-fuzzy-matching-to-literal-substring-search/
 ***** https://slate.com/technology/2014/01/programmer-privilege-as-an-asian-male-computer-science-major-everyone-gave-me-the-benefit-of-the-doubt.html
