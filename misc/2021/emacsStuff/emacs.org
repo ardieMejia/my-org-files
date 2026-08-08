@@ -775,3 +775,4 @@ quarto render testing.md --to pptx
 *** https://softwareengineering.stackexchange.com/questions/87250/is-possible-to-write-too-many-asserts
 ** Abbrev mode is actually really cool:
 *** https://www.rahuljuliato.com/posts/abbrev-mode
+* An amazing on Emacs windows, buffers, frame management from the [[https://karthinks.com/software/emacs-window-management-almanac/][karthinks]] website

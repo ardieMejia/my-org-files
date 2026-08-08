@@ -906,5 +906,7 @@ this explains why, its not common to have something like this:
     (vector double-float *) // subtype
 
 #+end_src
-
-
+* Day 133:
+** An amazing on Emacs windows, buffers, frame management from the [[https://karthinks.com/software/emacs-window-management-almanac/][karthinks]] website
+** The best explanation of enum usage with static_assert and why its better than assert at [[https://covemountainsoftware.com/2022/06/18/code-maintenance-enums-and-lookup-tables/][covemountainsoftware]]
+** We were trying solve sly-mode C-c C-l, becoz we got so much ergonomics, we need a solution that doesnt distract us from the flow. [[https://stackoverflow.com/questions/1413837/emacs-auto-save-on-switch-buffer][We found it]]. However, in the spirit of our current momentum of analysis, we can also spend time analyzing the "programmers mindset"
