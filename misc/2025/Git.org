@@ -52,6 +52,20 @@
 ** [[https://community.latenode.com/t/how-to-upload-only-the-latest-commit-to-github-without-previous-history/35267/6][an orphan commit is a great way to clean history, like in our example that has our DB passwords]]
 *** We can also do this with worktree, YAYYYYY!!
 ** [[https://www.reddit.com/r/emacs/comments/5tn86g/magit_git_pull_automatically_before_git_push/][Great Reddit explanation of pulling early to avoid seeing ugly merge message in history]]
+* Combining 2 repos into a unified history. The general flow looks like this:
+#+begin_src shell
+
+git remote add custom-history-source <some old repo URL/directory>
+
+git fetch custom-history-source
+
+git merge custom-history-source/main --allow-unrelated-histories -m "Merge custom historical commits"
+
+git push origin main
+
+#+end_src
+** We can even combine the fetch & remote add such as in this example: 
+*** https://saintgimp.org/2013/01/22/merging-two-git-repositories-into-one-repository-without-losing-file-history/
 * Arrange:
 ** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]
 ** We are trying to make codeberg, Stupid piece of command, I hate Git now

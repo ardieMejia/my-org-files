@@ -874,9 +874,8 @@ TODO:
 - https://hero.handmade.network/forums/code-discussion/t/2479-using_opengl_uniforms_attributes_outputs_in_more_efficient_way
 - handmadehero mention of efficient use of uniform/attributes/outputs
 * misnomer:
-** common lisp objects have types, but variables dont have type
-this explains why, its not common to have something like this:
-** isInteger
+** common lisp objects have types, but variables dont have type this explains why, its not common to have something like this:
+*** isInteger
 ** the returned result is a type specifier
 ** when you inquiry into a type-of, it returns a "type specifier" which is strictly not a type
 ** an integer and a vector is on the SAME LEVEL

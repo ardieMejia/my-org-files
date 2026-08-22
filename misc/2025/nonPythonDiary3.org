@@ -1,0 +1,4 @@
+* Day 134:
+** The problem with OAuth 2.0, and Eric Hammer (creator of OAuth1.0 and original editor of OAuth2.0 spec). We havent finished reading this [[https://news.ycombinator.com/item?id=42103975][amazing article]]
+* Day 135:
+** soon to come
