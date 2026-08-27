@@ -711,6 +711,27 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** 42KL headache:
+****** whatever advantage is gained from the unique "peer-to-peer" system, seems to be lost by the obsession over details that dont matter. And the sometimes confusing messaging from the BOCALs that seem to convince "a few" (an alarmingly growing few) to be more strict on details than the Moulinette itself (like the README which Im sure is not checked my Moulinette itself, and will probably never be used anyway, since I dont see that many on Github profiles).
+****** The BOCAL (the name of "seniors" in the institution) seems to give off confusing messaging. On the hand, they say its not a competition, and yet the system seems to encourage that. They also say, a huge chunk are not doing this full time, but the only way you could pass in many instances is through cheating (I will get to this cheating point later). What they define as cheating is not entirely clear anyway, as they insist its about too much leaning on AI.
+****** Cheating: A recent change they did for some of the task is to include a "recode" section, but the only thing that did is to encourage some members to "memorize" the solution. Several instances I saw, of participants simply memorizing the solution and they did not bother to include a main() function (which means theyve been preparing by memorizing the solution beforehand). Whatever advantage is gained by banning AI to encourage raw hard earned learning, is lost by the time constraint which encourages last minutes memorizing anyway.
+****** The confusing scoring system: Despite the fact that the Moulinette (the AI) having the final word, you are still required to get a mininum of a few evaluations. As a little context, the Moulinette will actually fail you (depending on the min req score), if you say fail question no.2, despite passing all 8 out of 10 questions. Combine this with some other elements of the institution, a pattern that emerges is peer evaluations that overly obsessed with details that dont matter (they will even try to be more strict than Moulinette, becoz they think that is the whole purpose, being impressed by the weird 25-line limit for example), or peer evaluations that mostly dont care, since passing the Moulinette is what matters.
+****** Time: If you were to fail the Moulinette or retry a project, the cooldown can reach 1 whole day (im not sure if it reaches several days). This seems to be obviously designed to force you spend lots of time in the institution. Its not enough to think in terms of "hours free since Im waiting for cooldown". When you are coming and spending time to gather evals and submitting, you are already spending a hugh amount of time there (almost as much time spent doing the tasks themselves). Whatever time you saved solving the task early on, is lost trying to maneuvre its painful and time consuming scoring flow. Remember the human has a limited time per day, when you consider sleeping and eating and toilet and going beck to your home and friends, you barely have any time left (yes, there are evern sleeping going on there). This is fine, if you are in need of raw peer learning and in need of more involved environment, and you cant seem to find a place like this. However, as I said with the confusing goal and messaging of this institution, it is "spending time for the sake of spending time". This seems to go against the the implied statement by some here, who claims most are not doing this full time (made even more confusing by 1 BOCAL's statement that you should treat this like a gym, and you get better at the task by coming everyday, lets get back to this point later). And as I have repeated previously, it seems to encourage a specific "profile" to emerge among the peers. The type that believes in the "superiority" of the syllabus.
+****** Gym: It appears to be like a gym. Although it is free, and one cant complain, just like a gym, they want people to spend their personal time here. But maybe more like a cult, they want members to have faith in its syllabus, and to be mouthpieces of the "superiority of its method". If competition doesnt matter, according to the BOCALs, whatever they are doing is not working. If the score doesnt matter, whatever they are doing is not working. Just like gym bros who always obsess about size of pecs (when some dont care, and come for rehabiliation, becoz they fractured from a skating accident, and swear to never have fragile wrists again), there is always the SAME type of profile to emerge at the top (just like gym bros conquering one section of the gym).
+****** Questions: Ive heard by some sources, that the syllabus has rarely changed. Unlike other complaints of lack of AI, my main complaint is some questions are quite vague (and contrasting that to the hard black-and-white rule of the Moulinette, this makes little sense). BOCALs, some of them at least seem to really discourage you to use online checkers, but the questions themslves BEG an auto checker. Same-ish example, a task called my_atoi, is supposed to behave like the standard atoi (just Google what is an atoi functio). At least according to the PDF in question. But turns out, its suppose to behave COMPLETELY different. And there is no way to know that, apart from failing Moulinette very early on (most here dont have that luxury) OR "cheating". Again, what is defined as cheating, as I have previously said, its quite vague, despite claims that its clear. (And that is just 1 example of a task).
+****** The confusing anti-AI message: I applaude this institutions anti-AI efforts in its method of encouraging learning. And yet, in meetups when you enter core, they change their tune to "you cant avoid AI anyway, since its everywhere". And yet, many parts of the learning suggest you stop using AI, admit if you are using AI.
+****** To be honest, my complaint is not on the anti-AI or the syllabuses, but rather the very confusing message it sends, resulting in sometimes arbitrary strictness among peers, as well as a certain type of "profile" to emerge at the top of this school. Since its free, I cant complaint much. But apparently, the syllabus hasnt been changed that much for decades (which has made me even more convinced that the entire point of the syllabus, is to "raise" a certain "profile" of members, a certain "character trait"). I am of the belief that there is no such thing as a superior method, but instead one makes compromises. But the confusing and even slightly conflicting message (parted by all), seems to encourage all the members to become mouthpieces of its "superior method".
+***** Philosophy of Tooling:
+****** Ecological philosophy: body-plus-object system
+****** Herdeggerian Readiness-to-Hand: tools are not passive objects, but define our mode of being in the world. When used effectively, it is "ready-to-hand". They recede from conscious awareness to become an extension of the self. whereas broken tools become present at hand
+****** causal direction and purpose: tools flow from purpose not the reverse.
+****** agency: tools are mediating instruments. Tools enable actions, but constrained to specific methods, a feedback loop occurs where "tools make the man". (The most dangerous element of this is that it shapes "material inheretence")
+***** We need some of this stuff inside of our gud-mode
+#+begin_src emacs-lisp
+
+(keymap-set gud-mode-map "r" 'ardie/test)
+
+#+end_src
 ***** Our attempt at exam key chord (which should use this as a launching pad for other cool stuff like 3 keys at once, for something weird)
 ****** we debugged gradually, from "2 conditionals eating or not eating our keys" TO "eating, not eating. And then eating -> within time, or not in time. And in time will trigger our desired function"
 ***** Force mouse tracking to make C GDB debugging much better
@@ -727,55 +748,98 @@ sudo apt install gpaste.
 ***** gdb "we are one single entity" thing:
 #+begin_src emacs-lisp
 
-
-(defun ardie/test ()
+(defun ardie/gud-n ()
   (interactive)
   (gdb-send "gud-a.out" "n")
   )
 
+(defun ardie/gud-open ()
+  (interactive)
+  ;; (gdb-send "gud-a.out" "n")
+  (gud-gdb "gdb -i=mi a.out")
+  
+  )
 
-(define-key gud-mode-map (kbd "C-n") 'ardie/test
-
-				     )
-
-
-(process-send-string "gud-a.out" "n")
-
-(list-processes)
-
+(keymap-set ardie/c-mode-map "C-c C-g" 'ardie/test)
+(keymap-set gud-mode-map "n" 'ardie/gud-n)
 
 
 #+end_src
 ***** Our progress so far (minimal exam key chord):
 #+begin_src emacs-lisp
 
-  (define-minor-mode ardie-mode
-    "
-    experimental mdoe
-    "
-    :global t
-    (setq input-method-function
-          (and ardie-mode
-               'ardie-input-method))
-    (key-chord-reset-typing-detection))
+    (define-minor-mode ardie-mode
+    "some
+    mode"
+      :global t
+      (setq input-method-function
+            (and ardie-mode
+                 'ardie-input-method))
+
+      )
 
 
-  ;; ?a
 
-  ;; 97
 
-  (setq ardie/seconds 1)
 
-  (message (format "hello thetre %s" ardie/seconds))
+    (defun ardie/back ()
+      (interactive)
+      (ardie-mode -1)
+      (key-chord-mode 1)
+      )
 
-  (defun ardie-input-method (first-char)
-    (print (eventp first-char))
-    (setf ardie/input1  (read-event nil nil ardie/seconds))
-    (message (format "hello thetre %s" ardie/input1))
-    (list first-char)
+
+
+
+
+    (ardie/back)
+
+  (setq ardie/valid-keys [?j ?q])
+  (setq ardie/seconds 0.3 )
+  (setq ardie/prev-keys nil )
+
+
+  (defun ardie/kc-reset()
+    (setq ardie/key-match nil)
+    (setq ardie/prev-keys nil)
+    (setq ardie/key-repeat nil)
     )
 
-  (read-event nil nil ardie/seconds)
+
+  (defun ardie-input-method (first-char)
+  (cond
+   ((cl-position first-char ardie/valid-keys)
+    (print "its a valid key")
+    (setq ardie/prev-keys first-char)
+    (list first-char)
+    (let ((next-char  (read-event nil nil ardie/seconds)))
+
+      (cond
+
+       ((null next-char)
+        (print "too slow, ignoring")
+        (list first-char)
+        (ardie/kc-reset)
+        )
+       ((eq next-char ardie/prev-keys)
+        (list ?z)
+        (ardie/kc-reset)
+        )
+
+
+
+       (t (list next-char))
+
+       )
+      )
+
+
+    )
+   (t
+    (list first-char))
+   ))
+
+  
 #+end_src
 
 ***** Combining 2 repos into a unified history. The general flow looks like this:
