@@ -711,6 +711,73 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** we finally found a working script for our stupid simple "view offline" on android
+#+begin_src emacs-lisp
+
+
+  (with-temp-file "/home/ardie/Downloads/test2.html"
+  (url-insert (url-retrieve-synchronously "https://en.wikipedia.org/wiki/Insertion_sort" )
+              )
+  )
+
+  we alo need read-input to interrupt with user input
+
+
+#+end_src
+***** and we run it from terminal
+#+begin_src shell
+
+  /home/ardie/my-emacs-29/bin/emacs -q --script test.el
+
+#+end_src
+***** Search "compromise" + any cool terminology we are exploring
+***** When "looking the part" is the REAL strength, from this [[https://slate.com/technology/2014/01/programmer-privilege-as-an-asian-male-computer-science-major-everyone-gave-me-the-benefit-of-the-doubt.html][article]]:
+#+begin_quote
+
+no implicit bias, stereotype threat, micro agresion, micro inequities.
+
+"And nobody ever got in the way of my learning—not even inadvertently—probably because I looked like the sort of person who would be good at such things."
+
+"Instead of facing implicit bias or stereotype threat, I had the privilege of implicit endorsement."
+
+If I stared at someone in silence and nodded as they were talking, they would assume that I understood, not that I was clueless
+
+"This kind of privilege that I and other people who looked like me possessed was silent, manifested not in what people said to us, but rather in what they didn’t say. We had the privilege to spend enormous amounts of time developing technical expertise without anyone’s interference or implicit discouragement. Sure, we worked really hard, but our efforts directly translated into skill improvements without much loss due to interpersonal friction. Because we looked the part."
+
+"In contrast, ask any computer science major who isn’t from a majority demographic (i.e., white or Asian male), and I guarantee that he or she has encountered discouraging comments such as “You know, not everyone is cut out for computer science.” They probably still remember the words and actions that have hurt the most, even though those making the remarks often aren’t trying to harm."
+
+In contrast, ask any computer science major who isn’t from a majority demographic (i.e., white or Asian male), and I guarantee that he or she has encountered discouraging comments such as “You know, not everyone is cut out for computer science.” They probably still remember the words and actions that have hurt the most, even though those making the remarks often aren’t trying to harm.
+Advertisement
+
+For example, one of my good friends took the Intro to Java course during freshman year
+
+She got a summer research assistantship at the MIT Media Lab.
+
+However, instead of letting her build the GUI (like the job ad described), the supervisor assigned her the mind-numbing task of hand-transcribing audio clips all summer long
+
+
+#+end_quote
+***** We need a "reminder" tool for 42KL, inside Emacs
+***** forbidden headers (library, whatever)
+***** Makefile requirements
+***** norminette
+***** 
+***** DHH actually wrote a rather BASED [[https://medium.com/signal-v-noise/programming-with-a-love-of-the-implicit-66629bb81ee7][article]]
+****** In defense of the implicitness
+***** 42KL sarcasm:
+****** Some of the best programmers in the world, involved with projects that matter (such as Bash, Emacs, Vim etc..) have always abided by the 25 line limit, and have always professed a faithful non-sarcastic love for the C language.
+****** Says no one ever, LOL.
+****** Understanding C making you better at other programming languages is one of the biggest lies ever told.
+****** It may reveal the true nature of how other language hide the details of when a variable is copied.
+****** But not much beyond that, 
+****** In fact, a better understanding of computers can be had from understanding memory, and maybe just enough C.
+****** This "faith in C" is not a harmless belief either. It has real life consequences. The best programmers who have made something substantial in C, always had a sarcastic love for it. They kinda recognize its power, but thats it.
+****** They program C becoz they cant avoid it, becoz with the reality of hardware and the choices of the industry (and industry choices are not based on "wisdom", not even remotely), they have no choice but to do the necessary stuff in C.
+****** Also, another thing common in C programmers, is that they always end up making their own tooling, their own malloc, their own ....
+****** Eventually, working around its limitation in a substantial project is 1 thing all big C guys.
+****** I dont hate C enough actually, but I cant handle C fans and fanatics, they are the worst.
+****** Anyone who says "learning C makes you understand computers more" is spouting dangerous lies akin to propaganda.
+****** C propaganda makes 
 ***** 42KL headache:
 ****** whatever advantage is gained from the unique "peer-to-peer" system, seems to be lost by the obsession over details that dont matter. And the sometimes confusing messaging from the BOCALs that seem to convince "a few" (an alarmingly growing few) to be more strict on details than the Moulinette itself (like the README which Im sure is not checked my Moulinette itself, and will probably never be used anyway, since I dont see that many on Github profiles).
 ****** The BOCAL (the name of "seniors" in the institution) seems to give off confusing messaging. On the hand, they say its not a competition, and yet the system seems to encourage that. They also say, a huge chunk are not doing this full time, but the only way you could pass in many instances is through cheating (I will get to this cheating point later). What they define as cheating is not entirely clear anyway, as they insist its about too much leaning on AI.
