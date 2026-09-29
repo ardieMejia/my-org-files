@@ -528,6 +528,7 @@ sudo apt install gpaste.
 ***** Stuff to read for push_swap
 ****** https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 ****** https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+****** https://medium.com/@oduwoledare/42-push-swap-explained-psuedocodes-ba8108339556
 ***** We need to repost this somewherer else, its about making eglot faster, coz eglot is also stupid: [[https://www.jamescherti.com/emacs-eglot-performance/][emacs eglot performance]]
 ***** our long winding way to get ato complietion with Bear and etags, finally led us into a rabbithole, and we only need eglot to trigger calling standard header function
 #+begin_src emacs-lisp
