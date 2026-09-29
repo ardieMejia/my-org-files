@@ -82,119 +82,6 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 
 #+end_quote
 ** Emacs
-**** We need this for our battery somehow:
-#+begin_quote
-
-var1=`upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/perc/{print $2}'`; if [ ${var1%?} -gt 100 ]; then echo "haha"; fi
-
-zenity --info --text="Process complete!"
-
-#+end_quote
-**** We need to this cool advicing
-#+begin_src emacs-lisp
-
-    (defun foo ()
-    (print "asd")
-    )
-
-
-  (defun my-foo-advice ()
-    "My advice for `foo`."
-    ;; Example of around advice logic
-    (with-output-to-temp-buffer "testest"
-      (switch-to-buffer "testest")
-      (insert "hello there")
-      )
-    )
-
-
-  (defun my-advice (num &optional character)
-    "My advice for `foo`."
-    ;; Example of around advice logic
-    (set-cursor-color "#000000")
-    )
-
-    (set-cursor-color "#e52b50")
-
-(my-advice)
-
-  (foo)
-
-  (with-output-to-temp-buffer "testest"
-    (switch-to-buffer "testest")
-    (insert "hello there")
-    )
-
-
-  (advice-add 'foo :after #'my-foo-advice)
-  (advice-add 'foo :after #'my-advice)
-
-
-(self-insert-command )
-
-#+end_src
-**** We also need to simplify our ;;t (sexp hydra)
-**** we should really do bindings for our Bash too, so it works in 42kl. This works temporarily, in our terminal session, so we can put this inside our .profile
-***** https://unix.stackexchange.com/questions/604703/bash-bind-command-not-working-with-alt-key-combination
-#+begin_quote
-
-bind '"\ea": backward-char'
-bind '"\ee": forward-char'
-bind '"\C-a": backward-word'
-bind '"\C-e": forward-word'
-
-#+end_quote
-**** We need to advice our hydra/ our self-insert so that the variable ardie/right-char-count gets unset again
-***** https://www.reddit.com/r/emacs/comments/rlli0u/whats_your_favorite_defadvice/
-**** We need to write these down somewhere
-#+begin_quote
-
-Can you guess what are these? (illegal):
-- foo() ()
-- foo() []
-- foo[] ()
-
-
-Can you guess what are these (legal):
-- int (* fun())()
-- int (* fun()) []
-- int (*foo[])()
-- int foo[][]
-
-  also read this link: https://stackoverflow.com/questions/20617067/returning-function-pointer-type
-
-  https://www.tutorialspoint.com/cprogramming/c_return_pointer_from_functions.htm
-
-#+end_quote
-**** write abou this one
-#+begin_src c++
-
-  void foo(char* someString);
-
-// both behave similar
-foo(&someString)
-foo(someString)
-
-
-
-// Not sure if C++ can do this
-// but pointers are so important, you can pass a double pointer in C
-// (privately, we can call them pointer-pointer, for our childish brain)
-
-void foo(int** array) // passing a double pointer
-{
-    //....
-    *array = theNewCollection;
-    //...
-}
-
-#+end_src
-**** [[https://protesilaos.com/codelog/2024-01-29-emacs-prefix-map/][defining new prefix map]]
-**** we check all our hydras, to have all of our keys intact, along with -a -e shortcuts.
-***** this gets easily complicated, so for our word-hydra, we are going to replace arrow keys <up><down> with -p and -n
-***** if we are going to remove -b and -f as much as possible, we need to do something about capitalize and upper
-***** ... so for word-hydra, we remove hydra-p and replace it with hydra-d
-***** ... then p can become uppercase, coz we never do line movement for word
 **** Learning Rogue-like game using these link:
 ***** [[https://www.reddit.com/r/roguelikedev/comments/1o5sw2d/any_good_resources_for_making_a_roguelike_in_c/][good resources]]
 ***** [[https://itch.io/jam/7drl-challenge-2025][7DRL challenge]]
@@ -203,11 +90,6 @@ void foo(int** array) // passing a double pointer
 ***** [[https://libtcod-tutorials.gitlab.io/tutorial-pages/tutorials/tutorial-0/][more links]]
 ***** [[https://libtcod.readthedocs.io/en/latest/guides/getting-started.html][getting started]]
 ***** [[https://www.roguebasin.com/index.php/Complete_Roguelike_Tutorial,_using_python%2Blibtcod][python and libtcod]]
-**** we should also try [[https://orgmode.org/manual/Speed-Keys.html][speed keys]]
-**** We should really try [[https://github.com/winterTTr/ace-jump-mode][ace jump mode]], Reddit post mentions the guy uses arrow keys as a "smell" that there's a better way to navigate
-**** C-mouse-9 ignores instrucion to checkout to "work and fuzz" if theres a conflict file (example: theres a file in fuzzing but not in working). We need a prompt/dialog/buffer/feedback to show the conflict coz we spent an hour hunting for this elusive problem
-**** IMPORTANT: we need a multi cursors for word select
-**** our Emacs company mode needs fixing, but not urgent. The Esc must escape suggestions (like in our cpp )
 **** math in games
 ***** https://www.mathnasium.com/math-centers/richmondwest/news/role-mathematics-gaming-rw
 ***** https://gamedesignskills.com/game-development/video-game-math/
@@ -216,74 +98,6 @@ void foo(int** array) // passing a double pointer
 ***** https://scenegraph.academy/article/why-is-math-needed-for-games-development/
 ***** https://www.gamedeveloper.com/programming/mathematics-in-videogames
 ***** https://www.effortlessmath.com/blog/how-math-skills-give-players-a-competitive-edge-in-various-online-games/
-**** we need to read all this links on C++ I guess:
-***** https://www.syncfusion.com/succinctly-free-ebooks/cplusplus/pointers-references-and-const-correctness
-***** https://www.embeddedrelated.com/showarticle/1651.php
-***** Also, on MOC objects, whats all that about
-**** CONCEPTUAL!
-***** We need to recognize other workflows that use a before-after value. So it can also be intuitively added like our (ardie/add-to-special-abbrev)
-**** We made another one!! Open a file at random
-#+begin_src emacs-lisp
-
-
-
-  (let ((ardie/files-i-want (directory-files-recursively "/home/ardie/Documents/my_notes/my-org-files/" "\\.org\\'")))
-  (nth
-   (mod (random (current-time-string) ) (length ardie/files-i-want))
-       ardie/files-i-want)
-  )
-
-#+end_src
-**** https://gcore.com/learning/how-to-install-mate-on-ubuntu
-**** We need to try and write about Doom Emacs, and a little about Spacemacs
-**** Solve the Lubuntu keyboard shortcuts once and for all
-***** create randomizer of opening one of my notes upon Emacs startup
-***** 
-**** More cool Emacs functions, might be too much at this point:
-#+begin_src emacs-lisp
-
-  ;; ==========
-  ;; Edit: actually, we have a different idea. We found this magic trick, we have to make it more clever:
-  ;; find-file-at-point 
-  ;; ==========
-
-  (defun
-      ardie/open-current-file ()
-    (interactive)
-    (find-file (current-kill 0 t))
-    )
-
-
-#+end_src
-**** We need to JUST practice our eLisp skill by adding random pairs for specific modes. (Clue, this will make our understanding defer eval, or lazy eval, slightly more epic)
-**** emacs how to put org mode options in separate file
-**** For writing more efficiently in org-mode
-#+begin_src emacs-lisp
-
-
-    (defhydra my-test-hydra 
-      (:color purple)
-      "my super test"
-      ("/"
-       (progn
-         (org-end-of-line)
-         (org-meta-return)
-         )
-       :exit t))
-
-    (define-minor-mode my-test-mode
-      "A minor mode so that my key settings override annoying major modes."
-      :init-value nil
-      :global nil
-      :lighter " my-test"
-      :keymap (let ((map (make-sparse-keymap)))
-                (define-key map
-                            (kbd "//")
-                  'my-test-hydra/body) map))
-
-  (add-hook 'ardie/special-org-hook #'my-test-mode)
-
-#+end_src
 **** TODO Important, to test cascade deletes
 ***** Story, we have a system that stores students and their departments. Here are the details.
 ***** Joint Degree Program: A student enrolled in a combined Bachelor of Science in Mechanical Engineering and Bachelor of Science in Electrical Engineering program.
@@ -711,6 +525,28 @@ sudo apt install gpaste.
 **** Make sure you share-rate is above 3%
 **** https://www.interview.micro1.ai/intro/micro1/?candidate=698fa6e4-4849-4b2a-90cf-db3e7d8d3816&ping=ok
 **** Social media posting:
+***** Stuff to read for push_swap
+****** https://medium.com/@ayogun/push-swap-c1f5d2d41e97
+****** https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+***** We need to repost this somewherer else, its about making eglot faster, coz eglot is also stupid: [[https://www.jamescherti.com/emacs-eglot-performance/][emacs eglot performance]]
+***** our long winding way to get ato complietion with Bear and etags, finally led us into a rabbithole, and we only need eglot to trigger calling standard header function
+#+begin_src emacs-lisp
+
+    (require 'eglot)
+
+  ;; Hook eglot into C/C++ major modes
+  (add-hook 'ardie/c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+
+  ;; and we actually dont need to set
+  ;; (setq rtags-path "/home/ardie/bin")
+  ;; that one is only for rtags-find-symbol-at-point and the like
+
+  ;; remember to M-x eglot
+
+#+end_src
+***** I finally understand 
+***** we 
 ***** we finally found a working script for our stupid simple "view offline" on android
 #+begin_src emacs-lisp
 
@@ -732,31 +568,6 @@ sudo apt install gpaste.
 #+end_src
 ***** Search "compromise" + any cool terminology we are exploring
 ***** When "looking the part" is the REAL strength, from this [[https://slate.com/technology/2014/01/programmer-privilege-as-an-asian-male-computer-science-major-everyone-gave-me-the-benefit-of-the-doubt.html][article]]:
-#+begin_quote
-
-no implicit bias, stereotype threat, micro agresion, micro inequities.
-
-"And nobody ever got in the way of my learning—not even inadvertently—probably because I looked like the sort of person who would be good at such things."
-
-"Instead of facing implicit bias or stereotype threat, I had the privilege of implicit endorsement."
-
-If I stared at someone in silence and nodded as they were talking, they would assume that I understood, not that I was clueless
-
-"This kind of privilege that I and other people who looked like me possessed was silent, manifested not in what people said to us, but rather in what they didn’t say. We had the privilege to spend enormous amounts of time developing technical expertise without anyone’s interference or implicit discouragement. Sure, we worked really hard, but our efforts directly translated into skill improvements without much loss due to interpersonal friction. Because we looked the part."
-
-"In contrast, ask any computer science major who isn’t from a majority demographic (i.e., white or Asian male), and I guarantee that he or she has encountered discouraging comments such as “You know, not everyone is cut out for computer science.” They probably still remember the words and actions that have hurt the most, even though those making the remarks often aren’t trying to harm."
-
-In contrast, ask any computer science major who isn’t from a majority demographic (i.e., white or Asian male), and I guarantee that he or she has encountered discouraging comments such as “You know, not everyone is cut out for computer science.” They probably still remember the words and actions that have hurt the most, even though those making the remarks often aren’t trying to harm.
-Advertisement
-
-For example, one of my good friends took the Intro to Java course during freshman year
-
-She got a summer research assistantship at the MIT Media Lab.
-
-However, instead of letting her build the GUI (like the job ad described), the supervisor assigned her the mind-numbing task of hand-transcribing audio clips all summer long
-
-
-#+end_quote
 ***** We need a "reminder" tool for 42KL, inside Emacs
 ***** forbidden headers (library, whatever)
 ***** Makefile requirements
@@ -1750,8 +1561,6 @@ What spawned the leet-code interviews
 ** https://bantuantunai.hasil.gov.my/2026/Identity/Account/Login
 ** https://checkstatus.mykasih.net/sara2/checkstatus
 * More org notes
-*** some YSAC u did before
-*** your chocolate donut (combination of Jamie Olivers friend & Gordon Ramsay)
 ** For suit, call these numbers for material. (Mention that Sparkle, Lot L-D 1&2, Pudu Plaza, KL recommended these guys)
 *** 011 70018033
 *** 013 343 2049
