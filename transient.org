@@ -200,7 +200,28 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 ******* Sort the Base: Use your hardcoded 3-number sort on the final 3 numbers left in Stack A.
 ******* Push Back: Push everything from Stack B back to Stack A, finding the correct insertion spot each time (which requires minimal moves since B is already mostly ordered).
 ******* Align: Shift Stack A until the smallest number is at the very top.
+****** https://medium.com/@msaqib_9803/implementing-generic-sorting-using-function-pointers-in-c-0b15fc975086
 ***** We need to repost this somewherer else, its about making eglot faster, coz eglot is also stupid: [[https://www.jamescherti.com/emacs-eglot-performance/][emacs eglot performance]]
+***** We need to do this one for free RAM warning, just look into "/home/ardie/bin/batteryChecker"
+#+begin_src shell
+
+  free -h  | awk 'NR == 2{print substr($4, 1, 3)}'
+
+#+end_src
+***** Write about this element of C somewhere else, call it C, struct, and the short sightedness of "efficiency"
+****** the name "struct" itself is kinda misleading. As that implies a "case".
+****** But struct in C, is just a way to group together variables (or "datapoints") if you will
+****** its a way of telling C, treat these group of variables as a contiguous block of memory
+****** remembering, that C is a language has no awareness of boundary/end (not just in string)
+****** so a common thing in struct, is to always put the length/size of an array (if array is the member of that struct)
+****** its just a group of variables, in that the size (if you were to do sizeof()) is just the size of pointer
+****** a structs address literally starts at its first (child) member
+****** this "struct as a contiguous memory block" emphasizes how C is all about "efficient memory" (no, that is not a "strength" of C, thats just proving how short sighted C is)
+****** This "efficiency" becomes even more obvious when you Unions in struct, in which both "datapoints" ( if you will) start at the same address, resulting in a switch of either Unions.
+***** We need to add another channel in Discord, channel-name?
+****** C is not a low level language
+****** C propaganda
+****** Add more please
 ***** our long winding way to get ato complietion with Bear and etags, finally led us into a rabbithole, and we only need eglot to trigger calling standard header function
 #+begin_src emacs-lisp
 
