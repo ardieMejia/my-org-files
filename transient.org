@@ -201,6 +201,9 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 ******* Push Back: Push everything from Stack B back to Stack A, finding the correct insertion spot each time (which requires minimal moves since B is already mostly ordered).
 ******* Align: Shift Stack A until the smallest number is at the very top.
 ****** https://medium.com/@msaqib_9803/implementing-generic-sorting-using-function-pointers-in-c-0b15fc975086
+****** [[https://www.youtube.com/watch?v=xeT31rm3bN0][bucket sort explained step by step]]
+****** [[https://www.youtube.com/watch?v=ROnYubH_spM][bucket sort explained in Java]]
+****** 
 ***** We need to repost this somewherer else, its about making eglot faster, coz eglot is also stupid: [[https://www.jamescherti.com/emacs-eglot-performance/][emacs eglot performance]]
 ***** We need to do this one for free RAM warning, just look into "/home/ardie/bin/batteryChecker"
 #+begin_src shell
