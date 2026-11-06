@@ -1,0 +1,14 @@
+* Why the Chapel compiler is very slow:
+** https://github.com/chapel-lang/chapel/issues/16894
+* We need to read about Chapel someday, coz apparently it "might" expand our mind
+** https://danilafe.com/blog/chapel_x_macros/
+** https://chapel-lang.org/docs/modules/standard/Heap.html
+** https://www.hpc-carpentry.org/hpc-chapel/01-intro.html
+** https://towardsdev.com/understanding-stack-and-heap-memory-a96e90f9c982
+** https://piembsystech.com/distributed-memory-systems-in-chapel-programming-language/
+* [[https://www.hpc-carpentry.org/hpc-chapel/instructor/aio.html][Overview]]
+** Chapel allows us to write parallel code with the readability of scripting languages
+** This is possible through "multi-resolution philosophy"
+** #1 Task Parallelism
+* The debate:
+** The distributed computing vs centralized time sharing debate. 

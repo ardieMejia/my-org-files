@@ -1,0 +1,7 @@
+* For now we are only storing links
+* https://medium.com/aimonks/orthogonality-in-programming-and-software-engineering-4991366f8a91
+* https://medium.com/@helmi.confo/orthogonality-in-design-c4fa69dcaff3
+* https://rudeboy.hashnode.dev/orthogonality-in-software-architecture-explained
+* https://www.freecodecamp.org/news/orthogonality-in-software-engineering/
+* https://levelup.gitconnected.com/software-design-orthogonality-7cd2d50267b6
+* https://flocode.substack.com/p/orthogonal-design-principles-in-engineering

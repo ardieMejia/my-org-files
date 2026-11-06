@@ -1,0 +1,9 @@
+* https://www.dataorienteddesign.com/dodmain/
+* https://www.youtube.com/watch?v=rX0ItVEVjHc
+* [[https://medium.com/@sovannaro/why-odin-programming-language-is-winning-the-hearts-of-systems-developers-in-2026-007d4ffa4600][Odin is winning the hearts and minds of System Developers]]
+* [[https://dev.to/dimension-ai/just-what-is-odin-anyway-542a][Odin]]
+* [[https://nathany.com/why-odin/][Why Odin]]
+* [[https://levelup.gitconnected.com/odin-an-underrated-c-alternative-that-few-programmers-know-about-5f0b2e1d7eb6?gi=baae28e8291b][Odin is initially a Pascal clone]]
+* Deep dive into snippets
+** [[https://zylinski.se/posts/dynamic-arrays-and-arenas/][dynamic arrays and arenas in Odin]]
+* 

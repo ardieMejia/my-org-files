@@ -1,0 +1,67 @@
+* Palm Oil evil
+#+begin_quote
+
+Even in 2025, the greedy Palm Oil Industry, reponsible for significant deforestation, cried at deforestation limits, and limitations in growth.
+
+A New Straites Times during article read, "Director-general Datuk Dr Ahmad Parveez Ghulam Kadir said the sector can no longer rely on "business-as-usual" practices, as stricter sustainability requirements have effectively closed off any further expansion of planted areas."
+
+Even after significant deforestation, the Palm Oil industry bemoaned of limitations in growth.
+
+Unless, there is actual accountability towards the shareholders (owners) of linked companies.
+
+Some other key findings: Global Witness analysis shows that banks made available $31 billion in sustainability-linked loan deals to palm oil companies facing allegations of supply chain links to deforestation in Indonesia between 2018-2025.
+
+(These are Palm Oil companies are essentially "marking their own homework", while getting "sustainable loans" from banks)
+
+More stuff to read, "New evidence in this report ties the Olam Group and Louis Dreyfus to recent deforestation in West Kalimantan via third-party suppliers – while receiving sustainability-linked finance from banks including Barclays and Crédit Agricole."
+
+What certification gave them the reputation of "sustainability" and the greenlight. One of them is RSPO.
+
+RSPO (Roundtable on Sustainable Palm Oil) certification faces significant criticism because studies and environmental groups report that it often fails to stop deforestation, protect biodiversity, or improve social standards compared to uncertified estates.
+
+References:
+- https://www.nst.com.my/business/economy/2025/12/1346111/no-land-left-palm-oil-bets-technology-growth
+- https://globalwitness.org/en/campaigns/forests/banks-loan-billions-to-deforestation-risk-palm-oil-companies/
+  
+SINGAPORE — Two Singapore-listed palm oil companies, Bumitama Agri and First Resources, have been linked to plantation concessions in Indonesia where fires and smoke were detected between August and September, according to an investigation report released on October 5 by environmental group Greenpeace.
+
+A third entity, privately held First Borneo Plantations—which has historical ownership links to Singapore-incorporated firms—was also named in the report.
+
+
+#+end_quote
+* The Palm Oil deception:
+#+begin_quote
+
+Palm oil companies frequently dispute responsibility over regional haze by arguing satellite hotspots are located ouside their boundaries
+
+This defense has resurfaced recently after an October 2026 report by Greenpeace and Pantau Gambut.
+
+The primary entities involved are First Resourcese and Bumitama Agri alongside First Borneo Plantations.
+
+1000 thoussands haze hotspots seen over satellite.
+
+The common argument
+
+#1: First Resources claims hotspots do not prove fire origins.
+
+#2: Laying the blame on wildfires started by smallholders, and induced by El Nino were "too fast spreading" and intruded into their border
+
+#3: Data minimization. Claiming that only a minor fraction (8%) of regional hotspots map to formally owned land.
+
+The counter argument. The Palm Oil industry uses concession lines to create an artificial boundary of accountability.
+
+#1: "The fire is not on our land". Supply chain sourcing. Large mills aggresively buy palm oil fruit from illegal third party suppliers who slash-and-burn. Maintaining profits, through "indirect burning"
+
+#2: "Satellites do not prove guilt". As relates to the point above. the company can adhere to strict to "No Deforestration" through of traceability beyond the mill
+
+#+end_quote
+* We need to finish writing this one:
+#+begin_quote
+
+there are other entities involved, such as Musim Mas
+
+Some other key findings: Global Witness analysis shows that banks made available $31 billion in sustainability-linked loan deals to palm oil companies facing allegations of supply chain links to deforestation in Indonesia between 2018-2025.
+
+More stuff to read, "New evidence in this report ties the Olam Group and Louis Dreyfus to recent deforestation in West Kalimantan via third-party suppliers – while receiving sustainability-linked finance from banks including Barclays and Crédit Agricole."
+
+#+end_quote

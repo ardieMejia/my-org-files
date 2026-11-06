@@ -1,0 +1,3 @@
+* The probem with NULL pointers and NULL references
+* Hoare
+* We should be writing someting here
