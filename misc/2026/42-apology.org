@@ -1,0 +1,163 @@
+* 
+* Specific comment 1:
+** [[~/Documents/42apology/abusive.png]]
+** My comments of abusive were highly incendiary, intent to stir up anger and controversy. It 
+** Comment: It makes broad accusations. Calling 42 abusive and a cult presents strong conclusions without explaining the specific experiences or evidence behind them.
+** Comment: It could damage trust. People reading the post might interpret it as an attempt to discredit the school rather than an invitation to discuss a particular problem.
+** Comment: It does not create an opportunity for resolution. Your concerns are expressed publicly, but the people who might be able to address them are not given a direct opportunity to understand or respond to them.
+** You posted again after the first meeting. This is likely to be the most significant issue in your second meeting. From the school's perspective, it may appear that you did not take the first warning seriously or change your approach after being made aware of its concerns.
+* What do I do moving forward, and how would it be different:
+** The main problem was I chose to respond to my frustrations.
+** Posting online was an easier way for me to express my thoughts, but it did not necessarily help resolve the issues I had.
+** Direct conversation doesnt mean agreeing with the person. It gives both sides opportunity to understand my disagreement
+** Calling the institutions abusive, is a blanket statement, a broad statement and inflammatory way to communicate issues. I projected personal experiences, that could be mostly due to only for specific individuals, onto the institution as a whole.
+* One of the questions repeated during our last meeting, was as to the intention of me staying here, if I truly disagree with the learning style here.
+** You can disagree with 42's teaching philosophy and still have legitimate reasons to want to study there. Those two positions are not contradictory.
+** While in my posts, I seem to emphasize how I dont agree with the peer-to-peer, I actually think its a hit and miss. There are some advantages to peer-to-peer learning, but it depends far too much, on the type of peers around you, how open minded the fellow peers and also if the backgorund of peers are far too different. 
+** My disagreement and still wanting to stay here, is not contradictory. Learning directly from seniors, for knowledge that extends to architecure (for example), depends on employers willing to hire you.
+** So this institution still has lots of value. Even though I disagree with its approach.
+* I wanted to know if others shared my concern, and was not trying to warn others about joining 42.
+* I still believe that 42 is a useful to learn
+* Questions I should ask myself
+** Do I want to criticise specific practices because I believe doing so could lead to improvement?
+** Do I want to discuss my experiences with other students and compare perspectives?
+** Or am I primarily looking for validation when I feel frustrated?
+** One of the things that I look forward 
+* Personally Im still interested in the ocaml module in the core.
+** Im particularly interested in learning the functional paradigm.
+** But learning functional paradigm is more than just learning map, or lambda
+** Learning functional paradigm often involves using Lisp or OCaml for succifiently long time in a good enouhg project. So I dont think 42 provides that
+* Given what you've explained, I think your position is more nuanced than simply being frustrat1ed with 42. You have a genuine concern about whether the peer-to-peer evaluation system encourages the development of good engineering judgement, or whether it sometimes encourages students to prioritise rigid rules and passing evaluations over practical engineering skills.
+** You also believe that some students share these concerns but hesitate to voice them openly.
+** For your second meeting, I would not recommend abandoning these concerns. Instead, I would separate your criticism of the school's learning environment from the way you chose to express that criticism publicly.
+** Your strongest approach is to show that you can articulate your concerns as a future engineer: specifically, by identifying the problem, explaining its potential consequences, acknowledging alternative perspectives, and proposing constructive improvements.
+** Here's how I'd approach it.
+*** I have concerns about whether some peer evaluations place too much emphasis on rigid coding conventions instead of the underlying engineering principles. I understand that consistency and readability matter, but I also believe that students should learn to justify their technical decisions and understand the trade-offs between different approaches. (stronger argument than calling the school abusive)
+*** I have also observed that some students appear reluctant to evaluate with certain peers because of their reputations for being particularly strict. I recognise that strict evaluations can have educational value, but I worry that if students perceive evaluations as unpredictable or excessively focused on minor conventions, they may become more concerned about avoiding difficult evaluations than learning from them. (the evaluation encourages them to avoid certain peers, and this happens quite often)
+*** I have observed disagreements among students about evaluation practices, particularly around strict formatting conventions. This has made me wonder whether there are effective ways for students to raise concerns about the evaluation process and discuss whether certain practices are helping them develop as engineers.
+*** Reponse 
+*** After reflecting on the previous meeting, I recognise that I need to change how I communicate my disagreements and concerns.
+*** I want to clarify that my criticism came from genuine concerns about aspects of the peer-to-peer learning and evaluation process. In particular, I have concerns about whether some evaluations place too much emphasis on rigid coding conventions rather than helping students develop engineering judgement and understand different approaches to solving problems.
+*** I have also observed that some students seem reluctant to evaluate with certain peers because of their reputations for being particularly strict. This makes me concerned about whether some aspects of the evaluation environment might unintentionally encourage students to focus on passing evaluations or avoiding difficult evaluators rather than learning from the process.
+*** However, I recognise that having genuine concerns does not automatically make the way I express them constructive. My previous social media posts used broad and inflammatory language, and I did not make a sufficient effort to explain the specific issues behind my criticism.
+*** I also recognise that, after the first meeting, I continued posting in a similar manner. I understand why this raises concerns about whether I took the previous discussion seriously enough, and I take responsibility for my decision to continue communicating in that way.
+*** Moving forward, I want to approach disagreements differently. If I have concerns about evaluation practices or the learning environment, I will make a reasonable effort to raise them directly with the relevant staff or through appropriate feedback channels. I will explain the specific problems I have observed, why I believe they matter, and what improvements I think could help.
+** Abusive or a cult
+*** I still have concerns about aspects of the peer-to-peer evaluation culture, particularly where I feel that rigid conventions can take precedence over engineering judgement. However, I recognise that describing the entire school as abusive or a cult was a sweeping characterisation 
+* https://www.carlopescio.com/2011/04/your-coding-conventions-are-hurting-you.html
+* You will make your future criticism more specific, evidence-based and constructive.
+* Letter:
+#+begin_quote
+
+Dear 42 Management,
+
+Thank you for giving me the opportunity to respond and explain how I intend to conduct myself moving forward.
+
+I understand that my recent social media comments, particularly following our first meeting, have raised concerns. I acknowledge that I was previously asked not to publish similar content and that my subsequent post has led to this further discussion.
+
+Moving forward, I intend to be more deliberate about how I express my criticisms of 42. Where I have concerns about the pedagogy, learning environment, or educational philosophy, I will endeavour to communicate them more specifically and constructively, distinguishing my personal experiences and opinions from factual claims about the school or the experiences of others.
+
+I will also give greater consideration to how my choice of words may be interpreted by others. Rather than relying on broad characterisations, I will aim to explain the particular practices or experiences that have led to my views.
+
+At the same time, I hope that there can be room for honest and substantive criticism of an educational institution, including disagreement with its teaching methods and culture. My intention is not to make personal attacks, but to express concerns about an educational approach with which I have genuine disagreements.
+
+I would appreciate clarification of the specific policies or expectations relevant to my comments, so that I can understand how to avoid future misunderstandings and ensure that my conduct is consistent with the applicable rules.
+
+I would also like to request permission for a colleague to accompany me at any further meeting concerning this matter. I believe having a support person present would help ensure that I fully understand the concerns being raised and can participate in the discussion fairly and constructively.
+
+I remain willing to engage in a respectful discussion about these concerns and hope that we can resolve the matter in a way that allows me to continue my studies at 42.
+
+Thank you for your consideration.
+
+Regards, [Your Name]
+
+#+end_quote
+* Response:
+#+begin_quote
+
+I want to thank you for giving me the opportunity to respond to this.
+
+So to respond to all the points raised in the previous meeting. But before I do that, I want to clarify that I be given 10 minutes of uninterruption so I can properly address some additional details as well.
+
+"What do I do moving forward. And how will it be different" I will channel my criticism in a more constructive manner. I know my latest post seems to indicate otherwise. But I want to state that I have attempted this such as writing a very long and detailed comment during the questionnaire at the end of project get_next_line and libft. But its not transparent enough, that my comments are read by a human or AI. So I want to know of proper channels of cricitizing syllabus or pedagogy that actually reach international ears and eyes. And I want to know that it actually reaches a person and not just AI.
+
+
+"Despite the warning of to not publish such posts, I proceeded anyway to publish it.": Upon reflection, I simply wanted my views and frustration to be validated publicly. I was also convinced, that many in fact hold my view, but are not willing to voice it. So again, I was expecting validation in the forms of likes. And upon thinking about, I realize getting likes does not lead any improvement either for me or for this group.
+
+
+"Avoiding saying what only they want to hear": To address this point, I need to state this from several points, becoz this is not actually a simple answer.
+
+"My issue with the syllabus": I actually DO think that the peer-to-peer system of evaluation can be beneficial, but from my observation of how some colleagues after facing some strict evaluators, who unfairly mark their work, even failing becoz of unfair perception, - they dont understand their work - very subjective coding conventions. And I can tell you that this is not true at all. I understand my tone was a blanket statement meant to attack the institution. But my feeling of the peer-to-peer is that it actually encourages some students to simply avoid certain peers. And since there is no way, that a single peer knows everything about the task or about what goes on inside the head of another peer. I also dont think this is an issue that can be fixed overnight, becoz the peers not only come from different background with different priorities as why theyre here. Many of them also has strong biases. For example, I personally know "domain-specific" uses of programming in atmospheric science, that will take a very long time to explain to a peer, and no coding institution or even Unis can actually prepare if even I wanted to do an hour long explanation of a specific DSL.
+
+"If I disagree with the pedagogy, why I am here". I dont think this is contradictory at all, its perfectly normal for budding engineers who want to learn the fundamentals while also realizing he has to unlearn this much later on. This is perfectly normal, as the only way to actually learn Seniorae engineering skills with architecural senses, is to actually be employed by a Senior on a real project whose also willing to train you. And often times, no amount of exams and exercises that encourage short term memory can prepare you for this. Architecural thinking requires long term senses when dealing with systems, that you cant really learn from solving this task and forgetting about it.
+
+
+# ==================================================
+
+"there was also mention of me not wanting to learn C": I pesonally think this is not a contradiction, as there are many real world engineers who have experience in C, but often take inspiration from Functional Paradigm when it comes to learn C. In fact, the list is many.
+
+The guy who create Clojure, which is a type of Lisp. He's learnt C++ and Java, while also trying to impose a differnet style of programming on to these. So again, I can also learn C while also recognizing C makes certain abstractions very difficult
+
+The guy who created Bash called Brian Fox, also imposes Lisp style thinking onto C. In fact, he's well known to not like C that much while being good at it.
+
+Casey Muratori, Johnathon Blow. But these are big names, you dont even need to go that big. You can just follow almost-big guy involved in any project thats meant to improve the SE ecosystem system (less bugs, less pain for large systems). Like the guys involved improving the Rust langauge, or Go, or Lisp. Some of them are even great at C, but make conscious attempts to not subscribe to C's philosophy
+
+So all this is not an attack on 42 but a concern as a professional engineer who has to think beyond just curriculum.
+
+Also, Im not simple interested in learning a new language for the sake of "collecting languages", but also, I can say this for real, Im actually quite conscious about how language design has a very powerful influence on how Engineers think. (like in FP...)
+
+
+# ==================================================
+
+another minor disgreement I have is the number of lines per function. I understand theres a benefit behind it, especially when it comes to learning a new language, you often want some linter type rules. But as an engineer, maybe you never heard of a "call graph", but blind adherence to 25 lines per function can easily complicate call graphs. And most real life C programmers, its very common to have huge functions, especially if the function is meant to be used as a library, becoz its meant to be like "modular" so you dont think about it mostly.
+
+# ==================================================
+
+
+"With the question of me not able to handle stress, even though there are so many modules to go": For answering this, I want to make a distinctin between the difficulty of the project and the engineering knowledge that the project teaches. For example, push_swap, I understand that the project teaches very specific problem solving and code organizing. But I observe some students seem to push_swap actually teaches software optimization. Like minimizing the number of operations is not the same as solving execution speed in the real world, and that can involve understanding CPU caches, and what compiler does behind the scenes.
+
+But back to my difficulty of not being able to handle the stress. Most of my initial concerns about every project, revolve around how some of the project requirements are very vague and not clear. And can only be solved by actually doing more evaluations to get a sense of how other solve it. So moving forward, I will do evaluations very early on during for a project im doing so I can learn early and put it off for mind for later.
+
+Im not sure if this is the answer youre expecting, but if not, id like u to provide evidence for my inability to ahndle the stresses.
+
+
+
+"consideration of a channel where I can express my opinion": As I have stated Ive wrote a lengthy opinion after each of the projects, but it was not clear if it reached a human or AI or simply gets stored somewherer, as its not transparent enough. If I have criticisms about the educational philosophy or learning environment, what would you consider an appropriate way for me to express those opinions? Are there established channels for students to discuss their experiences openly, including disagreements with the institution?
+
+
+
+Bash: Brian Fox
+
+they use the word "negotiate" as the lesson learnt from the pedagogy, which indicates that some or most are over-projecting their struggles of the lesson, and not capable of resolving their unpredictable pedagogy with "what should actually be learnt"
+
+
+Some of the BOCALs reponse was not entirely transparent, so I was expecting at some point to get myself "terminated".
+
+When people say "FP is the future, or the Rust is the future". What they also mean is that, C is not the future, C+ + is not the future.
+
+As one of the guy that responded to my comment on 42 said, they take pride in being open to criticism. So I have a lot of valid opinions, some more engineering (somone who wants to be substantial engineer), and also the long term effect of the pedagogy.
+
+
+From the perspective of an engineer who is concerned with the long-term development of engineering judgement, I have a very strong argument, rather than simply learning how to complete the curriculum
+
+I can recognise the educational value of 42, benefit from its programming exercises, and appreciate the opportunity it provides, while simultaneously recognising that some of its teaching methods and technical choices have limitations that I should be conscious of as a developing engineer. And in some ways, me posting was attempting to seek validation.
+
+In fact, this is very common among real world engineers. And I read about this a lot, so I know the opinions of a quite few.
+
+# ==================================================
+
+First lead with the request of a proper channel, my promise to post more constructivily, especially with the proper channels. And then follow up with a the engineering examples to emphasize how I make a distinction between understanding the problems contrainsts, and picking engineering skills that I can translate my own future project.
+
+#+end_quote
+* A proper channel for feedback:
+** Current syllabus	What works well and should be retained?
+** Identified issues	Which projects, concepts, or learning stages could be improved?
+** Proposed changes	What specific changes would you suggest?
+** Justification	How would the proposed changes benefit students?
+** Priority	Is the change essential, desirable, or optional?
+* Memorize facts:
+
+* Pedagogy
+** This also translates to peer-to-peer, learning through peer-to-peer does not mean believing its the best approach
+** so being a good student doesnt mean agreeing with every teaching method. And just becoz Im critical of learning method, doesnt mean im not learning from it. Coz I am learning from it. 
+** But as an engineer, I want to give serious thought into langauge design. And my interest in FP, the curriculum does provide opportunity to learn FP, but seriously adapting FP actually requires some "deep stewing" in a project using an FP for a length of time, maybe even several years. Like the examples ive mentioned.

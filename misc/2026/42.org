@@ -1,0 +1,15 @@
+* [[https://news.ycombinator.com/item?id=18269783][Hacker news,1 valid opinion on 42 outside of Malaysia]]
+** Having interviewed a bunch of 42 graduates, my main issue with 42 is that it doesn't teach their students to think about what they're doing, encouraging them instead to rush to the keyboard and emit as much code as they can as if programming for the last day of their project. This seems to resonate well with the culture of piscines at 42. 	
+** To me, this is as silly as training Biathlon athletes to not even aim before they shoot.
+** So far, I've always ended up not recruiting the candidates, because they would have made a mess of the codebase in no time, bringing negative net productivity to the team (more so than most junior candidates I've seen). And this was for jobs in a startup!
+** I wish 42 would teach them the necessary insights to program sustainably - that's where teachers and mentors are indispensable, and that's the rare skill most companies are lacking. Anyone can pick up tutorials and read manuals on their own. Make them developers, not eternal coding beginners. I'm not asking for an academic or scientific focus, just a good philosophy of programming in general, the kind of which you see in SICP for example.
+** Unfortunately, 42 does not have a monopoly on producing short-sighted developers in France, by far - that's the case of most "learn to code in X days/months/years" programs.
+* https://ludditus.com/2022/04/07/42-swimming-into-brainwashing/
+* [[http://xahlee.info/emacs/misc/emacs_lisp_coding_style_language_idioms_controversy.html][Xah Lee]]
+** Coding style conventions are mostly harmful. The language's syntax and semantics should naturally enforce it.
+** Idiomatic programing are harmful. It should be ban'd, except the type of idiom that has a non-trivial effect on algorithm or computational complexity.
+** Code formatting, should be entirely eliminated. And this effects the direction of language design too. Language's syntax, its chars, should have semantic markup builtin. This is so with Lisp and Mathematica and XML (in Lisp and Mathematica, the bracket characters carry with it a semantic info of code unit. In XML, it's a specific syntactical pattern)). For these languages, editors should be able to do it in real time, automatically, and transparent to user.
+** Examples of semantic markups: html tags <what></what>, in C, struct and enum can be considered semantic markup
+** The power of semantic markup is that, its not just "decoration" but gives "structural meaning" to the language. <body></body> with <title></title> inside, literally means body wrapped around a title. And our IDE or editor can automatically format it for us. 
+** The languages synax NATURALLY enforces this rather than users endlessly tweaking at some "cultish formatting rule of 42 lines per function"
+** The semantic markup serves BOTH as communication to the programmer (our eyes) and to the editor (whether we want to automate formatting or not, somehow)
