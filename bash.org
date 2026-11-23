@@ -62,8 +62,26 @@ zzzd(){
 *** Not only must --> HISTFILE <-- not be quoted in .zshrc, but history is not automatically appended (sometimes only when you restart shell, do u see changes)
 *** Must do --> [[https://superuser.com/questions/1520370/zsh-history-is-not-syncing-immediately][setopt incappendhistory]] <--
 ** Now we dont need stupid tip, coz we can use logrotate, but not sure if it really works, coz bash_history still smaller than stated size
+* Our latest most useful setup (also 42KL)
+** Put this in our .bashrc or .profile (.bashrc better, .profile is apparently "unreliable")
+*** https://unix.stackexchange.com/questions/604703/bash-bind-command-not-working-with-alt-key-combination
+#+begin_quote
+
+bind '"\ea": backward-char'
+bind '"\ee": forward-char'
+bind '"\C-a": backward-word'
+bind '"\C-e": forward-word'
+
+#+end_quote
 * Superpower tricks!!:
 ** https://levelup.gitconnected.com/5-bash-syntax-for-going-beyond-traditional-shell-scripting-6904d3e71af6
 *** Tricks such as:
 **** echo ${string^^} # ===== transform text bash to uppercase, BASH. Uppercase
 **** and many more.
+* exec and understanding Bash processes
+** https://meetcyber.net/day-83-bash-bc7af4be191b
+** Bash spawning child process is useful abstraction, as it allows some commands to operate without propagating effects to the parent process.
+** This makes the behaviour more predictable, since cd-ing inside a Bash script will not change the parents environment
+** From the codes perspective, in order to make this work, certain commands that are "shell builtins" (like "cd") are not implemented as standalone programs. But instead has its own shell system call, chdir(). 
+*** Examples of standalone programs: ls, mkdir
+*** Examples of shell builtins : cd

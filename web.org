@@ -100,4 +100,29 @@ src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js">
 * Resources:
 ** Useful SVG repos for downloads ([[https://www.svgrepo.com/vectors/please-check-your-input-invalid-input/][svgrepo]])
 ** [[https://adrianroselli.com/2019/06/target-size-and-2-5-5.html][Button science]]
+* TODO Important, to test cascade deletes ( I dont know where to put this)
+** Story, we have a system that stores students and their departments. Here are the details.
+** Joint Degree Program: A student enrolled in a combined Bachelor of Science in Mechanical Engineering and Bachelor of Science in Electrical Engineering program.
+** Instead of cascaded deletes, it if we delete mechanical engineering department, it replaces that students column with NULL values
+#+begin_src sql
 
+  CREATE TABLE employees (
+  employee_id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  hire_date DATE DEFAULT CURRENT_DATE,
+  salary NUMERIC(10, 2) CHECK (salary > 0),
+  department_id INTEGER,
+  CONSTRAINT fk_department
+  FOREIGN KEY (department_id)
+  REFERENCES departments (department_id)
+  ON DELETE SET NULL
+  );
+
+  CREATE TABLE departments (
+  department_id SERIAL PRIMARY KEY,
+  department_name VARCHAR(50) UNIQUE NOT NULL
+  );
+
+#+end_src
