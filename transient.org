@@ -234,12 +234,46 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 **** we need ;;h for select all, coz we still use it a lot for example in adding org-insert-structure-template
 ***** Also need indent-region hydra
 **** Social media posting:
-***** A lesson in Emacs I should try: https://ftp.gnu.org/old-gnu/Manuals/emacs-lisp-intro/html_node/Words-in-a-defun.html
-***** This needs to be an advice, but it works beautifully now:
+***** Template for JOBS by Developer Kaki
+#+begin_quote
+
+I'm currently looking for new opportunities in Software Development, Web Development, and IT-related roles.
+I hold diploma IT currently working as a Programmer, with hands-on experience in web development, database management, system troubleshooting, and technical support.
+My technical skills include:
+• Web Development: PHP, Laravel, JavaScript, React, HTML/CSS
+• Database: MySQL, SQL, Firebase, Supabase
+• Other Tools: Python, Pandas, Jupyter Notebook, Node.js, GitLab, Tableau
+Some of my experience includes:
+• Developing, maintaining, and troubleshooting web applications.
+• Database management, data migration, cleaning, and validation using Python, Pandas, and Jupyter Notebook.
+• Creating Tableau dashboards for reporting and data visualization.
+• Developing new features and providing system support.
+I'm currently looking for:
+• Junior Software Developer
+• PHP / Laravel Developer
+• Web / Backend Developer
+• Application Support Engineer
+• Other IT-related roles
+Location: Kuala Lumpur / Selangor
+Employment: Full-time
+Work arrangement: Open to On-site / Hybrid / Remote
+I'm looking for an opportunity where I can continue improving my skills, gain more experience, and contribute to a team.
+If anyone knows of any openings or your company is hiring, feel free to comment or DM me. I'm happy to share my resume
+
+#+end_quote
+***** We need to add a prompt and major-mode checking for our stupid C-c C-h 42 funcionality
 #+begin_src emacs-lisp
 
+  (load-file (concat ardie/all-compute-cfg-dir "my_42_header/42header_emacs/start.el"))
 
-    (defun ardie/find-file ()
+#+end_src
+***** Emacs update, find-file (failing to use/understanding advice), why I NEVER use auto-revert
+****** I never use auto-revert, as I want my Emacs buffer as the point of "my last edit", meaning it doesnt matter what happens to the "real file", I want to keep whatever I wrote recently to almost always available. Especially I sometimes jot down notes last minute.
+****** So, while Im always happy with my Emas setup when ti comes to opening files. I always end up slightly frustrated, when I copy a path of directory from a file browser or terminal. And I end up having removing the current path, and pasting again. Especially since, Emacs aggressively copies when you kill a text, so the kill-ring "moves about quite a lot"
+****** So instead, Im using a dedicated function, as my attempt at advicing find-file didnt work (I know how to use advice, but find-file was awkward, or my advicing skill is not there yet):
+#+begin_src emacs-lisp
+
+     (defun ardie/find-file ()
     (interactive)
     (if (and (file-exists-p (substring-no-properties (current-kill 0 )))
 	     kill-ring)
@@ -248,68 +282,45 @@ rsync -avzh --delete --max-size='400M' --exclude='*/myenv*/' --exclude='*/.git*/
 	  (insert (substring-no-properties (current-kill 0 )))
 	  (find-file-at-point)
 	  )
-      (find-file-read-args "Normal Find File: " nil)))
+      nil))
+
+   (global-set-key (kbd "C-c C-a") 'ardie/find-file)
 
 #+end_src
-***** Toxic Johnathon Blow:
-#+begin_quote
-
-Another Johnathon Blow interview that is VERY frustrating.
-
-Again, he talks about FP in that manner (even though his language Jai drew inspiration from some FP languages as well).
-
-Even with all that amazing insight from all that experience under his belt.He comes off as very 1 dimensional, and there are lots of C programmers (or people who think like C programmers, even when using a different technology) that take him seriously.
-
-He has to be careful of what he says.
-
-Any programmer that holds that much disdain for FP cant be trusted.
-
-A good sign deserving respect, is the one I hear several times through some amazing conferences I hear (or even from stories from guys have created something useful)
-
-That "every programmer should try FP".
-
-#+end_quote
-***** Rust MUST take over the world
-#+begin_quote
-
-I cant wait for Rust for take over the world.
-
-Soon people will start asking why we stuck at C++ with so many things, and refused to move to Rust.
-
-It doesnt matter if Johnathon Blow or C guys think that Rust "imposes too much"
-
-The real problem, is that theres a lot of bad C and C++.
-
-And the software rot or tehcnical debt, whatever it is, is only half the story.
-
-Every else adjacent to the usage of C is also full of "debt". The culture, the education and everything else adjacent to C and C++.
-
-And that the only strength people keep emphasizing is C makes you "understand hardware".
-
-Which is also not true, as modern hardware is bit more complex than old hardware.
-
-And there are people drowning in C that are still not aware of making your code cache friendly (including me).
-
-No amount of C guarantees you understand L1 and L2 cache, or whatever hardware adjacent stuff that should matter for optimized code.
-
-And "drowning in C" is still the way programming schools teach, even in 2026.
-
-I cant wait for the world to move Rust.
-
-Even if its true, that corporations dont know what theyre doing, and they just get seduced by "memory safety"
-
-Still doesnt matter, coz Rust strength is apparently more than just tooling and memory safety.
-
-Even if its true that Rust has equal amounts of blind followers.
-
-C and C++ NEEDS to die.
-
-And thats good enough.
-
-And it cant die soon enough.
+****** Inspired by this [[http://www.zvon.org/other/elisp/Output/SEC206.html][zvon blog]], we learnt a little about Emacs advice, for some "silly" feature in previous-line
+#+begin_src emacs-lisp
 
 
-#+end_quote
+
+  (advice-add 'previous-line :around 'ardie/previous-line)
+
+  (defun ardie/previous-line (func &rest _)
+    (move-beginning-of-line 1)
+    (if (bobp)
+        (newline)
+      nil)
+    (apply func '(1)))
+
+  ;; to remove
+  (advice-remove 'previous-line 'ardie/previous-line)
+#+end_src
+****** we finally know how to org-open-at-point, but using our firefox profile, instead of through xdg-open or hardcoded org-link-parameter. We use org-link-set-parameters
+#+begin_src emacs-lisp
+
+  (org-link-set-parameters "https" :follow 'ardie/k-open)
+
+
+  (defun ardie/k-open(path _)
+    (interactive)
+    (async-shell-command (concat "/snap/bin/firefox -P \"newArken\" https://" path)))
+
+#+end_src
+***** Climate Change the last obstacle:
+****** [[https://pubmed.ncbi.nlm.nih.gov/42907097/][War and military mobilisation are drivers of climate change]]
+****** [[https://www.nbcnews.com/news/us-news/us-big-reason-world-losing-ground-fight-climate-change-un-report-says-rcna604944][US the biggest obstacle to dealing with Climate Change]]
+****** Story
+******* While youths in other countries are busy with protests. Examples, youth in Albania are protesting coastal luxury developments in protected ecosystems alongside other bigger issues, while Fillipino youth are protesting Pax Silica, which will involve around 1600 hectares of land, thats like 2000 football fields (threatening ecosystem damage and water ) . Malaysian youths on the other hand, are busy replaying meme clips of Indon leaders refusing to take responsibility over Palm Oil. Basically Malaysians are being 12 year old boys in a football field, not realizing that our climate and Indon climate is a shared climate. I have no idea why am I even writing, but on the dead platform called FB and the ridiculus Reddit called r/Malasysia, thats the only thing Malaysians are busy doing. My brain is slowly rotting away. And once they get tired of Indonesian leaders, Malaysian youth go back to F1 racecars and whatevers hot in TikTok/Threads/IG.
+***** A lesson in Emacs I should try: https://ftp.gnu.org/old-gnu/Manuals/emacs-lisp-intro/html_node/Words-in-a-defun.html
 ***** Human selfishness
 ****** The many paths that I notice myself and others taking to rediscover "socialism".
 ****** The fact that a few of the socialists are Indians.
@@ -1337,6 +1348,7 @@ What spawned the leet-code interviews
 * Piano (no social media progress)
 ** You need to buy a stand
 * MyKasih, SARA, MySTR
+** [[https://www.jobpd.com/en?utm_source=google&utm_medium=cpc&gad_source=1&gad_campaignid=23987252861][jobspd]]
 ** https://bantuantunai.hasil.gov.my/2026/Identity/Account/Login
 ** https://checkstatus.mykasih.net/sara2/checkstatus
 * More org notes
@@ -1346,3 +1358,23 @@ What spawned the leet-code interviews
 *** 018 398 5048
 * Address:
 ** G-12-30, BLOCK G MENTARI COURT Gate 1, Jalan PJS 8/9, Bandar Sunway, 46150 Petaling Jaya, Selangor, Malaysia
+* CV email:
+#+begin_quote
+
+Dear Hiring Manager,
+
+I hope you are doing well.
+
+I am writing this email with regards to my interest in the Platform / DevSecOps Engineer position at Peripamo.
+
+Please find attached my latest CV for your review and consideration. I would appreciate the opportunity to discuss how my skills, experience, and technical background fit into you teams goal/plan.
+
+I have a wide range of interests as well. Even including computing "environments/problems" that might benefit your companies goal in unexpected ways.
+
+Thank you for your time and consideration. I look forward to hearing from you.
+
+Best regards,
+Wan Ardie
+0102702052
+
+#+end_quote
