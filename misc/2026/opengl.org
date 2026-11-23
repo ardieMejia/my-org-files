@@ -1,2 +1,6 @@
 * We need to move some stuff from cpp.org to here
 * we found a badass guy in the accidentally in [[https://computergraphics.stackexchange.com/questions/10332/understanding-vao-and-vbo][computergraphics.stackexchange]] by the name of Nicol Bolas. He also a [[https://nicolbolas.github.io/oldtut/index.html][Github io]] that has full content of a book by Jason L. McKesson
+* I think we gave up on reading more on theory, but we did discover this. An [[https://arxiv.org/html/2606.02226v1][article]] that talks about CFS (composable function systems) as a general-purpose rendering system
+* Might be worth a read , without obsessing about understanding, but mostly just reading the terms mentioned in the article itself (that points to a general graphic rendering pipeline)
+* 
+* 
