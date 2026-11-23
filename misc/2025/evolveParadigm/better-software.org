@@ -90,4 +90,9 @@ n(A)
 ** https://stackoverflow.com/questions/10618582/difference-between-java-assert-and-if-else-exit
 ** https://typesanitizer.com/blog/assertions.html
 ** https://www.alooba.com/skills/concepts/csharp-debugging-and-testing-375/assertions/
-
+* 3 programming golden rules after 42 years
+** Duplicate code to avoid dependencies often makes sense.
+** Extracting code into functions often makes code unreadable and more complex.
+** Your future you will thank you for that comment in the code.
+** Enforcing a maximum line length will result in unreadable variable and function names.
+** A long function is often easier to understand than a chain of many short function.

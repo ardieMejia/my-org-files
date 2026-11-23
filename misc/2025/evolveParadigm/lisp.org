@@ -36,3 +36,5 @@
 * Error shenanigans:
 **  (SB-INT:%PROGRAM-ERROR "unsupported option ~S" (PRINT "we are dealing with a triangle"))
 ** (SB-INT:%PROGRAM-ERROR "~@<keyword argument not a symbol: ~S.~@:>" "the last one")
+* Links
+* [[https://jtra.cz/stuff/lisp/sclr/defun.html][simplified Common Lisp reference]]

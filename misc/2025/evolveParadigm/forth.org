@@ -65,3 +65,15 @@ The perceived "too many variations" in ARM controller registers stem from ARM's 
 #+end_quote
 ** https://www.youtube.com/watch?v=dvTI3KmcZ7I
 *** best example so far, clear voice, clear recording, GOOD if you understand forth a bit, explains STM to noobs
+* Advanced:
+** [[https://www.youtube.com/watch?v=rwVGwFhkeTM][Reimplmentation of Linear Interpolation Function]]
+*** Comment:
+#+begin_quote
+
+Forth programmers grasp the issue from the hardware upwards: when you write numeric code, it generally has to be debugged once per format. The precisions, ranges, and overflow cases don't map in a clean equivalent fashion to all math formulae, and if you work with fixed point(which can be engineered to get more precision per bit in a given range, than an equivalent floating point format - and therefore it's appealing from Forth's hardware-up perspective on programs) then you also have to be concerned about the order in which each operation is applied to minimize precision loss. All of this is hidden away by a compiler and turned into a series of obscure edge cases, since the implementation is no longer clearly indicated through the actual CPU and the low-level routines to calculate square roots and cosines and such. The learning needed to fully understand your numeric code ultimately means immersing yourself in the details of these routines, and referencing the way in which the original math problem was defined to select appropriate formats.
+
+So, when we apply generic programming methods to numerics, we don't gain any confidence. The code hasn't been debugged to work across all those formats and what you gain is an illusion of generality. It's better to pick from among a few formats that are appropriate for the application, the hardware, and portability (since you eventually have to import and export numbers to other apps). Most of the time this leads to a direct answer like the one-line lerp.
+
+The situation for generic programming is better when it's a container like a linked list. Those are symbolic and discrete by nature: you can confine the behavior more easily to an enumerated set of outcomes, that you can test to 100%. But even here, there's a good case for standardizing on one way of doing it that addresses the biggest bottleneck, and not attempting to automate away details of how it is done. With containers, you can end up with more complex engineering for speed being cancelled out by more expensive bookkeeping.
+
+#+end_quote
