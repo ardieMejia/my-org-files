@@ -1,3 +1,11 @@
+* Grouping
+** Having learnt Lisp cl-ppcre, I came across thie weirdness:
+#+begin_src lisp
+
+     (cl-ppcre:all-matches-as-strings "[a-zA-Z]{3,}" text)
+
+#+end_src
+** I finally understand the curly bracket, but requires reading [[https://www.tutorialsteacher.com/regex/grouping][grouping]]
 * Beginner sribbles (random beginner stuff):
 ** According to this link, regex and HTML DONT go well together:
 *** https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags
