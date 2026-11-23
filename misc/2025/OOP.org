@@ -1,0 +1,7 @@
+* OOP is just a tool, like any other. I still read anti-OOP stuff, but Im very careful with what I read. OOP, just like the worst case of "adopted gimmick", has led to many oor software quality, as well as obsessive thinking in OOP on the parts of programmers who practice it and die by it
+* We learnt associative, inheritance, and composition. But we missed some of the website links
+* Philosophy of avoiding class complexity in OOP? But these are links
+** https://www.billharlan.com/papers/Avoid_extending_classes.html
+* Words to describe it:
+** "compile-time hierarchy of encapsulation that matches the domain model was a mistake"
+* 

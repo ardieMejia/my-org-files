@@ -1,4 +1,3 @@
-
 * [[https://pmc.ncbi.nlm.nih.gov/articles/PMC8594559/][Linking creativity and false memory: Common consequences of a flexible memory system]]
 ** Some previous studies show that flexible episodic memory system (sometimes leading to memory errors) has functional benefits for creativity.
 ** If so, there SHOULD be a direct link between creativity and susceptibility to memory distortion.
@@ -24,4 +23,20 @@
 ** Led to formation of "constructive episodic simulation hypothesis", merging pieces of the past ideas of the future.
 ** Study involving an "induction" test, where non-control subjects did a recall experiment, reveal more detailed innovative ideas
 ** 2 types of creative thinking: divergent creative thinking and convergent creative thinking
-** But it comes with a trade-off, subjects with higher divergent creative thinking, showed "memory distortions", adding false details 
+** But it comes with a trade-off, subjects with higher divergent creative thinking, showed "memory distortions", adding false details
+* Institutions:
+** Malaysian Autism Research Foundation
+** They explain the diagnostic process, and roles of professionals
+* How to check if someone legally qualified
+** Doctors: Malaysian Medical Council (MMC) registration.
+** Medical specialists: National Specialist Register (NSR).
+** Clinical psychologists: Malaysian Allied Health Professions Council (MAHPC) registration.
+* Very cheap diagnosis:
+** Visit your nearest Klinik Kesihatan.
+*** Klinik Kesihatan Kelana Jaya
+*** Klinik Kesihatan Taman Medan
+*** Klinik Kesihatan Puchong
+** Explain that you want a formal assessment for Autism Spectrum Disorder (ASD).
+** Request a referral to a government hospital's relevant specialist department.
+* Papers on Chinese cultural views on mental health
+** [[https://pmc.ncbi.nlm.nih.gov/articles/PMC7056581/][Parent Perceptions of Mental Illness in Chinese American Youth]]
