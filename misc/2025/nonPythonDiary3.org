@@ -2,3 +2,471 @@
 ** The problem with OAuth 2.0, and Eric Hammer (creator of OAuth1.0 and original editor of OAuth2.0 spec). We havent finished reading this [[https://news.ycombinator.com/item?id=42103975][amazing article]]
 * Day 135:
 ** soon to come
+* Day 136:
+** [[https://danilafe.com/blog/chapel_x_macros/][Cool link]]:
+*** we discovered a NEW programming language called Chapel, and this VERY cool blog documenting the usage of x macros (got in C and C++) in its compiler
+*** apparently, this programming language will change the way u think of parallel programming
+* Day 137:
+** Our progress here is nothing, but reading, but its impressive reading. So here is what we have:
+** Simulation:
+*** [[https://www.embeddedrelated.com/showarticle/1695.php][Simulating embedded development on your normal hardware]]
+*** more useful than it seems, not a gimmick, in 1 instance saving hours for 1 guy who had to finish his project, becoz he could develop only full time on his computer.
+** C badassery and internals:
+*** we also need to simulate a malloc by setting SIZE_MAX for the malloc()
+*** we also need to read about hash table, and its memory internal
+[[https://sourav-k-paul.medium.com/beyond-moores-law-understanding-the-memory-wall-and-why-modern-cpus-spend-their-time-waiting-3eb76ac981c8][we need to read about memory wall]]
+** C creativity:
+*** [[https://invisible-island.net/ncurses/ncurses-intro.html][ncurses intro]]
+*** [[https://github.com/mcdaniel/curses_tutorial][curses officla Git tutorial]]
+* Day 138:
+** [[https://www.dgtlgrove.com/p/untangling-lifetimes-the-arena-allocator][a very long philosophical rant on memory allocators]]
+** [[https://andreleite.com/posts/2025/nstl/virtual-memory-arena-allocator/][andre leite on the memory magic of arena allocator]]
+** [[https://protobuf.dev/reference/cpp/arenas/][protobuf, mostly C++, in the context of "messages"]]
+** [[https://zylinski.se/posts/dynamic-arrays-and-arenas/][zylinski]]
+*** has a better explanation, on the confusion of the naming "arena" and "arena allocator"
+*** example is in the Odin language
+** [[https://nullprogram.com/blog/2023/09/27/][nullprogram, Chris Welson]]
+*** BEST article so far, author claims that arena allocation is as easy as garbage collection, without the cost
+*** example is in C
+** [[https://www.studyplan.dev/dsa/linear-arena-allocators][Linear and Arena Allocators, so they are one & the same, my bad]]
+*** C++ uses a global allocator, author claims apps will eventually choke and die if rely on it too much
+*** arena/linear allocator is the simplest and most ruthless
+*** they call the "offset" as the offset
+*** Good simple explanation of memory alignment. Basically, misaligned variables the straddle the boundary between 2 physical CPU cache lines. the CPU is forced to perform 2 reads from the RAM, and stitch it together in the register
+*** this studyplan site explaines, perfectly: division is one the most slowest CPU operations, so instead we can use bitwise for division
+*** Instead of Offset, we use AlignedOffset, 
+#+begin_src c++
+
+  // 
+  size_t AlignedOffset =
+      (Offset + Alignment - 1) & ~(Alignment - 1); 
+
+  // 2. Check if the aligned request fits
+  if (AlignedOffset + Size > Capacity) {
+      return nullptr;
+    
+#+end_src
+*** we finally understand this bit
+#+begin_src c++
+
+  (Offset + Alignment - 1) & ~(Alignment - 1);
+  // the whole thing is basically, "next alignment", but thats not a very helpful term
+
+#+end_src
+*** more things we should read!!!
+*** the article makes some VERY dangerous statements, VERY misleading. It argues that the only reason for not having free() in this. Is becoz of "intentional design"  (stupid term). And that free() would only introduce fragmentation. No mention of the most beautiful reason, LESS programmer HEADACHE, MORE programmer JOY
+*** we still need to write more on this article!!
+** https://iliabylich.github.io/arena-based-parsers/what_is_arena_allocator.html
+*** article ALSO FAILS to mention the inherently BAD nature of maintaining both malloc()  and free()
+*** however, article hints an interesting point about Zig, that uses "runtime allocator" (?? maybe I misread that)
+** [[https://www.bytesbeneath.com/p/the-arena-custom-memory-allocators][bytesbeneath.com, arena custom allocators, more BASIC explanation than the previous one]]
+** [[https://apxml.com/courses/compiler-runtime-optimization-ml/chapter-6-advanced-ml-runtime-systems/practice-implementing-allocator][ML stuff, quite nasty, its a got cool C++ example on ArenaAllocator]]
+** [[https://medium.com/@inferara/arena-based-allocation-in-compilers-b96cce4dc9ac][Apparently, arena based allocation are used in compiler design too]]
+** [[https://www.gingerbill.org/article/2019/02/08/memory-allocation-strategies-002/][gingerbill, one of the interesting 4 parts series explaining memory allocation]]
+** [[https://www.williamfedele.com/blog/arena-allocators][williamfedele, might be an INTERESTING article. But we cant tell, better READ THIS]]
+** [[https://manishearth.github.io/blog/2021/03/15/arenas-in-rust/#implementing-a-self-referential-arena][arenas in Rust, specifically, for "self-referential arenas", a very interesting topic]]
+** [[https://pegv.in/post/arena-allocator-part-1.html][another good example of Arena Allocator in C. We should REALLY read it]]
+** [[https://oneuptime.com/blog/post/2026-01-25-optimize-memory-arena-allocators-rust/view][Interesting article on Array Allocators in Rust. Even includes simple examples in Compilers, and even in how Web servers handle request-scoped data]]
+** 
+* Day 139:
+** Super interesting [[https://www.jot.fm/issues/issue_2003_09/article3/index.html][article]] on Symmetry in Object Oriented Languages
+** [[https://neerajsnawale.medium.com/exploit-more-memory-than-allocated-with-malloc-why-c30cb1ba36b5][why can we allocate more memory than allowed with malloc]]
+*** the article talks about why we can allocate so much, but no subtle indication that malloc() and free() is dangerous dogma
+*** when we say that virtual memory = mapped memory. The mechanic of how the computer "maps" it, is through "pages". The smallest unit your virtual memory is divided by. 
+*** Making the pages large, helps the computer, becoz it has to keep track of each page used
+*** Author WRONGLY claims that "overwriting where youre not supposed to write", MAY result in writing over memory of other programs. WRONG
+*** STUPID article, doesnt demystify or explain enough
+*** 
+** next
+* Day 140
+** Great, now we have to read about this [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html][article]]. Its amazing, coz I think I can understand this amazing flycheck writing
+** [[https://unstop.com/blog/void-pointer-in-c][void pointer]]
+** [[https://www.scribd.com/document/928748181/UNIT-1-Introduction-and-Foundation-of-HCI][Human Computer Interaction]]
+** 
+* Day 141:
+** Stuff I INSTALLED
+*** rtags
+* Day 142:
+** Common Lisp study
+** Why did they decide to pass the variable to the body implicitly?
+** Since this is already a high leve abstraction (passing code to another code), there should be, as an appropriate measure, a way to track this abstraction
+** Here is the code:
+#+begin_src lisp
+
+  (defmacro run-function-2 (var1 var2 &rest body)
+    `(let ((avar ,var1))
+       ,@body))
+
+
+  (run-function-2 "hello " "ardie" (print avar))
+
+
+#+end_src
+* Day 143:
+** Leftover tabs
+** https://www.reddit.com/r/emacs/comments/1w519nv/a_beautiful_svg_weekly_calendar_for_emacs_backed/
+** https://github.com/Gleek/org-timegrid
+** https://ecl.common-lisp.dev/static/manual/Foreign-Function-Interface.html
+** https://lambdajunkie.org/posts/web-dev-common-lisp-overview/
+** https://medium.com/@eyal.itkin/the-a-file-is-a-relic-why-static-archives-were-a-bad-idea-all-along-8cd1cf6310c5
+** https://stackoverflow.com/questions/3047530/flexible-array-member-in-c-structure
+** https://www.codewithc.in/examples/flexible-array
+** https://www.geeksforgeeks.org/c/flexible-array-members-structure-c/
+** https://sixty-north.com/blog/writing-the-simplest-emacs-company-mode-backend.html
+** https://plaindrops.de/blog/2025/tenyearsofemacs/
+** https://www.youtube.com/watch?v=kDVRkcKHCLc
+** https://www.almabetter.com/bytes/articles/history-of-c-language
+** https://www.alperyazar.com/posts/2023/a-brief-history-of-c-programming-language/
+** https://protesilaos.com/codelog/2023-06-28-emacs-mark-register-basics/
+** https://elpa.gnu.org/devel/doc/company.html#Pseudo_002dTooltip-Frontends
+** https://company-mode.github.io/manual/Troubleshooting.html
+** https://medium.com/@zac.wood9/a-beginners-emacs-config-44400bcf54a1
+* Day 144:
+** We are trying to learn Ligature:
+** https://erickgnavar.github.io/dotfiles/emacs.html
+** [[https://sqrtminusone.xyz/configs/emacs/][Another VERY cool Emacs config blog author]]
+* Day 145:
+** We should be reading and writing about these 3 topics. The 3rd one will help with our ability to use Emacs in an exam setting
+*** [[https://www.youtube.com/watch?v=3T3ZDquDDVg][Low Level programming about "dont use printf debugging"]]
+*** [[https://vandervoord.net/blog/2015/6/2/making-function-pointers-usable-in-c][the "function pointer" subject]]
+*** [[https://www.youtube.com/watch?v=zL0FJ-jbDPU][Emacs Undo Tree]]
+** Headers are not important
+*** [[https://medium.com/@7er/c-headers-are-not-a-valuable-thing-b7e468bfd671][C headers are not a valuable thing]]
+* Day 146:
+* Day 147 C suffering:
+** free() and NULL goes together.
+** Well, not exactly, but free destroys the thing itself, BUT NOT THE NAME (I cant think of a better terminology for that)
+* Day 148:
+** Our attempt at installing both native GUI Emacs and Android X11 Emacs doesnt work
+** So we're just backup-ing files, uninstalling Termux, and reinstalling the matching Native GUI Emacs and Termux from sourceforge, becoz the userID needs to match
+** userID: in this case, its just a "parent directory". But also the security model of Android
+** We did read about proot, but decided against. Basically, thats a huge overhead and long-winded way to install both Emacs that we want (X11 and GUI native). Theres no point in doing that, becoz our eLisp files will work in both (Im sure)
+** [[https://snow-dev.com/posts/Emacs/bring_your_emacs_to_android][bring your emacs to android]]
+** [[https://kristofferbalintona.me/articles/surprisingly-emacs-on-android-is-pretty-good/][surprisingly, emacs on android is pretty good]]
+* Day 149 (please dont forget this one):
+** what is the power of piping terminal comands to Emacs lisp code
+* Day 150:
+** Attempt at installing the Chapel programming language, compiling a simple Hello World failed with.
+#+begin_quote
+
+/usr/bin/ld: cannot find -lstdc++: No such file or directory
+
+
+
+#+end_quote
+** So, behind the scenes, Chapel uses g++. So this also happens
+#+begin_quote
+
+$ clang++ stupid.cpp
+stupid.cpp:1:10: fatal error: 'iostream' file not found
+#include <iostream>
+         ^~~~~~~~~~
+1 error generated.
+
+#+end_quote
+** So, [[https://askubuntu.com/questions/1449769/clang-cannot-find-iostream][I install g++-12]]  and fixes it, becoz Ubuntu 22 ships with g++-12, which messes with clang (its looking for 12, even though your "default" is 11)
+* Day 151:
+* Day 152:
+** Already, there is a huge difference. Top level code becomes "module initialization" (so it breaks entry point? how is this significant?)
+** What is a Cyclic Distribution Module?? to access a domain map that supports the round robin distribution of indices to locales?
+** misnomer: we learnt Chapel distributes 
+* Day 153:
+** Write about how scoping in C (using curly braces), is a powerful way to debug your code without modifying it. Maybe relate it to Lisp
+* Day 154:
+* Day 155:
+* Day 156:
+** why generalizing functions is often not always good practice, and how does Rust trait handle this?
+** In the words of Hashedone in this [[https://users.rust-lang.org/t/is-there-a-simple-way-to-overload-functions/30937/2][link]], "function overloading is conceptually a misconception. Logically, if a function describes a behaviour, then there is no reason that this behaviour should be performed on two completely independent non-similar types - this is called overloading"
+** He adds "If an operation has to be performed on a set of types, then its clear, that they have something in common, so the commonness should be extracted to a trait, and generalizing a function over that trait, is the right way to go"
+* Day 157:
+** We need to read theese and the links
+*** Thinking in C is not fully transferable to modern, high-level software development because C relies on a low-level, 1970s abstraction of hardware that does not match how modern languages, runtimes, and operating systems function.
+*** Why C Skills Do Not Always Transfer
+**** The Hardware Mismatch: Modern CPUs use complex features like pipeline execution, out-of-order execution, branch prediction, multi-level caches, and virtual memory. C treats memory as a simple, flat array of bytes, hiding how modern hardware actually optimizes and executes code.
+**** Manual vs. Automated Abstractions: C forces you to manually allocate and free memory, manage pointers, and write your own data structures (like hash tables or linked lists). In languages like Python, Java, Go, or Rust, these tasks are handled by garbage collectors, built-in standard libraries, or safe ownership models (e.g., Rust's borrow checker).
+**** Domain Isolation: Knowing C does not automatically make you better at web development, UI design, cloud architecture, or data science. Writing a secure web application in PHP, TypeScript, or Python requires domain-specific patterns (like input sanitization and framework conventions) that C does not teach.
+**** Safety and Error Handling: C lacks built-in run-time type checking, exceptions, and automatic bounds checking. Habits formed in C—such as trusting raw pointers or ignoring buffer lengths—lead to severe security vulnerabilities (like buffer overflows) if carried over directly into memory-safe environments.
+*** What Does Transfer
+**** First-Principles Problem Solving: C strips away syntactic "magic", forcing you to understand what happens under the hood—such as how integers are represented in binary or how call stacks work.
+**** System-Level Context: If you move into embedded systems, operating system kernels, device drivers, or performance-critical interpreters, a C foundation remains directly applicable.
+**** Are you trying to decide whether to learn C for a specific career path, or looking to transition from C to a higher-level language? Let me know and I can give you a more tailored breakdown.
+* Day 158, huge improvement:
+** Finally understand set-transient-map 😮
+*** Was reading an Emacs stackexchange [[https://emacs.stackexchange.com/questions/10374/set-transient-map-doesnt-behave-properly-after-repetitive-call][here]], inspired by it, and now perfected:
+#+begin_src emacs-lisp
+
+      (defun /select-line ()
+      (interactive)
+          (if mark-active
+            (next-line))
+      (move-beginning-of-line 1)
+      (if (not mark-active)
+          (set-mark (point)))
+      (move-end-of-line 1)
+
+      )
+
+    (defun /kill-line ()
+      (interactive)
+      (move-beginning-of-line 1)
+      (kill-line )
+      )
+
+    (global-set-key (kbd "M-e") 'forward-word )
+    (global-set-key (kbd "M-a") 'backward-word )
+    (define-key c-mode-map (kbd "M-e") 'forward-word )
+    (define-key c-mode-map (kbd "M-a") 'backward-word )
+
+
+    (defun ardie/map ()
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "o") '(lambda () (interactive) (other-window 1)))
+        (define-key map (kbd "0") '(lambda () (interactive) (delete-window)))
+        (define-key map (kbd "k") '/kill-line )
+        (define-key map (kbd "q") 'undo )
+        (define-key map (kbd "M-e") 'forward-sentence )
+        (define-key map (kbd "M-a") 'backward-sentence )    
+        (define-key map (kbd "x") 'previous-buffer )
+        (define-key map (kbd ".") 'next-buffer )
+        (define-key map (kbd "s") '/select-line )
+        map)
+      )
+
+
+
+    (defun ardie/temp-map ()
+      (interactive)
+      (set-transient-map (ardie/map) t)
+        )
+
+    (global-set-key (kbd "M-;") 'ardie/temp-map)
+
+    (global-set-key (kbd "C-z") '(lambda () (interactive)(setq compile-command (concat "gcc -Wall -Werror -Wextra " (buffer-file-name) " -o output; ./output")) (compile compile-command)))
+
+
+  ;; ==================================================  
+
+  (defun ardie/run-after-compile (x y )
+    (shell))
+
+  (add-hook 'compilation-finish-functions #'ardie/run-after-compile)
+
+
+
+
+
+#+end_src
+* Day 159, much simpler 42 formatter, cleaner code than our original, but doesnt change file directly, outputs to ardie-scratch:
+#+begin_src emacs-lisp
+
+
+  (defun ardie/ugly-42-formatter ()
+    "pip installed a 42 formatter
+  URL `https://github.com/dawnbeen/c_formatter_42'
+  "
+    (interactive)
+
+    (let* ((full-string (concat "source /home/ardie/my-trash/delete/python_42_formatter/myenv/bin/activate; c_formatter_42 < " (buffer-file-name)))
+           (full-shell-output   (shell-command-to-string full-string)))
+      (with-current-buffer "*ardie-scratch*"
+        (insert full-shell-output)
+        )
+      )
+    )
+
+#+end_src
+* Apart from discovering C-c C-t (from PDF Docsview-mode??). We also discovered this cool [[https://github.com/JLHwung/pdfoutline][PDF outliner]]
+* Day 160:
+** Rust lesson
+** named lifetime parameter?
+** static lifetime
+* Day 161, anxiety mode:
+#+begin_quote
+
+Similar to ShijiGroup:
+# - Amadeus
+# - Mews
+# - Cloudbeds
+- SiteMinder
+- Agilysys
+- sabre (travel)
+- Infor
+
+  With local engineering presence:
+- Infrasys Malaysia
+- UbiQ Global Solutions
+- JuruData Services
+- Q3 Aurelia
+- LS Retail
+- Vendfun
+- ROOMIE
+- HotelSMART
+
+  With relevant engineering environment:
+- StoreHub
+- QubePOS
+- IP ServerOne
+- OnApp
+- PRIVASIA Technology
+- FieldEx
+- Silverlake
+- Persistent Systems
+- Hitachi eBworx
+
+  CONFIRMED OPENING of devops:
+- StarHub
+
+  Link my stats/strength, emphasizing these, despite having only 1 year experience in DevOps training only
+- AWS
+- Kubernetes & Docker
+- Jenkins
+- Terraform
+- CI/CD Pipeline
+- Python, Go and scripting
+- Grafana
+- infrastructure automation
+- SRE
+
+  Maybe try App DevOps position!!
+
+
+Other companies with MORE OR LESS CONFIRMED OPENINGS:
+# - Digile - DevOps Engineer (MLOps) careers@digile.com
+# - Provido
+# - Finology - CAN STILL APPLY TO OTHER POSITIONS
+# - Peripamo https://www.peripamo.com/careers/platform-devsecops/
+- Vilja
+
+#+end_quote
+* Day 162, we need this one if we are going to work at 42 again:
+#+begin_src emacs-lisp
+
+  (load-file "~/.config/emacs/my_42_header/42header_emacs/start.el")
+
+#+end_src
+* Day 163, anxiety mode 2:
+#+begin_quote
+
+SifuTutor – Good option if you want flexible teaching hours.
+Pandai – Worth considering if you prefer teaching online from home.
+MyTutor – Good if you want to build experience teaching different age groups.
+
+Home Tuition Care – Damansara Utama.
+Best Teacher Home Tuition – Petaling Jaya.
+Pusat Tuisyen Teliti – Damansara Jaya.
+Pusat Tuisyen Malaya – Petaling Jaya Selatan.
+
+#+end_quote
+** Downloadable teahing notes
+*** [[https://notes.papacambridge.com/notes/caie/cambridge-advancedcambridge-international-as-and-a-level-subjects-mathematics-9709?utm_source=chatgpt.com][papacambridge]]
+*** [[https://stemlinepk.com/learn/alevel/maths.html?utm_source=chatgpt.com][stemline]]
+*** [[https://www.studymargin.com/subjects/maths?utm_source=chatgpt.com][studymargin]]
+*** [[https://www.acceleratemyedu.com/resources/a-level/maths/?utm_source=chatgpt.com][acceleratemyedu]]
+** Powerpoint lessons
+*** [[https://www.tes.com/teaching-resource/functions-cambridge-9709-slides-13413191?utm_source=chatgpt.com][Functions]]
+*** [[https://www.tes.com/teaching-resource/functions-cambridge-9709-slides-13413191?utm_source=chatgpt.com][teaching resource]]
+* Day 164:
+** How Emacs helped my autism (and I really mean this, not in the way of sarcasm that some non-Emacsers joke about it). But now Im at an extremely dangerous crossroads. And I dont know what to do. 
+** Additional its not an even joke that I can do LITERALLY ANYTHING in Emacs these days. But Im convinced Im the only one in my whole coutry that can do all this in Emacs, and no one else.
+** But if we are be too scientific, then someone else can also benefit from Emacs as much as I do.
+* Day 165 (Jayden):
+** Sometimes permission problems are solved with this:
+#+begin_src shell
+
+  git remote set-url origin https://github.com/ardieMejia/i_dont_like_push_swap.git
+
+#+end_src
+** Ask again
+#+begin_quote
+
+it push origin main remote Permission to he requested URL returned error: 403 even though i accpeted invitation
+
+#+end_quote
+* Day 166, on the spectrum in emacs heaven:
+#+begin_quote
+
+GNU Emacs might be beneficial for neurodivergent users—including those on the autism spectrum—because its text-centric, keyboard-driven environment eliminates visual clutter and unpredictable interface changes.
+Modern software often relies on flashing notifications, nested menus, animations, and constant mouse-to-keyboard switching, which can trigger sensory overload or disrupt deep focus. By consolidating tasks into a uniform, customizable workspace, Emacs directly supports several cognitive and sensory needs common in autism:
+
+Why Emacs Works Well for Sensory and Cognitive Regulation
+
+• Reduced Visual Clutter. Disabling toolbars, scrollbars, and menus i just a start. There are endless ways to create a distraction-free UI
+• Unified Workflow (Monotropism). Many autistic minds thrive on deep, single-channel focus (monotropism). Because GNU Emacs handles writing, coding, task management (Org-mode), email, and file navigation in one place, you avoid the jarring context-switching of jumping between different apps.
+• Predictability and Control. Having direct control over sensory environments reduces anxiety and improves sustained attention. In Emacs, nothing moves or updates unless you explicitly trigger it, and you control every visual and behavioral detail in plain text.
+• Tactile Consistency.
+• Structured Organization. Tools like Org-mode allow you to break complex projects into clean, collapsible hierarchies, supporting executive functioning without overwhelming your screen with raw text.
+
+
+#+end_quote
+* Day 167:
+** We finally managed to properly implement our own find-file
+#+begin_src emacs-lisp
+
+  (defun ardie/find-file ()
+  (interactive)
+  (if (file-exists-p (substring-no-properties (current-kill 0 )))
+      (with-temp-buffer
+        (insert (substring-no-properties (current-kill 0 )))
+        (find-file-at-point)
+        )
+    (find-file-at-point)))
+
+#+end_src
+* Day 168:
+** Inspired by this [[http://www.zvon.org/other/elisp/Output/SEC206.html][zvon blog]], we learnt a little about Emacs advice, for some "silly" feature in previous-line
+#+begin_src emacs-lisp
+
+
+
+  (advice-add 'previous-line :around 'ardie/previous-line)
+
+  (defun ardie/previous-line (func &rest _)
+    (move-beginning-of-line 1)
+    (if (bobp)
+        (newline)
+      nil)
+    (apply func '(1)))
+
+  ;; to remove
+  (advice-remove 'previous-line 'ardie/previous-line)
+#+end_src
+** I discovered a better looking "whiteboard" app than Miro called [[https://whimsical.com/][Whimsical]]. Fark you MIRO and your headache inducing UI.
+** Options for a diagram integration with Emacs (D2):
+*** Excalidraw: Matches D2's --sketch hand-drawn aesthetic, supports .excalidraw local JSON files you can version-control alongside .d2 files in Emacs, and accepts D2-exported SVGs or converted .excalidraw wrappers.
+*** tldraw: Provides a fast, local-first .tldr JSON file format, clean SVG/PNG drag-and-drop for compiled D2 output, and an MCP/agent SDK that pairs well with terminal and Emacs-based coding workflows.
+*** draws.io: Offers a desktop app and plain XML .drawio files that sit cleanly in Git repos alongside Emacs projects, making it easy to embed D2-generated SVGs into larger system canvases.
+** Best Workflows:
+*** Emacs Compilation + SVG Import: Use d2-mode (C-c C-c) or Org-Babel (ob-d2) in Emacs to compile .d2 blocks into .svg files. Drag or paste those SVGs directly onto an Excalidraw or tldraw board when you want to annotate them freehand with a team
+*** Sketch-Style Visual Parity: Run D2 with --sketch (which uses RoughJS, the same underlying library as Excalidraw) so your code-generated diagrams blend seamlessly into an Excalidraw board
+*** D2-to-Excalidraw Conversion: Use browser utilities like MermaidExport's D2 to Excalidraw converter or community scripts (minixcali-d2r) to wrap .d2 diagrams into .excalidraw files for instant canvas markup.
+*** In-Emacs Alternative: If you want to stay completely inside Emacs without a browser, users on Reddit recommend el-easydraw (edraw) for SVG-based freehand and shape drawing directly inside Org-mode buffers.
+** We are afraid of installing D2, especially since we are not using it seriously, but we discovered how to make compile and previewing smoother
+#+begin_src emacs-lisp
+
+  (defun ardie/compile-d2()
+    (interactive)
+    (save-buffer)
+    (d2-compile-file (buffer-file-name))
+    (other-window 1)
+    (revert-buffer))
+
+  (use-package d2-mode
+
+    :mode "\\.d2$"
+
+    :bind
+    (:map d2-mode-map
+          ("C-c C-c" . nil)
+          ("C-c C-c" . ardie/compile-d2)
+          ))
+
+#+end_src
+* Day 169:
+** We found a way, Rust doc offline, but we need a faster browser, Opera is still slow
+#+begin_src shell
+
+  /usr/bin/opera --allow-file-access-from-files "$(rustup doc --path)"
+
+#+end_src
+** Eglot is exposed, we need to simplify it: [[https://tony-zorman.com/posts/eglot-hover.html][tony zorman eglot hover]]
+

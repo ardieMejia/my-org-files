@@ -70,4 +70,8 @@ git push origin main
 ** managing removing directory from remote, afer editing .gitignore (already staged before) [[https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore][link]]
 ** We are trying to make codeberg, Stupid piece of command, I hate Git now
 ** [[https://gist.github.com/JonasGroeger/4393203cc846da558fec1531cdd822db][storing your credentials in libsecret]]
-
+* Pushing to Codeberg and Github
+** https://schalkneethling.com/posts/pushing-to-github-and-codeberg-simultaneously-with-git/
+* Git rebase mystery (pick and squash magic)
+** https://stackoverflow.com/questions/79678421/can-squash-commits-be-done-in-both-directions-of-the-timestamp
+** At first, we thought Git only squashes only in 1 direction. But it turns out Git acutally looks into commit ID, so you can reorder, and Git will do the correct direction. (Direction as in, it can squash into an older commit instead of new one, if you choose)
