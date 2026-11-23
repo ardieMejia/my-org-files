@@ -1,11 +1,11 @@
 * Now that we understand the nastiness of OOP, we can finally read [[https://doc.qt.io/archives/qt-5.15/designer-using-a-ui-file.html][this]]. We REALLY need to transition smoothly from QT designer to Emacs workflow
-* \*Pointers are a nightmare:
-** C++ function argument definitions, either the asterisk * and the ampersand &
-*** Pointeres:
+* We understand pointers now, thanks to C, at 42KL, whatever, its still a horrible place:
+** Just an example:
+*** Pointers:
 #+begin_src c++
 
   void modifyValueByPointer(int* ptr) {
-    ,*ptr = 100; // Modifies the value at the address pointed to by ptr
+    *ptr = 100; // Modifies the value at the address pointed to by ptr
   }
 
   int main() {
@@ -16,31 +16,16 @@
   }
 
 #+end_src
-*** References:
-#+begin_src c++
 
-  void modifyValueByReference(int& ref) {
-    ref = 200; // Modifies the original variable referred to by ref
-}
-
-int main() {
-    int y = 20;
-    modifyValueByReference(y); // Pass y by reference
-    // y is now 200
-    return 0;
-}
-
-#+end_src
-*** Both are same-y
 *** Pointer (*) is about control. It allows null. A common practice is this
 #+begin_src c++
   time_t time (time_t *result);
 #+end_src
-*** the *result hints the user that passing null is allowed, if not current time is used.
+*** the \*result hints the user that passing null is allowed, if not current time is used.
 *** In normal practice (outside function):
 #+begin_src c++
 
-  ,*var1 = 100;
+  *var1 = 100;
   // means dereferencing (get deep value)
   &var1 = 100;
   // means getting address
@@ -49,18 +34,9 @@ int main() {
 
   
 #+end_src
-*** And then
-#+begin_src c++
-
-  some_function(&regular_variable);
-  // means passing the pointer by reference, regardless of source
-
-#+end_src
-*** "regardless of source", becoz the pointer doesnt care. It can be a local variable on the stack, or a register mapped into RAM
-*** Yes, thats right. It can be a RAM!!
-*** [[https://hackaday.com/2018/04/04/the-basics-and-pitfalls-of-pointers-in-c/][hackadays pointer in C]]
+*** Pointers can be anything,  RAM, stack, registers!!
+**** [[https://hackaday.com/2018/04/04/the-basics-and-pitfalls-of-pointers-in-c/][hackadays pointer in C]]
 *** This is inline with the Strange Loop Conference presentation --> A programming system has 2 parts. The programming 'environment' is the part thats installed on the computer. The programming 'language' is the part that's installed in the programmer's head 
-*** Extreme childish example: if each variable represented each motor, then its extreme control of motor on the language level.
 ** But the REAL problem:
 *** I've determined over the years that the main problem with pointers isn't the concept, it's the syntax. The * position being optional is one barrier to clarity, the second is the declaration which is opposite of a pointer's usage (you don't use the * if you are re-assigning the address of the pointer ptr_to_x = &y;). Then there's pointer arithmetic which overloads the + and -. Sadly it's way too late to clean it all up now, but in my opinion most people are bewildered because the syntax just isn't predictable. -- "Russell Beattie from Void Pointer in C demystified"
 * Basics:
@@ -100,6 +76,8 @@ int main() {
   };
 
 #+end_src
+* X Macros are super cool
+** https://danilafe.com/blog/chapel_x_macros/
 * Errors learnt
 ** Compiler error, getting a sense of what is, /initializing a base class constructor/, so I understand this error
 #+begin_quote
@@ -311,3 +289,7 @@ std::getline(std::cin >> std::ws, s);
 ** SDL (Simple DirectMedia Layer): A more robust library often used for full game development rather than just simple graphics demos. SDL2 handles audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 ** good old docs of OBSOLETE GLUT
 *** https://gamedev.stackexchange.com/questions/23644/is-glut-obsolete
+* we need to read all this links on C++ I guess:
+** https://www.syncfusion.com/succinctly-free-ebooks/cplusplus/pointers-references-and-const-correctness
+** https://www.embeddedrelated.com/showarticle/1651.php
+** Also, on MOC objects, whats all that about

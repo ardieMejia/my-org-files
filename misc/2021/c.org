@@ -22,7 +22,7 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 #+end_quote
 ** 
-* Pointers are almost like a completely C invention, an important disticiton made between address and value inside address is a C inventino
+* Pointers are almost like a completely C invention (??)
 ** a constant pointer VS a pointer to a constant
 #+begin_src c++
 
@@ -49,7 +49,7 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
   // we learnt the BEST way to read declarations. And yet, it doesnt work in this example, we KNOW now
   int* const imOutside = &aNumber2;
 
-  ,*imOutside = 2000;
+  *imOutside = 2000;
   // ----- this will fail
   // imOutside = &aNumber1;
 
@@ -124,6 +124,8 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 #+end_src
 * WRITE about how &someVar++ doesnt work becoz & is a function, and it accepts an lvalue. WE SHOULD ALSO TEST IT
+* Stupid basics:
+** Learning by creating your own [[https://danluu.com/malloc-tutorial/][malloc]]
 * MORE LINKS, this ones Raylib lib help: https://raylibhelp.wuaze.com/_info/raylib-struct.htm?i=2
 * Build system, compilation and more:
 ** this link makes much more sense:x
@@ -167,3 +169,254 @@ gcc -o test.exe blocksIntro.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 
 #+end_src
+* We need to rewrite these properly
+#+begin_quote
+
+Can you guess what are these? (illegal):
+- foo() ()
+- foo() []
+- foo[] ()
+
+
+Can you guess what are these (legal):
+- int (* fun())()
+- int (* fun()) []
+- int (*foo[])()
+- int foo[][]
+
+  also read this link: https://stackoverflow.com/questions/20617067/returning-function-pointer-type
+
+  https://www.tutorialspoint.com/cprogramming/c_return_pointer_from_functions.htm
+
+#+end_quote
+* C: The world most over-rated programming language
+** [[https://erikscode.space/index.php/2020/04/14/why-you-shouldnt-learn-c/][why you shouldnt learn C]]
+** [[https://faultlore.com/blah/c-isnt-a-language/][Faultlore]]: C isnt a programming language anymore, its a protocol (pretty cool, moderately in-depth  article)
+** [[https://queue.acm.org/doi/10.1145/3212477.3212479][C Is Not a Low-level Language]]:
+*** An article to absolutely DESTROY a C programmers perception that C is a "fast" language. 
+*** It's not even a "low level" language. If "low level" is to mean how the programmer can understand how the languages abstraction maps to the underlying physical machine. (Clue: this hasn't been true for DECADES, only true for PDP11, where the physical memory layout was flat aka simple)
+*** Compiler writers have to do massive Herculean work,  to maintain the C programmers belief and illusion that it is "low level".
+*** The article attempts to point out, how the Meltdown and Spectre vulnerabilities can be attributed to decades long attempt at maintaining the C model/abstraction (albeit, some of the details are a bit beyond me)
+** Stupid C
+*** Reading about programmers who defend the C programming language against criticism.
+*** Im beginning to realize a pattern.
+*** No other group of programmers defend C like C.
+*** You get the sense that their defense comes from a really close minded place.
+*** Dinosaur is not an accurate term for them.
+*** Becoz Emacs users are also dinosaurs, and they are infinitely more open-minded.
+*** Becoz being really good at C requires an almost doctorate like level of skill, they end up being REALLY defensive.
+*** And add to that, its not even good "low-level"
+*** I dont see the same defensive behaviour when Rust gets a lot of attacks over anything.
+*** That alone is not the problem is it?
+*** Becoz low-level programming language is still a form of abstraction, and the abstraction can serve a purpose.
+*** Low-level means not hiding the irrelevant.
+*** And many of these close minded folks fail to grasp the "irrelevant" part.
+*** "C's model" is  not even a good mental mapping of the memory layout of a modern computer, according to 1 article (author has experience in C, Rust and Swift)
+*** Im gonna die on this hill but.
+*** The sheer complexity of modern compilers means C is just "cosplaying" as a representation of a computers memory layout.
+*** "C is a low-level language" my /*ss.
+*** As said in that amazing article, C is just a protocol.
+*** Im very inspired to sit down and learn Rust now.
+** https://stackoverflow.com/questions/3437110/why-do-c-and-c-support-memberwise-assignment-of-arrays-within-structs-but-not
+*** Is C ugly? Is it hacky-ugly? is it cute-ugly? Or is it endearing-ugly? Or just ugly?
+*** Some of us already know that nasty C treats arrays, that is the char [] thing, "special" or different from char pointer (char /*) 
+*** There is no special reason, apart from an "evolutionary hack"
+*** Of course, most languages "evolve".
+*** So C's special treatment of arrays (many listed below) are a hack for transitioning code from B to C, a kind of compatible hack, so that some parts in old hardware using B still could work. But also a clever hack, so arrays could be put inside a struct. Here are some interesting points in the article
+*** how arrays evolved fom B
+*** how "arrays convert to pointer if you look at them" (Eg: when you pass it to a function) (C is still ugly)
+*** how the notation [] and * had very little difference in B. You could "rebase" the array. (Something insane like:-  auto V[10]; V=V+5;)
+*** But C came along, and in order for B style arrays to be allowed to be put inside a struct to become a C style array. Arrays had to be a special case.
+*** This hack allowed member-wise assignments when arrays are in structs like this (but not in pure arrays assignment):
+#+begin_src c
+
+  struct myStruct { int num[3]; };
+  struct myStruct struct1 = {{1,2,3}};
+  struct myStruct struct2;
+  struct2 = struct1;
+  
+#+end_src
+*** This will not work:
+#+begin_src c
+
+  char src[3] = {1, 2, 3};
+  char dest[3];
+
+  dest = src;
+
+#+end_src
+*** C keeps track of arrays in stack (not a pointer in the memory itself).
+*** More C weirdness (not mentioned in article). 
+*** the name "struct" itself is kinda misleading. "struct" implies some kind of "case".
+*** Its a way of telling C, "treat these group of variables as a contiguous block of memory"
+*** Back to this special treatment of arrays, it is pervasive, that one can see it even when nested in structs. Example: the code below (with 2 double pointers) will work, while declaring an array in struct must fit the  "Flexible Array Member must be last member of struct" rule (only 1 flexible array member at the end).
+#+begin_src c
+
+  typedef struct Blob {/* ... */}Blob;
+
+  typedef struct Stack
+  {
+          struct Blob **stackA;
+          struct Blob **stackB;
+  }Stack;
+
+#+end_src
+*** This will not work:
+#+begin_src c
+
+  typedef struct MyStack
+{
+	struct Blob stackA[];
+	struct Blob stackB[];
+} MyStack;
+
+
+#+end_src
+*** But when having the array at its last, malloc will look like this:
+#+begin_src c
+
+  	MyStack *stackA = malloc(sizeof(MyStack) + (sizeof(Blob)) * 10);
+
+#+end_src
+*** A useful way to think of it (Eg: when having to deal with mallocing the last example). Is that the last Flexible Array Member is simply an "offset" from the struct.  
+** [[https://www.youtube.com/watch?v=5jLLU9hppCI][NULL terminated strings will haunt humanity forever]]
+** [[https://nedbatchelder.com/blog/202401/you_probably_dont_need_to_learn_c][You probably dont need to learn C]]
+** [[https://techcrunch.com/2017/07/16/death-to-c/][death to c]]
+* Cool things to try in C
+** [[https://medium.com/@namantam1/a-simple-program-to-detect-memory-leaks-in-our-c-program-13b44a243e29][a simple program to detect memory leaks]]
+** getopt.h is a useful library, instead of us manually cutting the arguments into pieces. The interesting [[https://github.com/multikernel/kmorph][kmorph]] project uses it.
+** 
+* Practical and done:
+** When in stupid 42KL, we are stuck with the old way of doing things: so we remember:
+*** in c, when you pass a pointer normally (single asterisk), you are respecting the concept "as a name AND a pointer". Hence, you can only modify the value of the address it points
+*** when you pass a double pointer (double asterks), you are respecting "pointer in name only". Hence you can change what it points to.
+** Tips on avoiding one-off errors
+*** stick to zero-based indexing (i = 0) (inclusive start, whatever)
+*** use strict less-than operators (i < N) instead of less-than-or-equal (exclusive end, whatever)
+*** rely on high-level iterators (forEach or map)
+** C composable functions:
+*** So the reason why we go through so many hoops, just to have a composable functions, is becoz C cant return an entire array like a string (char * is literally a pointer to the first char)
+*** Its "safe" to always think in terms of a function "creating a string" (So ft_strjoin is a hack that mallocs a new string, rather than actually concatenating)
+*** So, we were wrong initially. We assumed that its a specific LIBFT thing.
+* Philosophy on memory allocation. :
+** [[https://www.dgtlgrove.com/p/untangling-lifetimes-the-arena-allocator][a very long philosophical rant on memory allocators, but also some interesting questions]]
+*** When does usage code actually need a MyObject?
+*** How many of them does it need?
+*** Is a MyObject only required given the presence of another object?
+**** Structure Approach (recommended)
+#+begin_src c
+
+  #include <stdio.h>
+  #include <stdlib.h>
+
+  // 1. Define the tied relationship in a struct
+  typedef struct {
+      int parent_data;       // The primary variable
+      double *child_data;    // The dependent variable (allocated conditionally)
+  } DependentPair;
+
+  // 2. Custom allocator function
+  DependentPair* create_pair(int parent_value, int allocate_child) {
+      // Allocate the main structure
+      DependentPair *pair = malloc(sizeof(DependentPair));
+      if (!pair) return NULL;
+
+      pair->parent_data = parent_value;
+
+      // Allocate child ONLY if the parent conditions/requests are met
+      if (allocate_child) {
+          pair->child_data = malloc(sizeof(double));
+          if (!pair->child_data) {
+              free(pair); // Clean up parent if child allocation fails
+              return NULL;
+          }
+          *pair->child_data = 3.1415;
+      } else {
+          pair->child_data = NULL; // No allocation if condition is false
+      }
+
+      return pair;
+  }
+
+  // 3. Custom deallocator function (ensures both die together)
+  void free_pair(DependentPair *pair) {
+      if (pair) {
+          if (pair->child_data) {
+              free(pair->child_data); // Free child first
+          }
+          free(pair); // Free parent
+      }
+  }
+
+  int main() {
+      // Creates parent and allocates child
+      DependentPair *my_pair = create_pair(42, 1); 
+    
+      if (my_pair && my_pair->child_data) {
+          printf("Parent: %d, Child: %f\n", my_pair->parent_data, *my_pair->child_data);
+      }
+
+      free_pair(my_pair);
+      return 0;
+  }
+
+#+end_src
+**** Reference counting approach
+#+begin_src c
+
+  #include <stdio.h>
+  #include <stdlib.h>
+
+  // Global or static tracker for existing parents
+  static int active_parents_count = 0;
+
+  void register_parent() {
+      active_parents_count++;
+  }
+
+  void unregister_parent() {
+      if (active_parents_count > 0) {
+          active_parents_count--;
+      }
+  }
+
+  // Allocator that checks if a parent exists
+  void* allocate_dependent_variable(size_t size) {
+      // Guard clause: Refuse allocation if no parent exists
+      if (active_parents_count == 0) {
+          printf("Allocation Denied: No parent variable exists.\n");
+          return NULL;
+      }
+      return malloc(size);
+  }
+
+  int main() {
+      // Try allocating before parent exists
+      int *child1 = allocate_dependent_variable(sizeof(int)); // Fails
+
+      // Simulate "creating" a parent variable
+      register_parent(); 
+
+      // Try allocating again now that parent exists
+      int *child2 = allocate_dependent_variable(sizeof(int)); // Succeeds
+      if (child2) {
+          *child2 = 100;
+          printf("Allocation Successful: Value is %d\n", *child2);
+          free(child2);
+      }
+
+      // Simulate parent being destroyed
+      unregister_parent();
+
+      return 0;
+  }
+
+
+#+end_src
+*** How easily can you predict how many are needed?
+*** If multiple, are they freed all at once, or one at a time? In what order?
+*** How important is it that a MyObject is released at all?
+*** Is it important to be able to keep track of all MyObject allocations independently from other allocations?
+* Lets read about "transitive includes" in C
+* Dont pollute C namespace (cool idea)
+** https://gamesfromwithin.com/stupid-c-tricks-2-better-enums/

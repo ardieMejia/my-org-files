@@ -248,9 +248,51 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://joaotavora.github.io/yasnippet/snippet-reference.html
 ** I finally know how setup config (dirs etc) properly
 *** https://joaotavora.github.io/yasnippet/snippet-organization.html
-* Autocompletion backends:
-** It works:
+* Autocompletion, autocompletion backends, minimal LSPs:
 ** we finally managed to make LSP work, use the simple config in this link: [[https://www.reddit.com/r/emacs/comments/ejc1az/lspmode_select_python_interpreter_virtual/][reddit link on minimal Emacs lsp setup]]
+** Holy SH*T again!! (I feel like a badass after making this)
+#+begin_src emacs-lisp
+
+  ;; inspired by https://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
+
+
+  ;; an idea is to use define-derived-mode to create a mode for safely writing in an overpowered mode
+
+  (defun ardie/test()
+    (interactive)
+    ;; (print (substring-no-properties (ispell-get-word nil)))
+    (if mark-active
+        (let ((after (substring-no-properties (buffer-substring (region-beginning)(region-end)))))
+          (exchange-point-and-mark)
+          (pop-mark)
+          (backward-char)
+          ;; (ispell-get-word nil)
+          ;; (print (word-at-point))
+          (let ((before (substring-no-properties (word-at-point))))
+            (define-abbrev xx-abbrev-table before after)
+            ))
+      (let ((after (substring-no-properties (word-at-point))))
+        (backward-word)
+        (backward-char)
+        ;; (ispell-get-word nil)
+        ;; (print (word-at-point))
+        (let ((before (substring-no-properties (word-at-point))))
+          (define-abbrev xx-abbrev-table before after)
+          ))
+      )
+    )
+
+
+  (setq xx-abbrev-table (make-abbrev-table ))
+
+  (setq local-abbrev-table xx-abbrev-table)
+
+#+end_src
+** [[https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/][this one is for C]]
+** cm
+** We need to repost this somewherer else, its about making eglot faster, coz eglot is also stupid:
+**  [[https://www.jamescherti.com/emacs-eglot-performance/][Emacs eglot performance]]
+*** this ones kinda important
 * Org Mode, Org Mode looks
 ** org templates:
 *** Finally once you start inserting your first code block (template, whatever). We can read this
@@ -336,6 +378,8 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 (global-set-key (kbd "C-S-z") 'ardie-temp)
 
 #+end_src
+** We need to advice our hydra/ our self-insert so that the variable ardie/right-char-count gets unset again
+*** https://www.reddit.com/r/emacs/comments/rlli0u/whats_your_favorite_defadvice/
 ** Weird ones:
 *** https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
 **** advising Lisp functions
@@ -462,6 +506,18 @@ ARGS = -q --load C:\path\to\our_custom_init.el
 *** https://stackoverflow.com/questions/270930/using-emacs-to-recursively-find-and-replace-in-text-files-not-already-open
 **** Need as input: --> filename pattern & regex text
 * grep, find-file, and others like it
+** We made another one!! Open a file at random
+#+begin_src emacs-lisp
+
+
+
+  (let ((ardie/files-i-want (directory-files-recursively "/home/ardie/Documents/my_notes/my-org-files/" "\\.org\\'")))
+  (nth
+   (mod (random (current-time-string) ) (length ardie/files-i-want))
+       ardie/files-i-want)
+  )
+
+#+end_src
 ** My new grep now has highlight!!
 #+begin_src lisp
 
@@ -745,6 +801,39 @@ quarto render testing.md --to pptx
 * Hacks:
 **  [[https://stackoverflow.com/questions/6238331/emacs-shell-scripts-how-to-put-initial-options-into-the-script][a bash script hack]]
 * TODO Things to do:
+** https://gcore.com/learning/how-to-install-mate-on-ubuntu
+** For writing more efficiently in org-mode
+#+begin_src emacs-lisp
+
+
+    (defhydra my-test-hydra 
+      (:color purple)
+      "my super test"
+      ("/"
+       (progn
+         (org-end-of-line)
+         (org-meta-return)
+         )
+       :exit t))
+
+    (define-minor-mode my-test-mode
+      "A minor mode so that my key settings override annoying major modes."
+      :init-value nil
+      :global nil
+      :lighter " my-test"
+      :keymap (let ((map (make-sparse-keymap)))
+                (define-key map
+                            (kbd "//")
+                  'my-test-hydra/body) map))
+
+  (add-hook 'ardie/special-org-hook #'my-test-mode)
+
+#+end_src
+** SHOULD WE DO THIS?: we need a multi cursors for word select
+** we should also try [[https://orgmode.org/manual/Speed-Keys.html][speed keys]]
+** We should really try [[https://github.com/winterTTr/ace-jump-mode][ace jump mode]], Reddit post mentions the guy uses arrow keys as a "smell" that there's a better way to navigate
+** The badass Protesilaos teaching about nested key maps
+*** [[https://protesilaos.com/codelog/2024-01-29-emacs-prefix-map/][defining new prefix map]]
 ** Modeline stuff
 *** [[https://emacs.stackexchange.com/questions/35906/how-can-i-automatically-close-buffers-when-the-underlying-file-is-deleted][auto close buffer, when file is deleted]]
 *** [[https://www.reddit.com/r/emacs/comments/rwok4s/how_to_change_the_color_of_modelinemodified/][add new face, custom mode-line-format variable, and use propertize]]
@@ -776,3 +865,190 @@ quarto render testing.md --to pptx
 ** Abbrev mode is actually really cool:
 *** https://www.rahuljuliato.com/posts/abbrev-mode
 * An amazing on Emacs windows, buffers, frame management from the [[https://karthinks.com/software/emacs-window-management-almanac/][karthinks]] website
+* Ways to make a battery reminder:
+#+begin_src shell
+
+
+  var1=`upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/perc/{print $2}'`; if [ ${var1%?} -gt 100 ]; then echo "haha"; fi
+
+  zenity --info --text="Process complete!"
+
+#+end_src
+* Do we need this? Its Emacs hiding text being made professional
+#+begin_src emacs-lisp
+
+  (defun ardie/tell-face ()
+  (interactive)
+  (if
+      (equal (face-at-point) nil)
+      (setq ardie/current-face 'default)
+    (setq ardie/current-face (face-at-point)) 
+    )
+  (setq our-foreground
+	(face-attribute ardie/current-face :foreground))
+  (print our-foreground)
+  (setq our-background
+	(face-attribute 'default :background))  
+  (print our-background)
+  )
+
+(face-attribute 'font-lock-comment-face :background)
+
+
+
+(setq default-background (face-attribute 'default :background)
+      default-foreground (face-attribute 'font-lock-comment-face :foreground))
+
+(defun disappear ()
+  (interactive)
+  (set-face-attribute ardie/current-face nil
+              :foreground our-background))
+
+(defun reappear ()
+  (interactive)
+  (set-face-attribute ardie/current-face nil
+              :foreground our-foreground))
+
+#+end_src
+* we need to read stuff: Emacs autodocumentation on point
+** https://github.com/dawsers/emacs-qthelp
+** https://fanpengkong.com/post/emacs-ccpp/emacs-ccpp/
+** https://lahtela.me/2020/05/21/setting-up-emacs-for-qt-development.html
+* We need to use an Ubuntu clipboardmanager with Emacs built in function (rather than Emacs kill ring), and post a video on that
+** No GUI manager:
+#+begin_quote
+
+sudo apt update
+sudo apt install xclip xsel
+
+#+end_quote
+** and use this:
+#+begin_src emacs-lisp
+
+  (require 'clip-mode)
+  (setq clip-mode-functions '(clip-insert-selection-at-point)) ; Use for inserting text into Emacs
+  (setq clip-selection-at-point-functions '(clip-get-selections)) ; Use for selecting text from Emacs
+
+  ;; Optional: Bind keys for copy and paste (adjust as needed)
+  (global-set-key (kbd "C-c y") 'clip-yank) ; Copy and yank the selection
+  (global-set-key (kbd "C-c p") 'clip-paste) ; Paste the selection
+
+#+end_src
+** Use a clipboard manager, which works with Emacs built in copy/paste, or create a more advanced function to show history or even paste specific items
+#+begin_quote
+
+
+sudo apt install copyq. 
+sudo apt install gpaste. 
+
+
+#+end_quote
+* We need to make this tool [[https://news.ycombinator.com/item?id=22129636][array-ify]]
+* We need a really cool markdown live preview that works, with eww
+#+begin_src emacs-lisp
+
+
+
+    (setq browse-url-browser-function 'eww-browse-url)
+
+
+
+  ;;     (defun ardie1 ()
+  ;;     (interactive)
+  ;;     (shell-command-on-region (point-min) 
+  ;;                              (point-max) 
+  ;;                              "markdown"
+  ;;                              "testest")
+  ;; (with-current-buffer "testest"
+  ;;       (html-mode))
+  ;; (with-current-buffer "testest"
+  ;;       (impatient-mode))
+  ;;     )
+
+
+  ;; (defun ardie1 ()
+  ;; (i
+   nteractive)
+  (let ((ardie/current-buffer (buffer-name)))
+    (shell-command-on-region (point-min) 
+                             (point-max) 
+                             "markdown"
+                             "testest")
+    (switch-to-buffer ardie/current-buffer)
+    )
+  (with-current-buffer "testest"
+    (html-mode))
+  (with-current-buffer "testest"
+    (impatient-mode))
+
+
+  )
+
+#+end_src
+* We need to makea video about how we manage config safely, when we have multiple Emacs (Eg: 2 versions, and 1 on Windows), minimally without any additional installation, useful if our main config file is quite large
+** The error usually looks like C:\Users\<your_username>\AppData\Roaming\elpa not found
+* we need to watch more Git videos, like [[https://www.youtube.com/watch?app=desktop&v=NXaEImbo-n8&t=920s][this]], and systemcrafters vid on git reflog. Also, we faster diff checks inside Emacs. Make it EPIC!!
+* Also for our rust-ts-mode:
+#+begin_src lisp
+
+
+    ;; ===== we no longer need rust-mode becoz we dont need rust-run
+    ;; ===== we digged inside rust-run and discovered (compile) function used
+    ;; ===== in most Emacs major programming modes
+
+  ;; WRITE THESE SOME WHERE
+  ;; ===== we unbound a key after a mistake
+  ;; (fmakunbound 'my-rust-endline)
+  ;; (unbind-key (kbd "RET") rust-ts-mode-map)
+
+  (defun my-rust-endline ()
+    (interactive)
+    (insert ";")
+    (newline)
+    )
+
+  (add-hook 'rust-mode-hook 'my-rust-endline)
+  (add-hook 'rust-ts-mode-hook 'my-rust-endline)
+
+
+  (define-key rust-ts-mode-map (kbd "C-<return>") 'my-rust-endline)
+
+
+#+end_src
+* there are several ways to exit hydras in fact, some more stable than others (becoz of nested hydras
+** [[https://emacs.stackexchange.com/questions/36597/returning-to-the-parent-hydra][link]]
+** [[https://emacspeak.blogspot.com/2020/09/emacs-paired-commands-efficient.html][repeatable hydra yank]]
+* Company mode readings:
+** [[https://www.reddit.com/r/emacs/comments/q8u2l4/unsetting_return_in_company_mode/][finally disabled company mode completion with better keybindings company-active-map]]
+** [[https://github.com/company-mode/company-mode/issues/640][variuos ideas of use-package for company-mode]]
+** [[https://company-mode.github.io/manual/Getting-Started.html#Usage-Basics][good verbose doc]]
+** Instead of learning Python specific, you should just read about company-mode [[https://github.com/joaotavora/eglot/discussions/1436][link]]
+#+begin_src lisp
+
+(use-package company
+  :config (setq company-idle-delay 0
+		company-minimum-prefix-length 1
+		company-tooltip-align-annotations t))
+(add-hook 'after-init-hook 'global-company-mode)
+  
+#+end_src
+* we should really learn all the paredit tricks
+* We need to learn setting up opening module in Emacs rust. 
+* [[https://www.deusinmachina.net/p/tree-sitter-revolutionizing-parsing][parsing tree-sitter link]]
+* [[https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter][another one on tree-sitter]]
+* [[https://jackjamison.xyz/blog/emacs-garbage-collection/][garbage collection, basically to reduce stuttering]]
+* [[https://kitchingroup.cheme.cmu.edu/blog/2016/11/10/Persistent-highlighting-in-Emacs/][The Kitchin Research Group]]
+* [[https://github.com/rougier/svg-tag-mode][really cool, possible improvement to our html editing]]
+* [[https://github.com/io12/good-scroll.el][supersmooth scrolling]]
+* [[https://github.com/minad/org-modern][org-modern look]]
+* [[https://karthinks.com/software/fringe-matters-finding-the-right-difference/][another cool blog]]
+* Emacs timers:
+** [[https://charlbotha.com/til/Show-Emacs-org-timer-countdown-in-macOS-menubar][Emacs org timer in Mac OS X, which also inspired Stefan van der Walt]]
+*** easy to learn from, so I wrote my own
+** [[https://mentat.za.net/blog/2025/01/08/pomodoros-with-org-timer/][Stefan van der Walt wrote one that worked for Waybar]]
+*** one shows an org-timer-start-hook that literally starts a timer display in Waybar (the highly customizable status bar for Wayland environment)
+** [[https://protesilaos.com/codelog/2026-01-19-emacs-timers-tmr-demo/][Prot has a package of his own called TMR]]
+** 
+* Emacs Advanced Stuff:
+** https://www.gnu.org/software/emacs/manual/html_node/elisp/Sentinels.html
+** https://www.gnu.org/software/emacs/manual/html_node/elisp/Accepting-Output.html
