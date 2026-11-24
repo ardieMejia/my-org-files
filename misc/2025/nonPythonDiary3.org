@@ -469,4 +469,12 @@ Why Emacs Works Well for Sensory and Cognitive Regulation
 
 #+end_src
 ** Eglot is exposed, we need to simplify it: [[https://tony-zorman.com/posts/eglot-hover.html][tony zorman eglot hover]]
+* Day 170:
+** We need to really try this one: [[https://github.com/bitspook/spookfox][Spookfox for Emacs and Firefox]]. We picked it up from Sacha Chua
+* Day 171:
+** feedback form:
+#+begin_quote
 
+While this is not a feedback for specific ways or methods used here. Discord is an "interesting" choice for an app, and is known to cause sensory overload, especially with the constant flashing images and animation, and that doesnt even include Discords very dense navigation (which apparently has grown worse over the years). So again, not really a criticism of choice, but it would be nice to know much earlier there are options to reduce potential sensory overload. Such as by "enabling reduced motion" (as well many others but this is main one). Ultimately, Discord's natural clutter is really up to the Discord itself, so not much can be done.
+
+#+end_quote
